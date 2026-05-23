@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-brand-50: #f0fdf8;
+  --color-brand-100: #ccfbf0;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+  --color-ink-50: #f8faf9;
+  --color-ink-100: #f1f5f3;
+  --color-ink-200: #e2e8e5;
+  --color-ink-400: #94a39c;
+  --color-ink-600: #4a5751;
+  --color-ink-800: #1c2420;
+  --color-ink-900: #0f1412;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.code-line::before {
+  content: attr(data-n);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--color-ink-400);
+  user-select: none;
+}
+
+.prose-lesson {
+  @apply text-[17px] leading-relaxed text-ink-800;
+}
+
+.prose-lesson h2,
+.prose-lesson :global(h2) {
+  @apply mt-10 scroll-mt-28 border-t border-ink-100 pt-8 text-xl font-bold text-ink-900 first:mt-0 first:border-0 first:pt-0;
+}
+
+.prose-lesson p {
+  @apply mt-4;
+}
+
+.prose-lesson code:not(pre code) {
+  @apply rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm text-brand-800;
+}

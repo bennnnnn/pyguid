@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../lib/site";
+---
+
+<BaseLayout title={`About — ${SITE.name}`} description="About PyGuide free Python tutorials.">
+  <div class="mx-auto max-w-2xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-ink-900">About {SITE.name}</h1>
+    <div class="mt-6 space-y-4 text-ink-700 leading-relaxed">
+      <p>
+        {SITE.name} is a free, static Python tutorial site. Each chapter lists its sub-topics up
+        front so you know what you will learn. Every example has a read-only code view, a Copy
+        button, and Run to see output in your browser.
+      </p>
+      <p>
+        Sign in with Google is optional and only for saving progress. All lesson content stays
+        free without an account.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

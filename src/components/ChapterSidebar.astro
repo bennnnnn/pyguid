@@ -1,0 +1,71 @@
+---
+import type { ChapterEntry } from "../lib/chapters";
+import { chapterId, chapterUrl, subtopicUrl } from "../lib/chapters";
+
+interface Props {
+  chapters: ChapterEntry[];
+  currentSlug: string;
+  currentSubtopicId?: string;
+}
+
+const { chapters, currentSlug, currentSubtopicId } = Astro.props;
+---
+
+<aside class="lg:w-72 shrink-0">
+  <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-400">Chapters</p>
+  <nav class="space-y-4 text-sm" aria-label="All chapters and sub-topics">
+    {
+      chapters.map((chapter) => {
+        const isCurrent = chapterId(chapter) === currentSlug;
+        return (
+          <div
+            class:list={[
+              "rounded-lg border px-3 py-2",
+              isCurrent
+                ? "border-brand-200 bg-brand-50/60 ring-1 ring-brand-500/20"
+                : "border-ink-200 bg-white",
+            ]}
+          >
+            <a
+              href={chapterUrl(chapterId(chapter))}
+              class:list={[
+                "block hover:text-brand-700",
+                isCurrent ? "font-semibold text-brand-800" : "font-medium text-ink-800",
+              ]}
+            >
+              {chapter.data.order}. {chapter.data.title}
+            </a>
+            <p
+              class:list={[
+                "mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider",
+                isCurrent ? "text-brand-600/80" : "text-ink-400",
+              ]}
+            >
+              Sub-topics
+            </p>
+            <ul class="space-y-1 text-xs">
+              {chapter.data.subtopics.map((st) => {
+                const active = isCurrent && currentSubtopicId === st.id;
+                return (
+                  <li>
+                    <a
+                      href={subtopicUrl(chapterId(chapter), st.id)}
+                      class:list={[
+                        "block rounded py-0.5 pl-2 border-l-2",
+                        active
+                          ? "border-brand-500 font-medium text-brand-800"
+                          : "border-transparent text-ink-600 hover:text-brand-700",
+                      ]}
+                    >
+                      {st.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })
+    }
+  </nav>
+</aside>

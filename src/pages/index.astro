@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ChapterCard from "../components/ChapterCard.astro";
+import PythonExample from "../components/PythonExample.astro";
+import { getAllChapters, chapterId, chapterUrl } from "../lib/chapters";
+import { SITE } from "../lib/site";
+
+const chapters = await getAllChapters();
+const first = chapters[0];
+---
+
+<BaseLayout>
+  <section class="border-b border-ink-200 bg-white">
+    <div
+      class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:py-24"
+    >
+      <div>
+        <p
+          class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700"
+        >
+          Free · No account required · Sign in with Google optional
+        </p>
+        <h1 class="text-4xl font-bold leading-tight tracking-tight text-ink-900 md:text-5xl">
+          Learn Python the simple way
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-ink-600">
+          Short lessons, clear examples, and a one-click <strong class="font-semibold text-ink-800"
+            >Run</strong
+          > button on every snippet — see the output instantly, then copy the code to your editor.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {
+            first && (
+              <a
+                href={chapterUrl(chapterId(first))}
+                class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+              >
+                Chapter 1 — {first.data.title}
+              </a>
+            )
+          }
+          <a
+            href="/learn/"
+            class="rounded-lg border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50"
+          >
+            View all chapters
+          </a>
+        </div>
+        <p class="mt-8 text-sm text-ink-600">
+          <button
+            type="button"
+            id="open-signin-hero"
+            class="font-semibold text-brand-700 underline-offset-2 hover:underline"
+          >
+            Sign in with Google
+          </button>
+          to save progress across devices — or keep browsing without an account.
+        </p>
+      </div>
+      <PythonExample
+        filename="hello.py"
+        code={`print("Hello, Python!")
+name = "PyGuide"
+print(f"Welcome to {name}")`}
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="mb-10">
+      <h2 class="text-2xl font-bold text-ink-900">Chapters</h2>
+      <p class="mt-1 text-ink-600">
+        Read in order — each chapter lists its sub-topics so you know what is inside
+      </p>
+    </div>
+    <div class="grid gap-4 lg:grid-cols-2">
+      {chapters.map((chapter) => (
+        <ChapterCard chapter={chapter} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+})} />

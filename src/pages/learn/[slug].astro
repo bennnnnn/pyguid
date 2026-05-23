@@ -1,0 +1,97 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChapterSidebar from "../../components/ChapterSidebar.astro";
+import SubtopicNav from "../../components/SubtopicNav.astro";
+import PythonExample from "../../components/PythonExample.astro";
+import {
+  getAllChapters,
+  chapterId,
+  chapterUrl,
+} from "../../lib/chapters";
+import { SITE } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const chapters = await getCollection("chapters");
+  return chapters.map((chapter) => ({
+    params: { slug: chapter.id },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect("/learn/");
+
+const chapters = await getAllChapters();
+const chapter = chapters.find((c) => chapterId(c) === slug);
+if (!chapter) return Astro.redirect("/learn/");
+
+const { Content } = await render(chapter);
+const idx = chapters.findIndex((c) => chapterId(c) === slug);
+const prev = idx > 0 ? chapters[idx - 1] : null;
+const next = idx < chapters.length - 1 ? chapters[idx + 1] : null;
+
+const pageTitle = `Chapter ${chapter.data.order} — ${chapter.data.title} | ${SITE.name}`;
+const pageDesc = chapter.data.description;
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <div class="mx-auto max-w-6xl px-4 py-8">
+    <div class="flex flex-col gap-8 lg:flex-row">
+      <ChapterSidebar chapters={chapters} currentSlug={slug} />
+      <article class="min-w-0 max-w-3xl flex-1">
+        <nav class="mb-4 text-sm text-ink-600">
+          <a href="/learn/" class="hover:text-brand-700">Learn</a>
+          <span class="mx-1">/</span>
+          <span class="text-ink-900">{chapter.data.title}</span>
+        </nav>
+        <h1 class="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
+          Chapter {chapter.data.order} — {chapter.data.title}
+        </h1>
+        <p class="mt-3 text-sm capitalize text-ink-600">{chapter.data.level}</p>
+        <SubtopicNav chapter={chapter} />
+        <div class="prose-lesson mt-8">
+          <Content components={{ PythonExample }} />
+        </div>
+        <nav class="mt-12 flex justify-between gap-4 border-t border-ink-200 pt-8">
+          {
+            prev ? (
+              <a
+                href={chapterUrl(chapterId(prev))}
+                class="rounded-lg border border-ink-200 px-4 py-3 text-sm font-semibold hover:bg-ink-50"
+              >
+                ← {prev.data.title}
+              </a>
+            ) : (
+              <span />
+            )
+          }
+          {
+            next ? (
+              <a
+                href={chapterUrl(chapterId(next))}
+                class="rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+              >
+                {next.data.title} →
+              </a>
+            ) : (
+              <span />
+            )
+          }
+        </nav>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: chapter.data.title,
+    description: chapter.data.description,
+    learningResourceType: "Tutorial",
+    educationalLevel: chapter.data.level,
+    isPartOf: { "@type": "Course", name: "PyGuide Python Tutorial" },
+  })}
+/>

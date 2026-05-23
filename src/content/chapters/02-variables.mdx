@@ -1,0 +1,59 @@
+---
+title: "Variables"
+description: "Store values under names and reuse them in your programs."
+order: 2
+level: beginner
+subtopics:
+  - id: creating-variables
+    title: "Creating variables"
+  - id: naming-rules
+    title: "Naming rules"
+  - id: updating-values
+    title: "Updating values"
+  - id: variables-in-print
+    title: "Variables in print"
+---
+
+<h2 id="creating-variables">Creating variables</h2>
+
+A **variable** is a name that refers to a value. You create one with `=`.
+
+<PythonExample
+  filename="variables.py"
+  code={`age = 25
+name = "Ada"
+print(name)
+print(age)`}
+/>
+
+<h2 id="naming-rules">Naming rules</h2>
+
+Names can use letters, numbers, and underscores. They cannot start with a number. Use `snake_case` for multiple words.
+
+<PythonExample
+  filename="naming.py"
+  code={`user_name = "Sam"
+print(user_name)`}
+/>
+
+<h2 id="updating-values">Updating values</h2>
+
+You can assign again to change what a variable holds.
+
+<PythonExample
+  filename="update.py"
+  code={`score = 10
+print(score)
+score = 20
+print(score)`}
+/>
+
+<h2 id="variables-in-print">Variables in print</h2>
+
+Pass variables to `print()` or use an f-string.
+
+<PythonExample
+  filename="fstring.py"
+  code={`name = "Ada"
+print(f"Hello, {name}")`}
+/>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Python Cheatsheet — PyGuide"
+  description="Quick Python syntax reference for strings, lists, and more."
+>
+  <main class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-ink-900">Python cheatsheet</h1>
+    <p class="mt-2 text-ink-600">Quick reference for common syntax.</p>
+    <div class="mt-10 space-y-6">
+      <section class="overflow-hidden rounded-xl border border-ink-200 bg-white">
+        <h2 class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900">
+          Strings
+        </h2>
+        <div class="grid divide-y sm:grid-cols-2 sm:divide-x sm:divide-y-0 divide-ink-100">
+          <div class="p-5 font-mono text-sm text-ink-800">
+            s = "hello"<br />len(s)<br />s.upper()
+          </div>
+          <div class="bg-ink-50/50 p-5 text-sm text-ink-600">
+            Length, uppercase, slicing…
+          </div>
+        </div>
+      </section>
+      <section class="overflow-hidden rounded-xl border border-ink-200 bg-white">
+        <h2 class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900">
+          Lists
+        </h2>
+        <div class="grid divide-y sm:grid-cols-2 sm:divide-x sm:divide-y-0 divide-ink-100">
+          <div class="p-5 font-mono text-sm text-ink-800">
+            nums = [1, 2, 3]<br />nums.append(4)
+          </div>
+          <div class="bg-ink-50/50 p-5 text-sm text-ink-600">Create, append, loop…</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

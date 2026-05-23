@@ -1,0 +1,61 @@
+---
+title: "Data types"
+description: "Numbers, text, and true/false — and when to use each."
+order: 3
+level: beginner
+subtopics:
+  - id: integers-floats
+    title: "Integers and floats"
+  - id: strings
+    title: "Strings and quotes"
+  - id: booleans
+    title: "Booleans"
+  - id: type-function
+    title: "Checking types with type()"
+---
+
+<h2 id="integers-floats">Integers and floats</h2>
+
+Whole numbers are `int`. Numbers with decimals are `float`.
+
+<PythonExample
+  filename="numbers.py"
+  code={`count = 3
+price = 9.99
+print(count)
+print(price)`}
+/>
+
+<h2 id="strings">Strings and quotes</h2>
+
+Text lives in strings. Use single or double quotes.
+
+<PythonExample
+  filename="strings.py"
+  code={`greeting = "Hello"
+name = 'Python'
+print(greeting, name)`}
+/>
+
+<h2 id="booleans">Booleans</h2>
+
+`True` and `False` represent yes/no values.
+
+<PythonExample
+  filename="bools.py"
+  code={`is_active = True
+print(is_active)
+print(not is_active)`}
+/>
+
+<h2 id="type-function">Checking types with type()</h2>
+
+Use `type()` to see what kind of value you have.
+
+<PythonExample
+  filename="types.py"
+  code={`x = 42
+print(type(x))
+y = "hello"
+print(type(y))`}
+/>

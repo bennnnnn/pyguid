@@ -1,0 +1,50 @@
+---
+import type { ChapterEntry } from "../lib/chapters";
+import { chapterId, subtopicUrl } from "../lib/chapters";
+
+interface Props {
+  chapter: ChapterEntry;
+  activeSubtopicId?: string;
+}
+
+const { chapter, activeSubtopicId } = Astro.props;
+const { subtopics } = chapter.data;
+---
+
+<nav
+  class="mt-6 rounded-xl border-2 border-brand-100 bg-brand-50/40 p-5"
+  aria-label="Sub-topics in this chapter"
+>
+  <p class="text-sm font-bold text-ink-900">Sub-topics in this chapter</p>
+  <p class="mt-1 text-xs text-ink-600">Jump to a section below.</p>
+  <ol class="mt-4 space-y-2 text-sm">
+    {
+      subtopics.map((st, i) => {
+        const active = activeSubtopicId === st.id;
+        return (
+          <li>
+            <a
+              href={subtopicUrl(chapterId(chapter), st.id)}
+              class:list={[
+                "flex items-center gap-3 rounded-lg border px-3 py-2.5",
+                active
+                  ? "border-brand-200 bg-white font-medium text-brand-800 shadow-sm"
+                  : "border-ink-200 bg-white text-ink-800 hover:border-brand-200 hover:text-brand-800",
+              ]}
+            >
+              <span
+                class:list={[
+                  "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                  active ? "bg-brand-600 text-white" : "bg-ink-100 text-ink-600",
+                ]}
+              >
+                {i + 1}
+              </span>
+              {st.title}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
