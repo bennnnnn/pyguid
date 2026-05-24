@@ -8,7 +8,9 @@ section: "Strings"
 level: beginner
 ---
 
-**`strip()`** removes whitespace from the **start and end** of a string (spaces, tabs, newlines).
+Someone hands you a sticky note with spaces smeared around the words. **`strip()`** trims that junk from the **start and end** — not from the middle of the sentence.
+
+## One new idea: strip() both ends
 
 <PythonExample
   filename="strip.py"
@@ -17,9 +19,15 @@ clean = text.strip()
 print(repr(clean))`}
 />
 
-`repr()` shows quotes so you can see spaces are gone.
+**Before → after**
 
-## lstrip() and rstrip()
+| `text` (with spaces) | `clean` after `strip()` |
+| -------------------- | ----------------------- |
+| `"   Hello...   "`   | `"Hello, Python!"`      |
+
+`repr()` shows quotes so you can **see** spaces are gone.
+
+## One side only: lstrip() and rstrip()
 
 <PythonExample
   filename="sides.py"
@@ -28,25 +36,34 @@ print(line.lstrip("> "))
 print(line.rstrip())`}
 />
 
-## strip characters
+| Method     | Removes from   |
+| ---------- | -------------- |
+| `lstrip()` | **left** start |
+| `rstrip()` | **right** end  |
 
-Pass characters to remove from the ends:
-
-<PythonExample
-  filename="chars.py"
-  code={`price = "$19.99"
-print(price.strip("$"))`}
-/>
-
-## Clean user input
+## Real use case: clean form input
 
 <PythonExample
   filename="input_clean.py"
-  code={`raw = "  yes  \\n"
+  code={`raw = "  yes  "
 cleaned = raw.strip().lower()
 print(cleaned)`}
 />
 
+Pattern: **`strip()`** then **`lower()`** before comparing answers.
+
 <Callout variant="tip">
-  Always `strip()` text from forms or files before comparing or storing.
+  Always **`strip()`** text from forms, files, or copy-paste before **`==`** comparisons.
 </Callout>
+
+<TryIt title="Try it yourself" answer="hello">
+  With `s = " hello "`, print `s.strip()`.
+</TryIt>
+
+## Recap
+
+- **`strip()`** — both ends
+- **`lstrip()` / `rstrip()`** — one side
+- Middle spaces stay unless you use other tools
+
+Next: **`split()`** — break a string into a list.

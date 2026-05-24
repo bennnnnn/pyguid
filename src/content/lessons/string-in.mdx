@@ -8,7 +8,9 @@ section: "Strings"
 level: beginner
 ---
 
-The **`in`** operator tests whether a substring appears in a string:
+Before sending an email you glance for **`@`** — is this even an address? The **`in`** operator does that glance for any piece of text inside a string.
+
+## One new idea: substring in string
 
 <PythonExample
   filename="in.py"
@@ -17,39 +19,51 @@ print("@" in email)
 print("password" in email)`}
 />
 
-## not in
+| Test                  | Result  |
+| --------------------- | ------- |
+| `"@" in email`        | `True`  |
+| `"password" in email` | `False` |
+
+## not in — when it is missing
 
 <PythonExample
   filename="not_in.py"
   code={`word = "Python"
 if " " not in word:
-    print("Single word")`}
+    print("One word, no spaces")`}
 />
 
-## Use in conditions
+## Real use case: simple validation
 
 <PythonExample
   filename="validate.py"
   code={`username = "ada42"
-if username.isalnum() and " " not in username:
-    print("Valid username format")`}
+has_space = " " in username
+print("Has space:", has_space)
+
+if " " not in username:
+print("Username OK for this lesson")`}
 />
 
-## Loop over characters
+## in vs find()
 
-<PythonExample
-  filename="chars.py"
-  code={`for letter in "abc":
-    print(letter)`}
-/>
-
-## Membership vs find()
-
-| Check     | Code              |
-| --------- | ----------------- |
-| Exists?   | `"py" in text`    |
-| Position? | `text.find("py")` |
+| Goal         | Use                   |
+| ------------ | --------------------- |
+| Is it there? | **`"py" in text`**    |
+| Where is it? | **`text.find("py")`** |
 
 <Callout variant="note">
-  `in` is the Pythonic way to ask “is this substring here?”
+  **`in`** is the Pythonic way to ask “does this string contain that piece?”
 </Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  With `s = "Hello, Python"`, print whether `"Python"` is in `s`.
+</TryIt>
+
+## Recap
+
+- **`x in s`** → `True` / `False`
+- **`x not in s`** — opposite
+- Use with **`if`** for simple checks
+
+Next: **Formatting strings** — f-strings.

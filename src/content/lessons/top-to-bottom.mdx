@@ -7,9 +7,9 @@ chapterTitle: "Getting Started"
 level: beginner
 ---
 
-A Python file is a **list of instructions**. When you run the program, Python starts at the **top** and works **down**, one line at a time — unless a later lesson introduces `if`, loops, or functions that change the flow.
+A recipe says: preheat oven, mix flour, bake. If you bake before mixing, disaster. Python reads your file like a recipe — **top to bottom**, one step at a time.
 
-## Run order
+## One new idea: lines run in order
 
 <PythonExample
   filename="order.py"
@@ -18,11 +18,17 @@ print("Second")
 print("Third")`}
 />
 
-Output is always **First**, then **Second**, then **Third**. The computer does not skip around on its own.
+**Always this output**
 
-## Later lines can use earlier work
+```text
+First
+Second
+Third
+```
 
-A later line can use the result of an earlier line. You will use **variables** (names for values) in the next chapter; here is a small preview:
+Python does not skip lines or reorder them on its own (later you will add `if` and loops that change flow).
+
+## Later lines use earlier work
 
 <PythonExample
   filename="steps.py"
@@ -31,11 +37,15 @@ print(greeting)
 print("Done")`}
 />
 
-`greeting` must be created **before** `print(greeting)` runs. Order matters.
+**Line by line**
 
-## Same line, left to right
+- Line 1 creates `greeting` — must run **first**
+- Line 2 uses `greeting` — only works after line 1
+- Line 3 runs last
 
-On one line, math happens before `print` sees it:
+You will learn variables properly in the next chapter; for now, remember: **define before use**.
+
+## Math on one line happens before print
 
 <PythonExample
   filename="math_first.py"
@@ -43,9 +53,12 @@ On one line, math happens before `print` sees it:
 print("3 + 4 =", 3 + 4)`}
 />
 
-## Blank lines
+| Code                      | Output      |
+| ------------------------- | ----------- |
+| `print(3 + 4)`            | `7`         |
+| `print("3 + 4 =", 3 + 4)` | `3 + 4 = 7` |
 
-Empty lines are ignored. They only help **you** read the file:
+## Blank lines are for humans only
 
 <PythonExample
   filename="spacing.py"
@@ -54,9 +67,9 @@ Empty lines are ignored. They only help **you** read the file:
 print("End")`}
 />
 
-## When order goes wrong
+Empty lines are ignored — they help **you** read the file.
 
-If you use a name before it exists, Python stops with an **error**:
+## Common mistake: use before create
 
 <PythonExample
   filename="error_order.py"
@@ -64,14 +77,26 @@ If you use a name before it exists, Python stops with an **error**:
 score = 100`}
 />
 
-<Callout variant="note">
-  Run the example above to see the error. Fix it by putting `score = 100` **before**
-  `print(score)`.
+Run it — **NameError**: `score` does not exist yet when `print(score)` runs.
+
+<Callout variant="tip">
+  Fix: put **`score = 100`** **above** **`print(score)`**, then run again.
 </Callout>
+
+<TryIt title="Try it yourself" answer="B then A">
+  Write two prints so the first line prints `"B"` and the second prints `"A"`. Run — then
+  swap the lines so output is `A` then `B`.
+</TryIt>
 
 <Callout variant="warning">
-  Later chapters use **indentation** (spaces at the start of a line) for `if` blocks and
-  loops. For now, keep every statement at the **left edge** with no extra leading spaces.
+  Later, **`if`** and loops need **indented** blocks (extra spaces). For now, keep every
+  statement at the **left edge**.
 </Callout>
 
-Next: **Comments** — write notes that Python skips.
+## Recap
+
+- Python runs from the **top** down
+- Create values **before** you use them
+- Blank lines do not affect execution
+
+Next: **Comments** — notes for humans that Python skips.

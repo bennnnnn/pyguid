@@ -8,9 +8,9 @@ section: "Strings"
 level: beginner
 ---
 
-## find()
+You Ctrl+F in a document: **find** where a word starts, **replace** it with another. Python strings have the same tools built in.
 
-**`find(substring)`** returns the **index** of the first match, or **`-1`** if not found (no error).
+## One new idea: find() returns position or -1
 
 <PythonExample
   filename="find.py"
@@ -19,32 +19,33 @@ print(text.find("Python"))
 print(text.find("Java"))`}
 />
 
-## index() vs find()
+| Search     | Result | Meaning              |
+| ---------- | ------ | -------------------- |
+| `"Python"` | `6`    | found at index 6     |
+| `"Java"`   | `-1`   | not found (no crash) |
 
-**`index()`** works like `find()` but raises **`ValueError`** if missing:
+## find() vs index()
 
-<PythonExample
-  filename="index.py"
-  code={`text = "hello"
-print(text.find("z"))
-try:
-    print(text.index("z"))
-except ValueError as e:
-    print("Error:", e)`}
-/>
+**`index()`** is like `find()` but **raises ValueError** if missing — use `find()` when “maybe not there” is normal.
 
-## replace()
-
-**`replace(old, new)`** returns a new string with replacements:
+## replace() — new string, old unchanged
 
 <PythonExample
   filename="replace.py"
   code={`msg = "I like cats"
-print(msg.replace("cats", "dogs"))
+new_msg = msg.replace("cats", "dogs")
+print(new_msg)
 print(msg)`}
 />
 
-## Count replacements
+**Before → after**
+
+| Variable  | Value           |
+| --------- | --------------- |
+| `msg`     | `"I like cats"` |
+| `new_msg` | `"I like dogs"` |
+
+## Limit how many replacements
 
 <PythonExample
   filename="count_replace.py"
@@ -52,6 +53,25 @@ print(msg)`}
 print(data.replace("ha", "ho", 2))`}
 />
 
-Third argument limits how many replacements.
+Only the **first two** `"ha"` become `"ho"`.
 
-<Callout variant="tip">Use `in` for a quick yes/no check: `if "@" in email:`.</Callout>
+## Real use case: clean a word
+
+<PythonExample
+  filename="censor.py"
+  code={`tweet = "I love Python programming"
+clean = tweet.replace("Python", "Python 🐍")
+print(clean)`}
+/>
+
+<TryIt title="Try it yourself" answer="Hello, World">
+  With `s = "Hello, Python"`, print `s.replace("Python", "World")`.
+</TryIt>
+
+## Recap
+
+- **`find()`** → index or **`-1`**
+- **`replace(old, new)`** → new string
+- Use **`in`** for yes/no checks (next pages)
+
+Next: **`startswith()` and `endswith()`**.

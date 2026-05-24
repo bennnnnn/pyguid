@@ -8,7 +8,9 @@ section: "Strings"
 level: beginner
 ---
 
-**`join()`** is called on the **separator** string. It joins a list of strings into one string.
+**`split()`** cuts a string apart. **`join()`** is the glue: you pick the separator, pass a list of strings, and get one combined string back.
+
+## One new idea: separator.join(list)
 
 <PythonExample
   filename="join.py"
@@ -16,6 +18,14 @@ level: beginner
 sentence = " ".join(words)
 print(sentence)`}
 />
+
+**Line by line**
+
+- `" "` — the **glue** (space between words)
+- `.join(words)` — stick `words` together
+- Result: `"Python is great"`
+
+Read it as: **“space-join these words.”**
 
 ## Different separators
 
@@ -26,7 +36,7 @@ print("-".join(items))
 print(", ".join(["a", "b", "c"]))`}
 />
 
-## join() after split()
+## Round trip with split()
 
 <PythonExample
   filename="roundtrip.py"
@@ -36,7 +46,12 @@ restored = ",".join(parts)
 print(restored)`}
 />
 
-## All items must be strings
+## Common mistake: numbers in the list
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`"-".join([1, 2, 3])`** → **TypeError**. Every item must be a **string**. Convert
+  first: **`"-".join(str(n) for n in nums)`** (pattern shown below).
+</Callout>
 
 <PythonExample
   filename="str_first.py"
@@ -45,10 +60,14 @@ text = "-".join(str(n) for n in nums)
 print(text)`}
 />
 
-<Callout variant="danger">
-  `"-".join([1, 2, 3])` raises **`TypeError`** — convert numbers with `str()` first.
-</Callout>
+<TryIt title="Try it yourself" answer="a-b-c">
+  With `parts = ["a", "b", "c"]`, print `"-".join(parts)`.
+</TryIt>
 
-<Callout variant="tip">
-  `join()` is often faster and clearer than many `+` operations in a loop.
-</Callout>
+## Recap
+
+- Call **`join`** on the **separator** string
+- All items must be **`str`**
+- Pairs naturally with **`split()`**
+
+Next: **`find()` and `replace()`** — search and swap text.

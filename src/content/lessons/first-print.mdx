@@ -7,21 +7,21 @@ chapterTitle: "Getting Started"
 level: beginner
 ---
 
-The built-in **`print()`** function sends output to the screen. It is the fastest way to see what your program is doing — and you will use it in almost every lesson.
+A **`print()`** is like a megaphone for your program: whatever you put inside gets shown on the screen. It is the fastest way to see if your code is doing what you expect.
 
-## Print text
+## One new idea: show text with quotes
 
-Put **text** inside quotes (single `'` or double `"`):
+<PythonExample filename="hello.py" code={`print("Hello, Python!")`} />
 
-<PythonExample
-  filename="hello.py"
-  code={`print("Hello, Python!")
-print('Single quotes work too')`}
-/>
+**Line by line**
 
-## Print numbers
+- `print` — the function name
+- `("Hello, Python!")` — the **argument**: what to display
+- Double `"` or single `'` quotes mean **text** (a string)
 
-**Numbers** do not use quotes:
+<PythonExample filename="quotes.py" code={`print('Single quotes work too')`} />
+
+## Show numbers (no quotes)
 
 <PythonExample
   filename="numbers.py"
@@ -30,9 +30,14 @@ print(3.14)
 print(10 + 5)`}
 />
 
-## Print several values at once
+| You write     | Python treats it as |
+| ------------- | ------------------- |
+| `print(42)`   | number **42**       |
+| `print("42")` | text **"42"**       |
 
-Separate items with **commas**. `print()` puts a **space** between them:
+Numbers can do math **before** printing: `10 + 5` becomes `15`.
+
+## Several values: commas add spaces
 
 <PythonExample
   filename="multiple.py"
@@ -40,9 +45,14 @@ Separate items with **commas**. `print()` puts a **space** between them:
 print(2, "+", 2, "=", 2 + 2)`}
 />
 
-## Blank lines
+**Output**
 
-Call `print()` with nothing inside to print an empty line:
+```text
+The answer is 42
+2 + 2 = 4
+```
+
+## Blank line
 
 <PythonExample
   filename="blank.py"
@@ -51,10 +61,9 @@ print()
 print("Line 3")`}
 />
 
-## Control spacing: sep and end
+`print()` with nothing inside prints an empty line.
 
-- **`sep`** — what goes **between** items (default is a space)
-- **`end`** — what goes **at the end** of the line (default is a new line)
+## Control spacing: `sep` and `end`
 
 <PythonExample
   filename="sep_end.py"
@@ -63,15 +72,18 @@ print("Loading", end="...")
 print(" done")`}
 />
 
-## Special characters in text
+| Option | Default  | Example effect          |
+| ------ | -------- | ----------------------- |
+| `sep`  | space    | `sep=", "` → commas     |
+| `end`  | new line | `end="..."` → same line |
 
-Inside strings, some characters need a backslash:
+## Special characters inside text
 
-| Code | Meaning                             |
-| ---- | ----------------------------------- |
-| `\n` | New line                            |
-| `\t` | Tab                                 |
-| `\"` | Quote inside a double-quoted string |
+| Code | Meaning          |
+| ---- | ---------------- |
+| `\n` | new line         |
+| `\t` | tab              |
+| `\"` | quote in `"..."` |
 
 <PythonExample
   filename="escape.py"
@@ -79,18 +91,20 @@ Inside strings, some characters need a backslash:
 print("She said \\"Hello\\"")`}
 />
 
-<Callout variant="warning" title="Quotes matter">
-  `print("42")` is **text**. `print(42)` is a **number**. They look similar in the output
-  but behave differently later in the course.
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`print(hello)`** without quotes looks for a variable named `hello`. You have not
+  created one yet → **NameError**. For now, put words in **quotes**.
 </Callout>
 
-<Callout variant="danger" title="Common mistake">
-  `print(hello)` without quotes makes Python look for a variable named `hello`. You will
-  learn variables in the next chapter. For now, put text in quotes.
-</Callout>
-
-<TryIt title="Try it yourself" answer="Hello, your name here">
-  Change the text inside `print("Hello, Python!")` to your name. Run the code.
+<TryIt title="Try it yourself" answer="Hello, Sam">
+  Print a greeting with your name: `print("Hello, Sam")` (change `Sam` to your name).
 </TryIt>
 
-Next: **How code runs** — why order of lines matters.
+## Recap
+
+- **`print("text")`** — show strings
+- **`print(42)`** — show numbers
+- **Commas** — several items with spaces between
+- **Quotes** = text; **no quotes** = number
+
+Next: **How code runs** — why line order matters.

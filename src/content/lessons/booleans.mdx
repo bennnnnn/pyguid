@@ -7,25 +7,27 @@ chapterTitle: "Data Types"
 level: beginner
 ---
 
-So far in this chapter you have studied **numbers** (`int`, `float`) and **text** (`str`). The third essential type answers **yes or no** questions.
+A light switch is only **on** or **off**. A **boolean** (`bool`) is Python’s switch: **`True`** or **`False`** — no third option.
 
-A **boolean** (`bool`) has only **two possible values**:
+## One new idea: True and False
 
-- **`True`** — yes, on, correct, success
-- **`False`** — no, off, incorrect, failure
+<PythonExample
+  filename="bools.py"
+  code={`is_active = True
+is_admin = False
+print(is_active)
+print(is_admin)
+print(type(is_active))`}
+/>
 
-There is no third boolean value. Every condition eventually boils down to true or false.
+**Line by line**
 
-## What booleans are for
+- `True` / `False` — capital **T** and **F** required
+- `type(...)` shows `<class 'bool'>`
 
-Programs constantly ask questions:
+## Booleans from comparisons
 
-- Is the user logged in?
-- Is the password correct?
-- Is the score above 60?
-- Should we show the discount?
-
-The answers are booleans. You will combine them with **`and`**, **`or`**, and **`not`** in **Logical Operators**, then use them in **`if`** statements in **If Statements** (after **Comparisons**).
+Programs ask questions: “Is age at least 18?” The answer is a boolean:
 
 <PythonExample
   filename="why.py"
@@ -35,34 +37,38 @@ print(is_adult)
 print(type(is_adult))`}
 />
 
-Expressions like `age >= 18` use **comparison operators** (`==`, `!=`, `<`, `>`, `<=`, `>=`) and produce a **boolean** — not a number or string. You will learn all of them in the next lesson.
+`age >= 18` is an expression that becomes **`True`** or **`False`** — not a number or string.
+
+## Real use case: is it hot?
 
 <PythonExample
-  filename="bools.py"
-  code={`is_active = True
-is_admin = False
-print(is_active)
-print(is_admin)`}
-/>
-
-<Callout variant="danger" title="Capital letters required">
-  Write `True` and `False` with a capital T and F. `true` and `false` are **not** valid in
-  Python and will cause errors.
-</Callout>
-
-## Storing a boolean
-
-You can save the result of a comparison in a variable (operators are taught in **Comparisons**):
-
-<PythonExample
-  filename="stored.py"
+  filename="hot.py"
   code={`temperature = 30
 is_hot = temperature > 25
-print(is_hot)
-print(type(is_hot))`}
+print("Hot day?", is_hot)`}
 />
 
-<Callout variant="tip">
-  Name boolean variables as questions: `is_valid`, `has_permission`, `can_edit`. That
-  makes `if can_edit:` read like English.
+You will learn every comparison operator (`==`, `!=`, `<`, …) in **Comparisons**, then **`and` / `or` / `not`**, then **`if`**.
+
+## Common mistake: true vs True
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`true`** and **`false`** are **invalid**. Only **`True`** and **`False`** work.
 </Callout>
+
+<Callout variant="tip">
+  Name boolean variables like questions: **`is_valid`**, **`has_permission`**,
+  **`can_edit`**. Then **`if can_edit:`** reads like English.
+</Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  Set `score = 90` and `passed = score >= 60`. Print `passed`.
+</TryIt>
+
+## Recap
+
+- **`bool`** — only **`True`** or **`False`**
+- Comparisons produce booleans
+- Capital letters matter
+
+Next: **`type()`** — inspect and convert types.

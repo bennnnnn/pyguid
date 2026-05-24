@@ -8,11 +8,11 @@ section: "Strings"
 level: beginner
 ---
 
-**`split()`** breaks a string into a **list** of substrings.
+A CSV row looks like one long string: `apple,banana,cherry`. **`split()`** is the knife that cuts it into separate pieces — a **list** of strings.
 
-## split by whitespace
+## One new idea: split on whitespace
 
-With no argument, `split()` splits on any whitespace:
+With **no argument**, `split()` breaks on spaces, tabs, and newlines:
 
 <PythonExample
   filename="split.py"
@@ -21,7 +21,13 @@ words = sentence.split()
 print(words)`}
 />
 
-## split by a separator
+**Before → after**
+
+| `sentence`        | `words`                   |
+| ----------------- | ------------------------- |
+| `"Python is fun"` | `["Python", "is", "fun"]` |
+
+## Split on a specific character
 
 <PythonExample
   filename="split_comma.py"
@@ -30,7 +36,7 @@ fruits = csv.split(",")
 print(fruits)`}
 />
 
-## max splits
+## Limit how many cuts
 
 <PythonExample
   filename="maxsplit.py"
@@ -39,17 +45,32 @@ parts = data.split("-", 2)
 print(parts)`}
 />
 
-Only splits twice — rest stays in the last piece.
+Only **2** splits → `["one", "two", "three-four"]` — the rest stays in the last piece.
 
-## splitlines()
+## Real use case: read a data line
 
 <PythonExample
-  filename="lines.py"
-  code={`text = "line1\\nline2\\nline3"
-rows = text.splitlines()
-print(rows)`}
+  filename="user_row.py"
+  code={`row = "ada,36,london"
+parts = row.split(",")
+name = parts[0]
+age = parts[1]
+city = parts[2]
+print(name, "is", age, "from", city)`}
 />
 
 <Callout variant="note">
-  `split()` returns a list. Use `join()` (next page) to combine a list back into a string.
+  **`split()`** returns a **list**. Use **`join()`** (next lesson) to glue pieces back.
 </Callout>
+
+<TryIt title="Try it yourself" answer='["a", "b", "c"]'>
+  With `s = "a,b,c"`, print `s.split(",")`.
+</TryIt>
+
+## Recap
+
+- **`split()`** — default: whitespace
+- **`split(",")`** — cut on commas
+- Second argument limits number of splits
+
+Next: **`join()`** — combine a list into one string.

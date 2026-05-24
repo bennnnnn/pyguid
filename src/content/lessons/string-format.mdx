@@ -8,7 +8,11 @@ section: "Strings"
 level: beginner
 ---
 
-## f-strings (recommended)
+Mad Libs: you fill blanks in a sentence. An **f-string** is the same — write a template with **`{holes}`** and Python drops variables in.
+
+## One new idea: f-strings
+
+Put **`f`** before the quotes. Inside **`{ }`**, put variables or math:
 
 <PythonExample
   filename="fstring.py"
@@ -18,36 +22,56 @@ print(f"My name is {name} and I am {age} years old.")
 print(f"Next year: {age + 1}")`}
 />
 
-## Expressions inside {}
+**Line by line**
+
+- `f"..."` — “format this string”
+- `{name}` — value of `name`
+- `{age + 1}` — expression computed first
+
+## Format money-style numbers
 
 <PythonExample
   filename="expr.py"
-  code={`price = 19.99
-qty = 3
-total = price * qty
-print(f"Total: {total:.2f}")`}
+  code={"price = 19.99\nqty = 3\ntotal = price * qty\nprint(f\"Total: {total:.2f}\")"}
 />
 
-The `:.2f` inside braces formats a number to 2 decimal places.
+`{total:.2f}` inside an f-string means “show as a float with 2 decimal places.”
 
-## format() method
+## Real use case: scoreboard line
+
+<PythonExample
+  filename="score.py"
+  code={`player = "Sam"
+score = 1280
+level = 7
+print(f"{player} — Level {level} — Score {score}")`}
+/>
+
+## Older styles (you may see in old code)
 
 <PythonExample
   filename="format.py"
   code={`print("Hello, {}!".format("Python"))
-print("{0} + {1} = {2}".format(2, 3, 5))`}
-/>
-
-## % formatting (older style)
-
-<PythonExample
-  filename="percent.py"
-  code={`name = "Sam"
+name = "Sam"
 print("Hello, %s" % name)`}
 />
 
-You may see this in old code; prefer f-strings for new projects.
-
 <Callout variant="tip">
-  f-strings are readable, fast, and support expressions — use them by default.
+  For new code, prefer **f-strings**. You already used them in the **Variables** chapter.
 </Callout>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`"Age: " + age`** fails when `age` is a number. Use **`f"Age: {age}"`** instead.
+</Callout>
+
+<TryIt title="Try it yourself" answer="I have 3 apples">
+  With `n = 3`, print `f"I have {n} apples"`.
+</TryIt>
+
+## Recap
+
+- **`f"{var}"`** — readable, modern default
+- **`{expr}`** — any expression inside braces
+- Avoid **`+`** between text and numbers
+
+Next: **String slicing** — cut out pieces.

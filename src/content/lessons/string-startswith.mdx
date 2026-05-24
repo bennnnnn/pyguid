@@ -8,23 +8,33 @@ section: "Strings"
 level: beginner
 ---
 
-## startswith()
+Filenames like `report_2024.pdf` tell you a story: starts with **report**, ends with **.pdf**. **`startswith()`** and **`endswith()`** ask those questions and return **`True`** or **`False`**.
 
-Returns **`True`** or **`False`**:
+## One new idea: startswith()
 
 <PythonExample
   filename="startswith.py"
   code={`filename = "report_2024.pdf"
 print(filename.startswith("report"))
-print(filename.startswith("invoice"))
+print(filename.startswith("invoice"))`}
+/>
+
+| Question                 | Answer  |
+| ------------------------ | ------- |
+| Starts with `"report"`?  | `True`  |
+| Starts with `"invoice"`? | `False` |
+
+## endswith() for file types
+
+<PythonExample
+  filename="endswith.py"
+  code={`filename = "report_2024.pdf"
 
 if filename.endswith(".pdf"):
 print("PDF file")`}
 />
 
-## Check multiple prefixes
-
-Pass a **tuple** of options:
+## Check several options with a tuple
 
 <PythonExample
   filename="tuple.py"
@@ -33,14 +43,29 @@ if url.startswith(("http://", "https://")):
     print("Web URL")`}
 />
 
-## endswith()
+Pass a **tuple** of prefixes or suffixes — **any** match counts.
+
+## Real use case: image files
 
 <PythonExample
-  filename="endswith.py"
+  filename="images.py"
   code={`name = "photo.PNG"
-print(name.lower().endswith((".png", ".jpg", ".gif")))`}
+if name.lower().endswith((".png", ".jpg", ".gif")):
+    print("Image file")`}
 />
 
 <Callout variant="tip">
-  Combine with `lower()` when file extensions might be uppercase.
+  Use **`.lower()`** on the filename when extensions might be uppercase (`PNG` vs `png`).
 </Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  With `f = "notes.txt"`, print `f.endswith(".txt")`.
+</TryIt>
+
+## Recap
+
+- **`startswith(...)`** — beginning match
+- **`endswith(...)`** — ending match
+- Tuple argument = “any of these”
+
+Next: **`in` and `not in`** — substring search.

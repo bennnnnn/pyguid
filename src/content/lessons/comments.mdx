@@ -7,55 +7,46 @@ chapterTitle: "Getting Started"
 level: beginner
 ---
 
-Code tells the computer **what to do**. **Comments** tell **humans** why — they are notes Python **does not run**.
+In a cookbook margin you scribble “use less salt” — the oven ignores it, but **you** remember why. **Comments** are those margin notes in code: for **humans**, not the computer.
 
-## One-line comments
-
-Start a comment with `#`:
+## One new idea: `#` starts a comment
 
 <PythonExample
   filename="comments.py"
-  code={`# This is a comment — Python skips it
+  code={`# This line is a comment — Python skips it
 print("This line runs")`}
 />
 
-## Comments at the end of a line
+Only **`print("This line runs")`** executes.
+
+## Comment at the end of a line
 
 <PythonExample filename="inline.py" code={`print(10 + 5)  # adds 10 and 5`} />
 
-Everything after `#` on that line is ignored.
+Everything after **`#`** on that line is ignored.
 
-## What to write in comments
-
-Good comments explain **why**, not obvious **what**:
+## Good comments explain _why_
 
 <PythonExample
   filename="why.py"
-  code={`# Sales tax rate for the example region
+  code={`# Example sales tax for the lesson (not real tax advice)
 tax_rate = 0.08
 price = 50
 print(price * tax_rate)`}
 />
 
 <Callout variant="tip">
-  Clear variable names (`tax_rate`, `price`) often reduce the need for comments. Comment
-  when the reason is not obvious from the code alone.
+  Prefer clear names (`tax_rate`, `price`) over comments that repeat the obvious. Comment
+  when the **reason** is not clear from the code.
 </Callout>
 
-## What comments cannot do
+## `#` inside quotes is not a comment
 
-Comments do not turn off code inside strings:
+<PythonExample filename="in_string.py" code={`print("Hello # still printed")`} />
 
-<PythonExample
-  filename="in_string.py"
-  code={`print("Hello # this is still part of the text")`}
-/>
+The `#` is **part of the text** because it is inside quotes.
 
-The `#` above is printed — it is **inside** the quotes.
-
-## Comment out code temporarily
-
-Developers often “comment out” a line to test without deleting it:
+## Comment out code to test
 
 <PythonExample
   filename="disable.py"
@@ -64,11 +55,42 @@ Developers often “comment out” a line to test without deleting it:
 print("Done")`}
 />
 
-Only **Version A** and **Done** print.
+Only **Version A** and **Done** print — **Version B** is “turned off” without deleting it.
 
-<Callout variant="danger" title="Do not break strings">
-  Starting `"` and commenting in the middle of a string without closing quotes causes a
-  **syntax error**. Finish or close the string first.
+<Callout variant="danger" title="Oops — Python is yelling">
+  Do not put `#` in the **middle** of a string without closing quotes — you get a **syntax
+  error**. Finish the string first, then comment on the next line.
 </Callout>
 
-You have finished **Getting Started**. Next chapter: **Variables** — store values under names you choose.
+<TryIt title="Try it yourself" answer="Ready">
+  Add a comment above `print("Ready")` that says what the program does. Run — output
+  should still be `Ready`.
+</TryIt>
+
+## Chapter 1 mini project: first program
+
+Combine **print**, **order**, and **comments**:
+
+<PythonExample
+  filename="first_program.py"
+  code={`# My first PyGuide program
+print("=== Welcome ===")
+
+print("Step 1: Learn Python")
+print("Step 2: Practice every day")
+print("Step 3: Build something fun")
+
+# print("Secret step — uncomment me later!")
+
+print("=== Done ===")`}
+/>
+
+Change the three steps to your own goals. Uncomment the secret line and run again.
+
+## Recap
+
+- **`#`** — comment to end of line
+- Comments do **not** run
+- Use them for **why**, not obvious **what**
+
+You finished **Getting Started**. Next chapter: **Variables** — store values under names.

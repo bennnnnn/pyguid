@@ -8,19 +8,20 @@ section: "Strings"
 level: beginner
 ---
 
-You have learned **numbers** (`int` and `float`). The next core type is the **string**.
+A **string** (`str`) is text in quotes — names, messages, passwords, emojis. If you can type it as words, it is probably a string.
 
-A **string** stores **text** — letters, words, symbols, and spaces. In Python the type name is **`str`** (short for string).
+## What you will learn in this section
 
-Examples of string data:
+1. **Strings** — create and combine text (this page)
+2. **Case** — `upper()`, `lower()`, `title()`
+3. **Whitespace** — `strip()`
+4. **Split / join** — break apart and glue back
+5. **Search** — `find()`, `replace()`, `in`
+6. **Start/end checks** — `startswith()`, `endswith()`
+7. **Formatting** — f-strings
+8. **Slicing** — pieces of text
 
-- A person’s name: `"Ada"`
-- An email message: `"Hello, team"`
-- A single character: `"A"` (still a string, not a separate “char” type like some languages)
-
-## How to write a string
-
-Put text inside **quotes**. Single or double quotes both work:
+## One new idea: text in quotes
 
 <PythonExample
   filename="strings.py"
@@ -30,69 +31,34 @@ print(greeting)
 print(name)`}
 />
 
-Single and double quotes work the same way. Pick one style and stay consistent.
+Single `'` and double `"` work the same. Pick one style and stay consistent.
 
-## Quotes inside strings
+## Quotes inside quotes
 
 <PythonExample
   filename="quotes.py"
   code={`message = "It's a sunny day"
-print(message)
-
 title = 'She said "Hi"'
+print(message)
 print(title)`}
 />
 
-## Escape characters
-
-Use **backslash** for special characters:
-
-<PythonExample
-  filename="escape.py"
-  code={`print("Line 1\\nLine 2")
-print("Tab:\\there")
-print("Quote: \\"hi\\"")`}
-/>
-
-| Escape | Meaning      |
-| ------ | ------------ |
-| `\\n`  | new line     |
-| `\\t`  | tab          |
-| `\\\\` | backslash    |
-| `\\"`  | double quote |
-
-## Multiline strings
-
-Triple quotes for several lines:
-
-<PythonExample
-  filename="multiline.py"
-  code={`poem = """Roses are red,
-Violets are blue.
-Python is fun."""
-print(poem)`}
-/>
-
-## Combine strings
-
-Join with **`+`**:
+## Combine with `+` and repeat with `*`
 
 <PythonExample
   filename="join_plus.py"
   code={`first = "Hello"
 second = "World"
-print(first + " " + second)`}
+print(first + " " + second)
+print("-" * 20)`}
 />
 
-Repeat with **`*`**:
+| Code       | Result        |
+| ---------- | ------------- |
+| `"Ha" * 3` | `"HaHaHa"`    |
+| `"-" * 20` | twenty dashes |
 
-<PythonExample
-  filename="repeat.py"
-  code={`print("-" * 20)
-print("Ha" * 3)`}
-/>
-
-## Length and indexing
+## Length and first/last character
 
 <PythonExample
   filename="len_index.py"
@@ -102,12 +68,25 @@ print(word[0])
 print(word[-1])`}
 />
 
-The following lessons cover **string methods** one by one: `upper`, `strip`, `split`, `join`, and more.
+| Expression  | Meaning      |
+| ----------- | ------------ |
+| `len(word)` | 6 characters |
+| `word[0]`   | `"P"`        |
+| `word[-1]`  | `"n"`        |
 
-<Callout variant="warning" title="Numbers vs strings">
-  `"5" + "5"` is `"55"`. `5 + 5` is `10`. Quotes mean text.
+<Callout variant="danger" title="Oops — Python is yelling">
+  Strings are **immutable** — you cannot do `word[0] = "p"`. Build a **new** string
+  instead (slicing and methods coming up).
 </Callout>
 
-<Callout variant="danger" title="Immutable">
-  You cannot change one character: `word[0] = "p"` fails. Build a new string instead.
-</Callout>
+<TryIt title="Try it yourself" answer="Hi Ada">
+  Set `name = "Ada"` and `print("Hi " + name)`.
+</TryIt>
+
+## Recap
+
+- **`str`** — text in quotes
+- **`+`** joins strings; **`*`** repeats
+- **`"5"`** is text; **`5`** is a number
+
+Next: **`upper()` and `lower()`** — change letter case.

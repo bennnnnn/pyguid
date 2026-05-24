@@ -8,7 +8,9 @@ section: "Strings"
 level: beginner
 ---
 
-**Slicing** takes a substring with `[start:end]` — `end` is not included:
+A word on a strip of paper: you can read the **whole** word or highlight **letters 2–4**. **Slicing** `text[start:end]` highlights a piece — **`end` is not included**.
+
+## One new idea: [start:end]
 
 <PythonExample
   filename="slice.py"
@@ -18,7 +20,15 @@ print(text[2:])
 print(text[:4])`}
 />
 
-## Negative indexes in slices
+| Slice   | Result   | Meaning         |
+| ------- | -------- | --------------- |
+| `[0:3]` | `"Pyt"`  | index 0,1,2     |
+| `[2:]`  | `"thon"` | from index 2 on |
+| `[:4]`  | `"Pyth"` | up to, not 4    |
+
+Same rules as list slicing (you will use these everywhere).
+
+## Negative indexes
 
 <PythonExample
   filename="neg_slice.py"
@@ -27,9 +37,12 @@ print(text[-3:])
 print(text[:-1])`}
 />
 
-## Step in slices
+| Slice   | Result       |
+| ------- | ------------ |
+| `[-3:]` | last 3 chars |
+| `[:-1]` | all but last |
 
-`[start:end:step]`:
+## Step: every second letter, reverse
 
 <PythonExample
   filename="step.py"
@@ -38,28 +51,29 @@ print(text[::2])
 print(text[::-1])`}
 />
 
-## in, find, replace
+| Slice    | Effect              |
+| -------- | ------------------- |
+| `[::2]`  | every 2nd character |
+| `[::-1]` | reversed copy       |
+
+## Real use case: hide part of an email
 
 <PythonExample
-  filename="methods.py"
-  code={`sentence = "Python is fun"
-print("fun" in sentence)
-print(sentence.find("is"))
-print(sentence.replace("fun", "great"))`}
+  filename="mask.py"
+  code={`email = "ada@example.com"
+name = email[:3]
+domain = email[email.find("@"):]
+print(name + "***" + domain)`}
 />
 
-## split and join
+<TryIt title="Try it yourself" answer="Py">
+  With `s = "Python"`, print `s[0:2]`.
+</TryIt>
 
-<PythonExample
-  filename="split_join.py"
-  code={`csv_line = "ada,36,london"
-parts = csv_line.split(",")
-print(parts)
+## Recap
 
-joined = "-".join(["2024", "05", "23"])
-print(joined)`}
-/>
+- **`[start:end]`** — `end` excluded
+- **`[:]`** — whole copy
+- **`[::-1]`** — reversed copy
 
-<Callout variant="tip">
-  `split()` without arguments splits on any whitespace — useful for sentences.
-</Callout>
+Next chapter topic: **Booleans** — `True` and `False`.

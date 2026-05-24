@@ -8,26 +8,26 @@ section: "Strings"
 level: beginner
 ---
 
-String methods return a **new string** — the original is unchanged (strings are immutable).
+You shout in ALL CAPS and whisper in lowercase. String methods like **`upper()`** and **`lower()`** do that for text — and they return a **new** string; the original stays unchanged.
 
-## upper()
+## One new idea: upper()
 
 <PythonExample
   filename="upper.py"
   code={`msg = "Hello, Python"
-print(msg.upper())
+loud = msg.upper()
+print(loud)
 print(msg)`}
 />
 
-## lower()
+**Before → after**
 
-<PythonExample
-  filename="lower.py"
-  code={`email = "User@Example.COM"
-print(email.lower())`}
-/>
+| Variable | Value                         |
+| -------- | ----------------------------- |
+| `msg`    | `"Hello, Python"` (unchanged) |
+| `loud`   | `"HELLO, PYTHON"`             |
 
-Useful for **case-insensitive** comparisons:
+## lower() for comparisons
 
 <PythonExample
   filename="compare.py"
@@ -35,6 +35,8 @@ Useful for **case-insensitive** comparisons:
 if answer.lower() == "yes":
     print("Confirmed")`}
 />
+
+Users type `YES`, `yes`, `Yes` — compare with **`.lower()`** so you do not miss a match.
 
 ## title() and capitalize()
 
@@ -45,17 +47,26 @@ print(name.title())
 print(name.capitalize())`}
 />
 
-- `title()` — capitalizes each word
-- `capitalize()` — only the first character of the whole string
+| Method          | `"ada lovelace"` → |
+| --------------- | ------------------ |
+| `.title()`      | `"Ada Lovelace"`   |
+| `.capitalize()` | `"Ada lovelace"`   |
 
-## swapcase()
+## Common mistake: forgetting to save the result
 
-<PythonExample
-  filename="swap.py"
-  code={`text = "PyThOn"
-print(text.swapcase())`}
-/>
-
-<Callout variant="note">
-  Assign the result if you need to keep it: `msg = msg.lower()`.
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`msg.upper()`** alone does not change **`msg`**. Assign it: **`msg = msg.lower()`** if
+  you need to keep the new version.
 </Callout>
+
+<TryIt title="Try it yourself" answer="python">
+  With `word = "Python"`, print `word.lower()`.
+</TryIt>
+
+## Recap
+
+- Methods return **new** strings — originals stay the same
+- **`lower()`** helps compare user input fairly
+- Assign the result if you need to keep it
+
+Next: **`strip()`** — trim spaces from the edges.
