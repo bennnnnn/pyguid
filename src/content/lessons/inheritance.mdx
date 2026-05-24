@@ -7,9 +7,9 @@ chapterTitle: "Classes"
 level: beginner
 ---
 
-**Inheritance** lets a new class reuse and extend an existing class.
+Family traits pass from parent to child — eye color, height. **Inheritance** lets a **child class** reuse a **parent class** and add or override behavior.
 
-The **parent** (base) class provides common behavior. The **child** (subclass) adds or overrides it.
+## One new idea: parent and child
 
 <PythonExample
   filename="inherit.py"
@@ -33,6 +33,12 @@ for pet in pets:
 print(pet.speak())`}
 />
 
+**Line by line**
+
+- `class Dog(Animal):` — `Dog` **inherits** from `Animal`
+- Child gets `__init__` and can **override** methods like `speak`
+- Same loop, different sounds — **polymorphism**
+
 ## super() — call the parent
 
 <PythonExample
@@ -50,7 +56,9 @@ s = Student("Ada", "A123")
 print(s.name, s.student_id)`}
 />
 
-## isinstance()
+`super().__init__(name)` runs the parent setup before adding `student_id`.
+
+## Real use case: isinstance()
 
 <PythonExample
   filename="isinstance.py"
@@ -65,6 +73,8 @@ print(isinstance(d, Dog))
 print(isinstance(d, Animal))`}
 />
 
+A `Dog` **is a** `Animal` — `isinstance` checks the family tree.
+
 <Callout variant="tip">
   Inheritance models “is-a” relationships: a `Dog` **is an** `Animal`. If the relationship
   is only “has-a” (a car **has an** engine), composition (attributes) is often better.
@@ -74,3 +84,28 @@ print(isinstance(d, Animal))`}
   Python supports multiple inheritance, but beginners should master single inheritance
   first.
 </Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  With `Dog(Animal)` as above, create `d = Dog()` and print `isinstance(d, Animal)`.
+</TryIt>
+
+## Chapter 15 mini project: pet shelter
+
+Combine classes, methods, and inheritance:
+
+<PythonExample
+  filename="shelter.py"
+  code={
+    'class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return "..."\n\n    def __str__(self):\n        return self.name\n\nclass Dog(Animal):\n    def speak(self):\n        return f"{self.name} says woof!"\n\nclass Cat(Animal):\n    def speak(self):\n        return f"{self.name} says meow!"\n\npets = [Dog("Buddy"), Cat("Luna"), Dog("Rex")]\n\nprint("=== Shelter ===")\nfor pet in pets:\n    print(f"- {pet}: {pet.speak()}")'
+  }
+/>
+
+Add a new animal type. Override `speak` and see the loop handle it automatically.
+
+## Recap
+
+- **Inheritance** — child reuses parent behavior
+- **Override** — replace a method in the child
+- **`super()`** — call the parent’s `__init__` or methods
+
+You finished **Classes**. Next: **User input** — read text from the keyboard.

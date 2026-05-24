@@ -7,7 +7,9 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-The **`datetime`** module handles dates and times (standard library).
+A wall calendar shows today’s date; a clock shows the exact moment. Python’s **`datetime`** module handles both — dates, times, and math between them.
+
+## One new idea: date and datetime
 
 <PythonExample
   filename="datetime.py"
@@ -22,6 +24,12 @@ print(now)
 print(now.hour, now.minute)`}
 />
 
+**Line by line**
+
+- `date.today()` — today’s date only
+- `.year`, `.month`, `.day` — parts of a date
+- `datetime.now()` — date **and** time right now
+
 ## Create a specific date
 
 <PythonExample
@@ -33,7 +41,9 @@ print(birthday)
 print(birthday.strftime("%B %d, %Y"))`}
 />
 
-## Timedelta — date math
+`strftime` formats a date as readable text.
+
+## Real use case: date math with timedelta
 
 <PythonExample
   filename="delta.py"
@@ -44,6 +54,8 @@ in_one_week = today + timedelta(days=7)
 print(today)
 print(in_one_week)`}
 />
+
+Add or subtract days for deadlines and reminders.
 
 ## Compare dates
 
@@ -56,6 +68,8 @@ b = date(2024, 6, 1)
 print(a < b)`}
 />
 
+Dates compare like numbers — earlier is “less than.”
+
 <Callout variant="note">
   For time zones, use `datetime.timezone` or the third-party `zoneinfo` module (Python
   3.9+). Start with naive `date`/`datetime` first.
@@ -65,3 +79,15 @@ print(a < b)`}
   Store dates in ISO format strings (`"2024-05-23"`) in databases and JSON when you do not
   need time-of-day.
 </Callout>
+
+<TryIt title="Try it yourself" answer="2000">
+  Create `birthday = date(2000, 5, 15)` and print `birthday.year`.
+</TryIt>
+
+## Recap
+
+- **`date.today()`** / **`datetime.now()`** — current date or datetime
+- **`timedelta(days=n)`** — add or subtract days
+- **`strftime`** — format for display
+
+Next: **Regular expressions** — match text patterns with `re`.

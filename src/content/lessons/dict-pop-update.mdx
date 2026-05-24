@@ -7,19 +7,31 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-## pop(key)
+A desk drawer holds sticky notes. **`pop()`** pulls one off and reads it. **`update()`** slides in a whole stack of new notes. **`del`** throws a note away without reading it.
 
-Removes a key and **returns** its value:
+## One new idea: `pop(key)` removes and returns
 
 <PythonExample
   filename="pop.py"
   code={`user = {"name": "Sam", "temp": True, "role": "admin"}
 removed = user.pop("temp")
-print(removed)
-print(user)`}
+print("Removed:", removed)
+print("Left:", user)`}
 />
 
-## pop() with default
+**Line by line**
+
+- `user.pop("temp")` — delete key `"temp"` and **return** its value (`True`)
+- `removed` stores what was taken out
+- `user` no longer has `"temp"`
+
+| Method                | Returns                | If key missing    |
+| --------------------- | ---------------------- | ----------------- |
+| `pop("key")`          | the value              | **KeyError**      |
+| `pop("key", default)` | the value or `default` | returns `default` |
+| `del d["key"]`        | nothing                | **KeyError**      |
+
+## `pop()` with a default
 
 <PythonExample
   filename="pop_default.py"
@@ -28,39 +40,87 @@ print(data.pop("z", "missing"))
 print(data)`}
 />
 
-## update()
+Safe when you are not sure the key exists.
 
-Merges another dictionary (or key-value pairs) into the current dict:
+## `update()` — merge dictionaries
 
 <PythonExample
   filename="update.py"
   code={`defaults = {"theme": "light", "lang": "en"}
-user = {"lang": "fr", "notifications": True}
-defaults.update(user)
+user_prefs = {"lang": "fr", "notifications": True}
+
+defaults.update(user_prefs)
 print(defaults)`}
 />
 
-## del
+- Existing keys in `defaults` get **overwritten** (`"lang"` → `"fr"`)
+- New keys from `user_prefs` are **added** (`"notifications"`)
+
+## `del` and `clear()`
 
 <PythonExample
-  filename="del.py"
+  filename="del_clear.py"
   code={`person = {"name": "Ada", "age": 36}
 del person["age"]
-print(person)`}
-/>
+print(person)
 
-## clear()
-
-Removes all entries:
-
-<PythonExample
-  filename="clear.py"
-  code={`cache = {"a": 1, "b": 2}
+cache = {"a": 1, "b": 2}
 cache.clear()
 print(cache)`}
 />
 
-<Callout variant="warning">
-  `pop("missing")` without a default raises **KeyError**. Use `pop("key", None)` when
-  unsure.
+- **`del person["age"]`** — remove one key (no return value)
+- **`cache.clear()`** — empty the entire dictionary → `{}`
+
+## Real use case: process and remove a temp flag
+
+<PythonExample
+  filename="temp_flag.py"
+  code={`session = {"user": "Ada", "logged_in": True, "needs_welcome": True}
+
+if session.pop("needs_welcome", False):
+print("Welcome,", session["user"], "!")
+
+print("Session:", session)`}
+/>
+
+## Chapter 11 mini project: contact book
+
+Put it together — create, update, look up, and remove contacts:
+
+<PythonExample
+  filename="contacts.py"
+  code={`contacts = {}
+
+contacts["ada"] = {"name": "Ada Lovelace", "email": "ada@example.com"}
+contacts["ben"] = {"name": "Ben Turing", "email": "ben@example.com"}
+
+print("=== Contacts ===")
+for user_id, info in contacts.items():
+print(user_id, "→", info["name"], "|", info.get("email", "no email"))
+
+print("Ada email:", contacts["ada"].get("email", "unknown"))
+
+removed = contacts.pop("ben")
+print("Removed:", removed["name"])
+print("Remaining IDs:", list(contacts.keys()))`}
+/>
+
+Change the names. Add a third contact with **`update()`** or bracket assignment. Try **`pop()`** on a missing ID with a default.
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`pop("missing")`** without a default → **KeyError**. Use **`pop("key", None)`** when
+  you are not sure the key exists.
 </Callout>
+
+<TryIt title="Try it yourself" answer="1">
+  With `d = {"a": 1, "b": 2}`, assign `x = d.pop("a")` and print `x`.
+</TryIt>
+
+## Recap
+
+- **`pop(key)`** — remove and return a value
+- **`update(other)`** — merge another dict in place
+- **`del d[key]`** — delete one entry; **`clear()`** — delete all
+
+Next: **Loop through dictionaries** — patterns for iterating over dict data.

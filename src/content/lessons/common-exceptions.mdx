@@ -7,9 +7,9 @@ chapterTitle: "Error Handling"
 level: beginner
 ---
 
-Knowing exception **names** helps you read tracebacks and write better `except` blocks.
+Hospital triage labels: **broken bone**, **fever**, **allergy**. Exception **names** tell you what went wrong so you can fix the right thing — and write better `except` blocks.
 
-## ValueError
+## One new idea: ValueError
 
 Wrong **value**, right type:
 
@@ -21,9 +21,13 @@ except ValueError as e:
     print("ValueError:", e)`}
 />
 
-## TypeError
+**Line by line**
 
-Wrong **type** for an operation:
+- `int("abc")` — `"abc"` is text, but not a number-shaped string
+- `ValueError` — the type does not fit the operation
+- `as e` — store the error message in `e`
+
+## TypeError — wrong type for the operation
 
 <PythonExample
   filename="type_error.py"
@@ -51,29 +55,7 @@ except KeyError:
 print("Bad dict key")`}
 />
 
-## AttributeError
-
-<PythonExample
-  filename="attr.py"
-  code={`text = "hello"
-try:
-    text.append("!")
-except AttributeError:
-    print("Strings have no append — use + or join")`}
-/>
-
-## Store the error with as
-
-<PythonExample
-  filename="as_e.py"
-  code={`try:
-    1 / 0
-except ZeroDivisionError as e:
-    print(type(e).__name__)
-    print(e)`}
-/>
-
-## raise your own
+## Real use case: validate before you trust
 
 <PythonExample
   filename="raise.py"
@@ -88,6 +70,19 @@ except ValueError as e:
 print(e)`}
 />
 
+You can **`raise`** your own errors when rules are broken.
+
+## AttributeError
+
+<PythonExample
+  filename="attr.py"
+  code={`text = "hello"
+try:
+    text.append("!")
+except AttributeError:
+    print("Strings have no append — use + or join")`}
+/>
+
 <Callout variant="tip">
   Read the **last line** of a traceback first — it often states the exception type and
   message. Scroll up for the line number in your file.
@@ -97,3 +92,28 @@ print(e)`}
   In development, letting an error crash can be fine — you fix the bug. In apps for users,
   catch expected errors and show helpful messages.
 </Callout>
+
+<TryIt title="Try it yourself" answer="TypeError:">
+  Try `"5" + 5` inside try/except for `TypeError` and print `"TypeError:"` plus the error.
+</TryIt>
+
+## Chapter 14 mini project: input validator
+
+Handle several exception types in one small helper:
+
+<PythonExample
+  filename="validator.py"
+  code={
+    '# Mini project: safe parsing\nscores = {"Ada": "95", "Ben": "oops", "Cara": "88"}\n\ndef parse_score(name, data):\n    try:\n        return int(data[name])\n    except KeyError:\n        print(f"No score for {name}")\n        return None\n    except ValueError:\n        print(f"Bad score for {name}: {data[name]!r}")\n        return None\n\nfor name in ["Ada", "Ben", "Cara", "Dan"]:\n    score = parse_score(name, scores)\n    if score is not None:\n        print(f"{name}: {score}")'
+  }
+/>
+
+Add a bad key or a non-number string. See which `except` runs.
+
+## Recap
+
+- **ValueError** — wrong value; **TypeError** — wrong type
+- **IndexError / KeyError** — bad list index or dict key
+- **`raise`** — signal your own rule violations
+
+You finished **Error Handling**. Next: **Classes and objects** — group data and behavior.

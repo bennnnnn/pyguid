@@ -7,7 +7,11 @@ chapterTitle: "Comparisons"
 level: beginner
 ---
 
-Programs **compare** values to answer yes/no questions (is the score high enough? is the password correct?). Each comparison returns **`True`** or **`False`**. Type operators exactly as shown (for example **`>=`** is two characters: `>` and `=`).
+A bouncer at a club checks your ID: old enough or not? Comparison operators let Python answer the same kind of yes/no questions about your data.
+
+## One new idea: ask questions with `==`, `!=`, `<`, `>`, `<=`, `>=`
+
+Each comparison returns **`True`** or **`False`**. Type operators exactly as shown — **`>=`** is two characters: `>` and `=`.
 
 <OperatorTable
   rows={[
@@ -31,68 +35,31 @@ print(x <= 5)
 print(x >= 5)`}
 />
 
-## Greater or equal: `>=`
+**Line by line**
 
-**`>=`** means “greater than **or** equal to.” Type both characters. Use it for a **minimum** (must be at least…):
-
-<PythonExample
-  filename="minimum.py"
-  code={`age = 20
-print(age >= 18)
-
-score = 72
-passed = score >= 60
-print(passed)`}
-/>
-
-## Less or equal: `<=`
-
-**`<=`** means “less than **or** equal to.” Type both characters. Use it for a **maximum** (must be at most…):
-
-<PythonExample
-  filename="maximum.py"
-  code={`temperature = 18
-print(temperature <= 20)
-
-items = 3
-print(items <= 5)`}
-/>
-
-## Equal and not equal: `==` and `!=`
-
-<PythonExample
-  filename="equal.py"
-  code={`password = "secret123"
-print(password == "secret123")
-print(password != "wrong")`}
-/>
-
-## Assignment `=` is not a comparison
+- `x == 5` — is `x` equal to 5? → `True`
+- `x != 3` — is `x` not equal to 3? → `True`
+- `x < 10`, `x > 2`, `x <= 5`, `x >= 5` — each returns a boolean
 
 | Symbol | What it does in Python                          |
 | ------ | ----------------------------------------------- |
 | `=`    | **Assignment** — stores a value in a variable   |
 | `==`   | **Comparison** — checks if two values are equal |
 
-<Callout variant="danger" title="Common beginner mistake">
-  `if x = 5:` is invalid. Use `if x == 5:` to compare.
-</Callout>
-
-## Comparing numbers
+## Real use case: minimum age check
 
 <PythonExample
-  filename="numbers.py"
-  code={`price = 49.99
-on_sale = price < 50
-print(on_sale)
+  filename="minimum.py"
+  code={`age = 20
+can_enter = age >= 18
+print("Can enter?", can_enter)
 
-level = 10
-print(level >= 10)`}
+score = 72
+passed = score >= 60
+print("Passed?", passed)`}
 />
 
-## Comparing strings
-
-Use **`==`** for exact text. Use **`<`** and **`>`** for alphabetical order:
+Use **`>=`** for a minimum (“at least 18”) and **`<=`** for a maximum (“at most 5 items”).
 
 <PythonExample
   filename="strings.py"
@@ -102,32 +69,25 @@ print(name_a < name_b)
 print(name_a == "Amy")`}
 />
 
+Every comparison result is a **`bool`** you can store: `is_adult = age >= 18`.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  `if x = 5:` is invalid — `=` assigns, it does not compare. Use `if x == 5:` instead.
+</Callout>
+
 <Callout variant="warning">
   `==` on strings is case-sensitive: `"a"` and `"A"` are not equal.
 </Callout>
 
-## Store the result
+<TryIt title="Try it yourself" answer="True">
+  Set `price = 49.99` and `on_sale = price < 50`. Print `on_sale`.
+</TryIt>
 
-Every comparison returns **`bool`**:
+## Recap
 
-<PythonExample
-  filename="stored.py"
-  code={`age = 16
-is_adult = age >= 18
-print(is_adult)
-print(type(is_adult))`}
-/>
+- Comparisons return **`True`** or **`False`**
+- **`=`** stores a value; **`==`** checks equality
+- **`>=`** and **`<=`** include the boundary value
+- Store results in variables like `passed = score >= 60`
 
-## Chaining comparisons
-
-<PythonExample
-  filename="chain.py"
-  code={`age = 25
-print(18 <= age < 65)`}
-/>
-
-<Callout variant="tip">
-  `18 <= age < 65` means: age is at least 18 and less than 65.
-</Callout>
-
-Next: **Logical Operators** — combine comparisons with `and`, `or`, and `not`.
+Next: **Logical operators** — combine comparisons with `and`, `or`, and `not`.

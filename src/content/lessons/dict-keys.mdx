@@ -7,7 +7,9 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-**`keys()`** returns a view of all **keys** in a dictionary:
+A filing cabinet has **drawer labels** — `"taxes"`, `"receipts"`, `"notes"`. **`keys()`** gives you every label in a dictionary, without opening each drawer.
+
+## One new idea: `keys()` returns a view
 
 <PythonExample
   filename="keys.py"
@@ -15,6 +17,18 @@ level: beginner
 print(person.keys())
 print(list(person.keys()))`}
 />
+
+**Line by line**
+
+- `person.keys()` — a **view** of all keys (updates if the dict changes)
+- `list(person.keys())` — snapshot as a plain list: `["name", "age", "city"]`
+- Order follows insertion order (Python 3.7+)
+
+| Method      | Returns                          |
+| ----------- | -------------------------------- |
+| `.keys()`   | view of **keys**                 |
+| `.values()` | view of **values** (next lesson) |
+| `.items()`  | view of **(key, value)** pairs   |
 
 ## Loop over keys
 
@@ -25,7 +39,18 @@ for subject in scores.keys():
     print(subject)`}
 />
 
-`for subject in scores:` is the same — loops over keys by default.
+Shorthand: **`for subject in scores:`** loops over keys by default — same result, less typing.
+
+## Real use case: list available settings
+
+<PythonExample
+  filename="settings.py"
+  code={`config = {"theme": "dark", "lang": "en", "notifications": True}
+
+print("Available settings:")
+for key in config:
+print("-", key)`}
+/>
 
 ## Check if a key exists
 
@@ -36,7 +61,21 @@ print("name" in user)
 print("email" in user)`}
 />
 
-<Callout variant="note">
-  `keys()` updates if you add or remove keys while looping — use `list(d.keys())` for a
-  fixed snapshot.
+`in` checks **keys**, not values. `"Sam" in user` looks for a **key** named `"Sam"`, not the value.
+
+<Callout variant="note" title="Oops — changing while looping">
+  Adding or removing keys while looping over `.keys()` can surprise you. Use
+  **`list(d.keys())`** when you need a fixed snapshot to loop safely.
 </Callout>
+
+<TryIt title="Try it yourself" answer='["a", "b"]'>
+  With `d = {"a": 1, "b": 2}`, print `list(d.keys())`.
+</TryIt>
+
+## Recap
+
+- **`d.keys()`** — all keys as a view
+- **`for k in d:`** — same as looping keys
+- **`"key" in d`** — test whether a key exists
+
+Next: **`values()`** — get every value in a dictionary.

@@ -7,7 +7,9 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-A **dictionary** (`dict`) maps **keys** to **values** — like `"name"` → `"Ada"` instead of list index `0`, `1`, `2`. Keys are unique; values can be any type.
+A **list** finds items by **number**: index `0`, `1`, `2`. A **dictionary** is like a **contact card** — you look up **"name"** and get **"Ada"**, not "whatever is in slot zero."
+
+## One new idea: key → value in curly braces
 
 <PythonExample
   filename="dict.py"
@@ -20,39 +22,77 @@ print(person)
 print(person["name"])`}
 />
 
-## Keys and values
+**Line by line**
 
-Keys are often strings, but numbers and tuples can work if they are immutable:
+- `"name": "Ada"` — a **key** (`"name"`) maps to a **value** (`"Ada"`)
+- `{ ... }` — curly braces hold the pairs, separated by commas
+- `person["name"]` — look up the value for key `"name"`
+
+| Key      | Value      |
+| -------- | ---------- |
+| `"name"` | `"Ada"`    |
+| `"age"`  | `36`       |
+| `"city"` | `"London"` |
+
+Dictionaries are:
+
+- **Keyed** — access by name/ID, not position
+- **Mutable** — add, change, and remove entries
+- **Unique keys** — each key appears **once**
+
+## What is in this chapter?
+
+You will learn dictionaries in this order:
+
+1. **What a dictionary is** (this page)
+2. **Access and change** — brackets, add keys, check membership
+3. **`keys()`** — list every key
+4. **`values()`** — list every value
+5. **`items()`** — key-value pairs for looping
+6. **`get()`** — safe reads with defaults
+7. **`pop()`, `update()`, `del`** — remove and merge entries
+8. **Loop patterns** — iterate over dictionary data
+
+## Create with `dict()` or start empty
 
 <PythonExample
-  filename="keys.py"
-  code={`scores = {"math": 90, "english": 85, "science": 92}
-print(scores["math"])`}
-/>
-
-## Create with dict()
-
-<PythonExample
-  filename="dict_func.py"
+  filename="create.py"
   code={`colors = dict(red="#ff0000", green="#00ff00")
-print(colors)`}
-/>
+print(colors)
 
-## Empty dictionary
-
-<PythonExample
-  filename="empty.py"
-  code={`cache = {}
+cache = {}
 cache["user_1"] = "Ada"
 print(cache)`}
 />
 
-<Callout variant="tip">
-  Use a dict when you look up values by a name or ID: user profiles, product prices,
-  settings, word counts.
+`{}` makes an empty dictionary. Add entries with `cache["key"] = value`.
+
+## Real use case: user profile
+
+<PythonExample
+  filename="profile.py"
+  code={`user = {"id": 42, "username": "ada_dev", "active": True}
+
+print(user["username"])
+if user["active"]:
+print("Welcome back!")`}
+/>
+
+Use a dict when you look up by **label or ID**: profiles, prices, settings, word counts.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  `person["email"]` raises **KeyError** if `"email"` is not a key. Use **`.get()`** when a
+  key might be missing (coming soon).
 </Callout>
 
-<Callout variant="danger" title="Missing keys">
-  `person["email"]` fails if `"email"` is not a key. Use `.get()` for safe access (next
-  page).
-</Callout>
+<TryIt title="Try it yourself" answer="90">
+  Create `scores = {"math": 90, "english": 85}`. Print `scores["math"]`.
+</TryIt>
+
+## Recap
+
+- **`{"key": value}`** maps names to data
+- **`d["key"]`** looks up a value (errors if key is missing)
+- **`{}`** starts empty; assign with **`d["new_key"] = value`**
+
+Next: **Access dictionaries** — get, change, add, and check keys.

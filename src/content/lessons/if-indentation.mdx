@@ -7,13 +7,13 @@ chapterTitle: "If Statements"
 level: beginner
 ---
 
-An **`if`** statement runs a block of code **only when** a condition is `True` — the main way Python makes decisions.
+A vending machine only drops a snack when you pick a valid button and pay enough. An **`if`** statement works the same way — it runs code **only when** a condition is `True`.
 
-## Basic syntax
+## One new idea: `if`, a colon, and an indented block
 
 1. Write `if` followed by a condition
 2. End the line with a **colon** `:`
-3. Indent the block below (usually **4 spaces**)
+3. Indent the block below with **4 spaces**
 
 <PythonExample
   filename="if_basic.py"
@@ -24,7 +24,11 @@ print("You are an adult")
 print("Welcome")`}
 />
 
-Lines at the normal indent level run **before** and **after** the `if`, whether or not the condition is true:
+**Line by line**
+
+- `if age >= 18:` — test the condition; the colon starts the block
+- Indented lines run **only** when the condition is `True`
+- Lines at the normal indent level always run
 
 <PythonExample
   filename="flow.py"
@@ -37,52 +41,24 @@ print("Pass")
 print("Done")`}
 />
 
-When `score` is 50, you only see “Checking score…” and “Done”.
+When `score` is 50, you only see “Checking score…” and “Done” — the indented block is skipped.
 
-## When the condition is false
-
-If the test is false, Python **skips** the indented block:
+## Real use case: login check
 
 <PythonExample
-  filename="false_branch.py"
-  code={`temperature = 10
-
-if temperature > 30:
-print("Very hot")
-
-print("Program continues")`}
-/>
-
-## Indentation rules
-
-<Callout variant="danger" title="Indentation errors">
-  All lines in the same block must use the **same** indentation. Mixing tabs and spaces,
-  or using 2 spaces on one line and 4 on the next, causes `IndentationError`.
-</Callout>
-
-<PythonExample
-  filename="indent.py"
+  filename="login.py"
   code={`logged_in = True
 
 if logged_in:
 print("Hello")
-print("Dashboard ready")`}
-/>
-
-## One-line body (optional)
-
-For a very short block, some code uses a single line after the colon. In this course, prefer the indented block — it scales better:
-
-<PythonExample
-  filename="oneline.py"
-  code={`n = 7
-if n % 2 == 0:
-    print("Even")`}
+print("Dashboard ready")
+else:
+print("Please sign in")`}
 />
 
 ## Nested if
 
-You can put an `if` inside another `if`:
+You can put an `if` inside another `if` — each level adds 4 more spaces:
 
 <PythonExample
   filename="nested.py"
@@ -98,13 +74,24 @@ else:
 print("Too young to drive")`}
 />
 
+<Callout variant="danger" title="Oops — Python is yelling">
+  Mixing tabs and spaces, or using 2 spaces on one line and 4 on the next, causes
+  **`IndentationError`**. All lines in the same block must use the **same** indentation.
+</Callout>
+
 <Callout variant="warning">
-  In the example above, the inner block uses 4 spaces inside the outer block’s 4 spaces (8
-  total). Stay consistent — most editors insert 4 spaces per Tab.
+  Deep nesting gets hard to read. Consider combining conditions: `if age >= 18 and has_license:`.
 </Callout>
 
-<Callout variant="tip">
-  If nested `if` statements get deep, consider combining conditions with `and`: `if age >= 18 and has_license:`.
-</Callout>
+<TryIt title="Try it yourself" answer="Hot day!">
+  Set `temperature = 30`. If `temperature > 25`, print `"Hot day!"`. Use proper indentation.
+</TryIt>
 
-Next: **`elif`** and **`else`** for multiple branches.
+## Recap
+
+- **`if condition:`** runs the indented block only when the condition is `True`
+- Every block line needs **4 spaces** (or one consistent indent)
+- Lines outside the block always run
+- Nested `if` adds another indent level
+
+Next: **`elif` and `else`** — handle multiple outcomes.

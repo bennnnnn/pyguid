@@ -7,7 +7,9 @@ chapterTitle: "Loops"
 level: beginner
 ---
 
-The **`for`** loop walks through each item in a **sequence** (list, string, tuple, dict keys, etc.):
+Reading a word letter by letter is natural — you do not need to know the length first. A **`for`** loop walks through each item in a sequence the same way.
+
+## One new idea: `for item in sequence`
 
 <PythonExample
   filename="for_string.py"
@@ -16,7 +18,11 @@ for letter in word:
     print(letter)`}
 />
 
-## Loop a list
+**Line by line**
+
+- `for letter in word:` — take each character from `word`, one at a time
+- `letter` is a variable that changes each round
+- The indented block runs once per item
 
 <PythonExample
   filename="for_list.py"
@@ -25,7 +31,7 @@ for color in colors:
     print(color)`}
 />
 
-## Loop with a counter variable
+## Real use case: total a list of numbers
 
 <PythonExample
   filename="sum.py"
@@ -36,7 +42,12 @@ for n in numbers:
 print(total)`}
 />
 
-## Nested loops
+| Loop type | Best when                            |
+| --------- | ------------------------------------ |
+| `for`     | You have a sequence to walk through  |
+| `while`   | You repeat until a condition changes |
+
+Nested loops run an inner loop for **each** outer step:
 
 <PythonExample
   filename="nested.py"
@@ -46,11 +57,19 @@ print(total)`}
 />
 
 <Callout variant="warning">
-  Nested loops can run many times (3 × 2 = 6 here). Deep nesting on huge lists can be slow
-  — there is often a better approach later.
+  Nested loops multiply work (3 × 2 = 6 prints here). Deep nesting on huge lists can be
+  slow.
 </Callout>
 
-<Callout variant="tip">
-  `for` does not need a manual index when you only need values. You already practiced
-  lists and strings — `for` ties them together.
-</Callout>
+<TryIt title="Try it yourself" answer="apple\nbanana\ncherry">
+  Create `fruits = ["apple", "banana", "cherry"]`. Loop with `for fruit in fruits:` and
+  print each fruit.
+</TryIt>
+
+## Recap
+
+- **`for item in sequence:`** visits every item once
+- Works on strings, lists, and other sequences
+- Use **`while`** when you do not have a sequence to walk
+
+Next: **`range()`** — generate number sequences for loops.

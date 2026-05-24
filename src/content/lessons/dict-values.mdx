@@ -7,7 +7,9 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-**`values()`** returns a view of all **values**:
+Keys are the **labels** on jars; values are what is **inside**. **`values()`** pours out every stored value — without caring which key it came from.
+
+## One new idea: `values()` returns a view
 
 <PythonExample
   filename="values.py"
@@ -15,6 +17,18 @@ level: beginner
 print(person.values())
 print(list(person.values()))`}
 />
+
+**Line by line**
+
+- `person.values()` — view of all values: `"Ada"`, `36`, `"London"`
+- `list(...)` — turn the view into a list you can index or reuse
+- Values can repeat; keys cannot
+
+| Key      | Value      |
+| -------- | ---------- |
+| `"name"` | `"Ada"`    |
+| `"age"`  | `36`       |
+| `"city"` | `"London"` |
 
 ## Loop over values
 
@@ -25,16 +39,42 @@ for price in prices.values():
     print(price)`}
 />
 
-## Sum or max of values
+You get each price, but **not** the fruit name — use **`items()`** when you need both.
+
+## Real use case: total or best score
 
 <PythonExample
   filename="aggregate.py"
   code={`scores = {"math": 90, "english": 85, "science": 92}
-print(sum(scores.values()))
-print(max(scores.values()))`}
+total = sum(scores.values())
+best = max(scores.values())
+
+print("Total points:", total)
+print("Best score:", best)`}
 />
 
-<Callout variant="warning">
-  Values can repeat — keys cannot. `values()` may return duplicates across keys only if
-  two keys map to the same value.
+## Sum inventory counts
+
+<PythonExample
+  filename="inventory.py"
+  code={`stock = {"apple": 50, "banana": 30, "cherry": 10}
+items_in_store = sum(stock.values())
+print("Total items:", items_in_store)`}
+/>
+
+<Callout variant="warning" title="Oops — easy to confuse">
+  **`"Ada" in person`** checks for a **key** named `"Ada"`, not whether `"Ada"` is a
+  value. To search values, loop or use **`in person.values()`**.
 </Callout>
+
+<TryIt title="Try it yourself" answer="180">
+  With `scores = {"a": 90, "b": 90}`, print `sum(scores.values())`.
+</TryIt>
+
+## Recap
+
+- **`d.values()`** — all values as a view
+- **`sum(d.values())`**, **`max(d.values())`** — common aggregations
+- Loop values when you only need the data, not the keys
+
+Next: **`items()`** — key-value pairs for looping.

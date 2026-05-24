@@ -7,14 +7,14 @@ chapterTitle: "If Statements"
 level: beginner
 ---
 
-Often you need more than two outcomes. Python provides:
+A traffic light is not just green or not-green — it can be yellow or red too. **`elif`** and **`else`** let Python pick exactly one branch from several options.
+
+## One new idea: test conditions top to bottom
 
 - **`elif`** — “else if” — another condition to test
 - **`else`** — runs when **no** previous condition was true
 
-## elif
-
-Python checks conditions **from top to bottom** and runs the **first** block that matches:
+Python checks from top to bottom and runs the **first** block that matches:
 
 <PythonExample
   filename="grade.py"
@@ -30,44 +30,18 @@ else:
 print("Grade: F")`}
 />
 
-With `score = 85`, only “Grade: B” prints. The `elif score >= 70` block is **not** run, even though 85 is also ≥ 70.
+**Line by line**
 
-<Callout variant="note">
-  Order matters. Put **more specific** or **stricter** tests before looser ones when
-  ranges overlap.
-</Callout>
+- `score = 85` — only the `elif score >= 80` branch runs
+- The `elif score >= 70` block is **not** run, even though 85 is also ≥ 70
+- **`else`** has no condition — it is the fallback
 
-## else
+| Structure                    | What runs             |
+| ---------------------------- | --------------------- |
+| `if` / `elif` chain          | **At most one** block |
+| Two separate `if` statements | **Both** can run      |
 
-`else` has **no** condition. It is the fallback:
-
-<PythonExample
-  filename="else_basic.py"
-  code={`temperature = 15
-
-if temperature > 25:
-print("Hot")
-elif temperature > 15:
-print("Warm")
-else:
-print("Cool or cold")`}
-/>
-
-## if without elif
-
-You can use `if` / `else` only:
-
-<PythonExample
-  filename="if_else.py"
-  code={`password_correct = True
-
-if password_correct:
-print("Access granted")
-else:
-print("Access denied")`}
-/>
-
-## elif chain for categories
+## Real use case: traffic light
 
 <PythonExample
   filename="traffic.py"
@@ -83,9 +57,7 @@ else:
 print("Unknown signal")`}
 />
 
-## Combining with and / or
-
-Conditions in `if` and `elif` can use everything you learned:
+Conditions can use **`and`** / **`or`** from the previous chapter:
 
 <PythonExample
   filename="combined.py"
@@ -100,32 +72,23 @@ else:
 print("Check local rules")`}
 />
 
-## Common mistakes
-
-<Callout variant="danger" title="elif after else">
-  `else` must be **last**. You cannot write `elif` after `else`.
+<Callout variant="danger" title="Oops — Python is yelling">
+  `else` must be **last** — you cannot write `elif` after `else`.
 </Callout>
 
-<Callout variant="warning" title="Separate if vs elif">
-  Two separate `if` statements can both run. One `if` / `elif` chain runs **at most one**
-  block. See the example below — both lines print because there are two independent `if`
-  statements.
+<Callout variant="warning">
+  Order matters. Put **stricter** tests before looser ones when ranges overlap — check `>= 90` before `>= 70`.
 </Callout>
 
-<PythonExample
-  filename="two_if.py"
-  code={`x = 10
+<TryIt title="Try it yourself" answer="Warm">
+  Set `temperature = 20`. If `temperature > 25` print `"Hot"`, elif `temperature > 15` print `"Warm"`, else print `"Cool"`.
+</TryIt>
 
-if x > 5:
-print("Greater than 5")
+## Recap
 
-if x > 8:
-print("Greater than 8")`}
-/>
+- **`elif`** adds another condition to test
+- **`else`** is the fallback with no condition
+- Only **one** block in an `if` / `elif` / `else` chain runs
+- Put more specific conditions **first**
 
-<Callout variant="tip">
-  Draw a flowchart on paper for tricky logic — it helps you see whether you need `elif` or
-  separate `if` statements.
-</Callout>
-
-Continue to **Loops**, then **Lists** and the rest of the course.
+Next: **While loops** — repeat code while a condition stays true.

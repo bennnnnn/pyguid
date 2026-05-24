@@ -7,7 +7,9 @@ chapterTitle: "Tuples"
 level: beginner
 ---
 
-**Unpacking** assigns each item in a tuple to a variable:
+You open a **labeled lunch box**: slot one is the sandwich, slot two is the apple. **Unpacking** does the same — one tuple on the right, **one variable per slot** on the left.
+
+## One new idea: one line, many variables
 
 <PythonExample
   filename="unpack.py"
@@ -17,9 +19,18 @@ print(x)
 print(y)`}
 />
 
-## Swap two variables
+**Line by line**
 
-Unpacking makes swapping easy:
+- `point = (3, 4)` — a tuple with two values
+- `x, y = point` — first value → `x`, second → `y`
+- Python matches **left to right**, position by position
+
+| Tuple position | Variable | Value |
+| -------------- | -------- | ----- |
+| `0`            | `x`      | `3`   |
+| `1`            | `y`      | `4`   |
+
+## Real use case: swap two values
 
 <PythonExample
   filename="swap.py"
@@ -28,6 +39,8 @@ b = 2
 a, b = b, a
 print(a, b)`}
 />
+
+No temporary variable needed — Python builds a tiny tuple `(2, 1)` and unpacks it into `a` and `b`.
 
 ## Unpack in a loop
 
@@ -38,9 +51,9 @@ for number, word in pairs:
     print(number, word)`}
 />
 
-## The \* operator when unpacking
+Each item in `pairs` is a tuple. The loop unpacks `(number, word)` every time.
 
-Collect “the rest” into a list:
+## The `*` operator — collect “the rest”
 
 <PythonExample
   filename="star.py"
@@ -51,12 +64,23 @@ print(middle)
 print(last)`}
 />
 
-<Callout variant="note">
-  Functions often return tuples. Unpacking is a clean way to receive multiple results:
-  `min_val, max_val = get_range(data)`.
+- `first` → `1`
+- `*middle` → **list** `[2, 3, 4]` (everything in the middle)
+- `last` → `5`
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  The number of variables on the left must match the tuple size, **unless** you use `*` to
+  collect extras. `(1, 2)` into `a, b, c` → **ValueError**.
 </Callout>
 
-<Callout variant="danger">
-  The number of variables on the left must match the number of values you unpack, unless
-  you use `*` to collect extras.
-</Callout>
+<TryIt title="Try it yourself" answer="20">
+  With `size = (10, 20)`, unpack into `width, height`. Print `height`.
+</TryIt>
+
+## Recap
+
+- **`x, y = point`** assigns each tuple item to a variable
+- **`a, b = b, a`** swaps two values cleanly
+- **`*rest`** collects leftover items into a **list**
+
+Next: **Python sets** — collections with **unique** items and no fixed order.

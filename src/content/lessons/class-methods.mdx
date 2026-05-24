@@ -7,7 +7,9 @@ chapterTitle: "Classes"
 level: beginner
 ---
 
-**Methods** are functions defined inside a class. They always take **`self`** as the first parameter.
+A dog knows its own name and can bark on command. **Methods** are functions **on** an object — they use **`self`** to read and change that object’s data.
+
+## One new idea: methods and self
 
 <PythonExample
   filename="methods.py"
@@ -21,6 +23,12 @@ level: beginner
 buddy = Dog("Buddy")
 print(buddy.bark())`}
 />
+
+**Line by line**
+
+- `def bark(self):` — method; `self` is the dog you called it on
+- `self.name` — this object’s name
+- `buddy.bark()` — Python passes `buddy` as `self`
 
 ## Methods that change state
 
@@ -44,9 +52,7 @@ c.reset()
 print(c.count)`}
 />
 
-## String representation
-
-`__str__` controls what `print()` shows:
+## Real use case: readable print with **str**
 
 <PythonExample
   filename="str.py"
@@ -62,9 +68,9 @@ p = Point(3, 4)
 print(p)`}
 />
 
-## Class attributes vs instance
+`__str__` controls what `print()` shows.
 
-A variable defined **on the class** is shared; **on self** it is per object:
+## Class attribute vs instance attribute
 
 <PythonExample
   filename="class_attr.py"
@@ -81,7 +87,22 @@ c = Circle(5)
 print(round(c.area(), 2))`}
 />
 
+`pi` on the **class** is shared; `radius` on **`self`** is per circle.
+
 <Callout variant="warning">
   Mutable class attributes (like a shared list) can surprise you — all instances share one
   list. Use `self.list = []` in `__init__` instead.
 </Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  Make a `Counter` with `increment()` and `reset()`. Call `increment()` twice, print
+  `.count`.
+</TryIt>
+
+## Recap
+
+- **Methods** — functions inside a class, first arg is `self`
+- **`self.attr`** — read or write instance data
+- **`__str__`** — friendly string for `print()`
+
+Next: **Inheritance** — reuse and extend a parent class.

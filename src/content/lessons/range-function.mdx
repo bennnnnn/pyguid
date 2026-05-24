@@ -7,27 +7,27 @@ chapterTitle: "Loops"
 level: beginner
 ---
 
-**`range()`** produces a sequence of numbers for loops. It is memory-efficient and very common.
+A elevator display counts floors 1, 2, 3 without you typing each number. **`range()`** generates a sequence of numbers for loops the same way.
 
-## range(stop)
-
-Numbers from `0` up to (but not including) `stop`:
+## One new idea: `range(stop)`, `range(start, stop)`, `range(start, stop, step)`
 
 <PythonExample
   filename="range_stop.py"
   code={`for i in range(5):
-    print(i)`}
+    print(i)
+
+for i in range(2, 6):
+print(i)`}
 />
 
-## range(start, stop)
+**Before → after**
 
-<PythonExample
-  filename="range_start.py"
-  code={`for i in range(2, 6):
-    print(i)`}
-/>
-
-## range(start, stop, step)
+| Call              | Numbers produced (stop is excluded) |
+| ----------------- | ----------------------------------- |
+| `range(5)`        | 0, 1, 2, 3, 4                       |
+| `range(2, 6)`     | 2, 3, 4, 5                          |
+| `range(0, 10, 2)` | 0, 2, 4, 6, 8                       |
+| `range(5, 0, -1)` | 5, 4, 3, 2, 1                       |
 
 <PythonExample
   filename="range_step.py"
@@ -38,37 +38,36 @@ for i in range(5, 0, -1):
 print(i)`}
 />
 
-## Convert to a list
-
-`range` is not a list, but you can wrap it:
-
-<PythonExample
-  filename="list_range.py"
-  code={`nums = list(range(1, 6))
-print(nums)`}
-/>
-
-## Common patterns
+## Real use case: repeat an action N times
 
 <PythonExample
   filename="patterns.py"
-  code={`# Print 10 times
-for _ in range(10):
+  code={`for _ in range(3):
     print("Hello")
-
-# Indexes 0..len-1
 
 items = ["a", "b", "c"]
 for i in range(len(items)):
 print(i, items[i])`}
 />
 
-<Callout variant="note">
-  `_` as a variable name means “I do not need this value” — common in `for _ in
-  range(n):`.
+Use **`_`** as the variable name when you do not need the loop value — common in `for _ in range(n):`.
+
+You can turn a range into a list: `list(range(1, 6))` → `[1, 2, 3, 4, 5]`.
+
+<Callout variant="warning">
+  Prefer `for item in items:` over `for i in range(len(items)):` unless you specifically
+  need the index.
 </Callout>
 
-<Callout variant="tip">
-  Prefer `for item in items:` over `for i in range(len(items)):` unless you need the index
-  for something else.
-</Callout>
+<TryIt title="Try it yourself" answer="10\n11\n12">
+  Use `for n in range(10, 13):` and print each `n`.
+</TryIt>
+
+## Recap
+
+- **`range(stop)`** starts at 0 and stops **before** `stop`
+- **`range(start, stop)`** and **`range(start, stop, step)`** control start and step
+- The stop value is **never included**
+- **`_`** means “I do not need this value”
+
+Next: **`break` and `continue`** — stop early or skip an iteration.

@@ -7,45 +7,62 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-You have learned `keys()`, `values()`, and `items()`. Here are common **loop patterns**.
+You have learned the **tools** — `keys()`, `values()`, and `items()`. Now string them together like a **checklist**: what do you need from each entry — the label, the contents, or both?
 
-## Keys only
-
-<PythonExample
-  filename="keys.py"
-  code={`student = {"name": "Lin", "grade": "A", "year": 2}
-for field in student:
-    print(field)`}
-/>
-
-## Values only
+## One new idea: three loop styles
 
 <PythonExample
-  filename="values.py"
-  code={`temperatures = {"Mon": 22, "Tue": 25, "Wed": 19}
-for temp in temperatures.values():
-    print(temp)`}
-/>
-
-## Keys and values (best)
-
-<PythonExample
-  filename="items.py"
+  filename="three_loops.py"
   code={`inventory = {"apple": 50, "banana": 30, "cherry": 10}
+
+print("--- keys ---")
+for item in inventory:
+print(item)
+
+print("--- values ---")
+for count in inventory.values():
+print(count)
+
+print("--- items ---")
 for item, count in inventory.items():
-    print(f"{item}: {count} in stock")`}
+print(item, ":", count)`}
 />
 
-## Build a new dictionary
+**Line by line**
+
+- `for item in inventory:` — keys only (default)
+- `.values()` — counts only, no names
+- `.items()` — **both** — usually the most useful
+
+| Goal              | Loop                     |
+| ----------------- | ------------------------ |
+| Key names         | `for k in d:`            |
+| Values only       | `for v in d.values():`   |
+| Key **and** value | `for k, v in d.items():` |
+
+## Real use case: filter into a new dict
 
 <PythonExample
   filename="build.py"
   code={`scores = {"math": 40, "english": 85, "art": 92}
 passed = {}
+
 for subject, score in scores.items():
-    if score >= 60:
-        passed[subject] = score
-print(passed)`}
+if score >= 60:
+passed[subject] = score
+
+print("Passed:", passed)`}
+/>
+
+Loop, decide, and **build** a new dictionary — a pattern you will use often.
+
+## Format output with f-strings
+
+<PythonExample
+  filename="format_loop.py"
+  code={
+    'prices = {"apple": 1.2, "banana": 0.8, "cherry": 2.5}\nfor fruit, price in prices.items():\n    print(f"{fruit}: ${price:.2f}")'
+  }
 />
 
 ## Nested dictionaries
@@ -56,11 +73,28 @@ print(passed)`}
     "u1": {"name": "Ada", "active": True},
     "u2": {"name": "Ben", "active": False}
 }
+
 for user_id, info in users.items():
-    print(user_id, info["name"], info["active"])`}
+status = "online" if info["active"] else "offline"
+print(user_id, info["name"], "→", status)`}
 />
 
-<Callout variant="note">
-  Do not add or remove keys while looping over `dict.keys()` directly — iterate over
-  `list(d.keys())` if you need to modify the dict in the loop.
+Outer loop: user IDs. Inner dict: fields for each user.
+
+<Callout variant="note" title="Oops — modifying while looping">
+  Do not add or remove keys while looping over **`d.keys()`** directly. Loop over
+  **`list(d.keys())`** if you must change the dict inside the loop.
 </Callout>
+
+<TryIt title="Try it yourself" answer="175">
+  With `scores = {"math": 90, "english": 85}`, use a loop over `.values()` and
+  `total = total + score` (start `total = 0`). Print `total`.
+</TryIt>
+
+## Recap
+
+- **`for k in d:`** — keys; **`.values()`** — values; **`.items()`** — pairs
+- Build new dicts by looping and assigning
+- Nested dicts: outer **`.items()`**, then inner bracket access
+
+You finished the **Dictionaries** chapter. Next up: **Functions** — reusable blocks of code.

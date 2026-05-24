@@ -7,19 +7,29 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-## Get values
+Your locker has **labels on the doors**, not numbers on the rows. **`user["name"]`** is opening the door marked `"name"` — you get exactly what is stored inside.
 
-Bracket notation:
+## One new idea: bracket lookup
 
 <PythonExample
   filename="brackets.py"
   code={`user = {"name": "Sam", "role": "admin"}
-print(user["name"])`}
+print(user["name"])
+print(user["role"])`}
 />
 
-The next lessons cover **`get()`**, **`pop()`**, and **`update()`** in detail.
+**Line by line**
 
-## Change and add
+- `user["name"]` — key in quotes inside `[ ]`
+- Returns the **value** tied to that key
+- Keys must **match exactly** — `"Name"` and `"name"` are different keys
+
+| Expression     | Result    |
+| -------------- | --------- |
+| `user["name"]` | `"Sam"`   |
+| `user["role"]` | `"admin"` |
+
+## Change a value or add a new key
 
 <PythonExample
   filename="change.py"
@@ -29,21 +39,50 @@ user["email"] = "sam@example.com"
 print(user)`}
 />
 
-## Check keys
+- Existing key → **updates** the value
+- New key → **adds** a new entry
+
+## Real use case: update a game score
+
+<PythonExample
+  filename="score.py"
+  code={`player = {"name": "Lin", "score": 0, "level": 1}
+
+player["score"] = player["score"] + 100
+player["level"] = 2
+
+print(player["name"], "→ score:", player["score"], "level:", player["level"])`}
+/>
+
+## Check if a key exists
 
 <PythonExample
   filename="in_dict.py"
   code={`user = {"name": "Sam"}
 print("name" in user)
-print("id" in user)`}
+print("id" in user)
+
+if "email" in user:
+print(user["email"])
+else:
+print("No email on file")`}
 />
 
-<Callout variant="warning">
-  Do not use `if key in user: user[key]` when `user.get(key)` is enough for a default
-  value.
+Use **`"key" in d`** before bracket access when the key might be missing.
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`d["missing"]`** → **KeyError**. Either check with **`in`** first, or use **`.get()`**
+  (next lessons) for a safe default.
 </Callout>
 
-<Callout variant="tip">
-  `pop("key", default)` removes a key if present and returns its value, or returns
-  `default` without error.
-</Callout>
+<TryIt title="Try it yourself" answer="31">
+  Start with `user = {"age": 30}`. Set `user["age"] = 31`. Print `user["age"]`.
+</TryIt>
+
+## Recap
+
+- **`d["key"]`** reads or writes a value
+- **New key** on the left of `=` **adds** an entry
+- **`"key" in d`** checks membership before lookup
+
+Next: **`keys()`** — get every key in a dictionary.

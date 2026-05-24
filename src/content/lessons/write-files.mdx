@@ -7,14 +7,16 @@ chapterTitle: "Files"
 level: beginner
 ---
 
-Write to files with **`open(path, mode)`**:
+A whiteboard you erase and rewrite vs a logbook you add to at the bottom. **Write mode** replaces a file; **append mode** adds without erasing.
+
+## One new idea: write and append modes
 
 | Mode  | Meaning                           |
 | ----- | --------------------------------- |
 | `"w"` | Write (creates or **overwrites**) |
 | `"a"` | Append to the end                 |
 
-## Write text (on your computer)
+On your computer:
 
 ```python
 with open("output.txt", "w") as file:
@@ -22,19 +24,14 @@ with open("output.txt", "w") as file:
     file.write("Second line\n")
 ```
 
-## Append
+Append without erasing:
 
 ```python
 with open("log.txt", "a") as file:
     file.write("New log entry\n")
 ```
 
-<Callout variant="warning">
-  Mode `"w"` **deletes** existing content. Use `"a"` to add without erasing, or confirm
-  before overwriting.
-</Callout>
-
-## Simulate writing in memory
+## Real use case: build output in memory first
 
 <PythonExample
   filename="write_sim.py"
@@ -46,7 +43,9 @@ print(output)
 print("--- saved content above ---")`}
 />
 
-## writelines()
+Same pattern as writing a file — collect lines, join with newlines.
+
+## CSV-style rows
 
 <PythonExample
   filename="writelines.py"
@@ -55,7 +54,24 @@ text = "\\n".join(rows)
 print(text)`}
 />
 
+<Callout variant="warning">
+  Mode `"w"` **deletes** existing content. Use `"a"` to add without erasing, or confirm
+  before overwriting.
+</Callout>
+
 <Callout variant="tip">
   For CSV or JSON data, use the `csv` and `json` modules instead of manual string building
   when files grow large.
 </Callout>
+
+<TryIt title="Try it yourself" answer="a\\nb">
+  Build `lines = ["a", "b"]` and print `"\\n".join(lines)`.
+</TryIt>
+
+## Recap
+
+- **`"w"`** — create or overwrite
+- **`"a"`** — append to the end
+- **`"\\n".join(lines)`** — one string ready to save
+
+You finished **Files**. Next: **List comprehensions** — build lists in one line.

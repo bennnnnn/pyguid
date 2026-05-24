@@ -7,9 +7,9 @@ chapterTitle: "Files"
 level: beginner
 ---
 
-This chapter covers **files** on disk and **user input** with `input()`. The **`open()`** function reads and writes files — essential for scripts, logs, and data.
+A notebook on your desk holds notes you open and read later. A **file** on disk is the same — **`open()`** reads text so programs can use logs, configs, and data.
 
-## Read entire file
+## One new idea: open and read
 
 On your machine:
 
@@ -19,8 +19,11 @@ with open("notes.txt", "r") as file:
     print(content)
 ```
 
-- `"r"` — read mode
+**Line by line**
+
+- `"r"` — **read** mode
 - **`with`** — automatically closes the file when done
+- `.read()` — entire file as one string
 
 <Callout variant="note">
   The browser **Run code** button cannot open real files on your disk. The examples below
@@ -41,7 +44,7 @@ for line in lines:
 print(line)`}
 />
 
-## Read line by line
+## Real use case: process each line
 
 <PythonExample
   filename="lines.py"
@@ -49,6 +52,8 @@ print(line)`}
 for line in content.splitlines():
     print(line.upper())`}
 />
+
+Read → split into lines → transform each line.
 
 ## Check file exists (concept)
 
@@ -62,3 +67,16 @@ On your computer you might use `import os` and `os.path.exists("file.txt")` befo
   Never open untrusted paths from user input without validation — path tricks can be a
   security risk.
 </Callout>
+
+<TryIt title="Try it yourself" answer="line one">
+  With `content = "line one\\nline two"`, loop `for line in content.splitlines():` and
+  print the first line only (use `break` after printing).
+</TryIt>
+
+## Recap
+
+- **`open(path, "r")`** — read a text file
+- **`with`** — safe open/close
+- **`.splitlines()`** — one string → list of lines
+
+Next: **Write files** — create and save text.

@@ -7,11 +7,9 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-A **list comprehension** builds a new list in one readable line:
+An assembly line: each item enters, gets transformed, and lands in a finished box. A **list comprehension** does that in **one line** — loop, transform, and collect.
 
-```python
-[expression for item in iterable]
-```
+## One new idea: [expression for item in iterable]
 
 <PythonExample
   filename="basic.py"
@@ -19,6 +17,12 @@ A **list comprehension** builds a new list in one readable line:
 doubled = [n * 2 for n in numbers]
 print(doubled)`}
 />
+
+**Line by line**
+
+- `for n in numbers` — same loop you already know
+- `n * 2` — expression applied to each item
+- Whole thing inside `[ ]` — builds a **new list**
 
 ## With a condition
 
@@ -29,7 +33,9 @@ evens = [n for n in numbers if n % 2 == 0]
 print(evens)`}
 />
 
-## Transform strings
+Only items where the `if` is true are included.
+
+## Real use case: transform strings
 
 <PythonExample
   filename="strings.py"
@@ -37,6 +43,8 @@ print(evens)`}
 upper = [w.upper() for w in words]
 print(upper)`}
 />
+
+Replaces: empty list → loop → append.
 
 ## Nested comprehension (careful)
 
@@ -47,8 +55,6 @@ flat = [num for row in matrix for num in row]
 print(flat)`}
 />
 
-## When not to use them
-
 <Callout variant="warning">
   If a comprehension gets long or has many `if`/`for` clauses, a regular `for` loop is
   clearer.
@@ -58,3 +64,28 @@ print(flat)`}
   Comprehensions often replace: create empty list → loop → append. They are idiomatic
   Python for simple transforms.
 </Callout>
+
+<TryIt title="Try it yourself" answer="[2, 4, 6]">
+  With `nums = [1, 2, 3]`, build `[n * 2 for n in nums]` and print it.
+</TryIt>
+
+## Chapter 17 mini project: score report
+
+Filter, transform, and summarize in comprehensions:
+
+<PythonExample
+  filename="scores.py"
+  code={
+    'names = ["Ada", "Ben", "Cara", "Dan"]\nscores = [95, 42, 88, 76]\n\npassing = [name for name, score in zip(names, scores) if score >= 60]\ndoubled_bonus = [score * 2 for score in scores if score >= 80]\nlabels = [f"{n}: {s}" for n, s in zip(names, scores)]\n\nprint("Passing:", passing)\nprint("Double bonus (80+):", doubled_bonus)\nprint("Report:")\nfor line in labels:\n    print(" ", line)'
+  }
+/>
+
+Change scores or add names. Try a threshold other than `60`.
+
+## Recap
+
+- **`[expr for x in items]`** — build a list in one line
+- **`if` at the end** — filter while building
+- Use a plain **`for` loop** when the logic gets long
+
+Next: **Lambda functions** — tiny anonymous functions.

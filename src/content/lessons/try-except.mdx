@@ -7,9 +7,11 @@ chapterTitle: "Error Handling"
 level: beginner
 ---
 
-**Error handling** lets your program respond when something fails instead of crashing. When something goes wrong, Python raises an **exception**. Without handling, the program stops.
+A seatbelt does not stop accidents — it keeps you safe when one happens. **`try` / `except`** lets your program catch problems and keep going instead of crashing.
 
-**`try` / `except`** catches errors so your program can continue or show a friendly message:
+## One new idea: try and except
+
+When something goes wrong, Python raises an **exception**. Without handling, the program stops.
 
 <PythonExample
   filename="try_basic.py"
@@ -20,6 +22,12 @@ except ZeroDivisionError:
 
 print("Program continues")`}
 />
+
+**Line by line**
+
+- `try:` — run risky code
+- `except ZeroDivisionError:` — if **that** error happens, run this block
+- Code after the block still runs
 
 ## Catch a specific error
 
@@ -32,7 +40,7 @@ except ValueError:
     print("Not a valid number")`}
 />
 
-## Multiple except blocks
+## Real use case: safe division
 
 <PythonExample
   filename="multiple.py"
@@ -47,6 +55,8 @@ except ValueError:
 print(safe_divide(10, 2))
 print(safe_divide(10, 0))`}
 />
+
+Return `None` or a message instead of letting the crash reach the user.
 
 ## else and finally
 
@@ -74,3 +84,16 @@ finally:
   Use try/except around risky operations: parsing user input, division, file access,
   network calls.
 </Callout>
+
+<TryIt title="Try it yourself" answer="Not a valid number">
+  With `text = "abc"`, wrap `int(text)` in try/except for `ValueError` and print `"Not a
+  valid number"`.
+</TryIt>
+
+## Recap
+
+- **`try` / `except`** — catch expected errors
+- Catch **specific** types — `ValueError`, `ZeroDivisionError`, etc.
+- **`else` / `finally`** — success path and cleanup
+
+Next: **Common exceptions** — names you will see in tracebacks.

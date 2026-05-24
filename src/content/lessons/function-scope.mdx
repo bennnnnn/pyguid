@@ -7,9 +7,9 @@ chapterTitle: "Functions"
 level: beginner
 ---
 
-**Scope** is where a variable name can be used.
+A name tag at a party works **inside the room** — not on the street. **Scope** is where a variable name is valid: inside one function, or everywhere in the file.
 
-## Local variables
+## One new idea: local variables
 
 Variables created inside a function are **local** — they exist only inside that function:
 
@@ -25,7 +25,13 @@ greet()
 
 />
 
-## Parameters are local
+**Line by line**
+
+- `message = "Hello"` — created **inside** `greet`
+- Works inside the function
+- Outside `greet`, `message` does not exist
+
+## Parameters are local too
 
 <PythonExample
   filename="param_local.py"
@@ -38,9 +44,9 @@ print(double(x))
 print(x)`}
 />
 
-`x` outside the function is unchanged.
+`x` outside the function is unchanged — `n` is a separate local copy.
 
-## Global variables (read)
+## Real use case: read a global, pass data in
 
 Functions can **read** global variables:
 
@@ -53,6 +59,8 @@ return amount + amount \* tax_rate
 
 print(price_with_tax(100))`}
 />
+
+Prefer passing values as **parameters** instead of relying on many globals.
 
 ## global keyword (use sparingly)
 
@@ -79,3 +87,29 @@ print(counter)`}
 <Callout variant="tip">
   If a function needs many globals, consider passing a dictionary or a small class later.
 </Callout>
+
+<TryIt title="Try it yourself" answer="10">
+  Define `def triple(n):` that returns `n * 3`. With `x = 10`, print `triple(x)` then
+  print `x`.
+</TryIt>
+
+## Chapter 12 mini project: price calculator
+
+Put **def**, **parameters**, **return**, and **scope** together:
+
+<PythonExample
+  filename="calculator.py"
+  code={
+    '# Mini project: reusable price helpers\nTAX_RATE = 0.08\n\ndef subtotal(price, quantity):\n    return price * quantity\n\ndef with_tax(amount):\n    return amount + amount * TAX_RATE\n\ndef format_total(label, amount):\n    return f"{label}: ${amount:.2f}"\n\nprice = 9.99\nqty = 3\n\nbase = subtotal(price, qty)\ntotal = with_tax(base)\n\nprint(format_total("Subtotal", base))\nprint(format_total("Total with tax", total))'
+  }
+/>
+
+Change `price`, `qty`, or `TAX_RATE`. Notice each function has its own local names but shares the global rate.
+
+## Recap
+
+- **Local** — created inside a function; gone outside
+- **Parameters** — local copies; outside variables stay unchanged
+- **Global** — readable everywhere; use `global` to reassign (sparingly)
+
+You finished **Functions**. Next: **Import modules** — reuse Python’s built-in libraries.

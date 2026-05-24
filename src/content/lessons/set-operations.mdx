@@ -7,17 +7,9 @@ chapterTitle: "Sets"
 level: beginner
 ---
 
-Sets support math-style operations on collections.
+Two friend groups on a diagram: some people overlap, some are only in one circle. **Set operations** answer those questions in code — who is in **both**, **either**, or **only one** group.
 
-<PythonExample
-  filename="two_sets.py"
-  code={`a = {1, 2, 3}
-b = {3, 4, 5}
-print(a)
-print(b)`}
-/>
-
-## Union — all items from both
+## One new idea: union — everything from both sets
 
 <PythonExample
   filename="union.py"
@@ -26,6 +18,19 @@ b = {3, 4, 5}
 print(a | b)
 print(a.union(b))`}
 />
+
+**Line by line**
+
+- `a | b` — all items from **a** or **b** (duplicates merged)
+- `a.union(b)` — same result, reads clearly in longer code
+- Result: `{1, 2, 3, 4, 5}`
+
+| Operation      | Symbol | Method                    | Meaning                      |
+| -------------- | ------ | ------------------------- | ---------------------------- | --------------------------- |
+| Union          | `      | `                         | `.union()`                   | in **a** or **b** (or both) |
+| Intersection   | `&`    | `.intersection()`         | in **a** **and** **b**       |
+| Difference     | `-`    | `.difference()`           | in **a** but **not** **b**   |
+| Symmetric diff | `^`    | `.symmetric_difference()` | in **one** set, **not both** |
 
 ## Intersection — items in both
 
@@ -37,6 +42,8 @@ print(a & b)
 print(a.intersection(b))`}
 />
 
+Only **`3`** appears in both sets.
+
 ## Difference — in first but not second
 
 <PythonExample
@@ -47,13 +54,21 @@ print(a - b)
 print(b - a)`}
 />
 
-## Symmetric difference — in one or the other, not both
+- `a - b` → `{1, 2}` (in `a` only)
+- `b - a` → `{4, 5}` (in `b` only)
+
+## Real use case: shared tags between articles
 
 <PythonExample
-  filename="symmetric.py"
-  code={`a = {1, 2, 3}
-b = {3, 4, 5}
-print(a ^ b)`}
+  filename="tags.py"
+  code={`article_a = {"python", "tutorial", "beginner"}
+article_b = {"python", "advanced", "tutorial"}
+
+shared = article_a & article_b
+only_a = article_a - article_b
+
+print("Both articles:", shared)
+print("Only article A:", only_a)`}
 />
 
 ## Subset and superset
@@ -66,12 +81,20 @@ print(small.issubset(big))
 print(big.issuperset(small))`}
 />
 
-<Callout variant="note">
-  Operator symbols (`|`, `&`, `-`) are concise. Method names (`.union()`,
-  `.intersection()`) read clearly in longer code.
+Both return **`True`** — every item in `small` is also in `big`.
+
+<Callout variant="note" title="Oops — easy to mix up">
+  **`a - b`** and **`b - a`** are **not** the same. Order matters for difference.
 </Callout>
 
-<Callout variant="tip">
-  Real uses: find shared friends between two users (intersection), or tags only on one
-  article (difference).
-</Callout>
+<TryIt title="Try it yourself" answer="{3}">
+  With `x = {1, 2, 3}` and `y = {3, 4}`, print `x & y`.
+</TryIt>
+
+## Recap
+
+- **Union** `|` — combine both sets
+- **Intersection** `&` — keep only shared items
+- **Difference** `-` — items in the first set but not the second
+
+Next: **Python dictionaries** — look up values by **name**, not by index.

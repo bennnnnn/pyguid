@@ -7,11 +7,11 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-**JSON** is a text format for data (objects and arrays). APIs and config files often use it.
+A shipping label with standard fields — name, weight, destination — that any warehouse can read. **JSON** is that label for data: text that both humans and programs understand.
+
+## One new idea: json.loads and json.dumps
 
 Python’s **`json`** module converts between JSON strings and Python dicts/lists.
-
-## JSON string to Python
 
 <PythonExample
   filename="loads.py"
@@ -22,6 +22,12 @@ data = json.loads(text)
 print(data["name"])
 print(data["age"])`}
 />
+
+**Line by line**
+
+- JSON text in quotes — keys in double quotes
+- `json.loads(text)` — **load string** → Python dict
+- Access like any dictionary: `data["name"]`
 
 ## Python to JSON string
 
@@ -37,7 +43,7 @@ pretty = json.dumps(user, indent=2)
 print(pretty)`}
 />
 
-## Lists in JSON
+## Real use case: API-style data
 
 <PythonExample
   filename="list_json.py"
@@ -49,6 +55,8 @@ print(items[0])
 print(items[-1])`}
 />
 
+APIs often return JSON arrays or objects — `loads` turns them into Python.
+
 <Callout variant="warning">
   JSON uses `true`, `false`, and `null` — not Python’s `True`, `False`, `None`.
   `json.loads` converts them for you.
@@ -58,3 +66,15 @@ print(items[-1])`}
   `json.load(file)` and `json.dump(obj, file)` read/write files on your computer — pair
   with the Files chapter.
 </Callout>
+
+<TryIt title="Try it yourself" answer="Ada">
+  `import json`, parse `'{"name": "Ada"}'` with `json.loads`, print `data["name"]`.
+</TryIt>
+
+## Recap
+
+- **`json.loads(string)`** — JSON text → Python
+- **`json.dumps(obj)`** — Python → JSON text
+- JSON **`true`/`false`/`null`** differ from Python’s booleans and `None`
+
+Next: **None** — Python’s “nothing here” value.

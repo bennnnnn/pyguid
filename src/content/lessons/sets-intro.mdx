@@ -7,7 +7,9 @@ chapterTitle: "Sets"
 level: beginner
 ---
 
-A **set** holds **unique** items in **no fixed order** — good for tags, IDs, or dropping duplicates from a list.
+A **list** keeps every item, even duplicates, in order. A **set** is like a **jar of unique marbles** — drop in `"python"` twice, you still only have **one** `"python"`. No guaranteed order.
+
+## One new idea: a set in curly braces
 
 <PythonExample
   filename="set.py"
@@ -16,14 +18,51 @@ print(tags)
 print(len(tags))`}
 />
 
-Create a set from a list to remove duplicates:
+**Line by line**
+
+- `{"python", "code", "learn", "python"}` — curly braces `{ }`, items separated by commas
+- Duplicate `"python"` is stored **once**
+- `len(tags)` → **`3`**, not `4`
+
+Sets are:
+
+- **Unordered** — printing may show items in any order
+- **Unique** — duplicates are ignored automatically
+- **Mutable** — you can add and remove items (but not change items in place)
+
+## What is in this chapter?
+
+You will learn sets in this order:
+
+1. **What a set is** (this page)
+2. **Set operations** — union, intersection, difference, and more
+
+## Remove duplicates from a list
 
 <PythonExample
   filename="from_list.py"
   code={`numbers = [1, 2, 2, 3, 3, 3]
 unique = set(numbers)
-print(unique)`}
+print(unique)
+print(list(unique))`}
 />
+
+`set(list)` drops duplicates. Wrap with `list(...)` if you need a list again.
+
+## Real use case: fast membership checks
+
+<PythonExample
+  filename="in_set.py"
+  code={`allowed = {"admin", "editor", "viewer"}
+role = "admin"
+
+if role in allowed:
+print("Access granted")
+else:
+print("Access denied")`}
+/>
+
+Sets are optimized for **`in`** checks — great for allowed roles, seen IDs, or tag lookups.
 
 ## Add and remove
 
@@ -35,32 +74,24 @@ colors.remove("red")
 print(colors)`}
 />
 
-Use `discard()` if you are not sure the item exists — it does not error:
+| Method       | If item missing                      |
+| ------------ | ------------------------------------ |
+| `remove(x)`  | **KeyError**                         |
+| `discard(x)` | **no error** — silently does nothing |
 
-<PythonExample
-  filename="discard.py"
-  code={`colors = {"red", "blue"}
-colors.discard("yellow")
-print(colors)`}
-/>
-
-## Check membership
-
-Sets are fast for testing `in`:
-
-<PythonExample
-  filename="in_set.py"
-  code={`allowed = {"admin", "editor", "viewer"}
-print("admin" in allowed)
-print("guest" in allowed)`}
-/>
-
-<Callout variant="tip">
-  Use sets when uniqueness matters: unique tags, IDs seen before, or removing duplicates
-  from a list.
+<Callout variant="warning" title="Oops — Python is yelling">
+  Set items must be **immutable** — numbers, strings, and tuples work. **Lists** inside a
+  set → **TypeError**.
 </Callout>
 
-<Callout variant="warning">
-  Sets cannot contain mutable items like lists. Set items must be immutable (numbers,
-  strings, tuples).
-</Callout>
+<TryIt title="Try it yourself" answer="3">
+  Create `nums = {1, 2, 3}`, add `4`, then `print(len(nums))`.
+</TryIt>
+
+## Recap
+
+- **`{a, b, c}`** stores **unique** items with **no fixed order**
+- **`set(my_list)`** removes duplicates
+- **`add()`**, **`remove()`**, **`discard()`** change the set
+
+Next: **Set operations** — combine and compare sets like Venn diagrams.

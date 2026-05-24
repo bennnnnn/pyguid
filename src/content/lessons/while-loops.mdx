@@ -7,7 +7,9 @@ chapterTitle: "Loops"
 level: beginner
 ---
 
-A **loop** repeats code instead of copying the same lines. This chapter covers **`while`**, **`for`**, **`break`**, **`continue`**, and **`range()`**. A **`while`** loop runs a block **as long as** a condition is `True`:
+A microwave keeps heating **while** the timer is above zero. A **`while`** loop keeps running a block **as long as** its condition is `True`.
+
+## One new idea: repeat while the condition is true
 
 <PythonExample
   filename="while_basic.py"
@@ -17,7 +19,11 @@ while count <= 5:
     count += 1`}
 />
 
-## Countdown
+**Line by line**
+
+- `while count <= 5:` — check the condition before each round
+- Indented lines run, then Python checks again
+- `count += 1` changes the variable so the condition can eventually become false
 
 <PythonExample
   filename="countdown.py"
@@ -28,7 +34,9 @@ while n > 0:
 print("Go!")`}
 />
 
-## Loop until a condition changes
+Lines at the normal indent (like `print("Go!")`) run **after** the loop finishes.
+
+## Real use case: sum numbers 1 through 4
 
 <PythonExample
   filename="total.py"
@@ -40,17 +48,26 @@ while number <= 4:
 print(total)`}
 />
 
-<Callout variant="danger" title="Infinite loops">
-  If the condition never becomes false, the loop runs forever. Always change a variable
-  inside the loop (like `count += 1`) so the condition can eventually fail.
+Use **`while`** when you do not know how many repetitions you need in advance.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  If the condition never becomes false, you get an **infinite loop**. Always update a
+  variable inside the loop (like `count += 1`) so the condition can eventually fail.
 </Callout>
 
 <Callout variant="warning">
-  In the browser runner, an infinite loop may freeze the tab. If Run hangs, refresh the
-  page and fix the loop logic.
+  In the browser runner, an infinite loop may freeze the tab. If Run hangs, refresh and
+  fix the loop logic.
 </Callout>
 
-<Callout variant="tip">
-  Use `while` when you do not know how many times to repeat in advance. Use `for` when you
-  are iterating over a known sequence.
-</Callout>
+<TryIt title="Try it yourself" answer="1\n2\n3">
+  Set `i = 1`. While `i <= 3`, print `i` and add 1 to `i`.
+</TryIt>
+
+## Recap
+
+- **`while condition:`** repeats the indented block while the condition is `True`
+- Update something inside the loop so it can end
+- Code after the loop runs once the condition is false
+
+Next: **For loops** — walk through each item in a sequence.

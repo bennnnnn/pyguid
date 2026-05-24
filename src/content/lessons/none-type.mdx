@@ -7,7 +7,9 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-**`None`** is a special value meaning “no value” or “nothing here.”
+An empty slot on a form — not zero, not false, just **blank**. **`None`** is Python’s way to say “no value here” or “not found.”
+
+## One new idea: None
 
 <PythonExample
   filename="none.py"
@@ -16,9 +18,13 @@ print(result)
 print(type(result))`}
 />
 
-## Functions without return
+**Line by line**
 
-Functions that do not `return` give `None`:
+- `None` — a single shared object meaning “nothing”
+- `type(result)` — `<class 'NoneType'>`
+- Different from `0`, `False`, or `""`
+
+## Functions without return give None
 
 <PythonExample
   filename="no_return.py"
@@ -29,9 +35,9 @@ x = log("Hi")
 print(x)`}
 />
 
-## Check for None
+No `return` → caller gets **`None`**.
 
-Use `is` and `is not` — not `==` (though `==` often works, `is` is preferred for `None`):
+## Real use case: check with is None
 
 <PythonExample
   filename="is_none.py"
@@ -40,10 +46,7 @@ Use `is` and `is not` — not `==` (though `==` often works, `is` is preferred f
 if value is None:
 print("No value set")
 
-def find_user(id):
-
-# pretend not found
-
+def find_user(id): # pretend not found
 return None
 
 user = find_user(99)
@@ -51,9 +54,9 @@ if user is None:
 print("User not found")`}
 />
 
-## .get() and None
+Use **`is None`** — not `==` — when testing for missing values.
 
-Dictionary `get()` returns `None` by default when a key is missing:
+## .get() returns None for missing keys
 
 <PythonExample
   filename="get_none.py"
@@ -72,3 +75,15 @@ print(email is None)`}
   Use `None` as a default in functions: `def f(x=None):` then set `x = []` inside if
   needed — never use `def f(x=[]):`.
 </Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  With `data = {"a": 1}`, set `v = data.get("b")` and print `v is None`.
+</TryIt>
+
+## Recap
+
+- **`None`** — missing or empty value
+- **No return** → function result is `None`
+- **`is None`** — preferred check; `.get()` uses `None` for missing keys
+
+Next: **Dates and times** — work with the `datetime` module.

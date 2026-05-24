@@ -7,7 +7,9 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-**Regular expressions** (regex) describe text patterns. Python’s **`re`** module searches and replaces text.
+A search filter: “find anything that looks like an email” instead of matching one exact word. **Regular expressions** (regex) describe **patterns** in text — Python’s **`re`** module finds and replaces them.
+
+## One new idea: re.search
 
 <PythonExample
   filename="search.py"
@@ -18,6 +20,12 @@ match = re.search(r"\\w+@\\w+\\.\\w+", text)
 if match:
 print("Found:", match.group())`}
 />
+
+**Line by line**
+
+- `r"\\w+@..."` — **raw string** pattern (email-like shape)
+- `re.search(pattern, text)` — first match anywhere in the text
+- `match.group()` — the matched substring
 
 ## Common patterns
 
@@ -30,6 +38,8 @@ print("Found:", match.group())`}
 | `+`     | one or more    |
 | `*`     | zero or more   |
 
+## Real use case: find all numbers
+
 <PythonExample
   filename="digits.py"
   code={`import re
@@ -39,7 +49,7 @@ numbers = re.findall(r"\\d+", text)
 print(numbers)`}
 />
 
-## replace()
+## Replace with re.sub
 
 <PythonExample
   filename="replace.py"
@@ -68,5 +78,15 @@ print(bool(pattern.match("555-1234")))`}
 <Callout variant="tip">
   Raw strings `r"\\d+"` avoid doubling backslashes in patterns.
 </Callout>
+
+<TryIt title="Try it yourself" answer="['42', '3']">
+  With `text = "Order 42 ships in 3 days"`, print `re.findall(r"\\d+", text)`.
+</TryIt>
+
+## Recap
+
+- **`re.search`** — find first match; **`re.findall`** — all matches
+- **`re.sub`** — replace by pattern
+- Start with **simple string methods**; reach for regex when patterns get complex
 
 You have reached the end of the **PyGuide Python tutorial**. Review any section in the sidebar, run examples, and build small projects on your computer to practice.

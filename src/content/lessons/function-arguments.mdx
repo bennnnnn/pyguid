@@ -7,7 +7,9 @@ chapterTitle: "Functions"
 level: beginner
 ---
 
-## Default parameter values
+Ordering coffee: “latte” uses defaults (regular milk, medium), but you can say “oat milk, large.” **Arguments** let callers skip details or name exactly what they want.
+
+## One new idea: default parameter values
 
 <PythonExample
   filename="default.py"
@@ -18,7 +20,11 @@ greet("Ada")
 greet("Ada", "Hi")`}
 />
 
-Defaults must come **after** parameters without defaults.
+**Line by line**
+
+- `greeting="Hello"` — used when the caller skips that argument
+- `greet("Ada")` — only `name` is required
+- Defaults must come **after** parameters without defaults
 
 ## Keyword arguments
 
@@ -46,7 +52,7 @@ print(power(3, 3))
 print(power(base=2, exponent=5))`}
 />
 
-## \*args — many positional values
+## Real use case: flexible totals
 
 <PythonExample
   filename="args.py"
@@ -57,10 +63,12 @@ print(power(base=2, exponent=5))`}
     return sum
 
 print(total(1, 2, 3))
-print(total(10, 20))`}
+print(total(10, 20, 5, 5))`}
 />
 
-## \*\*kwargs — many keyword values
+`*numbers` collects any number of positional values into a tuple.
+
+## Many keyword values with \*\*kwargs
 
 <PythonExample
   filename="kwargs.py"
@@ -80,3 +88,15 @@ show_info(name="Ada", role="dev")`}
   For beginners, stick to simple parameters and one or two defaults. `*args` and
   `**kwargs` help when building flexible APIs.
 </Callout>
+
+<TryIt title="Try it yourself" answer="Hello, Alex">
+  Define `def greet(name, greeting="Hello"):` and call `greet("Alex")`.
+</TryIt>
+
+## Recap
+
+- **Defaults** — optional arguments with `=`
+- **Keyword args** — `name=value`, any order
+- **`*args` / `**kwargs`\*\* — many values at once
+
+Next: **Return values** — send results back from a function.

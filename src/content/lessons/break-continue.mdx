@@ -7,9 +7,9 @@ chapterTitle: "Loops"
 level: beginner
 ---
 
-## break — exit the loop
+Searching a playlist, you stop as soon as you find the song — no need to keep scrolling. **`break`** exits a loop early; **`continue`** skips to the next round.
 
-`break` stops the loop immediately:
+## One new idea: `break` and `continue`
 
 <PythonExample
   filename="break.py"
@@ -19,10 +19,6 @@ level: beginner
     print(n)`}
 />
 
-## continue — skip to next iteration
-
-`continue` jumps to the next loop cycle:
-
 <PythonExample
   filename="continue.py"
   code={`for n in range(1, 8):
@@ -31,44 +27,91 @@ level: beginner
     print(n)`}
 />
 
-Only odd numbers print.
+**Line by line**
 
-## Search with break
+- **`break`** — stop the loop immediately (prints 1–4, then stops)
+- **`continue`** — skip the rest of this round and jump to the next (only odd numbers print)
+
+| Keyword    | Effect                     |
+| ---------- | -------------------------- |
+| `break`    | Exit the loop entirely     |
+| `continue` | Skip to the next iteration |
+
+## Real use case: search a list
 
 <PythonExample
   filename="search.py"
   code={`names = ["Ana", "Ben", "Cara", "Dan"]
 target = "Cara"
 found = False
+
 for name in names:
-    if name == target:
-        found = True
-        break
+if name == target:
+found = True
+break
+
 print(found)`}
 />
 
-## while with break
+`break` works in **`while`** loops too — useful for retry limits:
 
 <PythonExample
   filename="while_break.py"
   code={`password = "secret"
 attempts = 0
+
 while attempts < 3:
-    guess = "wrong"
-    attempts += 1
-    if guess == password:
-        print("Unlocked")
-        break
+guess = "wrong"
+attempts += 1
+if guess == password:
+print("Unlocked")
+break
 else:
-    print("Locked")`}
+print("Locked")`}
 />
 
-<Callout variant="note">
-  A `while` loop can have an `else` block that runs if the loop ends **without** `break`.
-  It is uncommon but useful for “not found” cases.
-</Callout>
+A `while` loop's **`else`** runs only if the loop finishes **without** `break`.
 
-<Callout variant="tip">
+## Chapter mini project: guess checker
+
+Put **`while`**, **`for`**, **`range()`**, **`break`**, and **`continue`** together — check guesses against a secret number:
+
+<PythonExample
+  filename="guess_checker.py"
+  code={`secret = 7
+guesses = [3, 7, 9, 7]
+attempts = 0
+max_attempts = 5
+
+while attempts < max_attempts:
+for guess in guesses:
+attempts += 1
+if guess < 0:
+continue
+if guess == secret:
+print("Found it on attempt", attempts)
+break
+else:
+print("Not found this round")
+break
+else:
+print("Out of attempts")`}
+/>
+
+<Callout variant="warning">
   Do not overuse `break` and `continue`. Sometimes a clearer `if` inside the loop is
   easier to read.
 </Callout>
+
+<TryIt title="Try it yourself" answer="1\n3\n5">
+  Loop `for n in range(1, 8):`. If `n % 2 == 0`, `continue`. Print each odd `n`.
+</TryIt>
+
+## Recap
+
+- **`break`** exits the loop immediately
+- **`continue`** skips to the next iteration
+- Both work in **`for`** and **`while`** loops
+- You now have **`while`**, **`for`**, **`range()`**, **`break`**, and **`continue`**
+
+Next: **Lists** — store and work with collections of data.

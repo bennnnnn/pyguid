@@ -7,7 +7,9 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-**`get(key)`** returns the value for a key, or **`None`** if the key is missing — **no error**.
+You knock on a door labeled **"email"**. Bracket access **`d["email"]`** breaks the door down — error if nobody home. **`get()`** politely checks and hands you a **default** instead of crashing.
+
+## One new idea: `get(key)` without errors
 
 <PythonExample
   filename="get.py"
@@ -16,9 +18,19 @@ print(user.get("name"))
 print(user.get("email"))`}
 />
 
-## Default value
+**Line by line**
 
-Pass a second argument as the default:
+- `user.get("name")` → `"Sam"` (key exists)
+- `user.get("email")` → **`None`** (key missing — **no KeyError**)
+- Safer than `user["email"]` when the key might not exist
+
+| Code              | Key exists | Key missing  |
+| ----------------- | ---------- | ------------ |
+| `d["key"]`        | value      | **KeyError** |
+| `d.get("key")`    | value      | **`None`**   |
+| `d.get("key", 0)` | value      | **`0`**      |
+
+## Default value as second argument
 
 <PythonExample
   filename="default.py"
@@ -27,22 +39,48 @@ print(user.get("email", "not set"))
 print(user.get("role", "guest"))`}
 />
 
-## get() vs bracket access
+Pass any default: `""`, `0`, `[]`, or `"guest"`.
 
-| Code              | Key missing  |
-| ----------------- | ------------ |
-| `d["key"]`        | **KeyError** |
-| `d.get("key")`    | `None`       |
-| `d.get("key", 0)` | `0`          |
+## Real use case: count with missing keys
 
 <PythonExample
-  filename="compare.py"
+  filename="count.py"
   code={`counts = {"apple": 3}
-add = counts.get("banana", 0)
-print(add)`}
+
+counts["apple"] = counts.get("apple", 0) + 1
+counts["banana"] = counts.get("banana", 0) + 1
+
+print(counts)`}
 />
 
-<Callout variant="tip">
-  Use `get()` when the key might not exist — user settings, optional fields, counting with
-  defaults.
+`get("banana", 0)` returns **`0`** the first time — then you add 1 and store the new key.
+
+## User settings with fallbacks
+
+<PythonExample
+  filename="settings.py"
+  code={`saved = {"theme": "dark"}
+
+theme = saved.get("theme", "light")
+lang = saved.get("lang", "en")
+
+print("Theme:", theme)
+print("Language:", lang)`}
+/>
+
+<Callout variant="warning" title="Oops — None is not always wrong">
+  **`get("key")`** returns **`None`** when missing. If **`None`** is a valid stored value,
+  use **`"key" in d`** to tell “missing” from “present but None.”
 </Callout>
+
+<TryIt title="Try it yourself" answer="guest">
+  With `user = {"name": "Sam"}`, print `user.get("role", "guest")`.
+</TryIt>
+
+## Recap
+
+- **`d.get(key)`** — value or **`None`**, no error
+- **`d.get(key, default)`** — value or your fallback
+- Great for optional fields, counters, and settings
+
+Next: **`pop()`, `update()`, and `del`** — remove and merge dictionary entries.

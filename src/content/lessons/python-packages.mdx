@@ -7,16 +7,18 @@ chapterTitle: "Modules"
 level: beginner
 ---
 
-A **package** is a folder of modules. Large libraries (requests, pandas, etc.) are installed as packages.
+A single tool hangs on the wall; a **tool chest** holds many drawers. A **package** is a folder of related modules — the chest for bigger libraries like `requests` or `pandas`.
 
-## Standard library
+## One new idea: standard library vs packages
 
 Python ships with many modules — no install needed:
 
-- `math` — math functions
-- `random` — random numbers
-- `datetime` — dates and times
-- `json` — JSON data (covered later)
+| Module     | What it does    |
+| ---------- | --------------- |
+| `math`     | Math functions  |
+| `random`   | Random numbers  |
+| `datetime` | Dates and times |
+| `json`     | JSON data       |
 
 You already used `import math` in the first lesson of this chapter.
 
@@ -34,15 +36,9 @@ Then in code:
 import requests
 ```
 
-<Callout variant="note">
-  **PyGuide’s Run button** cannot install packages from the internet. Examples here use
-  the standard library or code you write. On your machine, open a terminal and use `pip`
-  when a tutorial mentions an external library.
-</Callout>
+## Real use case: split your own code into files
 
-## Your own modules
-
-Split code into files:
+Small projects grow into multiple files:
 
 - `helpers.py` — functions you wrote
 - `main.py` — `import helpers`
@@ -59,7 +55,27 @@ return text.upper()
 print(shout("hello"))`}
 />
 
+One file holds helpers; another imports and uses them.
+
+<Callout variant="note">
+  **PyGuide’s Run button** cannot install packages from the internet. Examples here use
+  the standard library or code you write. On your machine, open a terminal and use `pip`
+  when a tutorial mentions an external library.
+</Callout>
+
 <Callout variant="tip">
   Keep one clear responsibility per file. Small projects can start as one file; grow into
   modules when files get long.
 </Callout>
+
+<TryIt title="Try it yourself" answer="HELLO">
+  Define `def shout(text):` that returns `text.upper()`. Print `shout("hello")`.
+</TryIt>
+
+## Recap
+
+- **Package** — folder of modules for a larger library
+- **Standard library** — built in, just `import`
+- **pip** — installs extra packages on your computer
+
+You finished **Modules**. Next: **try and except** — handle errors without crashing.

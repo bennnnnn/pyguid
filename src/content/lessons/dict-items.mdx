@@ -7,42 +7,76 @@ chapterTitle: "Dictionaries"
 level: beginner
 ---
 
-**`items()`** returns `(key, value)` pairs — best for looping when you need both:
+A price menu lists **item and price together**: apple $1.20, banana $0.80. **`items()`** gives you those **pairs** so you never look up the same key twice in a loop.
+
+## One new idea: `(key, value)` pairs
 
 <PythonExample
   filename="items.py"
   code={`person = {"name": "Ada", "age": 36}
-print(person.items())`}
+print(person.items())
+print(list(person.items()))`}
 />
 
-## Loop with items()
+**Line by line**
+
+- `person.items()` — view of tuples like `("name", "Ada")`, `("age", 36)`
+- Each pair is a **tuple** of `(key, value)`
+- `list(...)` → `[("name", "Ada"), ("age", 36)]`
+
+| What you need | Use                        |
+| ------------- | -------------------------- |
+| Keys only     | `for k in d:` or `.keys()` |
+| Values only   | `.values()`                |
+| **Both**      | **`.items()`**             |
+
+## Loop with `items()`
 
 <PythonExample
   filename="loop_items.py"
-  code={`prices = {"apple": 1.2, "banana": 0.8}
-for fruit, price in prices.items():
-    print(f"{fruit}: {price} USD")`}
+  code={
+    'prices = {"apple": 1.2, "banana": 0.8}\nfor fruit, price in prices.items():\n    print(f"{fruit}: ${price:.2f}")'
+  }
 />
 
-## Unpacking each pair
+Each loop unpacks **`fruit, price`** from one `(key, value)` tuple.
+
+## Real use case: print a receipt
 
 <PythonExample
-  filename="unpack.py"
-  code={`config = {"theme": "dark", "lang": "en", "notifications": True}
-for key, value in config.items():
-    print(key, "->", value)`}
+  filename="receipt.py"
+  code={
+    'cart = {"notebook": 4.50, "pen": 1.25, "sticker": 0.75}\n\nprint("=== Receipt ===")\nfor item, cost in cart.items():\n    print(f"  {item}: ${cost:.2f}")\n\nprint("Total: $", sum(cart.values()))'
+  }
 />
 
-## Convert to a list of tuples
+## Build a new dictionary
 
 <PythonExample
-  filename="list_items.py"
-  code={`data = {"a": 1, "b": 2}
-pairs = list(data.items())
-print(pairs)`}
+  filename="build.py"
+  code={`scores = {"math": 40, "english": 85, "art": 92}
+passed = {}
+
+for subject, score in scores.items():
+if score >= 60:
+passed[subject] = score
+
+print(passed)`}
 />
 
-<Callout variant="tip">
-  Prefer `items()` over looping keys and then using `dict[key]` — it is clearer and
-  slightly more efficient.
+<Callout variant="tip" title="Oops — slower pattern">
+  Avoid **`for k in d: v = d[k]`** when **`.items()`** says the same thing in one line —
+  clearer and slightly faster.
 </Callout>
+
+<TryIt title="Try it yourself" answer='[("a", 1), ("b", 2)]'>
+  With `d = {"a": 1, "b": 2}`, print `list(d.items())`.
+</TryIt>
+
+## Recap
+
+- **`d.items()`** — `(key, value)` tuples
+- **`for k, v in d.items():`** — best loop when you need both
+- Prefer **`.items()`** over keys + bracket lookup
+
+Next: **`get()`** — read values safely when a key might be missing.

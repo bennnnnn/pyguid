@@ -7,7 +7,9 @@ chapterTitle: "Functions"
 level: beginner
 ---
 
-**`return`** ends the function and optionally sends a value to the caller:
+A vending machine takes coins and **gives back** change. **`return`** is how a function hands a result to whoever called it — then the caller decides what to do next.
+
+## One new idea: return
 
 <PythonExample
   filename="return.py"
@@ -17,6 +19,12 @@ level: beginner
 result = add(3, 5)
 print(result)`}
 />
+
+**Line by line**
+
+- `return a + b` — send the sum back and **exit** the function
+- `result = add(3, 5)` — store what came back
+- Without `return`, a function gives **`None`**
 
 ## return without a value
 
@@ -43,7 +51,22 @@ low, high = min_max([3, 1, 4, 1, 5])
 print(low, high)`}
 />
 
-## Early return
+## Real use case: early return
+
+<PythonExample
+  filename="is_even.py"
+  code={`def is_even(n):
+    if n % 2 == 0:
+        return True
+    return False
+
+print(is_even(4))
+print(is_even(7))`}
+/>
+
+Return as soon as you know the answer — no need to keep going.
+
+## Early exit for invalid input
 
 <PythonExample
   filename="early.py"
@@ -56,17 +79,6 @@ print(absolute(5))
 print(absolute(-5))`}
 />
 
-## Use return in real logic
-
-<PythonExample
-  filename="is_even.py"
-  code={`def is_even(n):
-    return n % 2 == 0
-
-print(is_even(4))
-print(is_even(7))`}
-/>
-
 <Callout variant="danger">
   Code after `return` in the same block does not run. Put cleanup before `return` or use
   multiple return paths carefully.
@@ -76,3 +88,15 @@ print(is_even(7))`}
   Functions that **return** data are easier to test than functions that only `print`.
   Callers decide what to do with the result.
 </Callout>
+
+<TryIt title="Try it yourself" answer="8">
+  Define `def double(n):` that returns `n * 2`. Print `double(4)`.
+</TryIt>
+
+## Recap
+
+- **`return value`** — send a result back
+- **No return** → caller gets `None`
+- **Early return** — exit as soon as you can
+
+Next: **Variable scope** — where names work inside and outside functions.

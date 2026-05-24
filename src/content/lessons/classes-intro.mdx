@@ -7,9 +7,9 @@ chapterTitle: "Classes"
 level: beginner
 ---
 
-A **class** is a blueprint; an **object** is one instance — for example, a `Dog` class and `buddy = Dog()`. This groups **data** and **behavior** together.
+A cookie cutter is the **blueprint**; each cookie is an **instance**. A **class** is the blueprint; an **object** is one thing built from it — with its own data and actions.
 
-## Your first class
+## One new idea: class and object
 
 <PythonExample
   filename="class_basic.py"
@@ -22,9 +22,13 @@ print(buddy)
 print(bella)`}
 />
 
-## The **init** method
+**Line by line**
 
-**`__init__`** runs when you create an object. It sets up attributes:
+- `class Dog:` — define a type named `Dog`
+- `buddy = Dog()` — create an **object** (instance)
+- Two calls → two separate dogs
+
+## **init** sets up each object
 
 <PythonExample
   filename="init.py"
@@ -38,9 +42,9 @@ print(buddy.name)
 print(buddy.age)`}
 />
 
-`self` refers to the current object.
+`self` refers to the **current object**. Python passes it automatically.
 
-## Instance attributes
+## Real use case: user profile
 
 <PythonExample
   filename="attrs.py"
@@ -55,6 +59,8 @@ u.active = False
 print(u.active)`}
 />
 
+Name and status belong together on one object — not scattered variables.
+
 <Callout variant="note">
   `self` must be the first parameter of instance methods. Python passes the object
   automatically when you call `buddy.bark()`.
@@ -64,3 +70,24 @@ print(u.active)`}
   Use a class when several values belong together (a user, a product, a bank account) and
   share behavior.
 </Callout>
+
+<TryIt title="Try it yourself" answer="Mochi">
+  Define a `Cat` class with `__init__(self, name)` setting `self.name`. Create
+  `Cat("Mochi")` and print `.name`.
+</TryIt>
+
+## What this chapter covers
+
+| #   | Lesson            | You will learn                         |
+| --- | ----------------- | -------------------------------------- |
+| 1   | Classes & objects | Blueprints, `__init__`, attributes     |
+| 2   | Class methods     | Functions on objects, `self`           |
+| 3   | Inheritance       | Child classes, `super()`, mini project |
+
+## Recap
+
+- **Class** — blueprint; **object** — one instance
+- **`__init__`** — runs when you create an object
+- **`self.attribute`** — data stored on each object
+
+Next: **Class methods** — behavior that belongs to objects.

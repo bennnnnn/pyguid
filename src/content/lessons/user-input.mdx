@@ -7,7 +7,9 @@ chapterTitle: "Files"
 level: beginner
 ---
 
-**`input()`** waits for the user to type a line and press Enter. It always returns a **string**.
+A waiter asks “What would you like?” and waits for your answer. **`input()`** pauses your program, reads a line from the keyboard, and returns it as a **string**.
+
+## One new idea: input()
 
 On your computer:
 
@@ -15,6 +17,12 @@ On your computer:
 name = input("What is your name? ")
 print(f"Hello, {name}")
 ```
+
+**Line by line**
+
+- `input("...")` — show a prompt, wait for Enter
+- Always returns **text** — even if the user types digits
+- Use the result like any other string
 
 <Callout variant="note">
   **`input()` does not work in PyGuide’s browser runner** — it would wait forever for
@@ -33,8 +41,6 @@ print(f"Hello, {name}")`}
 
 ## Convert input to numbers
 
-`input()` returns text. Convert before math:
-
 <PythonExample
   filename="convert.py"
   code={`# Simulating: age_text = input("Age? ")
@@ -43,7 +49,7 @@ age = int(age_text)
 print(age + 1)`}
 />
 
-## Validate with try/except
+## Real use case: validate with try/except
 
 <PythonExample
   filename="validate.py"
@@ -54,6 +60,8 @@ try:
 except ValueError:
     print("Please enter digits only")`}
 />
+
+Wrap risky parsing so bad input does not crash the program.
 
 ## Simple menu (simulated choices)
 
@@ -72,3 +80,28 @@ print("Goodbye")`}
 <Callout variant="tip">
   Strip whitespace with `.strip()` on user input: `name = input("Name: ").strip()`.
 </Callout>
+
+<TryIt title="Try it yourself" answer="26">
+  Simulate `age_text = "25"`, convert with `int()`, print `age + 1`.
+</TryIt>
+
+## Chapter 16 mini project: greeting app
+
+Simulate input, conversion, validation, and a menu:
+
+<PythonExample
+  filename="greeting_app.py"
+  code={
+    '# Mini project: interactive greeting (simulated input)\nname = "Sam"          # input("Name? ").strip()\nage_text = "22"       # input("Age? ").strip()\nchoice = "1"          # menu choice\n\ndef parse_age(text):\n    try:\n        age = int(text)\n        if age < 0:\n            raise ValueError("Age cannot be negative")\n        return age\n    except ValueError as e:\n        print("Invalid age:", e)\n        return None\n\nprint("=== Greeting App ===")\n\nif choice == "1":\n    print(f"Hello, {name}!")\n    age = parse_age(age_text)\n    if age is not None:\n        print(f"Next year you will be {age + 1}")\nelif choice == "2":\n    print("Settings — coming soon")\nelse:\n    print("Goodbye")'
+  }
+/>
+
+Change `name`, `age_text`, or `choice`. Try `"oops"` for age and see validation kick in.
+
+## Recap
+
+- **`input()`** — read a line of text from the user
+- **Convert** with `int()` / `float()` before math
+- **Validate** with try/except for friendly errors
+
+Next: **Read files** — open and read text from disk.

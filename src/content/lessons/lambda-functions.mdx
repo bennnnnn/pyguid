@@ -7,7 +7,9 @@ chapterTitle: "More Python"
 level: beginner
 ---
 
-A **lambda** is a tiny function without a name:
+A sticky note with one quick formula — no full recipe card needed. A **lambda** is a **tiny function without a name**, useful for one-line jobs.
+
+## One new idea: lambda arguments: expression
 
 ```python
 lambda arguments: expression
@@ -22,9 +24,13 @@ add = lambda a, b: a + b
 print(add(3, 7))`}
 />
 
-## With sorted()
+**Line by line**
 
-`key=` tells `sorted` how to compare:
+- `lambda x: x * 2` — take `x`, return `x * 2`
+- Assign to a name if you will reuse it
+- One **expression** only — no multi-line bodies
+
+## Real use case: sorted with key=
 
 <PythonExample
   filename="sorted_key.py"
@@ -32,6 +38,8 @@ print(add(3, 7))`}
 print(sorted(names, key=lambda n: len(n)))
 print(sorted(names, key=lambda n: n.lower()))`}
 />
+
+`key=` tells `sorted` how to compare — lambdas shine here.
 
 ## map() and filter()
 
@@ -44,6 +52,8 @@ print(doubled)
 print(evens)`}
 />
 
+List comprehensions often replace these for simple cases.
+
 <Callout variant="note">
   List comprehensions often replace `map` and `filter` for simple cases: `[x * 2 for x in
   nums]`.
@@ -53,3 +63,15 @@ print(evens)`}
   Use `def` for anything longer than one expression. Lambdas shine for short `key=`
   functions in `sorted()`.
 </Callout>
+
+<TryIt title="Try it yourself" answer="10">
+  Set `square = lambda x: x * x` and print `square(10)`.
+</TryIt>
+
+## Recap
+
+- **`lambda x: expr`** — small anonymous function
+- **`sorted(..., key=lambda ...)`** — common real use
+- Prefer **`def`** when logic grows beyond one line
+
+Next: **JSON in Python** — parse and create JSON data.

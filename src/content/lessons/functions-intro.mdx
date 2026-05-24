@@ -7,9 +7,9 @@ chapterTitle: "Functions"
 level: beginner
 ---
 
-A **function** is a named block of code you write **once** and **call** whenever you need it — greet a user, format a price, validate input.
+A recipe card says “mix eggs and flour” once — you follow it every time you bake. A **function** is that card for code: write the steps **once**, **call** the name whenever you need them.
 
-Define with **`def`**, then call by name with `()`:
+## One new idea: def and call
 
 <PythonExample
   filename="hello_func.py"
@@ -20,9 +20,15 @@ greet()
 greet()`}
 />
 
-## Parameters
+**Line by line**
 
-Pass data **into** the function:
+- `def greet():` — define a function named `greet`
+- Indented lines under `def` — the body runs only when you **call** it
+- `greet()` — run the function (twice here)
+
+Defining a function does **not** run its body. Only the **call** does.
+
+## Pass data in with parameters
 
 <PythonExample
   filename="params.py"
@@ -32,6 +38,8 @@ Pass data **into** the function:
 greet("Ada")
 greet("Lin")`}
 />
+
+`name` is a **parameter** — a placeholder filled in when you call `greet("Ada")`.
 
 ## Multiple parameters
 
@@ -44,24 +52,46 @@ add(3, 5)
 add(10, 20)`}
 />
 
-## return (preview)
-
-Functions can **send a value back** with `return` — covered on the next pages.
+## Real use case: one place to change
 
 <PythonExample
-  filename="return_preview.py"
-  code={`def double(n):
-    return n * 2
+  filename="tax.py"
+  code={`def price_with_tax(amount):
+    tax = amount * 0.08
+    return amount + tax
 
-result = double(7)
-print(result)`}
+print(price_with_tax(10))
+print(price_with_tax(25))`}
 />
 
-<Callout variant="tip">
-  If a block of code appears twice, turn it into a function. Change it in one place later.
-</Callout>
+If the tax rate changes, you edit **one function** — not every calculation in your program.
 
 <Callout variant="note">
   Code inside a function runs only when you **call** it. Defining a function does not run
   its body.
 </Callout>
+
+<Callout variant="tip">
+  If a block of code appears twice, turn it into a function. Change it in one place later.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello, Sam">
+  Define `def greet(name):` that prints `f"Hello, {name}"`. Call it with `"Sam"`.
+</TryIt>
+
+## What this chapter covers
+
+| #   | Lesson             | You will learn                        |
+| --- | ------------------ | ------------------------------------- |
+| 1   | Define functions   | `def`, calls, parameters (this page)  |
+| 2   | Function arguments | Defaults, keyword args, `*args`       |
+| 3   | Return values      | Send results back with `return`       |
+| 4   | Variable scope     | Local vs global, chapter mini project |
+
+## Recap
+
+- **`def name():`** — define reusable code
+- **Parameters** — pass data in
+- **Call** with `name()` — run the body
+
+Next: **Function arguments** — defaults and keyword parameters.

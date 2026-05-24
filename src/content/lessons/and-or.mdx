@@ -7,7 +7,9 @@ chapterTitle: "Logical Operators"
 level: beginner
 ---
 
-Use **`and`**, **`or`**, and **`not`** to combine boolean tests — for example, “old enough **and** has a ticket.” Comparisons give you one true/false answer; logical operators join several.
+Getting into a concert takes two things: you must be old enough **and** have a ticket. Logical operators let Python combine several yes/no checks into one.
+
+## One new idea: `and`, `or`, and `not`
 
 | Operator | Meaning                        |
 | -------- | ------------------------------ |
@@ -15,44 +17,37 @@ Use **`and`**, **`or`**, and **`not`** to combine boolean tests — for example,
 | `or`     | at least one part must be true |
 | `not`    | flip true to false (and back)  |
 
-## and
-
-Both conditions must be true:
-
 <PythonExample
   filename="and_example.py"
   code={`age = 25
 has_id = True
 
 result = age >= 18 and has_id
-print(result)`}
-/>
+print(result)
 
-<PythonExample
-  filename="and_false.py"
-  code={`age = 16
-has_id = True
-
+age = 16
 result = age >= 18 and has_id
 print(result)`}
 />
 
-## or
+**Line by line**
 
-At least one condition must be true:
+- `age >= 18 and has_id` — both must be true → `True`
+- When `age` is 16, the first part is false → whole expression is `False`
 
 <PythonExample
-  filename="or_example.py"
+  filename="or_not.py"
   code={`day = "Saturday"
 is_holiday = False
 
 result = day == "Saturday" or day == "Sunday" or is_holiday
-print(result)`}
+print(result)
+
+is_closed = False
+print(not is_closed)`}
 />
 
-## Mixing and and or
-
-Use **parentheses** when mixing operators so Python (and humans) know what you mean:
+Use **parentheses** when mixing `and` and `or` so the meaning is clear:
 
 <PythonExample
   filename="parens.py"
@@ -64,24 +59,10 @@ result = (age >= 18 and has_ticket) or is_vip
 print(result)`}
 />
 
-## not
-
-`not` reverses a boolean:
+## Real use case: entry gate
 
 <PythonExample
-  filename="not_example.py"
-  code={`is_closed = False
-
-result = not is_closed
-print(result)`}
-/>
-
-## Using logical operators with if
-
-You will use these operators heavily inside **`if`** in the next chapter. Preview:
-
-<PythonExample
-  filename="with_if.py"
+  filename="gate.py"
   code={`age = 25
 has_id = True
 
@@ -91,25 +72,26 @@ else:
 print("Entry denied")`}
 />
 
-## Truth tables (quick reference)
+You will use these operators heavily inside **`if`** in the next chapter.
 
-**and** — only true when both are true:
+<Callout variant="danger" title="Oops — Python is yelling">
+  `if x > 0 and < 10` is invalid — each side must be a complete expression. Write `if x > 0 and x < 10:` instead.
+</Callout>
 
-- `True and True` → `True`
-- `True and False` → `False`
-
-**or** — true when at least one is true:
-
-- `False or True` → `True`
-- `False or False` → `False`
-
-<Callout variant="tip">
-  If a condition feels long, store parts in boolean variables: `can_edit = is_owner and
+<Callout variant="warning">
+  If a condition feels long, split it into boolean variables: `can_edit = is_owner and
   is_logged_in`.
 </Callout>
 
-<Callout variant="warning" title="Each side must be complete">
-  `age >= 18 and has_ticket` is valid — both sides are full expressions. `if x > 0 and < 10` is invalid.
-</Callout>
+<TryIt title="Try it yourself" answer="True">
+  Set `score = 85` and `bonus = True`. Print `score >= 60 and bonus`.
+</TryIt>
 
-Next chapter: **If Statements** — run code only when a combined condition is true.
+## Recap
+
+- **`and`** — both must be true
+- **`or`** — at least one must be true
+- **`not`** — reverses a boolean
+- Use parentheses when mixing `and` and `or`
+
+Next: **The if statement** — run code only when a condition is true.
