@@ -1,6 +1,7 @@
 import ch1 from "../data/practice-exams/chapter-1.json";
 import ch2 from "../data/practice-exams/chapter-2.json";
 import ch3 from "../data/practice-exams/chapter-3.json";
+import ch4 from "../data/practice-exams/chapter-4.json";
 import ch5 from "../data/practice-exams/chapter-5.json";
 import ch6 from "../data/practice-exams/chapter-6.json";
 import ch7 from "../data/practice-exams/chapter-7.json";
@@ -61,6 +62,7 @@ const exams: PracticeExam[] = [
   ch1,
   ch2,
   ch3,
+  ch4,
   ch5,
   ch6,
   ch7,
@@ -100,5 +102,5 @@ export function getPracticeExam(chapter: number): PracticeExam | undefined {
 
 /** @deprecated Use quizUrl() from quiz-topics.ts */
 export function practiceExamUrl(chapter: number): string {
-  return `/python/practice/${chapter}/`;
+  return `/python/quiz/`;
 }

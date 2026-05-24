@@ -5,6 +5,16 @@ order: 62
 chapter: 10
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.extend(iterable) to add each element from another iterable to the end of a list without nesting the whole iterable as one item."
+faqs:
+  - question: "What does list.extend() do in Python?"
+    answer: "extend() loops over an iterable and appends each element to the list. The original list grows in place."
+  - question: "How is extend() different from append()?"
+    answer: "append() adds one object as a single element. extend() unpacks an iterable and adds each value separately."
+  - question: "Can I use extend() with a string?"
+    answer: "Yes. A string is iterable, so extend('abc') adds 'a', 'b', and 'c' as separate characters—not one string element unless you append the string."
+  - question: "Does extend() return a new list?"
+    answer: "No. Like append(), extend() modifies the list in place and returns None."
 ---
 
 ## Why this matters
@@ -95,4 +105,3 @@ print("c is new:", c)`}
 - **`extend(iterable)`** adds **each** item from another collection
 - **`append(list)`** adds the **whole** list as **one** element
 - Use **`+`** when you need a **new** list without changing the original
-

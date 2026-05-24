@@ -5,6 +5,16 @@ order: 51
 chapter: 9
 chapterTitle: "Loops"
 level: beginner
+quickAnswer: "break exits the innermost loop immediately; continue skips the rest of the current iteration and jumps to the next loop cycle."
+faqs:
+  - question: "What does break do in a Python loop?"
+    answer: "break stops the loop entirely and execution continues on the first line after the loop block."
+  - question: "What does continue do in a Python loop?"
+    answer: "continue ends the current iteration early and moves to the next item without running remaining code in the loop body."
+  - question: "Do break and continue work in while loops?"
+    answer: "Yes. Both keywords work in for and while loops and always affect only the innermost enclosing loop."
+  - question: "Can break exit nested loops at once?"
+    answer: "No. break only leaves one loop level. Refactor with a function return or a flag variable for deeper exits."
 ---
 
 ## Why this matters
@@ -113,4 +123,3 @@ print("Out of attempts")`}
 - **`continue`** skips to the next iteration
 - Both work in **`for`** and **`while`** loops
 - You now have **`while`**, **`for`**, **`range()`**, **`break`**, and **`continue`**
-

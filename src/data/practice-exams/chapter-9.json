@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which loop repeats while a condition remains True?",
-      "options": [
-        "while",
-        "for",
-        "if",
-        "repeat"
-      ],
+      "options": ["while", "for", "if", "repeat"],
       "correctIndex": 0,
       "explanation": "while checks its condition before each iteration."
     },
@@ -22,12 +17,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "What does `for i in range(3):` iterate over?",
-      "options": [
-        "0, 1, 2",
-        "1, 2, 3",
-        "3, 2, 1",
-        "0, 1, 2, 3"
-      ],
+      "options": ["0, 1, 2", "1, 2, 3", "3, 2, 1", "0, 1, 2, 3"],
       "correctIndex": 0,
       "explanation": "range(3) produces integers from 0 up to but not including 3."
     },
@@ -42,12 +32,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "What is printed?\n\nfor n in [1, 2, 3]:\n    print(n * 2)",
-      "options": [
-        "2, 4, 6 on separate lines",
-        "6",
-        "1 2 3",
-        "Nothing"
-      ],
+      "options": ["2, 4, 6 on separate lines", "6", "1 2 3", "Nothing"],
       "correctIndex": 0,
       "explanation": "for assigns each list item to n and runs the body once per item."
     },
@@ -68,12 +53,7 @@
       "id": "6",
       "type": "choice",
       "prompt": "How many times does this while loop run?\n\ncount = 0\nwhile count < 3:\n    count += 1",
-      "options": [
-        "3",
-        "2",
-        "4",
-        "Forever"
-      ],
+      "options": ["3", "2", "4", "Forever"],
       "correctIndex": 0,
       "explanation": "count goes 0→1→2→3; when count is 3, count < 3 is False and the loop stops after three runs."
     },
@@ -88,12 +68,7 @@
       "id": "8",
       "type": "choice",
       "prompt": "What is `list(range(2, 5))`?",
-      "options": [
-        "[2, 3, 4]",
-        "[2, 3, 4, 5]",
-        "[2, 5]",
-        "[0, 1, 2]"
-      ],
+      "options": ["[2, 3, 4]", "[2, 3, 4, 5]", "[2, 5]", "[0, 1, 2]"],
       "correctIndex": 0,
       "explanation": "range(start, stop) includes start and stops before stop."
     },
@@ -101,12 +76,7 @@
       "id": "9",
       "type": "choice",
       "prompt": "What prints?\n\nfor ch in 'hi':\n    print(ch)",
-      "options": [
-        "h then i",
-        "hi on one line",
-        "2",
-        "Error"
-      ],
+      "options": ["h then i", "hi on one line", "2", "Error"],
       "correctIndex": 0,
       "explanation": "for loops over any iterable, including strings, one character at a time."
     },
@@ -114,12 +84,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "What is printed?\n\nfor n in range(5):\n    if n == 3:\n        break\n    print(n)",
-      "options": [
-        "0, 1, 2",
-        "0, 1, 2, 3",
-        "0 through 4",
-        "3 only"
-      ],
+      "options": ["0, 1, 2", "0, 1, 2, 3", "0 through 4", "3 only"],
       "correctIndex": 0,
       "explanation": "When n is 3, break runs before print, so 3 is never printed."
     },
@@ -127,12 +92,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "What is printed?\n\nfor n in range(4):\n    if n % 2 == 0:\n        continue\n    print(n)",
-      "options": [
-        "1 then 3",
-        "0 2",
-        "0 1 2 3",
-        "Nothing"
-      ],
+      "options": ["1 then 3", "0 2", "0 1 2 3", "Nothing"],
       "correctIndex": 0,
       "explanation": "continue skips even numbers, so only 1 and 3 print."
     },
@@ -160,12 +120,7 @@
       "id": "14",
       "type": "choice",
       "prompt": "Which loop is best for iterating a known sequence like a list?",
-      "options": [
-        "for item in items",
-        "while item:",
-        "if item in items",
-        "repeat items"
-      ],
+      "options": ["for item in items", "while item:", "if item in items", "repeat items"],
       "correctIndex": 0,
       "explanation": "for is idiomatic when you want each element from an iterable."
     },
@@ -173,12 +128,7 @@
       "id": "15",
       "type": "choice",
       "prompt": "What is the sum after this loop?\n\ntotal = 0\nfor x in [1, 2, 3]:\n    total += x",
-      "options": [
-        "6",
-        "3",
-        "0",
-        "123"
-      ],
+      "options": ["6", "3", "0", "123"],
       "correctIndex": 0,
       "explanation": "The accumulator adds each value: 0+1+2+3 = 6."
     },
@@ -206,12 +156,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "What is len(list(range(4)))?",
-      "options": [
-        "4",
-        "3",
-        "0",
-        "5"
-      ],
+      "options": ["4", "3", "0", "5"],
       "correctIndex": 0,
       "explanation": "range(4) has four values: 0, 1, 2, 3."
     },
@@ -219,12 +164,7 @@
       "id": "19",
       "type": "choice",
       "prompt": "What prints?\n\ni = 0\nwhile i < 2:\n    print(i)\n    i += 1",
-      "options": [
-        "0 then 1",
-        "0 1 2",
-        "1 then 2",
-        "Infinite 0s"
-      ],
+      "options": ["0 then 1", "0 1 2", "1 then 2", "Infinite 0s"],
       "correctIndex": 0,
       "explanation": "i starts at 0, prints, increments to 1, prints again, then i becomes 2 and the loop ends."
     },

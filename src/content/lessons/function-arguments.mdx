@@ -5,6 +5,16 @@ order: 101
 chapter: 14
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Parameters are names in the def line; arguments are the values you pass when you call the function, like greet('Ada')."
+faqs:
+  - question: "What is the difference between a parameter and an argument?"
+    answer: "Parameters appear in the function definition. Arguments are the actual values supplied in the call."
+  - question: "How many arguments can a Python function have?"
+    answer: "As many as you need, separated by commas in def and in the call. Very long lists are a sign to use a dict or dataclass instead."
+  - question: "Must arguments match the parameter order?"
+    answer: "For positional arguments, yes—the first argument fills the first parameter unless you use keyword arguments."
+  - question: "Can I call a function with no arguments?"
+    answer: "Yes, if the definition has no required parameters or only parameters with defaults."
 ---
 
 ## Why this matters
@@ -98,4 +108,3 @@ show_info(name="Ada", role="dev")`}
 - **Defaults** — optional arguments with `=`
 - **Keyword args** — `name=value`, any order
 - **`*args` / `**kwargs`\*\* — many values at once
-

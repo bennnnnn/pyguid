@@ -10,10 +10,8 @@ import { fileURLToPath } from "node:url";
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const lessonsDir = path.join(root, "src/content/lessons");
 
-const NEXT_LINE =
-  /^(?:- )?(?:Next chapter(?: topic)?:|Next:)\s*.+$/m;
-const FINISHED_NEXT =
-  /^You finished [^\n]*\.?\s*Next(?: chapter)?:\s*.+$/m;
+const NEXT_LINE = /^(?:- )?(?:Next chapter(?: topic)?:|Next:)\s*.+$/m;
+const FINISHED_NEXT = /^You finished [^\n]*\.?\s*Next(?: chapter)?:\s*.+$/m;
 
 let changed = 0;
 

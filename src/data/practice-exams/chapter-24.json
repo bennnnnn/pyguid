@@ -22,12 +22,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
-      "options": [
-        "[3, 2, 1]",
-        "[1, 2, 3]",
-        "[3, 1, 2]",
-        "None"
-      ],
+      "options": ["[3, 2, 1]", "[1, 2, 3]", "[3, 1, 2]", "None"],
       "correctIndex": 0,
       "explanation": "key sorts by negated value, descending order."
     },
@@ -42,12 +37,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "yield inside a function makes it:",
-      "options": [
-        "A generator function",
-        "A class",
-        "A module",
-        "A file handle"
-      ],
+      "options": ["A generator function", "A class", "A module", "A file handle"],
       "correctIndex": 0,
       "explanation": "Calling the function returns a generator object."
     },
@@ -114,12 +104,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "@decorator above def f(): is roughly equivalent to:",
-      "options": [
-        "f = decorator(f)",
-        "decorator = f",
-        "import decorator",
-        "del f"
-      ],
+      "options": ["f = decorator(f)", "decorator = f", "import decorator", "del f"],
       "correctIndex": 0,
       "explanation": "The decorator is applied at function definition time."
     },
@@ -127,12 +112,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "filter(lambda n: n % 2 == 0, range(5)) keeps:",
-      "options": [
-        "Even numbers 0, 2, 4",
-        "Odd numbers only",
-        "All strings",
-        "Nothing"
-      ],
+      "options": ["Even numbers 0, 2, 4", "Odd numbers only", "All strings", "Nothing"],
       "correctIndex": 0,
       "explanation": "filter keeps items where the function returns truthy."
     },
@@ -186,12 +166,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "def gen(): yield 1; yield 2 — list(gen()) is:",
-      "options": [
-        "[1, 2]",
-        "[2, 1]",
-        "None",
-        "A map object"
-      ],
+      "options": ["[1, 2]", "[2, 1]", "None", "A map object"],
       "correctIndex": 0,
       "explanation": "Consuming the generator collects all yielded values."
     },

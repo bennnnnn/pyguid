@@ -11,7 +11,7 @@
 - **Tutorials · Quizzes · References** — three clear sections in the nav
 - Runnable examples on every lesson (Copy + Run)
 - Chapter sidebar + ordered lesson path (Back / Next)
-- Mini programs woven through chapters (not deployment capstones)
+- Small chapter exercises woven through the course (core Python only)
 - SEO: canonical URLs, Open Graph, JSON-LD on lessons, sitemap
 - Syntax reference at `/python/reference/`
 
@@ -49,7 +49,12 @@ Open [http://localhost:4321](http://localhost:4321).
 src/
   content/lessons/     # One MDX file per lesson
   components/          # PythonExample, SeoHead, Callout, …
-  pages/python/        # Course + practice + reference
+  pages/python/
+    index.astro        # Tutorials landing
+    [slug].astro       # Lesson pages
+    quiz/              # Quizzes hub + [topic] pages
+    reference/         # Reference hub
+  data/practice-exams/ # Quiz question JSON (internal name; public URL is /python/quiz/)
   lib/lessons.ts       # Sidebar order, related lessons
 docs/
   curriculum-order.json

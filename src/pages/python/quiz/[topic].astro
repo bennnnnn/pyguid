@@ -2,7 +2,12 @@
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
 import PracticeExam from "../../../components/practice/PracticeExam.astro";
 import { getLessonGroups } from "../../../lib/lessons";
-import { getPublishedQuizTopics, getQuizExam, getQuizTopic, quizUrl } from "../../../lib/quiz-topics";
+import {
+  getPublishedQuizTopics,
+  getQuizExam,
+  getQuizTopic,
+  quizUrl,
+} from "../../../lib/quiz-topics";
 import { SITE } from "../../../lib/site";
 
 export function getStaticPaths() {

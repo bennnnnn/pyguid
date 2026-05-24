@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which block catches exceptions in Python?",
-      "options": [
-        "try / except",
-        "catch / throw",
-        "handle / rescue",
-        "if / error"
-      ],
+      "options": ["try / except", "catch / throw", "handle / rescue", "if / error"],
       "correctIndex": 0,
       "explanation": "try runs code; except handles specified exception types."
     },
@@ -68,12 +63,7 @@
       "id": "6",
       "type": "choice",
       "prompt": "Which exception is raised by int(\"abc\")?",
-      "options": [
-        "ValueError",
-        "KeyError",
-        "IndexError",
-        "ImportError"
-      ],
+      "options": ["ValueError", "KeyError", "IndexError", "ImportError"],
       "correctIndex": 0,
       "explanation": "Invalid conversion to int raises ValueError."
     },
@@ -94,12 +84,7 @@
       "id": "8",
       "type": "choice",
       "prompt": "What does d[\"missing\"] raise when the key is absent?",
-      "options": [
-        "KeyError",
-        "ValueError",
-        "TypeError",
-        "SyntaxError"
-      ],
+      "options": ["KeyError", "ValueError", "TypeError", "SyntaxError"],
       "correctIndex": 0,
       "explanation": "Dictionary lookup with [] on a missing key raises KeyError."
     },

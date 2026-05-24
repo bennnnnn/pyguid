@@ -1,0 +1,23 @@
+---
+import { getQuizTopicForChapter, quizUrl } from "../lib/quiz-topics";
+import { getPracticeExam } from "../lib/practice-exams";
+
+interface Props {
+  chapter: number;
+}
+
+const { chapter } = Astro.props;
+const topic = getQuizTopicForChapter(chapter);
+const exam = topic ? getPracticeExam(topic.chapter) : undefined;
+---
+
+{
+  topic && exam && (
+    <p class="lesson-quiz-cta not-prose mt-10 rounded-lg border border-border bg-surface-alt px-4 py-3 text-sm text-text-secondary">
+      Finished this chapter?{" "}
+      <a href={quizUrl(topic.slug)} class="font-semibold text-link">
+        Take the {topic.title} quiz →
+      </a>
+    </p>
+  )
+}

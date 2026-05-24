@@ -134,11 +134,27 @@ const chapters = [
       "todo-list-project",
     ],
   },
-  { n: 11, title: "Tuples", slugs: ["tuples-intro", "tuple-unpacking", "tuple-immutability", "tuple-one-item", "namedtuple-preview"] },
+  {
+    n: 11,
+    title: "Tuples",
+    slugs: [
+      "tuples-intro",
+      "tuple-unpacking",
+      "tuple-immutability",
+      "tuple-one-item",
+      "namedtuple-preview",
+    ],
+  },
   {
     n: 12,
     title: "Sets",
-    slugs: ["sets-intro", "set-add-remove", "set-empty-set", "set-operations", "frozenset-basics"],
+    slugs: [
+      "sets-intro",
+      "set-add-remove",
+      "set-empty-set",
+      "set-operations",
+      "frozenset-basics",
+    ],
   },
   {
     n: 13,
@@ -298,7 +314,12 @@ const chapters = [
   {
     n: 28,
     title: "Debugging Python Code",
-    slugs: ["debugging-help-dir", "pdb-debugger", "cprofile-performance", "timeit-benchmark"],
+    slugs: [
+      "debugging-help-dir",
+      "pdb-debugger",
+      "cprofile-performance",
+      "timeit-benchmark",
+    ],
   },
   {
     n: 29,

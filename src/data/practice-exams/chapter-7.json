@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "What is the type of `3.14`?",
-      "options": [
-        "float",
-        "int",
-        "str",
-        "bool"
-      ],
+      "options": ["float", "int", "str", "bool"],
       "correctIndex": 0,
       "explanation": "A decimal point makes the literal a float, not an int."
     },
@@ -22,12 +17,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "What does `type(7)` return?",
-      "options": [
-        "<class 'int'>",
-        "<class 'float'>",
-        "7",
-        "'int'"
-      ],
+      "options": ["<class 'int'>", "<class 'float'>", "7", "'int'"],
       "correctIndex": 0,
       "explanation": "type() returns the class object representing the value's type."
     },
@@ -42,12 +32,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "Which value is falsy?",
-      "options": [
-        "0",
-        "1",
-        "'hello'",
-        "[1]"
-      ],
+      "options": ["0", "1", "'hello'", "[1]"],
       "correctIndex": 0,
       "explanation": "Zero, empty containers, None, and empty strings are falsy in boolean context."
     },
@@ -55,12 +40,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "What is `bool('')`?",
-      "options": [
-        "False",
-        "True",
-        "None",
-        "''"
-      ],
+      "options": ["False", "True", "None", "''"],
       "correctIndex": 0,
       "explanation": "An empty string is falsy, so bool('') is False."
     },
@@ -81,12 +61,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "Which expression produces a string?",
-      "options": [
-        "'42'",
-        "42",
-        "42.0",
-        "True"
-      ],
+      "options": ["'42'", "42", "42.0", "True"],
       "correctIndex": 0,
       "explanation": "Quotes create str literals; unquoted numbers and booleans are other types."
     },
@@ -101,12 +76,7 @@
       "id": "9",
       "type": "choice",
       "prompt": "What is `10 / 4` in Python 3?",
-      "options": [
-        "2.5",
-        "2",
-        "2.0 only if cast",
-        "3"
-      ],
+      "options": ["2.5", "2", "2.0 only if cast", "3"],
       "correctIndex": 0,
       "explanation": "The / operator always returns a float in Python 3, even when the result is whole."
     },
@@ -114,12 +84,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "What does `type(None)` return?",
-      "options": [
-        "<class 'NoneType'>",
-        "<class 'null'>",
-        "None",
-        "<class 'None'>"
-      ],
+      "options": ["<class 'NoneType'>", "<class 'null'>", "None", "<class 'None'>"],
       "correctIndex": 0,
       "explanation": "None belongs to the NoneType class."
     },
@@ -127,12 +92,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "Which is truthy?",
-      "options": [
-        "'0'",
-        "0",
-        "[]",
-        "None"
-      ],
+      "options": ["'0'", "0", "[]", "None"],
       "correctIndex": 0,
       "explanation": "Non-empty strings are truthy, including the string '0'."
     },
@@ -147,12 +107,7 @@
       "id": "13",
       "type": "choice",
       "prompt": "What is `int(9.9)`?",
-      "options": [
-        "9",
-        "10",
-        "9.9",
-        "Error"
-      ],
+      "options": ["9", "10", "9.9", "Error"],
       "correctIndex": 0,
       "explanation": "int() truncates toward zero; it does not round to the nearest integer."
     },
@@ -160,12 +115,7 @@
       "id": "14",
       "type": "choice",
       "prompt": "Which pair has the same type?",
-      "options": [
-        "3 and 99",
-        "3 and 3.0",
-        "True and 1",
-        "None and False"
-      ],
+      "options": ["3 and 99", "3 and 3.0", "True and 1", "None and False"],
       "correctIndex": 0,
       "explanation": "Both 3 and 99 are int literals."
     },
@@ -173,12 +123,7 @@
       "id": "15",
       "type": "choice",
       "prompt": "What is `bool(None)`?",
-      "options": [
-        "False",
-        "True",
-        "None",
-        "0"
-      ],
+      "options": ["False", "True", "None", "0"],
       "correctIndex": 0,
       "explanation": "None is falsy."
     },
@@ -206,12 +151,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "What is `float(5)`?",
-      "options": [
-        "5.0",
-        "5",
-        "'5.0'",
-        "Error"
-      ],
+      "options": ["5.0", "5", "'5.0'", "Error"],
       "correctIndex": 0,
       "explanation": "float() converts integers to floating-point numbers."
     },
@@ -232,12 +172,7 @@
       "id": "20",
       "type": "choice",
       "prompt": "What is `type('3')`?",
-      "options": [
-        "<class 'str'>",
-        "<class 'int'>",
-        "<class 'float'>",
-        "3"
-      ],
+      "options": ["<class 'str'>", "<class 'int'>", "<class 'float'>", "3"],
       "correctIndex": 0,
       "explanation": "Quotes make '3' a string, not the integer 3."
     }

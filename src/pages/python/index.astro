@@ -29,7 +29,9 @@ const totalLessons = getTotalLessonCount(groups);
         Python tutorials
       </h1>
       <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
-        {totalLessons} lessons from zero to advanced core Python. Every page has <strong>Run code</strong>
+        {totalLessons} lessons from zero to advanced core Python. Every page has <strong
+          >Run code</strong
+        >
         in the browser. When you finish a chapter, take the matching quiz — references are always
         available for syntax lookup.
       </p>
@@ -51,14 +53,13 @@ const totalLessons = getTotalLessonCount(groups);
               id={`chapter-${group.chapter}`}
               class="scroll-mt-20 rounded-xl border border-border bg-surface p-5 sm:p-6"
             >
-              <h2 class="m-0 mb-4 text-lg font-semibold text-text">{group.chapterTitle}</h2>
+              <h2 class="m-0 mb-4 text-lg font-semibold text-text">
+                {group.chapterTitle}
+              </h2>
               <ol class="m-0 list-decimal columns-1 gap-x-10 space-y-1.5 pl-5 text-sm sm:columns-2 [&>li]:break-inside-avoid">
                 {path.map((lesson) => (
                   <li class="text-text-secondary">
-                    <a
-                      href={lessonUrl(lesson.id)}
-                      class="font-medium text-link"
-                    >
+                    <a href={lessonUrl(lesson.id)} class="font-medium text-link">
                       {lesson.data.title}
                     </a>
                   </li>

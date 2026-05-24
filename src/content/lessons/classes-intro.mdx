@@ -5,6 +5,16 @@ order: 143
 chapter: 22
 chapterTitle: "Object-Oriented Python"
 level: beginner
+quickAnswer: "A class defines a blueprint; you create objects with MyClass() and methods take self as the first parameter to access instance data."
+faqs:
+  - question: "What is a class in Python?"
+    answer: "A class is a template for creating objects that share attributes and methods. It is defined with the class keyword."
+  - question: "What does self mean in a method?"
+    answer: "self refers to the specific instance the method is called on, giving access to that object's attributes."
+  - question: "What is __init__ used for?"
+    answer: "__init__ initializes a new instance, setting starting attributes when you call ClassName()."
+  - question: "How is a class different from a dictionary?"
+    answer: "Both hold data, but classes define typed behavior with methods and enforce structure; dicts are flexible key-value maps without fixed behavior."
 ---
 
 ## Why this matters
@@ -95,4 +105,3 @@ Name and status belong together on one object — not scattered variables.
 - **Class** — blueprint; **object** — one instance
 - **`__init__`** — runs when you create an object
 - **`self.attribute`** — data stored on each object
-

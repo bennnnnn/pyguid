@@ -5,6 +5,16 @@ order: 107
 chapter: 16
 chapterTitle: "Error Handling"
 level: beginner
+quickAnswer: "A traceback lists the error type and message at the bottom and the call stack above it; read the last line first, then trace upward to your code."
+faqs:
+  - question: "How do I read a Python traceback?"
+    answer: "Start at the bottom for the exception type and message. Move up to find the most recent line in your own file that triggered it."
+  - question: "What is the difference between SyntaxError and other errors?"
+    answer: "SyntaxError happens before code runs, often with no full stack. Runtime errors like ValueError include a traceback of executing frames."
+  - question: "Why does the traceback show library files I did not write?"
+    answer: "The stack includes every function call leading to the error. Skip down to the first frame in your project code."
+  - question: "What does 'Traceback (most recent call last)' mean?"
+    answer: "It introduces the stack trace listing calls from oldest at the top to the most recent failure just above the exception line."
 ---
 
 ## Why this matters
@@ -61,4 +71,3 @@ NameError: name 'message' is not defined
 - Traceback = path through your code to the crash
 - Read the **last line** first
 - Then find **your** file and **line number**
-

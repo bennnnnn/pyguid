@@ -5,6 +5,16 @@ order: 39
 chapter: 8
 chapterTitle: "Booleans and Conditions"
 level: beginner
+quickAnswer: "Comparison operators compare two values and return True or False, for example age >= 18 or name == 'Ada'."
+faqs:
+  - question: "What is the difference between = and == in Python?"
+    answer: "= assigns a value to a variable. == tests whether two values are equal."
+  - question: "Do comparison operators work on strings?"
+    answer: "Yes. They compare lexicographically (alphabetically for simple ASCII letters), which can surprise you with case."
+  - question: "Can I chain comparisons like 1 < x < 5?"
+    answer: "Yes. Python allows chained comparisons as shorthand for and between tests."
+  - question: "What type do comparisons return?"
+    answer: "bool: either True or False."
 ---
 
 ## Why this matters
@@ -89,4 +99,3 @@ Every comparison result is a **`bool`** you can store: `is_adult = age >= 18`.
 - **`=`** stores a value; **`==`** checks equality
 - **`>=`** and **`<=`** include the boundary value
 - Store results in variables like `passed = score >= 60`
-

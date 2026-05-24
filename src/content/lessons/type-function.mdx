@@ -5,6 +5,16 @@ order: 15
 chapter: 5
 chapterTitle: "Data Types"
 level: beginner
+quickAnswer: "Call type(x) to see an object's type, or isinstance(x, int) to test whether it is an int or a subclass without brittle exact-type checks."
+faqs:
+  - question: "What does type() return in Python?"
+    answer: "type(obj) returns the class of the object, such as <class 'int'> or <class 'str'>."
+  - question: "Should I use type(x) == int or isinstance(x, int)?"
+    answer: "Prefer isinstance for checks. It respects inheritance and is the conventional choice in library code."
+  - question: "Can type() create classes dynamically?"
+    answer: "Advanced use yes, but beginners mainly use type() for inspection and debugging, not for defining new types."
+  - question: "How do I check if a variable is a string?"
+    answer: "Use isinstance(x, str). Also remember that str is the text type; bytes is separate for raw binary data."
 ---
 
 ## Why this matters
@@ -112,4 +122,3 @@ Change the values. Run. Notice which lines need quotes and which do not.
 - **`type(x)`** — what kind of value
 - **`str` / `int` / `float`** — convert when mixing types
 - **`+`** on strings needs **`str()`** for numbers
-

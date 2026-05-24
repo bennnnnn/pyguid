@@ -22,12 +22,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "How do you read the value for key \"name\" in dict user?",
-      "options": [
-        "user.name",
-        "user[\"name\"]",
-        "user(name)",
-        "get user name"
-      ],
+      "options": ["user.name", "user[\"name\"]", "user(name)", "get user name"],
       "correctIndex": 1,
       "explanation": "Bracket notation user[\"name\"] looks up the key and returns its value."
     },
@@ -35,12 +30,7 @@
       "id": "3",
       "type": "choice",
       "prompt": "What does user.get(\"age\", 0) return if \"age\" is missing?",
-      "options": [
-        "KeyError",
-        "None only",
-        "0",
-        "False"
-      ],
+      "options": ["KeyError", "None only", "0", "False"],
       "correctIndex": 2,
       "explanation": "get() returns the default (here 0) when the key is not found."
     },
@@ -127,12 +117,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "What does len({\"a\": 1, \"b\": 2}) return?",
-      "options": [
-        "4",
-        "3",
-        "2",
-        "1"
-      ],
+      "options": ["4", "3", "2", "1"],
       "correctIndex": 2,
       "explanation": "len() counts key–value pairs, here two entries."
     },
@@ -140,12 +125,7 @@
       "id": "12",
       "type": "choice",
       "prompt": "Which expression lists all keys in dict d?",
-      "options": [
-        "d.keys()",
-        "d.values()",
-        "d.items()",
-        "keys(d)"
-      ],
+      "options": ["d.keys()", "d.values()", "d.items()", "keys(d)"],
       "correctIndex": 0,
       "explanation": "keys() returns a dynamic view of the dictionary's keys."
     },
@@ -186,12 +166,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "Which creates an empty dictionary?",
-      "options": [
-        "{}",
-        "set()",
-        "[]",
-        "dict[]"
-      ],
+      "options": ["{}", "set()", "[]", "dict[]"],
       "correctIndex": 0,
       "explanation": "{} or dict() creates an empty dict; set() creates a set."
     },
@@ -199,12 +174,7 @@
       "id": "17",
       "type": "choice",
       "prompt": "What is the value of {\"a\": 1}.get(\"b\") with no default given?",
-      "options": [
-        "0",
-        "KeyError",
-        "None",
-        "\"\""
-      ],
+      "options": ["0", "KeyError", "None", "\"\""],
       "correctIndex": 2,
       "explanation": "get() returns None when the key is missing and no default is provided."
     },
@@ -232,12 +202,7 @@
       "id": "20",
       "type": "choice",
       "prompt": "What does {x: x**2 for x in range(3)} produce?",
-      "options": [
-        "{0: 0, 1: 1, 2: 4}",
-        "[0, 1, 4]",
-        "{0, 1, 4}",
-        "A syntax error"
-      ],
+      "options": ["{0: 0, 1: 1, 2: 4}", "[0, 1, 4]", "{0, 1, 4}", "A syntax error"],
       "correctIndex": 0,
       "explanation": "The comprehension maps each x in 0,1,2 to its square."
     }

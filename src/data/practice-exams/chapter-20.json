@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which keyword starts a function definition?",
-      "options": [
-        "func",
-        "def",
-        "function",
-        "define"
-      ],
+      "options": ["func", "def", "function", "define"],
       "correctIndex": 1,
       "explanation": "Use def name(parameters): followed by an indented body."
     },
@@ -35,12 +30,7 @@
       "id": "3",
       "type": "choice",
       "prompt": "How do you call a function named greet with no arguments?",
-      "options": [
-        "call greet",
-        "greet()",
-        "def greet()",
-        "greet"
-      ],
+      "options": ["call greet", "greet()", "def greet()", "greet"],
       "correctIndex": 1,
       "explanation": "Function calls use the name followed by parentheses."
     },
@@ -114,12 +104,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "What is the result of:\ndef double(n):\n    return n * 2\n\ndouble(3)",
-      "options": [
-        "6",
-        "None",
-        "\"33\"",
-        "An error"
-      ],
+      "options": ["6", "None", "\"33\"", "An error"],
       "correctIndex": 0,
       "explanation": "The function returns 3 * 2, which is 6."
     },
@@ -127,12 +112,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "Which call matches def area(width, height):?",
-      "options": [
-        "area(width=4, height=5)",
-        "area 4 5",
-        "area{4, 5}",
-        "area: 4, 5"
-      ],
+      "options": ["area(width=4, height=5)", "area 4 5", "area{4, 5}", "area: 4, 5"],
       "correctIndex": 0,
       "explanation": "Keyword arguments match parameters by name: area(width=4, height=5)."
     },
@@ -153,12 +133,7 @@
       "id": "13",
       "type": "choice",
       "prompt": "def total(*nums): return sum(nums)\nWhat is total(1, 2, 3)?",
-      "options": [
-        "6",
-        "(1, 2, 3)",
-        "3",
-        "None"
-      ],
+      "options": ["6", "(1, 2, 3)", "3", "None"],
       "correctIndex": 0,
       "explanation": "*nums is (1, 2, 3); sum adds them to 6."
     },
@@ -212,12 +187,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "Which is valid after def f(): pass?",
-      "options": [
-        "f()",
-        "call f",
-        "run f()",
-        "execute def f"
-      ],
+      "options": ["f()", "call f", "run f()", "execute def f"],
       "correctIndex": 0,
       "explanation": "pass is a no-op body; you still invoke the function with f()."
     },

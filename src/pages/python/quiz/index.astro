@@ -40,7 +40,10 @@ const description =
                   <p class="mb-4 text-sm text-text-muted">
                     {exam.questions.length} questions · Pass {exam.passPercent}%+
                   </p>
-                  <a href={quizUrl(topic.slug)} class="btn-primary inline-flex no-underline">
+                  <a
+                    href={quizUrl(topic.slug)}
+                    class="btn-primary inline-flex no-underline"
+                  >
                     Start quiz
                   </a>
                 </>

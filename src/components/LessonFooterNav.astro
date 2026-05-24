@@ -10,7 +10,10 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<nav class="lesson-footer-nav mt-14 border-t border-border pt-8" aria-label="Lesson navigation">
+<nav
+  class="lesson-footer-nav mt-14 border-t border-border pt-8"
+  aria-label="Lesson navigation"
+>
   {
     (prev || next) && (
       <div class="flex items-center justify-between gap-4">

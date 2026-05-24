@@ -48,12 +48,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "random.randint(1, 6) includes:",
-      "options": [
-        "Both endpoints 1 and 6",
-        "Only 1",
-        "Only 6",
-        "Neither endpoint"
-      ],
+      "options": ["Both endpoints 1 and 6", "Only 1", "Only 6", "Neither endpoint"],
       "correctIndex": 0,
       "explanation": "randint is inclusive on both ends for integers."
     },
@@ -61,12 +56,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "math.sqrt(9) returns:",
-      "options": [
-        "3.0",
-        "9",
-        "True",
-        "A list"
-      ],
+      "options": ["3.0", "9", "True", "A list"],
       "correctIndex": 0,
       "explanation": "math module functions often return floats."
     },
@@ -153,12 +143,7 @@
       "id": "13",
       "type": "choice",
       "prompt": "math.floor(3.9) is:",
-      "options": [
-        "3",
-        "4",
-        "3.9",
-        "True"
-      ],
+      "options": ["3", "4", "3.9", "True"],
       "correctIndex": 0,
       "explanation": "floor rounds toward negative infinity."
     },
@@ -199,12 +184,7 @@
       "id": "17",
       "type": "choice",
       "prompt": "random.shuffle(lst) modifies:",
-      "options": [
-        "lst in place",
-        "A new list only",
-        "Nothing",
-        "A JSON file"
-      ],
+      "options": ["lst in place", "A new list only", "Nothing", "A JSON file"],
       "correctIndex": 0,
       "explanation": "shuffle reorders the existing list and returns None."
     },

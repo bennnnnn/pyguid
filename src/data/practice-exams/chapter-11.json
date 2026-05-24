@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which literal creates a tuple?",
-      "options": [
-        "(1, 2, 3)",
-        "[1, 2, 3]",
-        "{1, 2, 3}",
-        "<1, 2, 3>"
-      ],
+      "options": ["(1, 2, 3)", "[1, 2, 3]", "{1, 2, 3}", "<1, 2, 3>"],
       "correctIndex": 0,
       "explanation": "Parentheses with commas define tuples; square brackets define lists."
     },
@@ -22,12 +17,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "What is `type((42,))`?",
-      "options": [
-        "<class 'tuple'>",
-        "<class 'int'>",
-        "<class 'list'>",
-        "<class 'set'>"
-      ],
+      "options": ["<class 'tuple'>", "<class 'int'>", "<class 'list'>", "<class 'set'>"],
       "correctIndex": 0,
       "explanation": "The trailing comma makes a one-element tuple."
     },
@@ -55,12 +45,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "What is `(1, 2)[0]`?",
-      "options": [
-        "1",
-        "(1, 2)",
-        "0",
-        "Error because tuples cannot be indexed"
-      ],
+      "options": ["1", "(1, 2)", "0", "Error because tuples cannot be indexed"],
       "correctIndex": 0,
       "explanation": "Tuples support indexing and slicing like lists, but not assignment."
     },
@@ -88,12 +73,7 @@
       "id": "8",
       "type": "choice",
       "prompt": "What happens?\n\nt = (1, 2, 3)\nt[1] = 9",
-      "options": [
-        "TypeError",
-        "t becomes (1, 9, 3)",
-        "SyntaxError",
-        "Nothing"
-      ],
+      "options": ["TypeError", "t becomes (1, 9, 3)", "SyntaxError", "Nothing"],
       "correctIndex": 0,
       "explanation": "Tuple objects do not support item assignment."
     },
@@ -101,12 +81,7 @@
       "id": "9",
       "type": "choice",
       "prompt": "What is `len(( 'a', 'b' ))`?",
-      "options": [
-        "2",
-        "1",
-        "0",
-        "Error"
-      ],
+      "options": ["2", "1", "0", "Error"],
       "correctIndex": 0,
       "explanation": "len counts elements in the tuple."
     },
@@ -127,12 +102,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "What is `(1, 2) + (3,)`?",
-      "options": [
-        "(1, 2, 3)",
-        "(1, 2, (3,))",
-        "(6,)",
-        "Error"
-      ],
+      "options": ["(1, 2, 3)", "(1, 2, (3,))", "(6,)", "Error"],
       "correctIndex": 0,
       "explanation": "+ concatenates tuples into a new tuple."
     },
@@ -147,12 +117,7 @@
       "id": "13",
       "type": "choice",
       "prompt": "What does `first, *rest = (1, 2, 3, 4)` set rest to?",
-      "options": [
-        "[2, 3, 4]",
-        "(2, 3, 4)",
-        "2",
-        "Error"
-      ],
+      "options": ["[2, 3, 4]", "(2, 3, 4)", "2", "Error"],
       "correctIndex": 0,
       "explanation": "*rest collects remaining items into a list during unpacking."
     },
@@ -173,12 +138,7 @@
       "id": "15",
       "type": "choice",
       "prompt": "What is `(3, 4)[1:]`?",
-      "options": [
-        "(4,)",
-        "(3, 4)",
-        "4",
-        "[4]"
-      ],
+      "options": ["(4,)", "(3, 4)", "4", "[4]"],
       "correctIndex": 0,
       "explanation": "Slicing a tuple returns a new tuple."
     },
@@ -186,12 +146,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "What is returned by `(5, 2, 8).count(2)`?",
-      "options": [
-        "1",
-        "2",
-        "(2,)",
-        "True"
-      ],
+      "options": ["1", "2", "(2,)", "True"],
       "correctIndex": 0,
       "explanation": "count tells how many times a value appears in the tuple."
     },
@@ -206,12 +161,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "What is `a` after `a, b = b, a` if `a = 1` and `b = 2`?",
-      "options": [
-        "2",
-        "1",
-        "(1, 2)",
-        "Error"
-      ],
+      "options": ["2", "1", "(1, 2)", "Error"],
       "correctIndex": 0,
       "explanation": "Right side evaluates as (2, 1) before assignment, swapping values without a temp variable."
     },
@@ -232,12 +182,7 @@
       "id": "20",
       "type": "choice",
       "prompt": "What is `(1,) * 3`?",
-      "options": [
-        "(1, 1, 1)",
-        "(1, 3)",
-        "(3,)",
-        "Error"
-      ],
+      "options": ["(1, 1, 1)", "(1, 3)", "(3,)", "Error"],
       "correctIndex": 0,
       "explanation": "Repeating a tuple with * concatenates copies."
     }

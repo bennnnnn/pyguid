@@ -5,6 +5,16 @@ order: 33
 chapter: 7
 chapterTitle: "Strings"
 level: beginner
+quickAnswer: "Use f-strings like f'Hello, {name}' to embed variables in strings; they are the preferred formatting style in modern Python."
+faqs:
+  - question: "What is an f-string in Python?"
+    answer: "An f-string is a string literal prefixed with f that evaluates expressions inside curly braces at runtime."
+  - question: "How do I format a float to two decimal places?"
+    answer: "Use an f-string format spec: f'{price:.2f}' prints two digits after the decimal point."
+  - question: "Is str.format() still used?"
+    answer: "Yes in older code and templates, but new projects favor f-strings for simplicity unless building reusable format templates."
+  - question: "Can I put expressions inside f-string braces?"
+    answer: "Yes. f'{len(items)} items' works. Keep expressions short so the string stays readable."
 ---
 
 ## Why this matters
@@ -72,4 +82,3 @@ print("Hello, %s" % name)`}
 - **`f"{var}"`** — readable, modern default
 - **`{expr}`** — any expression inside braces
 - Avoid **`+`** between text and numbers
-

@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "What is `17 // 5`?",
-      "options": [
-        "3",
-        "3.4",
-        "4",
-        "2"
-      ],
+      "options": ["3", "3.4", "4", "2"],
       "correctIndex": 0,
       "explanation": "// is floor division; it drops the fractional part toward negative infinity."
     },
@@ -22,12 +17,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "What is `2 ** 3`?",
-      "options": [
-        "8",
-        "6",
-        "9",
-        "5"
-      ],
+      "options": ["8", "6", "9", "5"],
       "correctIndex": 0,
       "explanation": "** raises the left operand to the power of the right operand."
     },
@@ -42,12 +32,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "After `n = 4` then `n *= 3`, what is `n`?",
-      "options": [
-        "12",
-        "7",
-        "43",
-        "1"
-      ],
+      "options": ["12", "7", "43", "1"],
       "correctIndex": 0,
       "explanation": "*= multiplies n by 3 and assigns the result back to n."
     },
@@ -55,12 +40,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "What is `not True`?",
-      "options": [
-        "False",
-        "True",
-        "None",
-        "0"
-      ],
+      "options": ["False", "True", "None", "0"],
       "correctIndex": 0,
       "explanation": "not inverts a boolean value."
     },
@@ -68,12 +48,7 @@
       "id": "6",
       "type": "choice",
       "prompt": "Which expression is True?",
-      "options": [
-        "3 <= 3",
-        "3 < 3",
-        "3 != 3",
-        "3 > 5"
-      ],
+      "options": ["3 <= 3", "3 < 3", "3 != 3", "3 > 5"],
       "correctIndex": 0,
       "explanation": "<= means less than or equal; 3 equals 3, so the comparison is True."
     },
@@ -81,12 +56,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "What is `True and False`?",
-      "options": [
-        "False",
-        "True",
-        "None",
-        "Error"
-      ],
+      "options": ["False", "True", "None", "Error"],
       "correctIndex": 0,
       "explanation": "and requires both sides to be truthy; if either is falsy, the result is falsy."
     },
@@ -101,12 +71,7 @@
       "id": "9",
       "type": "choice",
       "prompt": "What is `True or False`?",
-      "options": [
-        "True",
-        "False",
-        "None",
-        "1"
-      ],
+      "options": ["True", "False", "None", "1"],
       "correctIndex": 0,
       "explanation": "or returns True if at least one operand is truthy."
     },
@@ -114,12 +79,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "What is `10 % 3`?",
-      "options": [
-        "1",
-        "3",
-        "0",
-        "3.33"
-      ],
+      "options": ["1", "3", "0", "3.33"],
       "correctIndex": 0,
       "explanation": "% is the remainder operator; 10 divided by 3 leaves remainder 1."
     },
@@ -127,12 +87,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "What is the value of `2 + 3 * 4`?",
-      "options": [
-        "14",
-        "20",
-        "24",
-        "9"
-      ],
+      "options": ["14", "20", "24", "9"],
       "correctIndex": 0,
       "explanation": "Multiplication binds tighter than addition, so 3*4 runs first."
     },
@@ -147,12 +102,7 @@
       "id": "13",
       "type": "choice",
       "prompt": "What is `'ha' * 3`?",
-      "options": [
-        "'hahaha'",
-        "'ha3'",
-        "3",
-        "Error"
-      ],
+      "options": ["'hahaha'", "'ha3'", "3", "Error"],
       "correctIndex": 0,
       "explanation": "The * operator repeats sequences like strings and lists."
     },
@@ -160,12 +110,7 @@
       "id": "14",
       "type": "choice",
       "prompt": "Which checks whether `x` is between 1 and 10 inclusive?",
-      "options": [
-        "1 <= x <= 10",
-        "1 <= x < 10 only",
-        "x = 1..10",
-        "between(x, 1, 10)"
-      ],
+      "options": ["1 <= x <= 10", "1 <= x < 10 only", "x = 1..10", "between(x, 1, 10)"],
       "correctIndex": 0,
       "explanation": "Python allows chained comparisons; both conditions must hold."
     },
@@ -173,12 +118,7 @@
       "id": "15",
       "type": "choice",
       "prompt": "What is `not (5 > 2)`?",
-      "options": [
-        "False",
-        "True",
-        "5",
-        "2"
-      ],
+      "options": ["False", "True", "5", "2"],
       "correctIndex": 0,
       "explanation": "5 > 2 is True, and not True is False."
     },
@@ -186,12 +126,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "What does `'a' in 'cat'` evaluate to?",
-      "options": [
-        "True",
-        "False",
-        "1",
-        "Error"
-      ],
+      "options": ["True", "False", "1", "Error"],
       "correctIndex": 0,
       "explanation": "in tests membership in a sequence."
     },
@@ -206,12 +141,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "What is `(2 + 3) * 4`?",
-      "options": [
-        "20",
-        "14",
-        "9",
-        "24"
-      ],
+      "options": ["20", "14", "9", "24"],
       "correctIndex": 0,
       "explanation": "Parentheses force 2+3 first, then multiply by 4."
     },
@@ -219,12 +149,7 @@
       "id": "19",
       "type": "choice",
       "prompt": "Which short-circuits and may skip evaluating the right side?",
-      "options": [
-        "and and or",
-        "+ and -",
-        "== and !=",
-        "// and %"
-      ],
+      "options": ["and and or", "+ and -", "== and !=", "// and %"],
       "correctIndex": 0,
       "explanation": "and stops if the left is falsy; or stops if the left is truthy."
     },
@@ -232,12 +157,7 @@
       "id": "20",
       "type": "choice",
       "prompt": "After `x = 10`, what is `x` after `x //= 4`?",
-      "options": [
-        "2",
-        "2.5",
-        "6",
-        "40"
-      ],
+      "options": ["2", "2.5", "6", "40"],
       "correctIndex": 0,
       "explanation": "//= applies floor division and assigns; 10 // 4 is 2."
     }

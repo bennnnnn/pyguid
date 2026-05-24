@@ -5,6 +5,16 @@ order: 103
 chapter: 14
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Use return value inside a function to pass a result to the caller; execution stops at return and the expression becomes the function's result."
+faqs:
+  - question: "What does return do in a Python function?"
+    answer: "It ends the function immediately and sends the expression after return to whoever called the function."
+  - question: "What if a function has no return statement?"
+    answer: "It implicitly returns None when it finishes."
+  - question: "Can a function return multiple values?"
+    answer: "Yes. return a, b packs values into a tuple that you can unpack: x, y = func()."
+  - question: "Is return the same as print?"
+    answer: "No. print shows output to the user. return gives a value to your code so you can store or reuse it."
 ---
 
 ## Why this matters
@@ -98,4 +108,3 @@ print(absolute(-5))`}
 - **`return value`** — send a result back
 - **No return** → caller gets `None`
 - **Early return** — exit as soon as you can
-

@@ -133,12 +133,7 @@
       "id": "15",
       "type": "choice",
       "prompt": "What does `int('42.9')` do?",
-      "options": [
-        "Raises ValueError",
-        "Returns 42",
-        "Returns 43",
-        "Returns 42.9"
-      ],
+      "options": ["Raises ValueError", "Returns 42", "Returns 43", "Returns 42.9"],
       "correctIndex": 0,
       "explanation": "int() does not parse decimal strings; use float() first or int(float('42.9'))."
     },

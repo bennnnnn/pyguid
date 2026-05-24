@@ -5,6 +5,16 @@ order: 121
 chapter: 17
 chapterTitle: "Files"
 level: beginner
+quickAnswer: "Use Path from pathlib and / to build paths portably, e.g. Path('data') / 'file.txt', instead of manual string concatenation with os.path."
+faqs:
+  - question: "What is pathlib in Python?"
+    answer: "pathlib provides Path objects that represent filesystem paths and offer methods to read, write, and inspect files and directories."
+  - question: "How do I join paths with pathlib?"
+    answer: "Use the / operator: Path('folder') / 'file.txt'. Python combines segments correctly for your operating system."
+  - question: "How do I read a text file with Path?"
+    answer: "Use path.read_text(encoding='utf-8') on a Path object, or path.open() for more control."
+  - question: "Is pathlib better than os.path for beginners?"
+    answer: "For new code, yes. Path methods are chained and readable, and pathlib is recommended over string paths in modern Python."
 ---
 
 ## Why this matters
@@ -59,4 +69,3 @@ print("Extension:", ".txt")`}
 - **`from pathlib import Path`**
 - **`folder / "file.txt"`** — join paths
 - Use on your PC for real file work
-

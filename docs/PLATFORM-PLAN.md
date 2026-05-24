@@ -23,14 +23,14 @@ Implemented: comparison lesson `list-append-vs-extend`, minimal lesson footer (B
 
 Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 
-| Level | Focus                                | Status                  |
-| ----- | ------------------------------------ | ----------------------- |
-| L0    | print, variables, input              | Strong                  |
-| L1    | types, operators, collections        | Strong                  |
-| L2    | functions, debugging, patterns       | Good — deepen exercises |
-| L3    | files, JSON, modules, venv           | Strong                  |
-| L4    | typing, pytest, debugging, stdlib, clean code | In progress (Python-only) |
-| L5+   | FastAPI, deploy, Git ops, DB         | **Separate tracks** — archived from main course |
+| Level | Focus                                         | Status                                          |
+| ----- | --------------------------------------------- | ----------------------------------------------- |
+| L0    | print, variables, input                       | Strong                                          |
+| L1    | types, operators, collections                 | Strong                                          |
+| L2    | functions, debugging, patterns                | Good — deepen exercises                         |
+| L3    | files, JSON, modules, venv                    | Strong                                          |
+| L4    | typing, pytest, debugging, stdlib, clean code | In progress (Python-only)                       |
+| L5+   | FastAPI, deploy, Git ops, DB                  | **Separate tracks** — archived from main course |
 
 ## SEO checklist
 

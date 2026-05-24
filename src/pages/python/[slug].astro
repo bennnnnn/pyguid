@@ -2,9 +2,12 @@
 import { render } from "astro:content";
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import LessonFooterNav from "../../components/LessonFooterNav.astro";
+import LessonQuizCta from "../../components/LessonQuizCta.astro";
 import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import SeoFaq from "../../components/SeoFaq.astro";
 import {
   getAllLessons,
   getLessonGroups,
@@ -84,7 +87,23 @@ const articleLd = {
   },
 };
 
-const jsonLd = [breadcrumbLd, articleLd];
+const faqLd =
+  lesson.data.faqs && lesson.data.faqs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: lesson.data.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
+const jsonLd = faqLd ? [breadcrumbLd, articleLd, faqLd] : [breadcrumbLd, articleLd];
 ---
 
 <TutorialLayout
@@ -113,7 +132,14 @@ const jsonLd = [breadcrumbLd, articleLd];
       }
     </p>
     <h1>{lesson.data.title}</h1>
+    {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable }} />
+    {
+      lesson.data.faqs && lesson.data.faqs.length > 0 && (
+        <SeoFaq items={lesson.data.faqs} />
+      )
+    }
+    <LessonQuizCta chapter={lesson.data.chapter} />
     <LessonFooterNav prev={prev} next={next} />
   </article>
 </TutorialLayout>

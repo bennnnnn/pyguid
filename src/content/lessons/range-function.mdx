@@ -5,6 +5,16 @@ order: 50
 chapter: 9
 chapterTitle: "Loops"
 level: beginner
+quickAnswer: "range(stop) or range(start, stop[, step]) produces a sequence of integers for looping, without storing every number in memory as a full list."
+faqs:
+  - question: "What does range(5) produce?"
+    answer: "Integers 0, 1, 2, 3, 4. The stop value 5 is not included. This is half-open interval behavior."
+  - question: "How do I loop from 1 to 10 inclusive?"
+    answer: "Use range(1, 11) because the stop is exclusive, or range(1, 10 + 1) for the same idea."
+  - question: "Is range a list?"
+    answer: "No. In Python 3 it is a range object. Use list(range(n)) if you need a real list of numbers."
+  - question: "What does the step argument do in range()?"
+    answer: "step sets the increment between values. range(0, 10, 2) gives 0, 2, 4, 6, 8."
 ---
 
 ## Why this matters
@@ -69,4 +79,3 @@ You can turn a range into a list: `list(range(1, 6))` → `[1, 2, 3, 4, 5]`.
 - **`range(start, stop)`** and **`range(start, stop, step)`** control start and step
 - The stop value is **never included**
 - **`_`** means “I do not need this value”
-

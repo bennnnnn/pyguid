@@ -5,6 +5,16 @@ order: 137
 chapter: 19
 chapterTitle: "Packages and Imports"
 level: beginner
+quickAnswer: "Create a venv with python -m venv .venv, activate it, then pip install -r requirements.txt to install pinned dependencies."
+faqs:
+  - question: "What is a Python virtual environment?"
+    answer: "An isolated Python installation and site-packages folder for one project, so dependencies do not clash with other projects."
+  - question: "How do I create requirements.txt?"
+    answer: "After installing packages in the venv, run pip freeze > requirements.txt to list exact versions."
+  - question: "Do I commit the venv folder to git?"
+    answer: "Usually no. Commit requirements.txt and let others recreate the venv locally."
+  - question: "Why use requirements.txt instead of installing manually?"
+    answer: "It records exact versions so everyone and CI install the same dependencies reproducibly."
 ---
 
 ## Why this matters
@@ -53,4 +63,3 @@ pip install -r requirements.txt
 - **`venv`** — isolated environment per project
 - **`pip freeze > requirements.txt`** — save dependencies
 - **`pip install -r requirements.txt`** — restore them
-

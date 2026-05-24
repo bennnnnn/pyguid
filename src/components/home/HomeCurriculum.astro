@@ -16,8 +16,8 @@ const chapterCount = groups.length;
     <div class="home-section-head">
       <h2>{chapterCount} chapters · {lessonCount} tutorials</h2>
       <p>
-        A structured path from your first <code>print()</code> to classes, comprehensions, testing, and
-        clean code. Open the full tutorial outline to browse every lesson.
+        A structured path from your first <code>print()</code> to classes, comprehensions, testing,
+        and clean code. Open the full tutorial outline to browse every lesson.
       </p>
     </div>
 
@@ -31,19 +31,17 @@ const chapterCount = groups.length;
             <article class="home-curriculum-summary">
               <h3 class="home-curriculum-heading">
                 <span class="home-curriculum-title">{group.chapterTitle}</span>
-                <span class="home-curriculum-count" aria-label={`${lessonCount} lessons`}
-                  >{lessonCount}</span
-                >
+                <span class="home-curriculum-count" aria-label={`${lessonCount} lessons`}>
+                  {lessonCount}
+                </span>
               </h3>
-              {
-                first && (
-                  <div class="home-curriculum-actions">
-                    <a href={lessonUrl(first.id)} class="text-link text-sm font-semibold">
-                      Start section
-                    </a>
-                  </div>
-                )
-              }
+              {first && (
+                <div class="home-curriculum-actions">
+                  <a href={lessonUrl(first.id)} class="text-link text-sm font-semibold">
+                    Start section
+                  </a>
+                </div>
+              )}
             </article>
           );
         })

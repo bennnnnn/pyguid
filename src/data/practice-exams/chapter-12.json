@@ -22,12 +22,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "Which literal creates a set with two items?",
-      "options": [
-        "{1, 2}",
-        "[1, 2]",
-        "(1, 2)",
-        "<1, 2>"
-      ],
+      "options": ["{1, 2}", "[1, 2]", "(1, 2)", "<1, 2>"],
       "correctIndex": 0,
       "explanation": "Curly braces with comma-separated values define a set (not an empty dict)."
     },
@@ -35,12 +30,7 @@
       "id": "3",
       "type": "choice",
       "prompt": "How do you create an empty set?",
-      "options": [
-        "{}",
-        "set()",
-        "[]",
-        "empty()"
-      ],
+      "options": ["{}", "set()", "[]", "empty()"],
       "correctIndex": 1,
       "explanation": "{} creates an empty dictionary; use set() for an empty set."
     },
@@ -68,12 +58,7 @@
       "id": "6",
       "type": "choice",
       "prompt": "Which method removes a specific element from a set?",
-      "options": [
-        "s.pop(0)",
-        "s.remove(x)",
-        "s.delete(x)",
-        "del s[x]"
-      ],
+      "options": ["s.pop(0)", "s.remove(x)", "s.delete(x)", "del s[x]"],
       "correctIndex": 1,
       "explanation": "remove(x) discards x and raises KeyError if x is missing."
     },
@@ -81,12 +66,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "What is the result of len({1, 1, 2, 2})?",
-      "options": [
-        "4",
-        "3",
-        "2",
-        "1"
-      ],
+      "options": ["4", "3", "2", "1"],
       "correctIndex": 2,
       "explanation": "Duplicates collapse, so the set is {1, 2} with length 2."
     },
@@ -94,12 +74,7 @@
       "id": "8",
       "type": "choice",
       "prompt": "Which operator returns elements in either set A or B?",
-      "options": [
-        "A & B",
-        "A | B",
-        "A ^ B",
-        "A - B"
-      ],
+      "options": ["A & B", "A | B", "A ^ B", "A - B"],
       "correctIndex": 1,
       "explanation": "| is union: all elements that appear in A or B (or both)."
     },
@@ -140,12 +115,7 @@
       "id": "12",
       "type": "choice",
       "prompt": "How do you test membership in a set s?",
-      "options": [
-        "x in s",
-        "s.contains(x)",
-        "s.has(x)",
-        "membership(x, s)"
-      ],
+      "options": ["x in s", "s.contains(x)", "s.has(x)", "membership(x, s)"],
       "correctIndex": 0,
       "explanation": "Use the in operator: x in s is True when x is in the set."
     },
@@ -212,12 +182,7 @@
       "id": "18",
       "type": "choice",
       "prompt": "After s = {1, 2}; s.update([2, 3]), what is s?",
-      "options": [
-        "{1, 2, 3}",
-        "{1, 2}",
-        "{2, 3}",
-        "{1, 2, 2, 3}"
-      ],
+      "options": ["{1, 2, 3}", "{1, 2}", "{2, 3}", "{1, 2, 2, 3}"],
       "correctIndex": 0,
       "explanation": "update() adds multiple elements; duplicates are ignored."
     },

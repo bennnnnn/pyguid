@@ -5,6 +5,16 @@ order: 22
 chapter: 6
 chapterTitle: "Numbers and Operators"
 level: beginner
+quickAnswer: "Python evaluates operators in a fixed precedence order; use parentheses to force the grouping you intend when expressions mix +, *, comparisons, and and/or."
+faqs:
+  - question: "What is operator precedence in Python?"
+    answer: "Rules that decide which operations run first in an expression without parentheses, similar to PEMDAS in math."
+  - question: "Does multiplication come before addition in Python?"
+    answer: "Yes. * and / bind tighter than + and - unless parentheses change the order."
+  - question: "Which binds tighter, and or or?"
+    answer: "not, then and, then or. Use parentheses in complex conditions to be explicit."
+  - question: "Should I rely on precedence or use parentheses?"
+    answer: "Know the basics, but add parentheses whenever an expression would be hard to read or easy to misparse."
 ---
 
 ## Why this matters
@@ -58,4 +68,3 @@ Use parentheses when **you** want a specific order:
 - **`*` `/`** before **`+` `-`**
 - **`()`** overrides everything
 - When unsure, add parentheses — clarity beats guessing
-

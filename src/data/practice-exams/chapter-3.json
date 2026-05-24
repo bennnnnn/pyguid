@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which is a valid variable name?",
-      "options": [
-        "user_age",
-        "2fast",
-        "user-age",
-        "class"
-      ],
+      "options": ["user_age", "2fast", "user-age", "class"],
       "correctIndex": 0,
       "explanation": "Names can use letters, digits, and underscores but cannot start with a digit or use hyphens."
     },
@@ -22,12 +17,7 @@
       "id": "2",
       "type": "choice",
       "prompt": "What value does `score` hold after `score = 7`?",
-      "options": [
-        "7",
-        "score",
-        "None",
-        "Error"
-      ],
+      "options": ["7", "score", "None", "Error"],
       "correctIndex": 0,
       "explanation": "The = operator assigns the value on the right to the name on the left."
     },
@@ -42,12 +32,7 @@
       "id": "4",
       "type": "choice",
       "prompt": "What does `input('Name: ')` return?",
-      "options": [
-        "A string",
-        "An integer",
-        "True or False",
-        "Nothing"
-      ],
+      "options": ["A string", "An integer", "True or False", "Nothing"],
       "correctIndex": 0,
       "explanation": "input() always reads text from the user and returns it as a str."
     },
@@ -55,12 +40,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "How do you convert the string `'42'` to an integer?",
-      "options": [
-        "int('42')",
-        "str('42')",
-        "float('42')",
-        "integer('42')"
-      ],
+      "options": ["int('42')", "str('42')", "float('42')", "integer('42')"],
       "correctIndex": 0,
       "explanation": "int() parses a string that looks like an integer and returns an int."
     },
@@ -68,12 +48,7 @@
       "id": "6",
       "type": "choice",
       "prompt": "After `x = 5` then `x = x + 1`, what is `x`?",
-      "options": [
-        "6",
-        "5",
-        "1",
-        "51"
-      ],
+      "options": ["6", "5", "1", "51"],
       "correctIndex": 0,
       "explanation": "x + 1 is evaluated as 6, then assigned back to x, replacing the old value."
     },
@@ -81,12 +56,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "Which name is NOT valid because it is a Python keyword?",
-      "options": [
-        "for",
-        "total",
-        "_count",
-        "name2"
-      ],
+      "options": ["for", "total", "_count", "name2"],
       "correctIndex": 0,
       "explanation": "Keywords like for, if, and while cannot be used as variable names."
     },
@@ -101,12 +71,7 @@
       "id": "9",
       "type": "choice",
       "prompt": "What is printed?\n\nname = 'Ada'\nprint(name)",
-      "options": [
-        "Ada",
-        "name",
-        "'Ada'",
-        "Error"
-      ],
+      "options": ["Ada", "name", "'Ada'", "Error"],
       "correctIndex": 0,
       "explanation": "print displays the value stored in the variable, not the variable name."
     },
@@ -114,12 +79,7 @@
       "id": "10",
       "type": "choice",
       "prompt": "Which converts a number to a string?",
-      "options": [
-        "str(99)",
-        "int(99)",
-        "string(99)",
-        "text(99)"
-      ],
+      "options": ["str(99)", "int(99)", "string(99)", "text(99)"],
       "correctIndex": 0,
       "explanation": "str() creates a string representation of a value."
     },
@@ -160,12 +120,7 @@
       "id": "14",
       "type": "choice",
       "prompt": "Which is the best name for a variable storing a user's email?",
-      "options": [
-        "user_email",
-        "x",
-        "e",
-        "data1"
-      ],
+      "options": ["user_email", "x", "e", "data1"],
       "correctIndex": 0,
       "explanation": "Descriptive snake_case names make code easier to read and maintain."
     },
@@ -186,12 +141,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "What is `n` after `n = 10` then `n += 5`?",
-      "options": [
-        "15",
-        "105",
-        "5",
-        "10"
-      ],
+      "options": ["15", "105", "5", "10"],
       "correctIndex": 0,
       "explanation": "+= adds 5 to the current value of n, equivalent to n = n + 5."
     },
@@ -219,12 +169,7 @@
       "id": "19",
       "type": "choice",
       "prompt": "Which assignment creates two variables with swapped values?\n\na, b = 3, 7\n???",
-      "options": [
-        "a, b = b, a",
-        "a = b",
-        "swap(a, b)",
-        "a, b = 7, 3 only if a was 7"
-      ],
+      "options": ["a, b = b, a", "a = b", "swap(a, b)", "a, b = 7, 3 only if a was 7"],
       "correctIndex": 0,
       "explanation": "Parallel assignment evaluates the right side first, then binds both names."
     },

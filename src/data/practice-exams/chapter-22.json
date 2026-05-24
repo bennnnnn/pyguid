@@ -9,12 +9,7 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which keyword defines a new class?",
-      "options": [
-        "class",
-        "struct",
-        "object",
-        "def"
-      ],
+      "options": ["class", "struct", "object", "def"],
       "correctIndex": 0,
       "explanation": "class Name: starts a class body with methods and attributes."
     },
@@ -55,12 +50,7 @@
       "id": "5",
       "type": "choice",
       "prompt": "How do you set an instance attribute name inside __init__?",
-      "options": [
-        "self.name = name",
-        "name = self",
-        "Dog.name only",
-        "global name"
-      ],
+      "options": ["self.name = name", "name = self", "Dog.name only", "global name"],
       "correctIndex": 0,
       "explanation": "self.attribute stores data on the instance."
     },
@@ -186,12 +176,7 @@
       "id": "16",
       "type": "choice",
       "prompt": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\nPoint(1, 2).y is:",
-      "options": [
-        "2",
-        "1",
-        "Point",
-        "None"
-      ],
+      "options": ["2", "1", "Point", "None"],
       "correctIndex": 0,
       "explanation": "The second argument sets self.y to 2."
     },

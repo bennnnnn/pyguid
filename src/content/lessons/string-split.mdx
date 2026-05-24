@@ -5,6 +5,16 @@ order: 27
 chapter: 7
 chapterTitle: "Strings"
 level: beginner
+quickAnswer: "Call text.split() to split on whitespace into a list of words, or text.split(',') to split on a specific delimiter string."
+faqs:
+  - question: "What does str.split() do in Python?"
+    answer: "split() divides a string into a list of substrings using a separator. With no argument it splits on any whitespace."
+  - question: "How do I split a CSV line by commas?"
+    answer: "Use line.split(',') for simple cases. For quoted fields with commas inside, use the csv module instead."
+  - question: "What does the maxsplit argument do?"
+    answer: "split(sep, maxsplit=n) performs at most n splits, leaving the remainder in the final list element."
+  - question: "Does split() modify the original string?"
+    answer: "No. Strings are immutable. split() returns a new list and leaves the original string unchanged."
 ---
 
 ## Why this matters
@@ -71,4 +81,3 @@ print(name, "is", age, "from", city)`}
 - **`split()`** — default: whitespace
 - **`split(",")`** — cut on commas
 - Second argument limits number of splits
-

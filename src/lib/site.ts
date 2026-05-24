@@ -1,8 +1,8 @@
 export const SITE = {
   name: "PyGuide",
-  title: "PyGuide — Learn Python with Tutorials, Quizzes & References",
+  title: "PyGuide — Learn Python from Zero to Advanced Core Python",
   description:
-    "Learn Python from zero to advanced core Python with beginner-friendly tutorials, separate quizzes, and clean reference pages. Run code in your browser — no install required.",
+    "Free Python-only tutorials, quizzes, and references with runnable examples. Learn Python from the basics to advanced core Python topics.",
   /** Canonical URL — set SITE_URL env at build time to override (see astro.config.mjs) */
   url: "https://bennnnnn.github.io/pyguid",
   locale: "en_US",

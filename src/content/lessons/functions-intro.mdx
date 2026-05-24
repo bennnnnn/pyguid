@@ -5,6 +5,16 @@ order: 100
 chapter: 14
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Define a function with def name(): and an indented body; call it with name() to run that reusable block of code."
+faqs:
+  - question: "How do you define a function in Python?"
+    answer: "Use def function_name(): followed by an indented body. You can add parameters inside the parentheses."
+  - question: "What is the difference between defining and calling a function?"
+    answer: "def creates the function object but does not run the body. Calling name() executes the body now."
+  - question: "Do functions need a return statement?"
+    answer: "Only if you need to send a value back to the caller. Without return, the function returns None."
+  - question: "Why use functions instead of repeating code?"
+    answer: "Functions reduce duplication, give behavior a clear name, and make testing and changes safer in one place."
 ---
 
 ## Why this matters
@@ -118,4 +128,3 @@ No. Functions without `return` give back `None`. Use `return` when callers need 
 - **Parameters** — pass data in
 - **Call** with `name()` — run the body
 - Extract repeated blocks early — core L4 habit
-

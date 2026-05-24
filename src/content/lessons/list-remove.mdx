@@ -5,6 +5,16 @@ order: 65
 chapter: 10
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.remove(value) to delete the first occurrence of that value from a list; it returns None and raises ValueError if the value is missing."
+faqs:
+  - question: "What does list.remove() do in Python?"
+    answer: "remove() finds the first element equal to the given value and deletes it from the list. It looks at value, not index."
+  - question: "Does remove() return the deleted item?"
+    answer: "No. remove() returns None. If you need the removed value, use pop() with an index instead."
+  - question: "What if the value is not in the list?"
+    answer: "Python raises ValueError. Use if value in my_list before remove(), or catch the exception when absence is acceptable."
+  - question: "Can remove() delete all duplicates at once?"
+    answer: "No. remove() only removes the first match. Loop or use a list comprehension if you need to drop every occurrence."
 ---
 
 ## Why this matters
@@ -88,4 +98,3 @@ print("after pop:", letters)`}
 - **`remove(x)`** deletes the **first** match of **`x`**
 - Returns **`None`**; the list changes in place
 - Use **`pop()`** when you care about **position** or want the removed value back
-

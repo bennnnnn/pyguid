@@ -5,6 +5,16 @@ order: 67
 chapter: 10
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.pop() to remove and return the last item, or list.pop(index) to remove and return the item at that position."
+faqs:
+  - question: "What does list.pop() do in Python?"
+    answer: "pop() removes one item from a list and returns it. With no argument it removes the last item; with an index it removes that position."
+  - question: "What is the difference between pop() and remove()?"
+    answer: "pop() uses an index (or the end) and returns the removed value. remove() searches by value and deletes the first match without returning it."
+  - question: "Does pop() modify the list in place?"
+    answer: "Yes. pop() changes the original list and returns the removed element. It does not create a new list."
+  - question: "What happens if I pop from an empty list?"
+    answer: "Python raises IndexError. Check len(my_list) or use a try/except block before popping when the list might be empty."
 ---
 
 ## Why this matters
@@ -83,4 +93,3 @@ else:
 - **`pop()`** — remove **last**, return it
 - **`pop(i)`** — remove at index **`i`**, return it
 - Unlike **`remove()`**, you get the **value back**
-

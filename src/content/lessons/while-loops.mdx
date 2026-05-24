@@ -5,6 +5,16 @@ order: 48
 chapter: 9
 chapterTitle: "Loops"
 level: beginner
+quickAnswer: "A while loop runs its body repeatedly while the condition after while is true: while condition: with an indented block."
+faqs:
+  - question: "When should I use a while loop in Python?"
+    answer: "Use while when you repeat until something changes—user quits, file ends, counter reaches a limit—not when you already have a collection to walk."
+  - question: "What causes an infinite while loop?"
+    answer: "The condition never becomes false, often because you forgot to update the variable checked in while or used the wrong comparison."
+  - question: "Can while and for be used together?"
+    answer: "Yes. A common pattern is while True with break inside, or a for loop with a while nested for inner logic. Keep each loop's purpose clear."
+  - question: "Does Python check the while condition before each iteration?"
+    answer: "Yes. The condition is tested before the body runs. If it is false at the start, the body may never run."
 ---
 
 ## Why this matters
@@ -69,4 +79,3 @@ Use **`while`** when you do not know how many repetitions you need in advance.
 - **`while condition:`** repeats the indented block while the condition is `True`
 - Update something inside the loop so it can end
 - Code after the loop runs once the condition is false
-

@@ -5,6 +5,16 @@ order: 12
 chapter: 4
 chapterTitle: "Input and Type Conversion"
 level: beginner
+quickAnswer: "Wrap input() with int() or float() to parse numbers, and handle ValueError when the text is not a valid number."
+faqs:
+  - question: "How do I convert input to an integer in Python?"
+    answer: "Use age = int(input('Age: ')). If the user types non-digits, int() raises ValueError."
+  - question: "What is ValueError when converting input?"
+    answer: "It means the string cannot be parsed as that type, like int('hello') or int('3.14') if you expected an integer."
+  - question: "Should I use int or float for user input?"
+    answer: "Use int for whole numbers and float when decimals are allowed. float('3') works but int('3.5') fails."
+  - question: "How do I keep asking until input is valid?"
+    answer: "Use a while loop with try/except ValueError, or check the string with methods like isdigit() for simple cases."
 ---
 
 ## Why this matters
@@ -85,4 +95,3 @@ Change the simulated strings. On your PC, replace them with real `input()` calls
 - **`input()`** → always **str**
 - **`int(text)`** / **`float(text)`** → numbers for math
 - Convert **before** adding or comparing numbers
-

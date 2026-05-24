@@ -81,12 +81,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "Which reads all lines into a list of strings?",
-      "options": [
-        "f.readlines()",
-        "f.readall()",
-        "lines(f)",
-        "f.line()"
-      ],
+      "options": ["f.readlines()", "f.readall()", "lines(f)", "f.line()"],
       "correctIndex": 0,
       "explanation": "readlines() returns a list including newline characters at line ends."
     },
@@ -94,12 +89,7 @@
       "id": "8",
       "type": "choice",
       "prompt": "What is a common way to loop over lines in a file object f?",
-      "options": [
-        "for line in f:",
-        "while f.line():",
-        "for f in line:",
-        "loop f.lines"
-      ],
+      "options": ["for line in f:", "while f.line():", "for f in line:", "loop f.lines"],
       "correctIndex": 0,
       "explanation": "Iterating the file object reads line by line efficiently."
     },
@@ -199,12 +189,7 @@
       "id": "17",
       "type": "choice",
       "prompt": "What exception might open(\"nope.txt\") raise if the file is missing?",
-      "options": [
-        "FileNotFoundError",
-        "KeyError",
-        "IndexError",
-        "AttributeError"
-      ],
+      "options": ["FileNotFoundError", "KeyError", "IndexError", "AttributeError"],
       "correctIndex": 0,
       "explanation": "Missing files raise FileNotFoundError (or OSError variants)."
     },

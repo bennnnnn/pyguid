@@ -29,12 +29,7 @@
       "id": "3",
       "type": "choice",
       "prompt": "Which command often runs pytest in a project?",
-      "options": [
-        "pytest",
-        "python test",
-        "json.load()",
-        "pip debug"
-      ],
+      "options": ["pytest", "python test", "json.load()", "pip debug"],
       "correctIndex": 0,
       "explanation": "After installing pytest, run pytest from the project root."
     },
@@ -75,12 +70,7 @@
       "id": "7",
       "type": "choice",
       "prompt": "unittest.TestCase methods often start with:",
-      "options": [
-        "test_",
-        "run_",
-        "main_",
-        "json_"
-      ],
+      "options": ["test_", "run_", "main_", "json_"],
       "correctIndex": 0,
       "explanation": "The unittest runner collects test* methods on TestCase subclasses."
     },
@@ -121,12 +111,7 @@
       "id": "11",
       "type": "choice",
       "prompt": "pytest -q typically means:",
-      "options": [
-        "Quieter output",
-        "Quit Python",
-        "Query SQL",
-        "Quick install"
-      ],
+      "options": ["Quieter output", "Quit Python", "Query SQL", "Quick install"],
       "correctIndex": 0,
       "explanation": "Flags adjust verbosity and reporting style."
     },

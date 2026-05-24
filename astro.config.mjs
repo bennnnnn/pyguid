@@ -3,6 +3,18 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import { getQuizTopicForChapter, quizUrl } from "./src/lib/quiz-topics.ts";
+
+/** Legacy /python/practice/{chapter}/ URLs → topic quizzes */
+const practiceChapterRedirects = Object.fromEntries(
+  Array.from({ length: 31 }, (_, i) => i + 1).map((chapter) => {
+    const topic = getQuizTopicForChapter(chapter);
+    return [
+      `/python/practice/${chapter}/`,
+      topic ? quizUrl(topic.slug) : "/python/quiz/",
+    ];
+  }),
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +25,7 @@ export default defineConfig({
   },
   integrations: [mdx(), sitemap()],
   redirects: {
+    ...practiceChapterRedirects,
     "/learn/": "/python/",
     "/python/roadmap/": "/python/",
     "/cheatsheet/": "/python/reference/",
