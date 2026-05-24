@@ -1,0 +1,62 @@
+---
+title: "Code quality: ruff and black"
+description: "Format and lint Python automatically before you commit."
+order: 129
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Consistent style helps readers focus on logic. **black** formats layout; **ruff** lints mistakes and can format too — many projects use **ruff** for both.
+
+## Install in your venv
+
+```bash
+pip install ruff black
+```
+
+## Format with black
+
+```bash
+black src tests
+```
+
+Opinionated — few options, less bike-shedding.
+
+## Lint with ruff
+
+```bash
+ruff check src tests
+ruff check --fix src tests
+```
+
+Catches unused imports, undefined names, and style issues.
+
+## pyproject.toml config teaser
+
+```toml
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+```
+
+Run in **CI** so main stays clean.
+
+<Callout variant="note">
+  Pre-commit hooks can run ruff/black before each `git commit` — optional power-up.
+</Callout>
+
+<TryIt title="Try it yourself" answer="ruff check">
+  Which tool finds unused imports?
+</TryIt>
+
+## Recap
+
+- **black** / **ruff** — automate style
+- Configure in **pyproject.toml**
+- Wire into **GitHub Actions**
+
+Next: **Tracebacks** (Error Handling chapter).

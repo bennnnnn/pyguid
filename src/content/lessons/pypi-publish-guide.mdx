@@ -1,0 +1,57 @@
+---
+title: "Publishing to PyPI"
+description: "Build and upload a package to the Python Package Index."
+order: 127
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+You built a package with **`pyproject.toml`**. **PyPI** is the public shelf where `pip install your-package` finds it.
+
+## Prerequisites
+
+1. Account on [pypi.org](https://pypi.org) (and [test.pypi.org](https://test.pypi.org) for practice)
+2. API token (scoped to one project)
+3. Clean `pyproject.toml` with `name`, `version`, `authors`
+
+## Build wheels
+
+```bash
+pip install build twine
+python -m build
+```
+
+Creates `dist/your_package-0.1.0-py3-none-any.whl` and `.tar.gz`.
+
+## Upload to TestPyPI first
+
+```bash
+python -m twine upload --repository testpypi dist/*
+pip install --index-url https://test.pypi.org/simple/ your-package
+```
+
+Fix README and metadata issues on TestPyPI before the real index.
+
+## Upload to PyPI
+
+```bash
+python -m twine upload dist/*
+```
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  You cannot **reuse** a version number. Bump `version` in `pyproject.toml` for every
+  release.
+</Callout>
+
+<TryIt title="Try it yourself" answer="testpypi">
+  Which index should you try before production PyPI?
+</TryIt>
+
+## Recap
+
+- **`python -m build`** then **`twine upload`**
+- Practice on **TestPyPI**
+- Pair with **Git tags** like `v0.1.0`
+
+Next: **GitHub Actions CI**.

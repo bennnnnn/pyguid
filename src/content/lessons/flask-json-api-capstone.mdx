@@ -1,0 +1,85 @@
+---
+title: "Capstone: Flask JSON API"
+description: "CRUD todos over HTTP with Flask and in-memory storage."
+order: 194
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Combine **Flask**, **dict/list storage**, and **JSON** into a tiny **REST-style** API — the shape of real backends before databases.
+
+## In-memory store
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+todos = []
+next_id = 1
+
+@app.get("/todos")
+def list_todos():
+    return jsonify(todos)
+
+@app.post("/todos")
+def create_todo():
+    global next_id
+    data = request.get_json()
+    item = {"id": next_id, "text": data["text"], "done": False}
+    next_id += 1
+    todos.append(item)
+    return jsonify(item), 201
+
+@app.patch("/todos/<int:todo_id>")
+def mark_done(todo_id):
+    for item in todos:
+        if item["id"] == todo_id:
+            item["done"] = True
+            return jsonify(item)
+    return jsonify({"error": "not found"}), 404
+```
+
+## Test with curl
+
+```bash
+curl -X POST http://127.0.0.1:5000/todos -H "Content-Type: application/json" -d '{"text":"Ship API"}'
+curl http://127.0.0.1:5000/todos
+```
+
+## Browser-safe logic preview
+
+<PythonExample
+  filename="api_demo.py"
+  code={`todos = []
+next_id = 1
+
+def create(text):
+global next_id
+item = {"id": next_id, "text": text, "done": False}
+next_id += 1
+todos.append(item)
+return item
+
+create("Ship API")
+create("Write tests")
+print(todos)`}
+/>
+
+## Stretch goals
+
+- Swap list for **sqlite3** or **SQLAlchemy**
+- Add **pytest** with Flask test client
+- Deploy behind **gunicorn** (later)
+
+<TryIt title="Try it yourself" answer="2">
+  How many todos after two `create` calls?
+</TryIt>
+
+## Recap
+
+- **GET/POST/PATCH** map to functions
+- **jsonify** + **request.get_json()**
+- Upgrade storage from **JSON todo** and **database todo** lessons
+
+Next: **Jupyter notebooks** preview.

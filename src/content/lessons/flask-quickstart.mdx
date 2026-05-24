@@ -1,0 +1,70 @@
+---
+title: "Flask quickstart"
+description: "Serve a tiny web app with routes and JSON responses."
+order: 192
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+A **web framework** maps URLs to Python functions. **Flask** is minimal — great for learning HTTP, HTML, and JSON APIs.
+
+## Install and hello
+
+```bash
+pip install flask
+```
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/")
+def home():
+    return "Hello from Flask"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+Visit `http://127.0.0.1:5000/` locally.
+
+## JSON route
+
+```python
+from flask import jsonify
+
+@app.get("/api/health")
+def health():
+    return jsonify({"ok": True})
+```
+
+## Simulated request/response
+
+<PythonExample
+  filename="flask_demo.py"
+  code={`routes = {
+    "/": "Hello from Flask",
+    "/api/health": {"ok": True},
+}
+
+print(routes["/"])
+print(routes["/api/health"])`}
+/>
+
+<Callout variant="warning">
+  `debug=True` reloads code but is **unsafe** on public servers. Turn off in production.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello from Flask">
+  What is the `/` route body in the demo?
+</TryIt>
+
+## Recap
+
+- **`@app.get`** decorates view functions
+- **`jsonify`** for APIs
+- Capstone next: **Flask JSON API**
+
+Next: **FastAPI** preview.

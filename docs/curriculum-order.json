@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -193,6 +193,10 @@
     { "slug": "secrets-token-safety", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "subprocess-run-safety", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "pyproject-packaging", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "git-python-workflow", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "pypi-publish-guide", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "github-actions-ci", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "code-quality-tools", "chapter": 12, "chapterTitle": "Modules" },
 
     { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "try-except", "chapter": 13, "chapterTitle": "Error Handling" },
@@ -200,6 +204,7 @@
     { "slug": "raise-statement", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "common-exceptions", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "except-multiple-types", "chapter": 13, "chapterTitle": "Error Handling" },
+    { "slug": "exception-chaining", "chapter": 13, "chapterTitle": "Error Handling" },
     {
       "slug": "safe-calculator-project",
       "chapter": 13,
@@ -215,6 +220,7 @@
     { "slug": "inheritance", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "super-inheritance", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-instance-attributes", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "dunder-methods-magic", "chapter": 14, "chapterTitle": "Classes" },
 
     { "slug": "file-paths-modes", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "read-files", "chapter": 15, "chapterTitle": "Files" },
@@ -232,6 +238,9 @@
 
     { "slug": "math-random-module", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "pdb-debugger", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "cprofile-performance", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "timeit-benchmark", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "collections-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "assert-testing-intro", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "pytest-basics", "chapter": 16, "chapterTitle": "More Python" },
@@ -242,6 +251,7 @@
     { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "sqlite3-database-basics", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "sqlalchemy-orm-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-todo-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "quiz-app-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "personality-quiz-project", "chapter": 16, "chapterTitle": "More Python" },
@@ -250,11 +260,17 @@
     { "slug": "match-case-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "logging-basic", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "http-client-intro", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "async-await-intro", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "aiohttp-async-http", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "unittest-module", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "functools-lru-cache", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "copy-deepcopy", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "database-todo-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "multi-file-cli-capstone", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "flask-quickstart", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "fastapi-preview", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "flask-json-api-capstone", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "jupyter-notebooks-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "regex-basics", "chapter": 16, "chapterTitle": "More Python" }
   ]
 }

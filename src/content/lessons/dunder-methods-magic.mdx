@@ -1,0 +1,75 @@
+---
+title: "Dunder methods"
+description: "Hook into len, ==, and iteration with special method names."
+order: 147
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+Methods with **double underscores** (`__len__`, `__eq__`) let your objects behave like built-ins — `len(box)`, `box == other`, `for item in box`.
+
+## One new idea: **len** and **repr**
+
+<PythonExample
+  filename="dunder.py"
+  code={`class Playlist:
+    def __init__(self, songs):
+        self.songs = list(songs)
+
+    def __len__(self):
+        return len(self.songs)
+
+    def __repr__(self):
+        return f"Playlist({self.songs!r})"
+
+    def __getitem__(self, index):
+        return self.songs[index]
+
+pl = Playlist(["Intro", "Verse", "Chorus"])
+print(len(pl))
+print(pl[1])
+for track in pl:
+print(track)`}
+/>
+
+`__getitem__` enables **indexing** and **for** loops.
+
+## **eq** for equality
+
+<PythonExample
+  filename="eq.py"
+  code={`class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
+
+print(Point(1, 2) == Point(1, 2))
+print(Point(1, 2) == Point(0, 0))`}
+/>
+
+Return **`NotImplemented`** when the other type is not comparable.
+
+| Method        | Enables         |
+| ------------- | --------------- |
+| `__len__`     | `len(obj)`      |
+| `__repr__`    | debug display   |
+| `__eq__`      | `==`            |
+| `__getitem__` | `obj[i]`, loops |
+
+<TryIt title="Try it yourself" answer="3">
+  What does `len(pl)` print?
+</TryIt>
+
+## Recap
+
+- **Dunder** = double underscore hooks
+- You already used **`__init__`**, **`__str__`**
+- Add more only when behavior needs them
+
+Next: **Files** chapter — paths and modes.

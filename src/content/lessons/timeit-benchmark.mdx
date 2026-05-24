@@ -1,0 +1,58 @@
+---
+title: "Micro-benchmarks with timeit"
+description: "Compare two approaches by timing small code snippets."
+order: 165
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+**cProfile** finds which function is slow. **timeit** answers “is version A faster than version B for this tiny snippet?”
+
+## One new idea: timeit.timeit
+
+<PythonExample
+  filename="timeit_demo.py"
+  code={`import timeit
+
+setup = "data = list(range(1000))"
+stmt_list = "sum(data)"
+stmt_gen = "sum(x for x in data)"
+
+t1 = timeit.timeit(stmt_list, setup=setup, number=1000)
+t2 = timeit.timeit(stmt_gen, setup=setup, number=1000)
+print("list sum:", round(t1, 4))
+print("gen sum:", round(t2, 4))`}
+/>
+
+**number=1000** runs the statement many times for stable timing.
+
+## CLI quick check
+
+```bash
+python -m timeit "sum(range(1000))"
+```
+
+## Fair comparisons
+
+| Rule           | Why                         |
+| -------------- | --------------------------- |
+| Same `number`  | equal trial counts          |
+| Minimal setup  | only shared prep in `setup` |
+| Realistic data | tiny lists lie              |
+
+<Callout variant="warning">
+  Micro-benchmarks can mislead. Profile full programs with **cProfile** too.
+</Callout>
+
+<TryIt title="Try it yourself" answer="varies">
+  Run the demo. Which timing is smaller on your machine?
+</TryIt>
+
+## Recap
+
+- **`import timeit`**
+- **`timeit.timeit(stmt, setup=..., number=...)`**
+- Compare before optimizing
+
+Next: **collections** preview.

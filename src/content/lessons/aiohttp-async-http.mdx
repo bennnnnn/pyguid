@@ -1,0 +1,64 @@
+---
+title: "Async HTTP with aiohttp"
+description: "Fetch multiple URLs concurrently with aiohttp."
+order: 186
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+**requests** blocks while waiting. **aiohttp** fits **async/await** — fetch several URLs without waiting for each to finish serially.
+
+## Install
+
+```bash
+pip install aiohttp
+```
+
+## Fetch two URLs (local)
+
+```python
+import asyncio
+import aiohttp
+
+async def fetch(session, url):
+    async with session.get(url) as response:
+        return response.status, url
+
+async def main():
+    async with aiohttp.ClientSession() as session:
+        tasks = [
+            fetch(session, "https://example.com"),
+            fetch(session, "https://httpbin.org/get"),
+        ]
+        for status, url in await asyncio.gather(*tasks):
+            print(status, url)
+
+asyncio.run(main())
+```
+
+## Simulated concurrent fetch
+
+<PythonExample
+  filename="aiohttp_demo.py"
+  code={`# Simulated: two responses arrive
+responses = [(200, "https://example.com"), (200, "https://httpbin.org/get")]
+for status, url in responses:
+    print(status, url)`}
+/>
+
+<Callout variant="note">
+  Respect robots.txt and rate limits. Async does not mean “hammer servers faster”.
+</Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  How many responses in the simulated loop?
+</TryIt>
+
+## Recap
+
+- **`aiohttp.ClientSession`** + **`async with`**
+- **`asyncio.gather`** for parallel GETs
+- Builds on **async await intro** and **http client intro**
+
+Next: **unittest** module.

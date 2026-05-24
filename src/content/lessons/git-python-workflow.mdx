@@ -1,0 +1,66 @@
+---
+title: "Git for Python developers"
+description: "Commit, branch, and open pull requests for Python projects."
+order: 126
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Your code lives in files; **Git** remembers every version so you can experiment safely and collaborate on GitHub.
+
+## One new idea: the basic loop
+
+```bash
+git init
+git add pyproject.toml src/
+git commit -m "Add initial CLI package"
+```
+
+| Command             | Meaning                        |
+| ------------------- | ------------------------------ |
+| `git status`        | what changed                   |
+| `git add`           | stage files for next commit    |
+| `git commit`        | save a snapshot with a message |
+| `git log --oneline` | history                        |
+
+## Branches and pull requests
+
+```bash
+git checkout -b feature/todo-sqlite
+# edit code, run pytest
+git add .
+git commit -m "Store todos in SQLite"
+git push -u origin feature/todo-sqlite
+```
+
+On GitHub, open a **Pull Request** so others review before merging into `main`.
+
+## .gitignore for Python
+
+```text
+__pycache__/
+*.pyc
+.venv/
+.env
+dist/
+*.egg-info/
+```
+
+Never commit **venv**, **secrets**, or build artifacts.
+
+<Callout variant="tip">
+  Commit small, working steps. Message like a sentence: “Fix argparse help text”.
+</Callout>
+
+<TryIt title="Try it yourself" answer="concept">
+  List three files you would add to `.gitignore` in a PyGuide-style project.
+</TryIt>
+
+## Recap
+
+- **commit** snapshots, **branch** for features
+- **PR** for review before merge
+- **`.gitignore`** keeps junk out of git
+
+Next: **Publishing to PyPI**.

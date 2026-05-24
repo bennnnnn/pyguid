@@ -1,0 +1,58 @@
+---
+title: "async and await intro"
+description: "Run many waiting tasks without blocking on I/O."
+order: 185
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Downloading three web pages **one after another** waits on the network each time. **async** lets Python switch while waiting — one thread, many concurrent I/O tasks.
+
+## One new idea: async def
+
+<PythonExample
+  filename="async_demo.py"
+  code={`import asyncio
+
+async def fetch(name, delay):
+print("Start", name)
+await asyncio.sleep(delay)
+print("Done", name)
+return name
+
+async def main():
+results = await asyncio.gather(
+fetch("A", 0.2),
+fetch("B", 0.1),
+)
+print("Results:", results)
+
+asyncio.run(main())`}
+/>
+
+`await` pauses **this** task, not the whole program. **`gather`** runs tasks concurrently.
+
+## When async helps
+
+| Good for async   | Poor fit              |
+| ---------------- | --------------------- |
+| network I/O      | heavy CPU math        |
+| many connections | simple scripts        |
+| websockets       | learning basics first |
+
+<Callout variant="warning">
+  You cannot mix random `async` code into normal functions without `await`. Start small.
+</Callout>
+
+<TryIt title="Try it yourself" answer="['A', 'B']">
+  What list does `gather` return?
+</TryIt>
+
+## Recap
+
+- **`async def`** and **`await`**
+- **`asyncio.run(main())`** entry point
+- Next: **aiohttp** for real HTTP
+
+Next: **aiohttp** async HTTP.

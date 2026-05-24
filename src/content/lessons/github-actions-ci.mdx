@@ -1,0 +1,60 @@
+---
+title: "CI with GitHub Actions"
+description: "Run pytest and lint on every push automatically."
+order: 128
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Every push to GitHub can run **tests for you** in the cloud. **GitHub Actions** is a YAML workflow that installs Python, installs deps, and runs **`pytest`**.
+
+## Minimal workflow
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest
+      - run: ruff check .
+```
+
+Save under **`.github/workflows/`** in your repo.
+
+## What each step does
+
+| Step             | Purpose              |
+| ---------------- | -------------------- |
+| `checkout`       | clone your code      |
+| `setup-python`   | install Python 3.12  |
+| `pip install -e` | install your package |
+| `pytest`         | run tests            |
+| `ruff check`     | lint (optional)      |
+
+<Callout variant="tip">
+  Add a badge to your README:
+  `![CI](https://github.com/you/repo/actions/workflows/ci.yml/badge.svg)`
+</Callout>
+
+<TryIt title="Try it yourself" answer="pytest">
+  Which command proves tests pass in CI?
+</TryIt>
+
+## Recap
+
+- **Workflow YAML** on push/PR
+- Same commands you run locally
+- Catches breaks before merge
+
+Next: **Code quality tools** (ruff, black).

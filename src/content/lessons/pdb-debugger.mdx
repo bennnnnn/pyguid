@@ -1,0 +1,70 @@
+---
+title: "Debugging with pdb"
+description: "Pause execution and inspect variables at a breakpoint."
+order: 163
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+When **`print`** is not enough, **pdb** (Python debugger) pauses your program so you can inspect variables step by step.
+
+## One new idea: breakpoint()
+
+```python
+def divide(a, b):
+    breakpoint()  # Python 3.7+
+    return a / b
+
+divide(10, 0)
+```
+
+At the prompt:
+
+```text
+(Pdb) p a
+(Pdb) p b
+(Pdb) n        # next line
+(Pdb) c        # continue
+```
+
+## Common pdb commands
+
+| Command | Action           |
+| ------- | ---------------- |
+| `n`     | next line        |
+| `s`     | step into call   |
+| `c`     | continue running |
+| `l`     | list source      |
+| `q`     | quit debugger    |
+
+## Browser-safe concept demo
+
+<PythonExample
+  filename="debug_demo.py"
+  code={`def average(nums):
+    total = sum(nums)
+    count = len(nums)
+    # Imagine breakpoint() here to inspect total, count
+    return total / count
+
+print(average([10, 20, 30]))`}
+/>
+
+Run **`python -m pdb script.py`** to start from line one (local).
+
+<Callout variant="note">
+  IDEs (VS Code, Cursor) offer visual breakpoints. pdb is the built-in tool everywhere.
+</Callout>
+
+<TryIt title="Try it yourself" answer="20.0">
+  What does `average([10, 20, 30])` return?
+</TryIt>
+
+## Recap
+
+- **`breakpoint()`** enters pdb
+- Inspect with **`p variable`**
+- Pair with **tracebacks** reading
+
+Next: **cProfile** performance.

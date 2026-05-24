@@ -1,0 +1,54 @@
+---
+title: "Exception chaining"
+description: "Preserve original errors with raise from and __cause__."
+order: 136
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+You catch a **`KeyError`** but want to raise a friendlier **`ValueError`** for callers. **Exception chaining** keeps the **original** error visible in the traceback.
+
+## One new idea: raise ... from
+
+<PythonExample
+  filename="chain.py"
+  code={`def load_user(data):
+    try:
+        return data["user"]["name"]
+    except KeyError as err:
+        raise ValueError("Invalid user payload") from err
+
+payload = {"user": {}}
+try:
+load_user(payload)
+except ValueError as e:
+print("Caught:", e)
+print("Cause:", e.**cause**)`}
+/>
+
+**Line by line**
+
+- `except KeyError as err` — grab the original
+- `raise ValueError(...) from err` — new error **linked** to old
+- `e.__cause__` — the KeyError underneath
+
+## Implicit chaining
+
+If you raise inside `except` without `from`, Python may set **`__context__`**. Use **`from err`** when you intentionally wrap errors.
+
+<Callout variant="tip">
+  Log **`repr(err)`** before wrapping so support teams see the root cause.
+</Callout>
+
+<TryIt title="Try it yourself" answer="KeyError">
+  What type is `e.__cause__` in the example?
+</TryIt>
+
+## Recap
+
+- **`raise NewError("msg") from err`**
+- Read **`__cause__`** in debuggers
+- Better than swallowing the original
+
+Next: **Safe calculator** project.
