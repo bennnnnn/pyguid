@@ -1,23 +1,23 @@
 /* Quiz hub (/python/quiz/) — cards live inside .lesson-prose */
-.lesson-prose .practice-exam-grid {
+.lesson-prose .quiz-grid {
   list-style: none;
   padding-left: 0;
   margin-top: 2rem;
 }
 
-.lesson-prose .practice-exam-grid > li {
+.lesson-prose .quiz-grid > li {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.practice-exam {
+.chapter-quiz {
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 6rem;
 }
 
-.practice-exam-header {
+.quiz-exam-header {
   margin-bottom: 2rem;
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
@@ -25,7 +25,7 @@
   padding: 1.5rem 2rem;
 }
 
-.practice-exam-header h1 {
+.quiz-exam-header h1 {
   margin-bottom: 0.5rem;
   font-size: 1.875rem;
   font-weight: 700;
@@ -33,7 +33,7 @@
   color: var(--color-text);
 }
 
-.practice-exam-meta {
+.quiz-exam-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -41,7 +41,7 @@
   color: var(--color-text-muted);
 }
 
-.practice-exam-meta span {
+.quiz-exam-meta span {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
@@ -51,25 +51,25 @@
   padding: 0.25rem 0.75rem;
 }
 
-.practice-progress {
+.quiz-progress {
   margin-bottom: 1.5rem;
 }
 
-.practice-progress-track {
+.quiz-progress-track {
   height: 0.5rem;
   overflow: hidden;
   border-radius: 9999px;
   background: var(--color-surface-alt);
 }
 
-.practice-progress-fill {
+.quiz-progress-fill {
   height: 100%;
   border-radius: 9999px;
   background: var(--color-brand);
   transition: width 0.3s ease;
 }
 
-.practice-progress-label {
+.quiz-progress-label {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -78,7 +78,7 @@
   color: var(--color-text-muted);
 }
 
-.practice-question-card {
+.quiz-question-card {
   margin-bottom: 1rem;
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
@@ -87,17 +87,17 @@
   box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
 }
 
-.practice-question-card.is-answered {
+.quiz-question-card.is-answered {
   border-color: rgb(29 78 216 / 0.4);
   box-shadow: 0 0 0 1px rgb(29 78 216 / 0.2);
 }
 
-.practice-question-card.is-unanswered-flash {
+.quiz-question-card.is-unanswered-flash {
   border-color: #fbbf24;
   box-shadow: 0 0 0 2px #fde68a;
 }
 
-.practice-q-number {
+.quiz-q-number {
   margin-bottom: 0.75rem;
   display: inline-flex;
   height: 1.75rem;
@@ -112,7 +112,7 @@
   color: var(--color-brand);
 }
 
-.practice-q-prompt {
+.quiz-q-prompt {
   margin-bottom: 1rem;
   font-size: 1rem;
   font-weight: 500;
@@ -120,13 +120,13 @@
   color: var(--color-text);
 }
 
-.practice-options {
+.quiz-options {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.practice-option {
+.quiz-option {
   display: flex;
   width: 100%;
   cursor: pointer;
@@ -143,18 +143,18 @@
     background 0.15s;
 }
 
-.practice-option:hover {
+.quiz-option:hover {
   border-color: rgb(29 78 216 / 0.5);
   background: rgb(239 246 255 / 0.8);
 }
 
-.practice-option.is-selected {
+.quiz-option.is-selected {
   border-color: var(--color-brand);
   background: var(--color-brand-light);
   box-shadow: 0 0 0 1px rgb(29 78 216 / 0.3);
 }
 
-.practice-option input {
+.quiz-option input {
   margin-top: 0.125rem;
   height: 1rem;
   width: 1rem;
@@ -162,18 +162,18 @@
   accent-color: var(--color-brand);
 }
 
-.practice-option-label {
+.quiz-option-label {
   flex: 1;
   color: var(--color-text-secondary);
 }
 
-.practice-tf-options {
+.quiz-tf-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
 }
 
-.practice-submit-bar {
+.quiz-submit-bar {
   position: sticky;
   bottom: 1rem;
   z-index: 10;
@@ -191,11 +191,11 @@
   backdrop-filter: blur(8px);
 }
 
-.practice-results {
+.quiz-results {
   text-align: center;
 }
 
-.practice-score-ring {
+.quiz-score-ring {
   position: relative;
   margin: 0 auto 1.5rem;
   display: flex;
@@ -210,7 +210,7 @@
   );
 }
 
-.practice-score-ring-inner {
+.quiz-score-ring-inner {
   display: flex;
   height: 8rem;
   width: 8rem;
@@ -222,78 +222,78 @@
   box-shadow: inset 0 2px 4px rgb(15 23 42 / 0.06);
 }
 
-.practice-score-value {
+.quiz-score-value {
   font-size: 2.25rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
-.practice-score-label {
+.quiz-score-label {
   font-size: 0.875rem;
   color: var(--color-text-muted);
 }
 
-.practice-results-summary {
+.quiz-results-summary {
   margin-bottom: 2rem;
   font-size: 1.125rem;
   color: var(--color-text-secondary);
 }
 
-.practice-results-pass {
+.quiz-results-pass {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   color: #047857;
 }
 
-.practice-results-fail {
+.quiz-results-fail {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   color: #b45309;
 }
 
-.practice-review-list {
+.quiz-review-list {
   margin-top: 2rem;
   text-align: left;
 }
 
-.practice-review-list > * + * {
+.quiz-review-list > * + * {
   margin-top: 0.75rem;
 }
 
-.practice-review-item {
+.quiz-review-item {
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
   padding: 1rem;
   font-size: 0.875rem;
 }
 
-.practice-review-item.is-correct {
+.quiz-review-item.is-correct {
   border-color: #a7f3d0;
   background: rgb(236 253 245 / 0.8);
 }
 
-.practice-review-item.is-wrong {
+.quiz-review-item.is-wrong {
   border-color: #fecaca;
   background: rgb(254 242 242 / 0.8);
 }
 
-.practice-review-q {
+.quiz-review-q {
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: var(--color-text);
 }
 
-.practice-review-your {
+.quiz-review-your {
   color: var(--color-text-secondary);
 }
 
-.practice-review-exp {
+.quiz-review-exp {
   margin-top: 0.5rem;
   color: var(--color-text-muted);
 }
 
-.practice-hidden {
+.quiz-hidden {
   display: none !important;
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Remap practice exam JSON files after curriculum v11 chapter renumbering.
+ * Remap quiz JSON files after curriculum v11 chapter renumbering.
  * Old chapter -> new chapter (best fit). Run from repo root.
  */
 import { readFileSync, writeFileSync, readdirSync, unlinkSync } from "node:fs";
@@ -8,7 +8,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const dir = join(root, "src/data/practice-exams");
+const dir = join(root, "src/data/quizzes");
 
 /** @type {Record<number, number>} */
 const OLD_TO_NEW = {

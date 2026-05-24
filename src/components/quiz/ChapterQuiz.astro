@@ -1,8 +1,8 @@
 ---
-import type { PracticeExam } from "../../lib/practice-exams";
+import type { ChapterQuiz } from "../../lib/quizzes";
 
 interface Props {
-  exam: PracticeExam;
+  exam: ChapterQuiz;
   backHref?: string;
   backLabel?: string;
   kindLabel?: string;
@@ -14,7 +14,7 @@ const {
   backLabel = "All quizzes",
   kindLabel = "Chapter quiz",
 } = Astro.props;
-const examPayload = {
+const quizPayload = {
   chapter: exam.chapter,
   chapterTitle: exam.chapterTitle,
   title: exam.title,
@@ -23,19 +23,19 @@ const examPayload = {
 };
 ---
 
-<div id="practice-exam-root" class="practice-exam">
+<div id="chapter-quiz-root" class="chapter-quiz">
   <script
     type="application/json"
-    id="practice-exam-data"
-    set:html={JSON.stringify(examPayload)}
+    id="chapter-quiz-data"
+    set:html={JSON.stringify(quizPayload)}
   />
-  <header class="practice-exam-header">
+  <header class="quiz-exam-header">
     <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-brand">
       {kindLabel}
     </p>
     <h1>{exam.title}</h1>
     <p class="mt-2 text-text-secondary">{exam.description}</p>
-    <div class="practice-exam-meta mt-4">
+    <div class="quiz-exam-meta mt-4">
       <span>Chapter {exam.chapter}</span>
       <span>{exam.questions.length} questions</span>
       <span>Pass: {exam.passPercent}%+</span>
@@ -43,11 +43,11 @@ const examPayload = {
   </header>
 
   <div data-exam-form>
-    <div class="practice-progress">
-      <div class="practice-progress-track">
-        <div class="practice-progress-fill" data-progress-fill style="width: 0%"></div>
+    <div class="quiz-progress">
+      <div class="quiz-progress-track">
+        <div class="quiz-progress-fill" data-progress-fill style="width: 0%"></div>
       </div>
-      <p class="practice-progress-label">
+      <p class="quiz-progress-label">
         <span>Answer every question, then submit</span>
         <span data-progress-answered>0 of {exam.questions.length} answered</span>
       </p>
@@ -55,32 +55,32 @@ const examPayload = {
 
     {
       exam.questions.map((q, i) => (
-        <article class="practice-question-card" data-question-card data-q-index={i}>
-          <span class="practice-q-number">Q{i + 1}</span>
-          <p class="practice-q-prompt">{q.prompt}</p>
+        <article class="quiz-question-card" data-question-card data-q-index={i}>
+          <span class="quiz-q-number">Q{i + 1}</span>
+          <p class="quiz-q-prompt">{q.prompt}</p>
           {q.type === "choice" ? (
-            <div class="practice-options">
+            <div class="quiz-options">
               {q.options.map((opt, oi) => (
-                <label class="practice-option">
+                <label class="quiz-option">
                   <input
                     type="radio"
                     name={`q-${q.id}`}
                     value={oi}
                     aria-label={`Option ${oi + 1}`}
                   />
-                  <span class="practice-option-label">{opt}</span>
+                  <span class="quiz-option-label">{opt}</span>
                 </label>
               ))}
             </div>
           ) : (
-            <div class="practice-tf-options practice-options">
-              <label class="practice-option">
+            <div class="quiz-tf-options quiz-options">
+              <label class="quiz-option">
                 <input type="radio" name={`q-${q.id}`} value="true" />
-                <span class="practice-option-label">True</span>
+                <span class="quiz-option-label">True</span>
               </label>
-              <label class="practice-option">
+              <label class="quiz-option">
                 <input type="radio" name={`q-${q.id}`} value="false" />
-                <span class="practice-option-label">False</span>
+                <span class="quiz-option-label">False</span>
               </label>
             </div>
           )}
@@ -88,33 +88,33 @@ const examPayload = {
       ))
     }
 
-    <div class="practice-submit-bar">
+    <div class="quiz-submit-bar">
       <p class="text-sm text-text-muted">
         Unanswered questions are highlighted when you submit.
       </p>
-      <button type="button" class="btn-primary" data-submit-exam>Submit exam</button>
+      <button type="button" class="btn-primary" data-submit-exam>Submit quiz</button>
     </div>
   </div>
 
-  <section class="practice-results practice-hidden" data-exam-results aria-live="polite">
-    <div class="practice-score-ring" data-score-ring style="--score-pct: 0">
-      <div class="practice-score-ring-inner">
-        <span class="practice-score-value" data-score-value>0%</span>
-        <span class="practice-score-label">Score</span>
+  <section class="quiz-results quiz-hidden" data-exam-results aria-live="polite">
+    <div class="quiz-score-ring" data-score-ring style="--score-pct: 0">
+      <div class="quiz-score-ring-inner">
+        <span class="quiz-score-value" data-score-value>0%</span>
+        <span class="quiz-score-label">Score</span>
       </div>
     </div>
-    <p class="practice-results-verdict practice-results-fail" data-results-verdict></p>
-    <p class="practice-results-summary" data-results-summary></p>
+    <p class="quiz-results-verdict quiz-results-fail" data-results-verdict></p>
+    <p class="quiz-results-summary" data-results-summary></p>
     <div class="flex flex-wrap justify-center gap-3">
       <button type="button" class="btn-primary" data-retry-exam>Try again</button>
       <a href={backHref} class="btn-secondary no-underline">{backLabel}</a>
       <a href={`/python/`} class="btn-secondary no-underline"> Back to lessons </a>
     </div>
-    <div class="practice-review-list" data-review-list></div>
+    <div class="quiz-review-list" data-review-list></div>
   </section>
 </div>
 
 <script>
-  import { initPracticeExam } from "../../scripts/practice-exam";
-  initPracticeExam();
+  import { initChapterQuiz } from "../../scripts/quiz-ui";
+  initChapterQuiz();
 </script>

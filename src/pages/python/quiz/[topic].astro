@@ -1,6 +1,6 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
-import PracticeExam from "../../../components/practice/PracticeExam.astro";
+import ChapterQuiz from "../../../components/quiz/ChapterQuiz.astro";
 import { getLessonGroups } from "../../../lib/lessons";
 import {
   getPublishedQuizTopics,
@@ -35,7 +35,7 @@ const pageTitle = `${topic.title} Quiz — ${SITE.name}`;
       <span class="mx-1.5">/</span>
       <span>{topic.title}</span>
     </p>
-    <PracticeExam
+    <ChapterQuiz
       exam={exam}
       kindLabel="Chapter quiz"
       backHref="/python/quiz/"

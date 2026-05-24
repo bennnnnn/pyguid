@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import "./practice-exam.css";
+@import "./quiz.css";
 
 @theme {
   --font-sans:

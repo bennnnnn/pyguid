@@ -54,7 +54,8 @@ src/
     [slug].astro       # Lesson pages
     quiz/              # Quizzes hub + [topic] pages (no public practice/ route)
     reference/         # Reference hub + [sheetId]/[entry] topic pages
-  data/practice-exams/ # Quiz JSON (internal; public URL is /python/quiz/)
+  data/quizzes/        # Chapter quiz question JSON
+  lib/quizzes.ts       # Quiz data loader
   lib/lessons.ts       # Sidebar order, related lessons
 docs/
   curriculum-order.json

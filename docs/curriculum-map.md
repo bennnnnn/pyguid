@@ -57,4 +57,4 @@ See `src/archive/lessons/README.md` — web frameworks, databases, Git/CI/PyPI, 
 1. Edit `docs/curriculum-order.json` or regenerate with `generate-curriculum-v11.mjs`
 2. `npm run sync:curriculum`
 3. Update `quiz-topics.ts` if chapter count/titles change
-4. Add or remap `src/data/practice-exams/chapter-N.json` for new chapters
+4. Add or remap `src/data/quizzes/chapter-N.json` for new chapters

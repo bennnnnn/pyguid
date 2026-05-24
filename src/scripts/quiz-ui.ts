@@ -15,56 +15,56 @@ export type TrueFalseQuestion = {
   explanation: string;
 };
 
-export type PracticeQuestion = ChoiceQuestion | TrueFalseQuestion;
+export type QuizQuestion = ChoiceQuestion | TrueFalseQuestion;
 
-export type PracticeExamData = {
+export type ChapterQuizData = {
   chapter: number;
   chapterTitle: string;
   title: string;
   passPercent: number;
-  questions: PracticeQuestion[];
+  questions: QuizQuestion[];
 };
 
 type AnswerValue = number | boolean | null;
 
 function getRoot(): HTMLElement | null {
-  return document.getElementById("practice-exam-root");
+  return document.getElementById("chapter-quiz-root");
 }
 
-function parseExam(root: HTMLElement): PracticeExamData {
-  const el = root.querySelector("#practice-exam-data");
+function parseQuiz(root: HTMLElement): ChapterQuizData {
+  const el = root.querySelector("#chapter-quiz-data");
   const raw = el?.textContent;
-  if (!raw) throw new Error("Missing exam data");
-  return JSON.parse(raw) as PracticeExamData;
+  if (!raw) throw new Error("Missing quiz data");
+  return JSON.parse(raw) as ChapterQuizData;
 }
 
 function isAnswered(value: AnswerValue): boolean {
   return value !== null && value !== undefined;
 }
 
-function isCorrect(q: PracticeQuestion, answer: AnswerValue): boolean {
+function isCorrect(q: QuizQuestion, answer: AnswerValue): boolean {
   if (answer === null) return false;
   if (q.type === "choice") return answer === q.correctIndex;
   return answer === q.correct;
 }
 
-function formatAnswer(q: PracticeQuestion, answer: AnswerValue): string {
+function formatAnswer(q: QuizQuestion, answer: AnswerValue): string {
   if (answer === null) return "(no answer)";
   if (q.type === "choice") return q.options[answer as number] ?? "(invalid)";
   return answer ? "True" : "False";
 }
 
-function formatCorrect(q: PracticeQuestion): string {
+function formatCorrect(q: QuizQuestion): string {
   if (q.type === "choice") return q.options[q.correctIndex];
   return q.correct ? "True" : "False";
 }
 
-export function initPracticeExam() {
+export function initChapterQuiz() {
   const root = getRoot();
   if (!root) return;
 
-  const exam = parseExam(root);
-  const answers: AnswerValue[] = exam.questions.map(() => null);
+  const quiz = parseQuiz(root);
+  const answers: AnswerValue[] = quiz.questions.map(() => null);
 
   const formEl = root.querySelector<HTMLElement>("[data-exam-form]");
   const resultsEl = root.querySelector<HTMLElement>("[data-exam-results]");
@@ -80,21 +80,21 @@ export function initPracticeExam() {
 
   function updateProgress() {
     const count = answers.filter((a) => isAnswered(a)).length;
-    const pct = (count / exam.questions.length) * 100;
+    const pct = (count / quiz.questions.length) * 100;
     if (progressFill) progressFill.style.width = `${pct}%`;
     if (progressAnswered) {
-      progressAnswered.textContent = `${count} of ${exam.questions.length} answered`;
+      progressAnswered.textContent = `${count} of ${quiz.questions.length} answered`;
     }
   }
 
   root.querySelectorAll<HTMLElement>("[data-question-card]").forEach((card) => {
     const idx = Number(card.dataset.qIndex);
-    const q = exam.questions[idx];
+    const q = quiz.questions[idx];
     if (!q) return;
 
     const bindOption = (input: HTMLInputElement) => {
       input.addEventListener("change", () => {
-        card.querySelectorAll(".practice-option").forEach((label) => {
+        card.querySelectorAll(".quiz-option").forEach((label) => {
           const radio = label.querySelector('input[type="radio"]');
           label.classList.toggle("is-selected", radio === input && input.checked);
         });
@@ -122,56 +122,54 @@ export function initPracticeExam() {
     }
 
     let correct = 0;
-    exam.questions.forEach((q, i) => {
+    quiz.questions.forEach((q, i) => {
       if (isCorrect(q, answers[i]!)) correct += 1;
     });
 
-    const scorePct = Math.round((correct / exam.questions.length) * 100);
-    const passed = scorePct >= exam.passPercent;
+    const scorePct = Math.round((correct / quiz.questions.length) * 100);
+    const passed = scorePct >= quiz.passPercent;
 
     if (scoreValue) scoreValue.textContent = `${scorePct}%`;
     if (scoreRing) scoreRing.style.setProperty("--score-pct", String(scorePct));
     if (resultsVerdict) {
       resultsVerdict.textContent = passed ? "You passed!" : "Keep studying — try again";
-      resultsVerdict.className = passed
-        ? "practice-results-pass"
-        : "practice-results-fail";
+      resultsVerdict.className = passed ? "quiz-results-pass" : "quiz-results-fail";
     }
     if (resultsSummary) {
-      resultsSummary.textContent = `You got ${correct} out of ${exam.questions.length} correct.`;
+      resultsSummary.textContent = `You got ${correct} out of ${quiz.questions.length} correct.`;
     }
 
     if (reviewList) {
       reviewList.innerHTML = "";
-      exam.questions.forEach((q, i) => {
+      quiz.questions.forEach((q, i) => {
         const ok = isCorrect(q, answers[i]!);
         const item = document.createElement("div");
-        item.className = `practice-review-item ${ok ? "is-correct" : "is-wrong"}`;
+        item.className = `quiz-review-item ${ok ? "is-correct" : "is-wrong"}`;
         item.innerHTML = `
-          <p class="practice-review-q">Q${i + 1}. ${escapeHtml(q.prompt)}</p>
-          <p class="practice-review-your"><strong>Your answer:</strong> ${escapeHtml(formatAnswer(q, answers[i]!))}</p>
+          <p class="quiz-review-q">Q${i + 1}. ${escapeHtml(q.prompt)}</p>
+          <p class="quiz-review-your"><strong>Your answer:</strong> ${escapeHtml(formatAnswer(q, answers[i]!))}</p>
           ${
             ok
               ? ""
-              : `<p class="practice-review-your"><strong>Correct:</strong> ${escapeHtml(formatCorrect(q))}</p>`
+              : `<p class="quiz-review-your"><strong>Correct:</strong> ${escapeHtml(formatCorrect(q))}</p>`
           }
-          <p class="practice-review-exp">${escapeHtml(q.explanation)}</p>
+          <p class="quiz-review-exp">${escapeHtml(q.explanation)}</p>
         `;
         reviewList.appendChild(item);
       });
     }
 
-    formEl?.classList.add("practice-hidden");
-    resultsEl?.classList.remove("practice-hidden");
+    formEl?.classList.add("quiz-hidden");
+    resultsEl?.classList.remove("quiz-hidden");
     resultsEl?.scrollIntoView({ behavior: "smooth", block: "start" });
 
     try {
       localStorage.setItem(
-        `pyguide-exam-ch${exam.chapter}`,
+        `pyguide-quiz-ch${quiz.chapter}`,
         JSON.stringify({
           scorePct,
           correct,
-          total: exam.questions.length,
+          total: quiz.questions.length,
           at: Date.now(),
         }),
       );
@@ -189,8 +187,8 @@ export function initPracticeExam() {
       });
     });
     updateProgress();
-    resultsEl?.classList.add("practice-hidden");
-    formEl?.classList.remove("practice-hidden");
+    resultsEl?.classList.add("quiz-hidden");
+    formEl?.classList.remove("quiz-hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 

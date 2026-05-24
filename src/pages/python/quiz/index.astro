@@ -2,7 +2,7 @@
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
 import { getLessonGroups } from "../../../lib/lessons";
 import { getPublishedQuizTopics, quizUrl } from "../../../lib/quiz-topics";
-import { getPracticeExam } from "../../../lib/practice-exams";
+import { getQuizByChapter } from "../../../lib/quizzes";
 import { SITE } from "../../../lib/site";
 
 const groups = await getLessonGroups();
@@ -21,10 +21,10 @@ const description =
       then check your understanding here. Lessons stay focused — quizzes live on this page only.
     </p>
 
-    <ul class="practice-exam-grid mt-8 grid list-none gap-4 p-0 sm:grid-cols-2">
+    <ul class="quiz-grid mt-8 grid list-none gap-4 p-0 sm:grid-cols-2">
       {
         topics.map((topic) => {
-          const exam = getPracticeExam(topic.chapter);
+          const exam = getQuizByChapter(topic.chapter);
           return (
             <li
               id={topic.slug}

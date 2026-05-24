@@ -1,6 +1,6 @@
 ---
 import { getQuizTopicForChapter, quizUrl } from "../lib/quiz-topics";
-import { getPracticeExam } from "../lib/practice-exams";
+import { getQuizByChapter } from "../lib/quizzes";
 
 interface Props {
   chapter: number;
@@ -8,7 +8,7 @@ interface Props {
 
 const { chapter } = Astro.props;
 const topic = getQuizTopicForChapter(chapter);
-const exam = topic ? getPracticeExam(topic.chapter) : undefined;
+const exam = topic ? getQuizByChapter(topic.chapter) : undefined;
 ---
 
 {

@@ -1,8 +1,4 @@
-import {
-  getAllPracticeExams,
-  getPracticeExam,
-  type PracticeExam,
-} from "./practice-exams";
+import { getAllQuizzes, getQuizByChapter, type ChapterQuiz } from "./quizzes";
 
 /** URL slug under /python/quiz/{slug}/ */
 export type QuizTopic = {
@@ -212,11 +208,11 @@ export function quizUrl(slug: string): string {
   return `/python/quiz/${slug}/`;
 }
 
-export function getQuizExam(topic: QuizTopic): PracticeExam | undefined {
-  return getPracticeExam(topic.chapter);
+export function getQuizExam(topic: QuizTopic): ChapterQuiz | undefined {
+  return getQuizByChapter(topic.chapter);
 }
 
 export function getPublishedQuizTopics(): QuizTopic[] {
-  const published = new Set(getAllPracticeExams().map((e) => e.chapter));
+  const published = new Set(getAllQuizzes().map((q) => q.chapter));
   return QUIZ_TOPICS.filter((t) => published.has(t.chapter));
 }
