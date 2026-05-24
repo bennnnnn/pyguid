@@ -7,12 +7,10 @@ import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
 import QuickAnswer from "../../components/QuickAnswer.astro";
-import RelatedLessons from "../../components/RelatedLessons.astro";
 import {
   getAllLessons,
   getLessonGroups,
   getAdjacentLessons,
-  getChapterLessons,
   lessonUrl,
 } from "../../lib/lessons";
 import {
@@ -38,15 +36,11 @@ if (!lesson) return Astro.redirect("/python/");
 
 const { Content } = await render(lesson);
 const { prev, next } = getAdjacentLessons(lessons, slug);
-const chapterLessons = getChapterLessons(groups, lesson.data.chapter);
-
-/** Chapters without the "More in …" related-lessons block */
-const RELATED_LESSONS_HIDDEN_CHAPTERS = new Set([5, 6]);
 
 const pageTitle = `${lesson.data.title} — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(lessonUrl(slug), `${siteUrl}/`).href;
-const chapterUrl = pythonChapterUrl(siteUrl, lesson.data.chapter);
+const chapterUrl = pythonChapterUrl(siteUrl, lesson.data.chapterTitle);
 const breadcrumbLd = breadcrumbListJsonLd([
   { name: SITE.name, url: `${siteUrl}/` },
   { name: "Python", url: `${siteUrl}/python/` },
@@ -80,15 +74,6 @@ const jsonLd = [breadcrumbLd, articleLd];
     {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable }} />
     <LessonQuizCta chapter={lesson.data.chapter} />
-    {
-      !RELATED_LESSONS_HIDDEN_CHAPTERS.has(lesson.data.chapter) && (
-        <RelatedLessons
-          lessons={chapterLessons}
-          currentLessonId={slug}
-          chapterTitle={lesson.data.chapterTitle}
-        />
-      )
-    }
     <LessonFooterNav prev={prev} next={next} />
   </article>
 </TutorialLayout>

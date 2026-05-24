@@ -40,13 +40,28 @@ for (const [i, entry] of entries.entries()) {
     .replace(/^chapter:\s*\d+\s*$/m, `chapter: ${entry.chapter}`)
     .replace(/^chapterTitle:\s*.+$/m, `chapterTitle: "${entry.chapterTitle}"`);
 
+  if (entry.part != null && entry.partTitle) {
+    if (/^part:\s*\d+/m.test(updated)) {
+      updated = updated.replace(/^part:\s*\d+\s*$/m, `part: ${entry.part}`);
+    } else {
+      updated = updated.replace(/^(chapterTitle:.+\n)/m, `$1part: ${entry.part}\n`);
+    }
+    if (/^partTitle:/m.test(updated)) {
+      updated = updated.replace(/^partTitle:\s*.+$/m, `partTitle: "${entry.partTitle}"`);
+    } else {
+      updated = updated.replace(/^(part:\s*\d+\n)/m, `$1partTitle: "${entry.partTitle}"\n`);
+    }
+  } else {
+    updated = updated.replace(/^part:\s*\d+\n/m, "").replace(/^partTitle:\s*.+\n/m, "");
+  }
+
   if (entry.section) {
     if (/^section:/m.test(updated)) {
-      updated = updated.replace(/^section:\s*.+$/m, `section: "${entry.section}"`);
+      updated = updated.replace(/^section:\s*.+$/m, `section: ${JSON.stringify(entry.section)}`);
     } else {
       updated = updated.replace(
         /^(chapterTitle:.+\n)/m,
-        `$1section: "${entry.section}"\n`,
+        `$1section: ${JSON.stringify(entry.section)}\n`,
       );
     }
   } else {

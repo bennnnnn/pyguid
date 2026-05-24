@@ -200,8 +200,54 @@ export function getQuizTopic(slug: string): QuizTopic | undefined {
   return bySlug.get(slug);
 }
 
+/**
+ * Map 59-chapter lesson numbers to legacy quiz chapter keys (1–31).
+ * Multiple tutorial chapters can share one quiz until quizzes are split.
+ */
+function quizChapterForLessonChapter(chapter: number): number | undefined {
+  if (chapter <= 0) return undefined;
+  if (chapter === 1) return 1;
+  if (chapter >= 2 && chapter <= 5) return 2;
+  if (chapter === 6) return 3;
+  if (chapter >= 7 && chapter <= 8) return 4;
+  if (chapter === 9) return 5;
+  if (chapter >= 10 && chapter <= 11) return 6;
+  if (chapter === 12) return 7;
+  if (chapter >= 13 && chapter <= 14) return 8;
+  if (chapter === 15) return 10;
+  if (chapter >= 16 && chapter <= 17) return 9;
+  if (chapter === 18) return 11;
+  if (chapter === 19) return 12;
+  if (chapter === 20) return 13;
+  if (chapter === 21) return 21;
+  if (chapter === 22) return 14;
+  if (chapter === 23) return 15;
+  if (chapter === 24) return 23;
+  if (chapter === 25) return 16;
+  if (chapter >= 26 && chapter <= 27) return 17;
+  if (chapter === 28) return 18;
+  if (chapter === 29) return 20;
+  if (chapter >= 30 && chapter <= 34) return 27;
+  if (chapter === 35) return 19;
+  if (chapter >= 36 && chapter <= 39) return 22;
+  if (chapter === 40) return 27;
+  if (chapter === 41) return 26;
+  if (chapter >= 42 && chapter <= 43) return 24;
+  if (chapter === 44) return 25;
+  if (chapter >= 45 && chapter <= 46) return 23;
+  if (chapter === 47 || chapter === 48) return 27;
+  if (chapter === 49) return 23;
+  if (chapter === 50 || chapter === 53) return 28;
+  if (chapter === 51) return 29;
+  if (chapter === 52) return 30;
+  if (chapter === 54) return 5;
+  return undefined;
+}
+
 export function getQuizTopicForChapter(chapter: number): QuizTopic | undefined {
-  return byChapter.get(chapter);
+  const quizChapter = quizChapterForLessonChapter(chapter);
+  if (quizChapter == null) return undefined;
+  return byChapter.get(quizChapter);
 }
 
 export function quizUrl(slug: string): string {

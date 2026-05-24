@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { CURRICULUM_PARTS } from "./curriculum-outline";
 import { isCurriculumLesson } from "./curriculum";
 
 export type LessonEntry = CollectionEntry<"lessons">;
@@ -11,11 +12,36 @@ export type LessonSection = {
 export type LessonGroup = {
   chapter: number;
   chapterTitle: string;
+  part?: number;
+  partTitle?: string;
   /** Lessons with no section — shown directly under the chapter */
   lessons: LessonEntry[];
-  /** Nested topic groups (e.g. Strings, Lists) */
+  /** Subtopic groups inside the chapter */
   sections: LessonSection[];
 };
+
+export type LessonPart = {
+  part: number;
+  partTitle: string;
+  chapters: LessonGroup[];
+};
+
+/** URL-safe anchor for a topic heading (no chapter numbers). */
+export function topicAnchorId(title: string): string {
+  return (
+    title
+      .toLowerCase()
+      .replace(/\(\)/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "topic"
+  );
+}
+
+export function groupHasLessons(group: LessonGroup): boolean {
+  return (
+    group.lessons.length > 0 || group.sections.some((s) => s.lessons.length > 0)
+  );
+}
 
 export async function getAllLessons(): Promise<LessonEntry[]> {
   const lessons = await getCollection("lessons");
@@ -51,9 +77,16 @@ export async function getLessonGroups(): Promise<LessonGroup[]> {
   const map = new Map<number, LessonGroup>();
 
   for (const lesson of lessons) {
-    const { chapter, chapterTitle } = lesson.data;
+    const { chapter, chapterTitle, part, partTitle } = lesson.data;
     if (!map.has(chapter)) {
-      map.set(chapter, { chapter, chapterTitle, lessons: [], sections: [] });
+      map.set(chapter, {
+        chapter,
+        chapterTitle,
+        part,
+        partTitle,
+        lessons: [],
+        sections: [],
+      });
     }
     map.get(chapter)!.lessons.push(lesson);
   }
@@ -68,47 +101,37 @@ export async function getLessonGroups(): Promise<LessonGroup[]> {
   return [...map.values()].sort((a, b) => a.chapter - b.chapter);
 }
 
+export async function getLessonParts(): Promise<LessonPart[]> {
+  const groups = await getLessonGroups();
+  return CURRICULUM_PARTS.map((part) => ({
+    part: part.id,
+    partTitle: part.title,
+    chapters: groups.filter(
+      (g) =>
+        g.chapter >= part.chapterFrom &&
+        g.chapter <= part.chapterTo &&
+        groupHasLessons(g),
+    ),
+  })).filter((part) => part.chapters.length > 0);
+}
+
+/** Topics with lessons, for tutorial outline and sidebar (no part groupings). */
+export async function getOutlineGroups(): Promise<LessonGroup[]> {
+  const groups = await getLessonGroups();
+  return groups.filter(groupHasLessons);
+}
+
 /** Flat list of lessons in sidebar display order (for prev/next remains global order) */
 export function groupContainsLesson(group: LessonGroup, lessonId: string): boolean {
   if (group.lessons.some((l) => l.id === lessonId)) return true;
   return group.sections.some((s) => s.lessons.some((l) => l.id === lessonId));
 }
 
-export function sectionHasActiveLesson(
-  section: LessonSection,
-  lessonId?: string,
-): boolean {
-  if (!lessonId) return false;
-  return section.lessons.some((l) => l.id === lessonId);
-}
-
-export type ChapterNavItem =
-  | { kind: "lesson"; lesson: LessonEntry }
-  | { kind: "section"; section: LessonSection };
-
-/** Sidebar order: top-level lessons and nested sections by lesson order */
-export function getChapterNavItems(group: LessonGroup): ChapterNavItem[] {
-  const items: ChapterNavItem[] = [];
-  const seenSections = new Set<string>();
-
-  const allLessons = [...group.lessons, ...group.sections.flatMap((s) => s.lessons)].sort(
+/** All lessons in a topic, in reading order (sections are not shown in the nav). */
+export function getAllLessonsInGroup(group: LessonGroup): LessonEntry[] {
+  return [...group.lessons, ...group.sections.flatMap((s) => s.lessons)].sort(
     (a, b) => a.data.order - b.data.order,
   );
-
-  for (const lesson of allLessons) {
-    const sectionTitle = lesson.data.section;
-    if (sectionTitle) {
-      if (!seenSections.has(sectionTitle)) {
-        seenSections.add(sectionTitle);
-        const section = group.sections.find((s) => s.title === sectionTitle);
-        if (section) items.push({ kind: "section", section });
-      }
-    } else {
-      items.push({ kind: "lesson", lesson });
-    }
-  }
-
-  return items;
 }
 
 export function getAdjacentLessons(
@@ -122,20 +145,6 @@ export function getAdjacentLessons(
   };
 }
 
-/** All lessons in a chapter, in sidebar order */
-export function getAllLessonsInGroup(group: LessonGroup): LessonEntry[] {
-  const items = getChapterNavItems(group);
-  const ordered: LessonEntry[] = [];
-  for (const item of items) {
-    if (item.kind === "lesson") {
-      ordered.push(item.lesson);
-    } else {
-      ordered.push(...item.section.lessons);
-    }
-  }
-  return ordered;
-}
-
 export function getTotalLessonCount(groups: LessonGroup[]): number {
   return groups.reduce(
     (n, g) => n + g.lessons.length + g.sections.reduce((m, s) => m + s.lessons.length, 0),
@@ -143,9 +152,3 @@ export function getTotalLessonCount(groups: LessonGroup[]): number {
   );
 }
 
-/** Other lessons in the same chapter (sidebar order), for internal linking / SEO. */
-export function getChapterLessons(groups: LessonGroup[], chapter: number): LessonEntry[] {
-  const group = groups.find((g) => g.chapter === chapter);
-  if (!group) return [];
-  return getAllLessonsInGroup(group);
-}

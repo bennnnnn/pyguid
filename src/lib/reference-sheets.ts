@@ -1,13 +1,82 @@
-export type ReferenceEntry = {
-  /** Sidebar label and page heading (what you are looking up) */
+export type ReferenceCategory = {
+  id: string;
   title: string;
-  /** Code pattern shown in the table and examples */
+  description: string;
+};
+
+export const REFERENCE_CATEGORIES: ReferenceCategory[] = [
+  {
+    id: "basics",
+    title: "Basics",
+    description: "print(), variables, input(), and reading errors",
+  },
+  {
+    id: "types",
+    title: "Types & numbers",
+    description: "Built-in types, type(), numbers, and operators",
+  },
+  {
+    id: "strings",
+    title: "Strings",
+    description: "String literals and common str methods",
+  },
+  {
+    id: "control",
+    title: "Control flow",
+    description: "Booleans, comparisons, if/else, for, while, and range",
+  },
+  {
+    id: "collections",
+    title: "Collections",
+    description: "list, tuple, set, and dict syntax and methods",
+  },
+  {
+    id: "functions",
+    title: "Functions",
+    description: "def, parameters, scope, comprehensions, and decorators",
+  },
+  {
+    id: "classes",
+    title: "Classes",
+    description: "class, self, methods, inheritance, and magic methods",
+  },
+  {
+    id: "modules",
+    title: "Files & modules",
+    description: "open(), paths, import, and packages",
+  },
+  {
+    id: "builtins",
+    title: "Built-in functions",
+    description: "len, range, zip, map, sorted, and related helpers",
+  },
+  {
+    id: "stdlib",
+    title: "Standard library",
+    description: "json, datetime, pathlib, typing, and more",
+  },
+  {
+    id: "errors",
+    title: "Errors & debugging",
+    description: "try/except, raise, tracebacks, pdb, and help()",
+  },
+  {
+    id: "tools",
+    title: "Testing & tools",
+    description: "assert, pytest, ruff, and black",
+  },
+];
+
+export type ReferenceEntry = {
+  /** Plain-language label on entry pages */
+  title: string;
+  /** Code pattern shown in nav, tables, and examples */
   syntax: string;
   /** Optional stable URL slug; defaults to a slug derived from title */
   slug?: string;
   /** Short description for lookup */
   summary: string;
-  /** One-line example (defaults to chapter context if omitted) */
+  /** One-line example (defaults to sheet context if omitted) */
   example?: string;
   /** Full runnable example (auto-generated if omitted) */
   code?: string;
@@ -18,20 +87,36 @@ export type ReferenceEntry = {
 
 export type ReferenceSheet = {
   id: string;
-  /** Links to tutorial chapter for cross-links; omit a sheet when the chapter has no syntax to look up */
-  chapter: number;
-  /** Sidebar group label — name the syntax topic, not necessarily the lesson chapter title */
+  /** Reference grouping (not tied to tutorial chapters) */
+  category: string;
+  /** Sheet heading — syntax area, e.g. “Strings” or “Built-in functions” */
   title: string;
-  /** Shown under the heading — sets default variable names in examples */
+  /** Default variable names in auto-generated examples */
   context?: string;
   entries: ReferenceEntry[];
 };
 
+export type ReferenceNavGroup = {
+  category: ReferenceCategory;
+  sheets: ReferenceSheet[];
+};
+
+export function getReferenceNav(): ReferenceNavGroup[] {
+  return REFERENCE_CATEGORIES.map((category) => ({
+    category,
+    sheets: REFERENCE_SHEETS.filter((s) => s.category === category.id),
+  })).filter((group) => group.sheets.length > 0);
+}
+
+export function getReferenceCategory(id: string): ReferenceCategory | undefined {
+  return REFERENCE_CATEGORIES.find((c) => c.id === id);
+}
+
 export const REFERENCE_SHEETS: ReferenceSheet[] = [
   {
     id: "print-and-errors",
-    chapter: 2,
-    title: "Print, Comments, and Errors",
+    category: "basics",
+    title: "Output, comments & errors",
     context: 'name = "Ada"',
     entries: [
       {
@@ -71,7 +156,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "variables",
-    chapter: 3,
+    category: "basics",
     title: "Variables",
     context: "score = 10",
     entries: [
@@ -103,8 +188,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "input",
-    chapter: 4,
-    title: "Input and Type Conversion",
+    category: "basics",
+    title: "input() and type conversion",
     context: 'text = input("Age: ")',
     entries: [
       {
@@ -135,7 +220,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "data-types",
-    chapter: 5,
+    category: "types",
     title: "Data Types",
     context: "value = 42",
     entries: [
@@ -167,7 +252,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "numbers",
-    chapter: 6,
+    category: "types",
     title: "Numbers and Operators",
     context: "a, b = 10, 3",
     entries: [
@@ -205,7 +290,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "strings",
-    chapter: 7,
+    category: "strings",
     title: "Strings",
     context: 's = "hello world"',
     entries: [
@@ -291,7 +376,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "booleans",
-    chapter: 8,
+    category: "control",
     title: "Booleans and Conditions",
     context: "age = 20",
     entries: [
@@ -347,7 +432,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "loops",
-    chapter: 9,
+    category: "control",
     title: "Loops",
     context: "nums = [1, 2, 3]",
     entries: [
@@ -391,7 +476,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "lists",
-    chapter: 10,
+    category: "collections",
     title: "Lists",
     context: "nums = [1, 2, 3]",
     entries: [
@@ -507,7 +592,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "tuples",
-    chapter: 11,
+    category: "collections",
     title: "Tuples",
     context: "point = (10, 20)",
     entries: [
@@ -545,7 +630,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "sets",
-    chapter: 12,
+    category: "collections",
     title: "Sets",
     context: 'tags = {"a", "b"}',
     entries: [
@@ -601,7 +686,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "dictionaries",
-    chapter: 13,
+    category: "collections",
     title: "Dictionaries",
     context: 'user = {"name": "Ada", "age": 30}',
     entries: [
@@ -675,7 +760,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "functions",
-    chapter: 14,
+    category: "functions",
     title: "Functions",
     context: "def greet(x):",
     entries: [
@@ -713,7 +798,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "scope",
-    chapter: 15,
+    category: "functions",
     title: "Scope",
     context: "count = 0",
     entries: [
@@ -745,7 +830,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "errors",
-    chapter: 16,
+    category: "errors",
     title: "Error Handling",
     context: "try:\n    ...",
     entries: [
@@ -789,7 +874,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "files",
-    chapter: 17,
+    category: "modules",
     title: "Files",
     context: 'path = "notes.txt"',
     entries: [
@@ -845,7 +930,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "modules",
-    chapter: 18,
+    category: "modules",
     title: "Modules",
     context: "import math",
     entries: [
@@ -883,7 +968,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "packages",
-    chapter: 19,
+    category: "modules",
     title: "Packages and Imports",
     context: "python -m venv .venv",
     entries: [
@@ -909,8 +994,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "builtins",
-    chapter: 20,
-    title: "Useful Built-in Functions",
+    category: "builtins",
+    title: "Built-in functions",
     context: "nums = [3, 1, 4]",
     entries: [
       {
@@ -965,7 +1050,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "comprehensions",
-    chapter: 21,
+    category: "functions",
     title: "Comprehensions",
     context: "nums = [1, 2, 3, 4]",
     entries: [
@@ -997,8 +1082,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "classes",
-    chapter: 22,
-    title: "Object-Oriented Python",
+    category: "classes",
+    title: "Classes (OOP)",
     context: "class Dog:\n    ...",
     entries: [
       {
@@ -1053,8 +1138,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "advanced-functions",
-    chapter: 23,
-    title: "Advanced Functions",
+    category: "functions",
+    title: "Advanced function syntax",
     context: "def f(*args, **kwargs):",
     entries: [
       {
@@ -1085,7 +1170,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "iterators",
-    chapter: 24,
+    category: "stdlib",
     title: "Iterators and Generators",
     context: "nums = [1, 2, 3]",
     entries: [
@@ -1117,7 +1202,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "decorators",
-    chapter: 25,
+    category: "functions",
     title: "Decorators",
     context: "@timer\ndef work():",
     entries: [
@@ -1143,7 +1228,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "type-hints",
-    chapter: 26,
+    category: "stdlib",
     title: "Type Hints",
     context: "def greet(name: str) -> str:",
     entries: [
@@ -1181,8 +1266,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "stdlib",
-    chapter: 27,
-    title: "Python Standard Library",
+    category: "stdlib",
+    title: "Standard library modules",
     context: "import json",
     entries: [
       {
@@ -1225,7 +1310,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "debugging",
-    chapter: 28,
+    category: "errors",
     title: "Debugging Python Code",
     context: "import pdb",
     entries: [
@@ -1257,7 +1342,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "testing",
-    chapter: 29,
+    category: "tools",
     title: "Testing Python Code",
     context: "def add(a, b): return a + b",
     entries: [
@@ -1283,8 +1368,8 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   },
   {
     id: "clean-code",
-    chapter: 30,
-    title: "Writing Clean Python",
+    category: "tools",
+    title: "Code quality tools",
     context: "ruff check .",
     entries: [
       {
@@ -1435,6 +1520,3 @@ export function getReferenceSheet(id: string): ReferenceSheet | undefined {
   return REFERENCE_SHEETS.find((s) => s.id === id);
 }
 
-export function getReferenceSheetByChapter(chapter: number): ReferenceSheet | undefined {
-  return REFERENCE_SHEETS.find((s) => s.chapter === chapter);
-}

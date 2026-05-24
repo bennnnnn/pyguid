@@ -1,6 +1,6 @@
 ---
 import {
-  REFERENCE_SHEETS,
+  getReferenceNav,
   parseReferencePath,
   referenceEntrySlug,
   referenceEntryUrl,
@@ -8,8 +8,9 @@ import {
 
 const path = Astro.url.pathname;
 const { sheetId: activeSheetId, entrySlug: activeEntrySlug } = parseReferencePath(path);
+const nav = getReferenceNav();
 
-function chapterIsOpen(sheetId: string): boolean {
+function sheetIsActive(sheetId: string): boolean {
   return activeSheetId === sheetId;
 }
 ---
@@ -19,64 +20,68 @@ function chapterIsOpen(sheetId: string): boolean {
   class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
 >
   <div class="border-b border-border px-4 py-3">
-    <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">
-      Reference
-    </p>
+    <p class="m-0 text-xs font-semibold uppercase tracking-wider text-text-muted">Reference</p>
   </div>
 
-  <nav class="py-2" aria-label="Reference">
-    <ul class="m-0 list-none p-0">
-      {
-        REFERENCE_SHEETS.map((sheet) => {
-          const isOpen = chapterIsOpen(sheet.id);
-          const groupId = `ref-${sheet.id}`;
-          return (
-            <li class:list={["menu-group", "chapter-group", isOpen && "is-open"]}>
-              <button
-                type="button"
-                class="menu-trigger flex w-full items-center justify-between gap-2 px-4 py-2.5 text-left text-sm font-semibold"
-                aria-expanded={isOpen}
-                aria-controls={`${groupId}-content`}
-              >
-                <span>{sheet.title}</span>
-                <svg
-                  class="menu-icon h-4 w-4 shrink-0 text-text-muted"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
-                {sheet.entries.map((entry, index) => {
-                  const slug = referenceEntrySlug(sheet.id, index);
-                  const isActive = activeSheetId === sheet.id && activeEntrySlug === slug;
-                  return (
-                    <li>
-                      <a
-                        href={referenceEntryUrl(sheet.id, slug)}
-                        class:list={[
-                          "lesson-link block py-2 pl-8 pr-4 text-sm",
-                          isActive && "is-active",
-                        ]}
-                      >
-                        <span>{entry.title}</span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          );
-        })
-      }
-    </ul>
+  <nav class="py-2" aria-label="Python syntax reference">
+    {
+      nav.map((group) => (
+        <section class="ref-sidebar-category">
+          <h2 class="ref-sidebar-category-title">{group.category.title}</h2>
+          <ul class="m-0 list-none p-0">
+            {group.sheets.map((sheet) => {
+              const isOpen = sheetIsActive(sheet.id);
+              const groupId = `ref-${sheet.id}`;
+              return (
+                <li class:list={["menu-group", "ref-sheet-group", isOpen && "is-open"]}>
+                  <button
+                    type="button"
+                    class="menu-trigger ref-sheet-trigger flex w-full items-center justify-between gap-2 py-2 pl-4 pr-4 text-left text-sm font-semibold"
+                    aria-expanded={isOpen}
+                    aria-controls={`${groupId}-content`}
+                  >
+                    <span class="truncate">{sheet.title}</span>
+                    <svg
+                      class="menu-icon h-4 w-4 shrink-0 text-text-muted"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
+                    {sheet.entries.map((entry, index) => {
+                      const slug = referenceEntrySlug(sheet.id, index);
+                      const isActive = activeSheetId === sheet.id && activeEntrySlug === slug;
+                      return (
+                        <li>
+                          <a
+                            href={referenceEntryUrl(sheet.id, slug)}
+                            class:list={[
+                              "ref-entry-link lesson-link block py-2 pl-8 pr-4",
+                              isActive && "is-active",
+                            ]}
+                            title={entry.title}
+                          >
+                            <code class="ref-entry-syntax-label">{entry.syntax}</code>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
   </nav>
 </aside>

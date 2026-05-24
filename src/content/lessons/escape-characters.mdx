@@ -1,0 +1,67 @@
+---
+title: "Escape characters"
+description: "Use \\n, \\t, and quotes inside Python strings with escape sequences. Beginner lesson with runnable print() examples on PyGuide."
+order: 4
+chapter: 2
+chapterTitle: "Running Python Code"
+section: "Escape characters"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Put a backslash before special characters inside strings — for example \\n for a new line and \\\" for a quote inside double quotes."
+---
+
+## Why this matters
+
+Real text is not always one flat line. You need new lines in messages, tabs in tables, and quotes inside sentences. **Escape sequences** let you write those inside a normal string.
+
+## One new idea: backslash means “special character”
+
+Inside quotes, a **backslash** `\` tells Python the next character is special — not the end of the string.
+
+| You write | Meaning |
+| --------- | ------- |
+| `\n` | new line |
+| `\t` | tab |
+| `\\` | one backslash `\` |
+| `\"` | double quote inside `"..."` |
+| `\'` | single quote inside `'...'` |
+
+<PythonExample
+  filename="newline.py"
+  code={`print("Line one\\nLine two")
+print("A\\tB\\tC")`}
+/>
+
+**Output**
+
+```text
+Line one
+Line two
+A       B       C
+```
+
+## Quotes inside quotes
+
+<PythonExample
+  filename="quotes.py"
+  code={`print("She said \\"Hello\\"")
+print('It\\'s fine')`}
+/>
+
+Without the backslash, Python would think the string ended too early → **SyntaxError**.
+
+## Raw strings (preview)
+
+Sometimes paths use many backslashes. A **raw string** starts with `r` so backslashes are literal:
+
+<PythonExample filename="raw.py" code={`print(r"C:\\Users\\Ada\\notes.txt")`} />
+
+You will use raw strings more with files later. For now, remember `\n` and `\"` in normal strings.
+
+## Recap
+
+- **`\n`** — new line when printing
+- **`\t`** — tab
+- **`\"`** / **`\'`** — quotes inside strings
+- **`\\`** — a real backslash character

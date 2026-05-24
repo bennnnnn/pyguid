@@ -92,8 +92,13 @@ export function quizLearningResourceJsonLd(opts: {
   };
 }
 
-export function pythonChapterUrl(siteUrl: string, chapter: number): string {
-  return `${siteUrl}/python/#chapter-${chapter}`;
+export function pythonChapterUrl(siteUrl: string, chapterTitle: string): string {
+  const anchor = chapterTitle
+    .toLowerCase()
+    .replace(/\(\)/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `${siteUrl}/python/#${anchor || "topic"}`;
 }
 
 export function lessonLearningResourceJsonLd(opts: {

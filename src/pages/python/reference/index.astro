@@ -1,37 +1,54 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
-import { getLessonGroups } from "../../../lib/lessons";
-import { REFERENCE_SHEETS, referenceChapterUrl } from "../../../lib/reference-sheets";
+import { getReferenceNav, referenceChapterUrl } from "../../../lib/reference-sheets";
 import { SITE } from "../../../lib/site";
 import "../../../styles/reference.css";
 
-const groups = await getLessonGroups();
+const nav = getReferenceNav();
+const entryCount = nav.reduce(
+  (n, g) => n + g.sheets.reduce((m, s) => m + s.entries.length, 0),
+  0,
+);
 ---
 
 <TutorialLayout
   title={`Python Reference — ${SITE.name}`}
-  description="Quick Python syntax reference by topic — lists, strings, functions, and more."
-  groups={groups}
+  description="Python syntax reference — operators, built-in functions, string and list methods, and common patterns. Look up what you need while coding."
   sidebar="reference"
 >
   <article class="lesson-prose-wide lesson-prose">
-    <h1 class="!mt-0">Reference</h1>
+    <h1 class="!mt-0">Python reference</h1>
     <p class="text-text-secondary">
-      Quick syntax lookup by topic. Groups match where you need commands and patterns—not
-      every tutorial chapter (for example intro “what is Python?”) has a reference
-      section.
+      Quick lookup for <strong>syntax</strong>, <strong>built-in functions</strong>, and common
+      <strong>methods</strong> — organized for coding, not as a mirror of the tutorial outline. Open
+      a topic for a cheat-sheet table, or jump straight to a specific pattern.
+    </p>
+    <p class="text-sm text-text-muted">
+      {entryCount} entries across {nav.length} areas · Runnable examples where Python runs in the
+      browser
     </p>
 
-    <ul class="ref-index-list not-prose">
+    <div class="ref-index-categories not-prose">
       {
-        REFERENCE_SHEETS.map((sheet) => (
-          <li>
-            <a href={referenceChapterUrl(sheet.id)} class="ref-index-link">
-              {sheet.title}
-            </a>
-          </li>
+        nav.map((group) => (
+          <section class="ref-index-category">
+            <h2 class="ref-index-category-title">{group.category.title}</h2>
+            <p class="ref-index-category-desc">{group.category.description}</p>
+            <ul class="ref-index-sheet-list">
+              {group.sheets.map((sheet) => (
+                <li>
+                  <a href={referenceChapterUrl(sheet.id)} class="ref-index-sheet-link">
+                    <span class="ref-index-sheet-name">{sheet.title}</span>
+                    <span class="ref-index-sheet-meta">
+                      {sheet.entries.length} {sheet.entries.length === 1 ? "entry" : "entries"}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
         ))
       }
-    </ul>
+    </div>
   </article>
 </TutorialLayout>

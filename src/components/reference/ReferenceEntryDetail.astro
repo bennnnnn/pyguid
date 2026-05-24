@@ -1,7 +1,7 @@
 ---
 import type { ReferenceEntryPage } from "../../lib/reference-sheets";
 import { getReferenceEntryCode } from "../../lib/reference-entry-code";
-import { referenceChapterUrl, referenceEntrySlug } from "../../lib/reference-sheets";
+import { referenceEntrySlug } from "../../lib/reference-sheets";
 import HighlightedCode from "../HighlightedCode.astro";
 import PythonExample from "../PythonExample.astro";
 import ReferencePager from "./ReferencePager.astro";
@@ -13,13 +13,12 @@ interface Props {
 const { page } = Astro.props;
 const { sheet, entry, index } = page;
 const { code, runnable, filename } = getReferenceEntryCode(page);
-const tutorialChapterUrl = `/python/#chapter-${sheet.chapter}`;
 
 const prev =
   index > 0
     ? {
         slug: referenceEntrySlug(sheet.id, index - 1),
-        name: sheet.entries[index - 1].title,
+        name: sheet.entries[index - 1].syntax,
       }
     : undefined;
 
@@ -27,28 +26,21 @@ const next =
   index < sheet.entries.length - 1
     ? {
         slug: referenceEntrySlug(sheet.id, index + 1),
-        name: sheet.entries[index + 1].title,
+        name: sheet.entries[index + 1].syntax,
       }
     : undefined;
 ---
 
 <article class="ref-entry-page lesson-prose">
   <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="top" />
-  <h1 class="ref-entry-title !mt-0">{entry.title}</h1>
-  <p class="ref-entry-syntax text-sm text-text-muted">
+  <p class="ref-entry-breadcrumb m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+    {sheet.title}
+  </p>
+  <h1 class="ref-entry-title !mt-2">
     <code>{entry.syntax}</code>
-  </p>
+  </h1>
   <p class="ref-entry-lead">{entry.summary}</p>
-
-  <p class="text-sm text-text-secondary">
-    <a href={tutorialChapterUrl} class="text-link font-medium">
-      Read the {sheet.title} tutorials
-    </a>
-    <span class="mx-1.5">·</span>
-    <a href={referenceChapterUrl(sheet.id)} class="text-link font-medium">
-      All {sheet.title} syntax
-    </a>
-  </p>
+  {entry.title !== entry.syntax && <p class="ref-entry-alt m-0 text-sm text-text-muted">{entry.title}</p>}
 
   {
     runnable ? (

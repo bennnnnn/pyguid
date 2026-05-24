@@ -7,7 +7,7 @@
 
 ## Features
 
-- **187 tutorials** — beginner syntax through OOP, comprehensions, stdlib, testing, and debugging
+- **187 tutorials** in **11 parts** and **59 chapters** — pure Python from absolute beginner through advanced core topics
 - **Tutorials · Quizzes · References** — three clear sections in the nav
 - Runnable examples on every lesson (Copy + Run)
 - Chapter sidebar + ordered lesson path (Back / Next)
@@ -38,6 +38,7 @@ Open [http://localhost:4321](http://localhost:4321).
 | `npm run check:routes`    | Fail if legacy `practice/` route exists |
 | `npm run check`           | Routes + format + build (local CI)      |
 | `npm run sync:curriculum` | Apply `docs/curriculum-order.json`      |
+| `npm run curriculum:build-v59` | Rebuild 59-chapter map + sync lessons |
 
 ## Stack
 

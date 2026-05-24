@@ -10,7 +10,10 @@ const lessons = defineCollection({
     order: z.number(),
     chapter: z.number(),
     chapterTitle: z.string(),
-    /** Optional sidebar group inside a chapter (e.g. "Strings", "Lists") */
+    /** Curriculum part 1–11 */
+    part: z.number().optional(),
+    partTitle: z.string().optional(),
+    /** Subtopic group inside a chapter (sidebar + tutorials index) */
     section: z.string().optional(),
     level: z.enum(["beginner", "intermediate"]).default("beginner"),
     /** One-sentence direct answer for SEO snippets and scanners */

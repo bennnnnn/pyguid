@@ -1,9 +1,12 @@
 ---
 title: "The print() function"
 description: "Python print() function tutorial for beginners: display text, multiple values, sep and end options, and your first hello world with runnable PyGuide examples."
-order: 2
+order: 3
 chapter: 2
-chapterTitle: "Print, Comments, and Errors"
+chapterTitle: "Running Python Code"
+section: "The print function"
+part: 1
+partTitle: "Absolute beginner"
 level: beginner
 quickAnswer: "Call print(value) to write text to the console; separate multiple arguments with commas and print adds a newline by default."
 ---
@@ -31,8 +34,7 @@ A **`print()`** is like a megaphone for your program: whatever you put inside ge
 <PythonExample
   filename="numbers.py"
   code={`print(42)
-print(3.14)
-print(10 + 5)`}
+print(3.14)`}
 />
 
 | You write     | Python treats it as |
@@ -40,21 +42,24 @@ print(10 + 5)`}
 | `print(42)`   | number **42**       |
 | `print("42")` | text **"42"**       |
 
-Numbers can do math **before** printing: `10 + 5` becomes `15`.
+<Callout variant="note">
+  Using **+**, **-**, **\***, and **/** on numbers comes later in the **Operators** lessons. For
+  now, print whole numbers as literals like `42` or `3.14`.
+</Callout>
 
 ## Several values: commas add spaces
 
 <PythonExample
   filename="multiple.py"
   code={`print("The answer is", 42)
-print(2, "+", 2, "=", 2 + 2)`}
+print("Score", 10)`}
 />
 
 **Output**
 
 ```text
 The answer is 42
-2 + 2 = 4
+Score 10
 ```
 
 ## Blank line
@@ -82,19 +87,10 @@ print(" done")`}
 | `sep`  | space    | `sep=", "` → commas     |
 | `end`  | new line | `end="..."` → same line |
 
-## Special characters inside text
-
-| Code | Meaning          |
-| ---- | ---------------- |
-| `\n` | new line         |
-| `\t` | tab              |
-| `\"` | quote in `"..."` |
-
-<PythonExample
-  filename="escape.py"
-  code={`print("Line one\\nLine two")
-print("She said \\"Hello\\"")`}
-/>
+<Callout variant="note">
+  For **new lines and quotes inside text** (`\n`, `\"`, and more), see the next lesson:
+  **Escape characters**.
+</Callout>
 
 <Callout variant="danger" title="Oops — Python is yelling">
   **`print(hello)`** without quotes looks for a variable named `hello`. You have not
@@ -104,6 +100,7 @@ print("She said \\"Hello\\"")`}
 ## Recap
 
 - **`print("text")`** — show strings
-- **`print(42)`** — show numbers
+- **`print(42)`** — show number literals (no quotes)
 - **Commas** — several items with spaces between
 - **Quotes** = text; **no quotes** = number
+- **Variables** in `print()` come after the Variables lessons

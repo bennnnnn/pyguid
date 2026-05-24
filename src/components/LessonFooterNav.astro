@@ -14,7 +14,7 @@ const { prev, next, placement = "bottom" } = Astro.props;
 
 <PagerNav
   prev={prev ? { href: lessonUrl(prev.id), label: "Back" } : null}
-  next={next ? { href: lessonUrl(next.id), label: "Next tutorial →" } : null}
+  next={next ? { href: lessonUrl(next.id), label: "Next" } : null}
   placement={placement}
   ariaLabel="Lesson navigation"
 />

@@ -1,8 +1,11 @@
 ---
 import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
 import ReferenceChapterTable from "../../../../components/reference/ReferenceChapterTable.astro";
-import { getLessonGroups } from "../../../../lib/lessons";
-import { REFERENCE_SHEETS, getReferenceSheet } from "../../../../lib/reference-sheets";
+import {
+  REFERENCE_SHEETS,
+  getReferenceCategory,
+  getReferenceSheet,
+} from "../../../../lib/reference-sheets";
 import { SITE } from "../../../../lib/site";
 import "../../../../styles/reference.css";
 
@@ -16,18 +19,27 @@ const sheetId = Astro.params.sheetId ?? "";
 const sheet = getReferenceSheet(sheetId);
 if (!sheet) return Astro.redirect("/python/reference/");
 
-const groups = await getLessonGroups();
+const category = getReferenceCategory(sheet.category);
 const title = `${sheet.title} — Reference — ${SITE.name}`;
 ---
 
 <TutorialLayout
   title={title}
-  description={`Python ${sheet.title.toLowerCase()} syntax quick reference.`}
-  groups={groups}
+  description={`Python ${sheet.title.toLowerCase()} syntax — methods, operators, and patterns with short examples.`}
   sidebar="reference"
 >
   <article class="lesson-prose-wide lesson-prose">
-    <h1 class="!mt-0">{sheet.title}</h1>
+    {
+      category && (
+        <p class="ref-sheet-category m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+          {category.title}
+        </p>
+      )
+    }
+    <h1 class="!mt-2">{sheet.title}</h1>
+    <p class="text-text-secondary">
+      Syntax cheat sheet — click a row for a runnable example.
+    </p>
 
     <ReferenceChapterTable sheet={sheet} />
   </article>

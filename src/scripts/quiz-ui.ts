@@ -29,21 +29,76 @@ function isCorrect(q: QuizQuestion, answer: AnswerValue): boolean {
   return answer === q.correct;
 }
 
-function formatAnswer(q: QuizQuestion, answer: AnswerValue): string {
-  if (answer === null) return "(no answer)";
-  if (q.type === "choice") return q.options[answer as number] ?? "(invalid)";
-  return answer ? "True" : "False";
-}
-
-function formatCorrect(q: QuizQuestion): string {
-  if (q.type === "choice") return q.options[q.correctIndex];
-  return q.correct ? "True" : "False";
-}
-
 function tutorialLinkHtml(lessonSlug: string | undefined): string {
   if (!lessonSlug || !/^[a-z0-9-]+$/.test(lessonSlug)) return "";
   const href = `/python/${lessonSlug}/`;
   return `<p class="quiz-review-tutorial"><a href="${href}">Related tutorial</a></p>`;
+}
+
+function reviewOptionClass(isCorrect: boolean, isUserPick: boolean): string {
+  const classes = ["quiz-review-option"];
+  if (isCorrect) classes.push("is-answer-correct");
+  else if (isUserPick) classes.push("is-answer-wrong");
+  return classes.join(" ");
+}
+
+function buildReviewChoicesHtml(q: QuizQuestion, answer: AnswerValue): string {
+  if (q.type === "choice") {
+    const userIndex = typeof answer === "number" ? answer : null;
+    const items = q.options
+      .map((opt, oi) => {
+        const isCorrect = oi === q.correctIndex;
+        const isUserPick = oi === userIndex;
+        const tag =
+          isCorrect && isUserPick
+            ? '<span class="quiz-review-tag">Your answer · Correct</span>'
+            : isCorrect
+              ? '<span class="quiz-review-tag">Correct answer</span>'
+              : isUserPick
+                ? '<span class="quiz-review-tag">Your answer</span>'
+                : "";
+        return `<li class="${reviewOptionClass(isCorrect, isUserPick)}">${escapeHtml(opt)}${tag}</li>`;
+      })
+      .join("");
+    return `<ul class="quiz-review-options">${items}</ul>`;
+  }
+
+  const userBool = typeof answer === "boolean" ? answer : null;
+  const items = [
+    { label: "True", value: true },
+    { label: "False", value: false },
+  ]
+    .map(({ label, value }) => {
+      const isCorrect = value === q.correct;
+      const isUserPick = value === userBool;
+      const tag =
+        isCorrect && isUserPick
+          ? '<span class="quiz-review-tag">Your answer · Correct</span>'
+          : isCorrect
+            ? '<span class="quiz-review-tag">Correct answer</span>'
+            : isUserPick
+              ? '<span class="quiz-review-tag">Your answer</span>'
+              : "";
+      return `<li class="${reviewOptionClass(isCorrect, isUserPick)}">${label}${tag}</li>`;
+    })
+    .join("");
+  return `<ul class="quiz-review-options quiz-review-options--tf">${items}</ul>`;
+}
+
+function buildReviewItemHtml(
+  q: QuizQuestion,
+  index: number,
+  answer: AnswerValue,
+): string {
+  const ok = isCorrect(q, answer);
+  return `
+    <div class="quiz-review-item ${ok ? "is-correct" : "is-wrong"}">
+      <p class="quiz-review-q">Q${index + 1}. ${escapeHtml(q.prompt)}</p>
+      ${buildReviewChoicesHtml(q, answer)}
+      <p class="quiz-review-exp">${escapeHtml(q.explanation)}</p>
+      ${tutorialLinkHtml(q.lessonSlug)}
+    </div>
+  `;
 }
 
 export function initChapterQuiz() {
@@ -127,24 +182,9 @@ export function initChapterQuiz() {
     }
 
     if (reviewList) {
-      reviewList.innerHTML = "";
-      quiz.questions.forEach((q, i) => {
-        const ok = isCorrect(q, answers[i]!);
-        const item = document.createElement("div");
-        item.className = `quiz-review-item ${ok ? "is-correct" : "is-wrong"}`;
-        item.innerHTML = `
-          <p class="quiz-review-q">Q${i + 1}. ${escapeHtml(q.prompt)}</p>
-          <p class="quiz-review-your"><strong>Your answer:</strong> ${escapeHtml(formatAnswer(q, answers[i]!))}</p>
-          ${
-            ok
-              ? ""
-              : `<p class="quiz-review-your"><strong>Correct:</strong> ${escapeHtml(formatCorrect(q))}</p>`
-          }
-          <p class="quiz-review-exp">${escapeHtml(q.explanation)}</p>
-          ${tutorialLinkHtml(q.lessonSlug)}
-        `;
-        reviewList.appendChild(item);
-      });
+      reviewList.innerHTML = quiz.questions
+        .map((q, i) => buildReviewItemHtml(q, i, answers[i]!))
+        .join("");
     }
 
     formEl?.classList.add("quiz-hidden");

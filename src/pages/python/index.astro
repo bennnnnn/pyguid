@@ -3,13 +3,14 @@ import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import {
   getAllLessons,
   getAllLessonsInGroup,
-  getLessonGroups,
+  getOutlineGroups,
   getTotalLessonCount,
   lessonUrl,
+  topicAnchorId,
 } from "../../lib/lessons";
 import { SITE } from "../../lib/site";
 
-const groups = await getLessonGroups();
+const groups = await getOutlineGroups();
 const lessons = await getAllLessons();
 const first = lessons[0];
 const totalLessons = getTotalLessonCount(groups);
@@ -23,17 +24,15 @@ const totalLessons = getTotalLessonCount(groups);
   <div class="mx-auto max-w-5xl">
     <header class="rounded-xl border border-border bg-surface-alt px-6 py-8 sm:px-8">
       <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
-        Python tutorials
+        Tutorials → Quizzes → References
       </p>
       <h1 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
         Python tutorials
       </h1>
       <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
-        {totalLessons} lessons from zero to advanced core Python. Every page has <strong
-          >Run code</strong
-        >
-        in the browser. When you finish a chapter, take the matching quiz — references are always
-        available for syntax lookup.
+        {totalLessons} lessons from your first print() through advanced Python — grouped by topic
+        below. Every lesson has <strong>Run code</strong> in the browser. Finish a topic, take the
+        quiz, and use references for quick syntax lookup.
       </p>
       {
         first && (
@@ -44,31 +43,28 @@ const totalLessons = getTotalLessonCount(groups);
       }
     </header>
 
-    <div class="mt-10 space-y-8">
+    <nav class="tutorial-outline mt-10 space-y-6" aria-label="Tutorial curriculum">
       {
-        groups.map((group) => {
-          const path = getAllLessonsInGroup(group);
-          return (
-            <section
-              id={`chapter-${group.chapter}`}
-              class="scroll-mt-20 rounded-xl border border-border bg-surface p-5 sm:p-6"
-            >
-              <h2 class="m-0 mb-4 text-lg font-semibold text-text">
-                {group.chapterTitle}
-              </h2>
-              <ol class="m-0 list-decimal columns-1 gap-x-10 space-y-1.5 pl-5 text-sm sm:columns-2 [&>li]:break-inside-avoid">
-                {path.map((lesson) => (
-                  <li class="text-text-secondary">
-                    <a href={lessonUrl(lesson.id)} class="font-medium text-link">
-                      {lesson.data.title}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          );
-        })
+        groups.map((group) => (
+          <section
+            id={topicAnchorId(group.chapterTitle)}
+            class="scroll-mt-20 rounded-xl border border-border bg-surface p-5 sm:p-6"
+          >
+            <h2 class="m-0 text-lg font-semibold text-text">{group.chapterTitle}</h2>
+
+            <ol class="mt-4 m-0 list-none space-y-1 p-0">
+              {getAllLessonsInGroup(group).map((lesson) => (
+                <li>
+                  <a href={lessonUrl(lesson.id)} class="text-sm font-medium text-link">
+                    {lesson.data.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
       }
-    </div>
+    </nav>
   </div>
 </TutorialLayout>
+

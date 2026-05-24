@@ -1,7 +1,6 @@
 ---
 import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
 import ReferenceEntryDetail from "../../../../components/reference/ReferenceEntryDetail.astro";
-import { getLessonGroups } from "../../../../lib/lessons";
 import {
   getAllReferenceEntryPages,
   getReferenceEntryPage,
@@ -23,27 +22,26 @@ const entrySlug = Astro.params.entrySlug ?? "";
 const page = getReferenceEntryPage(sheetId, entrySlug);
 if (!page) return Astro.redirect("/python/reference/");
 
-const groups = await getLessonGroups();
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(referenceEntryUrl(sheetId, entrySlug), `${siteUrl}/`).href;
 const chapterRefUrl = new URL(referenceChapterUrl(sheetId), `${siteUrl}/`).href;
 const { code } = getReferenceEntryCode(page);
-const title = `${page.entry.title} — ${page.sheet.title} — ${SITE.name}`;
+const title = `${page.entry.syntax} — ${page.sheet.title} — ${SITE.name}`;
 const description =
   page.entry.summary.length >= 120
     ? `${page.entry.summary} Runnable Python example on ${SITE.name}.`
-    : `${page.entry.summary} Python ${page.sheet.title.toLowerCase()} syntax reference with a runnable example on ${SITE.name}.`;
+    : `${page.entry.summary} Python \`${page.entry.syntax}\` reference with a runnable example on ${SITE.name}.`;
 const jsonLd = [
   breadcrumbListJsonLd([
     { name: SITE.name, url: `${siteUrl}/` },
     { name: "Reference", url: `${siteUrl}/python/reference/` },
     { name: page.sheet.title, url: chapterRefUrl },
-    { name: page.entry.title, url: pageUrl },
+    { name: page.entry.syntax, url: pageUrl },
   ]),
   techArticleJsonLd({
     siteUrl,
     url: pageUrl,
-    headline: `${page.entry.title} — ${page.sheet.title}`,
+    headline: `${page.entry.syntax} — ${page.sheet.title}`,
     description: page.entry.summary,
     articleBody: code,
   }),
@@ -53,7 +51,6 @@ const jsonLd = [
 <TutorialLayout
   title={title}
   description={description}
-  groups={groups}
   sidebar="reference"
   ogType="article"
   jsonLd={jsonLd}

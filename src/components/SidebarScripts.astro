@@ -28,7 +28,7 @@
     background: var(--color-surface-alt);
   }
 
-  .course-sidebar .chapter-group.is-open > .menu-trigger {
+  .course-sidebar .menu-group.is-open > .menu-trigger {
     background: var(--color-surface-alt);
     color: var(--color-text);
   }
@@ -141,17 +141,23 @@
       });
     });
 
-    sidebar.querySelectorAll(".chapter-group .menu-trigger").forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const group = trigger.closest(".chapter-group");
-        if (!group) return;
+    sidebar.querySelectorAll(".menu-group > .menu-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const group = trigger.closest(".menu-group");
+        if (!group || group.classList.contains("section-group")) return;
         const willOpen = !group.classList.contains("is-open");
-        sidebar.querySelectorAll(".chapter-group.is-open").forEach((other) => {
-          if (other !== group) {
-            other.classList.remove("is-open");
-            other.querySelector(".menu-trigger")?.setAttribute("aria-expanded", "false");
-          }
-        });
+        const siblingList = group.parentElement;
+        siblingList
+          ?.querySelectorAll(":scope > .menu-group.is-open")
+          .forEach((other) => {
+            if (other !== group) {
+              other.classList.remove("is-open");
+              other
+                .querySelector(":scope > .menu-trigger")
+                ?.setAttribute("aria-expanded", "false");
+            }
+          });
         group.classList.toggle("is-open", willOpen);
         trigger.setAttribute("aria-expanded", String(willOpen));
       });

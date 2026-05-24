@@ -1,24 +1,62 @@
 /* Reference index */
-.ref-index-list {
-  margin: 1.5rem 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
+.ref-index-categories {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.ref-index-link {
-  display: block;
-  padding: 0.75rem 0;
+.ref-index-category-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.ref-index-category-desc {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.ref-index-sheet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.ref-index-sheet-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--color-border);
   color: var(--color-link);
-  font-size: 1rem;
-  font-weight: 500;
   text-decoration: none;
 }
 
-.ref-index-link:hover {
-  color: var(--color-link-hover);
-  text-decoration: underline;
+.ref-index-sheet-list li:last-child .ref-index-sheet-link {
+  border-bottom: none;
+}
+
+.ref-index-sheet-link:hover {
+  background: var(--color-surface-alt);
+  text-decoration: none;
+}
+
+.ref-index-sheet-name {
+  font-weight: 600;
+}
+
+.ref-index-sheet-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
 /* Chapter table */
@@ -60,25 +98,17 @@
   border-bottom: none;
 }
 
-.ref-topic {
-  width: 32%;
-  min-width: 9rem;
-}
-
-.ref-topic-link {
-  color: var(--color-link);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.ref-topic-link:hover {
-  text-decoration: underline;
-}
-
 .ref-syntax {
-  width: 28%;
+  width: 26%;
   min-width: 7rem;
   white-space: nowrap;
+}
+
+.ref-notes {
+  width: 28%;
+  min-width: 8rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
 }
 
 .ref-syntax code {
@@ -104,9 +134,38 @@
   padding: 0;
 }
 
-/* Topic page */
+/* Sidebar */
+.ref-sidebar-category + .ref-sidebar-category {
+  margin-top: 0.5rem;
+}
+
+.ref-sidebar-category-title {
+  margin: 0;
+  padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.ref-entry-link .ref-entry-syntax-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.ref-sheet-category {
+  margin-bottom: 0;
+}
+
+/* Entry page */
 .ref-entry-title {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .ref-entry-title code {
@@ -117,6 +176,11 @@
   background: none;
   border: none;
   padding: 0;
+}
+
+.ref-entry-alt {
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
 }
 
 .ref-entry-lead {
