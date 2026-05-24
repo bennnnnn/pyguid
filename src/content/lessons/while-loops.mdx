@@ -1,0 +1,53 @@
+---
+title: "While loops"
+description: "Repeat code while a condition stays true."
+order: 26
+chapter: 7
+chapterTitle: "Loops"
+level: beginner
+---
+
+A **loop** repeats code instead of copying the same lines. This chapter covers **`while`**, **`for`**, **`break`**, **`continue`**, and **`range()`**. A **`while`** loop runs a block **as long as** a condition is `True`:
+
+<PythonExample
+  filename="while_basic.py"
+  code={`count = 1
+while count <= 5:
+    print(count)
+    count += 1`}
+/>
+
+## Countdown
+
+<PythonExample
+  filename="countdown.py"
+  code={`n = 3
+while n > 0:
+    print(n)
+    n -= 1
+print("Go!")`}
+/>
+
+## Loop until a condition changes
+
+<PythonExample
+  filename="total.py"
+  code={`total = 0
+number = 1
+while number <= 4:
+    total += number
+    number += 1
+print(total)`}
+/>
+
+<Callout variant="danger" title="Infinite loops">
+  If the condition never becomes false, the loop runs forever. Always change a variable inside the loop (like `count += 1`) so the condition can eventually fail.
+</Callout>
+
+<Callout variant="warning">
+  In the browser runner, an infinite loop may freeze the tab. If Run hangs, refresh the page and fix the loop logic.
+</Callout>
+
+<Callout variant="tip">
+  Use `while` when you do not know how many times to repeat in advance. Use `for` when you are iterating over a known sequence.
+</Callout>

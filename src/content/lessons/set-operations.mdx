@@ -1,0 +1,75 @@
+---
+title: "Set operations"
+description: "Combine and compare sets with union, intersection, and difference."
+order: 46
+chapter: 10
+chapterTitle: "Sets"
+level: beginner
+---
+
+Sets support math-style operations on collections.
+
+<PythonExample
+  filename="two_sets.py"
+  code={`a = {1, 2, 3}
+b = {3, 4, 5}
+print(a)
+print(b)`}
+/>
+
+## Union — all items from both
+
+<PythonExample
+  filename="union.py"
+  code={`a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)
+print(a.union(b))`}
+/>
+
+## Intersection — items in both
+
+<PythonExample
+  filename="intersection.py"
+  code={`a = {1, 2, 3}
+b = {3, 4, 5}
+print(a & b)
+print(a.intersection(b))`}
+/>
+
+## Difference — in first but not second
+
+<PythonExample
+  filename="difference.py"
+  code={`a = {1, 2, 3}
+b = {3, 4, 5}
+print(a - b)
+print(b - a)`}
+/>
+
+## Symmetric difference — in one or the other, not both
+
+<PythonExample
+  filename="symmetric.py"
+  code={`a = {1, 2, 3}
+b = {3, 4, 5}
+print(a ^ b)`}
+/>
+
+## Subset and superset
+
+<PythonExample
+  filename="subset.py"
+  code={`small = {1, 2}
+big = {1, 2, 3, 4}
+print(small.issubset(big))
+print(big.issuperset(small))`}
+/>
+
+<Callout variant="note">
+  Operator symbols (`|`, `&`, `-`) are concise. Method names (`.union()`, `.intersection()`) read clearly in longer code.
+</Callout>
+
+<Callout variant="tip">
+  Real uses: find shared friends between two users (intersection), or tags only on one article (difference).
+</Callout>

@@ -1,0 +1,58 @@
+---
+title: "JSON in Python"
+description: "Parse and create JSON data with the json module."
+order: 71
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+**JSON** is a text format for data (objects and arrays). APIs and config files often use it.
+
+Python’s **`json`** module converts between JSON strings and Python dicts/lists.
+
+## JSON string to Python
+
+<PythonExample
+  filename="loads.py"
+  code={`import json
+
+text = '{"name": "Ada", "age": 36, "active": true}'
+data = json.loads(text)
+print(data["name"])
+print(data["age"])`}
+/>
+
+## Python to JSON string
+
+<PythonExample
+  filename="dumps.py"
+  code={`import json
+
+user = {"name": "Ada", "scores": [90, 85, 92]}
+text = json.dumps(user)
+print(text)
+
+pretty = json.dumps(user, indent=2)
+print(pretty)`}
+/>
+
+## Lists in JSON
+
+<PythonExample
+  filename="list_json.py"
+  code={`import json
+
+text = '[1, 2, 3, "four"]'
+items = json.loads(text)
+print(items[0])
+print(items[-1])`}
+/>
+
+<Callout variant="warning">
+  JSON uses `true`, `false`, and `null` — not Python’s `True`, `False`, `None`. `json.loads` converts them for you.
+</Callout>
+
+<Callout variant="tip">
+  `json.load(file)` and `json.dump(obj, file)` read/write files on your computer — pair with the Files chapter.
+</Callout>

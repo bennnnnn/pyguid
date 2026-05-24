@@ -12,6 +12,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [mdx(), sitemap()],
+  redirects: {
+    "/learn/": "/python/",
+    "/cheatsheet/": "/python/reference/",
+  },
   markdown: {
     shikiConfig: {
       theme: "github-dark",

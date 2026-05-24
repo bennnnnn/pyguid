@@ -1,0 +1,75 @@
+---
+title: "How code runs"
+description: "Python runs your program one line at a time, from top to bottom."
+order: 3
+chapter: 1
+chapterTitle: "Getting Started"
+level: beginner
+---
+
+A Python file is a **list of instructions**. When you run the program, Python starts at the **top** and works **down**, one line at a time — unless a later lesson introduces `if`, loops, or functions that change the flow.
+
+## Run order
+
+<PythonExample
+  filename="order.py"
+  code={`print("First")
+print("Second")
+print("Third")`}
+/>
+
+Output is always **First**, then **Second**, then **Third**. The computer does not skip around on its own.
+
+## Later lines can use earlier work
+
+A later line can use the result of an earlier line. You will use **variables** (names for values) in the next chapter; here is a small preview:
+
+<PythonExample
+  filename="steps.py"
+  code={`greeting = "Hello"
+print(greeting)
+print("Done")`}
+/>
+
+`greeting` must be created **before** `print(greeting)` runs. Order matters.
+
+## Same line, left to right
+
+On one line, math happens before `print` sees it:
+
+<PythonExample
+  filename="math_first.py"
+  code={`print(3 + 4)
+print("3 + 4 =", 3 + 4)`}
+/>
+
+## Blank lines
+
+Empty lines are ignored. They only help **you** read the file:
+
+<PythonExample
+  filename="spacing.py"
+  code={`print("Start")
+
+print("End")`}
+/>
+
+## When order goes wrong
+
+If you use a name before it exists, Python stops with an **error**:
+
+<PythonExample
+  filename="error_order.py"
+  code={`print(score)
+score = 100`}
+/>
+
+<Callout variant="note">
+  Run the example above to see the error. Fix it by putting `score = 100` **before** `print(score)`.
+</Callout>
+
+<Callout variant="warning">
+  Later chapters use **indentation** (spaces at the start of a line) for `if` blocks and loops. For now, keep every statement at the **left edge** with no extra leading spaces.
+</Callout>
+
+Next: **Comments** — write notes that Python skips.

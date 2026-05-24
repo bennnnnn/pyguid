@@ -1,0 +1,112 @@
+---
+title: "Numbers"
+description: "Work with integers, floats, and math operators in Python."
+order: 9
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+This chapter covers Python’s main **data types** — numbers, text, booleans, and `type()`. We start with **numbers**. For whole and decimal values you mainly use **two** types:
+
+| Type | Python name | What it stores |
+| ---- | ----------- | -------------- |
+| **Integer** | `int` | Whole numbers: `0`, `42`, `-7` (no decimal point) |
+| **Float** | `float` | Numbers with a decimal: `3.14`, `-0.5`, `9.99` |
+
+Together, `int` and `float` cover counting, measuring, money, scores, and most everyday math in beginner programs.
+
+<Callout variant="note">
+  Both are **numeric types**, but Python keeps them separate so it knows whether a value has a fractional part.
+</Callout>
+
+## Create number values
+
+You write numbers **without quotes** (quotes mean text):
+
+<PythonExample
+  filename="create.py"
+  code={`count = 3
+price = 9.99
+negative = -10
+zero = 0
+
+print(count, type(count))
+print(price, type(price))`}
+/>
+
+## Basic math
+
+Python supports familiar operators:
+
+| Operator | Meaning        | Example   |
+| -------- | -------------- | --------- |
+| `+`      | addition       | `2 + 3`   |
+| `-`      | subtraction    | `10 - 4`  |
+| `*`      | multiplication | `6 * 7`   |
+| `/`      | division       | `10 / 4`  |
+
+<PythonExample
+  filename="math.py"
+  code={`a = 10
+b = 4
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)`}
+/>
+
+Division with `/` always gives a **float**, even when the result is a whole number:
+
+<PythonExample
+  filename="division.py"
+  code={`print(8 / 2)
+print(8 / 3)`}
+/>
+
+## Integer division and remainder
+
+- **`//`** — floor division (drops the decimal part)
+- **`%`** — remainder (modulo)
+
+<PythonExample
+  filename="floor_mod.py"
+  code={`print(17 // 5)
+print(17 % 5)`}
+/>
+
+Here, `17 // 5` is `3` and `17 % 5` is `2` because `17 = 3 × 5 + 2`.
+
+## Powers
+
+Use `**` for exponents:
+
+<PythonExample
+  filename="power.py"
+  code={`print(2 ** 3)
+print(10 ** 2)`}
+/>
+
+## Mixing ints and floats
+
+When you combine an `int` and a `float`, the result is usually a `float`:
+
+<PythonExample
+  filename="mix.py"
+  code={`x = 5
+y = 2.0
+print(x + y)
+print(type(x + y))`}
+/>
+
+<Callout variant="note">
+  You do not need to memorize every operator today. Focus on `+`, `-`, `*`, and `/` first — they appear in almost every program.
+</Callout>
+
+<Callout variant="warning" title="Float surprises">
+  Some decimal math is not exact in binary, just like on a calculator. `print(0.1 + 0.2)` may show `0.30000000000000004`. For money and precision later, you will learn other tools; for now, know that tiny float differences can happen.
+</Callout>
+
+<Callout variant="tip">
+  Use `int` for counts (items in a cart) and `float` for measurements (height, price with cents).
+</Callout>

@@ -1,0 +1,65 @@
+---
+title: "Dates and times"
+description: "Work with dates using the datetime module."
+order: 73
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+The **`datetime`** module handles dates and times (standard library).
+
+<PythonExample
+  filename="datetime.py"
+  code={`from datetime import date, datetime
+
+today = date.today()
+print(today)
+print(today.year, today.month, today.day)
+
+now = datetime.now()
+print(now)
+print(now.hour, now.minute)`}
+/>
+
+## Create a specific date
+
+<PythonExample
+  filename="create.py"
+  code={`from datetime import date
+
+birthday = date(2000, 5, 15)
+print(birthday)
+print(birthday.strftime("%B %d, %Y"))`}
+/>
+
+## Timedelta — date math
+
+<PythonExample
+  filename="delta.py"
+  code={`from datetime import date, timedelta
+
+today = date.today()
+in_one_week = today + timedelta(days=7)
+print(today)
+print(in_one_week)`}
+/>
+
+## Compare dates
+
+<PythonExample
+  filename="compare.py"
+  code={`from datetime import date
+
+a = date(2024, 1, 1)
+b = date(2024, 6, 1)
+print(a < b)`}
+/>
+
+<Callout variant="note">
+  For time zones, use `datetime.timezone` or the third-party `zoneinfo` module (Python 3.9+). Start with naive `date`/`datetime` first.
+</Callout>
+
+<Callout variant="tip">
+  Store dates in ISO format strings (`"2024-05-23"`) in databases and JSON when you do not need time-of-day.
+</Callout>

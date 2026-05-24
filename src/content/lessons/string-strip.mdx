@@ -1,0 +1,52 @@
+---
+title: "strip()"
+description: "Remove whitespace with strip(), lstrip(), and rstrip()."
+order: 12
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+**`strip()`** removes whitespace from the **start and end** of a string (spaces, tabs, newlines).
+
+<PythonExample
+  filename="strip.py"
+  code={`text = "   Hello, Python!   "
+clean = text.strip()
+print(repr(clean))`}
+/>
+
+`repr()` shows quotes so you can see spaces are gone.
+
+## lstrip() and rstrip()
+
+<PythonExample
+  filename="sides.py"
+  code={`line = ">>> prompt "
+print(line.lstrip("> "))
+print(line.rstrip())`}
+/>
+
+## strip characters
+
+Pass characters to remove from the ends:
+
+<PythonExample
+  filename="chars.py"
+  code={`price = "$19.99"
+print(price.strip("$"))`}
+/>
+
+## Clean user input
+
+<PythonExample
+  filename="input_clean.py"
+  code={`raw = "  yes  \\n"
+cleaned = raw.strip().lower()
+print(cleaned)`}
+/>
+
+<Callout variant="tip">
+  Always `strip()` text from forms or files before comparing or storing.
+</Callout>

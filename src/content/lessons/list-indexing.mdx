@@ -1,0 +1,90 @@
+---
+title: "Access list items"
+description: "Use indexes, slicing, and negative indexes to access list items."
+order: 31
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+Access a list item by its **index** in square brackets:
+
+<PythonExample
+  filename="access.py"
+  code={`colors = ["red", "green", "blue"]
+print(colors[0])
+print(colors[1])
+print(colors[2])`}
+/>
+
+## Change an item
+
+Lists are **mutable** — assign to an index to update:
+
+<PythonExample
+  filename="change.py"
+  code={`colors = ["red", "green", "blue"]
+colors[1] = "yellow"
+print(colors)`}
+/>
+
+## Negative indexes
+
+<PythonExample
+  filename="negative.py"
+  code={`items = [10, 20, 30, 40, 50]
+print(items[-1])
+print(items[-2])
+print(items[len(items) - 1])`}
+/>
+
+## Slicing
+
+`[start:end]` — `end` is **not** included:
+
+<PythonExample
+  filename="slice.py"
+  code={`nums = [0, 1, 2, 3, 4, 5]
+print(nums[1:4])
+print(nums[:3])
+print(nums[2:])
+print(nums[:])`}
+/>
+
+## Step in slices
+
+<PythonExample
+  filename="step.py"
+  code={`nums = [0, 1, 2, 3, 4, 5]
+print(nums[::2])
+print(nums[1::2])
+print(nums[::-1])`}
+/>
+
+## Slicing creates a copy
+
+<PythonExample
+  filename="slice_copy.py"
+  code={`original = [1, 2, 3]
+part = original[0:2]
+part[0] = 99
+print("original:", original)
+print("part:", part)`}
+/>
+
+## Check if an item exists
+
+<PythonExample
+  filename="in_list.py"
+  code={`fruits = ["apple", "banana"]
+print("apple" in fruits)
+print("grape" in fruits)`}
+/>
+
+<Callout variant="warning" title="Index out of range">
+  `colors[99]` raises **`IndexError`**. Valid indexes: `0` through `len(colors) - 1`.
+</Callout>
+
+<Callout variant="danger">
+  You cannot use `colors[3] = "x"` to grow a list — use `append()` or `insert()` instead.
+</Callout>

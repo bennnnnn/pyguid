@@ -1,0 +1,59 @@
+---
+title: "find() and replace()"
+description: "Search and replace text with find() and replace()."
+order: 15
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+## find()
+
+**`find(substring)`** returns the **index** of the first match, or **`-1`** if not found (no error).
+
+<PythonExample
+  filename="find.py"
+  code={`text = "Learn Python"
+print(text.find("Python"))
+print(text.find("Java"))`}
+/>
+
+## index() vs find()
+
+**`index()`** works like `find()` but raises **`ValueError`** if missing:
+
+<PythonExample
+  filename="index.py"
+  code={`text = "hello"
+print(text.find("z"))
+try:
+    print(text.index("z"))
+except ValueError as e:
+    print("Error:", e)`}
+/>
+
+## replace()
+
+**`replace(old, new)`** returns a new string with replacements:
+
+<PythonExample
+  filename="replace.py"
+  code={`msg = "I like cats"
+print(msg.replace("cats", "dogs"))
+print(msg)`}
+/>
+
+## Count replacements
+
+<PythonExample
+  filename="count_replace.py"
+  code={`data = "ha ha ha"
+print(data.replace("ha", "ho", 2))`}
+/>
+
+Third argument limits how many replacements.
+
+<Callout variant="tip">
+  Use `in` for a quick yes/no check: `if "@" in email:`.
+</Callout>

@@ -1,0 +1,41 @@
+---
+title: "keys()"
+description: "Get all keys from a dictionary with keys()."
+order: 49
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+**`keys()`** returns a view of all **keys** in a dictionary:
+
+<PythonExample
+  filename="keys.py"
+  code={`person = {"name": "Ada", "age": 36, "city": "London"}
+print(person.keys())
+print(list(person.keys()))`}
+/>
+
+## Loop over keys
+
+<PythonExample
+  filename="loop_keys.py"
+  code={`scores = {"math": 90, "english": 85, "science": 92}
+for subject in scores.keys():
+    print(subject)`}
+/>
+
+`for subject in scores:` is the same — loops over keys by default.
+
+## Check if a key exists
+
+<PythonExample
+  filename="in_key.py"
+  code={`user = {"name": "Sam", "role": "admin"}
+print("name" in user)
+print("email" in user)`}
+/>
+
+<Callout variant="note">
+  `keys()` updates if you add or remove keys while looping — use `list(d.keys())` for a fixed snapshot.
+</Callout>

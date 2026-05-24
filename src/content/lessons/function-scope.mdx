@@ -1,0 +1,78 @@
+---
+title: "Variable scope"
+description: "Understand local and global variables in functions."
+order: 58
+chapter: 12
+chapterTitle: "Functions"
+level: beginner
+---
+
+**Scope** is where a variable name can be used.
+
+## Local variables
+
+Variables created inside a function are **local** — they exist only inside that function:
+
+<PythonExample
+  filename="local.py"
+  code={`def greet():
+    message = "Hello"
+    print(message)
+
+greet()
+# print(message)  # would error outside greet`}
+/>
+
+## Parameters are local
+
+<PythonExample
+  filename="param_local.py"
+  code={`def double(n):
+    n = n * 2
+    return n
+
+x = 5
+print(double(x))
+print(x)`}
+/>
+
+`x` outside the function is unchanged.
+
+## Global variables (read)
+
+Functions can **read** global variables:
+
+<PythonExample
+  filename="read_global.py"
+  code={`tax_rate = 0.08
+
+def price_with_tax(amount):
+    return amount + amount * tax_rate
+
+print(price_with_tax(100))`}
+/>
+
+## global keyword (use sparingly)
+
+To **change** a global variable inside a function:
+
+<PythonExample
+  filename="global_kw.py"
+  code={`counter = 0
+
+def increment():
+    global counter
+    counter += 1
+
+increment()
+increment()
+print(counter)`}
+/>
+
+<Callout variant="warning">
+  Relying on many global variables makes programs hard to debug. Prefer passing values as parameters and returning results.
+</Callout>
+
+<Callout variant="tip">
+  If a function needs many globals, consider passing a dictionary or a small class later.
+</Callout>

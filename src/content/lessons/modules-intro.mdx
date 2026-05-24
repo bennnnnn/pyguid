@@ -1,0 +1,58 @@
+---
+title: "Import modules"
+description: "Use import to load Python's built-in and external modules."
+order: 59
+chapter: 13
+chapterTitle: "Modules"
+level: beginner
+---
+
+A **module** is reusable Python code you **import** — including Python’s built-in **standard library** (math, random, dates, and more).
+
+## Import a whole module
+
+<PythonExample
+  filename="import_math.py"
+  code={`import math
+
+print(math.sqrt(16))
+print(math.pi)`}
+/>
+
+## Import specific names
+
+<PythonExample
+  filename="from_import.py"
+  code={`from math import sqrt, floor
+
+print(sqrt(25))
+print(floor(3.9))`}
+/>
+
+## Alias with as
+
+<PythonExample
+  filename="alias.py"
+  code={`import math as m
+
+print(m.pow(2, 3))`}
+/>
+
+## The random module
+
+<PythonExample
+  filename="random.py"
+  code={`import random
+
+print(random.randint(1, 6))
+items = ["apple", "banana", "cherry"]
+print(random.choice(items))`}
+/>
+
+<Callout variant="note">
+  Skulpt includes many standard modules like `math` and `random`. Some advanced modules are not available in the browser runner.
+</Callout>
+
+<Callout variant="tip">
+  Prefer `import math` over `from math import *` — star imports dump many names into your file and can cause name clashes.
+</Callout>

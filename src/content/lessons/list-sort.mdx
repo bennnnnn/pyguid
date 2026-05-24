@@ -1,0 +1,69 @@
+---
+title: "sort()"
+description: "Sort a list in place with sort() and sorted()."
+order: 38
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`sort()`** sorts a list **in place** — smallest to largest by default.
+
+<PythonExample
+  filename="sort.py"
+  code={`scores = [88, 72, 95, 64, 85]
+scores.sort()
+print(scores)`}
+/>
+
+## Reverse order
+
+<PythonExample
+  filename="sort_reverse.py"
+  code={`nums = [3, 1, 4, 1, 5]
+nums.sort(reverse=True)
+print(nums)`}
+/>
+
+## Sort strings alphabetically
+
+<PythonExample
+  filename="sort_strings.py"
+  code={`names = ["Charlie", "ada", "Ben"]
+names.sort()
+print(names)`}
+/>
+
+Sorting is **case-sensitive** (`"Ben"` before `"ada"`). For case-insensitive sort:
+
+<PythonExample
+  filename="sort_key.py"
+  code={`names = ["Charlie", "ada", "Ben"]
+names.sort(key=str.lower)
+print(names)`}
+/>
+
+## sorted() — new list
+
+**`sorted(iterable)`** returns a **new** sorted list and leaves the original unchanged:
+
+<PythonExample
+  filename="sorted.py"
+  code={`original = [3, 1, 2]
+ordered = sorted(original)
+print("original:", original)
+print("ordered:", ordered)`}
+/>
+
+| Function | Changes original? | Returns |
+| -------- | ----------------- | ------- |
+| `.sort()` | Yes | `None` |
+| `sorted()` | No | new list |
+
+<Callout variant="warning">
+  You cannot sort a list that mixes incompatible types, like `[1, "two"]` — Python raises **`TypeError`**.
+</Callout>
+
+<Callout variant="tip">
+  Use `sort()` when you no longer need the old order. Use `sorted()` when you need both versions.
+</Callout>

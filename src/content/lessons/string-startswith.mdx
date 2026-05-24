@@ -1,0 +1,46 @@
+---
+title: "startswith() and endswith()"
+description: "Check how a string begins or ends."
+order: 16
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+## startswith()
+
+Returns **`True`** or **`False`**:
+
+<PythonExample
+  filename="startswith.py"
+  code={`filename = "report_2024.pdf"
+print(filename.startswith("report"))
+print(filename.startswith("invoice"))
+
+if filename.endswith(".pdf"):
+    print("PDF file")`}
+/>
+
+## Check multiple prefixes
+
+Pass a **tuple** of options:
+
+<PythonExample
+  filename="tuple.py"
+  code={`url = "https://example.com"
+if url.startswith(("http://", "https://")):
+    print("Web URL")`}
+/>
+
+## endswith()
+
+<PythonExample
+  filename="endswith.py"
+  code={`name = "photo.PNG"
+print(name.lower().endswith((".png", ".jpg", ".gif")))`}
+/>
+
+<Callout variant="tip">
+  Combine with `lower()` when file extensions might be uppercase.
+</Callout>

@@ -1,0 +1,47 @@
+---
+title: "items()"
+description: "Get key-value pairs with items() for looping."
+order: 51
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+**`items()`** returns `(key, value)` pairs — best for looping when you need both:
+
+<PythonExample
+  filename="items.py"
+  code={`person = {"name": "Ada", "age": 36}
+print(person.items())`}
+/>
+
+## Loop with items()
+
+<PythonExample
+  filename="loop_items.py"
+  code={`prices = {"apple": 1.2, "banana": 0.8}
+for fruit, price in prices.items():
+    print(f"{fruit}: {price} USD")`}
+/>
+
+## Unpacking each pair
+
+<PythonExample
+  filename="unpack.py"
+  code={`config = {"theme": "dark", "lang": "en", "notifications": True}
+for key, value in config.items():
+    print(key, "->", value)`}
+/>
+
+## Convert to a list of tuples
+
+<PythonExample
+  filename="list_items.py"
+  code={`data = {"a": 1, "b": 2}
+pairs = list(data.items())
+print(pairs)`}
+/>
+
+<Callout variant="tip">
+  Prefer `items()` over looping keys and then using `dict[key]` — it is clearer and slightly more efficient.
+</Callout>

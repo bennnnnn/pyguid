@@ -1,0 +1,71 @@
+---
+title: "Regular expressions"
+description: "Match text patterns with the re module."
+order: 74
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+**Regular expressions** (regex) describe text patterns. Python’s **`re`** module searches and replaces text.
+
+<PythonExample
+  filename="search.py"
+  code={`import re
+
+text = "My email is ada@example.com"
+match = re.search(r"\\w+@\\w+\\.\\w+", text)
+if match:
+    print("Found:", match.group())`}
+/>
+
+## Common patterns
+
+| Pattern | Meaning        |
+| ------- | -------------- |
+| `\\d`   | digit          |
+| `\\w`   | word character |
+| `\\s`   | whitespace     |
+| `.`     | any character  |
+| `+`     | one or more    |
+| `*`     | zero or more   |
+
+<PythonExample
+  filename="digits.py"
+  code={`import re
+
+text = "Order 42 ships in 3 days"
+numbers = re.findall(r"\\d+", text)
+print(numbers)`}
+/>
+
+## replace()
+
+<PythonExample
+  filename="replace.py"
+  code={`import re
+
+phone = "555-123-4567"
+clean = re.sub(r"-", "", phone)
+print(clean)`}
+/>
+
+## Compile for reuse
+
+<PythonExample
+  filename="compile.py"
+  code={`import re
+
+pattern = re.compile(r"^\\d{3}-\\d{4}$")
+print(bool(pattern.match("555-1234")))`}
+/>
+
+<Callout variant="warning">
+  Regex can get hard to read quickly. For simple tasks, try `in`, `.startswith()`, or `.split()` first.
+</Callout>
+
+<Callout variant="tip">
+  Raw strings `r"\\d+"` avoid doubling backslashes in patterns.
+</Callout>
+
+You have reached the end of the **PyGuide Python tutorial**. Review any section in the sidebar, run examples, and build small projects on your computer to practice.

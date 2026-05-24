@@ -1,0 +1,90 @@
+---
+title: "The print() function"
+description: "Display text and numbers with print() in Python."
+order: 2
+chapter: 1
+chapterTitle: "Getting Started"
+level: beginner
+---
+
+The built-in **`print()`** function sends output to the screen. It is the fastest way to see what your program is doing — and you will use it in almost every lesson.
+
+## Print text
+
+Put **text** inside quotes (single `'` or double `"`):
+
+<PythonExample
+  filename="hello.py"
+  code={`print("Hello, Python!")
+print('Single quotes work too')`}
+/>
+
+## Print numbers
+
+**Numbers** do not use quotes:
+
+<PythonExample
+  filename="numbers.py"
+  code={`print(42)
+print(3.14)
+print(10 + 5)`}
+/>
+
+## Print several values at once
+
+Separate items with **commas**. `print()` puts a **space** between them:
+
+<PythonExample
+  filename="multiple.py"
+  code={`print("The answer is", 42)
+print(2, "+", 2, "=", 2 + 2)`}
+/>
+
+## Blank lines
+
+Call `print()` with nothing inside to print an empty line:
+
+<PythonExample
+  filename="blank.py"
+  code={`print("Line 1")
+print()
+print("Line 3")`}
+/>
+
+## Control spacing: sep and end
+
+- **`sep`** — what goes **between** items (default is a space)  
+- **`end`** — what goes **at the end** of the line (default is a new line)  
+
+<PythonExample
+  filename="sep_end.py"
+  code={`print("apple", "banana", "cherry", sep=", ")
+print("Loading", end="...")
+print(" done")`}
+/>
+
+## Special characters in text
+
+Inside strings, some characters need a backslash:
+
+| Code | Meaning |
+| ---- | ------- |
+| `\n` | New line |
+| `\t` | Tab |
+| `\"` | Quote inside a double-quoted string |
+
+<PythonExample
+  filename="escape.py"
+  code={`print("Line one\\nLine two")
+print("She said \\"Hello\\"")`}
+/>
+
+<Callout variant="warning" title="Quotes matter">
+  `print("42")` is **text**. `print(42)` is a **number**. They look similar in the output but behave differently later in the course.
+</Callout>
+
+<Callout variant="danger" title="Common mistake">
+  `print(hello)` without quotes makes Python look for a variable named `hello`. You will learn variables in the next chapter. For now, put text in quotes.
+</Callout>
+
+Next: **How code runs** — why order of lines matters.

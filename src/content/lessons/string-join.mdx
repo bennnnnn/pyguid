@@ -1,0 +1,54 @@
+---
+title: "join()"
+description: "Combine a list of strings with str.join()."
+order: 14
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+**`join()`** is called on the **separator** string. It joins a list of strings into one string.
+
+<PythonExample
+  filename="join.py"
+  code={`words = ["Python", "is", "great"]
+sentence = " ".join(words)
+print(sentence)`}
+/>
+
+## Different separators
+
+<PythonExample
+  filename="separators.py"
+  code={`items = ["2024", "05", "23"]
+print("-".join(items))
+print(", ".join(["a", "b", "c"]))`}
+/>
+
+## join() after split()
+
+<PythonExample
+  filename="roundtrip.py"
+  code={`original = "one,two,three"
+parts = original.split(",")
+restored = ",".join(parts)
+print(restored)`}
+/>
+
+## All items must be strings
+
+<PythonExample
+  filename="str_first.py"
+  code={`nums = [1, 2, 3]
+text = "-".join(str(n) for n in nums)
+print(text)`}
+/>
+
+<Callout variant="danger">
+  `"-".join([1, 2, 3])` raises **`TypeError`** — convert numbers with `str()` first.
+</Callout>
+
+<Callout variant="tip">
+  `join()` is often faster and clearer than many `+` operations in a loop.
+</Callout>

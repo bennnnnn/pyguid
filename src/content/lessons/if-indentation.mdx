@@ -1,0 +1,108 @@
+---
+title: "The if statement"
+description: "Run code only when a condition is true using if and indentation."
+order: 24
+chapter: 6
+chapterTitle: "If Statements"
+level: beginner
+---
+
+An **`if`** statement runs a block of code **only when** a condition is `True` — the main way Python makes decisions.
+
+## Basic syntax
+
+1. Write `if` followed by a condition  
+2. End the line with a **colon** `:`  
+3. Indent the block below (usually **4 spaces**)  
+
+<PythonExample
+  filename="if_basic.py"
+  code={`age = 18
+
+if age >= 18:
+    print("You are an adult")
+    print("Welcome")`}
+/>
+
+Lines at the normal indent level run **before** and **after** the `if`, whether or not the condition is true:
+
+<PythonExample
+  filename="flow.py"
+  code={`score = 50
+print("Checking score...")
+
+if score >= 60:
+    print("Pass")
+
+print("Done")`}
+/>
+
+When `score` is 50, you only see “Checking score…” and “Done”.
+
+## When the condition is false
+
+If the test is false, Python **skips** the indented block:
+
+<PythonExample
+  filename="false_branch.py"
+  code={`temperature = 10
+
+if temperature > 30:
+    print("Very hot")
+
+print("Program continues")`}
+/>
+
+## Indentation rules
+
+<Callout variant="danger" title="Indentation errors">
+  All lines in the same block must use the **same** indentation. Mixing tabs and spaces, or using 2 spaces on one line and 4 on the next, causes `IndentationError`.
+</Callout>
+
+<PythonExample
+  filename="indent.py"
+  code={`logged_in = True
+
+if logged_in:
+    print("Hello")
+    print("Dashboard ready")`}
+/>
+
+## One-line body (optional)
+
+For a very short block, some code uses a single line after the colon. In this course, prefer the indented block — it scales better:
+
+<PythonExample
+  filename="oneline.py"
+  code={`n = 7
+if n % 2 == 0:
+    print("Even")`}
+/>
+
+## Nested if
+
+You can put an `if` inside another `if`:
+
+<PythonExample
+  filename="nested.py"
+  code={`age = 20
+has_license = True
+
+if age >= 18:
+    if has_license:
+        print("You may drive")
+    else:
+        print("You need a license")
+else:
+    print("Too young to drive")`}
+/>
+
+<Callout variant="warning">
+  In the example above, the inner block uses 4 spaces inside the outer block’s 4 spaces (8 total). Stay consistent — most editors insert 4 spaces per Tab.
+</Callout>
+
+<Callout variant="tip">
+  If nested `if` statements get deep, consider combining conditions with `and`: `if age >= 18 and has_license:`.
+</Callout>
+
+Next: **`elif`** and **`else`** for multiple branches.

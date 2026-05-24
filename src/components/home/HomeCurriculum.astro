@@ -1,0 +1,57 @@
+---
+import type { LessonGroup } from "../../lib/lessons";
+import { lessonUrl } from "../../lib/lessons";
+
+interface Props {
+  groups: LessonGroup[];
+}
+
+const { groups } = Astro.props;
+---
+
+<section class="home-section" id="curriculum">
+  <div class="home-container">
+    <div class="home-section-head">
+      <h2>15 topics · 52 lessons</h2>
+      <p>
+        A structured path from your first <code>print()</code> to classes, files, and JSON. Open the full course
+        to browse every lesson.
+      </p>
+    </div>
+
+    <div class="home-curriculum-grid">
+      {
+        groups.map((group) => {
+          const first = group.lessons[0];
+          const last = group.lessons[group.lessons.length - 1];
+          return (
+            <article class="home-curriculum-summary">
+              <h3>{group.chapterTitle}</h3>
+              <p class="home-curriculum-meta">{group.lessons.length} lessons</p>
+              {first && last && (
+                <p class="home-curriculum-range">
+                  {first.data.title}
+                  {group.lessons.length > 1 && ` → ${last.data.title}`}
+                </p>
+              )}
+              <div class="home-curriculum-actions">
+                {first && (
+                  <a href={lessonUrl(first.id)} class="text-link text-sm font-semibold hover:underline">
+                    Start section
+                  </a>
+                )}
+                <a href="/python/" class="text-sm text-text-muted hover:text-text-secondary">
+                  All lessons
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <p class="home-curriculum-footer">
+      <a href="/python/" class="btn-primary">Open full course outline</a>
+    </p>
+  </div>
+</section>

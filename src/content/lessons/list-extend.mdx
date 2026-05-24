@@ -1,0 +1,74 @@
+---
+title: "extend()"
+description: "Add all items from another list with extend()."
+order: 33
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`extend()`** adds **each item** from an iterable (usually another list) to the end of your list.
+
+Compare **`append()`** vs **`extend()`**:
+
+<PythonExample
+  filename="compare.py"
+  code={`a = [1, 2]
+b = [3, 4]
+
+a.append(b)
+print("append:", a)
+
+c = [1, 2]
+d = [3, 4]
+c.extend(d)
+print("extend:", c)`}
+/>
+
+- `append(b)` adds the whole list as **one element**: `[1, 2, [3, 4]]`  
+- `extend(d)` adds **3** and **4** separately: `[1, 2, 3, 4]`  
+
+## Extend with a string
+
+Strings are iterable — `extend()` adds each character:
+
+<PythonExample
+  filename="extend_str.py"
+  code={`letters = ["a", "b"]
+letters.extend("cd")
+print(letters)`}
+/>
+
+Usually you want `extend(["c", "d"])` or `append("cd")` for whole strings.
+
+## Combine lists
+
+<PythonExample
+  filename="combine.py"
+  code={`first = ["Ada", "Ben"]
+second = ["Cara", "Dan"]
+first.extend(second)
+print(first)`}
+/>
+
+## extend() vs + operator
+
+`combined = list1 + list2` creates a **new** list. `extend()` changes the existing list:
+
+<PythonExample
+  filename="plus_vs_extend.py"
+  code={`x = [1, 2]
+y = [3, 4]
+x.extend(y)
+print(x)
+
+a = [1, 2]
+b = [3, 4]
+c = a + b
+print(a)
+print(c)`}
+/>
+
+<Callout variant="note">
+  `extend()` returns `None`, like `append()`.
+</Callout>

@@ -1,0 +1,55 @@
+---
+title: "in and not in"
+description: "Check whether text contains a substring."
+order: 17
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+The **`in`** operator tests whether a substring appears in a string:
+
+<PythonExample
+  filename="in.py"
+  code={`email = "user@example.com"
+print("@" in email)
+print("password" in email)`}
+/>
+
+## not in
+
+<PythonExample
+  filename="not_in.py"
+  code={`word = "Python"
+if " " not in word:
+    print("Single word")`}
+/>
+
+## Use in conditions
+
+<PythonExample
+  filename="validate.py"
+  code={`username = "ada42"
+if username.isalnum() and " " not in username:
+    print("Valid username format")`}
+/>
+
+## Loop over characters
+
+<PythonExample
+  filename="chars.py"
+  code={`for letter in "abc":
+    print(letter)`}
+/>
+
+## Membership vs find()
+
+| Check | Code |
+| ----- | ---- |
+| Exists? | `"py" in text` |
+| Position? | `text.find("py")` |
+
+<Callout variant="note">
+  `in` is the Pythonic way to ask “is this substring here?”
+</Callout>

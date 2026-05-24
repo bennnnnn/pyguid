@@ -1,0 +1,49 @@
+---
+title: "clear()"
+description: "Remove all items from a list with clear()."
+order: 37
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`clear()`** removes **all** items from a list. The list still exists but is empty.
+
+<PythonExample
+  filename="clear.py"
+  code={`nums = [1, 2, 3, 4, 5]
+nums.clear()
+print(nums)
+print(len(nums))`}
+/>
+
+## clear() vs new empty list
+
+<PythonExample
+  filename="same_reference.py"
+  code={`a = [1, 2, 3]
+b = a
+a.clear()
+print(b)`}
+/>
+
+Both `a` and `b` point to the **same** list — it is now empty.
+
+Assigning `a = []` creates a **new** list; `b` would still reference the old one:
+
+<PythonExample
+  filename="new_list.py"
+  code={`a = [1, 2, 3]
+b = a
+a = []
+print("a:", a)
+print("b:", b)`}
+/>
+
+<Callout variant="tip">
+  Use `clear()` when other variables reference the same list and should see it become empty.
+</Callout>
+
+<Callout variant="note">
+  `clear()` returns `None`. Same effect as `del items[:]` but more readable.
+</Callout>

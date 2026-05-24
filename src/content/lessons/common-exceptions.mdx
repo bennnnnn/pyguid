@@ -1,0 +1,97 @@
+---
+title: "Common exceptions"
+description: "Recognize frequent Python error types and how to fix them."
+order: 62
+chapter: 14
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+Knowing exception **names** helps you read tracebacks and write better `except` blocks.
+
+## ValueError
+
+Wrong **value**, right type:
+
+<PythonExample
+  filename="value_error.py"
+  code={`try:
+    int("abc")
+except ValueError as e:
+    print("ValueError:", e)`}
+/>
+
+## TypeError
+
+Wrong **type** for an operation:
+
+<PythonExample
+  filename="type_error.py"
+  code={`try:
+    result = "5" + 5
+except TypeError as e:
+    print("TypeError:", e)`}
+/>
+
+## IndexError and KeyError
+
+<PythonExample
+  filename="index_key.py"
+  code={`items = [1, 2, 3]
+data = {"a": 1}
+
+try:
+    print(items[10])
+except IndexError:
+    print("Bad list index")
+
+try:
+    print(data["z"])
+except KeyError:
+    print("Bad dict key")`}
+/>
+
+## AttributeError
+
+<PythonExample
+  filename="attr.py"
+  code={`text = "hello"
+try:
+    text.append("!")
+except AttributeError:
+    print("Strings have no append — use + or join")`}
+/>
+
+## Store the error with as
+
+<PythonExample
+  filename="as_e.py"
+  code={`try:
+    1 / 0
+except ZeroDivisionError as e:
+    print(type(e).__name__)
+    print(e)`}
+/>
+
+## raise your own
+
+<PythonExample
+  filename="raise.py"
+  code={`def set_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    return age
+
+try:
+    set_age(-1)
+except ValueError as e:
+    print(e)`}
+/>
+
+<Callout variant="tip">
+  Read the **last line** of a traceback first — it often states the exception type and message. Scroll up for the line number in your file.
+</Callout>
+
+<Callout variant="note">
+  In development, letting an error crash can be fine — you fix the bug. In apps for users, catch expected errors and show helpful messages.
+</Callout>

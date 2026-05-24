@@ -1,0 +1,56 @@
+---
+title: "Python dictionaries"
+description: "Store key-value pairs with dictionaries."
+order: 47
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+A **dictionary** (`dict`) maps **keys** to **values** — like `"name"` → `"Ada"` instead of list index `0`, `1`, `2`. Keys are unique; values can be any type.
+
+<PythonExample
+  filename="dict.py"
+  code={`person = {
+    "name": "Ada",
+    "age": 36,
+    "city": "London"
+}
+print(person)
+print(person["name"])`}
+/>
+
+## Keys and values
+
+Keys are often strings, but numbers and tuples can work if they are immutable:
+
+<PythonExample
+  filename="keys.py"
+  code={`scores = {"math": 90, "english": 85, "science": 92}
+print(scores["math"])`}
+/>
+
+## Create with dict()
+
+<PythonExample
+  filename="dict_func.py"
+  code={`colors = dict(red="#ff0000", green="#00ff00")
+print(colors)`}
+/>
+
+## Empty dictionary
+
+<PythonExample
+  filename="empty.py"
+  code={`cache = {}
+cache["user_1"] = "Ada"
+print(cache)`}
+/>
+
+<Callout variant="tip">
+  Use a dict when you look up values by a name or ID: user profiles, product prices, settings, word counts.
+</Callout>
+
+<Callout variant="danger" title="Missing keys">
+  `person["email"]` fails if `"email"` is not a key. Use `.get()` for safe access (next page).
+</Callout>

@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import TutorialTopNav from "../components/TutorialTopNav.astro";
+import LearnSidebar from "../components/LearnSidebar.astro";
+import ReferenceSidebar from "../components/ReferenceSidebar.astro";
+import SidebarScripts from "../components/SidebarScripts.astro";
+import PythonExampleScripts from "../components/PythonExampleScripts.astro";
+import TutorialFooter from "../components/TutorialFooter.astro";
+import SignInModal from "../components/SignInModal.astro";
+import type { LessonGroup } from "../lib/lessons";
+import { SITE } from "../lib/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  groups: LessonGroup[];
+  currentLessonId?: string;
+  sidebar?: "learn" | "reference";
+}
+
+const {
+  title = `Learn Python — ${SITE.name}`,
+  description = SITE.description,
+  groups,
+  currentLessonId,
+  sidebar = "learn",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <TutorialTopNav />
+    <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+    <div class="mx-auto flex w-full max-w-[1500px] flex-1 flex-col lg:flex-row">
+      {sidebar === "reference" ? (
+        <ReferenceSidebar />
+      ) : (
+        <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
+      )}
+      <div class="flex min-w-0 flex-1 flex-col bg-surface">
+        <main class="flex-1 px-4 py-8 sm:px-10 lg:px-12">
+          <slot />
+        </main>
+        <TutorialFooter />
+      </div>
+    </div>
+    <SidebarScripts />
+    <PythonExampleScripts />
+    <SignInModal />
+  </body>
+</html>

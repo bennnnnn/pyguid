@@ -1,0 +1,65 @@
+---
+title: "append()"
+description: "Add an item to the end of a Python list with append()."
+order: 32
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+The **`append()`** method adds **one item** to the **end** of a list. The list changes in place (no new list is created).
+
+<PythonExample
+  filename="append.py"
+  code={`fruits = ["apple", "banana"]
+fruits.append("cherry")
+print(fruits)`}
+/>
+
+## Append different types
+
+You can append any object — number, string, or even another list:
+
+<PythonExample
+  filename="append_types.py"
+  code={`nums = [1, 2, 3]
+nums.append(4)
+nums.append("five")
+print(nums)
+
+nested = [1, 2]
+nested.append([3, 4])
+print(nested)`}
+/>
+
+Appending a list adds it as **one element** (a nested list). To merge lists, use **`extend()`** (next lesson).
+
+## Build a list in a loop
+
+<PythonExample
+  filename="append_loop.py"
+  code={`squares = []
+for n in range(1, 6):
+    squares.append(n * n)
+print(squares)`}
+/>
+
+## Return value
+
+`append()` returns **`None`**. It modifies the list directly:
+
+<PythonExample
+  filename="append_none.py"
+  code={`items = ["a"]
+result = items.append("b")
+print(result)
+print(items)`}
+/>
+
+<Callout variant="tip">
+  Use `append()` when you add items one at a time to the end — shopping cart items, log lines, or scores after each round.
+</Callout>
+
+<Callout variant="warning">
+  `append()` takes exactly **one** argument. To add multiple top-level items, call `append()` several times or use `extend()`.
+</Callout>

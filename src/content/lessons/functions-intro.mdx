@@ -1,0 +1,66 @@
+---
+title: "Define functions"
+description: "Create reusable blocks of code with def and function calls."
+order: 55
+chapter: 12
+chapterTitle: "Functions"
+level: beginner
+---
+
+A **function** is a named block of code you write **once** and **call** whenever you need it — greet a user, format a price, validate input.
+
+Define with **`def`**, then call by name with `()`:
+
+<PythonExample
+  filename="hello_func.py"
+  code={`def greet():
+    print("Hello from a function")
+
+greet()
+greet()`}
+/>
+
+## Parameters
+
+Pass data **into** the function:
+
+<PythonExample
+  filename="params.py"
+  code={`def greet(name):
+    print(f"Hello, {name}")
+
+greet("Ada")
+greet("Lin")`}
+/>
+
+## Multiple parameters
+
+<PythonExample
+  filename="multi.py"
+  code={`def add(a, b):
+    print(a + b)
+
+add(3, 5)
+add(10, 20)`}
+/>
+
+## return (preview)
+
+Functions can **send a value back** with `return` — covered on the next pages.
+
+<PythonExample
+  filename="return_preview.py"
+  code={`def double(n):
+    return n * 2
+
+result = double(7)
+print(result)`}
+/>
+
+<Callout variant="tip">
+  If a block of code appears twice, turn it into a function. Change it in one place later.
+</Callout>
+
+<Callout variant="note">
+  Code inside a function runs only when you **call** it. Defining a function does not run its body.
+</Callout>

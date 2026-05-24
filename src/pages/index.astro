@@ -1,90 +1,175 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ChapterCard from "../components/ChapterCard.astro";
-import PythonExample from "../components/PythonExample.astro";
-import { getAllChapters, chapterId, chapterUrl } from "../lib/chapters";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import HomeCurriculum from "../components/home/HomeCurriculum.astro";
+import { getLessonGroups } from "../lib/lessons";
 import { SITE } from "../lib/site";
+import "../styles/home.css";
 
-const chapters = await getAllChapters();
-const first = chapters[0];
+const groups = await getLessonGroups();
+const lessonCount = groups.reduce((n, g) => n + g.lessons.length, 0);
+const sectionCount = groups.length;
+const firstLesson = groups[0]?.lessons[0];
 ---
 
-<BaseLayout>
-  <section class="border-b border-ink-200 bg-white">
-    <div
-      class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:py-24"
-    >
+<SiteLayout
+  title={`${SITE.name} — Free Python Tutorial with Runnable Examples`}
+  description="Learn Python from scratch with 50+ free lessons. Run code in your browser, copy examples, and use the syntax reference — no install required."
+>
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="home-container home-hero-inner">
       <div>
-        <p
-          class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700"
-        >
-          Free · No account required · Sign in with Google optional
+        <p class="home-eyebrow">Free · No install · Run code in the browser</p>
+        <h1>Learn Python. Practice instantly.</h1>
+        <p class="home-hero-lead">
+          {SITE.name} is a complete beginner-friendly Python course — short lessons, real examples, and a
+          <strong>Run code</strong> button on every page so you see output without leaving the browser.
         </p>
-        <h1 class="text-4xl font-bold leading-tight tracking-tight text-ink-900 md:text-5xl">
-          Learn Python the simple way
-        </h1>
-        <p class="mt-5 text-lg leading-relaxed text-ink-600">
-          Short lessons, clear examples, and a one-click <strong class="font-semibold text-ink-800"
-            >Run</strong
-          > button on every snippet — see the output instantly, then copy the code to your editor.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          {
-            first && (
-              <a
-                href={chapterUrl(chapterId(first))}
-                class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
-              >
-                Chapter 1 — {first.data.title}
-              </a>
-            )
-          }
-          <a
-            href="/learn/"
-            class="rounded-lg border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50"
-          >
-            View all chapters
-          </a>
+        <div class="home-hero-actions">
+          <a href="/python/what-is-python/" class="btn-primary">Start learning free</a>
+          <a href="/python/" class="btn-secondary">Browse all lessons</a>
         </div>
-        <p class="mt-8 text-sm text-ink-600">
-          <button
-            type="button"
-            id="open-signin-hero"
-            class="font-semibold text-brand-700 underline-offset-2 hover:underline"
-          >
-            Sign in with Google
-          </button>
-          to save progress across devices — or keep browsing without an account.
-        </p>
+        <dl class="home-stats">
+          <div class="home-stat">
+            <strong>{lessonCount}</strong>
+            <span>step-by-step lessons</span>
+          </div>
+          <div class="home-stat">
+            <strong>{sectionCount}</strong>
+            <span>topics from basics to OOP</span>
+          </div>
+          <div class="home-stat">
+            <strong>0</strong>
+            <span>setup required to begin</span>
+          </div>
+        </dl>
       </div>
-      <PythonExample
-        filename="hello.py"
-        code={`print("Hello, Python!")
-name = "PyGuide"
-print(f"Welcome to {name}")`}
-      />
+
+      <div class="home-code-panel" aria-hidden="true">
+        <div class="home-code-titlebar">
+          <span class="home-code-dot"></span>
+          <span class="home-code-dot"></span>
+          <span class="home-code-dot"></span>
+          <span class="home-code-filename">hello.py</span>
+        </div>
+        <pre class="home-code-body"><code><span style="color:#c678dd">print</span>(<span style="color:#98c379">"Hello, PyGuide!"</span>)
+<span style="color:#c678dd">print</span>(<span style="color:#d19a66">2</span> + <span style="color:#d19a66">2</span>)
+name = <span style="color:#98c379">"Python"</span>
+<span style="color:#c678dd">print</span>(<span style="color:#98c379">f"Welcome to </span><span style="color:#e5c07b">{</span>name<span style="color:#e5c07b">}</span><span style="color:#98c379">"</span>)</code></pre>
+        <pre class="home-code-output">Hello, PyGuide!
+4
+Welcome to Python</pre>
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <div class="mb-10">
-      <h2 class="text-2xl font-bold text-ink-900">Chapters</h2>
-      <p class="mt-1 text-ink-600">
-        Read in order — each chapter lists its sub-topics so you know what is inside
+  <!-- Features -->
+  <section class="home-section">
+    <div class="home-container">
+      <div class="home-section-head">
+        <h2>Built for how you actually learn</h2>
+        <p>Clear writing, runnable code, and a path that mirrors professional courses — without the clutter.</p>
+      </div>
+      <ul class="home-features">
+        <li class="home-feature">
+          <div class="home-feature-icon" aria-hidden="true">▶</div>
+          <h3>Run code on every page</h3>
+          <p>Press Run on any example. Output appears below — copy, edit, and experiment in seconds.</p>
+        </li>
+        <li class="home-feature">
+          <div class="home-feature-icon" aria-hidden="true">1</div>
+          <h3>One topic per lesson</h3>
+          <p>Short pages focused on a single idea. Use Back and Next to move through the course in order.</p>
+        </li>
+        <li class="home-feature">
+          <div class="home-feature-icon" aria-hidden="true">≡</div>
+          <h3>Sidebar navigation</h3>
+          <p>Jump to lists, loops, functions, classes, and more. Learn and Reference stay separate.</p>
+        </li>
+        <li class="home-feature">
+          <div class="home-feature-icon" aria-hidden="true">✓</div>
+          <h3>Free to use</h3>
+          <p>No paywall on lessons. Optional sign-in later to save progress — the course stays open.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="home-section">
+    <div class="home-container">
+      <div class="home-section-head">
+        <h2>How it works</h2>
+        <p>Three steps from zero to writing your own programs.</p>
+      </div>
+      <ol class="home-steps">
+        <li class="home-step">
+          <h3>Pick a lesson</h3>
+          <p>Start at What is Python? or open any topic in the sidebar — Getting Started, Variables, Loops, and beyond.</p>
+        </li>
+        <li class="home-step">
+          <h3>Read and run</h3>
+          <p>Each page explains one concept with examples. Run them in the browser to see Python in action.</p>
+        </li>
+        <li class="home-step">
+          <h3>Keep going</h3>
+          <p>Use Back and Next at the bottom of each lesson. Check the Reference when you need a syntax reminder.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Learn vs Reference -->
+  <section class="home-section">
+    <div class="home-container">
+      <div class="home-section-head">
+        <h2>Two ways to use {SITE.name}</h2>
+        <p>Deep learning when you have time; quick lookup when you are coding.</p>
+      </div>
+      <div class="home-paths">
+        <a href="/python/" class="home-path-card">
+          <h3>Learn Python</h3>
+          <p>
+            Full tutorial with explanations, tips, warnings, and exercises you run on the page. Best for beginners
+            and anyone revisiting fundamentals.
+          </p>
+          <span class="home-path-link">Open the course →</span>
+        </a>
+        <a href="/python/reference/" class="home-path-card">
+          <h3>Reference</h3>
+          <p>
+            Compact syntax reminders for strings, lists, dictionaries, loops, functions, and classes — when you
+            already know the idea and need a nudge.
+          </p>
+          <span class="home-path-link">Open reference →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full curriculum (dynamic) -->
+  <HomeCurriculum groups={groups} />
+
+  <!-- Final CTA -->
+  <section class="home-cta">
+    <div class="home-container">
+      <h2>Ready to write Python?</h2>
+      <p>
+        Start with <code style="background:rgba(255,255,255,0.15);padding:0.15rem 0.4rem;border-radius:0.25rem;border:none">print()</code>
+        and work through lists, loops, functions, files, and classes at your own pace.
       </p>
-    </div>
-    <div class="grid gap-4 lg:grid-cols-2">
-      {chapters.map((chapter) => (
-        <ChapterCard chapter={chapter} />
-      ))}
+      <div class="home-cta-actions">
+        {
+          firstLesson ? (
+            <a href={`/python/${firstLesson.id}/`} class="btn-primary">
+              Start with {firstLesson.data.title}
+            </a>
+          ) : (
+            <a href="/python/" class="btn-primary">Start the course</a>
+          )
+        }
+        <a href="/python/reference/" class="btn-secondary">Syntax reference</a>
+      </div>
     </div>
   </section>
-</BaseLayout>
-
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE.name,
-  description: SITE.description,
-  url: SITE.url,
-})} />
+</SiteLayout>

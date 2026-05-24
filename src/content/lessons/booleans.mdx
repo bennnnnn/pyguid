@@ -1,0 +1,66 @@
+---
+title: "Booleans"
+description: "Use True and False for yes-or-no logic in Python."
+order: 20
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+So far in this chapter you have studied **numbers** (`int`, `float`) and **text** (`str`). The third essential type answers **yes or no** questions.
+
+A **boolean** (`bool`) has only **two possible values**:
+
+- **`True`** — yes, on, correct, success  
+- **`False`** — no, off, incorrect, failure  
+
+There is no third boolean value. Every condition eventually boils down to true or false.
+
+## What booleans are for
+
+Programs constantly ask questions:
+
+- Is the user logged in?  
+- Is the password correct?  
+- Is the score above 60?  
+- Should we show the discount?  
+
+The answers are booleans. You will combine them with **`and`**, **`or`**, and **`not`** in **Logical Operators**, then use them in **`if`** statements in **If Statements** (after **Comparisons**).
+
+<PythonExample
+  filename="why.py"
+  code={`age = 20
+is_adult = age >= 18
+print(is_adult)
+print(type(is_adult))`}
+/>
+
+Expressions like `age >= 18` use **comparison operators** (`==`, `!=`, `<`, `>`, `<=`, `>=`) and produce a **boolean** — not a number or string. You will learn all of them in the next lesson.
+
+<PythonExample
+  filename="bools.py"
+  code={`is_active = True
+is_admin = False
+print(is_active)
+print(is_admin)`}
+/>
+
+<Callout variant="danger" title="Capital letters required">
+  Write `True` and `False` with a capital T and F. `true` and `false` are **not** valid in Python and will cause errors.
+</Callout>
+
+## Storing a boolean
+
+You can save the result of a comparison in a variable (operators are taught in **Comparisons**):
+
+<PythonExample
+  filename="stored.py"
+  code={`temperature = 30
+is_hot = temperature > 25
+print(is_hot)
+print(type(is_hot))`}
+/>
+
+<Callout variant="tip">
+  Name boolean variables as questions: `is_valid`, `has_permission`, `can_edit`. That makes `if can_edit:` read like English.
+</Callout>

@@ -1,0 +1,64 @@
+---
+title: "Printing variables"
+description: "Display variables with print(), commas, and f-strings."
+order: 8
+chapter: 2
+chapterTitle: "Variables"
+level: beginner
+---
+
+Pass a variable to **`print()`** to show its value:
+
+<PythonExample
+  filename="print_var.py"
+  code={`name = "Ada"
+print(name)`}
+/>
+
+## Mix text and variables
+
+Use commas to combine text and variables — `print()` adds a space between items:
+
+<PythonExample
+  filename="comma.py"
+  code={`name = "Ada"
+age = 36
+print("Name:", name)
+print("Age:", age)`}
+/>
+
+## f-strings (recommended)
+
+An **f-string** starts with `f` before the quotes. Put expressions inside `{curly braces}`:
+
+<PythonExample
+  filename="fstring.py"
+  code={`name = "Ada"
+age = 36
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Next year: {age + 1}")`}
+/>
+
+You can put math and other expressions inside `{}`.
+
+## Concatenation with +
+
+You can join strings with `+`, but every part must be a string:
+
+<PythonExample
+  filename="concat.py"
+  code={`greeting = "Hello, "
+name = "Ada"
+print(greeting + name)`}
+/>
+
+<Callout variant="tip">
+  Prefer **f-strings** for readable messages. They are the modern Python style for building text with variables.
+</Callout>
+
+<Callout variant="warning" title="Numbers and +">
+  `"Age: " + age` fails if `age` is a number. Use `f"Age: {age}"` or `print("Age:", age)` instead.
+</Callout>
+
+You have finished the **Variables** section. Next up: **data types** — strings, numbers, and booleans in more detail.

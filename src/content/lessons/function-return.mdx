@@ -1,0 +1,76 @@
+---
+title: "Return values"
+description: "Send results back from functions with return."
+order: 57
+chapter: 12
+chapterTitle: "Functions"
+level: beginner
+---
+
+**`return`** ends the function and optionally sends a value to the caller:
+
+<PythonExample
+  filename="return.py"
+  code={`def add(a, b):
+    return a + b
+
+result = add(3, 5)
+print(result)`}
+/>
+
+## return without a value
+
+Returns `None`:
+
+<PythonExample
+  filename="return_none.py"
+  code={`def log(message):
+    print(message)
+    return
+
+x = log("Done")
+print(x)`}
+/>
+
+## Multiple values as a tuple
+
+<PythonExample
+  filename="multiple.py"
+  code={`def min_max(numbers):
+    return min(numbers), max(numbers)
+
+low, high = min_max([3, 1, 4, 1, 5])
+print(low, high)`}
+/>
+
+## Early return
+
+<PythonExample
+  filename="early.py"
+  code={`def absolute(n):
+    if n < 0:
+        return -n
+    return n
+
+print(absolute(5))
+print(absolute(-5))`}
+/>
+
+## Use return in real logic
+
+<PythonExample
+  filename="is_even.py"
+  code={`def is_even(n):
+    return n % 2 == 0
+
+print(is_even(4))
+print(is_even(7))`}
+/>
+
+<Callout variant="danger">
+  Code after `return` in the same block does not run. Put cleanup before `return` or use multiple return paths carefully.
+</Callout>
+
+<Callout variant="tip">
+  Functions that **return** data are easier to test than functions that only `print`. Callers decide what to do with the result.
+</Callout>

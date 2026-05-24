@@ -1,0 +1,39 @@
+---
+title: "values()"
+description: "Get all values from a dictionary with values()."
+order: 50
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+**`values()`** returns a view of all **values**:
+
+<PythonExample
+  filename="values.py"
+  code={`person = {"name": "Ada", "age": 36, "city": "London"}
+print(person.values())
+print(list(person.values()))`}
+/>
+
+## Loop over values
+
+<PythonExample
+  filename="loop_values.py"
+  code={`prices = {"apple": 1.2, "banana": 0.8, "cherry": 2.5}
+for price in prices.values():
+    print(price)`}
+/>
+
+## Sum or max of values
+
+<PythonExample
+  filename="aggregate.py"
+  code={`scores = {"math": 90, "english": 85, "science": 92}
+print(sum(scores.values()))
+print(max(scores.values()))`}
+/>
+
+<Callout variant="warning">
+  Values can repeat — keys cannot. `values()` may return duplicates across keys only if two keys map to the same value.
+</Callout>

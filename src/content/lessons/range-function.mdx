@@ -1,0 +1,71 @@
+---
+title: "The range() function"
+description: "Generate number sequences for loops with range()."
+order: 28
+chapter: 7
+chapterTitle: "Loops"
+level: beginner
+---
+
+**`range()`** produces a sequence of numbers for loops. It is memory-efficient and very common.
+
+## range(stop)
+
+Numbers from `0` up to (but not including) `stop`:
+
+<PythonExample
+  filename="range_stop.py"
+  code={`for i in range(5):
+    print(i)`}
+/>
+
+## range(start, stop)
+
+<PythonExample
+  filename="range_start.py"
+  code={`for i in range(2, 6):
+    print(i)`}
+/>
+
+## range(start, stop, step)
+
+<PythonExample
+  filename="range_step.py"
+  code={`for i in range(0, 10, 2):
+    print(i)
+
+for i in range(5, 0, -1):
+    print(i)`}
+/>
+
+## Convert to a list
+
+`range` is not a list, but you can wrap it:
+
+<PythonExample
+  filename="list_range.py"
+  code={`nums = list(range(1, 6))
+print(nums)`}
+/>
+
+## Common patterns
+
+<PythonExample
+  filename="patterns.py"
+  code={`# Print 10 times
+for _ in range(10):
+    print("Hello")
+
+# Indexes 0..len-1
+items = ["a", "b", "c"]
+for i in range(len(items)):
+    print(i, items[i])`}
+/>
+
+<Callout variant="note">
+  `_` as a variable name means “I do not need this value” — common in `for _ in range(n):`.
+</Callout>
+
+<Callout variant="tip">
+  Prefer `for item in items:` over `for i in range(len(items)):` unless you need the index for something else.
+</Callout>

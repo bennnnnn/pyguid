@@ -1,0 +1,62 @@
+---
+title: "Packages and pip"
+description: "How Python packages work and how pip installs libraries."
+order: 60
+chapter: 13
+chapterTitle: "Modules"
+level: beginner
+---
+
+A **package** is a folder of modules. Large libraries (requests, pandas, etc.) are installed as packages.
+
+## Standard library
+
+Python ships with many modules — no install needed:
+
+- `math` — math functions  
+- `random` — random numbers  
+- `datetime` — dates and times  
+- `json` — JSON data (covered later)  
+
+You already used `import math` in the first lesson of this chapter.
+
+## pip — install from the internet
+
+On your own computer (not in this browser course), you install extra packages with **pip**:
+
+```text
+pip install requests
+```
+
+Then in code:
+
+```python
+import requests
+```
+
+<Callout variant="note">
+  **PyGuide’s Run button** cannot install packages from the internet. Examples here use the standard library or code you write. On your machine, open a terminal and use `pip` when a tutorial mentions an external library.
+</Callout>
+
+## Your own modules
+
+Split code into files:
+
+- `helpers.py` — functions you wrote  
+- `main.py` — `import helpers`  
+
+<PythonExample
+  filename="concept.py"
+  code={`# Imagine helpers.py defines:
+# def shout(text):
+#     return text.upper()
+
+def shout(text):
+    return text.upper()
+
+print(shout("hello"))`}
+/>
+
+<Callout variant="tip">
+  Keep one clear responsibility per file. Small projects can start as one file; grow into modules when files get long.
+</Callout>

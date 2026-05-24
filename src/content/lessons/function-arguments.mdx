@@ -1,0 +1,80 @@
+---
+title: "Function arguments"
+description: "Use default values, keyword arguments, and arbitrary argument lists."
+order: 56
+chapter: 12
+chapterTitle: "Functions"
+level: beginner
+---
+
+## Default parameter values
+
+<PythonExample
+  filename="default.py"
+  code={`def greet(name, greeting="Hello"):
+    print(f"{greeting}, {name}")
+
+greet("Ada")
+greet("Ada", "Hi")`}
+/>
+
+Defaults must come **after** parameters without defaults.
+
+## Keyword arguments
+
+Pass values by **parameter name** — order does not matter:
+
+<PythonExample
+  filename="keyword.py"
+  code={`def describe(pet, age, color):
+    print(f"{pet}, age {age}, color {color}")
+
+describe(age=3, pet="cat", color="black")`}
+/>
+
+## Mix position and keyword
+
+Position first, then keywords:
+
+<PythonExample
+  filename="mix.py"
+  code={`def power(base, exponent=2):
+    return base ** exponent
+
+print(power(3))
+print(power(3, 3))
+print(power(base=2, exponent=5))`}
+/>
+
+## *args — many positional values
+
+<PythonExample
+  filename="args.py"
+  code={`def total(*numbers):
+    sum = 0
+    for n in numbers:
+        sum += n
+    return sum
+
+print(total(1, 2, 3))
+print(total(10, 20))`}
+/>
+
+## **kwargs — many keyword values
+
+<PythonExample
+  filename="kwargs.py"
+  code={`def show_info(**info):
+    for key, value in info.items():
+        print(key, value)
+
+show_info(name="Ada", role="dev")`}
+/>
+
+<Callout variant="warning">
+  Mutable defaults (like `def f(items=[]):`) are a common trap. Use `None` and create the list inside the function when you learn advanced patterns.
+</Callout>
+
+<Callout variant="tip">
+  For beginners, stick to simple parameters and one or two defaults. `*args` and `**kwargs` help when building flexible APIs.
+</Callout>

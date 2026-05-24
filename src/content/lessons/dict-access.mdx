@@ -1,0 +1,47 @@
+---
+title: "Access dictionaries"
+description: "Get, change, add, and remove dictionary items safely."
+order: 48
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+## Get values
+
+Bracket notation:
+
+<PythonExample
+  filename="brackets.py"
+  code={`user = {"name": "Sam", "role": "admin"}
+print(user["name"])`}
+/>
+
+The next lessons cover **`get()`**, **`pop()`**, and **`update()`** in detail.
+
+## Change and add
+
+<PythonExample
+  filename="change.py"
+  code={`user = {"name": "Sam", "age": 30}
+user["age"] = 31
+user["email"] = "sam@example.com"
+print(user)`}
+/>
+
+## Check keys
+
+<PythonExample
+  filename="in_dict.py"
+  code={`user = {"name": "Sam"}
+print("name" in user)
+print("id" in user)`}
+/>
+
+<Callout variant="warning">
+  Do not use `if key in user: user[key]` when `user.get(key)` is enough for a default value.
+</Callout>
+
+<Callout variant="tip">
+  `pop("key", default)` removes a key if present and returns its value, or returns `default` without error.
+</Callout>

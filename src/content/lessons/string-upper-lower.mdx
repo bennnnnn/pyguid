@@ -1,0 +1,61 @@
+---
+title: "upper() and lower()"
+description: "Change string case with upper(), lower(), and title()."
+order: 11
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+String methods return a **new string** — the original is unchanged (strings are immutable).
+
+## upper()
+
+<PythonExample
+  filename="upper.py"
+  code={`msg = "Hello, Python"
+print(msg.upper())
+print(msg)`}
+/>
+
+## lower()
+
+<PythonExample
+  filename="lower.py"
+  code={`email = "User@Example.COM"
+print(email.lower())`}
+/>
+
+Useful for **case-insensitive** comparisons:
+
+<PythonExample
+  filename="compare.py"
+  code={`answer = "YES"
+if answer.lower() == "yes":
+    print("Confirmed")`}
+/>
+
+## title() and capitalize()
+
+<PythonExample
+  filename="title.py"
+  code={`name = "ada lovelace"
+print(name.title())
+print(name.capitalize())`}
+/>
+
+- `title()` — capitalizes each word  
+- `capitalize()` — only the first character of the whole string  
+
+## swapcase()
+
+<PythonExample
+  filename="swap.py"
+  code={`text = "PyThOn"
+print(text.swapcase())`}
+/>
+
+<Callout variant="note">
+  Assign the result if you need to keep it: `msg = msg.lower()`.
+</Callout>

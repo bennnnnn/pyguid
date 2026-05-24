@@ -1,0 +1,88 @@
+---
+interface Props {
+  variant?: "note" | "tip" | "warning" | "danger";
+  title?: string;
+}
+
+const { variant = "note", title } = Astro.props;
+
+const labels: Record<NonNullable<Props["variant"]>, string> = {
+  note: "Note",
+  tip: "Tip",
+  warning: "Warning",
+  danger: "Danger",
+};
+
+const heading = title ?? labels[variant];
+---
+
+<aside class:list={["callout not-prose", `callout-${variant}`]} role="note">
+  <p class="callout-label">{heading}</p>
+  <div class="callout-body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-left-width: 4px;
+    background: var(--color-surface-alt);
+  }
+
+  .callout-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .callout-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .callout-body :global(p) {
+    margin: 0;
+  }
+
+  .callout-body :global(p + p) {
+    margin-top: 0.75rem;
+  }
+
+  .callout-note {
+    border-left-color: #64748b;
+  }
+  .callout-note .callout-label {
+    color: #475569;
+  }
+
+  .callout-tip {
+    border-left-color: #059669;
+    background: #f0fdf4;
+  }
+  .callout-tip .callout-label {
+    color: #047857;
+  }
+
+  .callout-warning {
+    border-left-color: #d97706;
+    background: #fffbeb;
+  }
+  .callout-warning .callout-label {
+    color: #b45309;
+  }
+
+  .callout-danger {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+  }
+  .callout-danger .callout-label {
+    color: #b91c1c;
+  }
+</style>

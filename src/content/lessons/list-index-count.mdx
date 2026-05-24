@@ -1,0 +1,71 @@
+---
+title: "index() and count()"
+description: "Find positions and counts in a list with index() and count()."
+order: 41
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+## count()
+
+**`count(value)`** returns how many times `value` appears:
+
+<PythonExample
+  filename="count.py"
+  code={`letters = ["a", "b", "a", "c", "a"]
+print(letters.count("a"))
+print(letters.count("z"))`}
+/>
+
+`count("z")` returns `0` — no error.
+
+## index()
+
+**`index(value)`** returns the **index of the first** match:
+
+<PythonExample
+  filename="index.py"
+  code={`fruits = ["apple", "banana", "cherry", "banana"]
+print(fruits.index("banana"))
+print(fruits.index("cherry"))`}
+/>
+
+## ValueError if not found
+
+<PythonExample
+  filename="index_safe.py"
+  code={`items = [10, 20, 30]
+if 25 in items:
+    print(items.index(25))
+else:
+    print("25 not in list")`}
+/>
+
+## Start search at a position
+
+`index(value, start)` and `index(value, start, stop)` limit the search range:
+
+<PythonExample
+  filename="index_start.py"
+  code={`nums = [1, 2, 3, 2, 1]
+print(nums.index(2))
+print(nums.index(2, 2))`}
+/>
+
+## len() reminder
+
+**`len(list)`** is the number of items — not a method on the list, but used constantly:
+
+<PythonExample
+  filename="len.py"
+  code={`data = [10, 20, 30, 40]
+print(len(data))
+print(data[len(data) - 1])`}
+/>
+
+Last item: `data[-1]` is simpler than `data[len(data)-1]`.
+
+<Callout variant="tip">
+  Use `count()` before `remove()` when you need to know if a value exists more than once.
+</Callout>

@@ -1,0 +1,65 @@
+---
+title: "Loop through dictionaries"
+description: "Patterns for iterating over dictionary data."
+order: 54
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+You have learned `keys()`, `values()`, and `items()`. Here are common **loop patterns**.
+
+## Keys only
+
+<PythonExample
+  filename="keys.py"
+  code={`student = {"name": "Lin", "grade": "A", "year": 2}
+for field in student:
+    print(field)`}
+/>
+
+## Values only
+
+<PythonExample
+  filename="values.py"
+  code={`temperatures = {"Mon": 22, "Tue": 25, "Wed": 19}
+for temp in temperatures.values():
+    print(temp)`}
+/>
+
+## Keys and values (best)
+
+<PythonExample
+  filename="items.py"
+  code={`inventory = {"apple": 50, "banana": 30, "cherry": 10}
+for item, count in inventory.items():
+    print(f"{item}: {count} in stock")`}
+/>
+
+## Build a new dictionary
+
+<PythonExample
+  filename="build.py"
+  code={`scores = {"math": 40, "english": 85, "art": 92}
+passed = {}
+for subject, score in scores.items():
+    if score >= 60:
+        passed[subject] = score
+print(passed)`}
+/>
+
+## Nested dictionaries
+
+<PythonExample
+  filename="nested.py"
+  code={`users = {
+    "u1": {"name": "Ada", "active": True},
+    "u2": {"name": "Ben", "active": False}
+}
+for user_id, info in users.items():
+    print(user_id, info["name"], info["active"])`}
+/>
+
+<Callout variant="note">
+  Do not add or remove keys while looping over `dict.keys()` directly — iterate over `list(d.keys())` if you need to modify the dict in the loop.
+</Callout>

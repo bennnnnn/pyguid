@@ -1,0 +1,64 @@
+---
+title: "Classes and objects"
+description: "Create classes and objects for grouping data and behavior."
+order: 63
+chapter: 15
+chapterTitle: "Classes"
+level: beginner
+---
+
+A **class** is a blueprint; an **object** is one instance — for example, a `Dog` class and `buddy = Dog()`. This groups **data** and **behavior** together.
+
+## Your first class
+
+<PythonExample
+  filename="class_basic.py"
+  code={`class Dog:
+    pass
+
+buddy = Dog()
+bella = Dog()
+print(buddy)
+print(bella)`}
+/>
+
+## The __init__ method
+
+**`__init__`** runs when you create an object. It sets up attributes:
+
+<PythonExample
+  filename="init.py"
+  code={`class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+buddy = Dog("Buddy", 4)
+print(buddy.name)
+print(buddy.age)`}
+/>
+
+`self` refers to the current object.
+
+## Instance attributes
+
+<PythonExample
+  filename="attrs.py"
+  code={`class User:
+    def __init__(self, username):
+        self.username = username
+        self.active = True
+
+u = User("ada_lovelace")
+print(u.username)
+u.active = False
+print(u.active)`}
+/>
+
+<Callout variant="note">
+  `self` must be the first parameter of instance methods. Python passes the object automatically when you call `buddy.bark()`.
+</Callout>
+
+<Callout variant="tip">
+  Use a class when several values belong together (a user, a product, a bank account) and share behavior.
+</Callout>

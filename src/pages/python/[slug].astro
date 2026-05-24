@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from "astro:content";
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import LessonPager from "../../components/LessonPager.astro";
+import PythonExample from "../../components/PythonExample.astro";
+import Callout from "../../components/Callout.astro";
+import OperatorTable from "../../components/OperatorTable.astro";
+import { getAllLessons, getLessonGroups, getAdjacentLessons } from "../../lib/lessons";
+import { SITE } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const lessons = await getCollection("lessons");
+  return lessons.map((lesson) => ({
+    params: { slug: lesson.id },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect("/python/");
+
+const groups = await getLessonGroups();
+const lessons = await getAllLessons();
+const lesson = lessons.find((l) => l.id === slug);
+if (!lesson) return Astro.redirect("/python/");
+
+const { Content } = await render(lesson);
+const { prev, next } = getAdjacentLessons(lessons, slug);
+
+const pageTitle = `${lesson.data.title} — ${SITE.name}`;
+---
+
+<TutorialLayout
+  title={pageTitle}
+  description={lesson.data.description}
+  groups={groups}
+  currentLessonId={slug}
+>
+  <article class="lesson-prose">
+    <p class="!mt-0 text-sm text-text-muted">
+      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <span class="mx-1.5">/</span>
+      <a href="/python/" class="text-link no-underline hover:underline">Python</a>
+      <span class="mx-1.5">/</span>
+      <span>{lesson.data.chapterTitle}</span>
+      {
+        lesson.data.section && (
+          <>
+            <span class="mx-1.5">/</span>
+            <span>{lesson.data.section}</span>
+          </>
+        )
+      }
+    </p>
+    <h1>{lesson.data.title}</h1>
+    <Content components={{ PythonExample, Callout, OperatorTable }} />
+    <LessonPager prev={prev} next={next} />
+  </article>
+</TutorialLayout>

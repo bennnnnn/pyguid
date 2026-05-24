@@ -1,0 +1,58 @@
+---
+title: "List comprehensions"
+description: "Build lists in one line with list comprehensions."
+order: 69
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+A **list comprehension** builds a new list in one readable line:
+
+```python
+[expression for item in iterable]
+```
+
+<PythonExample
+  filename="basic.py"
+  code={`numbers = [1, 2, 3, 4, 5]
+doubled = [n * 2 for n in numbers]
+print(doubled)`}
+/>
+
+## With a condition
+
+<PythonExample
+  filename="filter.py"
+  code={`numbers = [1, 2, 3, 4, 5, 6]
+evens = [n for n in numbers if n % 2 == 0]
+print(evens)`}
+/>
+
+## Transform strings
+
+<PythonExample
+  filename="strings.py"
+  code={`words = ["hello", "world"]
+upper = [w.upper() for w in words]
+print(upper)`}
+/>
+
+## Nested comprehension (careful)
+
+<PythonExample
+  filename="nested.py"
+  code={`matrix = [[1, 2], [3, 4]]
+flat = [num for row in matrix for num in row]
+print(flat)`}
+/>
+
+## When not to use them
+
+<Callout variant="warning">
+  If a comprehension gets long or has many `if`/`for` clauses, a regular `for` loop is clearer.
+</Callout>
+
+<Callout variant="tip">
+  Comprehensions often replace: create empty list → loop → append. They are idiomatic Python for simple transforms.
+</Callout>

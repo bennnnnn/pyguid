@@ -1,0 +1,74 @@
+---
+title: "try and except"
+description: "Handle errors gracefully with try and except."
+order: 61
+chapter: 14
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+**Error handling** lets your program respond when something fails instead of crashing. When something goes wrong, Python raises an **exception**. Without handling, the program stops.
+
+**`try` / `except`** catches errors so your program can continue or show a friendly message:
+
+<PythonExample
+  filename="try_basic.py"
+  code={`try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+print("Program continues")`}
+/>
+
+## Catch a specific error
+
+<PythonExample
+  filename="value_error.py"
+  code={`text = "hello"
+try:
+    number = int(text)
+except ValueError:
+    print("Not a valid number")`}
+/>
+
+## Multiple except blocks
+
+<PythonExample
+  filename="multiple.py"
+  code={`def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+    except TypeError:
+        return None
+
+print(safe_divide(10, 2))
+print(safe_divide(10, 0))`}
+/>
+
+## else and finally
+
+- **`else`** — runs if no exception occurred  
+- **`finally`** — always runs (cleanup)  
+
+<PythonExample
+  filename="else_finally.py"
+  code={`try:
+    value = int("42")
+except ValueError:
+    print("Bad input")
+else:
+    print("Parsed:", value)
+finally:
+    print("Done")`}
+/>
+
+<Callout variant="warning">
+  Do not use bare `except:` that catches everything unless you re-raise or log — it hides bugs. Catch specific exception types.
+</Callout>
+
+<Callout variant="tip">
+  Use try/except around risky operations: parsing user input, division, file access, network calls.
+</Callout>

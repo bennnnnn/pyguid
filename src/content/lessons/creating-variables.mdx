@@ -1,0 +1,41 @@
+---
+title: "Creating variables"
+description: "Store values in variables with the = operator in Python."
+order: 5
+chapter: 2
+chapterTitle: "Variables"
+level: beginner
+---
+
+A **variable** is a named place to store a value (a score, a name, a total) so you can reuse it in your program. You create one with the **`=`** operator (assignment).
+
+<PythonExample
+  filename="variables.py"
+  code={`age = 25
+name = "Ada"
+print(name)
+print(age)`}
+/>
+
+Read it as: “`age` **is** 25” and “`name` **is** `"Ada"`”.
+
+## The name and the value
+
+- The **variable name** goes on the left (`age`, `name`).
+- The **value** goes on the right (`25`, `"Ada"`).
+
+<PythonExample
+  filename="more.py"
+  code={`city = "London"
+year = 2024
+print(city)
+print(year)`}
+/>
+
+<Callout variant="note">
+  A variable is not a fixed box with one type forever. The same name can hold text, then a number later — but only one value at a time.
+</Callout>
+
+<Callout variant="tip">
+  Choose names that describe the data: `price`, `username`, `is_logged_in`. That makes programs easier to read than names like `x` or `a1`.
+</Callout>

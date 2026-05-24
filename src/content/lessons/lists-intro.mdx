@@ -1,0 +1,93 @@
+---
+title: "Python lists"
+description: "Create lists to store multiple values in one variable."
+order: 30
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+A **list** stores **many values** in one variable — ordered, changeable, and indexed from `0`. This chapter covers creating lists, accessing items, and methods like `append()` and `sort()`.
+
+A **list** stores multiple values in a single variable. Lists are:
+
+- **Ordered** — items keep their position  
+- **Mutable** — you can add, remove, and change items  
+- **Indexed** — each item has a position starting at `0`  
+
+Create a list with square brackets `[]`:
+
+<PythonExample
+  filename="lists.py"
+  code={`fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = ["hello", 42, True]
+
+print(fruits)
+print(len(fruits))
+print(type(fruits))`}
+/>
+
+## Lists can mix types
+
+Python allows different types in one list (one type per list is often clearer):
+
+<PythonExample
+  filename="mixed.py"
+  code={`item = ["book", 12.99, 3]
+print(item[0])
+print(item[1])`}
+/>
+
+## Nested lists
+
+A list can contain other lists — useful for grids or tables:
+
+<PythonExample
+  filename="nested.py"
+  code={`matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print(matrix[0])
+print(matrix[1][2])`}
+/>
+
+## Empty lists
+
+<PythonExample
+  filename="empty.py"
+  code={`tasks = []
+print(len(tasks))
+tasks.append("Learn lists")
+print(tasks)`}
+/>
+
+## Check membership
+
+<PythonExample
+  filename="in_list.py"
+  code={`colors = ["red", "green", "blue"]
+print("red" in colors)
+print("yellow" in colors)`}
+/>
+
+## What you will learn in this chapter
+
+| Topic | Methods / ideas |
+| ----- | ---------------- |
+| Access | `[0]`, slicing, negative indexes |
+| Add | `append()`, `extend()`, `insert()` |
+| Remove | `remove()`, `pop()`, `clear()` |
+| Order | `sort()`, `reverse()` |
+| Search | `index()`, `count()` |
+| Copy | `.copy()`, `[:]` |
+
+<Callout variant="tip">
+  Use lists for ordered collections: shopping items, high scores, lines of text, or steps in a process.
+</Callout>
+
+<Callout variant="note">
+  List indexes start at **0**. The last item is index `-1`.
+</Callout>

@@ -1,0 +1,65 @@
+---
+import { SITE } from "../lib/site";
+
+const path = Astro.url.pathname;
+const isHome = path === "/" || path === "";
+const isLearn =
+  path === "/python" ||
+  path === "/python/" ||
+  (path.startsWith("/python/") && !path.startsWith("/python/reference"));
+const isReference = path.startsWith("/python/reference");
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-nav-bg">
+  <div class="mx-auto flex h-14 max-w-[1500px] items-center gap-2 px-3 sm:gap-3 sm:px-4">
+    {
+      !isHome && (
+        <button
+          type="button"
+          id="sidebar-toggle"
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border text-text-secondary hover:bg-surface-alt lg:hidden"
+          aria-label="Open course menu"
+          aria-expanded="false"
+          aria-controls="tutorial-sidebar"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      )
+    }
+
+    <a
+      href="/"
+      class:list={["flex min-w-0 shrink items-center gap-2 no-underline sm:gap-2.5", isHome && "ring-2 ring-border ring-offset-2"]}
+      aria-current={isHome ? "page" : undefined}
+    >
+      <span
+        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand font-mono text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm"
+        >Py</span
+      >
+      <span class="truncate text-base font-bold text-text sm:text-lg">{SITE.name}</span>
+    </a>
+
+    <nav class="flex min-w-0 flex-1 items-center justify-center gap-0.5 sm:gap-1" aria-label="Main">
+      <a href="/python/" class:list={["topnav-link text-xs sm:text-sm", isLearn && "is-active"]}>Learn</a>
+      <a href="/python/reference/" class:list={["topnav-link text-xs sm:text-sm", isReference && "is-active"]}>
+        Reference
+      </a>
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+      <button
+        type="button"
+        id="open-signin"
+        class="hidden rounded-lg px-2 py-2 text-xs font-medium text-text-muted transition-colors hover:bg-surface-alt hover:text-text-secondary md:inline md:px-3 md:text-sm"
+        title="Sign-in coming soon"
+      >
+        Sign in soon
+      </button>
+      <a href="/python/what-is-python/" class="btn-primary whitespace-nowrap px-3 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm">
+        Get started
+      </a>
+    </div>
+  </div>
+</header>

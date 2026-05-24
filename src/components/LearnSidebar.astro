@@ -1,0 +1,141 @@
+---
+import type { LessonGroup } from "../lib/lessons";
+import {
+  getChapterNavItems,
+  groupContainsLesson,
+  lessonUrl,
+  sectionHasActiveLesson,
+} from "../lib/lessons";
+
+interface Props {
+  groups: LessonGroup[];
+  currentLessonId?: string;
+}
+
+const { groups, currentLessonId } = Astro.props;
+
+function chapterIsOpen(group: LessonGroup): boolean {
+  return groupContainsLesson(group, currentLessonId ?? "");
+}
+
+let activeTitle = "";
+if (currentLessonId) {
+  for (const group of groups) {
+    for (const item of getChapterNavItems(group)) {
+      if (item.kind === "lesson" && item.lesson.id === currentLessonId) {
+        activeTitle = item.lesson.data.title;
+        break;
+      }
+      if (item.kind === "section") {
+        const lesson = item.section.lessons.find((l) => l.id === currentLessonId);
+        if (lesson) {
+          activeTitle = lesson.data.title;
+          break;
+        }
+      }
+    }
+    if (activeTitle) break;
+  }
+}
+
+function sectionSlug(title: string): string {
+  return title.replace(/\s+/g, "-").toLowerCase();
+}
+---
+
+<aside
+  id="tutorial-sidebar"
+  class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
+>
+  <div class="border-b border-border px-4 py-3">
+    <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">Learn Python</p>
+    {
+      activeTitle && (
+        <p class="sidebar-current-lesson mt-1 truncate text-sm font-medium text-text" title={activeTitle}>
+          {activeTitle}
+        </p>
+      )
+    }
+  </div>
+
+  <nav class="py-2" aria-label="Tutorial lessons">
+    <ul class="m-0 list-none p-0">
+      {
+        groups.map((group) => {
+          const isOpen = chapterIsOpen(group);
+          const groupId = `chapter-${group.chapter}`;
+          const items = getChapterNavItems(group);
+          return (
+            <li class:list={["menu-group", "chapter-group", isOpen && "is-open"]}>
+              <button
+                type="button"
+                class="menu-trigger flex w-full items-center justify-between gap-2 px-4 py-2.5 text-left text-sm font-semibold"
+                aria-expanded={isOpen}
+                aria-controls={`${groupId}-content`}
+              >
+                <span>{group.chapterTitle}</span>
+                <svg class="menu-icon h-4 w-4 shrink-0 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
+                {
+                  items.map((item) => {
+                    if (item.kind === "lesson") {
+                      return (
+                        <li>
+                          <a
+                            href={lessonUrl(item.lesson.id)}
+                            class:list={[
+                              "lesson-link block py-2 pl-8 pr-4 text-sm",
+                              currentLessonId === item.lesson.id && "is-active",
+                            ]}
+                          >
+                            {item.lesson.data.title}
+                          </a>
+                        </li>
+                      );
+                    }
+                    const section = item.section;
+                    const sectionOpen = sectionHasActiveLesson(section, currentLessonId);
+                    const sectionId = `${groupId}-section-${sectionSlug(section.title)}`;
+                    return (
+                      <li class:list={["menu-group", "section-group", sectionOpen && "is-open"]}>
+                        <button
+                          type="button"
+                          class="section-trigger flex w-full items-center justify-between gap-2 py-2 pl-8 pr-4 text-left text-sm font-medium text-text-secondary"
+                          aria-expanded={sectionOpen}
+                          aria-controls={sectionId}
+                        >
+                          <span>{section.title}</span>
+                          <svg class="menu-icon h-3.5 w-3.5 shrink-0 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                          </svg>
+                        </button>
+                        <ul id={sectionId} class="submenu m-0 list-none p-0">
+                          {section.lessons.map((lesson) => (
+                            <li>
+                              <a
+                                href={lessonUrl(lesson.id)}
+                                class:list={[
+                                  "lesson-link block py-2 pl-12 pr-4 text-sm",
+                                  currentLessonId === lesson.id && "is-active",
+                                ]}
+                              >
+                                {lesson.data.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</aside>

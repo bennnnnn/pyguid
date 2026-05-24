@@ -5,39 +5,32 @@
   role="dialog"
   aria-labelledby="signin-title"
 >
-  <div class="absolute inset-0 bg-ink-900/40 backdrop-blur-sm" data-close-signin></div>
-  <div class="relative w-full max-w-md rounded-2xl border border-ink-200 bg-white p-8 shadow-2xl">
+  <div class="absolute inset-0 bg-text/40 backdrop-blur-sm" data-close-signin></div>
+  <div class="relative w-full max-w-md rounded-2xl border border-border bg-surface p-8 shadow-xl">
     <button
       type="button"
       data-close-signin
-      class="absolute right-4 top-4 rounded-lg p-1 text-ink-400 hover:bg-ink-100 hover:text-ink-800"
+      class="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg text-text-muted hover:bg-surface-alt"
       aria-label="Close">✕</button
     >
-    <h2 id="signin-title" class="text-xl font-bold text-ink-900">Save your progress</h2>
-    <p class="mt-2 text-sm leading-relaxed text-ink-600">
-      Optional. Sign in with Google to remember which sub-topics you have read. Everything
-      stays free — no password, no email form.
+    <h2 id="signin-title" class="text-xl font-bold text-text">Save your progress</h2>
+    <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+      Optional sign-in with Google to track completed lessons. All content remains free.
     </p>
     <p class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
-      Google sign-in is not wired yet. Browse all lessons without an account.
+      Sign-in is not available yet. You can use the full course without an account.
     </p>
     <button
       type="button"
-      class="mt-6 flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm font-semibold text-ink-500"
+      class="mt-6 w-full cursor-not-allowed rounded-lg bg-surface-alt px-4 py-3 text-sm font-medium text-text-muted"
       disabled
     >
-      <svg class="h-5 w-5 opacity-50" viewBox="0 0 24 24" aria-hidden="true"
-        ><path
-          fill="#4285F4"
-          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-        ></path></svg
-      >
       Continue with Google (coming soon)
     </button>
     <button
       type="button"
       data-close-signin
-      class="mt-4 w-full text-center text-sm font-medium text-ink-600 hover:text-ink-900"
+      class="mt-3 w-full rounded-lg py-2 text-sm font-medium text-brand hover:bg-brand-light"
     >
       Continue without signing in
     </button>
@@ -45,20 +38,33 @@
 </div>
 
 <script>
-  const modal = document.getElementById("signin-modal");
-  function openSignin() {
-    modal?.classList.remove("hidden");
-    modal?.classList.add("flex");
-    modal?.setAttribute("aria-hidden", "false");
+  function initSignInModal() {
+    const modal = document.getElementById("signin-modal");
+    const openBtn = document.getElementById("open-signin");
+    if (!modal || modal.dataset.bound === "true") return;
+    modal.dataset.bound = "true";
+
+    const openSignin = () => {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    };
+    const closeSignin = () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    };
+
+    openBtn?.addEventListener("click", openSignin);
+    modal.querySelectorAll("[data-close-signin]").forEach((el) => {
+      el.addEventListener("click", closeSignin);
+    });
   }
-  function closeSignin() {
-    modal?.classList.add("hidden");
-    modal?.classList.remove("flex");
-    modal?.setAttribute("aria-hidden", "true");
-  }
-  document.getElementById("open-signin")?.addEventListener("click", openSignin);
-  document.getElementById("open-signin-hero")?.addEventListener("click", openSignin);
-  modal?.querySelectorAll("[data-close-signin]").forEach((el) => {
-    el.addEventListener("click", closeSignin);
+
+  initSignInModal();
+  document.addEventListener("astro:page-load", () => {
+    const modal = document.getElementById("signin-modal");
+    if (modal) delete modal.dataset.bound;
+    initSignInModal();
   });
 </script>

@@ -1,0 +1,131 @@
+---
+title: "The type() function"
+description: "Check and convert between Python data types."
+order: 21
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+You have now met Python’s **four core data types** for beginners. This lesson ties them together and shows how to **inspect** and **convert** types.
+
+## The four types — recap
+
+| Type | `type()` shows | Example | Remember |
+| ---- | -------------- | ------- | -------- |
+| Integer | `<class 'int'>` | `42` | No quotes, no decimal |
+| Float | `<class 'float'>` | `3.14` | Has a decimal point |
+| String | `<class 'str'>` | `"hello"` | Always in quotes |
+| Boolean | `<class 'bool'>` | `True`, `False` | Capital T and F |
+
+<PythonExample
+  filename="recap.py"
+  code={`values = [42, 3.14, "hello", True]
+for v in values:
+    print(v, "->", type(v))`}
+/>
+
+## The type() function
+
+**`type(value)`** tells you what kind of value you have:
+
+<PythonExample
+  filename="types.py"
+  code={`x = 42
+print(type(x))
+
+name = "Ada"
+print(type(name))
+
+flag = True
+print(type(flag))`}
+/>
+
+Use `type()` while learning whenever you are confused. In real projects you use it mostly for **debugging**.
+
+## Types can change after operations
+
+<PythonExample
+  filename="after_math.py"
+  code={`a = 10
+b = 4
+result = a / b
+print(result)
+print(type(result))`}
+/>
+
+Division with `/` always produces a **`float`**, even when the result looks like a whole number (`2.0`).
+
+## Converting between types
+
+Sometimes you must **convert** a value to another type.
+
+### str() — value to string
+
+Build text that includes numbers:
+
+<PythonExample
+  filename="str_convert.py"
+  code={`age = 25
+message = "You are " + str(age)
+print(message)`}
+/>
+
+Without `str(age)`, Python cannot add a string and an integer.
+
+### int() and float() — text to numbers
+
+<PythonExample
+  filename="int_convert.py"
+  code={`text = "42"
+number = int(text)
+print(number + 8)
+
+price_text = "9.99"
+price = float(price_text)
+print(price + 1)`}
+/>
+
+<Callout variant="danger">
+  `int("hello")` fails with **ValueError** — the text is not a valid number. `int("42")` works.
+</Callout>
+
+### bool()
+
+Rarely needed at this stage — comparisons already give booleans:
+
+<PythonExample
+  filename="bool_convert.py"
+  code={`print(bool(0))
+print(bool(1))
+print(bool(""))
+print(bool("hi"))`}
+/>
+
+## Same-looking values, different types
+
+<PythonExample
+  filename="look_alike.py"
+  code={`print(42, type(42))
+print("42", type("42"))
+print(True, type(True))
+print(1 == True)`}
+/>
+
+`1 == True` is `True` in Python, but `1` and `True` are still different types — prefer `True`/`False` for logic.
+
+## End of the Data Types chapter
+
+You learned:
+
+1. **What** data types are and **why** they matter  
+2. **int** and **float** for numbers  
+3. **str** for text (plus many string methods)  
+4. **bool** for yes/no  
+5. **`type()`** and basic conversion  
+
+Next chapters: **Comparisons**, then **Logical Operators** (`and`, `or`, `not`), then **If Statements** to run code when a test is true.
+
+<Callout variant="tip">
+  When `+` surprises you, check types: numbers add, strings concatenate, booleans are for logic not arithmetic in normal use.
+</Callout>

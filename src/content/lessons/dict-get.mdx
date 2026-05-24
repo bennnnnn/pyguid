@@ -1,0 +1,47 @@
+---
+title: "get()"
+description: "Safely read dictionary values with get() and defaults."
+order: 52
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+**`get(key)`** returns the value for a key, or **`None`** if the key is missing — **no error**.
+
+<PythonExample
+  filename="get.py"
+  code={`user = {"name": "Sam", "role": "admin"}
+print(user.get("name"))
+print(user.get("email"))`}
+/>
+
+## Default value
+
+Pass a second argument as the default:
+
+<PythonExample
+  filename="default.py"
+  code={`user = {"name": "Sam"}
+print(user.get("email", "not set"))
+print(user.get("role", "guest"))`}
+/>
+
+## get() vs bracket access
+
+| Code | Key missing |
+| ---- | ----------- |
+| `d["key"]` | **KeyError** |
+| `d.get("key")` | `None` |
+| `d.get("key", 0)` | `0` |
+
+<PythonExample
+  filename="compare.py"
+  code={`counts = {"apple": 3}
+add = counts.get("banana", 0)
+print(add)`}
+/>
+
+<Callout variant="tip">
+  Use `get()` when the key might not exist — user settings, optional fields, counting with defaults.
+</Callout>

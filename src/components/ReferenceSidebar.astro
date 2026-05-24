@@ -1,0 +1,47 @@
+---
+const path = Astro.url.pathname;
+const hash = Astro.url.hash;
+
+const items = [
+  { id: "strings", label: "Strings", href: "/python/reference/#strings" },
+  { id: "lists", label: "Lists", href: "/python/reference/#lists" },
+  { id: "dicts", label: "Dictionaries", href: "/python/reference/#dicts" },
+  { id: "conditionals", label: "If statements", href: "/python/reference/#conditionals" },
+  { id: "loops", label: "Loops", href: "/python/reference/#loops" },
+  { id: "functions", label: "Functions", href: "/python/reference/#functions" },
+  { id: "classes", label: "Classes", href: "/python/reference/#classes" },
+  { id: "errors", label: "Error handling", href: "/python/reference/#errors" },
+];
+---
+
+<aside
+  id="tutorial-sidebar"
+  class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
+>
+  <div class="border-b border-border px-4 py-3">
+    <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">Reference</p>
+  </div>
+
+  <nav class="py-2" aria-label="Reference topics">
+    <ul class="m-0 list-none p-0">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "lesson-link block py-2.5 px-4 text-sm",
+                path.startsWith("/python/reference") && hash === `#${item.id}` && "is-active",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="border-t border-border px-4 py-3 text-sm">
+      <a href="/python/" class="text-link font-medium hover:underline">← Full course</a>
+    </p>
+  </nav>
+</aside>

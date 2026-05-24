@@ -1,0 +1,62 @@
+---
+title: "remove()"
+description: "Delete the first matching value from a list with remove()."
+order: 35
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`remove(value)`** deletes the **first** item that equals `value`. The value must exist in the list.
+
+<PythonExample
+  filename="remove.py"
+  code={`pets = ["cat", "dog", "bird", "dog"]
+pets.remove("dog")
+print(pets)`}
+/>
+
+Only the **first** `"dog"` is removed.
+
+## ValueError if missing
+
+<PythonExample
+  filename="remove_safe.py"
+  code={`items = ["a", "b", "c"]
+target = "z"
+
+if target in items:
+    items.remove(target)
+    print("Removed")
+else:
+    print("Not found")
+
+print(items)`}
+/>
+
+<Callout variant="danger">
+  `items.remove("z")` when `"z"` is not in the list raises **`ValueError`**. Always check with `in` or use `try/except` if unsure.
+</Callout>
+
+## remove() vs pop()
+
+| Method | Removes by | Returns |
+| ------ | ---------- | ------- |
+| `remove(value)` | **value** | `None` |
+| `pop(index)` | **index** | the removed item |
+
+<PythonExample
+  filename="vs_pop.py"
+  code={`nums = [10, 20, 30]
+nums.remove(20)
+print(nums)
+
+letters = ["a", "b", "c"]
+gone = letters.pop(1)
+print(gone)
+print(letters)`}
+/>
+
+<Callout variant="tip">
+  Use `remove()` when you know the **value** but not the index. Use `pop()` when you know the **position** or want the last item.
+</Callout>

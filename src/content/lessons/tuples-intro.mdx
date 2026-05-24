@@ -1,0 +1,52 @@
+---
+title: "Python tuples"
+description: "Use tuples for ordered collections that should not change."
+order: 43
+chapter: 9
+chapterTitle: "Tuples"
+level: beginner
+---
+
+A **tuple** is like a list but **immutable** — fixed after creation. Use it for coordinates, dates, or any data that should not change.
+
+Create a tuple with parentheses `()`:
+
+<PythonExample
+  filename="tuple.py"
+  code={`point = (10, 20)
+colors = ("red", "green", "blue")
+print(point[0])
+print(len(colors))`}
+/>
+
+A tuple with one item needs a trailing comma:
+
+<PythonExample
+  filename="one_item.py"
+  code={`single = (42,)
+print(single)
+print(type(single))`}
+/>
+
+## Access items
+
+Indexing and slicing work like lists:
+
+<PythonExample
+  filename="access.py"
+  code={`coords = (3, 4, 5)
+print(coords[0])
+print(coords[1:])`}
+/>
+
+## Why use tuples?
+
+Use tuples when the collection should stay fixed: coordinates, RGB colors, or returning multiple values from a function.
+
+<Callout variant="warning" title="Cannot modify">
+  `coords[0] = 99` causes an error. If you need to change data, use a **list** instead.
+</Callout>
+
+<Callout variant="tip">
+  Parentheses are optional for creation — `a = 1, 2, 3` makes a tuple. Parentheses improve readability.
+</Callout>

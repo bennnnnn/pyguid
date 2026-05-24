@@ -1,0 +1,113 @@
+---
+title: "Strings"
+description: "Create and combine Python strings."
+order: 10
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+You have learned **numbers** (`int` and `float`). The next core type is the **string**.
+
+A **string** stores **text** — letters, words, symbols, and spaces. In Python the type name is **`str`** (short for string).
+
+Examples of string data:
+
+- A person’s name: `"Ada"`  
+- An email message: `"Hello, team"`  
+- A single character: `"A"` (still a string, not a separate “char” type like some languages)  
+
+## How to write a string
+
+Put text inside **quotes**. Single or double quotes both work:
+
+<PythonExample
+  filename="strings.py"
+  code={`greeting = "Hello"
+name = 'Python'
+print(greeting)
+print(name)`}
+/>
+
+Single and double quotes work the same way. Pick one style and stay consistent.
+
+## Quotes inside strings
+
+<PythonExample
+  filename="quotes.py"
+  code={`message = "It's a sunny day"
+print(message)
+
+title = 'She said "Hi"'
+print(title)`}
+/>
+
+## Escape characters
+
+Use **backslash** for special characters:
+
+<PythonExample
+  filename="escape.py"
+  code={`print("Line 1\\nLine 2")
+print("Tab:\\there")
+print("Quote: \\"hi\\"")`}
+/>
+
+| Escape | Meaning |
+| ------ | ------- |
+| `\\n` | new line |
+| `\\t` | tab |
+| `\\\\` | backslash |
+| `\\"` | double quote |
+
+## Multiline strings
+
+Triple quotes for several lines:
+
+<PythonExample
+  filename="multiline.py"
+  code={`poem = """Roses are red,
+Violets are blue.
+Python is fun."""
+print(poem)`}
+/>
+
+## Combine strings
+
+Join with **`+`**:
+
+<PythonExample
+  filename="join_plus.py"
+  code={`first = "Hello"
+second = "World"
+print(first + " " + second)`}
+/>
+
+Repeat with **`*`**:
+
+<PythonExample
+  filename="repeat.py"
+  code={`print("-" * 20)
+print("Ha" * 3)`}
+/>
+
+## Length and indexing
+
+<PythonExample
+  filename="len_index.py"
+  code={`word = "Python"
+print(len(word))
+print(word[0])
+print(word[-1])`}
+/>
+
+The following lessons cover **string methods** one by one: `upper`, `strip`, `split`, `join`, and more.
+
+<Callout variant="warning" title="Numbers vs strings">
+  `"5" + "5"` is `"55"`. `5 + 5` is `10`. Quotes mean text.
+</Callout>
+
+<Callout variant="danger" title="Immutable">
+  You cannot change one character: `word[0] = "p"` fails. Build a new string instead.
+</Callout>

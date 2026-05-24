@@ -1,0 +1,61 @@
+---
+title: "pop()"
+description: "Remove and return an item by index with pop()."
+order: 36
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`pop()`** removes an item and **returns** it. Without an argument, it removes the **last** item.
+
+<PythonExample
+  filename="pop_last.py"
+  code={`stack = [1, 2, 3]
+last = stack.pop()
+print(last)
+print(stack)`}
+/>
+
+## pop(index)
+
+Pass an index to remove at a specific position:
+
+<PythonExample
+  filename="pop_index.py"
+  code={`colors = ["red", "green", "blue"]
+middle = colors.pop(1)
+print(middle)
+print(colors)`}
+/>
+
+## Use the return value
+
+<PythonExample
+  filename="use_return.py"
+  code={`queue = ["first", "second", "third"]
+current = queue.pop(0)
+print("Processing:", current)
+print("Remaining:", queue)`}
+/>
+
+`pop(0)` removes from the **front** (like a queue). For large lists this is slow — later you may use `collections.deque`.
+
+## Empty list error
+
+<PythonExample
+  filename="pop_empty.py"
+  code={`items = []
+if items:
+    items.pop()
+else:
+    print("Nothing to pop")`}
+/>
+
+<Callout variant="warning">
+  `pop()` on an empty list raises **`IndexError`**. Check `if items:` first.
+</Callout>
+
+<Callout variant="note">
+  `pop()` is useful for stack behavior (last in, first out) with `append()` + `pop()`.
+</Callout>

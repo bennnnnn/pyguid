@@ -1,0 +1,65 @@
+---
+title: "pop(), update(), and del"
+description: "Remove and merge dictionary entries."
+order: 53
+chapter: 11
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+## pop(key)
+
+Removes a key and **returns** its value:
+
+<PythonExample
+  filename="pop.py"
+  code={`user = {"name": "Sam", "temp": True, "role": "admin"}
+removed = user.pop("temp")
+print(removed)
+print(user)`}
+/>
+
+## pop() with default
+
+<PythonExample
+  filename="pop_default.py"
+  code={`data = {"a": 1}
+print(data.pop("z", "missing"))
+print(data)`}
+/>
+
+## update()
+
+Merges another dictionary (or key-value pairs) into the current dict:
+
+<PythonExample
+  filename="update.py"
+  code={`defaults = {"theme": "light", "lang": "en"}
+user = {"lang": "fr", "notifications": True}
+defaults.update(user)
+print(defaults)`}
+/>
+
+## del
+
+<PythonExample
+  filename="del.py"
+  code={`person = {"name": "Ada", "age": 36}
+del person["age"]
+print(person)`}
+/>
+
+## clear()
+
+Removes all entries:
+
+<PythonExample
+  filename="clear.py"
+  code={`cache = {"a": 1, "b": 2}
+cache.clear()
+print(cache)`}
+/>
+
+<Callout variant="warning">
+  `pop("missing")` without a default raises **KeyError**. Use `pop("key", None)` when unsure.
+</Callout>

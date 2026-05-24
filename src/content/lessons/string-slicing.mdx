@@ -1,0 +1,65 @@
+---
+title: "String slicing"
+description: "Extract parts of strings with slicing and advanced string methods."
+order: 19
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+**Slicing** takes a substring with `[start:end]` — `end` is not included:
+
+<PythonExample
+  filename="slice.py"
+  code={`text = "Python"
+print(text[0:3])
+print(text[2:])
+print(text[:4])`}
+/>
+
+## Negative indexes in slices
+
+<PythonExample
+  filename="neg_slice.py"
+  code={`text = "Programming"
+print(text[-3:])
+print(text[:-1])`}
+/>
+
+## Step in slices
+
+`[start:end:step]`:
+
+<PythonExample
+  filename="step.py"
+  code={`text = "abcdef"
+print(text[::2])
+print(text[::-1])`}
+/>
+
+## in, find, replace
+
+<PythonExample
+  filename="methods.py"
+  code={`sentence = "Python is fun"
+print("fun" in sentence)
+print(sentence.find("is"))
+print(sentence.replace("fun", "great"))`}
+/>
+
+## split and join
+
+<PythonExample
+  filename="split_join.py"
+  code={`csv_line = "ada,36,london"
+parts = csv_line.split(",")
+print(parts)
+
+joined = "-".join(["2024", "05", "23"])
+print(joined)`}
+/>
+
+<Callout variant="tip">
+  `split()` without arguments splits on any whitespace — useful for sentences.
+</Callout>

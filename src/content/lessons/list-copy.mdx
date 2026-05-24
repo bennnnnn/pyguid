@@ -1,0 +1,71 @@
+---
+title: "Copying lists"
+description: "Copy lists with copy(), list(), and slicing — avoid shared references."
+order: 40
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+Assignment copies the **reference**, not the list data:
+
+<PythonExample
+  filename="reference.py"
+  code={`a = [1, 2, 3]
+b = a
+b.append(4)
+print(a)`}
+/>
+
+Changing `b` also changes `a` — they are the same list.
+
+## copy() and list()
+
+Create an independent **shallow copy**:
+
+<PythonExample
+  filename="copy.py"
+  code={`a = [1, 2, 3]
+b = a.copy()
+b.append(4)
+print("a:", a)
+print("b:", b)
+
+c = [1, 2, 3]
+d = list(c)
+d.append(99)
+print("c:", c)`}
+/>
+
+## Slice copy
+
+<PythonExample
+  filename="slice_copy.py"
+  code={`original = ["x", "y", "z"]
+clone = original[:]
+clone[0] = "changed"
+print(original)
+print(clone)`}
+/>
+
+## Shallow vs nested lists
+
+Shallow copy copies **top-level** items only. Nested lists still share inner lists:
+
+<PythonExample
+  filename="shallow.py"
+  code={`a = [[1, 2], [3, 4]]
+b = a.copy()
+b[0].append(99)
+print(a)`}
+/>
+
+For deep copies of nested structures, use `copy.deepcopy()` from the `copy` module (advanced topic).
+
+<Callout variant="danger" title="Common bug">
+  `b = a` is not a copy. Use `b = a.copy()` or `b = a[:]` when you need a separate list.
+</Callout>
+
+<Callout variant="tip">
+  Use `.copy()` when passing a list to a function that might modify it, if you want to keep the original safe.
+</Callout>

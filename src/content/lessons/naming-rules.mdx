@@ -1,0 +1,49 @@
+---
+title: "Naming variables"
+description: "Python variable naming rules and the snake_case style."
+order: 6
+chapter: 2
+chapterTitle: "Variables"
+level: beginner
+---
+
+Variable names must follow Python’s rules:
+
+- Letters (`a`–`z`, `A`–`Z`), digits (`0`–`9`), and underscores (`_`)
+- **Cannot** start with a digit
+- **Cannot** contain spaces
+- Case matters: `name` and `Name` are different variables
+
+Valid examples:
+
+<PythonExample
+  filename="valid.py"
+  code={`user_name = "Sam"
+score2 = 100
+_private = True
+print(user_name)`}
+/>
+
+## snake_case
+
+When a name has several words, Python style uses **snake_case**: lowercase words joined by underscores.
+
+<PythonExample
+  filename="snake.py"
+  code={`first_name = "Alex"
+last_name = "Lee"
+full_name = first_name + " " + last_name
+print(full_name)`}
+/>
+
+<Callout variant="warning" title="Invalid names">
+  These will cause errors: `2score` (starts with a number), `my-var` (hyphen is minus), `my var` (space).
+</Callout>
+
+<Callout variant="danger" title="Reserved words">
+  Do not use Python keywords as variable names, such as `if`, `for`, `print`, `True`, or `class`. They already mean something special to the language.
+</Callout>
+
+<Callout variant="tip">
+  Stick to English letters and snake_case in this course. That matches most real-world Python code.
+</Callout>

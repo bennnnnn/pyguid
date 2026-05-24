@@ -1,49 +1,63 @@
-# Content authoring
+# Content authoring (W3Schools-style)
 
-## Chapter file
+## One page = one topic
 
-Path: `src/content/chapters/NN-slug.mdx`
+Path: `src/content/lessons/your-slug.mdx`
 
 ```yaml
 ---
-title: "Chapter title"
-description: "One line for SEO and chapter cards."
-order: 5
+title: "Python Variables"      # Sidebar + H1
+description: "SEO description"
+order: 5                       # Global order (prev/next)
+chapter: 2                     # Sidebar chapter number
+chapterTitle: "Variables"      # Sidebar chapter header
+section: "Strings"             # Optional: nested topic (e.g. string methods)
 level: beginner
-subtopics:
-  - id: my-topic-id
-    title: "Human-readable sub-topic title"
 ---
 ```
 
-Rules:
+Body: prose + `<PythonExample />` + `<Callout />` blocks. Short `##` subheadings are fine when they help scan the page.
 
-- `order` is numeric sort key (use `01-`, `02-` prefixes in filename — the file stem becomes the URL id, e.g. `01-hello-python`).
-- Every `subtopics[].id` must match an `<h2 id="…">` in the body.
-- Do **not** mention duration, hours, or reading time anywhere.
-
-## Sub-topic headings
+## Callouts
 
 ```mdx
-<h2 id="my-topic-id">Human-readable title</h2>
+<Callout variant="note">Neutral extra context.</Callout>
+<Callout variant="tip">Helpful shortcut or habit.</Callout>
+<Callout variant="warning">Easy mistake to avoid.</Callout>
+<Callout variant="danger" title="Optional title">Serious pitfall.</Callout>
+```
 
-Paragraph text…
+Variants: `note`, `tip`, `warning`, `danger`.
+
+## Example blocks
+
+Use `<PythonExample />` with a **Run code** button (Skulpt in the browser). Do not mention reading time or duration.
+
+## Rules
+
+- `order` must be unique and sequential for prev/next navigation.
+- `chapter` + `chapterTitle` group items in the left sidebar.
+- Never mention duration or reading time.
+
+## Example
+
+```mdx
+---
+title: "Python Lists"
+description: "Create and use lists in Python."
+order: 17
+chapter: 5
+chapterTitle: "Lists"
+level: beginner
+---
+
+Python lists store multiple values.
 
 <PythonExample
-  filename="example.py"
-  code={`print("hello")`}
+  filename="lists.py"
+  code={`fruits = ["apple", "banana"]
+print(fruits[0])`}
 />
 ```
 
-## Python examples
-
-- `code` is a template literal; use `\n` for new lines in multi-line snippets.
-- Run uses Skulpt in the browser (subset of Python). Avoid unsupported stdlib.
-- Keep examples focused on one idea per block.
-
-## Checklist for new chapter
-
-- [ ] Frontmatter `subtopics` matches all `<h2 id>` sections
-- [ ] At least one `PythonExample` per sub-topic
-- [ ] Prev/next navigation works (automatic via `order`)
-- [ ] Sidebar lists all sub-topics (automatic from frontmatter)
+URL: `/python/lists/` (filename stem = id).

@@ -1,0 +1,53 @@
+---
+title: "Lambda functions"
+description: "Create small anonymous functions with lambda."
+order: 70
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+A **lambda** is a tiny function without a name:
+
+```python
+lambda arguments: expression
+```
+
+<PythonExample
+  filename="lambda_basic.py"
+  code={`double = lambda x: x * 2
+print(double(5))
+
+add = lambda a, b: a + b
+print(add(3, 7))`}
+/>
+
+## With sorted()
+
+`key=` tells `sorted` how to compare:
+
+<PythonExample
+  filename="sorted_key.py"
+  code={`names = ["charlie", "ada", "bob"]
+print(sorted(names, key=lambda n: len(n)))
+print(sorted(names, key=lambda n: n.lower()))`}
+/>
+
+## map() and filter()
+
+<PythonExample
+  filename="map_filter.py"
+  code={`nums = [1, 2, 3, 4]
+doubled = list(map(lambda x: x * 2, nums))
+evens = list(filter(lambda x: x % 2 == 0, nums))
+print(doubled)
+print(evens)`}
+/>
+
+<Callout variant="note">
+  List comprehensions often replace `map` and `filter` for simple cases: `[x * 2 for x in nums]`.
+</Callout>
+
+<Callout variant="tip">
+  Use `def` for anything longer than one expression. Lambdas shine for short `key=` functions in `sorted()`.
+</Callout>

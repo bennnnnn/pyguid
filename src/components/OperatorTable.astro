@@ -1,0 +1,44 @@
+---
+export interface OperatorRow {
+  operator: string;
+  meaning: string;
+  example: string;
+}
+
+interface Props {
+  rows: OperatorRow[];
+  caption?: string;
+}
+
+const { rows, caption = "Python comparison operators" } = Astro.props;
+---
+
+<div class="operator-table not-prose my-6 overflow-x-auto rounded-xl border border-border">
+  <table class="w-full border-collapse text-sm">
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr class="bg-surface-alt">
+        <th scope="col" class="border border-border px-4 py-2.5 text-left font-semibold text-text"
+          >Python operator</th
+        >
+        <th scope="col" class="border border-border px-4 py-2.5 text-left font-semibold text-text">Meaning</th>
+        <th scope="col" class="border border-border px-4 py-2.5 text-left font-semibold text-text">Example code</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr>
+            <td class="border border-border px-4 py-2.5">
+              <span class="operator-symbol font-mono text-base font-semibold tracking-tight text-text">{row.operator}</span>
+            </td>
+            <td class="border border-border px-4 py-2.5 text-text-secondary">{row.meaning}</td>
+            <td class="border border-border px-4 py-2.5">
+              <span class="operator-symbol font-mono text-base text-text">{row.example}</span>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

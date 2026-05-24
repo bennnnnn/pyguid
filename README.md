@@ -1,6 +1,6 @@
 # pyguid (PyGuide)
 
-Free, static Python tutorial site. Chapters list sub-topics upfront; every example has **Copy** and **Run** (browser Python via Skulpt).
+Free, static Python tutorial site (**W3Schools-style**): left sidebar with every topic, one page per lesson, **Run code** examples (Skulpt in the browser).
 
 Repository: [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
 
@@ -26,7 +26,7 @@ Open [http://localhost:4321](http://localhost:4321).
 
 ```
 src/
-  content/chapters/   # Chapter MDX (frontmatter + sub-topics + lessons)
+  content/lessons/    # One MDX file per topic (W3Schools-style pages)
   components/         # UI (PythonExample, sidebar, header, …)
   pages/              # Routes (home, learn, cheatsheet, about)
   lib/                # Site config, chapter helpers
@@ -35,12 +35,11 @@ docs/
 .cursor/skills/pyguide/
 ```
 
-## Add a chapter
+## Add a lesson
 
-1. Create `src/content/chapters/05-loops.mdx`
-2. Set `order`, `title`, `description`, `subtopics[]` in frontmatter
-3. Use `<h2 id="slug">Title</h2>` matching each sub-topic `id`
-4. Add `<PythonExample filename="…" code={\`…\`} />` blocks
+1. Create `src/content/lessons/my-topic.mdx`
+2. Set `order`, `title`, `chapter`, `chapterTitle`, `description`
+3. Add prose + `<PythonExample />` blocks
 
 See [docs/content-authoring.md](docs/content-authoring.md).
 

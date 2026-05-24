@@ -1,0 +1,70 @@
+---
+title: "None"
+description: "Use None to represent missing or empty values in Python."
+order: 72
+chapter: 17
+chapterTitle: "More Python"
+level: beginner
+---
+
+**`None`** is a special value meaning “no value” or “nothing here.”
+
+<PythonExample
+  filename="none.py"
+  code={`result = None
+print(result)
+print(type(result))`}
+/>
+
+## Functions without return
+
+Functions that do not `return` give `None`:
+
+<PythonExample
+  filename="no_return.py"
+  code={`def log(msg):
+    print(msg)
+
+x = log("Hi")
+print(x)`}
+/>
+
+## Check for None
+
+Use `is` and `is not` — not `==` (though `==` often works, `is` is preferred for `None`):
+
+<PythonExample
+  filename="is_none.py"
+  code={`value = None
+
+if value is None:
+    print("No value set")
+
+def find_user(id):
+  # pretend not found
+  return None
+
+user = find_user(99)
+if user is None:
+    print("User not found")`}
+/>
+
+## .get() and None
+
+Dictionary `get()` returns `None` by default when a key is missing:
+
+<PythonExample
+  filename="get_none.py"
+  code={`data = {"name": "Ada"}
+email = data.get("email")
+print(email)
+print(email is None)`}
+/>
+
+<Callout variant="warning">
+  Do not confuse `None` with `0`, `False`, or `""`. They are all “falsy” in `if` tests, but they mean different things.
+</Callout>
+
+<Callout variant="tip">
+  Use `None` as a default in functions: `def f(x=None):` then set `x = []` inside if needed — never use `def f(x=[]):`.
+</Callout>

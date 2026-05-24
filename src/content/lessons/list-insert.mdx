@@ -1,0 +1,53 @@
+---
+title: "insert()"
+description: "Insert an item at any position in a list with insert()."
+order: 34
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`insert(index, item)`** adds an item **at a specific position**. Items at that index and after shift to the right.
+
+<PythonExample
+  filename="insert.py"
+  code={`colors = ["red", "blue", "green"]
+colors.insert(1, "yellow")
+print(colors)`}
+/>
+
+`"yellow"` is now at index `1`; `"blue"` moved to index `2`.
+
+## Insert at the start
+
+Use index **`0`**:
+
+<PythonExample
+  filename="insert_start.py"
+  code={`tasks = ["email", "meeting"]
+tasks.insert(0, "standup")
+print(tasks)`}
+/>
+
+## Insert at the end
+
+`insert(len(items), x)` works, but **`append(x)`** is simpler for the end.
+
+## Index out of range
+
+`insert()` allows inserting at `len(list)` (append position). It does **not** error for index `len` like indexing does:
+
+<PythonExample
+  filename="insert_end.py"
+  code={`nums = [1, 2, 3]
+nums.insert(3, 4)
+print(nums)`}
+/>
+
+<Callout variant="warning">
+  Negative indexes work: `insert(-1, x)` inserts before the last item, not after it. For the end, use `append()`.
+</Callout>
+
+<Callout variant="tip">
+  Use `insert()` when order matters — priority queues, inserting a step in the middle of instructions.
+</Callout>

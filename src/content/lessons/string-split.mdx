@@ -1,0 +1,55 @@
+---
+title: "split()"
+description: "Split a string into a list with split()."
+order: 13
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+**`split()`** breaks a string into a **list** of substrings.
+
+## split by whitespace
+
+With no argument, `split()` splits on any whitespace:
+
+<PythonExample
+  filename="split.py"
+  code={`sentence = "Python is fun"
+words = sentence.split()
+print(words)`}
+/>
+
+## split by a separator
+
+<PythonExample
+  filename="split_comma.py"
+  code={`csv = "apple,banana,cherry"
+fruits = csv.split(",")
+print(fruits)`}
+/>
+
+## max splits
+
+<PythonExample
+  filename="maxsplit.py"
+  code={`data = "one-two-three-four"
+parts = data.split("-", 2)
+print(parts)`}
+/>
+
+Only splits twice — rest stays in the last piece.
+
+## splitlines()
+
+<PythonExample
+  filename="lines.py"
+  code={`text = "line1\\nline2\\nline3"
+rows = text.splitlines()
+print(rows)`}
+/>
+
+<Callout variant="note">
+  `split()` returns a list. Use `join()` (next page) to combine a list back into a string.
+</Callout>

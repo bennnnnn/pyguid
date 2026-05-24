@@ -1,0 +1,179 @@
+<!-- Shared sidebar styles and behavior -->
+
+<style is:global>
+  .course-sidebar .submenu {
+    display: none;
+  }
+
+  .course-sidebar .menu-group.is-open > .submenu {
+    display: block;
+  }
+
+  .course-sidebar .menu-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .course-sidebar .menu-group.is-open .menu-icon {
+    transform: rotate(180deg);
+  }
+
+  .course-sidebar .menu-trigger {
+    color: var(--color-text);
+    background: transparent;
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .course-sidebar .menu-trigger:hover {
+    background: var(--color-surface-alt);
+  }
+
+  .course-sidebar .chapter-group.is-open > .menu-trigger {
+    background: var(--color-surface-alt);
+    color: var(--color-text);
+  }
+
+  .course-sidebar .section-trigger {
+    color: var(--color-text-secondary);
+    background: transparent;
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .course-sidebar .section-trigger:hover {
+    background: var(--color-surface-alt);
+    color: var(--color-text);
+  }
+
+  .course-sidebar .section-group.is-open > .section-trigger {
+    color: var(--color-text);
+    background: var(--color-surface-alt);
+  }
+
+  .course-sidebar .lesson-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .course-sidebar .lesson-link:hover {
+    color: var(--color-text);
+    background: var(--color-surface-alt);
+  }
+
+  .course-sidebar .lesson-link.is-active {
+    color: var(--color-text);
+    font-weight: 600;
+    background: var(--color-sidebar-active);
+    border-left-color: var(--color-text);
+  }
+
+  @media (max-width: 1023px) {
+    .course-sidebar {
+      display: none;
+      position: fixed;
+      top: 3.5rem;
+      left: 0;
+      z-index: 40;
+      width: min(300px, 90vw);
+      max-height: calc(100vh - 3.5rem);
+      overflow-y: auto;
+      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
+    }
+    .course-sidebar.is-mobile-open {
+      display: block;
+    }
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 3.5rem 0 0 0;
+      z-index: 35;
+      background: rgba(15, 23, 42, 0.4);
+    }
+    .sidebar-backdrop.is-visible {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  function initCourseSidebar() {
+    const sidebar = document.getElementById("tutorial-sidebar");
+    const toggle = document.getElementById("sidebar-toggle");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (!sidebar || sidebar.dataset.bound === "true") return;
+    sidebar.dataset.bound = "true";
+
+    const closeMobile = () => {
+      sidebar.classList.remove("is-mobile-open");
+      backdrop?.classList.remove("is-visible");
+      toggle?.setAttribute("aria-expanded", "false");
+    };
+
+    const openMobile = () => {
+      sidebar.classList.add("is-mobile-open");
+      backdrop?.classList.add("is-visible");
+      toggle?.setAttribute("aria-expanded", "true");
+    };
+
+    toggle?.addEventListener("click", () => {
+      if (sidebar.classList.contains("is-mobile-open")) closeMobile();
+      else openMobile();
+    });
+
+    backdrop?.addEventListener("click", closeMobile);
+
+    sidebar.querySelectorAll(".lesson-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 1023px)").matches) closeMobile();
+      });
+    });
+
+    sidebar.querySelectorAll(".chapter-group > .menu-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const group = trigger.closest(".chapter-group");
+        if (!group) return;
+        const willOpen = !group.classList.contains("is-open");
+        sidebar.querySelectorAll(".chapter-group.is-open").forEach((other) => {
+          if (other !== group) {
+            other.classList.remove("is-open");
+            other.querySelector(".menu-trigger")?.setAttribute("aria-expanded", "false");
+          }
+        });
+        group.classList.toggle("is-open", willOpen);
+        trigger.setAttribute("aria-expanded", String(willOpen));
+      });
+    });
+
+    sidebar.querySelectorAll(".section-group > .section-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const group = trigger.closest(".section-group");
+        if (!group) return;
+        const willOpen = !group.classList.contains("is-open");
+        const chapter = group.closest(".chapter-group");
+        chapter?.querySelectorAll(".section-group.is-open").forEach((other) => {
+          if (other !== group) {
+            other.classList.remove("is-open");
+            other.querySelector(".section-trigger")?.setAttribute("aria-expanded", "false");
+          }
+        });
+        group.classList.toggle("is-open", willOpen);
+        trigger.setAttribute("aria-expanded", String(willOpen));
+      });
+    });
+
+    const activeLink = sidebar.querySelector(".lesson-link.is-active");
+    activeLink?.scrollIntoView({ block: "nearest", behavior: "instant" });
+  }
+
+  initCourseSidebar();
+  document.addEventListener("astro:page-load", () => {
+    const sidebar = document.getElementById("tutorial-sidebar");
+    if (sidebar) delete sidebar.dataset.bound;
+    initCourseSidebar();
+  });
+</script>

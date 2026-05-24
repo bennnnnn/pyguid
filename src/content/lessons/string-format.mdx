@@ -1,0 +1,53 @@
+---
+title: "Formatting strings"
+description: "Build strings with f-strings, format(), and placeholders."
+order: 18
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+## f-strings (recommended)
+
+<PythonExample
+  filename="fstring.py"
+  code={`name = "Ada"
+age = 36
+print(f"My name is {name} and I am {age} years old.")
+print(f"Next year: {age + 1}")`}
+/>
+
+## Expressions inside {}
+
+<PythonExample
+  filename="expr.py"
+  code={`price = 19.99
+qty = 3
+total = price * qty
+print(f"Total: {total:.2f}")`}
+/>
+
+The `:.2f` inside braces formats a number to 2 decimal places.
+
+## format() method
+
+<PythonExample
+  filename="format.py"
+  code={`print("Hello, {}!".format("Python"))
+print("{0} + {1} = {2}".format(2, 3, 5))`}
+/>
+
+## % formatting (older style)
+
+<PythonExample
+  filename="percent.py"
+  code={`name = "Sam"
+print("Hello, %s" % name)`}
+/>
+
+You may see this in old code; prefer f-strings for new projects.
+
+<Callout variant="tip">
+  f-strings are readable, fast, and support expressions — use them by default.
+</Callout>

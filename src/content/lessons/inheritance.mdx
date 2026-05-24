@@ -1,0 +1,74 @@
+---
+title: "Inheritance"
+description: "Create child classes that extend parent classes."
+order: 65
+chapter: 15
+chapterTitle: "Classes"
+level: beginner
+---
+
+**Inheritance** lets a new class reuse and extend an existing class.
+
+The **parent** (base) class provides common behavior. The **child** (subclass) adds or overrides it.
+
+<PythonExample
+  filename="inherit.py"
+  code={`class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return "..."
+
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} says woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says meow!"
+
+pets = [Dog("Buddy"), Cat("Luna")]
+for pet in pets:
+    print(pet.speak())`}
+/>
+
+## super() — call the parent
+
+<PythonExample
+  filename="super.py"
+  code={`class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, student_id):
+        super().__init__(name)
+        self.student_id = student_id
+
+s = Student("Ada", "A123")
+print(s.name, s.student_id)`}
+/>
+
+## isinstance()
+
+<PythonExample
+  filename="isinstance.py"
+  code={`class Animal:
+    pass
+
+class Dog(Animal):
+    pass
+
+d = Dog()
+print(isinstance(d, Dog))
+print(isinstance(d, Animal))`}
+/>
+
+<Callout variant="tip">
+  Inheritance models “is-a” relationships: a `Dog` **is an** `Animal`. If the relationship is only “has-a” (a car **has an** engine), composition (attributes) is often better.
+</Callout>
+
+<Callout variant="note">
+  Python supports multiple inheritance, but beginners should master single inheritance first.
+</Callout>

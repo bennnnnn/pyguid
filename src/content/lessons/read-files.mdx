@@ -1,0 +1,62 @@
+---
+title: "Read files"
+description: "Open and read text files with open() and with."
+order: 67
+chapter: 16
+chapterTitle: "Files"
+level: beginner
+---
+
+This chapter covers **files** on disk and **user input** with `input()`. The **`open()`** function reads and writes files — essential for scripts, logs, and data.
+
+## Read entire file
+
+On your machine:
+
+```python
+with open("notes.txt", "r") as file:
+    content = file.read()
+    print(content)
+```
+
+- `"r"` — read mode  
+- **`with`** — automatically closes the file when done  
+
+<Callout variant="note">
+  The browser **Run code** button cannot open real files on your disk. The examples below simulate file content so you can practice the ideas.
+</Callout>
+
+## Simulate reading lines
+
+<PythonExample
+  filename="read_sim.py"
+  code={`# Simulated file content (as if read from a file)
+content = """line one
+line two
+line three"""
+
+lines = content.splitlines()
+for line in lines:
+    print(line)`}
+/>
+
+## Read line by line
+
+<PythonExample
+  filename="lines.py"
+  code={`content = "apple\\nbanana\\ncherry"
+for line in content.splitlines():
+    print(line.upper())`}
+/>
+
+## Check file exists (concept)
+
+On your computer you might use `import os` and `os.path.exists("file.txt")` before opening.
+
+<Callout variant="tip">
+  Always use `with open(...) as f:` so files close even if an error occurs.
+</Callout>
+
+<Callout variant="danger">
+  Never open untrusted paths from user input without validation — path tricks can be a security risk.
+</Callout>

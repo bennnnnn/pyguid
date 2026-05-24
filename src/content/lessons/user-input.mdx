@@ -1,0 +1,72 @@
+---
+title: "User input"
+description: "Read text from the user with the input() function."
+order: 66
+chapter: 16
+chapterTitle: "Files"
+level: beginner
+---
+
+**`input()`** waits for the user to type a line and press Enter. It always returns a **string**.
+
+On your computer:
+
+```python
+name = input("What is your name? ")
+print(f"Hello, {name}")
+```
+
+<Callout variant="note">
+  **`input()` does not work in PyGuide’s browser runner** — it would wait forever for keyboard input. Practice the pattern below with preset values, then try `input()` in a local `.py` file.
+</Callout>
+
+## Simulate input
+
+<PythonExample
+  filename="input_sim.py"
+  code={`# Simulating: name = input("Name? ")
+name = "Alex"
+print(f"Hello, {name}")`}
+/>
+
+## Convert input to numbers
+
+`input()` returns text. Convert before math:
+
+<PythonExample
+  filename="convert.py"
+  code={`# Simulating: age_text = input("Age? ")
+age_text = "25"
+age = int(age_text)
+print(age + 1)`}
+/>
+
+## Validate with try/except
+
+<PythonExample
+  filename="validate.py"
+  code={`raw = "42"
+try:
+    value = int(raw)
+    print("Valid number:", value)
+except ValueError:
+    print("Please enter digits only")`}
+/>
+
+## Simple menu (simulated choices)
+
+<PythonExample
+  filename="menu.py"
+  code={`choice = "2"
+
+if choice == "1":
+    print("View profile")
+elif choice == "2":
+    print("Settings")
+else:
+    print("Goodbye")`}
+/>
+
+<Callout variant="tip">
+  Strip whitespace with `.strip()` on user input: `name = input("Name: ").strip()`.
+</Callout>

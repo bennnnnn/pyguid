@@ -5,14 +5,14 @@ Static Astro site at `~/Desktop/pyguide`.
 ## Stack
 
 - Astro 6 + MDX content collections + Tailwind v4
-- Chapters in `src/content/chapters/*.mdx`
+- Lessons in `src/content/lessons/*.mdx` (one topic per page)
 - `PythonExample` component: read-only fake IDE, Copy, Run (Skulpt CDN)
 
 ## Conventions
 
 - **No time estimates** — never add minutes, hours, or “reading time”.
-- **Sub-topics** — every chapter frontmatter `subtopics` array; each maps to `<h2 id="…">` in MDX.
-- **Sidebar** — always shows all chapters with full sub-topic lists (see `ChapterSidebar.astro`).
+- **W3Schools layout** — `TutorialLayout` with left sidebar listing every lesson under section headers.
+- **One page per topic** — not multi-section chapter pages.
 - **Auth** — optional Google only; not required to read content.
 - **Scope** — minimize diffs; match existing component patterns.
 
@@ -21,7 +21,7 @@ Static Astro site at `~/Desktop/pyguide`.
 | File | Purpose |
 |------|---------|
 | `src/content/config.ts` | Chapter schema |
-| `src/pages/learn/[slug].astro` | Chapter page |
+| `src/pages/python/[slug].astro` | Lesson page |
 | `src/components/PythonExample.astro` | Runnable snippet UI |
 | `src/scripts/run-python.ts` | Skulpt runner |
 

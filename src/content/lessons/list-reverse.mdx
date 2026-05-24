@@ -1,0 +1,61 @@
+---
+title: "reverse()"
+description: "Reverse the order of items in a list with reverse()."
+order: 39
+chapter: 8
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`reverse()`** reverses the list **in place** — first becomes last.
+
+<PythonExample
+  filename="reverse.py"
+  code={`nums = [1, 2, 3, 4, 5]
+nums.reverse()
+print(nums)`}
+/>
+
+## reverse() vs sort(reverse=True)
+
+- `reverse()` — flips current order only  
+- `sort(reverse=True)` — sorts largest-first  
+
+<PythonExample
+  filename="compare.py"
+  code={`a = [3, 1, 4, 2]
+a.reverse()
+print("reverse:", a)
+
+b = [3, 1, 4, 2]
+b.sort(reverse=True)
+print("sort reverse:", b)`}
+/>
+
+## Slicing trick (new list)
+
+`reversed_list = original[::-1]` creates a **copy** in reverse without changing `original`:
+
+<PythonExample
+  filename="slice_reverse.py"
+  code={`letters = ["a", "b", "c", "d"]
+backward = letters[::-1]
+print("original:", letters)
+print("backward:", backward)`}
+/>
+
+## reversed() function
+
+**`reversed(list)`** returns an iterator for loops — does not change the list:
+
+<PythonExample
+  filename="reversed_func.py"
+  code={`nums = [1, 2, 3]
+for n in reversed(nums):
+    print(n)
+print(nums)`}
+/>
+
+<Callout variant="note">
+  `reverse()` returns `None`. Use slicing or `reversed()` if you need to keep the original order.
+</Callout>

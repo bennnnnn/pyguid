@@ -1,0 +1,64 @@
+---
+title: "Python sets"
+description: "Store unique unordered items with sets."
+order: 45
+chapter: 10
+chapterTitle: "Sets"
+level: beginner
+---
+
+A **set** holds **unique** items in **no fixed order** — good for tags, IDs, or dropping duplicates from a list.
+
+<PythonExample
+  filename="set.py"
+  code={`tags = {"python", "code", "learn", "python"}
+print(tags)
+print(len(tags))`}
+/>
+
+Create a set from a list to remove duplicates:
+
+<PythonExample
+  filename="from_list.py"
+  code={`numbers = [1, 2, 2, 3, 3, 3]
+unique = set(numbers)
+print(unique)`}
+/>
+
+## Add and remove
+
+<PythonExample
+  filename="add_remove.py"
+  code={`colors = {"red", "blue"}
+colors.add("green")
+colors.remove("red")
+print(colors)`}
+/>
+
+Use `discard()` if you are not sure the item exists — it does not error:
+
+<PythonExample
+  filename="discard.py"
+  code={`colors = {"red", "blue"}
+colors.discard("yellow")
+print(colors)`}
+/>
+
+## Check membership
+
+Sets are fast for testing `in`:
+
+<PythonExample
+  filename="in_set.py"
+  code={`allowed = {"admin", "editor", "viewer"}
+print("admin" in allowed)
+print("guest" in allowed)`}
+/>
+
+<Callout variant="tip">
+  Use sets when uniqueness matters: unique tags, IDs seen before, or removing duplicates from a list.
+</Callout>
+
+<Callout variant="warning">
+  Sets cannot contain mutable items like lists. Set items must be immutable (numbers, strings, tuples).
+</Callout>

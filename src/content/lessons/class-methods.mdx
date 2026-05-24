@@ -1,0 +1,86 @@
+---
+title: "Class methods"
+description: "Add methods to classes and use self to access instance data."
+order: 64
+chapter: 15
+chapterTitle: "Classes"
+level: beginner
+---
+
+**Methods** are functions defined inside a class. They always take **`self`** as the first parameter.
+
+<PythonExample
+  filename="methods.py"
+  code={`class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        return f"{self.name} says woof!"
+
+buddy = Dog("Buddy")
+print(buddy.bark())`}
+/>
+
+## Methods that change state
+
+<PythonExample
+  filename="state.py"
+  code={`class Counter:
+    def __init__(self):
+        self.count = 0
+
+    def increment(self):
+        self.count += 1
+
+    def reset(self):
+        self.count = 0
+
+c = Counter()
+c.increment()
+c.increment()
+print(c.count)
+c.reset()
+print(c.count)`}
+/>
+
+## String representation
+
+`__str__` controls what `print()` shows:
+
+<PythonExample
+  filename="str.py"
+  code={`class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+
+p = Point(3, 4)
+print(p)`}
+/>
+
+## Class attributes vs instance
+
+A variable defined **on the class** is shared; **on self** it is per object:
+
+<PythonExample
+  filename="class_attr.py"
+  code={`class Circle:
+    pi = 3.14159
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return Circle.pi * self.radius ** 2
+
+c = Circle(5)
+print(round(c.area(), 2))`}
+/>
+
+<Callout variant="warning">
+  Mutable class attributes (like a shared list) can surprise you — all instances share one list. Use `self.list = []` in `__init__` instead.
+</Callout>

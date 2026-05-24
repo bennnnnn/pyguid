@@ -1,21 +1,26 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import { SITE } from "../../lib/site";
 ---
 
-<BaseLayout title={`About — ${SITE.name}`} description="About PyGuide free Python tutorials.">
-  <div class="mx-auto max-w-2xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-ink-900">About {SITE.name}</h1>
-    <div class="mt-6 space-y-4 text-ink-700 leading-relaxed">
+<SiteLayout title={`About — ${SITE.name}`} description={`About ${SITE.name} — free Python tutorials with runnable examples.`}>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <article class="lesson-prose">
+      <h1>About {SITE.name}</h1>
       <p>
-        {SITE.name} is a free, static Python tutorial site. Each chapter lists its sub-topics up
-        front so you know what you will learn. Every example has a read-only code view, a Copy
-        button, and Run to see output in your browser.
+        {SITE.name} is a free, static Python course for beginners. Each lesson covers one topic with short
+        explanations and examples you can run in the browser — no install required.
       </p>
-      <p>
-        Sign in with Google is optional and only for saving progress. All lesson content stays
-        free without an account.
+      <h2>What you will find</h2>
+      <ul>
+        <li>52 lessons from basics through classes, files, and more</li>
+        <li>Runnable code on every example page</li>
+        <li>A separate syntax reference for quick lookup</li>
+      </ul>
+      <p class="flex flex-wrap gap-3">
+        <a href="/python/what-is-python/" class="btn-primary">Start the course</a>
+        <a href="/python/" class="btn-secondary">Course home</a>
       </p>
-    </div>
+    </article>
   </div>
-</BaseLayout>
+</SiteLayout>

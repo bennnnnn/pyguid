@@ -1,0 +1,125 @@
+---
+import TutorialLayout from "../../../layouts/TutorialLayout.astro";
+import { getLessonGroups } from "../../../lib/lessons";
+import { SITE } from "../../../lib/site";
+
+const groups = await getLessonGroups();
+
+const snippets = {
+  strings: `s = "hello"
+len(s) · s[0] · s[1:4]
+s.upper() · s.lower() · s.strip()
+s.split(",") · "-".join(parts)`,
+  lists: `nums = [1, 2, 3]
+nums.append(4) · nums.pop()
+nums.sort() · sorted(nums)
+for x in nums: ...`,
+  dicts: `d = {"a": 1, "b": 2}
+d["a"] · d.get("c", 0)
+d.keys() · d.values() · d.items()
+for k, v in d.items(): ...`,
+  loops: `while condition:
+    ...
+
+for item in items:
+    ...
+
+for i in range(5):
+    ...
+
+break · continue`,
+  functions: `def name(a, b=0):
+    return a + b
+
+import math
+from math import sqrt`,
+  classes: `class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        return "woof"
+
+buddy = Dog("Buddy")`,
+  conditionals: `if x > 0:
+    ...
+
+elif x < 0:
+    ...
+
+else:
+    ...
+
+# and · or · not
+# == != < > <= >=`,
+  errors: `try:
+    risky()
+except ValueError:
+    print("Bad value")
+except Exception as e:
+    print(e)
+finally:
+    cleanup()`,
+};
+---
+
+<TutorialLayout
+  title={`Reference — ${SITE.name}`}
+  description="Quick Python syntax reference."
+  groups={groups}
+  sidebar="reference"
+>
+  <article class="lesson-prose-wide lesson-prose">
+    <p class="!mt-0 text-sm text-text-muted">
+      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <span class="mx-1.5">/</span>
+      <span>Reference</span>
+    </p>
+    <h1>Python reference</h1>
+    <p>Quick lookup for syntax from the course. For explanations and examples, use <a href="/python/">Learn</a>.</p>
+
+    <h2 id="strings">Strings</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.strings}</pre>
+    </div>
+
+    <h2 id="lists">Lists</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.lists}</pre>
+    </div>
+
+    <h2 id="dicts">Dictionaries</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.dicts}</pre>
+    </div>
+
+    <h2 id="conditionals">If statements</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.conditionals}</pre>
+    </div>
+
+    <h2 id="loops">Loops</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.loops}</pre>
+    </div>
+
+    <h2 id="functions">Functions</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.functions}</pre>
+    </div>
+
+    <h2 id="classes">Classes</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.classes}</pre>
+    </div>
+
+    <h2 id="errors">Error handling</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.errors}</pre>
+    </div>
+
+    <p class="mt-10">
+      <a href="/python/" class="btn-primary">Back to full course</a>
+    </p>
+  </article>
+</TutorialLayout>

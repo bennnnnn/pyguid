@@ -1,0 +1,60 @@
+---
+title: "Unpacking tuples"
+description: "Assign tuple items to multiple variables with unpacking."
+order: 44
+chapter: 9
+chapterTitle: "Tuples"
+level: beginner
+---
+
+**Unpacking** assigns each item in a tuple to a variable:
+
+<PythonExample
+  filename="unpack.py"
+  code={`point = (3, 4)
+x, y = point
+print(x)
+print(y)`}
+/>
+
+## Swap two variables
+
+Unpacking makes swapping easy:
+
+<PythonExample
+  filename="swap.py"
+  code={`a = 1
+b = 2
+a, b = b, a
+print(a, b)`}
+/>
+
+## Unpack in a loop
+
+<PythonExample
+  filename="loop_unpack.py"
+  code={`pairs = [(1, "one"), (2, "two"), (3, "three")]
+for number, word in pairs:
+    print(number, word)`}
+/>
+
+## The * operator when unpacking
+
+Collect “the rest” into a list:
+
+<PythonExample
+  filename="star.py"
+  code={`numbers = (1, 2, 3, 4, 5)
+first, *middle, last = numbers
+print(first)
+print(middle)
+print(last)`}
+/>
+
+<Callout variant="note">
+  Functions often return tuples. Unpacking is a clean way to receive multiple results: `min_val, max_val = get_range(data)`.
+</Callout>
+
+<Callout variant="danger">
+  The number of variables on the left must match the number of values you unpack, unless you use `*` to collect extras.
+</Callout>
