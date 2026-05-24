@@ -1045,10 +1045,6 @@ export function referenceEntryUrl(sheetId: string, entrySlug: string): string {
   return `/python/reference/${sheetId}/${entrySlug}/`;
 }
 
-export function referenceEntryId(sheetId: string, index: number): string {
-  return `${sheetId}-${index}`;
-}
-
 export function getAllReferenceEntryPages(): ReferenceEntryPage[] {
   const pages: ReferenceEntryPage[] = [];
   for (const sheet of REFERENCE_SHEETS) {

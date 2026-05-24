@@ -62,3 +62,6 @@ Use `<PythonExample />` with a **Run code** button (Skulpt loads on first Run). 
 | ----- | ---------------------------------- | -------------------------- |
 | 1     | `docs/seo-top-30-meta.json`        | `npm run seo:apply-top30`  |
 | 2     | `docs/seo-top-30-batch2-meta.json` | `npm run seo:apply-batch2` |
+| 3     | `docs/seo-batch3-meta.json`        | `npm run seo:apply-batch3` |
+
+See `scripts/README.md` for all maintainer scripts.

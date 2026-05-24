@@ -1,0 +1,43 @@
+---
+export type PagerLink = {
+  href: string;
+  label: string;
+};
+
+interface Props {
+  prev?: PagerLink | null;
+  next?: PagerLink | null;
+  placement?: "top" | "bottom";
+  ariaLabel: string;
+}
+
+const { prev, next, placement = "bottom", ariaLabel } = Astro.props;
+const isTop = placement === "top";
+---
+
+{
+  (prev || next) && (
+    <nav
+      class:list={[
+        "lesson-pager-nav",
+        isTop ? "lesson-pager-nav-top" : "lesson-pager-nav-bottom",
+      ]}
+      aria-label={ariaLabel}
+    >
+      {prev ? (
+        <a href={prev.href} class="lesson-pager-btn">
+          {prev.label}
+        </a>
+      ) : (
+        <span class="lesson-pager-spacer" aria-hidden="true" />
+      )}
+      {next ? (
+        <a href={next.href} class="lesson-pager-btn lesson-pager-btn-next">
+          {next.label}
+        </a>
+      ) : (
+        <span class="lesson-pager-spacer" aria-hidden="true" />
+      )}
+    </nav>
+  )
+}

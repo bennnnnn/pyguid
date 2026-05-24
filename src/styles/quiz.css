@@ -294,6 +294,21 @@
   color: var(--color-text-muted);
 }
 
+.quiz-review-tutorial {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.quiz-review-tutorial a {
+  font-weight: 600;
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.quiz-review-tutorial a:hover {
+  text-decoration: underline;
+}
+
 .quiz-hidden {
   display: none !important;
 }

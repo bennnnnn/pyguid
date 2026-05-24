@@ -1,29 +1,10 @@
-export type ChoiceQuestion = {
-  id: string;
-  type: "choice";
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
-};
+import type { ChapterQuiz, QuizQuestion } from "../lib/quizzes";
 
-export type TrueFalseQuestion = {
-  id: string;
-  type: "truefalse";
-  prompt: string;
-  correct: boolean;
-  explanation: string;
-};
-
-export type QuizQuestion = ChoiceQuestion | TrueFalseQuestion;
-
-export type ChapterQuizData = {
-  chapter: number;
-  chapterTitle: string;
-  title: string;
-  passPercent: number;
-  questions: QuizQuestion[];
-};
+/** Quiz payload embedded in the page (subset of ChapterQuiz). */
+export type ChapterQuizData = Pick<
+  ChapterQuiz,
+  "chapter" | "chapterTitle" | "title" | "passPercent" | "questions"
+>;
 
 type AnswerValue = number | boolean | null;
 
@@ -57,6 +38,12 @@ function formatAnswer(q: QuizQuestion, answer: AnswerValue): string {
 function formatCorrect(q: QuizQuestion): string {
   if (q.type === "choice") return q.options[q.correctIndex];
   return q.correct ? "True" : "False";
+}
+
+function tutorialLinkHtml(lessonSlug: string | undefined): string {
+  if (!lessonSlug || !/^[a-z0-9-]+$/.test(lessonSlug)) return "";
+  const href = `/python/${lessonSlug}/`;
+  return `<p class="quiz-review-tutorial"><a href="${href}">Related tutorial</a></p>`;
 }
 
 export function initChapterQuiz() {
@@ -154,6 +141,7 @@ export function initChapterQuiz() {
               : `<p class="quiz-review-your"><strong>Correct:</strong> ${escapeHtml(formatCorrect(q))}</p>`
           }
           <p class="quiz-review-exp">${escapeHtml(q.explanation)}</p>
+          ${tutorialLinkHtml(q.lessonSlug)}
         `;
         reviewList.appendChild(item);
       });

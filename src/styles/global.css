@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import "./quiz.css";
+@import "./pager.css";
 
 @theme {
   --font-sans:

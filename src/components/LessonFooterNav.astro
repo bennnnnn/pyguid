@@ -1,71 +1,20 @@
 ---
 import type { LessonEntry } from "../lib/lessons";
 import { lessonUrl } from "../lib/lessons";
+import PagerNav from "./PagerNav.astro";
 
 interface Props {
   prev: LessonEntry | null;
   next: LessonEntry | null;
+  placement?: "top" | "bottom";
 }
 
-const { prev, next } = Astro.props;
+const { prev, next, placement = "bottom" } = Astro.props;
 ---
 
-<nav
-  class="lesson-footer-nav mt-14 border-t border-border pt-8"
-  aria-label="Lesson navigation"
->
-  {
-    (prev || next) && (
-      <div class="flex items-center justify-between gap-4">
-        {prev ? (
-          <a href={lessonUrl(prev.id)} class="lesson-pager-btn">
-            Back
-          </a>
-        ) : (
-          <span class="lesson-pager-spacer" aria-hidden="true" />
-        )}
-        {next ? (
-          <a href={lessonUrl(next.id)} class="lesson-pager-btn lesson-pager-btn-next">
-            Next tutorial →
-          </a>
-        ) : (
-          <span class="lesson-pager-spacer" aria-hidden="true" />
-        )}
-      </div>
-    )
-  }
-</nav>
-
-<style>
-  .lesson-pager-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 5.5rem;
-    padding: 0.5rem 1.25rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 0.5rem;
-    background: var(--color-surface);
-    color: var(--color-text);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.15s;
-  }
-
-  .lesson-pager-btn:hover,
-  .lesson-pager-btn:focus,
-  .lesson-pager-btn:visited {
-    background: var(--color-surface-alt);
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .lesson-pager-btn-next {
-    margin-left: auto;
-  }
-
-  .lesson-pager-spacer {
-    min-width: 5.5rem;
-  }
-</style>
+<PagerNav
+  prev={prev ? { href: lessonUrl(prev.id), label: "Back" } : null}
+  next={next ? { href: lessonUrl(next.id), label: "Next tutorial →" } : null}
+  placement={placement}
+  ariaLabel="Lesson navigation"
+/>

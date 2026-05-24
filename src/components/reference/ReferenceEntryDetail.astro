@@ -4,7 +4,6 @@ import { getReferenceEntryCode } from "../../lib/reference-entry-code";
 import { referenceChapterUrl, referenceEntrySlug } from "../../lib/reference-sheets";
 import PythonExample from "../PythonExample.astro";
 import ReferencePager from "./ReferencePager.astro";
-import { SITE } from "../../lib/site";
 
 interface Props {
   page: ReferenceEntryPage;
@@ -33,15 +32,8 @@ const next =
 ---
 
 <article class="ref-entry-page lesson-prose">
-  <p class="!mt-0 text-sm text-text-muted">
-    <a href="/" class="text-link">{SITE.name}</a>
-    <span class="mx-1.5">/</span>
-    <a href="/python/reference/" class="text-link">Reference</a>
-    <span class="mx-1.5">/</span>
-    <a href={referenceChapterUrl(sheet.id)} class="text-link">{sheet.title}</a>
-  </p>
-
-  <h1 class="ref-entry-title">
+  <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="top" />
+  <h1 class="ref-entry-title !mt-0">
     <code>{entry.name}</code>
   </h1>
   <p class="ref-entry-lead">{entry.summary}</p>
@@ -66,5 +58,5 @@ const next =
     )
   }
 
-  <ReferencePager sheetId={sheet.id} prev={prev} next={next} />
+  <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="bottom" />
 </article>

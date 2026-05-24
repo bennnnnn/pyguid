@@ -37,6 +37,8 @@ export type ChoiceQuestion = {
   options: string[];
   correctIndex: number;
   explanation: string;
+  /** Lesson slug for /python/{slug}/ — shown in results review */
+  lessonSlug?: string;
 };
 
 export type TrueFalseQuestion = {
@@ -45,6 +47,7 @@ export type TrueFalseQuestion = {
   prompt: string;
   correct: boolean;
   explanation: string;
+  lessonSlug?: string;
 };
 
 export type QuizQuestion = ChoiceQuestion | TrueFalseQuestion;

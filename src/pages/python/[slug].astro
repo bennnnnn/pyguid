@@ -16,7 +16,11 @@ import {
   getChapterLessons,
   lessonUrl,
 } from "../../lib/lessons";
-import { breadcrumbListJsonLd, pythonChapterUrl } from "../../lib/seo-schema";
+import {
+  breadcrumbListJsonLd,
+  lessonLearningResourceJsonLd,
+  pythonChapterUrl,
+} from "../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../lib/site";
 export async function getStaticPaths() {
   const lessons = await getAllLessons();
@@ -48,25 +52,14 @@ const breadcrumbLd = breadcrumbListJsonLd([
   { name: lesson.data.title, url: pageUrl },
 ]);
 
-const articleLd = {
-  "@context": "https://schema.org",
-  "@type": "LearningResource",
-  name: lesson.data.title,
-  description: lesson.data.description,
+const articleLd = lessonLearningResourceJsonLd({
+  siteUrl,
   url: pageUrl,
-  learningResourceType: "Lesson",
-  educationalLevel: lesson.data.level ?? "beginner",
-  inLanguage: "en",
-  isPartOf: {
-    "@type": "Course",
-    name: `PyGuide — ${lesson.data.chapterTitle}`,
-    provider: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: siteUrl,
-    },
-  },
-};
+  title: lesson.data.title,
+  description: lesson.data.description,
+  chapterTitle: lesson.data.chapterTitle,
+  level: lesson.data.level,
+});
 
 const jsonLd = [breadcrumbLd, articleLd];
 ---
@@ -80,24 +73,8 @@ const jsonLd = [breadcrumbLd, articleLd];
   jsonLd={jsonLd}
 >
   <article class="lesson-prose">
-    <p class="!mt-0 text-sm text-text-muted">
-      <a href="/" class="text-link">{SITE.name}</a>
-      <span class="mx-1.5">/</span>
-      <a href="/python/" class="text-link">Python</a>
-      <span class="mx-1.5">/</span>
-      <a href={`/python/#chapter-${lesson.data.chapter}`} class="text-link">
-        {lesson.data.chapterTitle}
-      </a>
-      {
-        lesson.data.section && (
-          <>
-            <span class="mx-1.5">/</span>
-            <span>{lesson.data.section}</span>
-          </>
-        )
-      }
-    </p>
-    <h1>{lesson.data.title}</h1>
+    <LessonFooterNav prev={prev} next={next} placement="top" />
+    <h1 class="!mt-0">{lesson.data.title}</h1>
     {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable }} />
     <LessonReferenceLink chapter={lesson.data.chapter} />

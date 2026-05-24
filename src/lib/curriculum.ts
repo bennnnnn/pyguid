@@ -1,7 +1,5 @@
 import curriculum from "../../docs/curriculum-order.json";
 
-export type CurriculumEntry = (typeof curriculum.lessons)[number];
-
 /** Slugs published in the course (sidebar, sitemap, lesson routes). */
 export const CURRICULUM_SLUGS = new Set(curriculum.lessons.map((entry) => entry.slug));
 

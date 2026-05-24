@@ -24,11 +24,6 @@ export async function getAllLessons(): Promise<LessonEntry[]> {
     .sort((a, b) => a.data.order - b.data.order);
 }
 
-export async function getLessonById(id: string): Promise<LessonEntry | undefined> {
-  const lessons = await getAllLessons();
-  return lessons.find((l) => l.id === id);
-}
-
 export function lessonUrl(id: string): string {
   return `/python/${id}/`;
 }

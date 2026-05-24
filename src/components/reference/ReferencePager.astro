@@ -1,5 +1,6 @@
 ---
 import { referenceEntryUrl } from "../../lib/reference-sheets";
+import PagerNav from "../PagerNav.astro";
 
 interface NavItem {
   slug: string;
@@ -10,68 +11,15 @@ interface Props {
   sheetId: string;
   prev?: NavItem;
   next?: NavItem;
+  placement?: "top" | "bottom";
 }
 
-const { sheetId, prev, next } = Astro.props;
+const { sheetId, prev, next, placement = "bottom" } = Astro.props;
 ---
 
-{
-  (prev || next) && (
-    <nav
-      class="lesson-pager mt-14 flex items-center justify-between gap-4 border-t border-border pt-8"
-      aria-label="Reference navigation"
-    >
-      {prev ? (
-        <a href={referenceEntryUrl(sheetId, prev.slug)} class="lesson-pager-btn">
-          Back
-        </a>
-      ) : (
-        <span class="lesson-pager-spacer" aria-hidden="true" />
-      )}
-      {next ? (
-        <a
-          href={referenceEntryUrl(sheetId, next.slug)}
-          class="lesson-pager-btn lesson-pager-btn-next"
-        >
-          Next
-        </a>
-      ) : (
-        <span class="lesson-pager-spacer" aria-hidden="true" />
-      )}
-    </nav>
-  )
-}
-
-<style>
-  .lesson-pager-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 5.5rem;
-    padding: 0.5rem 1.25rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 0.5rem;
-    background: var(--color-surface);
-    color: var(--color-text);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.15s;
-  }
-
-  .lesson-pager-btn:hover,
-  .lesson-pager-btn:focus,
-  .lesson-pager-btn:visited {
-    background: var(--color-surface-alt);
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .lesson-pager-btn-next {
-    margin-left: auto;
-  }
-
-  .lesson-pager-spacer {
-    min-width: 5.5rem;
-  }
-</style>
+<PagerNav
+  prev={prev ? { href: referenceEntryUrl(sheetId, prev.slug), label: "Back" } : undefined}
+  next={next ? { href: referenceEntryUrl(sheetId, next.slug), label: "Next" } : undefined}
+  placement={placement}
+  ariaLabel="Reference navigation"
+/>

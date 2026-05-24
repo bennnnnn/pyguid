@@ -27,15 +27,7 @@ const title = `${sheet.title} — Reference — ${SITE.name}`;
   sidebar="reference"
 >
   <article class="lesson-prose-wide lesson-prose">
-    <p class="!mt-0 text-sm text-text-muted">
-      <a href="/" class="text-link">{SITE.name}</a>
-      <span class="mx-1.5">/</span>
-      <a href="/python/reference/" class="text-link">Reference</a>
-      <span class="mx-1.5">/</span>
-      <span>{sheet.title}</span>
-    </p>
-
-    <h1 class="!mt-2">{sheet.title}</h1>
+    <h1 class="!mt-0">{sheet.title}</h1>
 
     <ReferenceChapterTable sheet={sheet} />
   </article>

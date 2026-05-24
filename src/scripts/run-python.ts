@@ -1,7 +1,13 @@
+import csvShim from "../skulpt-shims/csv.py?raw";
+import ioShim from "../skulpt-shims/io.py?raw";
+
 const SKULPT_TIMEOUT_MS = 8000;
 const SKULPT_CDN = "https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist";
+const IO_MODULE_PATH = "src/lib/io.py";
+const CSV_MODULE_PATH = "src/lib/csv.py";
 
 let skulptReady: Promise<void> | null = null;
+let shimsRegistered = false;
 
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -36,16 +42,36 @@ export function loadSkulpt(): Promise<void> {
   }
 
   if ((window as unknown as { Sk?: unknown }).Sk) {
+    registerSkulptShims((window as unknown as SkulptWindow).Sk);
     return Promise.resolve();
   }
 
   if (!skulptReady) {
-    skulptReady = loadScript(`${SKULPT_CDN}/skulpt.min.js`).then(() =>
-      loadScript(`${SKULPT_CDN}/skulpt-stdlib.js`),
-    );
+    skulptReady = loadScript(`${SKULPT_CDN}/skulpt.min.js`)
+      .then(() => loadScript(`${SKULPT_CDN}/skulpt-stdlib.js`))
+      .then(() => {
+        registerSkulptShims((window as unknown as SkulptWindow).Sk);
+      });
   }
 
   return skulptReady;
+}
+
+function registerSkulptShims(Sk: SkulptWindow["Sk"]) {
+  if (shimsRegistered || !Sk.builtinFiles?.files) return;
+  Sk.builtinFiles.files[IO_MODULE_PATH] = ioShim;
+  Sk.builtinFiles.files[CSV_MODULE_PATH] = csvShim;
+  shimsRegistered = true;
+}
+
+function clearSkulptModuleCache(Sk: SkulptWindow["Sk"], moduleName: string) {
+  const modules = (Sk as { sysmodules?: Record<string, unknown> }).sysmodules;
+  if (!modules) return;
+  for (const key of Object.keys(modules)) {
+    if (key === moduleName || key.endsWith(`$${moduleName}`)) {
+      delete modules[key];
+    }
+  }
 }
 
 type SkulptWindow = {
@@ -80,6 +106,9 @@ export async function runPython(code: string): Promise<string> {
   );
 
   const { Sk } = window as unknown as SkulptWindow;
+  registerSkulptShims(Sk);
+  clearSkulptModuleCache(Sk, "io");
+  clearSkulptModuleCache(Sk, "csv");
   const lines: string[] = [];
 
   Sk.configure({

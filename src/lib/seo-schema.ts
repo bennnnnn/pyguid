@@ -95,3 +95,32 @@ export function quizLearningResourceJsonLd(opts: {
 export function pythonChapterUrl(siteUrl: string, chapter: number): string {
   return `${siteUrl}/python/#chapter-${chapter}`;
 }
+
+export function lessonLearningResourceJsonLd(opts: {
+  siteUrl: string;
+  url: string;
+  title: string;
+  description: string;
+  chapterTitle: string;
+  level?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: opts.title,
+    description: opts.description,
+    url: opts.url,
+    learningResourceType: "Lesson",
+    educationalLevel: opts.level ?? "beginner",
+    inLanguage: "en",
+    isPartOf: {
+      "@type": "Course",
+      name: `PyGuide — ${opts.chapterTitle}`,
+      provider: {
+        "@type": "Organization",
+        name: SITE.name,
+        url: opts.siteUrl,
+      },
+    },
+  };
+}

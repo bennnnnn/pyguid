@@ -17,7 +17,7 @@ External review (~5.8/10) assumed a small beginner-only site. Much of **Track B*
 | **Course path**    | “Teach me Python”    | Chapters 1→16, projects                   |
 | **Search landing** | “python list append” | One focused page → related links → course |
 
-Implemented: comparison lesson `list-append-vs-extend`, minimal lesson footer (Back / Next tutorial). Lesson pages no longer show Related blocks or inline FAQ sections.
+Implemented: comparison lesson `list-append-vs-extend`, lesson pager (Back / Next at top and bottom), Related lessons per chapter, reference cross-links. FAQ sections and FAQPage schema removed from lessons.
 
 ## Level map (zero → L4)
 
@@ -42,7 +42,7 @@ Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 - [x] JSON-LD: `LearningResource` + `BreadcrumbList` on lessons
 - [x] Skulpt loads on **Run** only (not on page load)
 - [x] Internal links: related lessons per chapter
-- [x] **Track A batch 1 (30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
+- [x] **Track A batch 1–3:** `quickAnswer`, expanded descriptions, “Why this matters” on lessons
 - [x] **Track A batch 2 (30):** same treatment — see `docs/seo-top-30-batch2-meta.json`
 - [x] **Quizzes** `/python/quiz/` (chapter quizzes separate from tutorials)
 - [x] **References** `/python/reference/` (syntax lookup, separate from tutorials)
