@@ -1,11 +1,25 @@
 ---
 title: "append() vs extend() in Python"
-description: "Compare list append and extend with examples, return values, and when to use each."
+description: "Python append vs extend: when to add one item versus merge an iterable into a list. Side-by-side beginner examples that fix nested list bugs fast."
 order: 60
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Use append() to add one element; use extend() to add each element from an iterable. append([1,2]) nests a list; extend([1,2]) adds 1 and 2."
+faqs:
+  - question: "Should I use append or extend to combine two lists?"
+    answer: "Use extend(other_list) or a slice assignment if you want all elements merged. append(other_list) adds the second list as one nested element."
+  - question: "What happens if I append a list to a list?"
+    answer: "You get a list containing another list as a single item, for example [1, 2, [3, 4]], not [1, 2, 3, 4]."
+  - question: "Is list += the same as extend?"
+    answer: "For lists, += with another list behaves like extend for standard list objects, adding elements in place. Still know append vs extend for clarity when reading code."
+  - question: "Which is faster, append or extend?"
+    answer: "For many items, extend is clearer and avoids repeated function calls in a loop. For one item, append is correct. Readability and correct structure matter more than micro-speed here."
 ---
+
+## Why this matters
+
+This pair causes some of the most common list bugs in first projects—unexpected [[...]] structures and wrong counts. Choosing the right method keeps data flat and predictable. Once you internalize the rule, list-building in loops feels straightforward.
 
 **Short answer:** `append()` adds **one** item (any type). `extend()` adds **many** items by copying elements from another iterable.
 
@@ -49,19 +63,6 @@ print(grid)`}
 />
 
 `append(row)` stores **one** list object — aliasing bites later. Use `extend` or `copy` when building grids.
-
-## FAQ
-
-**Does append create a new list?**  
-No. It mutates the same list in place.
-
-**Why does append return None?**  
-So you do not confuse the return value with the updated list. Use the variable: `items.append(x)` then `items`.
-
-**Can I append multiple items at once?**  
-Not in one `append` call. Use `extend`, a loop, or `+=` on lists.
-
-**New to lists?** Read [Lists intro](/python/lists-intro/) first. **Next:** [extend()](/python/list-extend/).
 
 <TryIt title="Try it yourself" answer='["a", "b", "c", "d"]'>
   Start `items = ["a", "b"]`. Use `extend(["c", "d"])`. Print `items`.

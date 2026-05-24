@@ -1,11 +1,25 @@
 ---
 title: "Python dictionaries"
-description: "Store key-value pairs with dictionaries."
+description: "Python dictionaries tutorial for beginners: keys, values, create dicts, and access labeled data. Runnable examples explain dicts versus lists with clear demos."
 order: 87
 chapter: 10
 chapterTitle: "Dictionaries"
 level: beginner
+quickAnswer: "A Python dict maps unique keys to values using curly braces, like user = {'name': 'Ada', 'role': 'dev'}."
+faqs:
+  - question: "How do you create a dictionary in Python?"
+    answer: "Use curly braces with key: value pairs, or dict() with keyword arguments or an iterable of pairs."
+  - question: "Can dictionary keys be any type?"
+    answer: "Keys must be hashable—commonly strings and numbers. Lists cannot be keys; tuples can if their items are hashable."
+  - question: "Are dictionaries ordered in Python 3?"
+    answer: "Yes, insertion order is preserved in modern Python 3.7+ as a language guarantee."
+  - question: "What is the difference between a list and a dict?"
+    answer: "Lists are ordered sequences by index. Dicts look up values by keys, which is better for named fields."
 ---
+
+## Why this matters
+
+Dicts model labeled data—JSON from the web, settings, counts, and records by id. They pair naturally with loops and get() once lists feel comfortable. Most real Python programs spend as much time in dicts as in lists.
 
 A **list** finds items by **number**: index `0`, `1`, `2`. A **dictionary** is like a **contact card** — you look up **"name"** and get **"Ada"**, not "whatever is in slot zero."
 

@@ -6,27 +6,40 @@ Path: `src/content/lessons/your-slug.mdx`
 
 ```yaml
 ---
-title: "Python Variables" # Sidebar + H1
-description: "SEO description"
-order: 5 # Global order (prev/next)
-chapter: 2 # Sidebar chapter number
-chapterTitle: "Variables" # Sidebar chapter header
-section: "Strings" # Optional: nested topic (e.g. string methods)
+title: "Python list append() explained"
+description: "SEO meta description (140–160 chars, include search phrase)"
+order: 5
+chapter: 7
+chapterTitle: "Lists"
+section: "Lists" # optional
 level: beginner
+quickAnswer: "One-sentence direct answer for the top of the page."
+faqs:
+  - question: "Does append return a new list?"
+    answer: "No. append() returns None and mutates the list in place."
 ---
 ```
 
-Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks. Short `##` subheadings are fine when they help scan the page.
+Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
 
-## Beginner teaching flow
+**Practice exams** live on `/python/practice/` (topic hubs) — lesson pages only use quick **TryIt** checks. Do not add full exams inside lessons.
 
-1. Tiny analogy or story
-2. One new idea
-3. Short code + **Run**
-4. Explain each line
-5. Common mistake (`Callout` warning/danger)
-6. `<TryIt>` with hidden answer
-7. Recap + next lesson link
+## SEO lesson template (top traffic pages)
+
+1. **Frontmatter** — `description`, `quickAnswer`, `faqs` (3–4 items)
+2. **Why this matters** — 2–3 sentences (or use `seo:apply-top30` from `docs/seo-top-30-meta.json`)
+3. Plain-English explanation + analogy
+4. Runnable example + line-by-line
+5. Common mistake (`Callout`)
+6. **TryIt** (1–2 on lesson; full exams on Practice hub)
+7. Recap + next lesson
+
+Rendered automatically on each lesson:
+
+- `QuickAnswer` from frontmatter
+- `PracticeExamsNote` → chapter on `/python/practice/#chapter-N`
+- `SeoFaq` + FAQPage JSON-LD from frontmatter
+- Related lessons + breadcrumbs schema
 
 ## Try it exercises
 
@@ -47,37 +60,16 @@ Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks. Short `#
 </Callout>
 ```
 
-Variants: `note`, `tip`, `warning`, `danger`.
-
 ## Example blocks
 
-Use `<PythonExample />` with a **Run code** button (Skulpt in the browser). Do not mention reading time or duration.
+Use `<PythonExample />` with a **Run code** button (Skulpt loads on first Run). Do not mention reading time or duration.
 
 ## Rules
 
-- `order` must be unique and sequential for prev/next navigation.
-- `chapter` + `chapterTitle` group items in the left sidebar.
-- Never mention duration or reading time.
+- `order` must be unique — run `npm run sync:curriculum` after reordering in `docs/curriculum-order.json`
+- Never mention duration or reading time
+- URL: `/python/<slug>/`
 
-## Example
+## Bulk SEO metadata
 
-```mdx
----
-title: "Python Lists"
-description: "Create and use lists in Python."
-order: 17
-chapter: 5
-chapterTitle: "Lists"
-level: beginner
----
-
-Python lists store multiple values.
-
-<PythonExample
-  filename="lists.py"
-  code={`fruits = ["apple", "banana"]
-print(fruits[0])`}
-/>
-```
-
-URL: `/python/lists/` (filename stem = id).
+Top-30 list: `docs/seo-top-30-meta.json` · apply with `npm run seo:apply-top30`

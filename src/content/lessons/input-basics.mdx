@@ -1,11 +1,25 @@
 ---
 title: "User input with input()"
-description: "Read text from the user with input() — always returns a string."
+description: "Python input() tutorial for beginners: read text from the user, write clear prompts, and build interactive CLI programs with runnable PyGuide examples."
 order: 11
 chapter: 2
 chapterTitle: "Variables"
 level: beginner
+quickAnswer: "input(prompt) displays an optional prompt and returns whatever the user typed as a string."
+faqs:
+  - question: "What type does input() return in Python?"
+    answer: "Always a string, even if the user types digits. Convert with int() or float() when you need numbers."
+  - question: "How do I show a prompt with input()?"
+    answer: "Pass a string: name = input('Your name: '). The prompt appears before the user types."
+  - question: "Can input() read passwords safely?"
+    answer: "input() echoes typed characters. For hidden passwords use getpass.getpass() in real terminal apps."
+  - question: "What happens if the user presses Enter with no text?"
+    answer: "You get an empty string '', which is still a valid string value."
 ---
+
+## Why this matters
+
+input() turns static scripts into small tools—quizzes, calculators, CLI games. Everything from input is text, so conversion lessons come next. Handling input politely (clear prompts, validation) is the start of user-facing Python.
 
 A form asks your name; you type and press Enter. **`input()`** is Python’s way to wait for that line of text and store it in a variable.
 

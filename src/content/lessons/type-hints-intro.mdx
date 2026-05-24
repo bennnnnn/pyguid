@@ -1,11 +1,25 @@
 ---
 title: "Type hints intro"
-description: "Annotate parameters and return types in modern Python."
+description: "Python type hints intro for beginners: annotate variables and functions for clearer code. Learn basic syntax without advanced typing theory."
 order: 110
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Type hints add optional annotations like name: str and def greet(name: str) -> None to document expected types; Python does not enforce them at runtime by default."
+faqs:
+  - question: "Do type hints make Python slower?"
+    answer: "No meaningful runtime cost by default. Annotations are stored but not checked unless you use a type checker."
+  - question: "Are type hints required in Python?"
+    answer: "No. They are optional documentation and tooling aids. Your code runs the same without them."
+  - question: "What does -> mean in a function definition?"
+    answer: "It annotates the return type, for example def add(a: int, b: int) -> int:."
+  - question: "How do I check types in a project?"
+    answer: "Use a static checker like mypy or pyright in the terminal or your editor, separate from running the program."
 ---
+
+## Why this matters
+
+Hints help editors autocomplete and catch mistakes with tools like mypy as projects grow. They appear in modern library docs and team codebases. Starting with simple str and int annotations builds habits without blocking beginners.
 
 Labels on storage bins say “integers” or “text.” **Type hints** label what a function **expects** and **returns** — they do not change how Python runs your code at beginner level.
 

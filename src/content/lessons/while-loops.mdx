@@ -1,11 +1,25 @@
 ---
 title: "While loops"
-description: "Repeat code while a condition stays true."
+description: "Python while loop tutorial: repeat code while a condition stays true. Beginner examples cover infinite loop pitfalls and when to choose while vs for loops."
 order: 45
 chapter: 6
 chapterTitle: "Loops"
 level: beginner
+quickAnswer: "A while loop runs its body repeatedly while the condition after while is true: while condition: with an indented block."
+faqs:
+  - question: "When should I use a while loop in Python?"
+    answer: "Use while when you repeat until something changes—user quits, file ends, counter reaches a limit—not when you already have a collection to walk."
+  - question: "What causes an infinite while loop?"
+    answer: "The condition never becomes false, often because you forgot to update the variable checked in while or used the wrong comparison."
+  - question: "Can while and for be used together?"
+    answer: "Yes. A common pattern is while True with break inside, or a for loop with a while nested for inner logic. Keep each loop's purpose clear."
+  - question: "Does Python check the while condition before each iteration?"
+    answer: "Yes. The condition is tested before the body runs. If it is false at the start, the body may never run."
 ---
+
+## Why this matters
+
+while loops fit input validation, game loops, and retry logic where repetition depends on state, not a fixed list. They also teach careful updates so the condition eventually becomes false. Understanding while prevents accidental infinite loops in real programs.
 
 A microwave keeps heating **while** the timer is above zero. A **`while`** loop keeps running a block **as long as** its condition is `True`.
 

@@ -12,7 +12,8 @@
     "astro": "astro",
     "format": "prettier --write .",
     "check:format": "prettier --check .",
-    "sync:curriculum": "node scripts/sync-curriculum.mjs"
+    "sync:curriculum": "node scripts/sync-curriculum.mjs",
+    "seo:apply-top30": "node scripts/apply-seo-meta.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

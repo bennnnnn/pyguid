@@ -1,11 +1,25 @@
 ---
 title: "Operator precedence"
-description: "Which operations run first — and how parentheses help."
+description: "Python operator precedence for beginners: *, / before +, -, parentheses, and mixing comparisons with and/or without logic bugs in your if tests."
 order: 39
 chapter: 4
 chapterTitle: "Operators"
 level: beginner
+quickAnswer: "Python evaluates operators in a fixed precedence order; use parentheses to force the grouping you intend when expressions mix +, *, comparisons, and and/or."
+faqs:
+  - question: "What is operator precedence in Python?"
+    answer: "Rules that decide which operations run first in an expression without parentheses, similar to PEMDAS in math."
+  - question: "Does multiplication come before addition in Python?"
+    answer: "Yes. * and / bind tighter than + and - unless parentheses change the order."
+  - question: "Which binds tighter, and or or?"
+    answer: "not, then and, then or. Use parentheses in complex conditions to be explicit."
+  - question: "Should I rely on precedence or use parentheses?"
+    answer: "Know the basics, but add parentheses whenever an expression would be hard to read or easy to misparse."
 ---
+
+## Why this matters
+
+Unexpected results like 2 + 3 \* 4 come from precedence, not broken math. Parentheses make intent obvious to you and readers. Precedence also affects conditions mixing and with comparisons, a common source of logic bugs in if statements.
 
 In math class, multiplication happens before addition. Python follows similar **precedence** rules — unless **parentheses** change the order.
 

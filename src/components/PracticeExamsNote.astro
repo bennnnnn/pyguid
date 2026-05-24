@@ -1,0 +1,27 @@
+---
+interface Props {
+  /** Sidebar chapter number for anchor on practice page */
+  chapter: number;
+  chapterTitle: string;
+  topic?: string;
+}
+
+const { chapter, chapterTitle, topic } = Astro.props;
+const label = topic ?? chapterTitle;
+---
+
+<aside
+  class="practice-exams-note not-prose my-8 rounded-lg border border-brand/30 bg-brand/5 px-4 py-4"
+>
+  <p class="!m-0 text-sm leading-relaxed text-text-secondary">
+    <strong class="text-text">Practice exams:</strong> Short TryIt checks live on this lesson.
+    Full topic-by-topic exams for <strong>{label}</strong> live on our{" "}
+    <a
+      href={`/python/practice/#chapter-${chapter}`}
+      class="text-link font-medium no-underline hover:underline"
+    >
+      Practice hub
+    </a>{" "}
+    (expand as we publish each chapter).
+  </p>
+</aside>

@@ -1,11 +1,25 @@
 ---
 title: "print() vs return"
-description: "When to show output vs when to send a value back."
+description: "Python print vs return for beginners: when to show output versus pass values between functions. Examples that fix common homework and unit testing mistakes."
 order: 108
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Use print() to display text for humans; use return to hand a value back to calling code for further use."
+faqs:
+  - question: "Should my function print or return the result?"
+    answer: "Return the result if another part of the program needs it. Print only when the goal is to show something to the user right there."
+  - question: "Why does my function print correctly but assign None?"
+    answer: "print returns None. Assigning x = my_func() stores None unless my_func uses return."
+  - question: "Can I use both print and return in one function?"
+    answer: "Yes, for debugging or user messages while still returning data. Keep returns for logic and prints for optional visibility."
+  - question: "Do automated tests check print or return?"
+    answer: "Tests usually assert on return values or object state, not printed text, unless the exercise explicitly checks output."
 ---
+
+## Why this matters
+
+Mixing print and return is a classic beginner trap—functions look right in the console but fail tests or next steps. Libraries and APIs never use your prints; they need return values. Separating display from computation is a habit professional Python code follows.
 
 **`print`** is a megaphone to the screen. **`return`** is handing a result back to whoever called the function — they decide what to do with it.
 

@@ -1,11 +1,25 @@
 ---
 title: "in, is, and identity"
-description: "Membership with in and identity with is in Python."
+description: "Python in operator and is keyword: test membership in collections versus object identity. Beginner guide compares ==, in, and is with practical if examples."
 order: 38
 chapter: 4
 chapterTitle: "Operators"
 level: beginner
+quickAnswer: "Use in to test whether a value is contained in a collection; use is to test whether two names refer to the same object, not equal value."
+faqs:
+  - question: "What does the in operator do in Python?"
+    answer: "It returns True if the left value is found inside the right iterable or collection, for example 3 in [1, 2, 3]."
+  - question: "What is the difference between == and is?"
+    answer: "== compares values for equality. is checks object identity—whether two variables point to the same object in memory."
+  - question: "Should I use is to compare strings?"
+    answer: "Use == for string value comparison. Use is only for singletons like None when identity is intended."
+  - question: "How do I test if a key is in a dictionary?"
+    answer: "Use key in my_dict. That tests keys, not values."
 ---
+
+## Why this matters
+
+in appears in almost every loop and condition on lists and dict keys. Confusing is with == causes subtle bugs with None and small integers. Knowing identity vs equality helps you read Python documentation and debug truthiness issues.
 
 Two different questions: “Is this **in** the collection?” vs “Is this **the same object** in memory?” Beginners mostly need **`in`**; **`is`** appears for `None` checks.
 

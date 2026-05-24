@@ -1,0 +1,58 @@
+---
+import TutorialLayout from "../../../layouts/TutorialLayout.astro";
+import Callout from "../../../components/Callout.astro";
+import { getLessonGroups, getTotalLessonCount } from "../../../lib/lessons";
+import { SITE } from "../../../lib/site";
+
+const groups = await getLessonGroups();
+const lessonCount = getTotalLessonCount(groups);
+
+const pageTitle = `Python practice exams by topic — ${SITE.name}`;
+const description =
+  "Topic-by-topic Python practice exams. Each hub matches a course chapter — lesson pages teach concepts; practice pages test you.";
+---
+
+<TutorialLayout title={pageTitle} description={description} groups={groups}>
+  <article class="lesson-prose max-w-3xl">
+    <h1>Practice exams by topic</h1>
+    <p class="text-lg text-text-muted">
+      Lessons on PyGuide include quick <strong>TryIt</strong> checks. This hub will host fuller
+      <strong>topic exams</strong> — multiple questions per chapter, scored practice, and solutions
+      — separate from the lesson pages so you can study then test.
+    </p>
+
+    <Callout variant="note">
+      <strong>Status:</strong> Exams are rolling out chapter by chapter. Until a chapter is
+      live, use TryIt boxes on each lesson and mini projects in the course.
+    </Callout>
+
+    <h2>Chapters</h2>
+    <ul class="space-y-4">
+      {
+        groups.map((g) => (
+          <li id={`chapter-${g.chapter}`} class="scroll-mt-20">
+            <h3 class="!mt-0 text-lg">
+              Chapter {g.chapter}: {g.chapterTitle}
+            </h3>
+            <p class="text-sm text-text-muted">
+              Exam coming soon —{" "}
+              <a href="/python/" class="text-link no-underline hover:underline">
+                browse {g.chapterTitle} lessons
+              </a>
+              .
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p>
+      <a href="/python/what-is-python/" class="btn-primary inline-block no-underline">
+        Back to course
+      </a>
+      <a href="/python/roadmap/" class="btn-secondary ml-3 inline-block no-underline">
+        L4 roadmap
+      </a>
+    </p>
+  </article>
+</TutorialLayout>

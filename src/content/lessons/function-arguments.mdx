@@ -1,11 +1,25 @@
 ---
 title: "Function arguments"
-description: "Use default values, keyword arguments, and arbitrary argument lists."
+description: "Python function arguments tutorial: parameters, arguments, and calling with values. Beginner examples explain terminology and typical calling conventions."
 order: 102
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Parameters are names in the def line; arguments are the values you pass when you call the function, like greet('Ada')."
+faqs:
+  - question: "What is the difference between a parameter and an argument?"
+    answer: "Parameters appear in the function definition. Arguments are the actual values supplied in the call."
+  - question: "How many arguments can a Python function have?"
+    answer: "As many as you need, separated by commas in def and in the call. Very long lists are a sign to use a dict or dataclass instead."
+  - question: "Must arguments match the parameter order?"
+    answer: "For positional arguments, yes—the first argument fills the first parameter unless you use keyword arguments."
+  - question: "Can I call a function with no arguments?"
+    answer: "Yes, if the definition has no required parameters or only parameters with defaults."
 ---
+
+## Why this matters
+
+Arguments make functions flexible—the same add() works for any numbers, the same format_name() for any string. They lead to default args, \*args, and keyword patterns used everywhere in the standard library. Clear parameter names make code readable for you and teammates.
 
 Ordering coffee: “latte” uses defaults (regular milk, medium), but you can say “oat milk, large.” **Arguments** let callers skip details or name exactly what they want.
 

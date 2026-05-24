@@ -1,0 +1,694 @@
+{
+  "lessons": {
+    "list-append": {
+      "description": "Python list append() adds one item to the end of a list in place. Beginner tutorial with examples, append vs extend tips, and common mistakes to avoid.",
+      "quickAnswer": "Call list.append(item) to add a single element to the end of a list and modify the list in place.",
+      "whyMatters": "append() is how you grow lists one step at a time in real scripts—shopping carts, log lines, and collected results all start here. Confusing append with extend or += is a top beginner bug that creates nested lists. Learning append cleanly makes loops and data collection much easier.",
+      "faqs": [
+        {
+          "question": "What does list.append() do in Python?",
+          "answer": "append() adds one object as a single new element at the end of the list. The list changes in place and append() returns None."
+        },
+        {
+          "question": "Does append() return the updated list?",
+          "answer": "No. append() returns None. The list itself is updated, so you usually use the same variable after calling append()."
+        },
+        {
+          "question": "Can I append multiple items at once with append()?",
+          "answer": "Not as separate elements. append() takes one argument. To add several values, call append() in a loop, use extend(), or build a list another way."
+        },
+        {
+          "question": "What is the difference between append() and extend()?",
+          "answer": "append() adds one item (even if that item is a list). extend() adds each element from an iterable, flattening one level into the list."
+        }
+      ]
+    },
+    "list-extend": {
+      "description": "Python list extend() merges another iterable into a list element by element. Learn extend vs append with beginner examples and common pitfalls.",
+      "quickAnswer": "Call list.extend(iterable) to add each element from another iterable to the end of a list without nesting the whole iterable as one item.",
+      "whyMatters": "extend() is the right tool when you already have a batch of items to merge—reading lines from a file, combining query results, or joining two lists. Using append() on a list by mistake gives [[1, 2]] instead of [1, 2]. Knowing extend saves hours of debugging nested lists.",
+      "faqs": [
+        {
+          "question": "What does list.extend() do in Python?",
+          "answer": "extend() loops over an iterable and appends each element to the list. The original list grows in place."
+        },
+        {
+          "question": "How is extend() different from append()?",
+          "answer": "append() adds one object as a single element. extend() unpacks an iterable and adds each value separately."
+        },
+        {
+          "question": "Can I use extend() with a string?",
+          "answer": "Yes. A string is iterable, so extend('abc') adds 'a', 'b', and 'c' as separate characters—not one string element unless you append the string."
+        },
+        {
+          "question": "Does extend() return a new list?",
+          "answer": "No. Like append(), extend() modifies the list in place and returns None."
+        }
+      ]
+    },
+    "lists-intro": {
+      "description": "Python lists tutorial for beginners: create lists, index items, slice, and loop. Learn list basics with runnable examples and clear explanations.",
+      "quickAnswer": "A Python list is an ordered, mutable collection written with square brackets, such as nums = [1, 2, 3], indexed from 0.",
+      "whyMatters": "Lists are the default container for sequences in beginner Python—scores, names, file lines, and API data often arrive as lists first. Indexing and slicing show up in every loop and comprehension later. A solid lists foundation makes dictionaries, functions, and projects much less confusing.",
+      "faqs": [
+        {
+          "question": "How do you create a list in Python?",
+          "answer": "Use square brackets with comma-separated values: items = ['a', 'b', 'c']. You can also use list() on an iterable."
+        },
+        {
+          "question": "Are Python lists zero-indexed?",
+          "answer": "Yes. The first element is index 0, the second is index 1, and negative indices count from the end."
+        },
+        {
+          "question": "Can lists hold different types?",
+          "answer": "Yes. A list can mix numbers, strings, booleans, and even other lists or dicts in the same collection."
+        },
+        {
+          "question": "How do you get the length of a list?",
+          "answer": "Use len(my_list). Length is the number of elements, not the highest index plus one in special cases—just the count of items."
+        }
+      ]
+    },
+    "list-comprehensions": {
+      "description": "Python list comprehensions build new lists in one line from loops and conditions. Beginner guide with syntax, runnable examples, and when to use them.",
+      "quickAnswer": "A list comprehension has the form [expression for item in iterable if condition] and creates a new list without a separate append loop.",
+      "whyMatters": "Comprehensions are idiomatic Python—you will see them in tutorials, libraries, and interview snippets. They teach you to think in transformations: start with data, filter, map, collect. They are optional early on, but recognizing them prevents copy-paste confusion later.",
+      "faqs": [
+        {
+          "question": "What is a list comprehension in Python?",
+          "answer": "It is a compact way to build a list by looping over an iterable, optionally filtering, and evaluating an expression for each item."
+        },
+        {
+          "question": "When should beginners use list comprehensions?",
+          "answer": "Use them for simple transforms and filters once you are comfortable with for loops. If the logic is hard to read, use a regular loop instead."
+        },
+        {
+          "question": "Can a list comprehension have an if condition?",
+          "answer": "Yes. Put if at the end: [x for x in nums if x > 0]. That keeps only items that pass the condition."
+        },
+        {
+          "question": "Do list comprehensions modify the original list?",
+          "answer": "No. They always produce a new list. To change a list in place, use a loop or methods like append()."
+        }
+      ]
+    },
+    "list-append-vs-extend": {
+      "description": "Python append vs extend: when to add one item versus merge an iterable into a list. Side-by-side beginner examples that fix nested list bugs fast.",
+      "quickAnswer": "Use append() to add one element; use extend() to add each element from an iterable. append([1,2]) nests a list; extend([1,2]) adds 1 and 2.",
+      "whyMatters": "This pair causes some of the most common list bugs in first projects—unexpected [[...]] structures and wrong counts. Choosing the right method keeps data flat and predictable. Once you internalize the rule, list-building in loops feels straightforward.",
+      "faqs": [
+        {
+          "question": "Should I use append or extend to combine two lists?",
+          "answer": "Use extend(other_list) or a slice assignment if you want all elements merged. append(other_list) adds the second list as one nested element."
+        },
+        {
+          "question": "What happens if I append a list to a list?",
+          "answer": "You get a list containing another list as a single item, for example [1, 2, [3, 4]], not [1, 2, 3, 4]."
+        },
+        {
+          "question": "Is list += the same as extend?",
+          "answer": "For lists, += with another list behaves like extend for standard list objects, adding elements in place. Still know append vs extend for clarity when reading code."
+        },
+        {
+          "question": "Which is faster, append or extend?",
+          "answer": "For many items, extend is clearer and avoids repeated function calls in a loop. For one item, append is correct. Readability and correct structure matter more than micro-speed here."
+        }
+      ]
+    },
+    "for-loops": {
+      "description": "Python for loop tutorial for beginners: iterate lists, strings, and range() with clear syntax, runnable examples, and common indentation mistakes explained.",
+      "quickAnswer": "A for loop runs once per item in an iterable: for item in collection: followed by an indented block of code.",
+      "whyMatters": "for loops are how Python repeats work over data—printing tables, summing numbers, processing files. Almost every script beyond hello world uses them. Getting indentation and the loop variable right unlocks lists, strings, and dictionaries in practice.",
+      "faqs": [
+        {
+          "question": "How do you write a for loop in Python?",
+          "answer": "Write for variable in iterable: then indent the body with four spaces. The loop variable takes each value from the iterable in order."
+        },
+        {
+          "question": "Can I loop over a string with for?",
+          "answer": "Yes. A string is iterable, so for ch in 'hi': processes each character."
+        },
+        {
+          "question": "What is the difference between for and while loops?",
+          "answer": "for loops iterate a known iterable. while loops repeat until a condition becomes false, useful when you do not know how many iterations you need."
+        },
+        {
+          "question": "Do I need range() in every for loop?",
+          "answer": "No. Prefer for item in items when you need the values. Use range() when you need indices or a counted sequence of numbers."
+        }
+      ]
+    },
+    "while-loops": {
+      "description": "Python while loop tutorial: repeat code while a condition stays true. Beginner examples cover infinite loop pitfalls and when to choose while vs for loops.",
+      "quickAnswer": "A while loop runs its body repeatedly while the condition after while is true: while condition: with an indented block.",
+      "whyMatters": "while loops fit input validation, game loops, and retry logic where repetition depends on state, not a fixed list. They also teach careful updates so the condition eventually becomes false. Understanding while prevents accidental infinite loops in real programs.",
+      "faqs": [
+        {
+          "question": "When should I use a while loop in Python?",
+          "answer": "Use while when you repeat until something changes—user quits, file ends, counter reaches a limit—not when you already have a collection to walk."
+        },
+        {
+          "question": "What causes an infinite while loop?",
+          "answer": "The condition never becomes false, often because you forgot to update the variable checked in while or used the wrong comparison."
+        },
+        {
+          "question": "Can while and for be used together?",
+          "answer": "Yes. A common pattern is while True with break inside, or a for loop with a while nested for inner logic. Keep each loop's purpose clear."
+        },
+        {
+          "question": "Does Python check the while condition before each iteration?",
+          "answer": "Yes. The condition is tested before the body runs. If it is false at the start, the body may never run."
+        }
+      ]
+    },
+    "range-function": {
+      "description": "Python range() explained for beginners: counted loops, start/stop/step, and how range differs from a list. Examples paired with for loops you can run.",
+      "quickAnswer": "range(stop) or range(start, stop[, step]) produces a sequence of integers for looping, without storing every number in memory as a full list.",
+      "whyMatters": "range() is the standard way to repeat a fixed number of times or index by position—printing times tables, numbering output, or pairing with len(). Confusing range with list indices causes off-by-one errors. Mastering start, stop, and step prevents many loop bugs.",
+      "faqs": [
+        {
+          "question": "What does range(5) produce?",
+          "answer": "Integers 0, 1, 2, 3, 4. The stop value 5 is not included. This is half-open interval behavior."
+        },
+        {
+          "question": "How do I loop from 1 to 10 inclusive?",
+          "answer": "Use range(1, 11) because the stop is exclusive, or range(1, 10 + 1) for the same idea."
+        },
+        {
+          "question": "Is range a list?",
+          "answer": "No. In Python 3 it is a range object. Use list(range(n)) if you need a real list of numbers."
+        },
+        {
+          "question": "What does the step argument do in range()?",
+          "answer": "step sets the increment between values. range(0, 10, 2) gives 0, 2, 4, 6, 8."
+        }
+      ]
+    },
+    "functions-intro": {
+      "description": "Python functions tutorial for beginners: define with def, call them, and organize code. Examples show why functions matter for reusable scripts.",
+      "quickAnswer": "Define a function with def name(): and an indented body; call it with name() to run that reusable block of code.",
+      "whyMatters": "Functions stop copy-paste and name chunks of logic—calculate tax, format output, validate input. They are the main unit of structure from small scripts to large apps. Learning def early makes every later topic (return, arguments, modules) easier.",
+      "faqs": [
+        {
+          "question": "How do you define a function in Python?",
+          "answer": "Use def function_name(): followed by an indented body. You can add parameters inside the parentheses."
+        },
+        {
+          "question": "What is the difference between defining and calling a function?",
+          "answer": "def creates the function object but does not run the body. Calling name() executes the body now."
+        },
+        {
+          "question": "Do functions need a return statement?",
+          "answer": "Only if you need to send a value back to the caller. Without return, the function returns None."
+        },
+        {
+          "question": "Why use functions instead of repeating code?",
+          "answer": "Functions reduce duplication, give behavior a clear name, and make testing and changes safer in one place."
+        }
+      ]
+    },
+    "function-return": {
+      "description": "Python function return values: use return to send results back to the caller. Beginner tutorial with examples, patterns, and how return differs from print.",
+      "quickAnswer": "Use return value inside a function to pass a result to the caller; execution stops at return and the expression becomes the function's result.",
+      "whyMatters": "return is how functions produce data for the rest of your program—totals, parsed strings, success flags. Relying only on print traps beginners because nothing is usable in the next line. return connects functions to variables, conditions, and other functions.",
+      "faqs": [
+        {
+          "question": "What does return do in a Python function?",
+          "answer": "It ends the function immediately and sends the expression after return to whoever called the function."
+        },
+        {
+          "question": "What if a function has no return statement?",
+          "answer": "It implicitly returns None when it finishes."
+        },
+        {
+          "question": "Can a function return multiple values?",
+          "answer": "Yes. return a, b packs values into a tuple that you can unpack: x, y = func()."
+        },
+        {
+          "question": "Is return the same as print?",
+          "answer": "No. print shows output to the user. return gives a value to your code so you can store or reuse it."
+        }
+      ]
+    },
+    "print-vs-return": {
+      "description": "Python print vs return for beginners: when to show output versus pass values between functions. Examples that fix common homework and unit testing mistakes.",
+      "quickAnswer": "Use print() to display text for humans; use return to hand a value back to calling code for further use.",
+      "whyMatters": "Mixing print and return is a classic beginner trap—functions look right in the console but fail tests or next steps. Libraries and APIs never use your prints; they need return values. Separating display from computation is a habit professional Python code follows.",
+      "faqs": [
+        {
+          "question": "Should my function print or return the result?",
+          "answer": "Return the result if another part of the program needs it. Print only when the goal is to show something to the user right there."
+        },
+        {
+          "question": "Why does my function print correctly but assign None?",
+          "answer": "print returns None. Assigning x = my_func() stores None unless my_func uses return."
+        },
+        {
+          "question": "Can I use both print and return in one function?",
+          "answer": "Yes, for debugging or user messages while still returning data. Keep returns for logic and prints for optional visibility."
+        },
+        {
+          "question": "Do automated tests check print or return?",
+          "answer": "Tests usually assert on return values or object state, not printed text, unless the exercise explicitly checks output."
+        }
+      ]
+    },
+    "function-arguments": {
+      "description": "Python function arguments tutorial: parameters, arguments, and calling with values. Beginner examples explain terminology and typical calling conventions.",
+      "quickAnswer": "Parameters are names in the def line; arguments are the values you pass when you call the function, like greet('Ada').",
+      "whyMatters": "Arguments make functions flexible—the same add() works for any numbers, the same format_name() for any string. They lead to default args, *args, and keyword patterns used everywhere in the standard library. Clear parameter names make code readable for you and teammates.",
+      "faqs": [
+        {
+          "question": "What is the difference between a parameter and an argument?",
+          "answer": "Parameters appear in the function definition. Arguments are the actual values supplied in the call."
+        },
+        {
+          "question": "How many arguments can a Python function have?",
+          "answer": "As many as you need, separated by commas in def and in the call. Very long lists are a sign to use a dict or dataclass instead."
+        },
+        {
+          "question": "Must arguments match the parameter order?",
+          "answer": "For positional arguments, yes—the first argument fills the first parameter unless you use keyword arguments."
+        },
+        {
+          "question": "Can I call a function with no arguments?",
+          "answer": "Yes, if the definition has no required parameters or only parameters with defaults."
+        }
+      ]
+    },
+    "dict-get": {
+      "description": "Python dict get() method for safe lookups with defaults. Beginner tutorial for KeyError-free dictionary access and when to use get() instead of brackets.",
+      "quickAnswer": "dict.get(key, default) returns the value for key if it exists, otherwise default without raising KeyError.",
+      "whyMatters": "Real data often has missing keys—optional settings, sparse JSON, user profiles. get() avoids crashes and keeps code readable compared to long if key in dict blocks. It is a daily pattern in config parsing, APIs, and data cleaning.",
+      "faqs": [
+        {
+          "question": "What does dict.get() do in Python?",
+          "answer": "It looks up a key and returns its value, or a second argument default if the key is missing."
+        },
+        {
+          "question": "What is the difference between get() and dict[key]?",
+          "answer": "Bracket access raises KeyError on a missing key. get() returns None or your default instead."
+        },
+        {
+          "question": "What is the default if I omit the second argument to get()?",
+          "answer": "None. get('missing') returns None when the key is not present."
+        },
+        {
+          "question": "Does get() modify the dictionary?",
+          "answer": "No. get() only reads. Use setdefault() or assignment if you want to insert when missing."
+        }
+      ]
+    },
+    "dict-intro": {
+      "description": "Python dictionaries tutorial for beginners: keys, values, create dicts, and access labeled data. Runnable examples explain dicts versus lists with clear demos.",
+      "quickAnswer": "A Python dict maps unique keys to values using curly braces, like user = {'name': 'Ada', 'role': 'dev'}.",
+      "whyMatters": "Dicts model labeled data—JSON from the web, settings, counts, and records by id. They pair naturally with loops and get() once lists feel comfortable. Most real Python programs spend as much time in dicts as in lists.",
+      "faqs": [
+        {
+          "question": "How do you create a dictionary in Python?",
+          "answer": "Use curly braces with key: value pairs, or dict() with keyword arguments or an iterable of pairs."
+        },
+        {
+          "question": "Can dictionary keys be any type?",
+          "answer": "Keys must be hashable—commonly strings and numbers. Lists cannot be keys; tuples can if their items are hashable."
+        },
+        {
+          "question": "Are dictionaries ordered in Python 3?",
+          "answer": "Yes, insertion order is preserved in modern Python 3.7+ as a language guarantee."
+        },
+        {
+          "question": "What is the difference between a list and a dict?",
+          "answer": "Lists are ordered sequences by index. Dicts look up values by keys, which is better for named fields."
+        }
+      ]
+    },
+    "if-indentation": {
+      "description": "Python if statement tutorial: conditions, indentation, and flow control for beginners. Learn how if blocks work with boolean logic and runnable demos.",
+      "quickAnswer": "Write if condition: with an indented block; Python runs that block only when condition is truthy.",
+      "whyMatters": "if is how programs make decisions—login checks, discounts, error handling. Python's indentation rules force readable structure but punish mixed tabs and spaces. Solid if skills underpin elif, loops, and try/except later.",
+      "faqs": [
+        {
+          "question": "Why does Python use indentation after if?",
+          "answer": "Indentation defines which lines belong to the if block. Colons start the block; consistent spaces (usually four) are required."
+        },
+        {
+          "question": "What values count as true in an if condition?",
+          "answer": "Truthy values include non-zero numbers, non-empty strings and collections, and True. False, 0, '', [], and None are falsy."
+        },
+        {
+          "question": "Do I need parentheses around the condition?",
+          "answer": "No. if x > 0: is idiomatic. Parentheses are optional unless you split the condition across lines for readability."
+        },
+        {
+          "question": "Can an if block be empty?",
+          "answer": "Not really—you need at least pass as a placeholder if you have no code yet."
+        }
+      ]
+    },
+    "elif-else": {
+      "description": "Python elif and else tutorial: chain conditions after if for menus, grades, and branching. Beginner examples show flat logic without deep nesting.",
+      "quickAnswer": "Use elif for additional tests after if, and else for a final block when no earlier condition was true.",
+      "whyMatters": "Most real decisions have more than two outcomes—grades, shipping tiers, command menus. elif keeps logic flat compared to nested ifs. else captures the default case so nothing falls through silently.",
+      "faqs": [
+        {
+          "question": "What does elif mean in Python?",
+          "answer": "elif is short for else if. Python tests elif branches in order only if previous conditions failed."
+        },
+        {
+          "question": "Can I have elif without else?",
+          "answer": "Yes. else is optional when you do not need a fallback block."
+        },
+        {
+          "question": "How many elif blocks can I use?",
+          "answer": "As many as you need. Keep chains readable; sometimes a dict lookup or match is clearer for many cases."
+        },
+        {
+          "question": "Does else run when a condition is False?",
+          "answer": "else runs only when every if and elif condition above it was false."
+        }
+      ]
+    },
+    "input-basics": {
+      "description": "Python input() tutorial for beginners: read text from the user, write clear prompts, and build interactive CLI programs with runnable PyGuide examples.",
+      "quickAnswer": "input(prompt) displays an optional prompt and returns whatever the user typed as a string.",
+      "whyMatters": "input() turns static scripts into small tools—quizzes, calculators, CLI games. Everything from input is text, so conversion lessons come next. Handling input politely (clear prompts, validation) is the start of user-facing Python.",
+      "faqs": [
+        {
+          "question": "What type does input() return in Python?",
+          "answer": "Always a string, even if the user types digits. Convert with int() or float() when you need numbers."
+        },
+        {
+          "question": "How do I show a prompt with input()?",
+          "answer": "Pass a string: name = input('Your name: '). The prompt appears before the user types."
+        },
+        {
+          "question": "Can input() read passwords safely?",
+          "answer": "input() echoes typed characters. For hidden passwords use getpass.getpass() in real terminal apps."
+        },
+        {
+          "question": "What happens if the user presses Enter with no text?",
+          "answer": "You get an empty string '', which is still a valid string value."
+        }
+      ]
+    },
+    "input-conversion": {
+      "description": "Convert Python input() to int and float: parse user strings safely for numeric programs. Beginner guide covers ValueError, validation, and simple retry loops.",
+      "quickAnswer": "Wrap input() with int() or float() to parse numbers, and handle ValueError when the text is not a valid number.",
+      "whyMatters": "Programs that add, compare, or loop by count need numeric types, not strings—'5' + '3' is not 8. Conversion errors are normal with real users, so learning try/except or validation early prevents crashes. This bridges input() to arithmetic and conditions.",
+      "faqs": [
+        {
+          "question": "How do I convert input to an integer in Python?",
+          "answer": "Use age = int(input('Age: ')). If the user types non-digits, int() raises ValueError."
+        },
+        {
+          "question": "What is ValueError when converting input?",
+          "answer": "It means the string cannot be parsed as that type, like int('hello') or int('3.14') if you expected an integer."
+        },
+        {
+          "question": "Should I use int or float for user input?",
+          "answer": "Use int for whole numbers and float when decimals are allowed. float('3') works but int('3.5') fails."
+        },
+        {
+          "question": "How do I keep asking until input is valid?",
+          "answer": "Use a while loop with try/except ValueError, or check the string with methods like isdigit() for simple cases."
+        }
+      ]
+    },
+    "creating-variables": {
+      "description": "Python variables for beginners: assign names, reuse values, and follow naming rules. Clear tutorial on how variables work, update, and differ from math symbols.",
+      "quickAnswer": "A variable is a name bound to a value with =, like score = 10; Python creates the name when you assign it.",
+      "whyMatters": "Variables are how you remember data between lines—totals, names, flags. Good names make scripts readable months later. Understanding assignment (not math equality) prevents confusion when you update counters and lists.",
+      "faqs": [
+        {
+          "question": "How do you create a variable in Python?",
+          "answer": "Choose a name and assign with =: message = 'hi'. You do not declare types separately."
+        },
+        {
+          "question": "Can variable names start with a number?",
+          "answer": "No. Names must start with a letter or underscore and contain letters, digits, and underscores."
+        },
+        {
+          "question": "What happens when you assign to an existing variable?",
+          "answer": "The name points to the new value. The old value may be garbage-collected if nothing else references it."
+        },
+        {
+          "question": "Is = the same as == in Python?",
+          "answer": "No. = assigns. == compares two values for equality."
+        }
+      ]
+    },
+    "strings": {
+      "description": "Python strings tutorial for beginners: create text, quotes, indexing, slicing, and basic methods. Learn str fundamentals with runnable examples on PyGuide.",
+      "quickAnswer": "A Python string is an immutable sequence of characters written in single or double quotes, such as name = 'Ada'.",
+      "whyMatters": "Strings hold names, messages, file paths, and API text—almost every program uses them. Indexing and slicing on strings preview list behavior. Basic methods like strip and lower appear in input cleaning and data work immediately.",
+      "faqs": [
+        {
+          "question": "What is a string in Python?",
+          "answer": "An ordered, immutable sequence of Unicode characters used for text."
+        },
+        {
+          "question": "Can I use single or double quotes for strings?",
+          "answer": "Yes, both work the same. Use one style consistently, or mix to include the other quote inside the text."
+        },
+        {
+          "question": "How do I get the length of a string?",
+          "answer": "Use len(s). Length counts characters, including spaces."
+        },
+        {
+          "question": "Are strings mutable in Python?",
+          "answer": "No. You build new strings with concatenation, slicing, or methods—existing str objects do not change in place."
+        }
+      ]
+    },
+    "arithmetic-operators": {
+      "description": "Python arithmetic operators + - * / // % ** explained for beginners with examples, integer versus float division, and common calculator-style mistakes to avoid.",
+      "quickAnswer": "Python uses +, -, *, /, //, %, and ** for add, subtract, multiply, divide, floor divide, remainder, and exponent.",
+      "whyMatters": "Arithmetic is the language of counters, averages, game scores, and science scripts. / always giving float in Python 3 surprises newcomers who expect integer division. Knowing // and % upfront fixes loop and indexing mistakes.",
+      "faqs": [
+        {
+          "question": "What is the difference between / and // in Python?",
+          "answer": "/ is true division and returns a float. // is floor division, rounding down to an integer result when operands are ints."
+        },
+        {
+          "question": "What does the % operator do?",
+          "answer": "It returns the remainder after division, useful for even/odd checks and wrapping indices."
+        },
+        {
+          "question": "How do you raise a power in Python?",
+          "answer": "Use **, for example 2 ** 3 equals 8."
+        },
+        {
+          "question": "What type is the result of dividing two ints with /?",
+          "answer": "A float, even when the division is even, such as 4 / 2 yielding 2.0."
+        }
+      ]
+    },
+    "comparisons": {
+      "description": "Python comparison operators == != < > <= >= return True or False for beginners. Learn boolean tests for if statements with chaining and clear runnable examples.",
+      "quickAnswer": "Comparison operators compare two values and return True or False, for example age >= 18 or name == 'Ada'.",
+      "whyMatters": "Comparisons drive if statements, while loops, and sorting—every branch needs them. Confusing = with == is a frequent bug. Chained comparisons like 0 < x < 10 are readable Python idioms worth knowing early.",
+      "faqs": [
+        {
+          "question": "What is the difference between = and == in Python?",
+          "answer": "= assigns a value to a variable. == tests whether two values are equal."
+        },
+        {
+          "question": "Do comparison operators work on strings?",
+          "answer": "Yes. They compare lexicographically (alphabetically for simple ASCII letters), which can surprise you with case."
+        },
+        {
+          "question": "Can I chain comparisons like 1 < x < 5?",
+          "answer": "Yes. Python allows chained comparisons as shorthand for and between tests."
+        },
+        {
+          "question": "What type do comparisons return?",
+          "answer": "bool: either True or False."
+        }
+      ]
+    },
+    "and-or": {
+      "description": "Python and, or, and not logical operators for beginners: combine conditions in if statements with truth tables, short-circuit rules, and readable examples.",
+      "quickAnswer": "Use and, or, and not to combine boolean expressions; and needs all parts true, or needs at least one true.",
+      "whyMatters": "Real rules combine checks—valid age and agreed terms, weekday or holiday. Short-circuit evaluation means and stops at the first false, which matters when later tests have side effects. Clear boolean logic keeps if chains short and readable.",
+      "faqs": [
+        {
+          "question": "What is the difference between and and or in Python?",
+          "answer": "and is true only if every operand is true. or is true if at least one operand is true."
+        },
+        {
+          "question": "Does Python evaluate both sides of and every time?",
+          "answer": "Not always. and and or short-circuit: evaluation stops as soon as the result is decided."
+        },
+        {
+          "question": "How does not work?",
+          "answer": "not inverts truthiness: not True is False, not '' is True because empty string is falsy."
+        },
+        {
+          "question": "Should I use 'and' or '&' for conditions?",
+          "answer": "Use and/or/not for boolean logic in if statements. & and | are bitwise operators, not substitutes for and/or in conditions."
+        }
+      ]
+    },
+    "try-except": {
+      "description": "Python try except tutorial for beginners: catch errors like ValueError and ZeroDivisionError without crashing. Simple examples and best habits.",
+      "quickAnswer": "Wrap risky code in try: and handle specific errors in except ExceptionType: so your program can recover or show a friendly message.",
+      "whyMatters": "Users and files are unpredictable—bad input, missing files, and network glitches happen. try/except lets you fail gracefully instead of dumping a traceback on beginners. It pairs naturally with input conversion and grows into logging and finally blocks.",
+      "faqs": [
+        {
+          "question": "What does try except do in Python?",
+          "answer": "try runs code that might fail. except runs only if a matching exception is raised in the try block."
+        },
+        {
+          "question": "Should I use except: without a type?",
+          "answer": "Prefer except SpecificError: to catch expected problems. Bare except catches everything and hides bugs."
+        },
+        {
+          "question": "What is the difference between an error and an exception?",
+          "answer": "In practice people say both. Technically Python raises exception objects when something goes wrong at runtime."
+        },
+        {
+          "question": "Can I have multiple except blocks?",
+          "answer": "Yes. Handle different exception types with separate except clauses in the order you want to check them."
+        }
+      ]
+    },
+    "venv-and-requirements": {
+      "description": "Python venv and requirements.txt for beginners: isolate dependencies, install packages with pip, and reproduce environments on any machine easily.",
+      "quickAnswer": "Create a venv with python -m venv .venv, activate it, then pip install -r requirements.txt to install pinned dependencies.",
+      "whyMatters": "Without virtual environments, global pip installs break other projects and tutorials. requirements.txt documents what your app needs so teammates and deploys match your machine. This is standard practice before Flask, data science, or any third-party library work.",
+      "faqs": [
+        {
+          "question": "What is a Python virtual environment?",
+          "answer": "An isolated Python installation and site-packages folder for one project, so dependencies do not clash with other projects."
+        },
+        {
+          "question": "How do I create requirements.txt?",
+          "answer": "After installing packages in the venv, run pip freeze > requirements.txt to list exact versions."
+        },
+        {
+          "question": "Do I commit the venv folder to git?",
+          "answer": "Usually no. Commit requirements.txt and let others recreate the venv locally."
+        },
+        {
+          "question": "Why use requirements.txt instead of installing manually?",
+          "answer": "It records exact versions so everyone and CI install the same dependencies reproducibly."
+        }
+      ]
+    },
+    "type-hints-intro": {
+      "description": "Python type hints intro for beginners: annotate variables and functions for clearer code. Learn basic syntax without advanced typing theory.",
+      "quickAnswer": "Type hints add optional annotations like name: str and def greet(name: str) -> None to document expected types; Python does not enforce them at runtime by default.",
+      "whyMatters": "Hints help editors autocomplete and catch mistakes with tools like mypy as projects grow. They appear in modern library docs and team codebases. Starting with simple str and int annotations builds habits without blocking beginners.",
+      "faqs": [
+        {
+          "question": "Do type hints make Python slower?",
+          "answer": "No meaningful runtime cost by default. Annotations are stored but not checked unless you use a type checker."
+        },
+        {
+          "question": "Are type hints required in Python?",
+          "answer": "No. They are optional documentation and tooling aids. Your code runs the same without them."
+        },
+        {
+          "question": "What does -> mean in a function definition?",
+          "answer": "It annotates the return type, for example def add(a: int, b: int) -> int:."
+        },
+        {
+          "question": "How do I check types in a project?",
+          "answer": "Use a static checker like mypy or pyright in the terminal or your editor, separate from running the program."
+        }
+      ]
+    },
+    "what-is-python": {
+      "description": "What is Python? Beginner guide to the language, real-world uses in web and data science, and why Python remains a top first programming language to learn today.",
+      "quickAnswer": "Python is a high-level, readable programming language used for scripting, web apps, data science, automation, and education.",
+      "whyMatters": "Knowing what Python is—and is not—sets expectations before syntax. Beginners who see the big picture stick with practice when debugging feels hard. This lesson anchors the rest of PyGuide: you are learning a real tool used in industry, not a toy.",
+      "faqs": [
+        {
+          "question": "What is Python used for?",
+          "answer": "Web backends, data analysis, machine learning, scripting, DevOps automation, education, and desktop tools, among many areas."
+        },
+        {
+          "question": "Is Python good for beginners?",
+          "answer": "Yes. Readable syntax and a huge community make it one of the most popular first languages."
+        },
+        {
+          "question": "Do I need to install Python to follow tutorials?",
+          "answer": "PyGuide runs examples in the browser; for local projects you install Python from python.org or use a manager like pyenv."
+        },
+        {
+          "question": "Is Python the same as Java or C++?",
+          "answer": "No. They are different languages with different syntax and ecosystems. Concepts transfer, but code does not copy verbatim."
+        }
+      ]
+    },
+    "first-print": {
+      "description": "Python print() function tutorial for beginners: display text, multiple values, sep and end options, and your first hello world with runnable PyGuide examples.",
+      "quickAnswer": "Call print(value) to write text to the console; separate multiple arguments with commas and print adds a newline by default.",
+      "whyMatters": "print() is the fastest feedback loop—see results immediately while learning syntax. It stays useful for debugging even after you learn return and logging. Hello world is small, but it proves your environment works and builds confidence.",
+      "faqs": [
+        {
+          "question": "How do you print in Python?",
+          "answer": "Use print('Hello') or print(variable). Strings need quotes; variables do not."
+        },
+        {
+          "question": "How do I print multiple values on one line?",
+          "answer": "Use commas: print('Score:', score). print converts each argument to string and separates them with spaces."
+        },
+        {
+          "question": "Does print return a value?",
+          "answer": "print returns None. It is for side effect output, not for passing data to other code."
+        },
+        {
+          "question": "How do I print without a newline?",
+          "answer": "Use print('text', end='') to change the end character from the default newline."
+        }
+      ]
+    },
+    "membership-identity": {
+      "description": "Python in operator and is keyword: test membership in collections versus object identity. Beginner guide compares ==, in, and is with practical if examples.",
+      "quickAnswer": "Use in to test whether a value is contained in a collection; use is to test whether two names refer to the same object, not equal value.",
+      "whyMatters": "in appears in almost every loop and condition on lists and dict keys. Confusing is with == causes subtle bugs with None and small integers. Knowing identity vs equality helps you read Python documentation and debug truthiness issues.",
+      "faqs": [
+        {
+          "question": "What does the in operator do in Python?",
+          "answer": "It returns True if the left value is found inside the right iterable or collection, for example 3 in [1, 2, 3]."
+        },
+        {
+          "question": "What is the difference between == and is?",
+          "answer": "== compares values for equality. is checks object identity—whether two variables point to the same object in memory."
+        },
+        {
+          "question": "Should I use is to compare strings?",
+          "answer": "Use == for string value comparison. Use is only for singletons like None when identity is intended."
+        },
+        {
+          "question": "How do I test if a key is in a dictionary?",
+          "answer": "Use key in my_dict. That tests keys, not values."
+        }
+      ]
+    },
+    "operator-precedence": {
+      "description": "Python operator precedence for beginners: *, / before +, -, parentheses, and mixing comparisons with and/or without logic bugs in your if tests.",
+      "quickAnswer": "Python evaluates operators in a fixed precedence order; use parentheses to force the grouping you intend when expressions mix +, *, comparisons, and and/or.",
+      "whyMatters": "Unexpected results like 2 + 3 * 4 come from precedence, not broken math. Parentheses make intent obvious to you and readers. Precedence also affects conditions mixing and with comparisons, a common source of logic bugs in if statements.",
+      "faqs": [
+        {
+          "question": "What is operator precedence in Python?",
+          "answer": "Rules that decide which operations run first in an expression without parentheses, similar to PEMDAS in math."
+        },
+        {
+          "question": "Does multiplication come before addition in Python?",
+          "answer": "Yes. * and / bind tighter than + and - unless parentheses change the order."
+        },
+        {
+          "question": "Which binds tighter, and or or?",
+          "answer": "not, then and, then or. Use parentheses in complex conditions to be explicit."
+        },
+        {
+          "question": "Should I rely on precedence or use parentheses?",
+          "answer": "Know the basics, but add parentheses whenever an expression would be hard to read or easy to misparse."
+        }
+      ]
+    }
+  }
+}

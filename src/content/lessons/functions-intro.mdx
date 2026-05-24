@@ -1,24 +1,27 @@
 ---
 title: "Define functions"
-description: "Create reusable blocks of code with def and function calls."
+description: "Python functions tutorial for beginners: define with def, call them, and organize code. Examples show why functions matter for reusable scripts."
 order: 101
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Define a function with def name(): and an indented body; call it with name() to run that reusable block of code."
+faqs:
+  - question: "How do you define a function in Python?"
+    answer: "Use def function_name(): followed by an indented body. You can add parameters inside the parentheses."
+  - question: "What is the difference between defining and calling a function?"
+    answer: "def creates the function object but does not run the body. Calling name() executes the body now."
+  - question: "Do functions need a return statement?"
+    answer: "Only if you need to send a value back to the caller. Without return, the function returns None."
+  - question: "Why use functions instead of repeating code?"
+    answer: "Functions reduce duplication, give behavior a clear name, and make testing and changes safer in one place."
 ---
 
+## Why this matters
+
+Functions stop copy-paste and name chunks of logic—calculate tax, format output, validate input. They are the main unit of structure from small scripts to large apps. Learning def early makes every later topic (return, arguments, modules) easier.
+
 A recipe card says “mix eggs and flour” once — you follow it every time you bake. A **function** is that card for code: write the steps **once**, **call** the name whenever you need them.
-
-## Why functions matter
-
-Without functions, programs become long copy-paste scripts. When requirements change, you hunt every duplicate block. Functions give you:
-
-- **Reuse** — one definition, many calls
-- **Names** — `price_with_tax()` reads better than ten loose lines
-- **Testing** — check one function in isolation
-- **Team work** — each function is a small contract
-
-Professional Python (L4 path) assumes you reach for functions before repeating logic three times.
 
 ## One new idea: def and call
 

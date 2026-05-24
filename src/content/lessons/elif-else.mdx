@@ -1,11 +1,25 @@
 ---
 title: "elif and else"
-description: "Handle multiple conditions with elif and a fallback with else."
+description: "Python elif and else tutorial: chain conditions after if for menus, grades, and branching. Beginner examples show flat logic without deep nesting."
 order: 42
 chapter: 5
 chapterTitle: "If Statements"
 level: beginner
+quickAnswer: "Use elif for additional tests after if, and else for a final block when no earlier condition was true."
+faqs:
+  - question: "What does elif mean in Python?"
+    answer: "elif is short for else if. Python tests elif branches in order only if previous conditions failed."
+  - question: "Can I have elif without else?"
+    answer: "Yes. else is optional when you do not need a fallback block."
+  - question: "How many elif blocks can I use?"
+    answer: "As many as you need. Keep chains readable; sometimes a dict lookup or match is clearer for many cases."
+  - question: "Does else run when a condition is False?"
+    answer: "else runs only when every if and elif condition above it was false."
 ---
+
+## Why this matters
+
+Most real decisions have more than two outcomes—grades, shipping tiers, command menus. elif keeps logic flat compared to nested ifs. else captures the default case so nothing falls through silently.
 
 A traffic light is not just green or not-green — it can be yellow or red too. **`elif`** and **`else`** let Python pick exactly one branch from several options.
 

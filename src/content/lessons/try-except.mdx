@@ -1,11 +1,25 @@
 ---
 title: "try and except"
-description: "Handle errors gracefully with try and except."
+description: "Python try except tutorial for beginners: catch errors like ValueError and ZeroDivisionError without crashing. Simple examples and best habits."
 order: 132
 chapter: 13
 chapterTitle: "Error Handling"
 level: beginner
+quickAnswer: "Wrap risky code in try: and handle specific errors in except ExceptionType: so your program can recover or show a friendly message."
+faqs:
+  - question: "What does try except do in Python?"
+    answer: "try runs code that might fail. except runs only if a matching exception is raised in the try block."
+  - question: "Should I use except: without a type?"
+    answer: "Prefer except SpecificError: to catch expected problems. Bare except catches everything and hides bugs."
+  - question: "What is the difference between an error and an exception?"
+    answer: "In practice people say both. Technically Python raises exception objects when something goes wrong at runtime."
+  - question: "Can I have multiple except blocks?"
+    answer: "Yes. Handle different exception types with separate except clauses in the order you want to check them."
 ---
+
+## Why this matters
+
+Users and files are unpredictable—bad input, missing files, and network glitches happen. try/except lets you fail gracefully instead of dumping a traceback on beginners. It pairs naturally with input conversion and grows into logging and finally blocks.
 
 A seatbelt does not stop accidents — it keeps you safe when one happens. **`try` / `except`** lets your program catch problems and keep going instead of crashing.
 

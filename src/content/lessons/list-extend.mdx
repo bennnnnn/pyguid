@@ -1,11 +1,25 @@
 ---
 title: "extend()"
-description: "Add all items from another list with extend()."
+description: "Python list extend() merges another iterable into a list element by element. Learn extend vs append with beginner examples and common pitfalls."
 order: 59
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.extend(iterable) to add each element from another iterable to the end of a list without nesting the whole iterable as one item."
+faqs:
+  - question: "What does list.extend() do in Python?"
+    answer: "extend() loops over an iterable and appends each element to the list. The original list grows in place."
+  - question: "How is extend() different from append()?"
+    answer: "append() adds one object as a single element. extend() unpacks an iterable and adds each value separately."
+  - question: "Can I use extend() with a string?"
+    answer: "Yes. A string is iterable, so extend('abc') adds 'a', 'b', and 'c' as separate characters—not one string element unless you append the string."
+  - question: "Does extend() return a new list?"
+    answer: "No. Like append(), extend() modifies the list in place and returns None."
 ---
+
+## Why this matters
+
+extend() is the right tool when you already have a batch of items to merge—reading lines from a file, combining query results, or joining two lists. Using append() on a list by mistake gives [[1, 2]] instead of [1, 2]. Knowing extend saves hours of debugging nested lists.
 
 You already know **`append()`** — one item at the end. **`extend()`** is like pouring a **whole second list** into the first, item by item.
 

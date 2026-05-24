@@ -42,15 +42,16 @@ See live page: `/python/roadmap/`
 - [x] Course schema on roadmap
 - [x] Skulpt loads on **Run** only (not on page load)
 - [x] Internal links: related lessons + roadmap
+- [x] **Track A (top 30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
+- [x] **Practice hub** `/python/practice/` (exams separate from lessons)
 
 ### Next
 
 - [ ] Google Search Console + submit sitemap
 - [ ] Dedicated OG image (1200×630)
-- [ ] FAQ `FAQPage` schema on high-traffic lessons
-- [ ] 20+ comparison / “vs” pages
+- [ ] Next 30 SEO pages + more “vs” comparisons
+- [ ] **Practice exams** content per chapter (on practice hub only)
 - [ ] Interview question hub
-- [ ] `keywords` frontmatter (optional; prefer strong titles/descriptions)
 
 ## Lesson template (target)
 
