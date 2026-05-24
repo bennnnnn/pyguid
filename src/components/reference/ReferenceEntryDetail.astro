@@ -1,0 +1,59 @@
+---
+import type { ReferenceEntryPage } from "../../lib/reference-sheets";
+import { getReferenceEntryCode } from "../../lib/reference-entry-code";
+import { referenceChapterUrl, referenceEntrySlug } from "../../lib/reference-sheets";
+import PythonExample from "../PythonExample.astro";
+import ReferencePager from "./ReferencePager.astro";
+import { SITE } from "../../lib/site";
+
+interface Props {
+  page: ReferenceEntryPage;
+}
+
+const { page } = Astro.props;
+const { sheet, entry, index } = page;
+const { code, runnable, filename } = getReferenceEntryCode(page);
+
+const prev =
+  index > 0
+    ? {
+        slug: referenceEntrySlug(sheet.id, index - 1),
+        name: sheet.entries[index - 1].name,
+      }
+    : undefined;
+
+const next =
+  index < sheet.entries.length - 1
+    ? {
+        slug: referenceEntrySlug(sheet.id, index + 1),
+        name: sheet.entries[index + 1].name,
+      }
+    : undefined;
+---
+
+<article class="ref-entry-page lesson-prose">
+  <p class="!mt-0 text-sm text-text-muted">
+    <a href="/" class="text-link">{SITE.name}</a>
+    <span class="mx-1.5">/</span>
+    <a href="/python/reference/" class="text-link">Reference</a>
+    <span class="mx-1.5">/</span>
+    <a href={referenceChapterUrl(sheet.id)} class="text-link">{sheet.title}</a>
+  </p>
+
+  <h1 class="ref-entry-title">
+    <code>{entry.name}</code>
+  </h1>
+  <p class="ref-entry-lead">{entry.summary}</p>
+
+  {
+    runnable ? (
+      <PythonExample code={code} filename={filename} />
+    ) : (
+      <pre class="ref-entry-code" aria-label="Example">
+        <code>{code}</code>
+      </pre>
+    )
+  }
+
+  <ReferencePager sheetId={sheet.id} prev={prev} next={next} />
+</article>

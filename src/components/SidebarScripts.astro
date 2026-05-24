@@ -141,7 +141,7 @@
       });
     });
 
-    sidebar.querySelectorAll(".chapter-group > .menu-trigger").forEach((trigger) => {
+    sidebar.querySelectorAll(".chapter-group .menu-trigger").forEach((trigger) => {
       trigger.addEventListener("click", () => {
         const group = trigger.closest(".chapter-group");
         if (!group) return;

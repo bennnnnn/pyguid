@@ -1,83 +1,16 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
 import { getLessonGroups } from "../../../lib/lessons";
+import { REFERENCE_SHEETS, referenceChapterUrl } from "../../../lib/reference-sheets";
 import { SITE } from "../../../lib/site";
+import "../../../styles/reference.css";
 
 const groups = await getLessonGroups();
-
-const snippets = {
-  strings: `s = "hello"
-len(s) · s[0] · s[1:4]
-s.upper() · s.lower() · s.strip()
-s.split(",") · "-".join(parts)`,
-  lists: `nums = [1, 2, 3]
-nums.append(4) · nums.pop()
-nums.sort() · sorted(nums)
-for x in nums: ...`,
-  dicts: `d = {"a": 1, "b": 2}
-d["a"] · d.get("c", 0)
-d.keys() · d.values() · d.items()
-for k, v in d.items(): ...`,
-  loops: `while condition:
-    ...
-
-for item in items:
-    ...
-
-for i in range(5):
-    ...
-
-break · continue`,
-  functions: `def name(a, b=0):
-    return a + b
-
-import math
-from math import sqrt`,
-  tuples: `point = (10, 20)
-x, y = point
-one = (42,)  # comma required
-point[0]  # read-only`,
-  sets: `tags = {"python", "code"}
-tags.add("learn")
-tags.remove("code")
-a | b  # union
-a & b  # intersection`,
-  comprehensions: `squares = [x * x for x in range(5)]
-evens = [n for n in nums if n % 2 == 0]
-counts = {k: len(v) for k, v in groups.items()}`,
-  classes: `class Dog:
-    def __init__(self, name):
-        self.name = name
-
-    def bark(self):
-        return "woof"
-
-buddy = Dog("Buddy")`,
-  conditionals: `if x > 0:
-    ...
-
-elif x < 0:
-    ...
-
-else:
-    ...
-
-# and · or · not
-# == != < > <= >=`,
-  errors: `try:
-    risky()
-except ValueError:
-    print("Bad value")
-except Exception as e:
-    print(e)
-finally:
-    cleanup()`,
-};
 ---
 
 <TutorialLayout
-  title={`Python References — ${SITE.name}`}
-  description="Quick Python syntax reference for strings, lists, dicts, loops, functions, classes, and errors."
+  title={`Python Reference — ${SITE.name}`}
+  description="Quick Python syntax reference by topic — lists, strings, functions, and more."
   groups={groups}
   sidebar="reference"
 >
@@ -85,82 +18,21 @@ finally:
     <p class="!mt-0 text-sm text-text-muted">
       <a href="/" class="text-link">{SITE.name}</a>
       <span class="mx-1.5">/</span>
-      <span>References</span>
-    </p>
-    <h1>Python references</h1>
-    <p>
-      Quick lookup for syntax from the tutorials. For full explanations and runnable
-      examples, use <a href="/python/">Tutorials</a>.
+      <span>Reference</span>
     </p>
 
-    <h2 id="strings">Strings</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.strings}</pre>
-    </div>
+    <h1 class="!mt-2">Reference</h1>
 
-    <h2 id="lists">Lists</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.lists}</pre>
-    </div>
-
-    <h2 id="tuples">Tuples</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.tuples}</pre>
-    </div>
-
-    <h2 id="sets">Sets</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.sets}</pre>
-    </div>
-
-    <h2 id="dicts">Dictionaries</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.dicts}</pre>
-    </div>
-
-    <h2 id="conditionals">If statements</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.conditionals}</pre>
-    </div>
-
-    <h2 id="loops">Loops</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.loops}</pre>
-    </div>
-
-    <h2 id="comprehensions">Comprehensions</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.comprehensions}</pre>
-    </div>
-
-    <h2 id="functions">Functions</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.functions}</pre>
-    </div>
-
-    <h2 id="classes">Classes</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.classes}</pre>
-    </div>
-
-    <h2 id="errors">Error handling</h2>
-    <div class="overflow-hidden rounded-xl border border-border">
-      <pre
-        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.errors}</pre>
-    </div>
-
-    <p class="mt-10">
-      <a href="/python/" class="btn-primary">Back to full course</a>
-    </p>
+    <ul class="ref-index-list not-prose">
+      {
+        REFERENCE_SHEETS.map((sheet) => (
+          <li>
+            <a href={referenceChapterUrl(sheet.id)} class="ref-index-link">
+              {sheet.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </article>
 </TutorialLayout>

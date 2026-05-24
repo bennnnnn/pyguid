@@ -1,0 +1,37 @@
+---
+import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
+import ReferenceEntryDetail from "../../../../components/reference/ReferenceEntryDetail.astro";
+import { getLessonGroups } from "../../../../lib/lessons";
+import {
+  getAllReferenceEntryPages,
+  getReferenceEntryPage,
+} from "../../../../lib/reference-sheets";
+import { SITE } from "../../../../lib/site";
+import "../../../../styles/reference.css";
+
+export function getStaticPaths() {
+  return getAllReferenceEntryPages().map(({ sheet, slug }) => ({
+    params: { sheetId: sheet.id, entrySlug: slug },
+  }));
+}
+
+const sheetId = Astro.params.sheetId ?? "";
+const entrySlug = Astro.params.entrySlug ?? "";
+const page = getReferenceEntryPage(sheetId, entrySlug);
+if (!page) return Astro.redirect("/python/reference/");
+
+const groups = await getLessonGroups();
+const title = `${page.entry.name} — ${page.sheet.title} — ${SITE.name}`;
+const description = `${page.entry.summary} Example: ${page.entry.example ?? page.entry.name}`;
+---
+
+<TutorialLayout
+  title={title}
+  description={description}
+  groups={groups}
+  sidebar="reference"
+>
+  <div class="lesson-prose-wide">
+    <ReferenceEntryDetail page={page} />
+  </div>
+</TutorialLayout>

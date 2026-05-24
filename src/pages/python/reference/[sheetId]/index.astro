@@ -1,0 +1,42 @@
+---
+import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
+import ReferenceChapterTable from "../../../../components/reference/ReferenceChapterTable.astro";
+import { getLessonGroups } from "../../../../lib/lessons";
+import { REFERENCE_SHEETS, getReferenceSheet } from "../../../../lib/reference-sheets";
+import { SITE } from "../../../../lib/site";
+import "../../../../styles/reference.css";
+
+export function getStaticPaths() {
+  return REFERENCE_SHEETS.map((sheet) => ({
+    params: { sheetId: sheet.id },
+  }));
+}
+
+const sheetId = Astro.params.sheetId ?? "";
+const sheet = getReferenceSheet(sheetId);
+if (!sheet) return Astro.redirect("/python/reference/");
+
+const groups = await getLessonGroups();
+const title = `${sheet.title} — Reference — ${SITE.name}`;
+---
+
+<TutorialLayout
+  title={title}
+  description={`Python ${sheet.title.toLowerCase()} syntax quick reference.`}
+  groups={groups}
+  sidebar="reference"
+>
+  <article class="lesson-prose-wide lesson-prose">
+    <p class="!mt-0 text-sm text-text-muted">
+      <a href="/" class="text-link">{SITE.name}</a>
+      <span class="mx-1.5">/</span>
+      <a href="/python/reference/" class="text-link">Reference</a>
+      <span class="mx-1.5">/</span>
+      <span>{sheet.title}</span>
+    </p>
+
+    <h1 class="!mt-2">{sheet.title}</h1>
+
+    <ReferenceChapterTable sheet={sheet} />
+  </article>
+</TutorialLayout>

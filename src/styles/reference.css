@@ -1,0 +1,130 @@
+/* Reference index */
+.ref-index-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.ref-index-link {
+  display: block;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-link);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.ref-index-link:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* Chapter table */
+.ref-table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.ref-table thead {
+  background: var(--color-surface-alt);
+}
+
+.ref-table th {
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ref-table td {
+  padding: 0.65rem 1rem;
+  vertical-align: top;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ref-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ref-syntax {
+  width: 36%;
+  min-width: 7rem;
+  white-space: nowrap;
+}
+
+.ref-syntax-link {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.ref-syntax-link:hover {
+  text-decoration: underline;
+}
+
+.ref-syntax-link code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Topic page */
+.ref-entry-title {
+  margin-top: 0.75rem;
+}
+
+.ref-entry-title code {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.ref-entry-lead {
+  margin: 0.5rem 0 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.ref-entry-code {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.ref-entry-code code {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}

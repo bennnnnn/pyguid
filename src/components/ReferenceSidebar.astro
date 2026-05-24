@@ -1,17 +1,18 @@
 ---
-const path = Astro.url.pathname;
-const hash = Astro.url.hash;
+import {
+  REFERENCE_SHEETS,
+  parseReferencePath,
+  referenceEntrySlug,
+  referenceEntryUrl,
+} from "../lib/reference-sheets";
 
-const items = [
-  { id: "strings", label: "Strings", href: "/python/reference/#strings" },
-  { id: "lists", label: "Lists", href: "/python/reference/#lists" },
-  { id: "dicts", label: "Dictionaries", href: "/python/reference/#dicts" },
-  { id: "conditionals", label: "If statements", href: "/python/reference/#conditionals" },
-  { id: "loops", label: "Loops", href: "/python/reference/#loops" },
-  { id: "functions", label: "Functions", href: "/python/reference/#functions" },
-  { id: "classes", label: "Classes", href: "/python/reference/#classes" },
-  { id: "errors", label: "Error handling", href: "/python/reference/#errors" },
-];
+const path = Astro.url.pathname;
+const { sheetId: activeSheetId, entrySlug: activeEntrySlug } =
+  parseReferencePath(path);
+
+function chapterIsOpen(sheetId: string): boolean {
+  return activeSheetId === sheetId;
+}
 ---
 
 <aside
@@ -24,28 +25,60 @@ const items = [
     </p>
   </div>
 
-  <nav class="py-2" aria-label="Reference topics">
+  <nav class="py-2" aria-label="Reference">
     <ul class="m-0 list-none p-0">
       {
-        items.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={[
-                "lesson-link block py-2.5 px-4 text-sm",
-                path.startsWith("/python/reference") &&
-                  hash === `#${item.id}` &&
-                  "is-active",
-              ]}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
+        REFERENCE_SHEETS.map((sheet) => {
+          const isOpen = chapterIsOpen(sheet.id);
+          const groupId = `ref-${sheet.id}`;
+          return (
+            <li class:list={["menu-group", "chapter-group", isOpen && "is-open"]}>
+              <button
+                type="button"
+                class="menu-trigger flex w-full items-center justify-between gap-2 px-4 py-2.5 text-left text-sm font-semibold"
+                aria-expanded={isOpen}
+                aria-controls={`${groupId}-content`}
+              >
+                <span>{sheet.title}</span>
+                <svg
+                  class="menu-icon h-4 w-4 shrink-0 text-text-muted"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
+                {sheet.entries.map((entry, index) => {
+                  const slug = referenceEntrySlug(sheet.id, index);
+                  const isActive =
+                    activeSheetId === sheet.id && activeEntrySlug === slug;
+                  return (
+                    <li>
+                      <a
+                        href={referenceEntryUrl(sheet.id, slug)}
+                        class:list={[
+                          "lesson-link block py-2 pl-8 pr-4 text-sm",
+                          isActive && "is-active",
+                        ]}
+                      >
+                        <span class="font-mono text-[0.8125rem]">{entry.name}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })
       }
     </ul>
-    <p class="border-t border-border px-4 py-3 text-sm">
-      <a href="/python/" class="text-link font-medium">← Full course</a>
-    </p>
   </nav>
 </aside>
