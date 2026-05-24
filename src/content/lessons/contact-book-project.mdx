@@ -1,0 +1,66 @@
+---
+title: "Mini project: Contact book"
+description: "Store names and phones in a dict with lookup and add."
+order: 99
+chapter: 10
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+A paper address book maps **name → phone**. Your **contact book** uses a **dict**, **`get`**, **`setdefault`**, and loops — the same pattern as real contact apps (simplified).
+
+## Core contact book (browser-safe)
+
+<PythonExample
+  filename="contacts.py"
+  code={`contacts = {}
+
+def add_contact(name, phone):
+contacts[name] = phone
+
+def lookup(name):
+return contacts.get(name, "Not found")
+
+add_contact("Ada", "555-0100")
+add_contact("Bob", "555-0101")
+print(lookup("Ada"))
+print(lookup("Zoe"))
+
+for name, phone in contacts.items():
+print(f"{name}: {phone}")`}
+/>
+
+## Safe add without overwriting
+
+<PythonExample
+  filename="setdefault_add.py"
+  code={`contacts = {}
+
+def add_if_new(name, phone):
+if name in contacts:
+print("Already exists:", name)
+return
+contacts[name] = phone
+
+add_if_new("Ada", "555-0100")
+add_if_new("Ada", "555-9999")
+print(contacts)`}
+/>
+
+## Stretch goals
+
+- **`pop`** to delete a contact
+- List all names sorted with **`sorted(contacts.keys())`**
+- Save/load JSON (see **JSON todo** project)
+
+<TryIt title="Try it yourself" answer="555-0100">
+  What does `lookup("Ada")` return?
+</TryIt>
+
+## Recap
+
+- **Dict** = contact book
+- **`get`** for safe lookup
+- **`items()`** to print everything
+
+Next: **Functions** — reusable blocks of code.

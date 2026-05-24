@@ -1,7 +1,7 @@
 ---
 title: "*args and **kwargs"
 description: "Accept variable numbers of positional and keyword arguments."
-order: 94
+order: 103
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
@@ -9,7 +9,7 @@ level: beginner
 
 Sometimes you do not know how many arguments callers will send. `*args` collects extra positional values; `**kwargs` collects extra keyword arguments.
 
-## One new idea: *args as a tuple
+## One new idea: \*args as a tuple
 
 <PythonExample
   filename="args.py"
@@ -25,7 +25,7 @@ print(total(10, 20))`}
 
 Inside `total`, **`nums`** is a **tuple** of all values passed.
 
-## **kwargs as a dict
+## \*\*kwargs as a dict
 
 <PythonExample
   filename="kwargs.py"
@@ -60,6 +60,6 @@ def f(required, default=1, *args, **kwargs):
 
 - `*args` — tuple of extras
 - `**kwargs` — dict of keyword extras
-- Unpack with `*` / `**` when calling too (later)
+- Unpack with `*` / `**` when calling — see **Unpacking arguments when calling**
 
-Next: **Return values**.
+Next: **Keyword-only parameters**.

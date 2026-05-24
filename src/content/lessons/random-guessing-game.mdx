@@ -1,0 +1,76 @@
+---
+title: "Guessing game with random"
+description: "Use random.randint for a secret number and replayable rounds."
+order: 54
+chapter: 6
+chapterTitle: "Loops"
+level: beginner
+---
+
+You already built a guessing game with a fixed secret. Now let Python **pick** the secret with **`random.randint`** so every round feels new.
+
+## One new idea: import random
+
+<PythonExample
+  filename="randint.py"
+  code={`import random
+
+secret = random.randint(1, 10)
+print("Secret is hidden — guess between 1 and 10")
+print("For demo, secret was:", secret)`}
+/>
+
+`randint(1, 10)` includes **both** ends — same as rolling a 10-sided die labeled 1–10.
+
+## Browser-safe loop (simulated guesses)
+
+<PythonExample
+  filename="guess_random.py"
+  code={`import random
+
+secret = random.randint(1, 10)
+guesses = [5, 12, 7]
+
+for guess in guesses:
+print("Guess:", guess)
+if guess == secret:
+print("You win!")
+break
+elif guess < secret:
+print("Too low")
+else:
+print("Too high")`}
+/>
+
+On your computer, wrap this in **`while True:`** and **`int(input("Guess: "))`**.
+
+## Full local version
+
+```python
+import random
+
+secret = random.randint(1, 100)
+while True:
+    guess = int(input("Guess 1-100: "))
+    if guess == secret:
+        print("Correct!")
+        break
+    print("Too low" if guess < secret else "Too high")
+```
+
+<Callout variant="note">
+  Skulpt may not support every `random` feature. If **Run** fails, practice locally with
+  Python 3.
+</Callout>
+
+<TryIt title="Try it yourself" answer="varies">
+  Run `randint` twice. Do you get the same number both times?
+</TryIt>
+
+## Recap
+
+- **`import random`** then **`randint(low, high)`**
+- Combine with **`while`**, **`if`**, **`break`**
+- See also: **math and random modules**
+
+Next: **Lists** — store many values in one variable.

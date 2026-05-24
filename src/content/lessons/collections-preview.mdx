@@ -1,0 +1,76 @@
+---
+title: "collections module preview"
+description: "Counter, deque, and defaultdict from the collections module."
+order: 140
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+The standard library’s **`collections`** package adds specialized containers — like upgrading from a plain backpack to labeled organizers.
+
+## Counter — count things fast
+
+<PythonExample
+  filename="counter.py"
+  code={`from collections import Counter
+
+votes = ["ada", "bob", "ada", "ada", "chen"]
+counts = Counter(votes)
+print(counts)
+print(counts["ada"])`}
+/>
+
+`Counter` behaves like a dict with extra counting helpers (`most_common`, etc.).
+
+## deque — double-ended queue
+
+<PythonExample
+  filename="deque.py"
+  code={`from collections import deque
+
+queue = deque(["task1", "task2"])
+queue.append("task3")
+first = queue.popleft()
+print("Done:", first)
+print(list(queue))`}
+/>
+
+**`popleft()`** is O(1) — faster than popping index `0` from a list for big queues.
+
+## defaultdict — auto missing keys
+
+<PythonExample
+  filename="defaultdict.py"
+  code={`from collections import defaultdict
+
+groups = defaultdict(list)
+groups["fruit"].append("apple")
+groups["fruit"].append("banana")
+groups["veg"].append("carrot")
+print(dict(groups))`}
+/>
+
+No need for `if key not in groups` before `.append`.
+
+| Type          | Use case                  |
+| ------------- | ------------------------- |
+| `Counter`     | vote/word frequency       |
+| `deque`       | queues, recent history    |
+| `defaultdict` | grouping items into lists |
+
+<Callout variant="note">
+  You already met **`namedtuple`** in the Tuples chapter — also from `collections`.
+</Callout>
+
+<TryIt title="Try it yourself" answer="3">
+  How many `"ada"` votes in the Counter example?
+</TryIt>
+
+## Recap
+
+- **`from collections import Counter, deque, defaultdict`**
+- Reach for these before reinventing counting/queues
+- Still standard library — no pip install
+
+Next: **Testing with assert**.

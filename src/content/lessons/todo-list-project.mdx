@@ -1,0 +1,75 @@
+---
+title: "Mini project: Todo list"
+description: "Build add, list, and done commands with lists and loops."
+order: 73
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+Sticky notes on a fridge — add a task, read them all, cross one off. A **todo list** is your first **data + menu loop** app using only lists.
+
+## In-memory todo (browser-safe)
+
+<PythonExample
+  filename="todo.py"
+  code={`todos = []
+
+def add_task(text):
+todos.append(text)
+
+def show_tasks():
+if not todos:
+print("Nothing to do!")
+return
+for i, task in enumerate(todos, start=1):
+print(f"{i}. {task}")
+
+def mark_done(index):
+if 1 <= index <= len(todos):
+removed = todos.pop(index - 1)
+print("Done:", removed)
+
+add_task("Learn zip()")
+add_task("Finish todo project")
+show_tasks()
+mark_done(1)
+print("---")
+show_tasks()`}
+/>
+
+**Line by line**
+
+- **`append`** — add to the end
+- **`enumerate(..., start=1)`** — human-friendly numbering
+- **`pop(index - 1)`** — convert 1-based menu to 0-based list index
+
+## Menu loop (local Python)
+
+```python
+todos = []
+while True:
+    print("1) add  2) list  3) done  4) quit")
+    choice = input("> ")
+    if choice == "4":
+        break
+    # handle other choices...
+```
+
+## Stretch goals
+
+- Store `done` flag as dicts: `{"text": "...", "done": False}`
+- Save todos to a file (see **Notes app** and **JSON todo** later)
+- Sort tasks with **`sorted()`**
+
+<TryIt title="Try it yourself" answer="1. Finish todo project">
+  Run the example. After `mark_done(1)`, what is task 1?
+</TryIt>
+
+## Recap
+
+- **List** holds tasks; **loops** display and update
+- **`pop`** removes by index
+- Foundation for the **JSON todo** capstone
+
+Next: **Nested list comprehensions**.

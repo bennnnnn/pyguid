@@ -1,0 +1,52 @@
+---
+title: "Nested list comprehensions"
+description: "Build grids and flattened lists with comprehensions inside comprehensions."
+order: 74
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+A multiplication table is a **grid**: each row repeats a pattern across columns. A **nested** list comprehension builds that grid in one expression — read it **outside in**.
+
+## One new idea: table of squares
+
+<PythonExample
+  filename="grid.py"
+  code={`table = [[row * col for col in range(1, 4)] for row in range(1, 4)]
+for row in table:
+    print(row)`}
+/>
+
+**Line by line**
+
+- Outer `for row in range(1, 4)` — three rows
+- Inner `for col in range(1, 4)` — three numbers per row
+- `row * col` — cell value
+
+## Flatten with a second loop
+
+<PythonExample
+  filename="flat.py"
+  code={`matrix = [[1, 2], [3, 4]]
+flat = [n for row in matrix for n in row]
+print(flat)`}
+/>
+
+Read it aloud: “**n** for each **row** in matrix, for each **n** in row.”
+
+<Callout variant="tip">
+  If a nested comprehension feels cramped, use regular **`for`** loops — clarity beats
+  cleverness.
+</Callout>
+
+<TryIt title="Try it yourself" answer="[1, 2, 3, 4]">
+  Change `matrix` to `[[1, 2], [3, 4, 5]]`. What does `flat` contain?
+</TryIt>
+
+## Recap
+
+- Outer loop = **rows**, inner = **columns** (or flatten order)
+- Great for small tables; switch to loops when logic grows
+
+Next: **Tuples** — ordered and immutable sequences.

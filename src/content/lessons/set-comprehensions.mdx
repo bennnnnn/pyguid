@@ -1,0 +1,49 @@
+---
+title: "Set comprehensions"
+description: "Build sets in one line while removing duplicates."
+order: 84
+chapter: 9
+chapterTitle: "Sets"
+level: beginner
+---
+
+List comprehensions build lists; **set comprehensions** build **sets** — duplicates disappear automatically.
+
+## One new idea: unique squares
+
+<PythonExample
+  filename="setcomp.py"
+  code={`nums = [1, 2, 2, 3, 3, 3]
+unique_squares = {n * n for n in nums}
+print(unique_squares)`}
+/>
+
+Curly braces with a **`for`** inside mean “set comprehension” (not a dict — no colon between key and value).
+
+## Filter with if
+
+<PythonExample
+  filename="setcomp_if.py"
+  code={`words = ["hi", "hello", "hey", "hi"]
+long_starts = {w for w in words if len(w) >= 3}
+print(long_starts)`}
+/>
+
+## Compare to list comprehension
+
+| Syntax              | Result type | Duplicates |
+| ------------------- | ----------- | ---------- |
+| `[x for x in nums]` | list        | kept       |
+| `{x for x in nums}` | set         | removed    |
+
+<TryIt title="Try it yourself" answer="{1, 4, 9}">
+  Run the first example. Which duplicate squares vanished?
+</TryIt>
+
+## Recap
+
+- **`{expr for item in iterable}`** — set comprehension
+- Add **`if`** to filter
+- Order is not guaranteed (sets are unordered)
+
+Next: **frozenset** — immutable sets.

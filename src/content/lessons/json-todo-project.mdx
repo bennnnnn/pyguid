@@ -1,0 +1,84 @@
+---
+title: "Capstone: JSON todo list"
+description: "Persist todos with json.dumps and json.loads."
+order: 144
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Your **todo list** lived in memory. Your **notes app** used text files. This capstone stores todos as **JSON** — one file you can read, edit, and share.
+
+## Data shape
+
+```python
+todos = [
+    {"text": "Learn JSON", "done": False},
+    {"text": "Build capstone", "done": False},
+]
+```
+
+A **list of dicts** — JSON-friendly.
+
+## Save and load (browser demo)
+
+<PythonExample
+  filename="json_todo.py"
+  code={`import json
+
+todos = [
+{"text": "Learn JSON", "done": False},
+{"text": "Ship capstone", "done": True},
+]
+
+text = json.dumps(todos, indent=2)
+print(text)
+
+loaded = json.loads(text)
+for item in loaded:
+mark = "x" if item["done"] else " "
+print(f"[{mark}] {item['text']}")`}
+/>
+
+**Line by line**
+
+- `json.dumps` — Python → JSON string (`indent=2` pretty-prints)
+- `json.loads` — JSON string → Python again
+- Loop shows checkbox style output
+
+## File version (local)
+
+```python
+import json
+from pathlib import Path
+
+PATH = Path("todos.json")
+
+def load_todos():
+    if not PATH.exists():
+        return []
+    return json.loads(PATH.read_text(encoding="utf-8"))
+
+def save_todos(items):
+    PATH.write_text(json.dumps(items, indent=2), encoding="utf-8")
+```
+
+Use **`"a"`** mode only for line logs; JSON files are usually **rewritten** whole with `write_text`.
+
+## Stretch goals
+
+- Menu: add / list / complete / quit
+- Filter with list comprehension: `[t for t in todos if not t["done"]]`
+- Validate with **`assert`** after load
+
+<TryIt title="Try it yourself" answer="[x] Ship capstone">
+  Which task prints with `x` in the checkbox?
+</TryIt>
+
+## Recap
+
+- Ties **lists**, **dicts**, **JSON**, and **files**
+- `dumps` / `loads` round-trip your data
+- Real apps version their JSON shape carefully
+
+Next: **Quiz app** — another capstone using dicts and loops.

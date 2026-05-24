@@ -1,0 +1,60 @@
+---
+title: "Keyword-only parameters"
+description: "Force callers to pass certain arguments by name after a bare star."
+order: 104
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+Some settings are dangerous to mix up — host vs port vs TLS. **Keyword-only** parameters must be passed **by name**, so `connect("api.example.com", port=443)` is clear and `connect("api.example.com", 443)` is not allowed.
+
+## One new idea: star in the parameter list
+
+<PythonExample
+  filename="kwonly.py"
+  code={`def connect(host, *, port=443, timeout=30):
+    print(f"Connecting to {host}:{port} (timeout {timeout}s)")
+
+connect("api.example.com", port=8080)
+connect("api.example.com", timeout=5)`}
+/>
+
+The bare **`*`** in the definition means: everything **after** it is keyword-only.
+
+## What happens if you break the rule?
+
+```python
+connect("api.example.com", 8080)  # TypeError
+```
+
+Python refuses positional args for `port` and `timeout`.
+
+## Signature order (reference)
+
+```python
+def f(pos1, pos2, /, pos_or_kw, *, kw_only1, kw_only2=10):
+    ...
+```
+
+| Part           | How to pass       |
+| -------------- | ----------------- |
+| Before `*`     | position or name  |
+| After `*` only | **name required** |
+
+<Callout variant="tip">
+  Use keyword-only for optional flags (`debug=True`, `ssl=True`) on functions with many
+  parameters.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Connecting to api.example.com:8080">
+  Call `connect` with `port=8080`. What prints?
+</TryIt>
+
+## Recap
+
+- **`*`** in `def` → following params are keyword-only
+- Prevents confusing argument order
+- Pairs with `*args` / `**kwargs` on advanced APIs
+
+Next: **Unpacking** when you **call** functions.

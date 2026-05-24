@@ -1,0 +1,61 @@
+---
+title: "zip() — pair lists together"
+description: "Walk two lists in lockstep with zip."
+order: 72
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+Two columns on a spreadsheet — names and scores. **`zip()`** walks both lists **side by side**, one pair per step.
+
+## One new idea: zip two lists
+
+<PythonExample
+  filename="zip_demo.py"
+  code={`names = ["Ada", "Bob", "Chen"]
+scores = [95, 88, 91]
+
+for name, score in zip(names, scores):
+print(name, "scored", score)`}
+/>
+
+**Line by line**
+
+- `zip(names, scores)` — pairs `(Ada, 95)`, `(Bob, 88)`, …
+- `for name, score in ...` — unpack each pair
+
+## Turn zip into a list of tuples
+
+<PythonExample
+  filename="zip_list.py"
+  code={`pairs = list(zip(["a", "b"], [1, 2]))
+print(pairs)`}
+/>
+
+## Stops at the shorter list
+
+<PythonExample
+  filename="zip_short.py"
+  code={`a = [1, 2, 3]
+b = [10, 20]
+print(list(zip(a, b)))`}
+/>
+
+Only **two** pairs — zip does not pad missing values.
+
+<Callout variant="warning">
+  Lists must be the **same idea** per position: index 0 of each list belongs together.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Ada scored 95">
+  Add a third name and score. Run the first example.
+</TryIt>
+
+## Recap
+
+- **`zip(a, b)`** — iterate pairs
+- **`list(zip(...))`** — see all pairs at once
+- Length = **shorter** list
+
+Next: **Mini project: Todo list**.

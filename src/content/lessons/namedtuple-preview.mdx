@@ -1,0 +1,65 @@
+---
+title: "namedtuple preview"
+description: "Lightweight records with named fields from collections."
+order: 79
+chapter: 8
+chapterTitle: "Tuples"
+level: beginner
+---
+
+A tuple remembers **position** (`item[0]`, `item[1]`). A **namedtuple** adds **names** — `item.name` — while staying compact like a tuple.
+
+## One new idea: collections.namedtuple
+
+<PythonExample
+  filename="point.py"
+  code={`from collections import namedtuple
+
+Point = namedtuple("Point", ["x", "y"])
+home = Point(10, 20)
+print(home.x, home.y)
+print(home)`}
+/>
+
+**Line by line**
+
+- `namedtuple("Point", ["x", "y"])` — factory that builds a tiny class
+- `Point(10, 20)` — like a tuple, but fields have names
+- Still **immutable** — cannot assign `home.x = 99`
+
+## Unpack like a tuple
+
+<PythonExample
+  filename="unpack.py"
+  code={`from collections import namedtuple
+
+User = namedtuple("User", ["name", "role"])
+u = User("Ada", "dev")
+name, role = u
+print(name, role)`}
+/>
+
+## When to use it
+
+| Tool         | Best for                          |
+| ------------ | --------------------------------- |
+| `dict`       | flexible keys, JSON-like data     |
+| `tuple`      | fixed positions, no field names   |
+| `namedtuple` | fixed fields, readable dot access |
+
+<Callout variant="note">
+  For larger projects, **dataclasses** (later chapter) add more features. namedtuple is a
+  gentle step up from plain tuples.
+</Callout>
+
+<TryIt title="Try it yourself" answer="10 20">
+  Create `Point(3, 4)` and print `.x` and `.y`.
+</TryIt>
+
+## Recap
+
+- **`from collections import namedtuple`**
+- Named fields + tuple unpacking
+- Immutable like tuples
+
+Next: **Sets** — unique unordered collections.

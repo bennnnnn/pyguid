@@ -1,0 +1,68 @@
+---
+title: "Testing with assert"
+description: "Check assumptions in code and preview real test frameworks."
+order: 141
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+You expect `add(2, 3)` to equal `5`. **`assert`** stops the program if reality disagrees — a tiny built-in test you can run anywhere.
+
+## One new idea: assert condition
+
+<PythonExample
+  filename="assert_demo.py"
+  code={`def add(a, b):
+    return a + b
+
+assert add(2, 3) == 5
+assert add(-1, 1) == 0
+print("All asserts passed")`}
+/>
+
+If an assert fails, Python raises **`AssertionError`** with optional message:
+
+```python
+assert add(2, 2) == 5, "add(2, 2) should be 5"
+```
+
+## Test a function with cases
+
+<PythonExample
+  filename="cases.py"
+  code={`def slugify(text):
+    return text.strip().lower().replace(" ", "-")
+
+assert slugify(" Hello World ") == "hello-world"
+assert slugify("Python") == "python"
+print("slugify OK")`}
+/>
+
+## Beyond assert (preview)
+
+Real projects use **pytest** or **unittest**:
+
+```bash
+# later, on your machine
+pytest tests/test_slugify.py
+```
+
+Pytest discovers `test_*` functions and reports failures clearly. **`assert`** inside those functions is the same idea — just organized in files.
+
+<Callout variant="warning">
+  `python -O script.py` **disables** asserts. Do not rely on them for security checks —
+  use proper validation.
+</Callout>
+
+<TryIt title="Try it yourself" answer="All asserts passed">
+  Add `assert add(10, 0) == 10` and run the first example.
+</TryIt>
+
+## Recap
+
+- **`assert condition, "message"`** — quick checks
+- Group checks into **`test_`** functions
+- pytest/unittest come later for bigger apps
+
+Next: **Lambda functions**.

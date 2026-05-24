@@ -1,0 +1,62 @@
+---
+title: "setdefault() on dictionaries"
+description: "Get a value or insert a default without an extra if check."
+order: 90
+chapter: 10
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+Counting votes: “Have we seen this name before?” **`setdefault`** either returns the existing value or **creates** the key with your default — one line instead of `if key not in d`.
+
+## One new idea: counting with setdefault
+
+<PythonExample
+  filename="count.py"
+  code={`votes = ["ada", "bob", "ada", "chen", "ada"]
+counts = {}
+
+for name in votes:
+counts.setdefault(name, 0)
+counts[name] += 1
+
+print(counts)`}
+/>
+
+**Line by line**
+
+- `counts.setdefault(name, 0)` — if `name` missing, set it to `0` and return `0`; else return current value
+- `counts[name] += 1` — bump the count
+
+## Compare to get()
+
+| Method               | Creates key if missing? | Typical use         |
+| -------------------- | ----------------------- | ------------------- |
+| `d.get(k, default)`  | **No**                  | read safely         |
+| `d.setdefault(k, v)` | **Yes**                 | build while looping |
+
+<PythonExample
+  filename="get_vs.py"
+  code={`d = {}
+d.setdefault("a", [])
+d["a"].append(1)
+print(d)
+
+d2 = {}
+d2.get("a", []).append(1)
+print(d2)`}
+/>
+
+`get` returns a **new** list that is **not** stored in `d2` — a common bug. `setdefault` fixes that.
+
+<TryIt title="Try it yourself" answer="{'ada': 3, 'bob': 1, 'chen': 1}">
+  Run the vote counter. How many votes for `ada`?
+</TryIt>
+
+## Recap
+
+- **`setdefault(key, default)`** — get or insert
+- Great for **counting** and **grouping**
+- Do not confuse with **`get`** (read-only)
+
+Next: keep practicing with **dict loops** and the **contact book** project.

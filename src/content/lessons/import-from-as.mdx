@@ -1,0 +1,60 @@
+---
+title: "from, import, and as"
+description: "Import names directly and rename them to avoid clashes."
+order: 116
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+You do not always want `math.sqrt` — sometimes you want **`sqrt`** alone. **`from module import name`** pulls one tool onto your workbench; **`as`** gives it a nickname.
+
+## One new idea: from ... import
+
+<PythonExample
+  filename="from_import.py"
+  code={`from math import sqrt, pi
+
+print(sqrt(16))
+print(round(pi, 2))`}
+/>
+
+Only **`sqrt`** and **`pi`** enter your namespace — not the whole `math` module.
+
+## Rename with as
+
+<PythonExample
+  filename="as_alias.py"
+  code={`import json as js
+
+data = js.loads('{"ok": true}')
+print(data)`}
+/>
+
+Use **`as`** when the name is long or clashes with yours (`import datetime as dt`).
+
+## Styles compared
+
+| Statement                              | Effect                   |
+| -------------------------------------- | ------------------------ |
+| `import math`                          | module as `math`         |
+| `from math import sqrt`                | function `sqrt` directly |
+| `import json as js`                    | module nickname `js`     |
+| `from collections import Counter as C` | short name `C`           |
+
+<Callout variant="warning">
+  `from module import *` dumps **everything** into your namespace — hard to debug. Avoid
+  in real projects.
+</Callout>
+
+<TryIt title="Try it yourself" answer="4.0">
+  `from math import sqrt` and print `sqrt(16)`.
+</TryIt>
+
+## Recap
+
+- **`from m import x`** — one name
+- **`import m as alias`** — shorten module path
+- Prefer explicit imports over `import *`
+
+Next: **Tracebacks** — reading error reports.

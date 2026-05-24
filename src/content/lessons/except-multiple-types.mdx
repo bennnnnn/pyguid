@@ -1,0 +1,75 @@
+---
+title: "Catching multiple exception types"
+description: "Handle different errors with tuples, separate except blocks, or else."
+order: 122
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+A vending machine jams for different reasons — wrong coin, empty slot, power out. One **`try`** block might raise **`ValueError`** or **`KeyError`**; you can catch **both** without duplicating the whole `try`.
+
+## One new idea: tuple of exceptions
+
+<PythonExample
+  filename="multi_except.py"
+  code={`def parse_age(text):
+    try:
+        age = int(text)
+        if age < 0:
+            raise ValueError("age cannot be negative")
+        return age
+    except (ValueError, TypeError) as err:
+        print("Invalid input:", err)
+        return None
+
+print(parse_age("12"))
+print(parse_age("twelve"))
+print(parse_age(-1))`}
+/>
+
+`(ValueError, TypeError)` — one handler for either type.
+
+## Separate except blocks
+
+<PythonExample
+  filename="separate.py"
+  code={`data = {"name": "Ada"}
+
+try:
+print(data["name"])
+print(data["age"])
+except KeyError:
+print("Missing key")
+except TypeError:
+print("Wrong type")`}
+/>
+
+Put **specific** handlers before **broad** ones. `except Exception:` catches almost everything — use sparingly.
+
+## Order matters
+
+```python
+try:
+    ...
+except KeyError:
+    ...
+except Exception:
+    ...  # catches other errors, not KeyError (already handled)
+```
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  Bare `except:` hides bugs. Always name the exception type you expect.
+</Callout>
+
+<TryIt title="Try it yourself" answer="12">
+  What does `parse_age("12")` return?
+</TryIt>
+
+## Recap
+
+- **`except (A, B):`** — shared handler
+- Multiple **`except`** — different reactions
+- Never swallow errors you cannot explain
+
+Next: **Safe calculator** project.

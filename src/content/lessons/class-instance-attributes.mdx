@@ -1,0 +1,67 @@
+---
+title: "Instance vs class attributes"
+description: "Data on self versus data shared by every object of a class."
+order: 130
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+Every student gets their **own** notebook (`self.name`). The classroom **bulletin board** is shared (`species = "Canis"` on the class). **Instance** attributes belong to one object; **class** attributes belong to the blueprint.
+
+## One new idea: self vs class body
+
+<PythonExample
+  filename="dog_attrs.py"
+  code={`class Dog:
+    species = "Canis familiaris"
+
+    def __init__(self, name):
+        self.name = name
+
+buddy = Dog("Buddy")
+bella = Dog("Bella")
+print(buddy.name, buddy.species)
+print(bella.name)
+print(Dog.species)`}
+/>
+
+- **`species`** on the class — same for all dogs
+- **`self.name`** in `__init__` — unique per dog
+
+## Shared class attribute trap
+
+<PythonExample
+  filename="trap.py"
+  code={`class Team:
+    members = []
+
+    def add(self, person):
+        self.members.append(person)
+
+a = Team()
+b = Team()
+a.add("Ada")
+print("Team a:", a.members)
+print("Team b:", b.members)`}
+/>
+
+Both teams share **one** list! Mutable class attributes are a common bug.
+
+<Callout variant="tip">
+  Put mutable data in **`__init__`**: `self.members = []`, not on the class.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Buddy Canis familiaris">
+  Print `buddy.species` after creating two dogs.
+</TryIt>
+
+## Recap
+
+- **`self.attr`** — per instance
+- **`Class.attr`** — shared (great for constants)
+- Never share **mutable** lists/dicts on the class body
+
+See also: **`__init__` and self**, **`__str__` / `__repr__`**, **`super()`**.
+
+Next: **Files** — read and write text on disk.

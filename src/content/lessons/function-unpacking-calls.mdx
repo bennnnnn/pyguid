@@ -1,0 +1,63 @@
+---
+title: "Unpacking arguments when calling"
+description: "Spread lists and dicts into function calls with * and **."
+order: 105
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+You defined `greet(first, last)` but your data is in a **list** `["Ada", "Lovelace"]`. **Unpacking** splats that list into separate arguments — mirror image of `*args`.
+
+## One new idea: \* unpack a sequence
+
+<PythonExample
+  filename="star_call.py"
+  code={`def greet(first, last):
+    print(f"Hello, {first} {last}")
+
+name_parts = ["Ada", "Lovelace"]
+greet(\*name_parts)`}
+/>
+
+`*name_parts` means “pass each item as its own argument.”
+
+## \*\* unpack a dict of keywords
+
+<PythonExample
+  filename="starstar_call.py"
+  code={`def connect(host, port=443, timeout=30):
+    print(host, port, timeout)
+
+options = {"host": "api.example.com", "port": 8080, "timeout": 5}
+connect(\*\*options)`}
+/>
+
+Keys must match parameter names (or land in `**kwargs`).
+
+## Mixing position and unpack
+
+<PythonExample
+  filename="mix.py"
+  code={`def demo(a, b, c):
+    print(a, b, c)
+
+demo(1, \*[2, 3])`}
+/>
+
+<Callout variant="warning">
+  Too few or too many values after unpacking causes **TypeError** — same as calling with
+  wrong arity.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello, Ada Lovelace">
+  Change `name_parts` to your name. Run `greet(*name_parts)`.
+</TryIt>
+
+## Recap
+
+- **`*iterable`** in a call → positional unpack
+- **`**mapping`\*\* in a call → keyword unpack
+- Opposite of collecting with `*args` / `**kwargs`
+
+Next: **Return values**.

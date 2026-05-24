@@ -1,0 +1,64 @@
+---
+title: "Append mode (a)"
+description: "Add lines to a file without erasing existing content."
+order: 135
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+**Write mode** (`"w"`) wipes the slate clean. **Append mode** (`"a"`) adds new lines at the **end** — perfect for logs, journals, and growing todo files.
+
+## One new idea: open with a
+
+<PythonExample
+  filename="append_demo.py"
+  code={`# Simulated: two writes to the same logical file
+lines = []
+lines.append("Line 1\\n")
+lines.append("Line 2\\n")
+print("".join(lines))`}
+/>
+
+On your computer:
+
+```python
+with open("log.txt", "a", encoding="utf-8") as f:
+    f.write("New entry\\n")
+```
+
+Each call adds text; previous content stays.
+
+## w vs a
+
+| Mode  | Creates file? | If file exists                   |
+| ----- | ------------- | -------------------------------- |
+| `"w"` | yes           | **truncates** (empty)            |
+| `"a"` | yes           | **keeps** content, writes at end |
+| `"r"` | no (error)    | read only                        |
+
+## Pathlib append
+
+```python
+from pathlib import Path
+
+path = Path("notes.txt")
+with path.open("a", encoding="utf-8") as f:
+    f.write("Another note\\n")
+```
+
+<Callout variant="warning">
+  Forgetting `"a"` and using `"w"` **deletes** old notes. Double-check the mode string.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Line 1 Line 2">
+  In the simulated example, how many lines after two appends?
+</TryIt>
+
+## Recap
+
+- **`"a"`** — append without erase
+- Pair with **`encoding="utf-8"`**
+- Logs and **JSON todo** files grow this way
+
+Next: **pathlib** and the **Notes app** project.

@@ -1,0 +1,53 @@
+---
+title: "frozenset — immutable sets"
+description: "Use frozenset when you need a set that cannot change."
+order: 85
+chapter: 9
+chapterTitle: "Sets"
+level: beginner
+---
+
+A normal **set** is like a whiteboard you can erase and rewrite. A **`frozenset`** is like a **laminated** printout — same uniqueness rules, but **no add/remove** after creation.
+
+## One new idea: create a frozenset
+
+<PythonExample
+  filename="frozen.py"
+  code={`tags = frozenset(["python", "web", "python"])
+print(tags)
+print(len(tags))`}
+/>
+
+Duplicate `"python"` appears once — just like `set`.
+
+## Why bother?
+
+<PythonExample
+  filename="dict_key.py"
+  code={`ALLOWED = frozenset(["read", "write", "admin"])
+
+def can(action):
+return action in ALLOWED
+
+print(can("read"))
+print(can("delete"))`}
+/>
+
+**Frozensets can be dictionary keys** because they are hashable (immutable). Regular sets cannot.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  `AttributeError: 'frozenset' object has no attribute 'add'` — you tried to change a
+  frozen set. Build a **new** frozenset instead.
+</Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  How many items in `tags` after duplicates merge?
+</TryIt>
+
+## Recap
+
+- **`frozenset(iterable)`** — immutable set
+- Use for **constants**, **dict keys**, safe sharing
+- Normal **`set`** when you need to grow or shrink
+
+Next: **Dictionaries** — key/value maps.
