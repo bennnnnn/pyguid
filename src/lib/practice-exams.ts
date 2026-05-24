@@ -20,8 +20,6 @@ import ch19 from "../data/practice-exams/chapter-19.json";
 import ch20 from "../data/practice-exams/chapter-20.json";
 import ch21 from "../data/practice-exams/chapter-21.json";
 import ch22 from "../data/practice-exams/chapter-22.json";
-import ch23 from "../data/practice-exams/chapter-23.json";
-import ch24 from "../data/practice-exams/chapter-24.json";
 import ch25 from "../data/practice-exams/chapter-25.json";
 
 export type ChoiceQuestion = {
@@ -75,8 +73,6 @@ const exams: PracticeExam[] = [
   ch20,
   ch21,
   ch22,
-  ch23,
-  ch24,
   ch25,
 ] as PracticeExam[];
 

@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -193,10 +193,6 @@
     { "slug": "os-environ-vars", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "secrets-token-safety", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "subprocess-run-safety", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "pyproject-packaging", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "git-python-workflow", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "pypi-publish-guide", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "github-actions-ci", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "code-quality-tools", "chapter": 12, "chapterTitle": "Modules" },
 
     { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
@@ -267,14 +263,12 @@
     { "slug": "logging-basic", "chapter": 22, "chapterTitle": "Logging & Regex" },
     { "slug": "regex-basics", "chapter": 22, "chapterTitle": "Logging & Regex" },
 
-    { "slug": "sqlite3-database-basics", "chapter": 23, "chapterTitle": "Databases" },
-    { "slug": "sqlalchemy-orm-preview", "chapter": 23, "chapterTitle": "Databases" },
-    { "slug": "database-todo-project", "chapter": 23, "chapterTitle": "Databases" },
-
-    { "slug": "async-await-intro", "chapter": 24, "chapterTitle": "Async Python" },
-
-    { "slug": "quiz-app-project", "chapter": 25, "chapterTitle": "Projects" },
-    { "slug": "personality-quiz-project", "chapter": 25, "chapterTitle": "Projects" },
-    { "slug": "multi-file-cli-capstone", "chapter": 25, "chapterTitle": "Projects" }
+    { "slug": "quiz-app-project", "chapter": 25, "chapterTitle": "Python Mini Programs" },
+    { "slug": "personality-quiz-project", "chapter": 25, "chapterTitle": "Python Mini Programs" },
+    {
+      "slug": "multi-file-cli-capstone",
+      "chapter": 25,
+      "chapterTitle": "Python Mini Programs"
+    }
   ]
 }

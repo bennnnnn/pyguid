@@ -1,8 +1,8 @@
 {
   "chapter": 25,
-  "chapterTitle": "Projects",
-  "title": "Projects Practice Exam",
-  "description": "Practice combining functions, data structures, files, and modules in larger programs.",
+  "chapterTitle": "Python Mini Programs",
+  "title": "Python Mini Programs Quiz",
+  "description": "Practice combining functions, data structures, files, and modules in small programs.",
   "passPercent": 70,
   "questions": [
     {

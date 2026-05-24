@@ -1,0 +1,62 @@
+---
+import TutorialLayout from "../../../layouts/TutorialLayout.astro";
+import { getLessonGroups } from "../../../lib/lessons";
+import { getPublishedQuizTopics, quizUrl } from "../../../lib/quiz-topics";
+import { getPracticeExam } from "../../../lib/practice-exams";
+import { SITE } from "../../../lib/site";
+
+const groups = await getLessonGroups();
+const topics = getPublishedQuizTopics();
+
+const pageTitle = `Python quizzes by topic — ${SITE.name}`;
+const description =
+  "Chapter quizzes for PyGuide. Test yourself after the tutorials — separate from lesson pages and hands-on practice exercises.";
+---
+
+<TutorialLayout title={pageTitle} description={description} groups={groups}>
+  <article class="lesson-prose max-w-3xl">
+    <h1>Quizzes</h1>
+    <p class="text-lg text-text-muted">
+      Each quiz is <strong>20 questions</strong> for a chapter topic. Read the tutorials first,
+      then check your understanding here. Lessons stay focused — quizzes live on this page only.
+    </p>
+
+    <ul class="practice-exam-grid mt-8 grid list-none gap-4 p-0 sm:grid-cols-2">
+      {
+        topics.map((topic) => {
+          const exam = getPracticeExam(topic.chapter);
+          return (
+            <li
+              id={topic.slug}
+              class="m-0 list-none scroll-mt-20 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow hover:border-brand/40 hover:shadow-md"
+            >
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-brand">
+                Chapter {topic.chapter}
+              </p>
+              <h2 class="!mt-0 !mb-2 text-lg font-semibold text-text">{topic.title}</h2>
+              <p class="mb-4 text-sm text-text-muted">{topic.description}</p>
+              {exam ? (
+                <>
+                  <p class="mb-4 text-sm text-text-muted">
+                    {exam.questions.length} questions · Pass {exam.passPercent}%+
+                  </p>
+                  <a href={quizUrl(topic.slug)} class="btn-primary inline-flex no-underline">
+                    Start quiz
+                  </a>
+                </>
+              ) : (
+                <p class="text-sm text-text-muted">Coming soon</p>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <p class="mt-10 text-sm text-text-muted">
+      Looking for coding exercises? See <a href="/python/practice/" class="text-link font-medium"
+        >Practice</a
+      > (hands-on drills — expanded over time).
+    </p>
+  </article>
+</TutorialLayout>

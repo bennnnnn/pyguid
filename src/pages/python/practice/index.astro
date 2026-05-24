@@ -1,61 +1,37 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
 import { getLessonGroups } from "../../../lib/lessons";
-import { getAllPracticeExams, practiceExamUrl } from "../../../lib/practice-exams";
 import { SITE } from "../../../lib/site";
 
 const groups = await getLessonGroups();
-const exams = getAllPracticeExams();
-const examByChapter = new Map(exams.map((e) => [e.chapter, e]));
 
-const pageTitle = `Python practice exams by topic — ${SITE.name}`;
+const pageTitle = `Python practice — ${SITE.name}`;
 const description =
-  "20-question practice exams for every PyGuide chapter. Answer all questions, submit, and see your score with explanations.";
+  "Hands-on Python practice exercises. Chapter quizzes live under Quiz; this section is for coding drills and mini challenges.";
 ---
 
 <TutorialLayout title={pageTitle} description={description} groups={groups}>
   <article class="lesson-prose max-w-3xl">
-    <h1>Practice exams</h1>
+    <h1>Practice</h1>
     <p class="text-lg text-text-muted">
-      Each chapter has a <strong>20-question exam</strong>. Work through the lesson
-      material first, then test yourself. You get a score, pass/fail, and a full review
-      with explanations.
+      <strong>Practice</strong> is for hands-on coding exercises — bigger than a TryIt box,
+      smaller than a full project. Tutorials keep short “try it yourself” steps; practice
+      drills will live here as we add them.
     </p>
 
-    <ul class="practice-exam-grid mt-8 grid list-none gap-4 p-0 sm:grid-cols-2">
-      {
-        groups.map((g) => {
-          const exam = examByChapter.get(g.chapter);
-          return (
-            <li
-              id={`chapter-${g.chapter}`}
-              class="m-0 list-none scroll-mt-20 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow hover:border-brand/40 hover:shadow-md"
-            >
-              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-brand">
-                Chapter {g.chapter}
-              </p>
-              <h2 class="!mt-0 !mb-2 text-lg font-semibold text-text">
-                {g.chapterTitle}
-              </h2>
-              {exam ? (
-                <>
-                  <p class="mb-4 text-sm text-text-muted">
-                    {exam.questions.length} questions · Pass {exam.passPercent}%+
-                  </p>
-                  <a
-                    href={practiceExamUrl(g.chapter)}
-                    class="btn-primary inline-flex no-underline"
-                  >
-                    Start exam
-                  </a>
-                </>
-              ) : (
-                <p class="text-sm text-text-muted">Coming soon</p>
-              )}
-            </li>
-          );
-        })
-      }
-    </ul>
+    <div class="not-prose my-8 rounded-xl border border-border bg-surface-alt px-6 py-6">
+      <h2 class="!mt-0 text-lg font-semibold text-text">Chapter quizzes</h2>
+      <p class="mb-4 text-sm text-text-secondary">
+        Multiple-choice chapter tests (20 questions, scored) are on the <strong>Quiz</strong>{" "}
+        page — separate from lessons so tutorials stay clean.
+      </p>
+      <a href="/python/quiz/" class="btn-primary inline-flex no-underline">Go to quizzes</a>
+    </div>
+
+    <h2>Coming soon</h2>
+    <p>
+      Topic-based drills such as <code>/python/practice/variables/</code> and{" "}
+      <code>/python/practice/lists/</code> — write code, not just answer multiple choice.
+    </p>
   </article>
 </TutorialLayout>

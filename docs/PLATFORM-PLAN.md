@@ -1,8 +1,10 @@
-# PyGuide platform plan (L4 + SEO)
+# PyGuide platform plan (Python-only L4 + SEO)
 
-**Positioning:** Learn Python from zero to job-ready — runnable examples, projects, quizzes (planned), and real developer skills.
+**Positioning:** The cleanest **Python-only** learning site — beginner-friendly, deep enough for serious Python mastery.
 
-**Current scale (2026):** 197 lessons · 16 chapters · professional track (testing, typing, Git, FastAPI, SQLite, CI).
+**Vision doc:** [`PYTHON-ONLY-VISION.md`](./PYTHON-ONLY-VISION.md)
+
+**Current scale (2026):** ~180+ published lessons · 25 chapters (aligning toward 30-chapter pure-Python map) · separate **Quiz** / **Practice** / **Tutorials** / **Reference**.
 
 ## Review score context
 
@@ -27,9 +29,8 @@ Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 | L1    | types, operators, collections        | Strong                  |
 | L2    | functions, debugging, patterns       | Good — deepen exercises |
 | L3    | files, JSON, modules, venv           | Strong                  |
-| L4    | typing, pytest, Git, lint, packaging | Good                    |
-| L5    | HTTP, Flask, FastAPI, DB, async      | Teaser + capstones      |
-| L6    | interviews, perf, production         | Partial — build next    |
+| L4    | typing, pytest, debugging, stdlib, clean code | In progress (Python-only) |
+| L5+   | FastAPI, deploy, Git ops, DB         | **Separate tracks** — archived from main course |
 
 ## SEO checklist
 
@@ -43,7 +44,8 @@ Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 - [x] Internal links: related lessons per chapter
 - [x] **Track A batch 1 (30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
 - [x] **Track A batch 2 (30):** same treatment — see `docs/seo-top-30-batch2-meta.json`
-- [x] **Practice hub** `/python/practice/` (exams separate from lessons)
+- [x] **Quiz hub** `/python/quiz/` (chapter quizzes separate from lessons)
+- [x] **Practice hub** `/python/practice/` (hands-on drills — expand; quizzes not mixed in)
 
 ### Next
 
@@ -74,7 +76,8 @@ Roll out by rewriting highest-traffic pages first (`list-append`, `for-loops`, `
 | -------- | --------------------------------------- |
 | P0       | Lesson depth + FAQ                      |
 | P0       | SEO metadata + schema                   |
-| P1       | Quizzes per chapter                     |
+| P1       | Quizzes per chapter (`/python/quiz/`)   |
+| P1       | Practice coding drills per topic        |
 | P1       | Progress (localStorage → optional auth) |
 | P2       | Search box                              |
 | P2       | Cheat sheets PDF                        |

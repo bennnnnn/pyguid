@@ -8,8 +8,10 @@ const isTutorials =
   path === "/python/" ||
   (path.startsWith("/python/") &&
     !path.startsWith("/python/reference") &&
-    !path.startsWith("/python/practice"));
+    !path.startsWith("/python/practice") &&
+    !path.startsWith("/python/quiz"));
 const isPractice = path.startsWith("/python/practice");
+const isQuiz = path.startsWith("/python/quiz");
 const isReference = path.startsWith("/python/reference");
 ---
 
@@ -68,6 +70,12 @@ const isReference = path.startsWith("/python/reference");
           class:list={["topnav-link text-xs sm:text-sm", isTutorials && "is-active"]}
           >Tutorials</a
         >
+        <a
+          href="/python/quiz/"
+          class:list={["topnav-link text-xs sm:text-sm", isQuiz && "is-active"]}
+        >
+          Quiz
+        </a>
         <a
           href="/python/practice/"
           class:list={["topnav-link text-xs sm:text-sm", isPractice && "is-active"]}

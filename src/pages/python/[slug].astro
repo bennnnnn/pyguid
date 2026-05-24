@@ -17,7 +17,7 @@ import { SITE, getSiteUrl } from "../../lib/site";
 import LessonRelated from "../../components/LessonRelated.astro";
 import QuickAnswer from "../../components/QuickAnswer.astro";
 import SeoFaq from "../../components/SeoFaq.astro";
-import PracticeExamsNote from "../../components/PracticeExamsNote.astro";
+import ChapterQuizNote from "../../components/ChapterQuizNote.astro";
 
 export async function getStaticPaths() {
   const lessons = await getAllLessons();
@@ -137,10 +137,7 @@ if (faqs.length > 0) {
     <h1>{lesson.data.title}</h1>
     {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable, TryIt }} />
-    <PracticeExamsNote
-      chapter={lesson.data.chapter}
-      chapterTitle={lesson.data.chapterTitle}
-    />
+    <ChapterQuizNote chapter={lesson.data.chapter} chapterTitle={lesson.data.chapterTitle} />
     {faqs.length > 0 && <SeoFaq items={faqs} />}
     <LessonRelated current={lesson} chapterLessons={chapterLessons} />
     <LessonPager prev={prev} next={next} />

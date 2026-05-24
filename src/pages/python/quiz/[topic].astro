@@ -1,0 +1,40 @@
+---
+import TutorialLayout from "../../../layouts/TutorialLayout.astro";
+import PracticeExam from "../../../components/practice/PracticeExam.astro";
+import { getLessonGroups } from "../../../lib/lessons";
+import { getPublishedQuizTopics, getQuizExam, getQuizTopic, quizUrl } from "../../../lib/quiz-topics";
+import { SITE } from "../../../lib/site";
+
+export function getStaticPaths() {
+  return getPublishedQuizTopics().map((topic) => ({
+    params: { topic: topic.slug },
+  }));
+}
+
+const topic = getQuizTopic(Astro.params.topic ?? "");
+if (!topic) return Astro.redirect("/python/quiz/");
+
+const exam = getQuizExam(topic);
+if (!exam) return Astro.redirect("/python/quiz/");
+
+const groups = await getLessonGroups();
+const pageTitle = `${topic.title} Quiz — ${SITE.name}`;
+---
+
+<TutorialLayout title={pageTitle} description={exam.description} groups={groups}>
+  <article class="lesson-prose lesson-prose-wide">
+    <p class="!mt-0 text-sm text-text-muted">
+      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <span class="mx-1.5">/</span>
+      <a href="/python/quiz/" class="text-link no-underline hover:underline">Quiz</a>
+      <span class="mx-1.5">/</span>
+      <span>{topic.title}</span>
+    </p>
+    <PracticeExam
+      exam={exam}
+      kindLabel="Chapter quiz"
+      backHref="/python/quiz/"
+      backLabel="All quizzes"
+    />
+  </article>
+</TutorialLayout>

@@ -3,9 +3,17 @@ import type { PracticeExam } from "../../lib/practice-exams";
 
 interface Props {
   exam: PracticeExam;
+  backHref?: string;
+  backLabel?: string;
+  kindLabel?: string;
 }
 
-const { exam } = Astro.props;
+const {
+  exam,
+  backHref = "/python/practice/",
+  backLabel = "All practice exams",
+  kindLabel = "Practice exam",
+} = Astro.props;
 const examPayload = {
   chapter: exam.chapter,
   chapterTitle: exam.chapterTitle,
@@ -23,7 +31,7 @@ const examPayload = {
   />
   <header class="practice-exam-header">
     <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-brand">
-      Practice exam
+      {kindLabel}
     </p>
     <h1>{exam.title}</h1>
     <p class="mt-2 text-text-secondary">{exam.description}</p>
@@ -99,8 +107,7 @@ const examPayload = {
     <p class="practice-results-summary" data-results-summary></p>
     <div class="flex flex-wrap justify-center gap-3">
       <button type="button" class="btn-primary" data-retry-exam>Try again</button>
-      <a href="/python/practice/" class="btn-secondary no-underline">All practice exams</a
-      >
+      <a href={backHref} class="btn-secondary no-underline">{backLabel}</a>
       <a href={`/python/`} class="btn-secondary no-underline"> Back to lessons </a>
     </div>
     <div class="practice-review-list" data-review-list></div>
