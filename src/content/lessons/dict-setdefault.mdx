@@ -1,7 +1,7 @@
 ---
 title: "setdefault() on dictionaries"
 description: "Get a value or insert a default without an extra if check."
-order: 88
+order: 91
 chapter: 13
 chapterTitle: "Dictionaries"
 level: beginner
@@ -49,14 +49,9 @@ print(d2)`}
 
 `get` returns a **new** list that is **not** stored in `d2` — a common bug. `setdefault` fixes that.
 
-<TryIt title="Try it yourself" answer="{'ada': 3, 'bob': 1, 'chen': 1}">
-  Run the vote counter. How many votes for `ada`?
-</TryIt>
-
 ## Recap
 
 - **`setdefault(key, default)`** — get or insert
 - Great for **counting** and **grouping**
 - Do not confuse with **`get`** (read-only)
 
-Next: keep practicing with **dict loops** and the **contact book** project.

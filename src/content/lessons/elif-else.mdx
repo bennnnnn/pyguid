@@ -1,20 +1,10 @@
 ---
 title: "elif and else"
 description: "Python elif and else tutorial: chain conditions after if for menus, grades, and branching. Beginner examples show flat logic without deep nesting."
-order: 42
+order: 44
 chapter: 8
 chapterTitle: "Booleans and Conditions"
 level: beginner
-quickAnswer: "Use elif for additional tests after if, and else for a final block when no earlier condition was true."
-faqs:
-  - question: "What does elif mean in Python?"
-    answer: "elif is short for else if. Python tests elif branches in order only if previous conditions failed."
-  - question: "Can I have elif without else?"
-    answer: "Yes. else is optional when you do not need a fallback block."
-  - question: "How many elif blocks can I use?"
-    answer: "As many as you need. Keep chains readable; sometimes a dict lookup or match is clearer for many cases."
-  - question: "Does else run when a condition is False?"
-    answer: "else runs only when every if and elif condition above it was false."
 ---
 
 ## Why this matters
@@ -94,10 +84,6 @@ print("Check local rules")`}
   Order matters. Put **stricter** tests before looser ones when ranges overlap — check `>= 90` before `>= 70`.
 </Callout>
 
-<TryIt title="Try it yourself" answer="Warm">
-  Set `temperature = 20`. If `temperature > 25` print `"Hot"`, elif `temperature > 15` print `"Warm"`, else print `"Cool"`.
-</TryIt>
-
 ## Recap
 
 - **`elif`** adds another condition to test
@@ -105,4 +91,3 @@ print("Check local rules")`}
 - Only **one** block in an `if` / `elif` / `else` chain runs
 - Put more specific conditions **first**
 
-Next: **While loops** — repeat code while a condition stays true.

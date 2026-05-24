@@ -1,7 +1,7 @@
 ---
 title: "Keyword-only parameters"
 description: "Force callers to pass certain arguments by name after a bare star."
-order: 151
+order: 154
 chapter: 23
 chapterTitle: "Advanced Functions"
 level: beginner
@@ -47,14 +47,9 @@ def f(pos1, pos2, /, pos_or_kw, *, kw_only1, kw_only2=10):
   parameters.
 </Callout>
 
-<TryIt title="Try it yourself" answer="Connecting to api.example.com:8080">
-  Call `connect` with `port=8080`. What prints?
-</TryIt>
-
 ## Recap
 
 - **`*`** in `def` → following params are keyword-only
 - Prevents confusing argument order
 - Pairs with `*args` / `**kwargs` on advanced APIs
 
-Next: **Unpacking** when you **call** functions.

@@ -1,0 +1,47 @@
+---
+title: "Mini project: Word counter"
+description: "Count words in a sentence with split and len."
+order: 36
+chapter: 7
+chapterTitle: "Strings"
+level: beginner
+---
+
+How many words are in a paragraph? You already know **`split()`** and **`len()`** — combine them into a tiny tool.
+
+## Goal
+
+Given a sentence, print how many words it contains.
+
+<PythonExample
+  filename="word_count.py"
+  code={`text = "Python is fun to learn"
+words = text.split()
+print("Words:", len(words))`}
+/>
+
+## Count lines from a list (browser demo)
+
+<PythonExample
+  filename="lines.py"
+  code={`lines = [
+"First line",
+"Second line",
+"Third line",
+]
+for i, line in enumerate(lines, start=1):
+words = len(line.split())
+print(i, "->", words, "words")`}
+/>
+
+## Stretch goals
+
+- Strip punctuation from words before counting (hint: `replace`)
+- Find the **longest** word with a loop
+- Read one long string from `input()` on your machine
+
+## Recap
+
+- **`split()`** turns text into a list of words
+- **`len(words)`** counts items
+- Loops help when you have many lines

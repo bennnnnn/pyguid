@@ -46,10 +46,7 @@ const isReference = path.startsWith("/python/reference");
     <div class="flex min-w-0 flex-1 items-center gap-3 sm:gap-6">
       <a
         href="/"
-        class:list={[
-          "flex min-w-0 shrink-0 items-center gap-2 no-underline sm:gap-2.5",
-          isHome && "ring-2 ring-border ring-offset-2",
-        ]}
+        class="site-brand flex min-w-0 shrink-0 items-center gap-2 no-underline sm:gap-2.5"
         aria-current={isHome ? "page" : undefined}
       >
         <span
@@ -72,13 +69,13 @@ const isReference = path.startsWith("/python/reference");
           href="/python/quiz/"
           class:list={["topnav-link text-xs sm:text-sm", isQuiz && "is-active"]}
         >
-          Quiz
+          Quizzes
         </a>
         <a
           href="/python/reference/"
           class:list={["topnav-link text-xs sm:text-sm", isReference && "is-active"]}
         >
-          Reference
+          References
         </a>
       </nav>
     </div>

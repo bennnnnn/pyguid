@@ -33,6 +33,18 @@ break · continue`,
 
 import math
 from math import sqrt`,
+  tuples: `point = (10, 20)
+x, y = point
+one = (42,)  # comma required
+point[0]  # read-only`,
+  sets: `tags = {"python", "code"}
+tags.add("learn")
+tags.remove("code")
+a | b  # union
+a & b  # intersection`,
+  comprehensions: `squares = [x * x for x in range(5)]
+evens = [n for n in nums if n % 2 == 0]
+counts = {k: len(v) for k, v in groups.items()}`,
   classes: `class Dog:
     def __init__(self, name):
         self.name = name
@@ -64,21 +76,21 @@ finally:
 ---
 
 <TutorialLayout
-  title={`Reference — ${SITE.name}`}
-  description="Quick Python syntax reference."
+  title={`Python References — ${SITE.name}`}
+  description="Quick Python syntax reference for strings, lists, dicts, loops, functions, classes, and errors."
   groups={groups}
   sidebar="reference"
 >
   <article class="lesson-prose-wide lesson-prose">
     <p class="!mt-0 text-sm text-text-muted">
-      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <a href="/" class="text-link">{SITE.name}</a>
       <span class="mx-1.5">/</span>
-      <span>Reference</span>
+      <span>References</span>
     </p>
-    <h1>Python reference</h1>
+    <h1>Python references</h1>
     <p>
-      Quick lookup for syntax from the course. For explanations and examples, use <a
-        href="/python/">Learn</a
+      Quick lookup for syntax from the tutorials. For full explanations and runnable examples, use <a
+        href="/python/">Tutorials</a
       >.
     </p>
 
@@ -92,6 +104,18 @@ finally:
     <div class="overflow-hidden rounded-xl border border-border">
       <pre
         class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.lists}</pre>
+    </div>
+
+    <h2 id="tuples">Tuples</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre
+        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.tuples}</pre>
+    </div>
+
+    <h2 id="sets">Sets</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre
+        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.sets}</pre>
     </div>
 
     <h2 id="dicts">Dictionaries</h2>
@@ -110,6 +134,12 @@ finally:
     <div class="overflow-hidden rounded-xl border border-border">
       <pre
         class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.loops}</pre>
+    </div>
+
+    <h2 id="comprehensions">Comprehensions</h2>
+    <div class="overflow-hidden rounded-xl border border-border">
+      <pre
+        class="m-0 bg-surface-alt p-4 font-mono text-sm text-text">{snippets.comprehensions}</pre>
     </div>
 
     <h2 id="functions">Functions</h2>

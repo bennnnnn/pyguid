@@ -1,7 +1,7 @@
 ---
 title: "subprocess.run and shell safety"
 description: "Run external commands without shell injection risks."
-order: 132
+order: 135
 chapter: 18
 chapterTitle: "Modules"
 level: beginner
@@ -54,14 +54,9 @@ If you must use the shell, never paste untrusted text into the command string.
   form**.
 </Callout>
 
-<TryIt title="Try it yourself" answer="0">
-  In the demo, what is `returncode` on success?
-</TryIt>
-
 ## Recap
 
 - **`subprocess.run([...])`** with a list
 - **`capture_output=True, text=True`** for stdout
 - Avoid **`shell=True`** unless you understand the risk
 
-Next: **pyproject.toml** packaging teaser.

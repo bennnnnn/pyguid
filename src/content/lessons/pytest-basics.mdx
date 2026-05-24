@@ -1,20 +1,10 @@
 ---
 title: "pytest basics"
 description: "pytest basics for Python beginners: write test functions, run pytest, and assert outcomes. Covers discovery, reading failures, and simple test file layout."
-order: 178
+order: 182
 chapter: 29
 chapterTitle: "Testing Python Code"
 level: beginner
-quickAnswer: "Name test files test_*.py, write functions starting with test_, and run pytest in the terminal; pytest reports failures with helpful assert output."
-faqs:
-  - question: "How do I run pytest?"
-    answer: "Install pytest, then run the pytest command in your project directory. It discovers test_*.py files and test_* functions automatically."
-  - question: "What makes a function a pytest test?"
-    answer: "The function name must start with test_ and live in a module pytest can import, typically a test_*.py file."
-  - question: "Can I use plain assert in pytest?"
-    answer: "Yes. pytest rewrites asserts to show detailed comparisons on failure, unlike running assert-only scripts with python file.py."
-  - question: "Do I need classes to write pytest tests?"
-    answer: "No. Simple test functions are enough for beginners. Classes are optional for grouping related tests later."
 ---
 
 ## Why this matters
@@ -78,14 +68,9 @@ On your PC, pytest calls those functions for you and stops on the first failure.
   pytest.
 </Callout>
 
-<TryIt title="Try it yourself" answer="All tests passed">
-  Run the manual demo. What prints?
-</TryIt>
-
 ## Recap
 
 - **`test_*.py`** files with **`test_*` functions**
 - **`pytest`** command runs the suite
 - Builds on **Testing with assert**
 
-Next: **enum** — named constants.

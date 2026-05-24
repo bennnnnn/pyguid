@@ -5,16 +5,6 @@ order: 19
 chapter: 6
 chapterTitle: "Numbers and Operators"
 level: beginner
-quickAnswer: "int holds whole numbers without size limit in modern Python; float holds decimal values and uses binary floating point, which can surprise with fractions."
-faqs:
-  - question: "What is the difference between int and float in Python?"
-    answer: "int stores integers. float stores real numbers with a decimal point and follows IEEE floating-point rules."
-  - question: "Why does 0.1 + 0.2 not equal 0.3 exactly?"
-    answer: "Floats use binary approximations. Use round() or decimal.Decimal when exact decimal math matters."
-  - question: "How do I convert a string to int or float?"
-    answer: "Use int('42') or float('3.14'). Invalid text raises ValueError."
-  - question: "What is the difference between / and //?"
-    answer: "/ is true division and returns a float. // is floor division, truncating toward negative infinity for integers."
 ---
 
 ## Why this matters
@@ -108,14 +98,9 @@ print("Total:", total)`}
   beginners; special tools handle money later.
 </Callout>
 
-<TryIt title="Try it yourself" answer="20">
-  Set `a = 12` and `b = 8`. Print `a - b`.
-</TryIt>
-
 ## Recap
 
 - **`int`** — whole numbers; **`float`** — decimals
 - **`/``** always gives a float
 - **`//`** and **`%`** — divide and remainder
 
-Next: **Strings** — text in quotes.

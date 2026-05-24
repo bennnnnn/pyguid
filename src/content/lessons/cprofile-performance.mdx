@@ -1,7 +1,7 @@
 ---
 title: "Profiling with cProfile"
 description: "Find slow functions using the cProfile module."
-order: 175
+order: 179
 chapter: 28
 chapterTitle: "Debugging Python Code"
 level: beginner
@@ -55,14 +55,9 @@ cProfile.run("slow()")
 print(work(1000))`}
 />
 
-<TryIt title="Try it yourself" answer="large number">
-  Run `work(100)`. Is the result bigger than 1_000_000?
-</TryIt>
-
 ## Recap
 
 - **`python -m cProfile`**
 - Fix the **top cumulative** lines first
 - Use with **timeit** for micro-benchmarks
 
-Next: **timeit** benchmarks.

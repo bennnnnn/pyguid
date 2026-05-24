@@ -1,7 +1,7 @@
 ---
 title: "items()"
 description: "Get key-value pairs with items() for looping."
-order: 91
+order: 94
 chapter: 13
 chapterTitle: "Dictionaries"
 level: beginner
@@ -69,14 +69,9 @@ print(passed)`}
   clearer and slightly faster.
 </Callout>
 
-<TryIt title="Try it yourself" answer='[("a", 1), ("b", 2)]'>
-  With `d = {"a": 1, "b": 2}`, print `list(d.items())`.
-</TryIt>
-
 ## Recap
 
 - **`d.items()`** — `(key, value)` tuples
 - **`for k, v in d.items():`** — best loop when you need both
 - Prefer **`.items()`** over keys + bracket lookup
 
-Next: **`get()`** — read values safely when a key might be missing.

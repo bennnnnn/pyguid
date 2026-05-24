@@ -5,16 +5,6 @@ order: 21
 chapter: 6
 chapterTitle: "Numbers and Operators"
 level: beginner
-quickAnswer: "Assignment operators combine assignment with an operation, such as x += 1 meaning x = x + 1, often updating the variable in place for mutable objects."
-faqs:
-  - question: "What does += do in Python?"
-    answer: "x += y evaluates x + y and binds the result back to x, equivalent to x = x + y for numbers and many types."
-  - question: "Does list += add one element or many?"
-    answer: "For lists, += with an iterable extends the list with each element, similar to extend(), not a single nested append."
-  - question: "Are assignment operators the same as math operators?"
-    answer: "They combine math (or string/list ops) with assignment. //=, %=, **=, and others follow the same pattern."
-  - question: "Can I use assignment operators on strings?"
-    answer: "Yes. s += '!' appends text because strings support concatenation with +, creating a new string object."
 ---
 
 ## Why this matters
@@ -55,13 +45,8 @@ print("Final score:", score)`}
   two values.
 </Callout>
 
-<TryIt title="Try it yourself" answer="8">
-  Set `x = 10`, then `x -= 2`, then print `x`.
-</TryIt>
-
 ## Recap
 
 - **`+=` `-=` `*=` `/=`** update in place
 - Same meaning as the long `x = x + ...` form
 
-Next: **Comparison operators** — `==`, `<`, `>=`, and more.

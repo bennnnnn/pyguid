@@ -1,7 +1,7 @@
 ---
 title: "Micro-benchmarks with timeit"
 description: "Compare two approaches by timing small code snippets."
-order: 176
+order: 180
 chapter: 28
 chapterTitle: "Debugging Python Code"
 level: beginner
@@ -45,14 +45,9 @@ python -m timeit "sum(range(1000))"
   Micro-benchmarks can mislead. Profile full programs with **cProfile** too.
 </Callout>
 
-<TryIt title="Try it yourself" answer="varies">
-  Run the demo. Which timing is smaller on your machine?
-</TryIt>
-
 ## Recap
 
 - **`import timeit`**
 - **`timeit.timeit(stmt, setup=..., number=...)`**
 - Compare before optimizing
 
-Next: **collections** preview.

@@ -1,25 +1,15 @@
 ---
 title: "Virtual environments and requirements.txt"
 description: "Python venv and requirements.txt for beginners: isolate dependencies, install packages with pip, and reproduce environments on any machine easily."
-order: 134
+order: 137
 chapter: 19
 chapterTitle: "Packages and Imports"
 level: beginner
-quickAnswer: "Create a venv with python -m venv .venv, activate it, then pip install -r requirements.txt to install pinned dependencies."
-faqs:
-  - question: "What is a Python virtual environment?"
-    answer: "An isolated Python installation and site-packages folder for one project, so dependencies do not clash with other projects."
-  - question: "How do I create requirements.txt?"
-    answer: "After installing packages in the venv, run pip freeze > requirements.txt to list exact versions."
-  - question: "Do I commit the venv folder to git?"
-    answer: "Usually no. Commit requirements.txt and let others recreate the venv locally."
-  - question: "Why use requirements.txt instead of installing manually?"
-    answer: "It records exact versions so everyone and CI install the same dependencies reproducibly."
 ---
 
 ## Why this matters
 
-Without virtual environments, global pip installs break other projects and tutorials. requirements.txt documents what your app needs so teammates and deploys match your machine. This is standard practice before Flask, data science, or any third-party library work.
+Without virtual environments, global pip installs break other projects and tutorials. requirements.txt documents what your app needs so teammates and deploys match your machine. This is standard practice before installing third-party libraries for data science, automation, or larger projects.
 
 Your project gets its own **sandbox** so package versions do not fight other projects. A **virtual environment (`venv`)** is that sandbox; **`requirements.txt`** lists what to install.
 
@@ -58,14 +48,9 @@ pip install -r requirements.txt
   start real projects.
 </Callout>
 
-<TryIt title="Try it yourself" answer="(conceptual)">
-  In your own words: why is `venv` safer than installing every package globally?
-</TryIt>
-
 ## Recap
 
 - **`venv`** — isolated environment per project
 - **`pip freeze > requirements.txt`** — save dependencies
 - **`pip install -r requirements.txt`** — restore them
 
-Next: **`if __name__ == "__main__"`** — runnable modules.

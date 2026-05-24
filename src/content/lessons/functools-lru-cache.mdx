@@ -1,7 +1,7 @@
 ---
 title: "Caching with lru_cache"
 description: "Speed up pure functions by remembering past results."
-order: 154
+order: 157
 chapter: 23
 chapterTitle: "Advanced Functions"
 level: beginner
@@ -39,14 +39,9 @@ Second call with the same `n` hits the cache.
   Cached functions keep arguments in memory. Use **`maxsize=`** on huge inputs if needed.
 </Callout>
 
-<TryIt title="Try it yourself" answer="55">
-  What is `fib(10)`?
-</TryIt>
-
 ## Recap
 
 - **`from functools import lru_cache`**
 - Decorate expensive **pure** functions
 - Inspect **`cache_info()`** while learning
 
-Next: **copy and deepcopy**.

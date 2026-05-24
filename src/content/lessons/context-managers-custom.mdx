@@ -1,7 +1,7 @@
 ---
 title: "Custom context managers"
 description: "Use with and contextlib to guarantee setup and cleanup."
-order: 116
+order: 119
 chapter: 17
 chapterTitle: "Files"
 level: beginner
@@ -50,14 +50,9 @@ Classes can implement `__enter__` and `__exit__` — same idea, more boilerplate
   **start/stop**.
 </Callout>
 
-<TryIt title="Try it yourself" answer="[job] end">
-  What is the last line printed when the block finishes?
-</TryIt>
-
 ## Recap
 
 - **`with`** guarantees cleanup
 - **`@contextmanager`** + **`yield`** for custom blocks
 - **`finally`** runs even on errors
 
-Next: **Append mode** for growing files.

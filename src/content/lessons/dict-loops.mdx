@@ -1,7 +1,7 @@
 ---
 title: "Loop through dictionaries"
 description: "Patterns for iterating over dictionary data."
-order: 95
+order: 98
 chapter: 13
 chapterTitle: "Dictionaries"
 level: beginner
@@ -82,15 +82,9 @@ print(user_id, info["name"], "->", status)`}
   **`list(d.keys())`** if you must change the dict inside the loop.
 </Callout>
 
-<TryIt title="Try it yourself" answer="175">
-  With `scores = {"math": 90, "english": 85}`, loop over `.values()` and add to `total`
-  starting at `0`. Print `total`.
-</TryIt>
-
 ## Recap
 
 - **`for k in d:`** — keys; **`.values()`** — values; **`.items()`** — pairs
 - Build new dicts by looping and assigning
 - Nested dicts: outer **`.items()`**, then inner bracket access
 
-You finished the **Dictionaries** chapter. Next: **Functions**.

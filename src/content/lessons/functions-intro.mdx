@@ -1,20 +1,10 @@
 ---
 title: "Define functions"
 description: "Python functions tutorial for beginners: define with def, call them, and organize code. Examples show why functions matter for reusable scripts."
-order: 97
+order: 100
 chapter: 14
 chapterTitle: "Functions"
 level: beginner
-quickAnswer: "Define a function with def name(): and an indented body; call it with name() to run that reusable block of code."
-faqs:
-  - question: "How do you define a function in Python?"
-    answer: "Use def function_name(): followed by an indented body. You can add parameters inside the parentheses."
-  - question: "What is the difference between defining and calling a function?"
-    answer: "def creates the function object but does not run the body. Calling name() executes the body now."
-  - question: "Do functions need a return statement?"
-    answer: "Only if you need to send a value back to the caller. Without return, the function returns None."
-  - question: "Why use functions instead of repeating code?"
-    answer: "Functions reduce duplication, give behavior a clear name, and make testing and changes safer in one place."
 ---
 
 ## Why this matters
@@ -102,14 +92,6 @@ If the tax rate changes, you edit **one function** — not every calculation in 
 
 Edit `tax.py` so tax is `0.10` (10%). Run again — only one line inside the function should change.
 
-<TryIt title="Try it yourself" answer="Hello, Sam">
-  Define `def greet(name):` that prints `f"Hello, {name}"`. Call it with `"Sam"`.
-</TryIt>
-
-<TryIt title="Challenge" answer="33.0">
-  Write `def add(a, b): return a + b` and print `add(10, 23)`.
-</TryIt>
-
 ## FAQ
 
 **What is the difference between a parameter and an argument?**  
@@ -137,4 +119,3 @@ No. Functions without `return` give back `None`. Use `return` when callers need 
 - **Call** with `name()` — run the body
 - Extract repeated blocks early — core L4 habit
 
-Next: **Function arguments** — defaults and keyword parameters.

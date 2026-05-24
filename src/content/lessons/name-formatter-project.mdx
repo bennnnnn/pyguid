@@ -1,0 +1,51 @@
+---
+title: "Mini project: Name formatter"
+description: "Format a full name with strip, split, and title case."
+order: 35
+chapter: 7
+chapterTitle: "Strings"
+level: beginner
+---
+
+Turn messy user input into a clean display name using **strings** from this chapter.
+
+## Goal
+
+Read a name like `"  ada lovelace  "` and print a polished line:
+
+```text
+Hello, Ada Lovelace!
+```
+
+## Browser-safe version
+
+<PythonExample
+  filename="name_formatter.py"
+  code={`raw = "  ada lovelace  "
+clean = raw.strip()
+parts = clean.split()
+formatted = " ".join(p.title() for p in parts)
+print("Hello,", formatted + "!")`}
+/>
+
+## On your computer
+
+```python
+raw = input("Full name: ")
+clean = raw.strip()
+parts = clean.split()
+formatted = " ".join(p.title() for p in parts)
+print(f"Hello, {formatted}!")
+```
+
+## Stretch goals
+
+- Handle a single name (no space) without errors
+- Reject empty input after `strip()` with a friendly message
+- Use an f-string for the final greeting
+
+## Recap
+
+- **`strip()`** removes extra spaces
+- **`split()`** breaks text into words
+- **`title()`** capitalizes each word for display

@@ -1,0 +1,59 @@
+---
+title: "Mini project: Grade checker"
+description: "Map a numeric score to a letter grade with if and elif."
+order: 47
+chapter: 8
+chapterTitle: "Booleans and Conditions"
+level: beginner
+---
+
+School apps turn a **number** into a **letter**. Practice **`if`**, **`elif`**, and comparisons with a small grade checker.
+
+## Rules (example)
+
+| Score | Grade |
+|-------|-------|
+| 90+   | A     |
+| 80–89 | B     |
+| 70–79 | C     |
+| 60–69 | D     |
+| below 60 | F  |
+
+<PythonExample
+  filename="grades.py"
+  code={`scores = [95, 82, 71, 58]
+
+for score in scores:
+if score >= 90:
+letter = "A"
+elif score >= 80:
+letter = "B"
+elif score >= 70:
+letter = "C"
+elif score >= 60:
+letter = "D"
+else:
+letter = "F"
+print(score, "->", letter)`}
+/>
+
+## With input (local Python)
+
+```python
+score = int(input("Score: "))
+if score >= 90:
+    print("A")
+elif score >= 80:
+    print("B")
+# ... continue the chain
+```
+
+<Callout variant="warning">
+  Check that the score is between 0 and 100 before grading — invalid scores deserve their own message.
+</Callout>
+
+## Recap
+
+- **`elif`** handles multiple ranges in order
+- Test **highest** thresholds first (90 before 80)
+- Combine with **`input()`** and **`int()`** for interactive tools

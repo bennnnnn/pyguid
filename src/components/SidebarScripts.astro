@@ -62,15 +62,22 @@
   }
 
   .course-sidebar .lesson-link:hover {
-    color: var(--color-text);
-    background: var(--color-surface-alt);
+    color: var(--color-link-hover);
+    background: var(--color-brand-light);
+    text-decoration: none;
+  }
+
+  .course-sidebar .lesson-link:active {
+    color: var(--color-link-active);
+    text-decoration: none;
   }
 
   .course-sidebar .lesson-link.is-active {
-    color: var(--color-text);
+    color: var(--color-link-active);
     font-weight: 600;
-    background: var(--color-sidebar-active);
-    border-left-color: var(--color-text);
+    background: var(--color-brand-light);
+    border-left-color: var(--color-brand);
+    text-decoration: none;
   }
 
   @media (max-width: 1023px) {

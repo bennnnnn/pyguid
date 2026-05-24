@@ -1,20 +1,10 @@
 ---
 title: "List comprehensions"
 description: "Python list comprehensions build new lists in one line from loops and conditions. Beginner guide with syntax, runnable examples, and when to use them."
-order: 136
+order: 139
 chapter: 21
 chapterTitle: "Comprehensions"
 level: beginner
-quickAnswer: "A list comprehension has the form [expression for item in iterable if condition] and creates a new list without a separate append loop."
-faqs:
-  - question: "What is a list comprehension in Python?"
-    answer: "It is a compact way to build a list by looping over an iterable, optionally filtering, and evaluating an expression for each item."
-  - question: "When should beginners use list comprehensions?"
-    answer: "Use them for simple transforms and filters once you are comfortable with for loops. If the logic is hard to read, use a regular loop instead."
-  - question: "Can a list comprehension have an if condition?"
-    answer: "Yes. Put if at the end: [x for x in nums if x > 0]. That keeps only items that pass the condition."
-  - question: "Do list comprehensions modify the original list?"
-    answer: "No. They always produce a new list. To change a list in place, use a loop or methods like append()."
 ---
 
 ## Why this matters
@@ -79,10 +69,6 @@ print(flat)`}
   Python for simple transforms.
 </Callout>
 
-<TryIt title="Try it yourself" answer="[2, 4, 6]">
-  With `nums = [1, 2, 3]`, build `[n * 2 for n in nums]` and print it.
-</TryIt>
-
 ## Chapter 17 mini project: score report
 
 Filter, transform, and summarize in comprehensions:
@@ -102,4 +88,3 @@ Change scores or add names. Try a threshold other than `60`.
 - **`if` at the end** — filter while building
 - Use a plain **`for` loop** when the logic gets long
 
-Next: **Lambda functions** — tiny anonymous functions.

@@ -1,20 +1,10 @@
 ---
 title: "The not operator"
 description: "Python not operator negates Boolean conditions and works with truthy and falsy values. Beginner examples for if tests, De Morgan patterns, and readable logic."
-order: 38
+order: 40
 chapter: 8
 chapterTitle: "Booleans and Conditions"
 level: beginner
-quickAnswer: "Place not before a condition to flip its truth value: not True is False, and not empty_list is True because empty lists are falsy."
-faqs:
-  - question: "What does the not operator do in Python?"
-    answer: "not returns the opposite Boolean value of its operand after applying truthiness rules to the operand."
-  - question: "Can I write if not x == 5?"
-    answer: "Yes, but if x != 5: is usually clearer. Use not for general falsiness, != for specific inequality."
-  - question: "Does not have higher precedence than and?"
-    answer: "Yes. not binds tighter than and and or. Use parentheses when mixing operators for readability."
-  - question: "Is not the same as the ! operator in other languages?"
-    answer: "Conceptually yes for Boolean negation, but Python spells it not instead of !."
 ---
 
 ## Why this matters
@@ -62,13 +52,8 @@ if not done:
   **`not x`** is clearer than **`x == False`** when `x` is already a boolean.
 </Callout>
 
-<TryIt title="Try it yourself" answer="True">
-  Set `logged_in = False`. Print `not logged_in`.
-</TryIt>
-
 ## Recap
 
 - **`not`** flips booleans
 - Works on comparison results too
 
-Next: **`and` and `or`** — combine tests.

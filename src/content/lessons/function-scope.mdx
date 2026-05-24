@@ -1,20 +1,10 @@
 ---
 title: "Variable scope"
 description: "Python function scope and the LEGB rule: local, enclosing, global, and built-in names. Beginner guide to shadows, globals, and avoiding surprise bugs."
-order: 103
+order: 106
 chapter: 15
 chapterTitle: "Scope"
 level: beginner
-quickAnswer: "Names assigned inside a function are local unless declared global or nonlocal; Python looks up names local first, then enclosing, global, and built-in scopes."
-faqs:
-  - question: "What is the LEGB rule in Python?"
-    answer: "Python searches Local, Enclosing, Global, then Built-in scopes to resolve a name when you read or assign it."
-  - question: "Can a function read variables defined outside it?"
-    answer: "Yes for reading if the name is not assigned locally. Assigning inside the function creates a new local name unless you use global or nonlocal."
-  - question: "When should I use the global keyword?"
-    answer: "Rarely. global lets a function rebind a module-level variable. Prefer passing values in and returning results instead."
-  - question: "What is the difference between global and nonlocal?"
-    answer: "global targets module-level names. nonlocal targets variables in an enclosing function, useful in nested functions."
 ---
 
 ## Why this matters
@@ -102,11 +92,6 @@ print(counter)`}
   If a function needs many globals, consider passing a dictionary or a small class later.
 </Callout>
 
-<TryIt title="Try it yourself" answer="10">
-  Define `def triple(n):` that returns `n * 3`. With `x = 10`, print `triple(x)` then
-  print `x`.
-</TryIt>
-
 ## Chapter 12 mini project: price calculator
 
 Put **def**, **parameters**, **return**, and **scope** together:
@@ -126,4 +111,3 @@ Change `price`, `qty`, or `TAX_RATE`. Notice each function has its own local nam
 - **Parameters** — local copies; outside variables stay unchanged
 - **Global** — readable everywhere; use `global` to reassign (sparingly)
 
-You finished **Functions**. Next: **Import modules** — reuse Python’s built-in libraries.

@@ -67,18 +67,21 @@ Granular, Python-only outline — **implemented in `curriculum-order.json` v11**
 
 **Python Mini Programs** (not “capstone”): small apply-what-you-learn scripts (name formatter, calculator, guessing game, shopping list, contact book, word counter, notes file, grade checker) — woven into chapters or grouped, never framed as deployment projects.
 
-## Four learning surfaces
+## Three learning surfaces
 
 | Surface | URL | Purpose |
 |---------|-----|---------|
-| **Tutorials** | `/python/` | Lessons: explain → examples → mistakes → TryIt → recap → next |
-| **Reference** | `/python/reference/` | FAQ-style lookup |
-| **Quiz** | `/python/quiz/` | Chapter/topic quizzes (20 Q, scored) — **not embedded in every lesson** |
-| **Practice** | `/python/practice/` | Larger exercises (separate from quizzes; expand over time) |
+| **Tutorials** | `/python/` | Lessons: explain → runnable examples → mistakes → recap |
+| **Quizzes** | `/python/quiz/` | Chapter/topic quizzes (20 Q, scored) — **separate from lesson pages** |
+| **References** | `/python/reference/` | Fast syntax and behavior lookup |
 
-Lesson pages link out lightly, e.g.:
+No Practice hub. No FastAPI, Git, databases, or deployment in the main course.
 
-> Finished this chapter? Try the [Variables Quiz](/python/quiz/variables/).
+Lesson pages use a minimal footer:
+
+- **Back** / **Next tutorial →** (global lesson order)
+
+Quizzes and references live on their own sections (`/python/quiz/`, `/python/reference/`), not in the lesson footer.
 
 ## SEO (Python-only cluster)
 
@@ -89,7 +92,7 @@ Target intent like: `python variables`, `python list append`, `python append vs 
 1. Fix build issues  
 2. Format repo  
 3. Lock Python-only curriculum (`docs/curriculum-order.json` + archive)  
-4. Separate Tutorials / Reference / Practice / Quiz in nav  
+4. Nav: **Tutorials · Quizzes · References** only  
 5. Deepen each tutorial lesson  
 6. SEO metadata + FAQ on reference pages  
 7. Advanced pure-Python chapters (split/rename toward 30-chapter map)  

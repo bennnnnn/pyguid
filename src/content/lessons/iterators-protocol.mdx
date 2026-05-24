@@ -1,0 +1,58 @@
+---
+title: "Iterators and iter()"
+description: "How for loops use __iter__ and __next__ under the hood."
+order: 158
+chapter: 24
+chapterTitle: "Iterators and Generators"
+level: intermediate
+---
+
+Every **`for item in thing:`** asks `thing` for an **iterator** — an object that hands out values one at a time until it is exhausted.
+
+## Iterator vs iterable
+
+- **Iterable** — you can loop over it (list, str, dict keys)
+- **Iterator** — keeps state; each **`next()`** returns the following value
+
+<PythonExample
+  filename="iter_demo.py"
+  code={`nums = [10, 20, 30]
+it = iter(nums)
+print(next(it))
+print(next(it))
+print(next(it))
+# next(it) again would raise StopIteration`}
+/>
+
+Lists are **iterables**. Calling **`iter(list)`** builds an **iterator** you can drive manually.
+
+## What for actually does
+
+Conceptually:
+
+```python
+it = iter(collection)
+while True:
+    try:
+        item = next(it)
+    except StopIteration:
+        break
+    # use item
+```
+
+That is why you can loop strings, files, and generators the same way.
+
+## iter() with a sentinel (preview)
+
+`iter(callable, sentinel)` calls `callable` until it returns `sentinel`. Useful for reading chunks; you will see similar ideas with **generators** next.
+
+<Callout variant="tip">
+  If you need **all** values at once, a list is fine. If values arrive over time or are huge, prefer iterators and generators.
+</Callout>
+
+## Recap
+
+- **`iter(x)`** creates an iterator from an iterable
+- **`next(it)`** fetches the next value
+- **`StopIteration`** means the sequence is finished
+- **`for`** loops use this protocol automatically

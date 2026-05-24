@@ -11,24 +11,20 @@ const sectionCount = groups.length;
 const firstLesson = groups[0]?.lessons[0];
 ---
 
-<SiteLayout
-  title={`${SITE.name} — Learn Python from Zero to Job-Ready`}
-  description="Free Python course with 196+ lessons, runnable examples, projects, testing, Git, APIs, and job-ready developer skills. No install required to start."
->
+<SiteLayout title={SITE.title} description={SITE.description}>
   <!-- Hero -->
   <section class="home-hero">
     <div class="home-container home-hero-inner">
       <div>
         <p class="home-eyebrow">Free · No install · Run code in the browser</p>
-        <h1>Learn Python from zero to job-ready.</h1>
+        <h1>Learn Python from zero to advanced core Python.</h1>
         <p class="home-hero-lead">
-          {SITE.name} is a free Python learning platform — beginner syntax, runnable examples, mini
-          projects, and a professional track (testing, typing, Git, APIs, databases). Hit{" "}
-          <strong>Run code</strong> on any lesson or jump straight to the topic you searched for.
+          {SITE.description} Hit <strong>Run code</strong> on any tutorial, take a chapter quiz when
+          you are ready, or open the reference when you need syntax fast.
         </p>
         <div class="home-hero-actions">
-          <a href="/python/what-is-python/" class="btn-primary">Start learning free</a>
-          <a href="/python/" class="btn-secondary">Browse all lessons</a>
+          <a href="/python/what-is-python/" class="btn-primary">Start tutorials</a>
+          <a href="/python/quiz/" class="btn-secondary">Browse quizzes</a>
         </div>
         <dl class="home-stats">
           <div class="home-stat">
@@ -37,11 +33,7 @@ const firstLesson = groups[0]?.lessons[0];
           </div>
           <div class="home-stat">
             <strong>{sectionCount}</strong>
-            <span>topics from basics to OOP</span>
-          </div>
-          <div class="home-stat">
-            <strong>0</strong>
-            <span>setup required to begin</span>
+            <span>tutorial chapters</span>
           </div>
         </dl>
       </div>
@@ -69,7 +61,7 @@ Welcome to Python</pre>
     <div class="home-container">
       <div class="home-section-head">
         <h2>Built for how you actually learn</h2>
-        <p>Clear writing, runnable code, and a path that mirrors professional courses — without the clutter.</p>
+        <p>Three clear sections — tutorials, quizzes, and references — so you always know where to go.</p>
       </div>
       <ul class="home-features">
         <li class="home-feature">
@@ -85,7 +77,7 @@ Welcome to Python</pre>
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">≡</div>
           <h3>Sidebar navigation</h3>
-          <p>Jump to lists, loops, functions, classes, and more. Learn and Reference stay separate.</p>
+          <p>Jump to lists, loops, functions, classes, and more. Tutorials, quizzes, and references stay separate.</p>
         </li>
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">✓</div>
@@ -113,36 +105,43 @@ Welcome to Python</pre>
           <p>Each page explains one concept with examples. Run them in the browser to see Python in action.</p>
         </li>
         <li class="home-step">
-          <h3>Keep going</h3>
-          <p>Use Back and Next at the bottom of each lesson. Check the Reference when you need a syntax reminder.</p>
+          <h3>Quiz and reference</h3>
+          <p>Take a chapter quiz when you finish a topic. Use References for quick syntax lookup while you code.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- Learn vs Reference -->
+  <!-- Tutorials · Quizzes · References -->
   <section class="home-section">
     <div class="home-container">
       <div class="home-section-head">
-        <h2>Two ways to use {SITE.name}</h2>
-        <p>Deep learning when you have time; quick lookup when you are coding.</p>
+        <h2>Three ways to use {SITE.name}</h2>
+        <p>Tutorials teach slowly. Quizzes test separately. References help you look things up fast.</p>
       </div>
       <div class="home-paths">
         <a href="/python/" class="home-path-card">
-          <h3>Learn Python</h3>
+          <h3>Python Tutorials</h3>
           <p>
-            Full tutorial with explanations, tips, warnings, and exercises you run on the page. Best for beginners
-            and anyone revisiting fundamentals.
+            Full guided lessons from beginner to advanced core Python — explanations and runnable examples,
+            and one idea per page.
           </p>
-          <span class="home-path-link">Open the course →</span>
+          <span class="home-path-link">Open tutorials →</span>
+        </a>
+        <a href="/python/quiz/" class="home-path-card">
+          <h3>Python Quizzes</h3>
+          <p>
+            Chapter quizzes by topic so you can check understanding without cluttering lesson pages.
+          </p>
+          <span class="home-path-link">Open quizzes →</span>
         </a>
         <a href="/python/reference/" class="home-path-card">
-          <h3>Reference</h3>
+          <h3>Python References</h3>
           <p>
-            Compact syntax reminders for strings, lists, dictionaries, loops, functions, and classes — when you
-            already know the idea and need a nudge.
+            Fast lookup for syntax, methods, and common mistakes — strings, lists, dicts, loops, functions,
+            and classes.
           </p>
-          <span class="home-path-link">Open reference →</span>
+          <span class="home-path-link">Open references →</span>
         </a>
       </div>
     </div>
@@ -169,7 +168,7 @@ Welcome to Python</pre>
             <a href="/python/" class="btn-primary">Start the course</a>
           )
         }
-        <a href="/python/reference/" class="btn-secondary">Syntax reference</a>
+        <a href="/python/reference/" class="btn-secondary">Open references</a>
       </div>
     </div>
   </section>

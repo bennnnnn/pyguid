@@ -1,20 +1,10 @@
 ---
 title: "Access dictionaries"
 description: "Python dictionary access with brackets, get(), keys(), values(), and items(). Beginner tutorial on KeyError, safe lookups, and iterating dict data."
-order: 86
+order: 89
 chapter: 13
 chapterTitle: "Dictionaries"
 level: beginner
-quickAnswer: "Use d['key'] to read a value and raise KeyError if missing, or d.get('key', default) to return a default without raising."
-faqs:
-  - question: "How do I access a value in a Python dict?"
-    answer: "Use square brackets: user['name']. The key must exist or Python raises KeyError."
-  - question: "What does dict.get() do?"
-    answer: "get(key, default) returns the value if the key exists, otherwise default, without raising an error."
-  - question: "How do I loop over keys and values together?"
-    answer: "Use for key, value in my_dict.items(): to iterate pairs directly."
-  - question: "Can I use dot notation on dictionaries?"
-    answer: "Not on plain dicts. Brackets or get() are standard unless you use specialized objects like dataclasses or SimpleNamespace."
 ---
 
 ## Why this matters
@@ -89,14 +79,9 @@ Use **`"key" in d`** before bracket access when the key might be missing.
   (next lessons) for a safe default.
 </Callout>
 
-<TryIt title="Try it yourself" answer="31">
-  Start with `user = {"age": 30}`. Set `user["age"] = 31`. Print `user["age"]`.
-</TryIt>
-
 ## Recap
 
 - **`d["key"]`** reads or writes a value
 - **New key** on the left of `=` **adds** an entry
 - **`"key" in d`** checks membership before lookup
 
-Next: **`keys()`** — get every key in a dictionary.

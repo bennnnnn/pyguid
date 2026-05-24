@@ -1,20 +1,10 @@
 ---
 title: "*args and **kwargs"
 description: "Python *args and **kwargs accept variable positional and keyword arguments. Beginner tutorial explains packing, unpacking, and when flexible signatures help."
-order: 150
+order: 153
 chapter: 23
 chapterTitle: "Advanced Functions"
 level: beginner
-quickAnswer: "Use *args to collect extra positional arguments as a tuple and **kwargs to collect extra keyword arguments as a dictionary."
-faqs:
-  - question: "What does *args mean in a Python function?"
-    answer: "*args gathers any extra positional arguments into a tuple named args (the name is conventional, not required)."
-  - question: "What does **kwargs mean?"
-    answer: "**kwargs gathers extra keyword arguments into a dict mapping parameter names to values passed by the caller."
-  - question: "What is argument unpacking with * and **?"
-    answer: "When calling a function, *sequence spreads positional values and **mapping spreads keyword arguments into the call."
-  - question: "Do beginners need *args and **kwargs daily?"
-    answer: "Not usually. Learn fixed parameters first, then args/kwargs when you write flexible helpers or read framework source."
 ---
 
 ## Why this matters
@@ -66,14 +56,9 @@ def f(required, default=1, *args, **kwargs):
   Names **`args`** / **`kwargs`** are convention — the stars matter, not the words.
 </Callout>
 
-<TryIt title="Try it yourself" answer="6">
-  Define `def add(*nums): return sum(nums)` and print `add(1, 2, 3)`.
-</TryIt>
-
 ## Recap
 
 - `*args` — tuple of extras
 - `**kwargs` — dict of keyword extras
 - Unpack with `*` / `**` when calling — see **Unpacking arguments when calling**
 
-Next: **Keyword-only parameters**.

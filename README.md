@@ -1,16 +1,17 @@
 # PyGuide
 
-**Learn Python from zero to job-ready** — 197+ lessons, **Run code** in the browser (Skulpt), projects, and a path through testing, typing, Git, APIs, and databases.
+**Learn Python from zero to advanced core Python** — 187 tutorials, **Run code** in the browser (Skulpt), chapter quizzes, and a syntax reference.
 
 **Live site:** [bennnnnn.github.io/pyguid](https://bennnnnn.github.io/pyguid)  
 **Repository:** [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
 
 ## Features
 
-- **197+ lessons** — beginner syntax through pytest, FastAPI, SQLite, async, and capstones
+- **187 tutorials** — beginner syntax through OOP, comprehensions, stdlib, testing, and debugging
+- **Tutorials · Quizzes · References** — three clear sections in the nav
 - Runnable examples on every lesson (Copy + Run)
-- W3Schools-style sidebar + chapter learning paths
-- Professional track: venv, pip, logging, type hints, mypy, Git, CI, packaging
+- Chapter sidebar + ordered lesson path (Back / Next)
+- Mini programs woven through chapters (not deployment capstones)
 - SEO: canonical URLs, Open Graph, JSON-LD on lessons, sitemap
 - Syntax reference at `/python/reference/`
 
@@ -47,7 +48,7 @@ Open [http://localhost:4321](http://localhost:4321).
 ```
 src/
   content/lessons/     # One MDX file per lesson
-  components/          # PythonExample, TryIt, SeoHead, Callout, …
+  components/          # PythonExample, SeoHead, Callout, …
   pages/python/        # Course + practice + reference
   lib/lessons.ts       # Sidebar order, related lessons
 docs/

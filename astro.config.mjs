@@ -23,6 +23,7 @@ export default defineConfig({
     "/python/quiz/functional-python/": "/python/quiz/advanced-functions/",
     "/python/quiz/dataclasses-dates/": "/python/quiz/standard-library/",
     "/python/quiz/logging-regex/": "/python/quiz/standard-library/",
+    "/python/multi-file-cli-capstone/": "/python/multi-file-cli-project/",
   },
   markdown: {
     shikiConfig: {

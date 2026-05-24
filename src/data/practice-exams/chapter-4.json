@@ -1,0 +1,195 @@
+{
+  "chapter": 4,
+  "chapterTitle": "Input and Type Conversion",
+  "title": "Input and Type Conversion Quiz",
+  "description": "Check your knowledge of input(), converting strings to numbers, and multiple assignment.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "What type does `input('Name: ')` return?",
+      "options": ["str", "int", "float", "bool"],
+      "correctIndex": 0,
+      "explanation": "input() always returns text from the user as a string."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "How do you turn the string `'25'` into an integer?",
+      "options": ["int('25')", "str('25')", "float('25')", "integer('25')"],
+      "correctIndex": 0,
+      "explanation": "int() parses a string that looks like a whole number."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "How do you turn the string `'3.5'` into a float?",
+      "options": ["float('3.5')", "int('3.5')", "str('3.5')", "decimal('3.5')"],
+      "correctIndex": 0,
+      "explanation": "float() handles decimal points; int('3.5') would raise ValueError."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "You can add two strings from input with `+` without converting them first.",
+      "correct": true,
+      "explanation": "str + str concatenates text, e.g. '2' + '3' becomes '23', not 5."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What happens?\n\nx = input('Number: ')\nprint(x + 1)",
+      "options": ["TypeError", "Prints x+1 numerically", "Prints 'x1'", "SyntaxError"],
+      "correctIndex": 0,
+      "explanation": "You cannot add int 1 to a str without converting x first."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What does `a, b = 1, 2` do?",
+      "options": [
+        "Assigns 1 to a and 2 to b",
+        "Compares a and b",
+        "Creates only a tuple",
+        "Raises SyntaxError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Multiple assignment unpacks the right-hand values into the names on the left."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "Which reads an integer age from the user?",
+      "options": [
+        "age = int(input('Age: '))",
+        "age = input(int('Age: '))",
+        "age = integer(input())",
+        "int = input('Age: ')"
+      ],
+      "correctIndex": 0,
+      "explanation": "Call input() first to get a string, then int() to parse it."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "Multiple assignment can swap two variables: `a, b = b, a`.",
+      "correct": true,
+      "explanation": "Python evaluates the right side first, then binds both names."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "User enters `10` at input. What is `int(input()) * 2`?",
+      "options": ["20", "'102'", "10", "Error"],
+      "correctIndex": 0,
+      "explanation": "int('10') is 10; multiplying by 2 gives 20."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Why convert input before doing math?",
+      "options": [
+        "input() returns strings",
+        "input() returns floats only",
+        "Python forbids math on numbers",
+        "print() requires int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without conversion, operators like + may concatenate strings instead of adding numbers."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What does `name = input()` store if the user types `Ada`?",
+      "options": ["'Ada'", "Ada without quotes as a name type", "True", "None"],
+      "correctIndex": 0,
+      "explanation": "The value is the string Ada, written in code as 'Ada'."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "`float(input('Score: '))` can parse `'88.5'`.",
+      "correct": true,
+      "explanation": "float() accepts decimal strings; int() would fail on '88.5'."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What is printed?\n\nx, y = 'hi', 'bye'\nprint(x)",
+      "options": ["hi", "bye", "x", "Error"],
+      "correctIndex": 0,
+      "explanation": "The first name x receives the first value 'hi'."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Which converts a number to a string for display?",
+      "options": ["str(42)", "int(42)", "input(42)", "string(42)"],
+      "correctIndex": 0,
+      "explanation": "str() builds a string representation of a value."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What does `int('42.9')` do?",
+      "options": [
+        "Raises ValueError",
+        "Returns 42",
+        "Returns 43",
+        "Returns 42.9"
+      ],
+      "correctIndex": 0,
+      "explanation": "int() does not parse decimal strings; use float() first or int(float('42.9'))."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "How many values can you assign with `a, b, c = 1, 2, 3`?",
+      "options": ["Three", "One", "Two", "Unlimited without commas"],
+      "correctIndex": 0,
+      "explanation": "The number of names on the left must match the number of values on the right."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "The prompt string in `input('Guess: ')` is optional.",
+      "correct": true,
+      "explanation": "input() with no argument still works; the prompt is only for user guidance."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What is `type(input())`?",
+      "options": ["<class 'str'>", "<class 'int'>", "<class 'input'>", "None"],
+      "correctIndex": 0,
+      "explanation": "input() always returns a str, even when the user types digits."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "Which expression reads a float price?",
+      "options": [
+        "price = float(input('Price: '))",
+        "price = input(float('Price: '))",
+        "price = float.input()",
+        "price = input + float"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wrap input() with float() after the user enters a decimal number as text."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "After `first, last = input('First: '), input('Last: ')` what are first and last?",
+      "options": [
+        "Two strings from two prompts",
+        "One tuple",
+        "Two integers always",
+        "The same value"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each input() call returns its own string; multiple assignment binds them separately."
+    }
+  ]
+}

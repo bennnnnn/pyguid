@@ -1,7 +1,7 @@
 ---
 title: "Exception chaining"
 description: "Preserve original errors with raise from and __cause__."
-order: 110
+order: 113
 chapter: 16
 chapterTitle: "Error Handling"
 level: beginner
@@ -41,14 +41,9 @@ If you raise inside `except` without `from`, Python may set **`__context__`**. U
   Log **`repr(err)`** before wrapping so support teams see the root cause.
 </Callout>
 
-<TryIt title="Try it yourself" answer="KeyError">
-  What type is `e.__cause__` in the example?
-</TryIt>
-
 ## Recap
 
 - **`raise NewError("msg") from err`**
 - Read **`__cause__`** in debuggers
 - Better than swallowing the original
 
-Next: **Safe calculator** project.

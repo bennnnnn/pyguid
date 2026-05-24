@@ -1,20 +1,10 @@
 ---
 title: "Default parameters"
 description: "Python default arguments let parameters fall back to preset values when callers omit them. Beginner guide covers syntax, defaults, and the mutable default trap."
-order: 99
+order: 102
 chapter: 14
 chapterTitle: "Functions"
 level: beginner
-quickAnswer: "Define defaults in the function header with name=value, such as def greet(name='World'):, so omitted arguments use that default."
-faqs:
-  - question: "How do I set a default argument in Python?"
-    answer: "Put default=value after the parameter name in the def line. Parameters with defaults must come after those without."
-  - question: "Can I pass None as a default?"
-    answer: "Yes. def f(items=None): with if items is None: items = [] avoids the mutable default list problem."
-  - question: "What is wrong with def f(x=[]):?"
-    answer: "The same list object is reused across calls, so append mutations persist. Use None and create a fresh list inside the function."
-  - question: "Do default values evaluate once or every call?"
-    answer: "Default expressions are evaluated once when the function is defined, which is why mutable defaults are shared."
 ---
 
 ## Why this matters
@@ -55,14 +45,9 @@ print(power(5, 3))`}
   b=1):`** not **`def f(a=1, b):`**.
 </Callout>
 
-<TryIt title="Try it yourself" answer="Hello, Sam">
-  Define `def show(name, prefix="Hello")` and call `show("Sam")`.
-</TryIt>
-
 ## Recap
 
 - **`param=default`** in `def`
 - Caller can omit that argument
 - Defaults go **at the end** of the parameter list
 
-Next: **Return values** — send data back to the caller.

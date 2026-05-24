@@ -72,6 +72,8 @@ const chapters = [
       "string-in",
       "string-format",
       "string-slicing",
+      "name-formatter-project",
+      "word-counter-project",
     ],
   },
   {
@@ -88,6 +90,7 @@ const chapters = [
       "elif-else",
       "nested-if",
       "login-checker-project",
+      "grade-checker-project",
     ],
   },
   {
@@ -262,7 +265,7 @@ const chapters = [
   {
     n: 24,
     title: "Iterators and Generators",
-    slugs: ["generators-yield-intro", "itertools-preview"],
+    slugs: ["iterators-protocol", "generators-yield-intro", "itertools-preview"],
   },
   { n: 25, title: "Decorators", slugs: ["decorators-preview"] },
   {
@@ -306,7 +309,7 @@ const chapters = [
   {
     n: 31,
     title: "Python Mini Programs",
-    slugs: ["quiz-app-project", "personality-quiz-project", "multi-file-cli-capstone"],
+    slugs: ["quiz-app-project", "personality-quiz-project", "multi-file-cli-project"],
   },
 ];
 

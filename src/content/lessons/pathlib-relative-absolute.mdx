@@ -1,7 +1,7 @@
 ---
 title: "Relative and absolute paths"
 description: "Join paths safely and resolve . and .. with pathlib."
-order: 122
+order: 125
 chapter: 17
 chapterTitle: "Files"
 level: beginner
@@ -52,14 +52,9 @@ print("Absolute?", q.is_absolute())`}
   you run the command.
 </Callout>
 
-<TryIt title="Try it yourself" answer="notes.txt">
-  What does `.name` return for `project/data/notes.txt`?
-</TryIt>
-
 ## Recap
 
 - **`Path("a") / "b"`** — join
 - **`resolve()`** — absolute path
 - **`is_absolute()`** — quick check
 
-Next: **INI config files**.

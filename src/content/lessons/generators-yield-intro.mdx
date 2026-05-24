@@ -1,7 +1,7 @@
 ---
 title: "Generators and yield"
 description: "Produce values lazily with yield instead of return."
-order: 155
+order: 159
 chapter: 24
 chapterTitle: "Iterators and Generators"
 level: beginner
@@ -50,14 +50,9 @@ Same output; the generator does not build the full list until you ask (e.g. `lis
   and length often.
 </Callout>
 
-<TryIt title="Try it yourself" answer="1 2 3">
-  Run `count_up_to(3)`. What three numbers print?
-</TryIt>
-
 ## Recap
 
 - **`yield`** makes a generator function
 - **`for x in gen()`** drives it
 - Pairs with **itertools.islice**
 
-Next: **Decorators preview**.

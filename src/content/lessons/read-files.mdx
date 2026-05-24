@@ -1,7 +1,7 @@
 ---
 title: "Read files"
 description: "Open and read text files with open() and with."
-order: 113
+order: 116
 chapter: 17
 chapterTitle: "Files"
 level: beginner
@@ -68,15 +68,9 @@ On your computer you might use `import os` and `os.path.exists("file.txt")` befo
   security risk.
 </Callout>
 
-<TryIt title="Try it yourself" answer="line one">
-  With `content = "line one\\nline two"`, loop `for line in content.splitlines():` and
-  print the first line only (use `break` after printing).
-</TryIt>
-
 ## Recap
 
 - **`open(path, "r")`** — read a text file
 - **`with`** — safe open/close
 - **`.splitlines()`** — one string → list of lines
 
-Next: **Write files** — create and save text.

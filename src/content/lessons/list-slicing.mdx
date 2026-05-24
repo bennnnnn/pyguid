@@ -1,20 +1,10 @@
 ---
 title: "List slicing"
 description: "Python list slicing with [start:stop:step] extracts sublists without loops. Beginner tutorial covers defaults, negative steps, and slice assignment basics."
-order: 57
+order: 60
 chapter: 10
 chapterTitle: "Lists"
 level: beginner
-quickAnswer: "Use my_list[start:stop] to get elements from start up to but not including stop; omit start or stop to slice from the beginning or end."
-faqs:
-  - question: "What does my_list[1:4] return?"
-    answer: "Elements at indices 1, 2, and 3—a new list with three items. The stop index 4 is excluded."
-  - question: "How do I get the last three items of a list?"
-    answer: "Use my_list[-3:] to slice from the third-from-last index through the end."
-  - question: "How do I reverse a list with slicing?"
-    answer: "Use my_list[::-1]. A step of -1 walks backward through the whole list."
-  - question: "Does slicing modify the original list?"
-    answer: "Reading a slice creates a new list. Slice assignment like my_list[0:2] = [9, 9] can replace a section in place."
 ---
 
 ## Why this matters
@@ -57,14 +47,9 @@ print(letters)`}
   the **end** trips everyone up.
 </Callout>
 
-<TryIt title="Try it yourself" answer="[10, 20]">
-  With `data = [10, 20, 30, 40]`, print `data[0:2]`.
-</TryIt>
-
 ## Recap
 
 - **`[start:end]`** — end excluded
 - **`[:]`** — shallow copy
 - Same rules as string slicing
 
-Next: **`append()`** — add to the end.

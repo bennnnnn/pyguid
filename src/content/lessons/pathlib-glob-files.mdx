@@ -1,7 +1,7 @@
 ---
 title: "Finding files with glob"
 description: "List matching paths with pathlib Path.glob."
-order: 119
+order: 122
 chapter: 17
 chapterTitle: "Files"
 level: beginner
@@ -50,14 +50,9 @@ for path in Path("notes").glob("*.txt"):
   `**` recursive glob can scan huge trees — start with one folder while learning.
 </Callout>
 
-<TryIt title="Try it yourself" answer="2">
-  How many `.py` files in the simulated list?
-</TryIt>
-
 ## Recap
 
 - **`Path.glob(pattern)`** — find files by name
 - Works with **pathlib** paths you already know
 - Pair with **read_text** / **write_text**
 
-Next: **shutil** — copy and move files.

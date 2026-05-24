@@ -173,6 +173,16 @@
       "chapterTitle": "Strings"
     },
     {
+      "slug": "name-formatter-project",
+      "chapter": 7,
+      "chapterTitle": "Strings"
+    },
+    {
+      "slug": "word-counter-project",
+      "chapter": 7,
+      "chapterTitle": "Strings"
+    },
+    {
       "slug": "booleans",
       "chapter": 8,
       "chapterTitle": "Booleans and Conditions"
@@ -219,6 +229,11 @@
     },
     {
       "slug": "login-checker-project",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "grade-checker-project",
       "chapter": 8,
       "chapterTitle": "Booleans and Conditions"
     },
@@ -773,6 +788,11 @@
       "chapterTitle": "Advanced Functions"
     },
     {
+      "slug": "iterators-protocol",
+      "chapter": 24,
+      "chapterTitle": "Iterators and Generators"
+    },
+    {
       "slug": "generators-yield-intro",
       "chapter": 24,
       "chapterTitle": "Iterators and Generators"
@@ -913,7 +933,7 @@
       "chapterTitle": "Python Mini Programs"
     },
     {
-      "slug": "multi-file-cli-capstone",
+      "slug": "multi-file-cli-project",
       "chapter": 31,
       "chapterTitle": "Python Mini Programs"
     }

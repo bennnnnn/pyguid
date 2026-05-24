@@ -1,13 +1,13 @@
 ---
-title: "Capstone: Multi-file CLI tool"
-description: "Combine argparse, modules, JSON or SQLite, and pytest."
-order: 183
+title: "Mini project: Multi-file CLI tool"
+description: "Combine argparse, modules, JSON storage, and pytest in a small multi-file program."
+order: 187
 chapter: 31
 chapterTitle: "Python Mini Programs"
 level: beginner
 ---
 
-Real tools split code across files: CLI in one module, storage in another, tests in a folder. This capstone ties **argparse**, **JSON or SQLite**, and **pytest** into one small project you can put on GitHub.
+Real tools split code across files: CLI in one module, storage in another, tests in a folder. This mini program ties **argparse**, **JSON files**, and **pytest** into one small project you can run on your machine.
 
 ## Suggested layout
 
@@ -84,18 +84,12 @@ def test_add_task():
 Run **`pip install -e .`**, then **`taskcli add "Ship it"`** and **`pytest`**.
 
 <Callout variant="tip">
-  Swap JSON for **SQLite** from the database todo project when you want SQL practice.
+  Keep storage in JSON for this course. You already practiced file I/O in the **Files** chapter and JSON in the **Standard Library** chapter.
 </Callout>
-
-<TryIt title="Try it yourself" answer="1">
-  After one `add_task`, how many items in `tasks`?
-</TryIt>
 
 ## Recap
 
-- **Multiple modules** + **pyproject.toml**
+- **Multiple modules** organize a small CLI
 - **Subcommands** with argparse
 - **Tests** guard storage logic
-- You have built the full beginner arc — keep shipping small tools
-
-You have finished the core PyGuide path. Revisit any chapter, build your own projects, or practice with the chapter exams.
+- You have finished the core PyGuide path — revisit chapters or take quizzes to reinforce

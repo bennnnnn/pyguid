@@ -4,7 +4,7 @@
 
 ## Current scale
 
-**183 lessons** · **31 chapters** (30 Python topics + Python Mini Programs) · pure Python course
+**187 lessons** · **31 chapters** (30 Python topics + Python Mini Programs) · pure Python course
 
 ## Chapter summary (v11)
 
@@ -16,10 +16,10 @@
 | 4   | Input and Type Conversion  | 3       |                                |
 | 5   | Data Types                 | 5       |                                |
 | 6   | Numbers and Operators      | 5       | Tip calculator                 |
-| 7   | Strings                    | 11      |                                |
-| 8   | Booleans and Conditions    | 10      | Login checker                  |
+| 7   | Strings                    | 13      | Name formatter, word counter   |
+| 8   | Booleans and Conditions    | 11      | Login checker, grade checker   |
 | 9   | Loops                      | 10      | Guessing games                 |
-| 10  | Lists                      | 19      | Todo list                      |
+| 10  | Lists                      | 20      | Todo list, shopping list       |
 | 11  | Tuples                     | 5       |                                |
 | 12  | Sets                       | 5       |                                |
 | 13  | Dictionaries               | 13      | Contact book                   |
@@ -33,7 +33,7 @@
 | 21  | Comprehensions             | 4       |                                |
 | 22  | Object-Oriented Python     | 10      | Dunder methods                 |
 | 23  | Advanced Functions         | 5       |                                |
-| 24  | Iterators and Generators   | 2       |                                |
+| 24  | Iterators and Generators   | 3       | iter() / iterator protocol     |
 | 25  | Decorators                 | 1       |                                |
 | 26  | Type Hints                 | 4       | mypy                           |
 | 27  | Python Standard Library    | 11      | json, logging, regex, etc.     |
@@ -46,7 +46,7 @@
 
 Chapter quizzes: `/python/quiz/{topic-slug}/` — see `src/lib/quiz-topics.ts`.
 
-Chapter 4 (Input) quiz: coming soon (no JSON yet).
+Chapter 4 (Input) quiz: published (`chapter-4.json`).
 
 ## Archived (not in course)
 

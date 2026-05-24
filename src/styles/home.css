@@ -294,7 +294,17 @@
 
 @media (min-width: 768px) {
   .home-paths {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-paths {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .home-path-card:last-child {
+    grid-column: 1 / -1;
   }
 }
 
@@ -336,6 +346,19 @@
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.home-path-link:hover {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+.home-path-link:active,
+.home-path-link.is-active {
+  color: var(--color-link-active);
+  text-decoration: none;
 }
 
 .home-curriculum-grid {
@@ -364,26 +387,40 @@
   background: var(--color-surface);
 }
 
-.home-curriculum-summary h3 {
+.home-curriculum-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.35;
   color: var(--color-text);
 }
 
-.home-curriculum-meta {
-  margin: 0.35rem 0 0;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
+.home-curriculum-title {
+  flex: 1;
+  min-width: 0;
 }
 
-.home-curriculum-range {
-  margin: 0.75rem 0 0;
-  flex: 1;
+.home-curriculum-count {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
   font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--color-brand);
+  background: var(--color-brand-light);
+  border: 1px solid color-mix(in srgb, var(--color-brand) 22%, transparent);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-brand) 12%, transparent);
 }
 
 .home-curriculum-actions {

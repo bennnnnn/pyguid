@@ -1,7 +1,7 @@
 ---
 title: "staticmethod and classmethod"
 description: "Functions on a class that do not need instance data, or need the class itself."
-order: 144
+order: 147
 chapter: 22
 chapterTitle: "Object-Oriented Python"
 level: beginner
@@ -50,14 +50,9 @@ print(g.name, g.role)`}
 | `@staticmethod` | none      | utility on namespace      |
 | `@classmethod`  | `cls`     | factory / alt constructor |
 
-<TryIt title="Try it yourself" answer="5">
-  Print `MathTools.add(2, 3)`.
-</TryIt>
-
 ## Recap
 
 - **staticmethod** — no instance needed
 - **classmethod** — receives class, great for factories
 - Ordinary methods still use **`self`** most often
 
-Next: **`__str__` and `__repr__`**.

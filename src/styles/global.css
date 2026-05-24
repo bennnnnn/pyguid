@@ -10,7 +10,8 @@
   --color-brand-hover: #1e40af;
   --color-brand-light: #eff6ff;
   --color-link: #1d4ed8;
-  --color-link-hover: #1e3a8a;
+  --color-link-hover: #2563eb;
+  --color-link-active: #1e40af;
   --color-surface: #ffffff;
   --color-surface-alt: #f8fafc;
   --color-border: #e2e8f0;
@@ -52,16 +53,34 @@ body {
   font-size: 12px;
 }
 
+/* Site logo / brand (no ring or outline when current or pressed) */
+.site-brand {
+  @apply rounded-lg outline-none;
+}
+.site-brand:focus,
+.site-brand:active {
+  outline: none;
+  box-shadow: none;
+}
+.site-brand:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Top navigation */
 .topnav-link {
-  @apply rounded-md px-2 py-2 text-sm font-medium text-text-secondary transition-colors sm:px-3;
+  @apply rounded-md px-2 py-2 text-sm font-medium text-text-secondary no-underline transition-colors sm:px-3;
 }
 .topnav-link:hover {
-  @apply bg-surface-alt text-text;
+  @apply bg-brand-light text-link-hover no-underline;
+}
+.topnav-link:active {
+  color: var(--color-link-active);
+  @apply no-underline;
 }
 .topnav-link.is-active {
-  @apply font-semibold text-text;
-  box-shadow: inset 0 -2px 0 0 var(--color-text);
+  @apply bg-brand-light font-semibold no-underline;
+  color: var(--color-link-active);
 }
 
 /* Lesson / article prose */
@@ -134,8 +153,19 @@ body {
   letter-spacing: 0.02em;
 }
 
-.lesson-prose a {
-  @apply font-medium text-link underline-offset-2 hover:text-link-hover hover:underline;
+.lesson-prose a:not(.btn-primary):not(.btn-secondary):not(.lesson-pager-btn) {
+  @apply font-medium text-link underline-offset-2 no-underline transition-colors;
+}
+.lesson-prose a:not(.btn-primary):not(.btn-secondary):not(.lesson-pager-btn):hover {
+  color: var(--color-link-hover);
+  @apply underline;
+}
+.lesson-prose a:not(.btn-primary):not(.btn-secondary):not(.lesson-pager-btn):active,
+.lesson-prose a:not(.btn-primary):not(.btn-secondary):not(.lesson-pager-btn).is-active,
+.lesson-prose
+  a:not(.btn-primary):not(.btn-secondary):not(.lesson-pager-btn)[aria-current="page"] {
+  color: var(--color-link-active);
+  @apply font-semibold no-underline;
 }
 
 .lesson-prose a.lesson-pager-btn {
@@ -164,7 +194,17 @@ body {
 
 .text-link {
   color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 .text-link:hover {
   color: var(--color-link-hover);
+  text-decoration: none;
+}
+.text-link:active,
+.text-link.is-active,
+.text-link[aria-current="page"] {
+  color: var(--color-link-active);
+  text-decoration: none;
+  font-weight: 600;
 }

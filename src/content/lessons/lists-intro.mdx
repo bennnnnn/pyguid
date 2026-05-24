@@ -1,20 +1,10 @@
 ---
 title: "Python lists"
 description: "Python lists tutorial for beginners: create lists, index items, slice, and loop. Learn list basics with runnable examples and clear explanations."
-order: 55
+order: 58
 chapter: 10
 chapterTitle: "Lists"
 level: beginner
-quickAnswer: "A Python list is an ordered, mutable collection written with square brackets, such as nums = [1, 2, 3], indexed from 0."
-faqs:
-  - question: "How do you create a list in Python?"
-    answer: "Use square brackets with comma-separated values: items = ['a', 'b', 'c']. You can also use list() on an iterable."
-  - question: "Are Python lists zero-indexed?"
-    answer: "Yes. The first element is index 0, the second is index 1, and negative indices count from the end."
-  - question: "Can lists hold different types?"
-    answer: "Yes. A list can mix numbers, strings, booleans, and even other lists or dicts in the same collection."
-  - question: "How do you get the length of a list?"
-    answer: "Use len(my_list). Length is the number of elements, not the highest index plus one in special cases—just the count of items."
 ---
 
 ## Why this matters
@@ -95,10 +85,6 @@ print("red" in colors)
 print("yellow" in colors)`}
 />
 
-<TryIt title="Try it yourself" answer='["cat", "dog"]'>
-  Create `pets = []`, append `"cat"`, then append `"dog"`. Print `pets`.
-</TryIt>
-
 <Callout variant="warning" title="Oops — Python is yelling">
   The **first** item is index **`0`**, not `1`. The last item is index **`-1`** (shortcut
   you will use soon).
@@ -110,4 +96,3 @@ print("yellow" in colors)`}
 - **`len(my_list)`** counts items
 - **`"x" in my_list`** checks membership
 
-Next: **Access list items** — indexes, slicing, and changing one slot.

@@ -1,20 +1,10 @@
 ---
 title: "Nested loops"
 description: "Python nested loops run an inner loop inside an outer loop for grids, pairs, and tables. Beginner tutorial with row-column examples and complexity tips."
-order: 52
+order: 55
 chapter: 9
 chapterTitle: "Loops"
 level: beginner
-quickAnswer: "A nested loop places one for or while loop inside another, so the inner loop runs completely for each step of the outer loop."
-faqs:
-  - question: "What is a nested loop in Python?"
-    answer: "It is a loop inside another loop. The inner loop finishes all its iterations for each single iteration of the outer loop."
-  - question: "How many times does a double loop run?"
-    answer: "Roughly outer_count times inner_count. A 10-by-10 pair of loops performs about 100 inner-body executions."
-  - question: "Can I use different loop types together?"
-    answer: "Yes. You can nest for inside while or the other way around depending on what your problem needs."
-  - question: "How do I print a multiplication table with nested loops?"
-    answer: "Use an outer loop for rows and an inner loop for columns, multiplying the two counters each time."
 ---
 
 ## Why this matters
@@ -59,14 +49,9 @@ for i in range(1, 4):
   advances. Check conditions when nesting **`while`** loops.
 </Callout>
 
-<TryIt title="Try it yourself" answer="(9 pairs printed)">
-  Use two `for` loops `range(2)` each and print `i, j` for every pair.
-</TryIt>
-
 ## Recap
 
 - **Outer** loop runs once per row (or category)
 - **Inner** loop runs fully each time
 - Useful for tables, grids, all pairs
 
-Next chapter: **Lists** — ordered collections.

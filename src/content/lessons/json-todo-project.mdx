@@ -1,20 +1,20 @@
 ---
 title: "Capstone: JSON todo list"
 description: "Persist todos with json.dumps and json.loads."
-order: 167
+order: 171
 chapter: 27
 chapterTitle: "Python Standard Library"
 level: beginner
 ---
 
-Your **todo list** lived in memory. Your **notes app** used text files. This capstone stores todos as **JSON** — one file you can read, edit, and share.
+Your **todo list** lived in memory. Your **notes app** used text files. This mini program stores todos as **JSON** — one file you can read, edit, and share.
 
 ## Data shape
 
 ```python
 todos = [
     {"text": "Learn JSON", "done": False},
-    {"text": "Build capstone", "done": False},
+    {"text": "Build project", "done": False},
 ]
 ```
 
@@ -28,7 +28,7 @@ A **list of dicts** — JSON-friendly.
 
 todos = [
 {"text": "Learn JSON", "done": False},
-{"text": "Ship capstone", "done": True},
+{"text": "Ship project", "done": True},
 ]
 
 text = json.dumps(todos, indent=2)
@@ -71,14 +71,9 @@ Use **`"a"`** mode only for line logs; JSON files are usually **rewritten** whol
 - Filter with list comprehension: `[t for t in todos if not t["done"]]`
 - Validate with **`assert`** after load
 
-<TryIt title="Try it yourself" answer="[x] Ship capstone">
-  Which task prints with `x` in the checkbox?
-</TryIt>
-
 ## Recap
 
 - Ties **lists**, **dicts**, **JSON**, and **files**
 - `dumps` / `loads` round-trip your data
 - Real apps version their JSON shape carefully
 
-Next: **Quiz app** — another capstone using dicts and loops.

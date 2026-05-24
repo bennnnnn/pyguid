@@ -1,20 +1,10 @@
 ---
 title: "Comparison operators"
 description: "Python comparison operators == != < > <= >= return True or False for beginners. Learn boolean tests for if statements with chaining and clear runnable examples."
-order: 37
+order: 39
 chapter: 8
 chapterTitle: "Booleans and Conditions"
 level: beginner
-quickAnswer: "Comparison operators compare two values and return True or False, for example age >= 18 or name == 'Ada'."
-faqs:
-  - question: "What is the difference between = and == in Python?"
-    answer: "= assigns a value to a variable. == tests whether two values are equal."
-  - question: "Do comparison operators work on strings?"
-    answer: "Yes. They compare lexicographically (alphabetically for simple ASCII letters), which can surprise you with case."
-  - question: "Can I chain comparisons like 1 < x < 5?"
-    answer: "Yes. Python allows chained comparisons as shorthand for and between tests."
-  - question: "What type do comparisons return?"
-    answer: "bool: either True or False."
 ---
 
 ## Why this matters
@@ -93,10 +83,6 @@ Every comparison result is a **`bool`** you can store: `is_adult = age >= 18`.
   `==` on strings is case-sensitive: `"a"` and `"A"` are not equal.
 </Callout>
 
-<TryIt title="Try it yourself" answer="True">
-  Set `price = 49.99` and `on_sale = price < 50`. Print `on_sale`.
-</TryIt>
-
 ## Recap
 
 - Comparisons return **`True`** or **`False`**
@@ -104,4 +90,3 @@ Every comparison result is a **`bool`** you can store: `is_adult = age >= 18`.
 - **`>=`** and **`<=`** include the boundary value
 - Store results in variables like `passed = score >= 60`
 
-Next: **Logical operators** — combine comparisons with `and`, `or`, and `not`.

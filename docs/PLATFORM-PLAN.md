@@ -4,7 +4,7 @@
 
 **Vision doc:** [`PYTHON-ONLY-VISION.md`](./PYTHON-ONLY-VISION.md)
 
-**Current scale (2026):** ~180+ published lessons · 25 chapters (aligning toward 30-chapter pure-Python map) · separate **Quiz** / **Practice** / **Tutorials** / **Reference**.
+**Current scale (2026):** 187 published lessons · 31 tutorial chapters (30 core + mini programs) · **Tutorials · Quizzes · References** only.
 
 ## Review score context
 
@@ -17,7 +17,7 @@ External review (~5.8/10) assumed a small beginner-only site. Much of **Track B*
 | **Course path**    | “Teach me Python”    | Chapters 1→16, projects                   |
 | **Search landing** | “python list append” | One focused page → related links → course |
 
-Implemented: related-lesson block, comparison lesson `list-append-vs-extend`. Next: FAQ schema per lesson, more comparison pages.
+Implemented: comparison lesson `list-append-vs-extend`, minimal lesson footer (Back / Next tutorial). Lesson pages no longer show Related blocks or inline FAQ sections.
 
 ## Level map (zero → L4)
 
@@ -44,15 +44,15 @@ Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 - [x] Internal links: related lessons per chapter
 - [x] **Track A batch 1 (30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
 - [x] **Track A batch 2 (30):** same treatment — see `docs/seo-top-30-batch2-meta.json`
-- [x] **Quiz hub** `/python/quiz/` (chapter quizzes separate from lessons)
-- [x] **Practice hub** `/python/practice/` (hands-on drills — expand; quizzes not mixed in)
+- [x] **Quizzes** `/python/quiz/` (chapter quizzes separate from tutorials)
+- [x] **References** `/python/reference/` (syntax lookup, separate from tutorials)
 
 ### Next
 
 - [ ] Google Search Console + submit sitemap
 - [ ] Dedicated OG image (1200×630)
 - [ ] Track A batch 3 (30) + more “vs” comparison pages (`list-vs-tuple`, etc.)
-- [ ] **Practice exams** content per chapter (on practice hub only)
+- [x] **Chapter quizzes** at `/python/quiz/` (31 topics, including Input ch 4)
 - [ ] Interview question hub
 
 ## Lesson template (target)
@@ -61,7 +61,7 @@ Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 2. Why it matters
 3. Tiny example + Run
 4. Line-by-line
-5. TryIt + change-it exercise
+5. Runnable example + optional stretch goal
 6. Common mistake (`Callout`)
 7. Real-world use
 8. FAQ (SEO)
@@ -74,10 +74,9 @@ Roll out by rewriting highest-traffic pages first (`list-append`, `for-loops`, `
 
 | Priority | Feature                                 |
 | -------- | --------------------------------------- |
-| P0       | Lesson depth + FAQ                      |
+| P0       | Lesson depth + clean recap              |
 | P0       | SEO metadata + schema                   |
 | P1       | Quizzes per chapter (`/python/quiz/`)   |
-| P1       | Practice coding drills per topic        |
 | P1       | Progress (localStorage → optional auth) |
 | P2       | Search box                              |
 | P2       | Cheat sheets PDF                        |
@@ -87,6 +86,6 @@ Roll out by rewriting highest-traffic pages first (`list-append`, `for-loops`, `
 
 Set on github.com/bennnnnn/pyguid:
 
-- **Description:** Free Python course — 197 lessons, runnable examples, zero to job-ready Python
+- **Description:** Free Python tutorials — 187 lessons, quizzes, references, runnable examples in the browser
 - **Website:** https://bennnnnn.github.io/pyguid
 - **Topics:** `python`, `tutorial`, `learn-python`, `education`, `astro`, `mdx`, `pytest`, `fastapi`

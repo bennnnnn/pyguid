@@ -1,20 +1,10 @@
 ---
 title: "get()"
 description: "Python dict get() method for safe lookups with defaults. Beginner tutorial for KeyError-free dictionary access and when to use get() instead of brackets."
-order: 87
+order: 90
 chapter: 13
 chapterTitle: "Dictionaries"
 level: beginner
-quickAnswer: "dict.get(key, default) returns the value for key if it exists, otherwise default without raising KeyError."
-faqs:
-  - question: "What does dict.get() do in Python?"
-    answer: "It looks up a key and returns its value, or a second argument default if the key is missing."
-  - question: "What is the difference between get() and dict[key]?"
-    answer: "Bracket access raises KeyError on a missing key. get() returns None or your default instead."
-  - question: "What is the default if I omit the second argument to get()?"
-    answer: "None. get('missing') returns None when the key is not present."
-  - question: "Does get() modify the dictionary?"
-    answer: "No. get() only reads. Use setdefault() or assignment if you want to insert when missing."
 ---
 
 ## Why this matters
@@ -87,14 +77,9 @@ print("Language:", lang)`}
   use **`"key" in d`** to tell “missing” from “present but None.”
 </Callout>
 
-<TryIt title="Try it yourself" answer="guest">
-  With `user = {"name": "Sam"}`, print `user.get("role", "guest")`.
-</TryIt>
-
 ## Recap
 
 - **`d.get(key)`** — value or **`None`**, no error
 - **`d.get(key, default)`** — value or your fallback
 - Great for optional fields, counters, and settings
 
-Next: **`pop()`, `update()`, and `del`** — remove and merge dictionary entries.

@@ -1,7 +1,7 @@
 ---
 title: "Environment variables (os.environ)"
 description: "Read configuration and secrets from the environment."
-order: 130
+order: 133
 chapter: 18
 chapterTitle: "Modules"
 level: beginner
@@ -51,14 +51,7 @@ $env:APP_NAME = "PyGuide"
   Never commit `.env` files with real passwords. Add `.env` to `.gitignore`.
 </Callout>
 
-<TryIt title="Try it yourself" answer="PyGuide">
-  What does `os.environ["APP_NAME"]` print in the demo?
-</TryIt>
-
 ## Recap
 
 - **`import os`** → **`os.environ`**
 - **`.get(name, default)`** for safe reads
-- Next: **secrets** for generating tokens
-
-Next: **secrets and token safety**.

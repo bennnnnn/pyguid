@@ -1,7 +1,7 @@
 ---
 title: "Instance vs class attributes"
 description: "Data on self versus data shared by every object of a class."
-order: 142
+order: 145
 chapter: 22
 chapterTitle: "Object-Oriented Python"
 level: beginner
@@ -52,10 +52,6 @@ Both teams share **one** list! Mutable class attributes are a common bug.
   Put mutable data in **`__init__`**: `self.members = []`, not on the class.
 </Callout>
 
-<TryIt title="Try it yourself" answer="Buddy Canis familiaris">
-  Print `buddy.species` after creating two dogs.
-</TryIt>
-
 ## Recap
 
 - **`self.attr`** — per instance
@@ -64,4 +60,3 @@ Both teams share **one** list! Mutable class attributes are a common bug.
 
 See also: **`__init__` and self**, **`__str__` / `__repr__`**, **`super()`**.
 
-Next: **Files** — read and write text on disk.

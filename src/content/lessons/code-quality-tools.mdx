@@ -1,7 +1,7 @@
 ---
 title: "Code quality: ruff and black"
 description: "Format and lint Python automatically before you commit."
-order: 180
+order: 184
 chapter: 30
 chapterTitle: "Writing Clean Python"
 level: beginner
@@ -49,14 +49,9 @@ Run in **CI** so main stays clean.
   Pre-commit hooks can run ruff/black before each `git commit` — optional power-up.
 </Callout>
 
-<TryIt title="Try it yourself" answer="ruff check">
-  Which tool finds unused imports?
-</TryIt>
-
 ## Recap
 
 - **black** / **ruff** — automate style
 - Configure in **pyproject.toml**
-- Wire into **GitHub Actions**
+- Run the same tools in CI when you automate tests later
 
-Next: **Tracebacks** (Error Handling chapter).

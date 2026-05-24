@@ -1,24 +1,17 @@
 ---
 import { render } from "astro:content";
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
-import LessonPager from "../../components/LessonPager.astro";
+import LessonFooterNav from "../../components/LessonFooterNav.astro";
 import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
-import TryIt from "../../components/TryIt.astro";
 import {
   getAllLessons,
   getLessonGroups,
   getAdjacentLessons,
-  getChapterLessons,
   lessonUrl,
 } from "../../lib/lessons";
 import { SITE, getSiteUrl } from "../../lib/site";
-import LessonRelated from "../../components/LessonRelated.astro";
-import QuickAnswer from "../../components/QuickAnswer.astro";
-import SeoFaq from "../../components/SeoFaq.astro";
-import ChapterQuizNote from "../../components/ChapterQuizNote.astro";
-
 export async function getStaticPaths() {
   const lessons = await getAllLessons();
   return lessons.map((lesson) => ({
@@ -40,8 +33,6 @@ const { prev, next } = getAdjacentLessons(lessons, slug);
 const pageTitle = `${lesson.data.title} — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(lessonUrl(slug), `${siteUrl}/`).href;
-const chapterLessons = getChapterLessons(groups, lesson.data.chapter);
-
 const breadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -93,22 +84,7 @@ const articleLd = {
   },
 };
 
-const faqs = lesson.data.faqs ?? [];
 const jsonLd = [breadcrumbLd, articleLd];
-if (faqs.length > 0) {
-  jsonLd.push({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  });
-}
 ---
 
 <TutorialLayout
@@ -120,11 +96,13 @@ if (faqs.length > 0) {
 >
   <article class="lesson-prose">
     <p class="!mt-0 text-sm text-text-muted">
-      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <a href="/" class="text-link">{SITE.name}</a>
       <span class="mx-1.5">/</span>
-      <a href="/python/" class="text-link no-underline hover:underline">Python</a>
+      <a href="/python/" class="text-link">Python</a>
       <span class="mx-1.5">/</span>
-      <span>{lesson.data.chapterTitle}</span>
+      <a href={`/python/#chapter-${lesson.data.chapter}`} class="text-link">
+        {lesson.data.chapterTitle}
+      </a>
       {
         lesson.data.section && (
           <>
@@ -135,11 +113,7 @@ if (faqs.length > 0) {
       }
     </p>
     <h1>{lesson.data.title}</h1>
-    {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
-    <Content components={{ PythonExample, Callout, OperatorTable, TryIt }} />
-    <ChapterQuizNote chapter={lesson.data.chapter} chapterTitle={lesson.data.chapterTitle} />
-    {faqs.length > 0 && <SeoFaq items={faqs} />}
-    <LessonRelated current={lesson} chapterLessons={chapterLessons} />
-    <LessonPager prev={prev} next={next} />
+    <Content components={{ PythonExample, Callout, OperatorTable }} />
+    <LessonFooterNav prev={prev} next={next} />
   </article>
 </TutorialLayout>

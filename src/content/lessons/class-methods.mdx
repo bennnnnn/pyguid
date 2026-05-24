@@ -1,7 +1,7 @@
 ---
 title: "Class methods"
 description: "Add methods to classes and use self to access instance data."
-order: 143
+order: 146
 chapter: 22
 chapterTitle: "Object-Oriented Python"
 level: beginner
@@ -94,15 +94,9 @@ print(round(c.area(), 2))`}
   list. Use `self.list = []` in `__init__` instead.
 </Callout>
 
-<TryIt title="Try it yourself" answer="2">
-  Make a `Counter` with `increment()` and `reset()`. Call `increment()` twice, print
-  `.count`.
-</TryIt>
-
 ## Recap
 
 - **Methods** — functions inside a class, first arg is `self`
 - **`self.attr`** — read or write instance data
 - **`__str__`** — friendly string for `print()`
 
-Next: **Inheritance** — reuse and extend a parent class.

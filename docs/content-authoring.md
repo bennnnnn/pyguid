@@ -20,9 +20,9 @@ faqs:
 ---
 ```
 
-Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
+Body: prose + `<PythonExample />` + `<Callout />` blocks.
 
-**Quizzes:** Each chapter has a **20-question quiz** at `/python/quiz/{topic-slug}/` (hub: `/python/quiz/`). Lesson pages use **TryIt** only — do not embed full quizzes in MDX.
+**Quizzes:** Each chapter has a **20-question quiz** at `/python/quiz/{topic-slug}/` (hub: `/python/quiz/`). Do not embed full quizzes in lesson MDX.
 
 ## SEO lesson template (top traffic pages)
 
@@ -31,23 +31,12 @@ Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
 3. Plain-English explanation + analogy
 4. Runnable example + line-by-line
 5. Common mistake (`Callout`)
-6. **TryIt** (1–2 on lesson; full quizzes on Quiz hub)
-7. Recap + next lesson
+6. Recap
 
 Rendered automatically on each lesson:
 
-- `QuickAnswer` from frontmatter
-- `ChapterQuizNote` → link to `/python/quiz/{topic-slug}/`
-- `SeoFaq` + FAQPage JSON-LD from frontmatter
-- Related lessons + breadcrumbs schema
-
-## Try it exercises
-
-```mdx
-<TryIt title="Try it yourself" answer="expected output or short answer">
-  Instructions for the learner.
-</TryIt>
-```
+- Breadcrumbs + JSON-LD (`LearningResource`, `BreadcrumbList`)
+- Back / Next tutorial footer nav
 
 ## Callouts
 
