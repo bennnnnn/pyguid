@@ -44,17 +44,17 @@ export function initPythonExamples() {
     const prevLabel = runBtn.textContent;
     runBtn.textContent = "Loading…";
     output.textContent = "Loading Python runner…";
-    output.classList.remove("text-red-600");
+    output.classList.remove("py-output--error");
 
     try {
       runBtn.textContent = "Running…";
       output.textContent = "";
       const result = await runPython(code);
       output.textContent = result || "(no output)";
-      if (result.startsWith("Error:")) output.classList.add("text-red-600");
+      if (result.startsWith("Error:")) output.classList.add("py-output--error");
     } catch (err) {
       output.textContent = `Error: ${err instanceof Error ? err.message : String(err)}`;
-      output.classList.add("text-red-600");
+      output.classList.add("py-output--error");
     } finally {
       runBtn.disabled = false;
       runBtn.textContent = prevLabel ?? "Run code";

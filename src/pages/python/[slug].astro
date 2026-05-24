@@ -7,7 +7,6 @@ import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
 import QuickAnswer from "../../components/QuickAnswer.astro";
-import LessonReferenceLink from "../../components/LessonReferenceLink.astro";
 import RelatedLessons from "../../components/RelatedLessons.astro";
 import {
   getAllLessons,
@@ -40,6 +39,9 @@ if (!lesson) return Astro.redirect("/python/");
 const { Content } = await render(lesson);
 const { prev, next } = getAdjacentLessons(lessons, slug);
 const chapterLessons = getChapterLessons(groups, lesson.data.chapter);
+
+/** Chapters without the "More in …" related-lessons block */
+const RELATED_LESSONS_HIDDEN_CHAPTERS = new Set([5, 6]);
 
 const pageTitle = `${lesson.data.title} — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
@@ -77,13 +79,16 @@ const jsonLd = [breadcrumbLd, articleLd];
     <h1 class="!mt-0">{lesson.data.title}</h1>
     {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable }} />
-    <LessonReferenceLink chapter={lesson.data.chapter} />
     <LessonQuizCta chapter={lesson.data.chapter} />
-    <RelatedLessons
-      lessons={chapterLessons}
-      currentLessonId={slug}
-      chapterTitle={lesson.data.chapterTitle}
-    />
+    {
+      !RELATED_LESSONS_HIDDEN_CHAPTERS.has(lesson.data.chapter) && (
+        <RelatedLessons
+          lessons={chapterLessons}
+          currentLessonId={slug}
+          chapterTitle={lesson.data.chapterTitle}
+        />
+      )
+    }
     <LessonFooterNav prev={prev} next={next} />
   </article>
 </TutorialLayout>

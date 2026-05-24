@@ -2,6 +2,7 @@
 import type { ReferenceEntryPage } from "../../lib/reference-sheets";
 import { getReferenceEntryCode } from "../../lib/reference-entry-code";
 import { referenceChapterUrl, referenceEntrySlug } from "../../lib/reference-sheets";
+import HighlightedCode from "../HighlightedCode.astro";
 import PythonExample from "../PythonExample.astro";
 import ReferencePager from "./ReferencePager.astro";
 
@@ -18,7 +19,7 @@ const prev =
   index > 0
     ? {
         slug: referenceEntrySlug(sheet.id, index - 1),
-        name: sheet.entries[index - 1].name,
+        name: sheet.entries[index - 1].title,
       }
     : undefined;
 
@@ -26,16 +27,17 @@ const next =
   index < sheet.entries.length - 1
     ? {
         slug: referenceEntrySlug(sheet.id, index + 1),
-        name: sheet.entries[index + 1].name,
+        name: sheet.entries[index + 1].title,
       }
     : undefined;
 ---
 
 <article class="ref-entry-page lesson-prose">
   <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="top" />
-  <h1 class="ref-entry-title !mt-0">
-    <code>{entry.name}</code>
-  </h1>
+  <h1 class="ref-entry-title !mt-0">{entry.title}</h1>
+  <p class="ref-entry-syntax text-sm text-text-muted">
+    <code>{entry.syntax}</code>
+  </p>
   <p class="ref-entry-lead">{entry.summary}</p>
 
   <p class="text-sm text-text-secondary">
@@ -52,9 +54,7 @@ const next =
     runnable ? (
       <PythonExample code={code} filename={filename} />
     ) : (
-      <pre class="ref-entry-code" aria-label="Example">
-        <code>{code}</code>
-      </pre>
+      <HighlightedCode code={code} variant="light" aria-label="Example" />
     )
   }
 

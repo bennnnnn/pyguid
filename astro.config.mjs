@@ -37,10 +37,30 @@ export default defineConfig({
     "/python/quiz/dataclasses-dates/": "/python/quiz/standard-library/",
     "/python/quiz/logging-regex/": "/python/quiz/standard-library/",
     "/python/multi-file-cli-capstone/": "/python/multi-file-cli-project/",
+    "/python/reference/what-is-python/": "/python/reference/print-and-errors/",
+    "/python/reference/what-is-python/print/":
+      "/python/reference/print-and-errors/show-output-with-print/",
+    "/python/reference/what-is-python/py-file/":
+      "/python/reference/print-and-errors/run-py-file/",
+    "/python/reference/what-is-python/repl/":
+      "/python/reference/print-and-errors/use-the-interactive-repl/",
+    "/python/reference/print-and-errors/print/":
+      "/python/reference/print-and-errors/show-output-with-print/",
+    "/python/reference/print-and-errors/py-file/":
+      "/python/reference/print-and-errors/run-py-file/",
+    "/python/reference/print-and-errors/repl/":
+      "/python/reference/print-and-errors/use-the-interactive-repl/",
+    "/python/reference/variables/name-value/":
+      "/python/reference/variables/create-a-variable/",
+    "/python/reference/variables/name-name-1/":
+      "/python/reference/variables/change-a-variable-s-value/",
+    "/python/reference/loops/range/": "/python/reference/loops/count-with-range/",
+    "/python/reference/loops/range-2/":
+      "/python/reference/loops/range-with-start-and-stop/",
   },
   markdown: {
     shikiConfig: {
-      theme: "github-dark",
+      theme: "dracula",
     },
   },
 });

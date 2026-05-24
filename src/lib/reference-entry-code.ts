@@ -11,7 +11,6 @@ export type ReferenceEntryCode = {
 };
 
 const SETUPS: Record<string, string[]> = {
-  "what-is-python": [],
   "print-and-errors": ['name = "Ada"'],
   variables: ["score = 10"],
   input: [],
@@ -47,19 +46,49 @@ const SETUPS: Record<string, string[]> = {
   "clean-code": [],
 };
 
-/** Full runnable examples keyed by sheet id and entry name */
+/** Maps new syntax labels to legacy example keys where they differ */
+const LEGACY_EXAMPLE_KEYS: Record<string, string> = {
+  "python file.py": ".py file",
+  ">>>": "REPL",
+  "+ - * /": "+  -  *  /",
+  "+=": "+=  -=  *=",
+  "range(n)": "range()",
+  "range(start, stop)": "range(, )",
+  "for item in seq:": "for ... in:",
+  "del[i]": "del [i]",
+  "def name():": "def()",
+  "def name(x):": "def(x)",
+  "def name(x=0):": "def(x=)",
+  "class Name:": "class:",
+  "class Child(Parent):": "class (Parent):",
+  "def method():": "def method():",
+  "def decorator():": "def decorator()",
+  "def test_():": "def test_():",
+  "[x for x in seq]": "[... for ... in ...]",
+  "[x for x in seq if ...]": "[... for ... if ...]",
+  "{k: v for ...}": "{k: v for ...}",
+  "{x for x in seq}": "{... for ...}",
+  "from ... import": "from import",
+  "import ... as": "import as",
+  'dict["key"]': '["key"]',
+  'dict["key"] =': "[key] =",
+  "tup[i]": "[i]",
+  "a, b = tup": "a, b =",
+  "(x,)": "( ,)",
+  "s[i] · s[start:stop]": "[i] · [start:stop]",
+  "== != < > <= >=": "==  !=  <  >  <=  >=",
+};
+
+/** Full runnable examples keyed by sheet id and syntax label */
 const EXAMPLES: Record<string, Record<string, string>> = {
-  "what-is-python": {
-    "print()": 'print("Hello, Python!")',
-    ".py file":
-      '# Save as hello.py, then run:\n# python hello.py\n\nprint("Hello from a file!")',
-    REPL: "# In the interactive REPL:\n# >>> 2 + 2\n# 4\n\nprint(2 + 2)",
-  },
   "print-and-errors": {
     "print()": 'name = "Ada"\nprint("Hi", name)',
     "# comment": '# TODO: fix later\nprint("Comments start with #")',
     SyntaxError:
       '# Missing closing quote causes SyntaxError:\n# print("oops\n\nprint("Use matching quotes")',
+    ".py file":
+      '# Save as hello.py, then run:\n# python hello.py\n\nprint("Hello from a file!")',
+    REPL: "# In the interactive REPL:\n# >>> 2 + 2\n# 4\n\nprint(2 + 2)",
   },
   variables: {
     "name = value": "score = 10\nprint(score)",
@@ -331,6 +360,8 @@ const EXAMPLES: Record<string, Record<string, string>> = {
 };
 
 const NON_RUNNABLE = new Set([
+  "python file.py",
+  ">>>",
   ".py file",
   "REPL",
   "SyntaxError",
@@ -347,7 +378,7 @@ const NON_RUNNABLE = new Set([
 ]);
 
 function fallbackCode(sheet: ReferenceSheet, entry: ReferenceEntry): string {
-  const line = (entry.example ?? entry.name).split(" · ")[0].trim();
+  const line = (entry.example ?? entry.syntax).split(" · ")[0].trim();
   const setup = SETUPS[sheet.id] ?? (sheet.context ? [sheet.context] : []);
   const body = line.includes("\n") ? line : line;
   const lines = [...setup.filter((s) => !body.includes(s.split("=")[0]?.trim() ?? ""))];
@@ -380,9 +411,13 @@ function shouldPrint(line: string): boolean {
 export function getReferenceEntryCode(page: ReferenceEntryPage): ReferenceEntryCode {
   const { sheet, entry } = page;
   const sheetExamples = EXAMPLES[sheet.id];
-  const code = entry.code ?? sheetExamples?.[entry.name] ?? fallbackCode(sheet, entry);
+  const code =
+    entry.code ??
+    sheetExamples?.[entry.syntax] ??
+    sheetExamples?.[LEGACY_EXAMPLE_KEYS[entry.syntax] ?? ""] ??
+    fallbackCode(sheet, entry);
 
-  const runnable = entry.runnable ?? !NON_RUNNABLE.has(entry.name);
+  const runnable = entry.runnable ?? !NON_RUNNABLE.has(entry.syntax);
 
   return {
     code: code.trim(),

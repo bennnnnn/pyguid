@@ -1,6 +1,10 @@
 export type ReferenceEntry = {
-  /** Syntax or name shown in the first column */
-  name: string;
+  /** Sidebar label and page heading (what you are looking up) */
+  title: string;
+  /** Code pattern shown in the table and examples */
+  syntax: string;
+  /** Optional stable URL slug; defaults to a slug derived from title */
+  slug?: string;
   /** Short description for lookup */
   summary: string;
   /** One-line example (defaults to chapter context if omitted) */
@@ -14,7 +18,9 @@ export type ReferenceEntry = {
 
 export type ReferenceSheet = {
   id: string;
+  /** Links to tutorial chapter for cross-links; omit a sheet when the chapter has no syntax to look up */
   chapter: number;
+  /** Sidebar group label — name the syntax topic, not necessarily the lesson chapter title */
   title: string;
   /** Shown under the heading — sets default variable names in examples */
   context?: string;
@@ -23,48 +29,43 @@ export type ReferenceSheet = {
 
 export const REFERENCE_SHEETS: ReferenceSheet[] = [
   {
-    id: "what-is-python",
-    chapter: 1,
-    title: "What is Python?",
-    context: 'print("Hello")',
-    entries: [
-      {
-        name: "print()",
-        summary: "Display output in the terminal or browser",
-        example: 'print("Hello")',
-      },
-      {
-        name: ".py file",
-        summary: "Save code in a file and run with python file.py",
-        example: "python hello.py",
-      },
-      {
-        name: "REPL",
-        summary: "Interactive >>> prompt to try one line at a time",
-        example: ">>> 2 + 2",
-      },
-    ],
-  },
-  {
     id: "print-and-errors",
     chapter: 2,
     title: "Print, Comments, and Errors",
     context: 'name = "Ada"',
     entries: [
       {
-        name: "print()",
+        title: "Show output with print",
+        syntax: "print()",
         summary: "Show one or more values on the screen",
         example: 'print("Hi", name)',
       },
       {
-        name: "# comment",
+        title: "Write a comment",
+        syntax: "#",
         summary: "Notes for humans; Python ignores this line",
         example: "# TODO: fix later",
       },
       {
-        name: "SyntaxError",
+        title: "Understand a SyntaxError",
+        syntax: "SyntaxError",
         summary: "Invalid Python grammar (fix spelling, colons, quotes)",
         example: 'print("oops',
+      },
+      {
+        title: "Run a .py file",
+        syntax: "python file.py",
+        slug: "run-py-file",
+        summary: "Save code in a file and run with python file.py",
+        example: "python hello.py",
+        runnable: false,
+      },
+      {
+        title: "Use the interactive REPL",
+        syntax: ">>>",
+        summary: "Interactive >>> prompt to try one line at a time",
+        example: ">>> 2 + 2",
+        runnable: false,
       },
     ],
   },
@@ -74,19 +75,27 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Variables",
     context: "score = 10",
     entries: [
-      { name: "name = value", summary: "Bind a name to a value", example: "score = 10" },
       {
-        name: "name = name + 1",
+        title: "Create a variable",
+        syntax: "name = value",
+        summary: "Bind a name to a value",
+        example: "score = 10",
+      },
+      {
+        title: "Change a variable's value",
+        syntax: "name = name + 1",
         summary: "Update a variable with a new value",
         example: "score = score + 1",
       },
       {
-        name: "a, b = 1, 2",
+        title: "Assign multiple variables",
+        syntax: "a, b = 1, 2",
         summary: "Assign multiple names at once",
         example: "x, y = 1, 2",
       },
       {
-        name: "snake_case",
+        title: "Naming rules (snake_case)",
+        syntax: "snake_case",
         summary: "Use lowercase words separated by underscores",
         example: "user_age = 25",
       },
@@ -99,21 +108,29 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: 'text = input("Age: ")',
     entries: [
       {
-        name: "input()",
+        title: "Read user input",
+        syntax: "input()",
         summary: "Read one line of text from the user (always str)",
         example: 'input("Name: ")',
       },
       {
-        name: "int()",
+        title: "Convert text to int",
+        syntax: "int()",
         summary: "Convert a string to a whole number",
         example: 'int("42")',
       },
       {
-        name: "float()",
+        title: "Convert text to float",
+        syntax: "float()",
         summary: "Convert a string to a decimal number",
         example: 'float("3.5")',
       },
-      { name: "str()", summary: "Convert a value to text", example: "str(99)" },
+      {
+        title: "Convert a value to str",
+        syntax: "str()",
+        summary: "Convert a value to text",
+        example: "str(99)",
+      },
     ],
   },
   {
@@ -123,18 +140,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "value = 42",
     entries: [
       {
-        name: "int · float · str · bool",
+        title: "Common data types",
+        syntax: "int · float · str · bool",
         summary: "Common built-in types for numbers, text, and logic",
         example: "type(42)",
       },
-      { name: "type()", summary: "Return the type of a value", example: "type(value)" },
       {
-        name: "isinstance()",
+        title: "Check a value's type",
+        syntax: "type()",
+        summary: "Return the type of a value",
+        example: "type(value)",
+      },
+      {
+        title: "Test type with isinstance",
+        syntax: "isinstance()",
         summary: "Test whether a value is a given type",
         example: "isinstance(value, int)",
       },
       {
-        name: "None",
+        title: 'Use None for "no value"',
+        syntax: "None",
         summary: "Means no value; test with is None",
         example: "result = None",
       },
@@ -147,14 +172,35 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "a, b = 10, 3",
     entries: [
       {
-        name: "+  -  *  /",
+        title: "Add, subtract, multiply, divide",
+        syntax: "+ - * /",
         summary: "Add, subtract, multiply, divide (float division)",
         example: "a + b",
       },
-      { name: "//", summary: "Floor division (drops the fraction)", example: "a // b" },
-      { name: "%", summary: "Remainder after division", example: "a % b" },
-      { name: "**", summary: "Exponent (power)", example: "2 ** 8" },
-      { name: "+=  -=  *=", summary: "Update a variable in place", example: "a += 1" },
+      {
+        title: "Floor division",
+        syntax: "//",
+        summary: "Floor division (drops the fraction)",
+        example: "a // b",
+      },
+      {
+        title: "Remainder (modulo)",
+        syntax: "%",
+        summary: "Remainder after division",
+        example: "a % b",
+      },
+      {
+        title: "Exponents",
+        syntax: "**",
+        summary: "Exponent (power)",
+        example: "2 ** 8",
+      },
+      {
+        title: "Update in place",
+        syntax: "+=",
+        summary: "Update a variable in place",
+        example: "a += 1",
+      },
     ],
   },
   {
@@ -163,56 +209,81 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Strings",
     context: 's = "hello world"',
     entries: [
-      { name: "len()", summary: "Number of characters", example: "len(s)" },
       {
-        name: "[i] · [start:stop]",
+        title: "Get string length",
+        syntax: "len()",
+        summary: "Number of characters",
+        example: "len(s)",
+      },
+      {
+        title: "Index and slice a string",
+        syntax: "s[i] · s[start:stop]",
         summary: "Index one character or slice a range",
         example: "s[0] · s[0:5]",
       },
       {
-        name: ".upper() · .lower()",
+        title: "Change letter case",
+        syntax: ".upper() · .lower()",
         summary: "Change letter case",
         example: "s.upper()",
       },
       {
-        name: ".strip()",
+        title: "Remove extra spaces",
+        syntax: ".strip()",
         summary: "Remove leading and trailing whitespace",
         example: "s.strip()",
       },
-      { name: ".split()", summary: "Split into a list of strings", example: "s.split()" },
-      { name: '.split(",")', summary: "Split on a delimiter", example: 's.split(" ")' },
       {
-        name: ".join()",
+        title: "Split into parts",
+        syntax: ".split()",
+        summary: "Split into a list of strings",
+        example: "s.split()",
+      },
+      {
+        title: "Split on a delimiter",
+        syntax: '.split(",")',
+        summary: "Split on a delimiter",
+        example: 's.split(",")',
+      },
+      {
+        title: "Join strings together",
+        syntax: ".join()",
         summary: "Join a list of strings with a separator",
         example: '"-".join(parts)',
       },
       {
-        name: ".replace()",
+        title: "Replace text",
+        syntax: ".replace()",
         summary: "Return a new string with replacements",
         example: 's.replace("l", "L")',
       },
       {
-        name: ".find()",
+        title: "Search for a substring",
+        syntax: ".find()",
         summary: "Index of substring, or -1 if missing",
         example: 's.find("world")',
       },
       {
-        name: ".count()",
+        title: "Count occurrences",
+        syntax: ".count()",
         summary: "How many times a substring appears",
         example: 's.count("l")',
       },
       {
-        name: ".startswith() · .endswith()",
+        title: "Check start or end",
+        syntax: ".startswith() · .endswith()",
         summary: "Test beginning or end of string",
         example: 's.startswith("he")',
       },
       {
-        name: "in",
+        title: "Check if text is inside",
+        syntax: "in",
         summary: "True if substring appears anywhere",
         example: '"ell" in s',
       },
       {
-        name: 'f"..."',
+        title: "Build formatted strings",
+        syntax: 'f"..."',
         summary: "Formatted string with variables inside braces",
         example: 'f"Hi {name}"',
       },
@@ -225,42 +296,50 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "age = 20",
     entries: [
       {
-        name: "True · False",
+        title: "True and False",
+        syntax: "True · False",
         summary: "Boolean literals (capital T and F)",
         example: "is_adult = age >= 18",
       },
       {
-        name: "==  !=  <  >  <=  >=",
+        title: "Compare values",
+        syntax: "== != < > <= >=",
         summary: "Compare two values; result is bool",
         example: "age >= 18",
       },
       {
-        name: "and · or · not",
+        title: "Combine conditions",
+        syntax: "and · or · not",
         summary: "Combine or invert conditions",
         example: "age >= 18 and has_ticket",
       },
       {
-        name: "if cond:",
+        title: "Run code when true (if)",
+        syntax: "if cond:",
         summary: "Run a block only when cond is truthy",
         example: "if age >= 18:\n    ...",
       },
       {
-        name: "elif cond:",
+        title: "Else-if branch (elif)",
+        syntax: "elif cond:",
         summary: "Else-if branch when earlier tests failed",
         example: "elif age >= 13:\n    ...",
       },
       {
-        name: "else:",
+        title: "Fallback branch (else)",
+        syntax: "else:",
         summary: "Run when no if/elif matched",
         example: "else:\n    ...",
       },
       {
-        name: "in",
+        title: "Test membership (in)",
+        syntax: "in",
         summary: "Membership test (works on strings and collections)",
         example: '"a" in "abc"',
       },
       {
-        name: "is",
+        title: "Test same object (is)",
+        syntax: "is",
         summary: "Same object identity (use for None)",
         example: "value is None",
       },
@@ -273,32 +352,38 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "nums = [1, 2, 3]",
     entries: [
       {
-        name: "while cond:",
+        title: "Repeat with while",
+        syntax: "while cond:",
         summary: "Repeat while cond stays true",
         example: "while n > 0:\n    n -= 1",
       },
       {
-        name: "for ... in:",
+        title: "Loop over items",
+        syntax: "for item in seq:",
         summary: "Run once per item in a sequence",
         example: "for n in nums:\n    print(n)",
       },
       {
-        name: "range()",
+        title: "Count with range()",
+        syntax: "range(n)",
         summary: "Numbers 0 .. n-1",
         example: "for i in range(3):\n    ...",
       },
       {
-        name: "range(, )",
+        title: "range with start and stop",
+        syntax: "range(start, stop)",
         summary: "Numbers from start up to stop-1",
         example: "range(1, 4)",
       },
       {
-        name: "break",
+        title: "Break out of a loop",
+        syntax: "break",
         summary: "Leave the innermost loop immediately",
         example: "break",
       },
       {
-        name: "continue",
+        title: "Skip to the next iteration",
+        syntax: "continue",
         summary: "Skip to the next loop iteration",
         example: "continue",
       },
@@ -310,65 +395,111 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Lists",
     context: "nums = [1, 2, 3]",
     entries: [
-      { name: "[ ]", summary: "Create a list literal", example: "nums = [1, 2, 3]" },
-      { name: "len()", summary: "Number of items", example: "len(nums)" },
       {
-        name: "[i] · [a:b]",
+        title: "Create a list",
+        syntax: "[ ]",
+        summary: "Create a list literal",
+        example: "nums = [1, 2, 3]",
+      },
+      {
+        title: "Get list length",
+        syntax: "len()",
+        summary: "Number of items",
+        example: "len(nums)",
+      },
+      {
+        title: "Access by index or slice",
+        syntax: "[i] · [a:b]",
         summary: "Get one item or a slice (new list)",
         example: "nums[0] · nums[1:3]",
       },
       {
-        name: ".append()",
+        title: "Add one item",
+        syntax: ".append()",
         summary: "Add one item at the end; returns None",
         example: "nums.append(4)",
       },
       {
-        name: ".extend()",
+        title: "Add many items",
+        syntax: ".extend()",
         summary: "Add each element from another iterable",
         example: "nums.extend([4, 5])",
       },
       {
-        name: ".insert()",
+        title: "Insert at a position",
+        syntax: ".insert()",
         summary: "Insert an item at an index",
         example: "nums.insert(0, 0)",
       },
       {
-        name: ".remove()",
+        title: "Remove by value",
+        syntax: ".remove()",
         summary: "Remove first matching value",
         example: "nums.remove(2)",
       },
       {
-        name: ".pop()",
+        title: "Remove and return an item",
+        syntax: ".pop()",
         summary: "Remove and return an item (last, or at index)",
         example: "nums.pop(0)",
       },
-      { name: "del [i]", summary: "Delete item at index", example: "del nums[0]" },
-      { name: ".clear()", summary: "Remove all items", example: "nums.clear()" },
-      { name: ".sort()", summary: "Sort list in place", example: "nums.sort()" },
-      { name: "sorted()", summary: "Return a new sorted list", example: "sorted(nums)" },
-      { name: ".reverse()", summary: "Reverse list in place", example: "nums.reverse()" },
       {
-        name: ".copy()",
+        title: "Delete by index",
+        syntax: "del[i]",
+        summary: "Delete item at index",
+        example: "del nums[0]",
+      },
+      {
+        title: "Clear the list",
+        syntax: ".clear()",
+        summary: "Remove all items",
+        example: "nums.clear()",
+      },
+      {
+        title: "Sort in place",
+        syntax: ".sort()",
+        summary: "Sort list in place",
+        example: "nums.sort()",
+      },
+      {
+        title: "Return a sorted copy",
+        syntax: "sorted()",
+        summary: "Return a new sorted list",
+        example: "sorted(nums)",
+      },
+      {
+        title: "Reverse order",
+        syntax: ".reverse()",
+        summary: "Reverse list in place",
+        example: "nums.reverse()",
+      },
+      {
+        title: "Copy a list",
+        syntax: ".copy()",
         summary: "Shallow copy of the list",
         example: "other = nums.copy()",
       },
       {
-        name: ".index()",
+        title: "Find an item's index",
+        syntax: ".index()",
         summary: "Index of first matching value",
         example: "nums.index(2)",
       },
       {
-        name: ".count()",
+        title: "Count occurrences",
+        syntax: ".count()",
         summary: "How many times a value appears",
         example: "nums.count(2)",
       },
       {
-        name: "enumerate()",
+        title: "Loop with index",
+        syntax: "enumerate()",
         summary: "Pairs of index and value in a loop",
         example: "for i, v in enumerate(nums):",
       },
       {
-        name: "zip()",
+        title: "Pair two lists",
+        syntax: "zip()",
         summary: "Pair items from two sequences",
         example: "list(zip(nums, other))",
       },
@@ -381,18 +512,35 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "point = (10, 20)",
     entries: [
       {
-        name: "( )",
+        title: "Create a tuple",
+        syntax: "( )",
         summary: "Ordered, immutable sequence",
         example: "point = (10, 20)",
       },
       {
-        name: "( ,)",
+        title: "Single-item tuple",
+        syntax: "(x,)",
         summary: "One-item tuple needs a trailing comma",
         example: "one = (42,)",
       },
-      { name: "a, b =", summary: "Unpack values into names", example: "x, y = point" },
-      { name: "[i]", summary: "Read one item (cannot assign)", example: "point[0]" },
-      { name: "len()", summary: "Number of items", example: "len(point)" },
+      {
+        title: "Unpack a tuple",
+        syntax: "a, b = tup",
+        summary: "Unpack values into names",
+        example: "x, y = point",
+      },
+      {
+        title: "Access by index",
+        syntax: "tup[i]",
+        summary: "Read one item (cannot assign)",
+        example: "point[0]",
+      },
+      {
+        title: "Tuple length",
+        syntax: "len()",
+        summary: "Number of items",
+        example: "len(point)",
+      },
     ],
   },
   {
@@ -402,25 +550,53 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: 'tags = {"a", "b"}',
     entries: [
       {
-        name: "{ } · set()",
+        title: "Create a set",
+        syntax: "{ } · set()",
         summary: "Unordered collection of unique items",
         example: 'tags = {"a", "b"}',
       },
-      { name: ".add()", summary: "Add an item", example: 'tags.add("c")' },
       {
-        name: ".remove()",
+        title: "Add an item",
+        syntax: ".add()",
+        summary: "Add an item",
+        example: 'tags.add("c")',
+      },
+      {
+        title: "Remove an item",
+        syntax: ".remove()",
         summary: "Remove item (error if missing)",
         example: 'tags.remove("a")',
       },
       {
-        name: ".discard()",
+        title: "Remove safely",
+        syntax: ".discard()",
         summary: "Remove item if present (no error)",
         example: 'tags.discard("z")',
       },
-      { name: "|", summary: "Union — items in either set", example: "a | b" },
-      { name: "&", summary: "Intersection — items in both", example: "a & b" },
-      { name: "-", summary: "Difference — in a but not b", example: "a - b" },
-      { name: "in", summary: "Membership test", example: '"a" in tags' },
+      {
+        title: "Union of sets",
+        syntax: "|",
+        summary: "Union — items in either set",
+        example: "a | b",
+      },
+      {
+        title: "Intersection",
+        syntax: "&",
+        summary: "Intersection — items in both",
+        example: "a & b",
+      },
+      {
+        title: "Difference",
+        syntax: "-",
+        summary: "Difference — in a but not b",
+        example: "a - b",
+      },
+      {
+        title: "Test membership",
+        syntax: "in",
+        summary: "Membership test",
+        example: '"a" in tags',
+      },
     ],
   },
   {
@@ -430,48 +606,71 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: 'user = {"name": "Ada", "age": 30}',
     entries: [
       {
-        name: "{key: value}",
+        title: "Create a dictionary",
+        syntax: "{key: value}",
         summary: "Map keys to values",
         example: 'user = {"name": "Ada"}',
       },
       {
-        name: '["key"]',
+        title: "Get value by key",
+        syntax: 'dict["key"]',
         summary: "Get value; KeyError if missing",
         example: 'user["name"]',
       },
       {
-        name: ".get()",
+        title: "Get with a default",
+        syntax: ".get()",
         summary: "Get value or default if missing",
         example: 'user.get("role", "guest")',
       },
-      { name: ".keys()", summary: "View of all keys", example: "list(user.keys())" },
       {
-        name: ".values()",
+        title: "List all keys",
+        syntax: ".keys()",
+        summary: "View of all keys",
+        example: "list(user.keys())",
+      },
+      {
+        title: "List all values",
+        syntax: ".values()",
         summary: "View of all values",
         example: "list(user.values())",
       },
       {
-        name: ".items()",
+        title: "Loop key-value pairs",
+        syntax: ".items()",
         summary: "View of (key, value) pairs",
         example: "for k, v in user.items():",
       },
-      { name: "[key] =", summary: "Add or update a key", example: 'user["age"] = 31' },
       {
-        name: ".update()",
+        title: "Add or update a key",
+        syntax: 'dict["key"] =',
+        summary: "Add or update a key",
+        example: 'user["age"] = 31',
+      },
+      {
+        title: "Merge dictionaries",
+        syntax: ".update()",
         summary: "Merge in keys from another dict",
         example: "user.update(extra)",
       },
       {
-        name: ".pop()",
+        title: "Remove a key",
+        syntax: ".pop()",
         summary: "Remove key and return its value",
         example: 'user.pop("age")',
       },
       {
-        name: ".setdefault()",
+        title: "Set default if missing",
+        syntax: ".setdefault()",
         summary: "Set key only if it is missing",
         example: 'user.setdefault("role", "user")',
       },
-      { name: "in", summary: "Test whether key exists", example: '"name" in user' },
+      {
+        title: "Test if key exists",
+        syntax: "in",
+        summary: "Test whether key exists",
+        example: '"name" in user',
+      },
     ],
   },
   {
@@ -481,27 +680,32 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "def greet(x):",
     entries: [
       {
-        name: "def()",
+        title: "Define a function",
+        syntax: "def name():",
         summary: "Define a function with no parameters",
         example: "def greet():",
       },
       {
-        name: "def(x)",
+        title: "Add parameters",
+        syntax: "def name(x):",
         summary: "Define a function with parameters",
         example: "def greet(x):",
       },
       {
-        name: "def(x=)",
+        title: "Default parameter values",
+        syntax: "def name(x=0):",
         summary: "Default value when the argument is omitted",
         example: "def add_one(x=0):",
       },
       {
-        name: "return",
+        title: "Return a value",
+        syntax: "return",
         summary: "Send a result back to the caller",
         example: "return x",
       },
       {
-        name: '"""docstring"""',
+        title: "Write a docstring",
+        syntax: '"""docstring"""',
         summary: "Describe the function on the line under def",
         example: '"""What this does."""',
       },
@@ -514,22 +718,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "count = 0",
     entries: [
       {
-        name: "local variable",
+        title: "Local variables",
+        syntax: "x = 1  # inside def",
         summary: "Name assigned inside a function",
         example: "def f():\n    x = 1",
       },
       {
-        name: "global name",
+        title: "Module-level names",
+        syntax: "count = 0",
         summary: "Module-level name visible outside functions",
         example: "count = 0",
       },
       {
-        name: "global",
+        title: "Modify global from a function",
+        syntax: "global",
         summary: "Assign to a module-level name inside a function",
         example: "global count",
       },
       {
-        name: "nonlocal",
+        title: "Modify enclosing scope",
+        syntax: "nonlocal",
         summary: "Assign in enclosing (not global) scope",
         example: "nonlocal total",
       },
@@ -542,32 +750,38 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "try:\n    ...",
     entries: [
       {
-        name: "try:",
+        title: "Try risky code",
+        syntax: "try:",
         summary: "Start a block that might fail",
         example: "try:\n    n = int(text)",
       },
       {
-        name: "except:",
+        title: "Catch an exception",
+        syntax: "except:",
         summary: "Handle a specific error type",
         example: "except ValueError:\n    ...",
       },
       {
-        name: "except as:",
+        title: "Catch and name the error",
+        syntax: "except as:",
         summary: "Catch error and bind message to a name",
         example: "except Exception as e:",
       },
       {
-        name: "else:",
+        title: "Run when try succeeds",
+        syntax: "else:",
         summary: "Run if try succeeded (no exception)",
         example: "else:\n    print(ok)",
       },
       {
-        name: "finally:",
+        title: "Always run cleanup",
+        syntax: "finally:",
         summary: "Always run (cleanup)",
         example: "finally:\n    close()",
       },
       {
-        name: "raise",
+        title: "Raise an exception",
+        syntax: "raise",
         summary: "Raise your own exception",
         example: 'raise ValueError("bad")',
       },
@@ -580,42 +794,50 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: 'path = "notes.txt"',
     entries: [
       {
-        name: 'open("r")',
+        title: "Open for reading",
+        syntax: 'open("r")',
         summary: "Open a file for reading text",
         example: 'open("data.txt", "r")',
       },
       {
-        name: 'open("w")',
+        title: "Open for writing",
+        syntax: 'open("w")',
         summary: "Open for writing (overwrites)",
         example: 'open("out.txt", "w")',
       },
       {
-        name: 'open("a")',
+        title: "Open for appending",
+        syntax: 'open("a")',
         summary: "Open for appending at end",
         example: 'open("log.txt", "a")',
       },
       {
-        name: ".read()",
+        title: "Read entire file",
+        syntax: ".read()",
         summary: "Read entire file as one string",
         example: "text = f.read()",
       },
       {
-        name: ".readlines()",
+        title: "Read as lines",
+        syntax: ".readlines()",
         summary: "Read lines into a list of strings",
         example: "lines = f.readlines()",
       },
       {
-        name: ".write()",
+        title: "Write text",
+        syntax: ".write()",
         summary: "Write a string to the file",
         example: 'f.write("line\\n")',
       },
       {
-        name: "with open():",
+        title: "Auto-close with with",
+        syntax: "with open():",
         summary: "Auto-close file when block ends",
         example: "with open(path) as f:",
       },
       {
-        name: "Path()",
+        title: "Work with Path objects",
+        syntax: "Path()",
         summary: "pathlib path object (join, exists, read)",
         example: 'Path("data") / "file.txt"',
       },
@@ -627,24 +849,33 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Modules",
     context: "import math",
     entries: [
-      { name: "import", summary: "Load a module under its name", example: "import math" },
       {
-        name: "from import",
+        title: "Import a module",
+        syntax: "import",
+        summary: "Load a module under its name",
+        example: "import math",
+      },
+      {
+        title: "Import one name",
+        syntax: "from ... import",
         summary: "Import one name from a module",
         example: "from math import sqrt",
       },
       {
-        name: "import as",
+        title: "Import with an alias",
+        syntax: "import ... as",
         summary: "Import with a shorter local name",
         example: "import datetime as dt",
       },
       {
-        name: '__name__ == "__main__"',
+        title: "Run as script guard",
+        syntax: '__name__ == "__main__"',
         summary: "True when file is run directly",
         example: 'if __name__ == "__main__":',
       },
       {
-        name: "sys.argv",
+        title: "Command-line arguments",
+        syntax: "sys.argv",
         summary: "Command-line arguments as strings",
         example: "import sys",
       },
@@ -657,17 +888,20 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "python -m venv .venv",
     entries: [
       {
-        name: "python -m venv",
+        title: "Create a virtual environment",
+        syntax: "python -m venv",
         summary: "Create a virtual environment",
         example: "python -m venv .venv",
       },
       {
-        name: "pip install",
+        title: "Install a package",
+        syntax: "pip install",
         summary: "Install a package into active env",
         example: "pip install requests",
       },
       {
-        name: "requirements.txt",
+        title: "Install from requirements.txt",
+        syntax: "pip install -r requirements.txt",
         summary: "List pinned dependencies for a project",
         example: "pip install -r requirements.txt",
       },
@@ -680,33 +914,53 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "nums = [3, 1, 4]",
     entries: [
       {
-        name: "len()",
+        title: "Get length",
+        syntax: "len()",
         summary: "Length of a sequence or collection",
         example: "len(nums)",
       },
-      { name: "sum()", summary: "Add numeric items", example: "sum(nums)" },
       {
-        name: "min() · max()",
+        title: "Sum numbers",
+        syntax: "sum()",
+        summary: "Add numeric items",
+        example: "sum(nums)",
+      },
+      {
+        title: "Find min or max",
+        syntax: "min() · max()",
         summary: "Smallest or largest item",
         example: "min(nums)",
       },
       {
-        name: "sorted()",
+        title: "Return sorted copy",
+        syntax: "sorted()",
         summary: "New sorted list from iterable",
         example: "sorted(nums)",
       },
       {
-        name: "enumerate()",
+        title: "Enumerate with index",
+        syntax: "enumerate()",
         summary: "Index and value pairs",
         example: "list(enumerate(nums))",
       },
-      { name: "zip()", summary: "Pair items from iterables", example: "list(zip(a, b))" },
       {
-        name: "any() · all()",
+        title: "Zip sequences together",
+        syntax: "zip()",
+        summary: "Pair items from iterables",
+        example: "list(zip(a, b))",
+      },
+      {
+        title: "Test any or all",
+        syntax: "any() · all()",
         summary: "True if any / all items are truthy",
         example: "any(nums)",
       },
-      { name: "isinstance()", summary: "Type check", example: "isinstance(nums, list)" },
+      {
+        title: "Check type with isinstance",
+        syntax: "isinstance()",
+        summary: "Type check",
+        example: "isinstance(nums, list)",
+      },
     ],
   },
   {
@@ -716,22 +970,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "nums = [1, 2, 3, 4]",
     entries: [
       {
-        name: "[... for ... in ...]",
+        title: "Build a list",
+        syntax: "[x for x in seq]",
         summary: "Build a new list in one expression",
         example: "[n * 2 for n in nums]",
       },
       {
-        name: "[... for ... if ...]",
+        title: "Filter while building",
+        syntax: "[x for x in seq if ...]",
         summary: "List comp with a filter",
         example: "[n for n in nums if n % 2 == 0]",
       },
       {
-        name: "{k: v for ...}",
+        title: "Build a dict",
+        syntax: "{k: v for ...}",
         summary: "Build a new dictionary",
         example: "{k: len(k) for k in keys}",
       },
       {
-        name: "{... for ...}",
+        title: "Build a set",
+        syntax: "{x for x in seq}",
         summary: "Build a set of unique values",
         example: "{n % 2 for n in nums}",
       },
@@ -743,31 +1001,51 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Object-Oriented Python",
     context: "class Dog:\n    ...",
     entries: [
-      { name: "class:", summary: "Define a new type", example: "class Dog:" },
       {
-        name: "def __init__():",
+        title: "Define a class",
+        syntax: "class Name:",
+        summary: "Define a new type",
+        example: "class Dog:",
+      },
+      {
+        title: "Initialize instances",
+        syntax: "def __init__():",
         summary: "Constructor; set up instance",
         example: "def __init__(self, name):",
       },
-      { name: "self.", summary: "Instance attribute", example: "self.name = name" },
       {
-        name: "def method():",
+        title: "Store instance data",
+        syntax: "self.",
+        summary: "Instance attribute",
+        example: "self.name = name",
+      },
+      {
+        title: "Define a method",
+        syntax: "def method():",
         summary: "Behavior on an instance",
         example: "def bark(self):",
       },
-      { name: "Class()", summary: "Create an instance", example: 'buddy = Dog("Max")' },
       {
-        name: "class (Parent):",
+        title: "Create an instance",
+        syntax: "Class()",
+        summary: "Create an instance",
+        example: 'buddy = Dog("Max")',
+      },
+      {
+        title: "Inherit from a parent",
+        syntax: "class Child(Parent):",
         summary: "Inherit from another class",
         example: "class Puppy(Dog):",
       },
       {
-        name: "super()",
+        title: "Call parent methods",
+        syntax: "super()",
         summary: "Call parent implementation",
         example: "super().__init__(name)",
       },
       {
-        name: "__str__ · __repr__",
+        title: "String representation",
+        syntax: "__str__ · __repr__",
         summary: "String forms for print and debugging",
         example: "def __str__(self):",
       },
@@ -780,22 +1058,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "def f(*args, **kwargs):",
     entries: [
       {
-        name: "*args",
+        title: "Variable positional args",
+        syntax: "*args",
         summary: "Collect extra positional arguments as tuple",
         example: "def f(*args):",
       },
       {
-        name: "**kwargs",
+        title: "Variable keyword args",
+        syntax: "**kwargs",
         summary: "Collect extra keyword arguments as dict",
         example: "def f(**kwargs):",
       },
       {
-        name: "lambda:",
+        title: "Small anonymous function",
+        syntax: "lambda:",
         summary: "Small anonymous function",
         example: "lambda x: x * 2",
       },
       {
-        name: "@lru_cache",
+        title: "Cache results",
+        syntax: "@lru_cache",
         summary: "Cache return values by arguments",
         example: "@lru_cache",
       },
@@ -808,14 +1090,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "nums = [1, 2, 3]",
     entries: [
       {
-        name: "iter()",
+        title: "Get an iterator",
+        syntax: "iter()",
         summary: "Get an iterator from an iterable",
         example: "it = iter(nums)",
       },
-      { name: "next()", summary: "Next value from iterator", example: "next(it)" },
-      { name: "yield", summary: "Generator function; lazy sequence", example: "yield n" },
       {
-        name: "StopIteration",
+        title: "Get the next value",
+        syntax: "next()",
+        summary: "Next value from iterator",
+        example: "next(it)",
+      },
+      {
+        title: "Create a generator",
+        syntax: "yield",
+        summary: "Generator function; lazy sequence",
+        example: "yield n",
+      },
+      {
+        title: "When iteration ends",
+        syntax: "StopIteration",
         summary: "Iterator has no more items",
         example: "next(it)  # raises",
       },
@@ -828,17 +1122,20 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "@timer\ndef work():",
     entries: [
       {
-        name: "@decorator",
+        title: "Apply a decorator",
+        syntax: "@decorator",
         summary: "Wrap a function to add behavior",
         example: "@decorator\ndef f():",
       },
       {
-        name: "def decorator():",
+        title: "def decorator():",
+        syntax: "def decorator():",
         summary: "Outer function receives original",
         example: "def wrap(*a, **k):",
       },
       {
-        name: "@property",
+        title: "Property getter",
+        syntax: "@property",
         summary: "Method accessed like an attribute",
         example: "@property\ndef age(self):",
       },
@@ -850,19 +1147,36 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     title: "Type Hints",
     context: "def greet(name: str) -> str:",
     entries: [
-      { name: ": str", summary: "Annotate a parameter type", example: "def f(x: int):" },
-      { name: "-> str", summary: "Annotate return type", example: "def f() -> str:" },
       {
-        name: "list[int]",
+        title: "Annotate parameters",
+        syntax: ": str",
+        summary: "Annotate a parameter type",
+        example: "def f(x: int):",
+      },
+      {
+        title: "Annotate return type",
+        syntax: "-> str",
+        summary: "Annotate return type",
+        example: "def f() -> str:",
+      },
+      {
+        title: "Annotate collections",
+        syntax: "list[int]",
         summary: "Generic collection types (3.9+)",
         example: "nums: list[int]",
       },
       {
-        name: "Optional[]",
+        title: "Optional values",
+        syntax: "Optional[]",
         summary: "Value or None",
         example: "from typing import Optional",
       },
-      { name: "mypy", summary: "Optional static type checker", example: "mypy app.py" },
+      {
+        title: "Run mypy checker",
+        syntax: "mypy",
+        summary: "Optional static type checker",
+        example: "mypy app.py",
+      },
     ],
   },
   {
@@ -872,32 +1186,38 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "import json",
     entries: [
       {
-        name: "json.loads()",
+        title: "Parse JSON",
+        syntax: "json.loads()",
         summary: "Parse JSON string to Python",
         example: "json.loads('{\"a\":1}')",
       },
       {
-        name: "json.dumps()",
+        title: "Serialize to JSON",
+        syntax: "json.dumps()",
         summary: "Python to JSON string",
         example: "json.dumps(data)",
       },
       {
-        name: "datetime.now()",
+        title: "Current date and time",
+        syntax: "datetime.now()",
         summary: "Current date and time",
         example: "from datetime import datetime",
       },
       {
-        name: "logging.info()",
+        title: "Log messages",
+        syntax: "logging.info()",
         summary: "Write a log message",
         example: 'logging.info("ok")',
       },
       {
-        name: "re.search()",
+        title: "Regular expressions",
+        syntax: "re.search()",
         summary: "Find regex match in string",
         example: 're.search(r"\\d+", s)',
       },
       {
-        name: "copy.deepcopy()",
+        title: "Deep copy nested data",
+        syntax: "copy.deepcopy()",
         summary: "Full copy of nested structures",
         example: "copy.deepcopy(nested)",
       },
@@ -910,18 +1230,26 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "import pdb",
     entries: [
       {
-        name: "help()",
+        title: "Get help on an object",
+        syntax: "help()",
         summary: "Interactive documentation in the shell",
         example: "help(list.append)",
       },
-      { name: "dir()", summary: "List attribute names on an object", example: "dir([])" },
       {
-        name: "breakpoint()",
+        title: "List attributes",
+        syntax: "dir()",
+        summary: "List attribute names on an object",
+        example: "dir([])",
+      },
+      {
+        title: "Pause at a breakpoint",
+        syntax: "breakpoint()",
         summary: "Pause and inspect at this line",
         example: "breakpoint()",
       },
       {
-        name: "traceback",
+        title: "Read a traceback",
+        syntax: "traceback",
         summary: "Error report: read last line first",
         example: "# see terminal output",
       },
@@ -934,13 +1262,20 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "def add(a, b): return a + b",
     entries: [
       {
-        name: "assert",
+        title: "Assert a condition",
+        syntax: "assert",
         summary: "Crash if condition is false",
         example: "assert add(1, 2) == 3",
       },
-      { name: "pytest", summary: "Run tests in test_*.py files", example: "pytest" },
       {
-        name: "def test_():",
+        title: "Run pytest",
+        syntax: "pytest",
+        summary: "Run tests in test_*.py files",
+        example: "pytest",
+      },
+      {
+        title: "Write a test function",
+        syntax: "def test_():",
         summary: "pytest discovers functions starting with test_",
         example: "def test_add():",
       },
@@ -953,13 +1288,20 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     context: "ruff check .",
     entries: [
       {
-        name: "ruff check",
+        title: "Lint with ruff",
+        syntax: "ruff check",
         summary: "Lint for style and common bugs",
         example: "ruff check .",
       },
-      { name: "black", summary: "Auto-format code to one style", example: "black src/" },
       {
-        name: "PEP 8",
+        title: "Format with black",
+        syntax: "black",
+        summary: "Auto-format code to one style",
+        example: "black src/",
+      },
+      {
+        title: "Follow PEP 8",
+        syntax: "PEP 8",
         summary: "Python style guide (naming, spacing)",
         example: "# snake_case names",
       },
@@ -1014,10 +1356,15 @@ function slugifyEntryName(name: string): string {
   return s;
 }
 
+function entrySlugBase(entry: ReferenceEntry): string {
+  if (entry.slug) return entry.slug;
+  return slugifyEntryName(entry.title);
+}
+
 function buildEntrySlugs(sheet: ReferenceSheet): string[] {
   const counts = new Map<string, number>();
   return sheet.entries.map((entry) => {
-    const base = slugifyEntryName(entry.name);
+    const base = entrySlugBase(entry);
     const seen = counts.get(base) ?? 0;
     counts.set(base, seen + 1);
     return seen === 0 ? base : `${base}-${seen + 1}`;

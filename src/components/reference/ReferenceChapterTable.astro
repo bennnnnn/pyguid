@@ -16,6 +16,7 @@ const { sheet } = Astro.props;
   <table class="ref-table">
     <thead>
       <tr>
+        <th scope="col">Topic</th>
         <th scope="col">Syntax</th>
         <th scope="col">What it does</th>
       </tr>
@@ -24,13 +25,16 @@ const { sheet } = Astro.props;
       {
         sheet.entries.map((entry, index) => (
           <tr>
-            <td class="ref-syntax">
+            <th scope="row" class="ref-topic">
               <a
                 href={referenceEntryUrl(sheet.id, referenceEntrySlug(sheet.id, index))}
-                class="ref-syntax-link"
+                class="ref-topic-link"
               >
-                <code>{entry.name}</code>
+                {entry.title}
               </a>
+            </th>
+            <td class="ref-syntax">
+              <code>{entry.syntax}</code>
             </td>
             <td>{entry.summary}</td>
           </tr>

@@ -1,0 +1,96 @@
+/* Dracula panel for runnable examples */
+.python-example .code-panel {
+  counter-reset: py-line;
+  background: #282a36;
+}
+
+/* Output text is green; panel stays neutral (errors override in JS) */
+.python-example .py-output-section {
+  background: var(--color-surface-alt);
+}
+
+.python-example .py-output {
+  margin: 0;
+  padding: 0;
+  color: #16a34a;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.python-example .py-output.py-output--error {
+  color: #dc2626;
+}
+
+.python-example .code-panel pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  overflow-x: visible;
+}
+
+.python-example .code-panel code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.75;
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "liga" 0,
+    "calt" 0;
+}
+
+.python-example .code-panel .line {
+  display: block;
+  padding-left: 3.25rem;
+  position: relative;
+  min-height: 1.75rem;
+}
+
+.python-example .code-panel .line::before {
+  counter-increment: py-line;
+  content: counter(py-line);
+  position: absolute;
+  left: 0;
+  width: 2.25rem;
+  text-align: right;
+  color: #6272a4;
+  user-select: none;
+  font-size: 12px;
+}
+
+/* Static reference / prose snippets (light surface) */
+.highlighted-code--light {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cdd6f4;
+  background: #eff1f5;
+  overflow-x: auto;
+}
+
+.highlighted-code--light pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  overflow-x: visible;
+}
+
+.highlighted-code--light code {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "liga" 0,
+    "calt" 0;
+}
+
+.highlighted-code--light .line {
+  display: block;
+}
+
+/* MDX fenced blocks (Shiki via Astro markdown) — keep in sync with theme */
+.lesson-prose pre.astro-code {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}

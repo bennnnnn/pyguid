@@ -1,11 +1,13 @@
 ---
+import { highlightPython } from "../lib/highlight-code";
+
 interface Props {
   code: string;
   filename?: string;
 }
 
 const { code, filename = "example.py" } = Astro.props;
-const lines = code.trim().split("\n");
+const highlightedCode = await highlightPython(code);
 ---
 
 <div
@@ -31,23 +33,12 @@ const lines = code.trim().split("\n");
       </button>
     </div>
   </div>
-  <div
-    class="code-panel overflow-x-auto bg-[#1e293b] px-4 py-4 font-mono text-[13px] leading-7 text-slate-100"
-  >
-    {
-      lines.map((line, i) => (
-        <div
-          class="code-line whitespace-pre border-l-4 border-transparent"
-          data-n={i + 1}
-        >
-          {line}
-        </div>
-      ))
-    }
-  </div>
-  <div class="border-t border-border bg-surface-alt px-4 py-3">
+  <div class="code-panel overflow-x-auto px-4 py-4" set:html={highlightedCode} />
+  <div class="py-output-section border-t border-border px-4 py-3">
     <p class="mb-1.5 text-xs font-medium text-text-muted">Output</p>
     <pre
-      class="py-output min-h-[2.5rem] overflow-x-auto font-mono text-sm leading-relaxed text-text">Run the code to see output here.</pre>
+      class="py-output min-h-[2.5rem] overflow-x-auto font-mono text-sm leading-relaxed"
+      >Run the code to see output here.</pre
+    >
   </div>
 </div>

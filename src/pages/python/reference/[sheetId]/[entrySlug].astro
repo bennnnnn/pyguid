@@ -28,7 +28,7 @@ const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(referenceEntryUrl(sheetId, entrySlug), `${siteUrl}/`).href;
 const chapterRefUrl = new URL(referenceChapterUrl(sheetId), `${siteUrl}/`).href;
 const { code } = getReferenceEntryCode(page);
-const title = `${page.entry.name} — ${page.sheet.title} — ${SITE.name}`;
+const title = `${page.entry.title} — ${page.sheet.title} — ${SITE.name}`;
 const description =
   page.entry.summary.length >= 120
     ? `${page.entry.summary} Runnable Python example on ${SITE.name}.`
@@ -38,12 +38,12 @@ const jsonLd = [
     { name: SITE.name, url: `${siteUrl}/` },
     { name: "Reference", url: `${siteUrl}/python/reference/` },
     { name: page.sheet.title, url: chapterRefUrl },
-    { name: page.entry.name, url: pageUrl },
+    { name: page.entry.title, url: pageUrl },
   ]),
   techArticleJsonLd({
     siteUrl,
     url: pageUrl,
-    headline: `${page.entry.name} — ${page.sheet.title}`,
+    headline: `${page.entry.title} — ${page.sheet.title}`,
     description: page.entry.summary,
     articleBody: code,
   }),

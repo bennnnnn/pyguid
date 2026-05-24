@@ -1,0 +1,21 @@
+---
+import { highlightPython, type CodeTheme } from "../lib/highlight-code";
+
+interface Props {
+  code: string;
+  /** Dark panel (lessons) or light inset (reference static blocks) */
+  variant?: "dark" | "light";
+  class?: string;
+  "aria-label"?: string;
+}
+
+const { code, variant = "dark", class: className, "aria-label": ariaLabel } = Astro.props;
+const theme: CodeTheme = variant === "light" ? "catppuccin-latte" : "dracula";
+const html = await highlightPython(code, theme);
+---
+
+<div
+  class:list={[variant === "light" && "highlighted-code--light", className]}
+  aria-label={ariaLabel}
+  set:html={html}
+/>
