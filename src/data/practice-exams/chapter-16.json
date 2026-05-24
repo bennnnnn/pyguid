@@ -1,239 +1,245 @@
 {
   "chapter": 16,
-  "chapterTitle": "Debugging",
-  "title": "Debugging Practice Exam",
-  "description": "Practice reading tracebacks, using pdb, and measuring performance with cProfile and timeit.",
+  "chapterTitle": "Error Handling",
+  "title": "Error Handling Quiz",
+  "description": "Practice try/except, reading tracebacks, raising errors, and common exceptions.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "What is a good first debugging step when code fails?",
+      "prompt": "Which block catches exceptions in Python?",
       "options": [
-        "Read the error message and traceback carefully",
-        "Delete the file",
-        "Disable all exceptions",
-        "Rewrite in another language"
+        "try / except",
+        "catch / throw",
+        "handle / rescue",
+        "if / error"
       ],
       "correctIndex": 0,
-      "explanation": "The traceback points to the failing line and exception type."
+      "explanation": "try runs code; except handles specified exception types."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What does print() debugging mean?",
+      "prompt": "What does except ValueError: do?",
       "options": [
-        "Inserting print statements to inspect variable values",
-        "Removing all output",
-        "Using only pytest",
-        "Converting code to JSON"
+        "Catches only ValueError (and subclasses)",
+        "Catches every possible error",
+        "Stops the program without handling",
+        "Raises ValueError automatically"
       ],
       "correctIndex": 0,
-      "explanation": "Temporary prints reveal what the program is doing at runtime."
+      "explanation": "Naming an exception type limits what the except block handles."
     },
     {
       "id": "3",
-      "type": "truefalse",
-      "prompt": "A debugger lets you pause execution and inspect variables line by line.",
-      "correct": true,
-      "explanation": "pdb and IDE debuggers help step through code beyond print statements."
+      "type": "choice",
+      "prompt": "What is a traceback?",
+      "options": [
+        "A report showing where an error occurred and the call chain",
+        "A type of loop",
+        "A comment in code",
+        "A pip package"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tracebacks list file, line, and function calls leading to the exception."
     },
     {
       "id": "4",
-      "type": "choice",
-      "prompt": "help(some_function) shows:",
-      "options": [
-        "Docstring and basic signature information",
-        "The function's source file on disk only",
-        "A guaranteed fix for bugs",
-        "SQL query results"
-      ],
-      "correctIndex": 0,
-      "explanation": "help() and dir() explore what an object can do."
+      "type": "truefalse",
+      "prompt": "You can read the bottom line of a traceback to see the exception type and message.",
+      "correct": true,
+      "explanation": "The last line usually states something like ValueError: invalid literal."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "import pdb; pdb.set_trace() is used to:",
+      "prompt": "What does raise ValueError(\"bad input\") do?",
       "options": [
-        "Start an interactive debugger at that line",
-        "Speed up loops automatically",
-        "Install packages",
-        "Parse JSON"
+        "Creates and throws a ValueError with that message",
+        "Silently ignores errors",
+        "Imports the ValueError module",
+        "Prints a warning only"
       ],
       "correctIndex": 0,
-      "explanation": "set_trace drops into pdb when that line runs."
+      "explanation": "raise stops normal flow and propagates an exception to callers or except blocks."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "In pdb, the n command typically:",
+      "prompt": "Which exception is raised by int(\"abc\")?",
       "options": [
-        "Steps to the next line in the current function",
-        "Quits Python",
-        "Deletes variables",
-        "Runs pytest"
+        "ValueError",
+        "KeyError",
+        "IndexError",
+        "ImportError"
       ],
       "correctIndex": 0,
-      "explanation": "n (next) executes the current line and stops at the next."
+      "explanation": "Invalid conversion to int raises ValueError."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "The bottom line of a traceback usually shows:",
+      "prompt": "What happens if an exception is not caught?",
       "options": [
-        "The exception type and message",
-        "The Python version only",
-        "All installed pip packages",
-        "Your git branch"
+        "The program terminates and prints a traceback",
+        "Python ignores it",
+        "It becomes a warning only",
+        "The line is skipped silently"
       ],
       "correctIndex": 0,
-      "explanation": "TypeError, ValueError, etc. tell you what went wrong."
+      "explanation": "Uncaught exceptions bubble up and stop execution with a traceback."
     },
     {
       "id": "8",
-      "type": "truefalse",
-      "prompt": "Reading traceback frames from bottom to top shows where the error was raised.",
-      "correct": true,
-      "explanation": "The last frame is the immediate cause; frames above show the call chain."
+      "type": "choice",
+      "prompt": "What does d[\"missing\"] raise when the key is absent?",
+      "options": [
+        "KeyError",
+        "ValueError",
+        "TypeError",
+        "SyntaxError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dictionary lookup with [] on a missing key raises KeyError."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "cProfile is used to:",
-      "options": [
-        "Measure where a program spends time",
-        "Format JSON",
-        "Open CSV files",
-        "Create classes"
-      ],
-      "correctIndex": 0,
-      "explanation": "Profiling finds slow functions in real runs."
+      "type": "truefalse",
+      "prompt": "A bare except: catches all exceptions including KeyboardInterrupt.",
+      "correct": true,
+      "explanation": "Bare except is broad; prefer specific types and avoid masking system exits."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "timeit.timeit() helps you:",
+      "prompt": "What does the else clause on a try block run?",
       "options": [
-        "Benchmark small code snippets repeatably",
-        "Fix syntax errors",
-        "Install Flask",
-        "Read files faster"
+        "When no exception occurred in try",
+        "When any exception occurred",
+        "Always before try",
+        "Only in finally"
       ],
       "correctIndex": 0,
-      "explanation": "timeit runs code many times to compare approaches fairly."
+      "explanation": "try/except/else: else runs if try completed without raising."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "Before optimizing, you should usually:",
+      "prompt": "What does finally do?",
       "options": [
-        "Profile to find the actual bottleneck",
-        "Rewrite everything in assembly",
-        "Remove all loops",
-        "Skip measuring"
+        "Runs whether or not an exception occurred",
+        "Runs only on success",
+        "Replaces except entirely",
+        "Imports modules"
       ],
       "correctIndex": 0,
-      "explanation": "Measure first; optimize what actually costs time."
+      "explanation": "finally is for cleanup code that must run in all cases."
     },
     {
       "id": "12",
-      "type": "truefalse",
-      "prompt": "A NameError often means a variable was used before it was defined.",
-      "correct": true,
-      "explanation": "Check spelling and that assignment happened before use."
+      "type": "choice",
+      "prompt": "Which is raised when dividing by zero?",
+      "options": [
+        "ZeroDivisionError",
+        "ValueError",
+        "OverflowError",
+        "ArithmeticWarning"
+      ],
+      "correctIndex": 0,
+      "explanation": "Division or modulo by zero raises ZeroDivisionError."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "dir(obj) without arguments in pdb or a shell shows:",
+      "prompt": "What does except Exception as e: give you?",
       "options": [
-        "Names available on obj",
-        "Only private methods",
-        "Git history",
-        "HTTP headers"
+        "A reference to the exception instance in e",
+        "A list of all tracebacks",
+        "Only the error message as a string in e always",
+        "A syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "dir lists attributes and methods to explore APIs."
+      "explanation": "as e binds the caught exception object for logging or inspection."
     },
     {
       "id": "14",
-      "type": "choice",
-      "prompt": "Reproducing a bug reliably means:",
-      "options": [
-        "You can trigger it again with known steps",
-        "The bug is fixed",
-        "Tests are deleted",
-        "The code has no inputs"
-      ],
-      "correctIndex": 0,
-      "explanation": "Reproduction is required before you can verify a fix."
+      "type": "truefalse",
+      "prompt": "SyntaxError happens before the program runs, often when parsing invalid code.",
+      "correct": true,
+      "explanation": "Syntax errors are detected at compile/parse time, not during normal runtime logic."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Logging compared to random prints:",
+      "prompt": "What is IndexError?",
       "options": [
-        "Levels and format can be controlled in one place",
-        "Always slower than deleting code",
-        "Cannot go to a file",
-        "Replaces exceptions"
+        "Sequence index out of range",
+        "Invalid dictionary key",
+        "Wrong import path",
+        "File not found"
       ],
       "correctIndex": 0,
-      "explanation": "logging is structured; prints are fine for quick checks."
+      "explanation": "Accessing list[i] with an invalid index raises IndexError."
     },
     {
       "id": "16",
-      "type": "truefalse",
-      "prompt": "Rubber duck debugging means explaining the problem out loud to clarify your thinking.",
-      "correct": true,
-      "explanation": "Teaching the code line by line often reveals the mistake."
+      "type": "choice",
+      "prompt": "Why handle expected errors with try/except?",
+      "options": [
+        "Provide friendly recovery instead of crashing",
+        "Make code slower on purpose",
+        "Hide all bugs permanently",
+        "Replace testing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Handle predictable failures (bad input, missing files) with clear user-facing behavior."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "After fixing a bug, you should:",
+      "prompt": "What does TypeError usually mean?",
       "options": [
-        "Re-run the program and add a test if possible",
-        "Never run the code again",
-        "Remove all error handling",
-        "Disable tracebacks"
+        "An operation was applied to the wrong type",
+        "A key was missing",
+        "Division by zero",
+        "Invalid syntax in source file"
       ],
       "correctIndex": 0,
-      "explanation": "Verify the fix and prevent the bug from returning."
+      "explanation": "TypeError: unsupported operand or wrong argument types."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "python -m pdb script.py runs:",
+      "prompt": "After except handles an error, execution continues:",
       "options": [
-        "script.py under the debugger from the start",
-        "Only unit tests",
-        "A web server",
-        "JSON validation only"
+        "After the try/except block unless you re-raise",
+        "At the line that caused the error",
+        "Only inside the traceback",
+        "Never; the program always exits"
       ],
       "correctIndex": 0,
-      "explanation": "The -m pdb flag starts pdb before the first line runs."
+      "explanation": "Unless you raise again or exit, code after the block runs normally."
     },
     {
       "id": "19",
-      "type": "choice",
-      "prompt": "An off-by-one error often appears as:",
-      "options": [
-        "IndexError or wrong loop count by one",
-        "Only JSON errors",
-        "Only import errors",
-        "Only file not found"
-      ],
-      "correctIndex": 0,
-      "explanation": "Check range bounds and whether you used < vs <=."
+      "type": "truefalse",
+      "prompt": "It is good practice to catch only the exceptions you expect and can handle.",
+      "correct": true,
+      "explanation": "Specific except clauses avoid hiding unexpected bugs."
     },
     {
       "id": "20",
-      "type": "truefalse",
-      "prompt": "Smaller test cases help isolate which input triggers a failure.",
-      "correct": true,
-      "explanation": "Shrink the example until the bug is obvious."
+      "type": "choice",
+      "prompt": "What does FileNotFoundError indicate?",
+      "options": [
+        "An open() or similar call could not find the file",
+        "A variable was undefined",
+        "A list index was too large",
+        "Invalid indentation"
+      ],
+      "correctIndex": 0,
+      "explanation": "FileNotFoundError is a common OSError subclass for missing paths."
     }
   ]
 }

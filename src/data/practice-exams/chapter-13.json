@@ -1,230 +1,245 @@
 {
   "chapter": 13,
-  "chapterTitle": "Error Handling",
-  "title": "Error Handling Practice Exam",
-  "description": "Practice try/except, reading tracebacks, raising errors, and common exceptions.",
+  "chapterTitle": "Dictionaries",
+  "title": "Dictionaries Quiz",
+  "description": "Practice dictionary keys, access methods, looping, and basic comprehensions.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Which block catches exceptions in Python?",
-      "options": ["try / except", "catch / throw", "handle / rescue", "if / error"],
-      "correctIndex": 0,
-      "explanation": "try runs code; except handles specified exception types."
+      "prompt": "What does {\"a\": 1, \"b\": 2} represent in Python?",
+      "options": [
+        "A list of tuples",
+        "A dictionary mapping keys to values",
+        "A set of strings",
+        "Two separate variables"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dictionaries store key–value pairs inside curly braces."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What does except ValueError: do?",
+      "prompt": "How do you read the value for key \"name\" in dict user?",
       "options": [
-        "Catches only ValueError (and subclasses)",
-        "Catches every possible error",
-        "Stops the program without handling",
-        "Raises ValueError automatically"
+        "user.name",
+        "user[\"name\"]",
+        "user(name)",
+        "get user name"
       ],
-      "correctIndex": 0,
-      "explanation": "Naming an exception type limits what the except block handles."
+      "correctIndex": 1,
+      "explanation": "Bracket notation user[\"name\"] looks up the key and returns its value."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "What is a traceback?",
+      "prompt": "What does user.get(\"age\", 0) return if \"age\" is missing?",
       "options": [
-        "A report showing where an error occurred and the call chain",
-        "A type of loop",
-        "A comment in code",
-        "A pip package"
+        "KeyError",
+        "None only",
+        "0",
+        "False"
       ],
-      "correctIndex": 0,
-      "explanation": "Tracebacks list file, line, and function calls leading to the exception."
+      "correctIndex": 2,
+      "explanation": "get() returns the default (here 0) when the key is not found."
     },
     {
       "id": "4",
       "type": "truefalse",
-      "prompt": "You can read the bottom line of a traceback to see the exception type and message.",
+      "prompt": "Dictionary keys must be immutable and hashable.",
       "correct": true,
-      "explanation": "The last line usually states something like ValueError: invalid literal."
+      "explanation": "Keys like strings, numbers, and tuples work; lists cannot be keys."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "What does raise ValueError(\"bad input\") do?",
+      "prompt": "What does d.items() return?",
       "options": [
-        "Creates and throws a ValueError with that message",
-        "Silently ignores errors",
-        "Imports the ValueError module",
-        "Prints a warning only"
+        "A list of keys only",
+        "A view of (key, value) pairs",
+        "A sorted list of values",
+        "The number of entries"
       ],
-      "correctIndex": 0,
-      "explanation": "raise stops normal flow and propagates an exception to callers or except blocks."
+      "correctIndex": 1,
+      "explanation": "items() yields key–value pairs, useful when looping over a dict."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "Which exception is raised by int(\"abc\")?",
-      "options": ["ValueError", "KeyError", "IndexError", "ImportError"],
+      "prompt": "Which loop prints each key and value in dict d?",
+      "options": [
+        "for k, v in d.items():",
+        "for k, v in d.keys():",
+        "for v in d.pairs():",
+        "for k in d.values(): print(k, v)"
+      ],
       "correctIndex": 0,
-      "explanation": "Invalid conversion to int raises ValueError."
+      "explanation": "items() unpacks into key and value in a for loop."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "What happens if an exception is not caught?",
+      "prompt": "What does scores.pop(\"quiz\") do?",
       "options": [
-        "The program terminates and prints a traceback",
-        "Python ignores it",
-        "It becomes a warning only",
-        "The line is skipped silently"
+        "Returns the value for \"quiz\" and removes that entry",
+        "Returns True if \"quiz\" exists",
+        "Copies \"quiz\" without removing it",
+        "Adds \"quiz\" with value None"
       ],
       "correctIndex": 0,
-      "explanation": "Uncaught exceptions bubble up and stop execution with a traceback."
+      "explanation": "pop(key) removes the key and returns its value; missing keys raise KeyError."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "What does d[\"missing\"] raise when the key is absent?",
-      "options": ["KeyError", "ValueError", "TypeError", "SyntaxError"],
-      "correctIndex": 0,
-      "explanation": "Dictionary lookup with [] on a missing key raises KeyError."
+      "prompt": "How do you add or change key \"x\" to value 10 in dict d?",
+      "options": [
+        "d.add(\"x\", 10)",
+        "d[\"x\"] = 10",
+        "d.insert(\"x\", 10)",
+        "d.set(\"x\", 10)"
+      ],
+      "correctIndex": 1,
+      "explanation": "Assignment with brackets creates or updates an entry."
     },
     {
       "id": "9",
       "type": "truefalse",
-      "prompt": "A bare except: catches all exceptions including KeyboardInterrupt.",
+      "prompt": "Accessing d[\"missing\"] when the key is absent raises KeyError.",
       "correct": true,
-      "explanation": "Bare except is broad; prefer specific types and avoid masking system exits."
+      "explanation": "Bracket lookup fails loudly; use get() for a safe default."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What does the else clause on a try block run?",
+      "prompt": "What is {k: v * 2 for k, v in {\"a\": 1}.items()}?",
       "options": [
-        "When no exception occurred in try",
-        "When any exception occurred",
-        "Always before try",
-        "Only in finally"
+        "A dict comprehension",
+        "A list comprehension",
+        "A set comprehension",
+        "Invalid syntax"
       ],
       "correctIndex": 0,
-      "explanation": "try/except/else: else runs if try completed without raising."
+      "explanation": "{key_expr: value_expr for ...} builds a new dictionary."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "What does finally do?",
+      "prompt": "What does len({\"a\": 1, \"b\": 2}) return?",
       "options": [
-        "Runs whether or not an exception occurred",
-        "Runs only on success",
-        "Replaces except entirely",
-        "Imports modules"
+        "4",
+        "3",
+        "2",
+        "1"
       ],
-      "correctIndex": 0,
-      "explanation": "finally is for cleanup code that must run in all cases."
+      "correctIndex": 2,
+      "explanation": "len() counts key–value pairs, here two entries."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "Which is raised when dividing by zero?",
+      "prompt": "Which expression lists all keys in dict d?",
       "options": [
-        "ZeroDivisionError",
-        "ValueError",
-        "OverflowError",
-        "ArithmeticWarning"
+        "d.keys()",
+        "d.values()",
+        "d.items()",
+        "keys(d)"
       ],
       "correctIndex": 0,
-      "explanation": "Division or modulo by zero raises ZeroDivisionError."
+      "explanation": "keys() returns a dynamic view of the dictionary's keys."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "What does except Exception as e: give you?",
+      "prompt": "What does \"city\" in address check?",
       "options": [
-        "A reference to the exception instance in e",
-        "A list of all tracebacks",
-        "Only the error message as a string in e always",
-        "A syntax error"
+        "Whether the value \"city\" appears",
+        "Whether \"city\" is a key in address",
+        "Whether address is empty",
+        "Whether address is a list"
       ],
-      "correctIndex": 0,
-      "explanation": "as e binds the caught exception object for logging or inspection."
+      "correctIndex": 1,
+      "explanation": "in tests key membership for dictionaries."
     },
     {
       "id": "14",
       "type": "truefalse",
-      "prompt": "SyntaxError happens before the program runs, often when parsing invalid code.",
+      "prompt": "dict.update(other) merges key–value pairs from other into the dict.",
       "correct": true,
-      "explanation": "Syntax errors are detected at compile/parse time, not during normal runtime logic."
+      "explanation": "update() adds or overwrites entries from another mapping or iterable of pairs."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "What is IndexError?",
+      "prompt": "What does d.clear() do?",
       "options": [
-        "Sequence index out of range",
-        "Invalid dictionary key",
-        "Wrong import path",
-        "File not found"
+        "Deletes the variable d",
+        "Removes all entries from d",
+        "Returns a copy of d",
+        "Sorts d by key"
       ],
-      "correctIndex": 0,
-      "explanation": "Accessing list[i] with an invalid index raises IndexError."
+      "correctIndex": 1,
+      "explanation": "clear() empties the dictionary in place."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "Why handle expected errors with try/except?",
+      "prompt": "Which creates an empty dictionary?",
       "options": [
-        "Provide friendly recovery instead of crashing",
-        "Make code slower on purpose",
-        "Hide all bugs permanently",
-        "Replace testing"
+        "{}",
+        "set()",
+        "[]",
+        "dict[]"
       ],
       "correctIndex": 0,
-      "explanation": "Handle predictable failures (bad input, missing files) with clear user-facing behavior."
+      "explanation": "{} or dict() creates an empty dict; set() creates a set."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "What does TypeError usually mean?",
+      "prompt": "What is the value of {\"a\": 1}.get(\"b\") with no default given?",
       "options": [
-        "An operation was applied to the wrong type",
-        "A key was missing",
-        "Division by zero",
-        "Invalid syntax in source file"
+        "0",
+        "KeyError",
+        "None",
+        "\"\""
       ],
-      "correctIndex": 0,
-      "explanation": "TypeError: unsupported operand or wrong argument types."
+      "correctIndex": 2,
+      "explanation": "get() returns None when the key is missing and no default is provided."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "After except handles an error, execution continues:",
+      "prompt": "Why use .items() instead of looping only over .keys() when you need values too?",
       "options": [
-        "After the try/except block unless you re-raise",
-        "At the line that caused the error",
-        "Only inside the traceback",
-        "Never; the program always exits"
+        "keys() is deprecated",
+        "items() gives both key and value in one loop",
+        "values() cannot be read from a dict",
+        "items() sorts the dict automatically"
       ],
-      "correctIndex": 0,
-      "explanation": "Unless you raise again or exit, code after the block runs normally."
+      "correctIndex": 1,
+      "explanation": "items() avoids a second lookup per key when you need each value."
     },
     {
       "id": "19",
       "type": "truefalse",
-      "prompt": "It is good practice to catch only the exceptions you expect and can handle.",
+      "prompt": "In Python 3.7+, dictionaries preserve insertion order.",
       "correct": true,
-      "explanation": "Specific except clauses avoid hiding unexpected bugs."
+      "explanation": "Modern dicts remember the order keys were added, though you should not rely on order for logic unless needed."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "What does FileNotFoundError indicate?",
+      "prompt": "What does {x: x**2 for x in range(3)} produce?",
       "options": [
-        "An open() or similar call could not find the file",
-        "A variable was undefined",
-        "A list index was too large",
-        "Invalid indentation"
+        "{0: 0, 1: 1, 2: 4}",
+        "[0, 1, 4]",
+        "{0, 1, 4}",
+        "A syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "FileNotFoundError is a common OSError subclass for missing paths."
+      "explanation": "The comprehension maps each x in 0,1,2 to its square."
     }
   ]
 }

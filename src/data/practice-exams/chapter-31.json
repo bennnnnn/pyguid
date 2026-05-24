@@ -1,0 +1,239 @@
+{
+  "chapter": 31,
+  "chapterTitle": "Python Mini Programs",
+  "title": "Python Mini Programs Quiz",
+  "description": "Practice combining functions, data structures, files, and modules in small programs.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Splitting a project into multiple .py files helps:",
+      "options": [
+        "Separate concerns and reuse code",
+        "Prevent all imports",
+        "Remove functions",
+        "Disable tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Modules keep each file focused."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "if __name__ == \"__main__\": guards:",
+      "options": [
+        "Code that should run only when the file is executed directly",
+        "All imports always",
+        "JSON parsing only",
+        "SQL only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Imported modules should not run CLI code accidentally."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "A quiz app loop often uses:",
+      "options": [
+        "while with input() and score tracking",
+        "Only recursion",
+        "Only classes",
+        "No variables"
+      ],
+      "correctIndex": 0,
+      "explanation": "Loops drive question-by-question flow."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "Storing questions in a list of dicts is a simple data model for quizzes.",
+      "correct": true,
+      "explanation": "Each dict can hold prompt, choices, and answer key."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "argparse in a multi-file CLI project provides:",
+      "options": [
+        "Subcommands and --help for the terminal",
+        "HTML pages",
+        "SQLite only",
+        "Regex only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Users run python -m pkg add \"task\" style commands."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "Tests for storage logic in a capstone should:",
+      "options": [
+        "Call functions directly without manual clicking",
+        "Replace all Python code",
+        "Delete data files always",
+        "Skip asserts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unit tests guard core behavior."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "A personality quiz scores answers by:",
+      "options": [
+        "Mapping choices to categories and tallying",
+        "Ignoring input",
+        "Only printing once",
+        "Using Flask only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tally dicts or counters accumulate results."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "Refactoring means improving structure without changing outward behavior.",
+      "correct": true,
+      "explanation": "Extract functions when a file grows hard to read."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "pyproject.toml in a capstone often declares:",
+      "options": [
+        "Project name and dependencies",
+        "Only HTML",
+        "Only images",
+        "Only regex"
+      ],
+      "correctIndex": 0,
+      "explanation": "Packaging metadata supports pip install -e ."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Separating cli.py from storage.py means:",
+      "options": [
+        "UI/argument parsing vs data rules live apart",
+        "No functions allowed",
+        "No imports",
+        "No tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Layering keeps changes localized."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Validating user input in a project prevents:",
+      "options": [
+        "Crashes from bad data and confusing errors",
+        "All loops",
+        "All dicts",
+        "All files"
+      ],
+      "correctIndex": 0,
+      "explanation": "Check ranges, empty strings, and types early."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "Version control (git) helps track project history and collaborate.",
+      "correct": true,
+      "explanation": "Commit small working steps with clear messages."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "A capstone should demonstrate skills from:",
+      "options": [
+        "Variables through modules, files, and tests",
+        "Only print",
+        "Only one operator",
+        "Only comments"
+      ],
+      "correctIndex": 0,
+      "explanation": "Projects integrate the full course path."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Reading config or data from JSON in a project uses:",
+      "options": [
+        "json.load and error handling for missing files",
+        "only input()",
+        "only regex",
+        "only pdb"
+      ],
+      "correctIndex": 0,
+      "explanation": "Persist state between runs."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Docstrings on public functions help:",
+      "options": [
+        "Teammates and future you understand intent",
+        "Disable pytest",
+        "Remove types",
+        "Skip logging"
+      ],
+      "correctIndex": 0,
+      "explanation": "Document parameters and return values briefly."
+    },
+    {
+      "id": "16",
+      "type": "truefalse",
+      "prompt": "Starting with a minimal working version then adding features is a good strategy.",
+      "correct": true,
+      "explanation": "Ship small slices that run end to end."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "Relative imports in a package require:",
+      "options": [
+        "A package structure (directories with __init__.py or namespace)",
+        "No files",
+        "Only one line scripts",
+        "Flask installed"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use python -m package.module to run modules correctly."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "After finishing PyGuide projects, next steps include:",
+      "options": [
+        "Build your own ideas and keep testing code",
+        "Stop writing Python",
+        "Delete all modules",
+        "Avoid files"
+      ],
+      "correctIndex": 0,
+      "explanation": "Practice and personal projects cement skills."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "Handling KeyboardInterrupt in a CLI loop:",
+      "options": [
+        "Lets users exit gracefully with a message",
+        "Is impossible",
+        "Deletes source",
+        "Disables argparse"
+      ],
+      "correctIndex": 0,
+      "explanation": "try/except around input loops improves UX."
+    },
+    {
+      "id": "20",
+      "type": "truefalse",
+      "prompt": "Clear menu text and error messages make CLI projects feel professional.",
+      "correct": true,
+      "explanation": "Polish matters even in terminal apps."
+    }
+  ]
+}

@@ -1,175 +1,245 @@
 {
   "chapter": 7,
-  "chapterTitle": "Lists",
-  "title": "Lists Practice Exam",
-  "description": "Test list indexing, append, extend, slicing, pop, and basic sorting.",
+  "chapterTitle": "Strings",
+  "title": "Strings Quiz",
+  "description": "Review integers, floats, booleans, strings, None, truthiness, and the type() function.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "What is the index of the first item in a Python list?",
-      "options": ["0", "1", "-0", "Depends on list length"],
+      "prompt": "What is the type of `3.14`?",
+      "options": [
+        "float",
+        "int",
+        "str",
+        "bool"
+      ],
       "correctIndex": 0,
-      "explanation": "Python lists are zero-indexed."
+      "explanation": "A decimal point makes the literal a float, not an int."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What is `['a', 'b', 'c'][1]`?",
-      "options": ["'b'", "'a'", "'c'", "1"],
+      "prompt": "What does `type(7)` return?",
+      "options": [
+        "<class 'int'>",
+        "<class 'float'>",
+        "7",
+        "'int'"
+      ],
       "correctIndex": 0,
-      "explanation": "Index 1 is the second element."
+      "explanation": "type() returns the class object representing the value's type."
     },
     {
       "id": "3",
       "type": "truefalse",
-      "prompt": "Negative indices count from the end of a list.",
+      "prompt": "In Python, `True` and `False` are boolean values.",
       "correct": true,
-      "explanation": "Index -1 is the last item, -2 the second to last, and so on."
+      "explanation": "bool is the type for logical true and false; the literals are capitalized True and False."
     },
     {
       "id": "4",
       "type": "choice",
-      "prompt": "After `nums = [1]` then `nums.append(2)`, what is `nums`?",
-      "options": ["[1, 2]", "[2, 1]", "[1, [2]]", "[1]"],
+      "prompt": "Which value is falsy?",
+      "options": [
+        "0",
+        "1",
+        "'hello'",
+        "[1]"
+      ],
       "correctIndex": 0,
-      "explanation": "append adds a single element to the end of the list."
+      "explanation": "Zero, empty containers, None, and empty strings are falsy in boolean context."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "What is the difference between append and extend?",
+      "prompt": "What is `bool('')`?",
       "options": [
-        "append adds one item; extend adds each item from an iterable",
-        "They are identical",
-        "extend adds one nested list only",
-        "append only works on strings"
+        "False",
+        "True",
+        "None",
+        "''"
       ],
       "correctIndex": 0,
-      "explanation": "extend([2,3]) adds 2 and 3; append([2,3]) adds the whole list as one element."
+      "explanation": "An empty string is falsy, so bool('') is False."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What is `[10, 20, 30, 40][1:3]`?",
-      "options": ["[20, 30]", "[10, 20]", "[30, 40]", "[20, 30, 40]"],
+      "prompt": "What is the value of `None`?",
+      "options": [
+        "A special object meaning 'no value'",
+        "Same as 0",
+        "Same as False",
+        "An empty string"
+      ],
       "correctIndex": 0,
-      "explanation": "Slicing includes the start index and stops before the end index."
+      "explanation": "None is its own type (NoneType) representing absence of a value."
     },
     {
       "id": "7",
-      "type": "truefalse",
-      "prompt": "list.pop() removes and returns the last item by default.",
-      "correct": true,
-      "explanation": "pop() with no argument removes the final element; pop(i) removes at index i."
+      "type": "choice",
+      "prompt": "Which expression produces a string?",
+      "options": [
+        "'42'",
+        "42",
+        "42.0",
+        "True"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quotes create str literals; unquoted numbers and booleans are other types."
     },
     {
       "id": "8",
-      "type": "choice",
-      "prompt": "What is `items` after `items = [3, 1, 2]` then `items.sort()`?",
-      "options": ["[1, 2, 3]", "[3, 1, 2]", "[1, 3, 2]", "Error"],
-      "correctIndex": 0,
-      "explanation": "sort() orders the list in place ascending by default."
+      "type": "truefalse",
+      "prompt": "The empty list `[]` is falsy.",
+      "correct": true,
+      "explanation": "Empty sequences and collections evaluate to False in if statements and bool()."
     },
     {
       "id": "9",
       "type": "choice",
-      "prompt": "What does `len([[]])` return?",
-      "options": ["1", "0", "2", "Error"],
+      "prompt": "What is `10 / 4` in Python 3?",
+      "options": [
+        "2.5",
+        "2",
+        "2.0 only if cast",
+        "3"
+      ],
       "correctIndex": 0,
-      "explanation": "The outer list contains one element: an empty inner list."
+      "explanation": "The / operator always returns a float in Python 3, even when the result is whole."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "After `a = [1, 2]` and `a.extend([3])`, what is `a`?",
-      "options": ["[1, 2, 3]", "[1, 2, [3]]", "[3, 1, 2]", "[1, 2]"],
+      "prompt": "What does `type(None)` return?",
+      "options": [
+        "<class 'NoneType'>",
+        "<class 'null'>",
+        "None",
+        "<class 'None'>"
+      ],
       "correctIndex": 0,
-      "explanation": "extend unpacks the iterable and appends each element."
+      "explanation": "None belongs to the NoneType class."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "What is `colors[-1]` for `colors = ['red', 'green', 'blue']`?",
-      "options": ["'blue'", "'red'", "'green'", "-1"],
+      "prompt": "Which is truthy?",
+      "options": [
+        "'0'",
+        "0",
+        "[]",
+        "None"
+      ],
       "correctIndex": 0,
-      "explanation": "-1 refers to the last element."
+      "explanation": "Non-empty strings are truthy, including the string '0'."
     },
     {
       "id": "12",
       "type": "truefalse",
-      "prompt": "Lists are mutable—you can change, add, and remove items after creation.",
+      "prompt": "`isinstance(3, int)` returns True.",
       "correct": true,
-      "explanation": "Unlike tuples, lists support in-place modification."
+      "explanation": "isinstance checks whether an object is an instance of a given type."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "What is returned by `[5, 2, 8].pop(0)`?",
-      "options": ["5", "2", "[2, 8]", "0"],
+      "prompt": "What is `int(9.9)`?",
+      "options": [
+        "9",
+        "10",
+        "9.9",
+        "Error"
+      ],
       "correctIndex": 0,
-      "explanation": "pop(0) removes and returns the element at index 0."
+      "explanation": "int() truncates toward zero; it does not round to the nearest integer."
     },
     {
       "id": "14",
       "type": "choice",
-      "prompt": "What is `data[::2]` for `data = [0, 1, 2, 3, 4]`?",
-      "options": ["[0, 2, 4]", "[1, 3]", "[0, 1, 2]", "Every item reversed"],
+      "prompt": "Which pair has the same type?",
+      "options": [
+        "3 and 99",
+        "3 and 3.0",
+        "True and 1",
+        "None and False"
+      ],
       "correctIndex": 0,
-      "explanation": "A step of 2 takes every other element starting at index 0."
+      "explanation": "Both 3 and 99 are int literals."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Which creates an empty list?",
-      "options": ["[]", "list{}", "empty()", "list[]"],
+      "prompt": "What is `bool(None)`?",
+      "options": [
+        "False",
+        "True",
+        "None",
+        "0"
+      ],
       "correctIndex": 0,
-      "explanation": "[] or list() both construct empty lists."
+      "explanation": "None is falsy."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "After `x = [1, 2]` then `y = x` then `y.append(3)`, what is `x`?",
-      "options": ["[1, 2, 3]", "[1, 2]", "[3]", "Error"],
+      "prompt": "Strings are immutable. What does that mean?",
+      "options": [
+        "You cannot change characters in place; create a new string instead",
+        "Strings cannot be stored in variables",
+        "Strings are always falsy",
+        "str is not a built-in type"
+      ],
       "correctIndex": 0,
-      "explanation": "y and x refer to the same list object, so mutating y affects x."
+      "explanation": "Methods like .upper() return new strings rather than modifying the original."
     },
     {
       "id": "17",
       "type": "truefalse",
-      "prompt": "sorted([3, 1, 2]) returns a new sorted list without changing the original.",
+      "prompt": "Every object in Python has a type.",
       "correct": true,
-      "explanation": "sorted() is non-destructive; sort() modifies in place."
+      "explanation": "All values are objects, and type() or isinstance can identify their class."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "What happens?\n\nnums = [1, 2, 3]\nnums[1] = 99",
+      "prompt": "What is `float(5)`?",
       "options": [
-        "nums becomes [1, 99, 3]",
-        "A new list is created only in nums[1]",
-        "SyntaxError",
-        "Index 1 cannot be assigned"
+        "5.0",
+        "5",
+        "'5.0'",
+        "Error"
       ],
       "correctIndex": 0,
-      "explanation": "Lists support item assignment by index."
+      "explanation": "float() converts integers to floating-point numbers."
     },
     {
       "id": "19",
       "type": "choice",
-      "prompt": "What is `[1, 2] + [3]`?",
-      "options": ["[1, 2, 3]", "[1, 2, [3]]", "[4, 2]", "Error"],
+      "prompt": "Which best describes Python's dynamic typing?",
+      "options": [
+        "A variable can refer to values of different types over time",
+        "Types are chosen at compile time only",
+        "All variables must be declared as int or str",
+        "Types cannot be inspected at runtime"
+      ],
       "correctIndex": 0,
-      "explanation": "+ concatenates lists into a new list."
+      "explanation": "Names are not permanently tied to one type; assignment can change what type a name refers to."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "Which method removes the first occurrence of a value?",
-      "options": ["remove()", "pop()", "clear()", "discard()"],
+      "prompt": "What is `type('3')`?",
+      "options": [
+        "<class 'str'>",
+        "<class 'int'>",
+        "<class 'float'>",
+        "3"
+      ],
       "correctIndex": 0,
-      "explanation": "remove(value) deletes by value; pop() deletes by index."
+      "explanation": "Quotes make '3' a string, not the integer 3."
     }
   ]
 }

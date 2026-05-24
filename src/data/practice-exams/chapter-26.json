@@ -1,0 +1,245 @@
+{
+  "chapter": 26,
+  "chapterTitle": "Type Hints",
+  "title": "Type Hints Quiz",
+  "description": "Review defining functions, parameters, return values, scope, and basic *args.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which keyword starts a function definition?",
+      "options": [
+        "func",
+        "def",
+        "function",
+        "define"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use def name(parameters): followed by an indented body."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does return 5 do inside a function?",
+      "options": [
+        "Prints 5 to the console",
+        "Ends the function and sends 5 back to the caller",
+        "Assigns 5 to a global variable only",
+        "Raises an exception"
+      ],
+      "correctIndex": 1,
+      "explanation": "return passes a value out of the function to whoever called it."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "How do you call a function named greet with no arguments?",
+      "options": [
+        "call greet",
+        "greet()",
+        "def greet()",
+        "greet"
+      ],
+      "correctIndex": 1,
+      "explanation": "Function calls use the name followed by parentheses."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "A function without a return statement returns None.",
+      "correct": true,
+      "explanation": "If execution finishes without return, Python implicitly returns None."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What is a parameter in def add(a, b):?",
+      "options": [
+        "The value passed when calling add(1, 2)",
+        "A name in the definition that receives a value",
+        "The return type of add",
+        "A global variable named a or b"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parameters are names in the definition; arguments are the values at call time."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What does def greet(name=\"Guest\"): allow?",
+      "options": [
+        "Calling greet() without an argument uses \"Guest\"",
+        "name must always be provided",
+        "name cannot be a string",
+        "Only keyword calls are allowed"
+      ],
+      "correctIndex": 0,
+      "explanation": "Default parameter values apply when the caller omits that argument."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "Inside a function, assigning to x without global usually creates:",
+      "options": [
+        "A local variable x",
+        "Always a global x",
+        "A syntax error",
+        "A module-level constant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Assignment binds a local name unless declared global or nonlocal."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "What does *args collect in def f(*args):?",
+      "options": [
+        "Extra positional arguments as a tuple",
+        "Extra keyword arguments as a dict",
+        "Only the first argument",
+        "All global variables"
+      ],
+      "correctIndex": 0,
+      "explanation": "*args packs any extra positional arguments into a tuple."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "print() inside a function displays output but does not return a useful result to the caller by default.",
+      "correct": true,
+      "explanation": "print shows text; return is how you pass data back for further use."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What is the result of:\ndef double(n):\n    return n * 2\n\ndouble(3)",
+      "options": [
+        "6",
+        "None",
+        "\"33\"",
+        "An error"
+      ],
+      "correctIndex": 0,
+      "explanation": "The function returns 3 * 2, which is 6."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Which call matches def area(width, height):?",
+      "options": [
+        "area(width=4, height=5)",
+        "area 4 5",
+        "area{4, 5}",
+        "area: 4, 5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Keyword arguments match parameters by name: area(width=4, height=5)."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "What does reading a global variable inside a function do (without assigning to it)?",
+      "options": [
+        "Looks up the name in outer scopes",
+        "Always creates a new local copy",
+        "Raises SyntaxError",
+        "Deletes the global"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reading a name searches local, enclosing, global, then builtin scopes."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "def total(*nums): return sum(nums)\nWhat is total(1, 2, 3)?",
+      "options": [
+        "6",
+        "(1, 2, 3)",
+        "3",
+        "None"
+      ],
+      "correctIndex": 0,
+      "explanation": "*nums is (1, 2, 3); sum adds them to 6."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "Function names should use snake_case by common Python style.",
+      "correct": true,
+      "explanation": "PEP 8 recommends lowercase with underscores for function names."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What is a docstring in a function?",
+      "options": [
+        "A comment starting with #",
+        "A string literal right after def used as documentation",
+        "The return type annotation only",
+        "An import statement"
+      ],
+      "correctIndex": 1,
+      "explanation": "A triple-quoted string as the first statement becomes __doc__."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Why return a value instead of only printing it?",
+      "options": [
+        "return is faster than print for all programs",
+        "The caller can use the result in expressions and other code",
+        "print cannot show numbers",
+        "return automatically saves to a file"
+      ],
+      "correctIndex": 1,
+      "explanation": "Return values let callers store, test, or combine results."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "What happens if you call a function with too few required arguments?",
+      "options": [
+        "TypeError",
+        "It uses None for missing args automatically",
+        "SyntaxError at import time",
+        "The function runs with empty strings"
+      ],
+      "correctIndex": 0,
+      "explanation": "Python raises TypeError when required parameters are not supplied."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "Which is valid after def f(): pass?",
+      "options": [
+        "f()",
+        "call f",
+        "run f()",
+        "execute def f"
+      ],
+      "correctIndex": 0,
+      "explanation": "pass is a no-op body; you still invoke the function with f()."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "Variables created inside a function are generally not visible outside it.",
+      "correct": true,
+      "explanation": "Locals stay inside the function unless returned or declared nonlocal/global."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "def show(*items):\n    for i in items:\n        print(i)\nshow(\"a\", \"b\") prints:",
+      "options": [
+        "a then b on separate lines",
+        "the tuple ('a', 'b') as one line only",
+        "nothing",
+        "a syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "*items receives ('a', 'b'); the loop prints each element."
+    }
+  ]
+}

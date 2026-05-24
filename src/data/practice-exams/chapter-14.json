@@ -1,230 +1,245 @@
 {
   "chapter": 14,
-  "chapterTitle": "Classes",
-  "title": "Classes Practice Exam",
-  "description": "Review classes, __init__, methods, instances, and basic inheritance.",
+  "chapterTitle": "Functions",
+  "title": "Functions Quiz",
+  "description": "Review defining functions, parameters, return values, scope, and basic *args.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Which keyword defines a new class?",
-      "options": ["class", "struct", "object", "def"],
-      "correctIndex": 0,
-      "explanation": "class Name: starts a class body with methods and attributes."
+      "prompt": "Which keyword starts a function definition?",
+      "options": [
+        "func",
+        "def",
+        "function",
+        "define"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use def name(parameters): followed by an indented body."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What is __init__ used for?",
+      "prompt": "What does return 5 do inside a function?",
       "options": [
-        "Initialize a new instance when it is created",
-        "Delete an instance",
-        "Import modules",
-        "Convert a class to a dict only"
+        "Prints 5 to the console",
+        "Ends the function and sends 5 back to the caller",
+        "Assigns 5 to a global variable only",
+        "Raises an exception"
       ],
-      "correctIndex": 0,
-      "explanation": "__init__ sets up instance state; it runs after the object is created."
+      "correctIndex": 1,
+      "explanation": "return passes a value out of the function to whoever called it."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "What is self in def greet(self):?",
+      "prompt": "How do you call a function named greet with no arguments?",
       "options": [
-        "The instance the method is called on",
-        "A global variable",
-        "The class name as a string",
-        "Always None"
+        "call greet",
+        "greet()",
+        "def greet()",
+        "greet"
       ],
-      "correctIndex": 0,
-      "explanation": "By convention, self refers to the current object."
+      "correctIndex": 1,
+      "explanation": "Function calls use the name followed by parentheses."
     },
     {
       "id": "4",
       "type": "truefalse",
-      "prompt": "dog = Dog() creates an instance of the Dog class.",
+      "prompt": "A function without a return statement returns None.",
       "correct": true,
-      "explanation": "Calling the class like a function constructs a new instance."
+      "explanation": "If execution finishes without return, Python implicitly returns None."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "How do you set an instance attribute name inside __init__?",
-      "options": ["self.name = name", "name = self", "Dog.name only", "global name"],
-      "correctIndex": 0,
-      "explanation": "self.attribute stores data on the instance."
+      "prompt": "What is a parameter in def add(a, b):?",
+      "options": [
+        "The value passed when calling add(1, 2)",
+        "A name in the definition that receives a value",
+        "The return type of add",
+        "A global variable named a or b"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parameters are names in the definition; arguments are the values at call time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What is a method?",
+      "prompt": "What does def greet(name=\"Guest\"): allow?",
       "options": [
-        "A function defined inside a class and called on instances",
-        "Any import statement",
-        "A module-level variable only",
-        "A built-in like len only"
+        "Calling greet() without an argument uses \"Guest\"",
+        "name must always be provided",
+        "name cannot be a string",
+        "Only keyword calls are allowed"
       ],
       "correctIndex": 0,
-      "explanation": "Methods are functions on objects; the first parameter is typically self."
+      "explanation": "Default parameter values apply when the caller omits that argument."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "class Cat(Animal): means Cat:",
+      "prompt": "Inside a function, assigning to x without global usually creates:",
       "options": [
-        "Inherits from Animal",
-        "Cannot use Animal methods",
-        "Is unrelated to Animal",
-        "Must not define __init__"
+        "A local variable x",
+        "Always a global x",
+        "A syntax error",
+        "A module-level constant"
       ],
       "correctIndex": 0,
-      "explanation": "Parentheses list base classes; subclasses inherit attributes and methods."
+      "explanation": "Assignment binds a local name unless declared global or nonlocal."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "How do you call a parent __init__ from a child class?",
+      "prompt": "What does *args collect in def f(*args):?",
       "options": [
-        "super().__init__(...)",
-        "parent.init()",
-        "Animal.__init__ only without super",
-        "self.parent()"
+        "Extra positional arguments as a tuple",
+        "Extra keyword arguments as a dict",
+        "Only the first argument",
+        "All global variables"
       ],
       "correctIndex": 0,
-      "explanation": "super() reaches the parent implementation in the method resolution order."
+      "explanation": "*args packs any extra positional arguments into a tuple."
     },
     {
       "id": "9",
       "type": "truefalse",
-      "prompt": "Instance attributes belong to a specific object, not shared by all instances unless defined on the class.",
+      "prompt": "print() inside a function displays output but does not return a useful result to the caller by default.",
       "correct": true,
-      "explanation": "self.x in __init__ creates per-instance data; class attributes are shared."
+      "explanation": "print shows text; return is how you pass data back for further use."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What does p.speak() require speak to be?",
+      "prompt": "What is the result of:\ndef double(n):\n    return n * 2\n\ndouble(3)",
       "options": [
-        "A method on p's class (or inherited)",
-        "A global function only",
-        "A module import",
-        "A property that cannot take ()"
+        "6",
+        "None",
+        "\"33\"",
+        "An error"
       ],
       "correctIndex": 0,
-      "explanation": "Dot access on an instance looks up methods on the class hierarchy."
+      "explanation": "The function returns 3 * 2, which is 6."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "What is an instance?",
+      "prompt": "Which call matches def area(width, height):?",
       "options": [
-        "One concrete object built from a class",
-        "The class definition itself",
-        "A pip package",
-        "A traceback"
+        "area(width=4, height=5)",
+        "area 4 5",
+        "area{4, 5}",
+        "area: 4, 5"
       ],
       "correctIndex": 0,
-      "explanation": "Each call to Class() produces a separate instance with its own state."
+      "explanation": "Keyword arguments match parameters by name: area(width=4, height=5)."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "Which defines a simple class with no custom methods yet?",
+      "prompt": "What does reading a global variable inside a function do (without assigning to it)?",
       "options": [
-        "class Box:\n    pass",
-        "def Box():",
-        "object Box = {}",
-        "class Box();"
+        "Looks up the name in outer scopes",
+        "Always creates a new local copy",
+        "Raises SyntaxError",
+        "Deletes the global"
       ],
       "correctIndex": 0,
-      "explanation": "class Box: pass is valid; you can add methods later."
+      "explanation": "Reading a name searches local, enclosing, global, then builtin scopes."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "Why use classes instead of only functions and dicts?",
+      "prompt": "def total(*nums): return sum(nums)\nWhat is total(1, 2, 3)?",
       "options": [
-        "Bundle data and behavior for related concepts",
-        "Avoid all methods",
-        "Replace Python's type system",
-        "Disable inheritance"
+        "6",
+        "(1, 2, 3)",
+        "3",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "Classes model entities (users, accounts) with both state and operations."
+      "explanation": "*nums is (1, 2, 3); sum adds them to 6."
     },
     {
       "id": "14",
       "type": "truefalse",
-      "prompt": "A subclass can override a method from its parent class.",
+      "prompt": "Function names should use snake_case by common Python style.",
       "correct": true,
-      "explanation": "Defining the same method name in the child replaces the parent's version for that class."
+      "explanation": "PEP 8 recommends lowercase with underscores for function names."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "What does __str__ typically customize?",
+      "prompt": "What is a docstring in a function?",
       "options": [
-        "The human-readable string from str(obj)",
-        "File open mode",
-        "Import order",
-        "Exception handling"
+        "A comment starting with #",
+        "A string literal right after def used as documentation",
+        "The return type annotation only",
+        "An import statement"
       ],
-      "correctIndex": 0,
-      "explanation": "__str__ returns a nice string for print() and str()."
+      "correctIndex": 1,
+      "explanation": "A triple-quoted string as the first statement becomes __doc__."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\nPoint(1, 2).y is:",
-      "options": ["2", "1", "Point", "None"],
-      "correctIndex": 0,
-      "explanation": "The second argument sets self.y to 2."
+      "prompt": "Why return a value instead of only printing it?",
+      "options": [
+        "return is faster than print for all programs",
+        "The caller can use the result in expressions and other code",
+        "print cannot show numbers",
+        "return automatically saves to a file"
+      ],
+      "correctIndex": 1,
+      "explanation": "Return values let callers store, test, or combine results."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "What is the class attribute used for?",
+      "prompt": "What happens if you call a function with too few required arguments?",
       "options": [
-        "Data or defaults shared by all instances of the class",
-        "Only private files",
-        "Replacing __init__",
-        "Running pip"
+        "TypeError",
+        "It uses None for missing args automatically",
+        "SyntaxError at import time",
+        "The function runs with empty strings"
       ],
       "correctIndex": 0,
-      "explanation": "Attributes defined on the class object are shared unless shadowed on an instance."
+      "explanation": "Python raises TypeError when required parameters are not supplied."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "isinstance(obj, Dog) checks whether:",
+      "prompt": "Which is valid after def f(): pass?",
       "options": [
-        "obj is an instance of Dog or a subclass",
-        "obj is the Dog class itself only",
-        "Dog is a module",
-        "obj has no methods"
+        "f()",
+        "call f",
+        "run f()",
+        "execute def f"
       ],
       "correctIndex": 0,
-      "explanation": "isinstance respects inheritance in the class hierarchy."
+      "explanation": "pass is a no-op body; you still invoke the function with f()."
     },
     {
       "id": "19",
       "type": "truefalse",
-      "prompt": "__init__ must always return a value explicitly with return.",
-      "correct": false,
-      "explanation": "__init__ should return None; it initializes the already-created instance."
+      "prompt": "Variables created inside a function are generally not visible outside it.",
+      "correct": true,
+      "explanation": "Locals stay inside the function unless returned or declared nonlocal/global."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "In inheritance, method lookup generally follows:",
+      "prompt": "def show(*items):\n    for i in items:\n        print(i)\nshow(\"a\", \"b\") prints:",
       "options": [
-        "The method resolution order (child before parent)",
-        "Random order",
-        "Only the parent, never the child",
-        "Builtins before everything else always for all names"
+        "a then b on separate lines",
+        "the tuple ('a', 'b') as one line only",
+        "nothing",
+        "a syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "Python searches the class and its bases (MRO) to find a matching attribute."
+      "explanation": "*items receives ('a', 'b'); the loop prints each element."
     }
   ]
 }

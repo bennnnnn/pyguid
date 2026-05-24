@@ -1,239 +1,245 @@
 {
   "chapter": 25,
-  "chapterTitle": "Python Mini Programs",
-  "title": "Python Mini Programs Quiz",
-  "description": "Practice combining functions, data structures, files, and modules in small programs.",
+  "chapterTitle": "Decorators",
+  "title": "Decorators Quiz",
+  "description": "Practice lambda, decorators, generators, functools, and itertools.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Splitting a project into multiple .py files helps:",
+      "prompt": "What does lambda x: x + 1 create?",
       "options": [
-        "Separate concerns and reuse code",
-        "Prevent all imports",
-        "Remove functions",
-        "Disable tests"
+        "A small anonymous function",
+        "A class named lambda",
+        "A module import",
+        "A list of numbers"
       ],
       "correctIndex": 0,
-      "explanation": "Modules keep each file focused."
+      "explanation": "lambda makes a one-expression function without a def name."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "if __name__ == \"__main__\": guards:",
+      "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
       "options": [
-        "Code that should run only when the file is executed directly",
-        "All imports always",
-        "JSON parsing only",
-        "SQL only"
+        "[3, 2, 1]",
+        "[1, 2, 3]",
+        "[3, 1, 2]",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "Imported modules should not run CLI code accidentally."
+      "explanation": "key sorts by negated value, descending order."
     },
     {
       "id": "3",
-      "type": "choice",
-      "prompt": "A quiz app loop often uses:",
-      "options": [
-        "while with input() and score tracking",
-        "Only recursion",
-        "Only classes",
-        "No variables"
-      ],
-      "correctIndex": 0,
-      "explanation": "Loops drive question-by-question flow."
+      "type": "truefalse",
+      "prompt": "A decorator wraps a function to add behavior before or after it runs.",
+      "correct": true,
+      "explanation": "Decorators are syntactic sugar for function transformation."
     },
     {
       "id": "4",
-      "type": "truefalse",
-      "prompt": "Storing questions in a list of dicts is a simple data model for quizzes.",
-      "correct": true,
-      "explanation": "Each dict can hold prompt, choices, and answer key."
+      "type": "choice",
+      "prompt": "yield inside a function makes it:",
+      "options": [
+        "A generator function",
+        "A class",
+        "A module",
+        "A file handle"
+      ],
+      "correctIndex": 0,
+      "explanation": "Calling the function returns a generator object."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "argparse in a multi-file CLI project provides:",
+      "prompt": "next(gen) on a generator:",
       "options": [
-        "Subcommands and --help for the terminal",
-        "HTML pages",
-        "SQLite only",
-        "Regex only"
+        "Runs until the next yield and returns that value",
+        "Deletes the generator",
+        "Imports itertools",
+        "Commits a database"
       ],
       "correctIndex": 0,
-      "explanation": "Users run python -m pkg add \"task\" style commands."
+      "explanation": "Generators produce values lazily one step at a time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "Tests for storage logic in a capstone should:",
+      "prompt": "map(lambda x: x**2, [1, 2, 3]) in Python 3 is:",
       "options": [
-        "Call functions directly without manual clicking",
-        "Replace all Python code",
-        "Delete data files always",
-        "Skip asserts"
+        "A map object (lazy iterator)",
+        "Always [1, 4, 9] without list()",
+        "A dict",
+        "A syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "Unit tests guard core behavior."
+      "explanation": "Use list(map(...)) to materialize all results."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "A personality quiz scores answers by:",
+      "prompt": "@functools.lru_cache on a function helps when:",
       "options": [
-        "Mapping choices to categories and tallying",
-        "Ignoring input",
-        "Only printing once",
-        "Using Flask only"
+        "The same arguments repeat and results can be reused",
+        "You need JSON parsing",
+        "You open files",
+        "You delete variables"
       ],
       "correctIndex": 0,
-      "explanation": "Tally dicts or counters accumulate results."
+      "explanation": "LRU cache stores recent call results to save work."
     },
     {
       "id": "8",
-      "type": "truefalse",
-      "prompt": "Refactoring means improving structure without changing outward behavior.",
-      "correct": true,
-      "explanation": "Extract functions when a file grows hard to read."
+      "type": "choice",
+      "prompt": "itertools.chain([1, 2], [3]) conceptually:",
+      "options": [
+        "Iterates through each iterable in sequence",
+        "Sorts numbers only",
+        "Creates a set",
+        "Raises always"
+      ],
+      "correctIndex": 0,
+      "explanation": "chain flattens multiple iterables without building a big list first."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "pyproject.toml in a capstone often declares:",
-      "options": [
-        "Project name and dependencies",
-        "Only HTML",
-        "Only images",
-        "Only regex"
-      ],
-      "correctIndex": 0,
-      "explanation": "Packaging metadata supports pip install -e ."
+      "type": "truefalse",
+      "prompt": "Generators can save memory compared to building a huge list upfront.",
+      "correct": true,
+      "explanation": "Lazy iteration produces one item at a time."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "Separating cli.py from storage.py means:",
+      "prompt": "@decorator above def f(): is roughly equivalent to:",
       "options": [
-        "UI/argument parsing vs data rules live apart",
-        "No functions allowed",
-        "No imports",
-        "No tests"
+        "f = decorator(f)",
+        "decorator = f",
+        "import decorator",
+        "del f"
       ],
       "correctIndex": 0,
-      "explanation": "Layering keeps changes localized."
+      "explanation": "The decorator is applied at function definition time."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "Validating user input in a project prevents:",
+      "prompt": "filter(lambda n: n % 2 == 0, range(5)) keeps:",
       "options": [
-        "Crashes from bad data and confusing errors",
-        "All loops",
-        "All dicts",
-        "All files"
+        "Even numbers 0, 2, 4",
+        "Odd numbers only",
+        "All strings",
+        "Nothing"
       ],
       "correctIndex": 0,
-      "explanation": "Check ranges, empty strings, and types early."
+      "explanation": "filter keeps items where the function returns truthy."
     },
     {
       "id": "12",
-      "type": "truefalse",
-      "prompt": "Version control (git) helps track project history and collaborate.",
-      "correct": true,
-      "explanation": "Commit small working steps with clear messages."
+      "type": "choice",
+      "prompt": "A generator expression (x for x in range(3)) is like:",
+      "options": [
+        "A compact lazy generator",
+        "A list comprehension with brackets",
+        "A class definition",
+        "A try/except block"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parentheses make a generator expression instead of a list."
     },
     {
       "id": "13",
-      "type": "choice",
-      "prompt": "A capstone should demonstrate skills from:",
-      "options": [
-        "Variables through modules, files, and tests",
-        "Only print",
-        "Only one operator",
-        "Only comments"
-      ],
-      "correctIndex": 0,
-      "explanation": "Projects integrate the full course path."
+      "type": "truefalse",
+      "prompt": "lambda can contain only a single expression, not statements.",
+      "correct": true,
+      "explanation": "Use def for multi-line logic."
     },
     {
       "id": "14",
       "type": "choice",
-      "prompt": "Reading config or data from JSON in a project uses:",
+      "prompt": "functools.partial(func, 2) creates:",
       "options": [
-        "json.load and error handling for missing files",
-        "only input()",
-        "only regex",
-        "only pdb"
+        "A new callable with some arguments pre-filled",
+        "A JSON encoder",
+        "A thread lock",
+        "A CSV reader"
       ],
       "correctIndex": 0,
-      "explanation": "Persist state between runs."
+      "explanation": "partial fixes leading arguments for later calls."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Docstrings on public functions help:",
+      "prompt": "itertools.count(10) produces:",
       "options": [
-        "Teammates and future you understand intent",
-        "Disable pytest",
-        "Remove types",
-        "Skip logging"
+        "An infinite iterator starting at 10",
+        "A list of length 10 only",
+        "A dict",
+        "A file path"
       ],
       "correctIndex": 0,
-      "explanation": "Document parameters and return values briefly."
+      "explanation": "count is useful with islice to take a finite prefix."
     },
     {
       "id": "16",
-      "type": "truefalse",
-      "prompt": "Starting with a minimal working version then adding features is a good strategy.",
-      "correct": true,
-      "explanation": "Ship small slices that run end to end."
+      "type": "choice",
+      "prompt": "def gen(): yield 1; yield 2 — list(gen()) is:",
+      "options": [
+        "[1, 2]",
+        "[2, 1]",
+        "None",
+        "A map object"
+      ],
+      "correctIndex": 0,
+      "explanation": "Consuming the generator collects all yielded values."
     },
     {
       "id": "17",
-      "type": "choice",
-      "prompt": "Relative imports in a package require:",
-      "options": [
-        "A package structure (directories with __init__.py or namespace)",
-        "No files",
-        "Only one line scripts",
-        "Flask installed"
-      ],
-      "correctIndex": 0,
-      "explanation": "Use python -m package.module to run modules correctly."
+      "type": "truefalse",
+      "prompt": "Decorators can be used on functions and classes.",
+      "correct": true,
+      "explanation": "@ wraps callables or classes depending on what the decorator returns."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "After finishing PyGuide projects, next steps include:",
+      "prompt": "Which is valid for a one-line key function?",
       "options": [
-        "Build your own ideas and keep testing code",
-        "Stop writing Python",
-        "Delete all modules",
-        "Avoid files"
+        "key=lambda s: len(s)",
+        "key=def len(s): return len(s)",
+        "lambda def s:",
+        "sorted.key(len)"
       ],
       "correctIndex": 0,
-      "explanation": "Practice and personal projects cement skills."
+      "explanation": "lambda s: len(s) sorts by string length."
     },
     {
       "id": "19",
       "type": "choice",
-      "prompt": "Handling KeyboardInterrupt in a CLI loop:",
+      "prompt": "yield from other_gen delegates to:",
       "options": [
-        "Lets users exit gracefully with a message",
-        "Is impossible",
-        "Deletes source",
-        "Disables argparse"
+        "Another iterable or generator",
+        "Only integers",
+        "SQLite cursors only",
+        "pytest fixtures only"
       ],
       "correctIndex": 0,
-      "explanation": "try/except around input loops improves UX."
+      "explanation": "yield from forwards yields from a sub-iterator."
     },
     {
       "id": "20",
-      "type": "truefalse",
-      "prompt": "Clear menu text and error messages make CLI projects feel professional.",
-      "correct": true,
-      "explanation": "Polish matters even in terminal apps."
+      "type": "choice",
+      "prompt": "When lambda is overused, readability often improves by:",
+      "options": [
+        "Using a normal def with a clear name",
+        "Deleting all functions",
+        "Removing return values",
+        "Avoiding tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Named functions document intent better than long lambdas."
     }
   ]
 }

@@ -30,7 +30,7 @@ That means the course goes deep on **pure Python**:
 
 ## Target chapter roadmap (30 chapters)
 
-Granular, Python-only outline — current published chapters are being aligned over time:
+Granular, Python-only outline — **implemented in `curriculum-order.json` v11** (31 chapters including mini programs):
 
 | Ch | Title |
 |----|--------|

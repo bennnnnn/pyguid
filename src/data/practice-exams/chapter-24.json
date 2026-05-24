@@ -1,233 +1,245 @@
 {
   "chapter": 24,
-  "chapterTitle": "Async Python",
-  "title": "Async Python Practice Exam",
-  "description": "Practice async def, await, and asyncio.run for concurrent I/O-style workflows.",
+  "chapterTitle": "Iterators and Generators",
+  "title": "Iterators and Generators Quiz",
+  "description": "Practice lambda, decorators, generators, functools, and itertools.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
-      "type": "truefalse",
-      "prompt": "async def defines a coroutine function that can be awaited.",
-      "correct": true,
-      "explanation": "Coroutines cooperate with an event loop instead of blocking on I/O."
+      "type": "choice",
+      "prompt": "What does lambda x: x + 1 create?",
+      "options": [
+        "A small anonymous function",
+        "A class named lambda",
+        "A module import",
+        "A list of numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": "lambda makes a one-expression function without a def name."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "await pauses an async function until:",
+      "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
       "options": [
-        "The awaited coroutine completes",
-        "All files delete",
-        "pytest finishes",
-        "JSON parses"
+        "[3, 2, 1]",
+        "[1, 2, 3]",
+        "[3, 1, 2]",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "await yields control so other tasks can run."
+      "explanation": "key sorts by negated value, descending order."
     },
     {
       "id": "3",
-      "type": "choice",
-      "prompt": "asyncio.run(main()) is used to:",
-      "options": [
-        "Run the top-level async main() from sync code",
-        "Delete async",
-        "Import Flask",
-        "Parse CSV"
-      ],
-      "correctIndex": 0,
-      "explanation": "run creates an event loop, runs main(), and closes it."
+      "type": "truefalse",
+      "prompt": "A decorator wraps a function to add behavior before or after it runs.",
+      "correct": true,
+      "explanation": "Decorators are syntactic sugar for function transformation."
     },
     {
       "id": "4",
-      "type": "truefalse",
-      "prompt": "Blocking time.sleep() inside async code can hurt concurrency.",
-      "correct": true,
-      "explanation": "Prefer await asyncio.sleep() for async-friendly delays."
+      "type": "choice",
+      "prompt": "yield inside a function makes it:",
+      "options": [
+        "A generator function",
+        "A class",
+        "A module",
+        "A file handle"
+      ],
+      "correctIndex": 0,
+      "explanation": "Calling the function returns a generator object."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "asyncio.create_task(coro) schedules:",
+      "prompt": "next(gen) on a generator:",
       "options": [
-        "A coroutine to run concurrently on the loop",
-        "A thread always",
-        "SQL execution",
-        "File deletion"
+        "Runs until the next yield and returns that value",
+        "Deletes the generator",
+        "Imports itertools",
+        "Commits a database"
       ],
       "correctIndex": 0,
-      "explanation": "Tasks let multiple coroutines progress together."
+      "explanation": "Generators produce values lazily one step at a time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "await asyncio.gather(a(), b()) runs:",
+      "prompt": "map(lambda x: x**2, [1, 2, 3]) in Python 3 is:",
       "options": [
-        "Multiple awaitables and waits for all",
-        "Only the first",
-        "Nothing",
-        "Only sync code"
+        "A map object (lazy iterator)",
+        "Always [1, 4, 9] without list()",
+        "A dict",
+        "A syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "gather is common for parallel async work."
+      "explanation": "Use list(map(...)) to materialize all results."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "Async helps most when work is:",
+      "prompt": "@functools.lru_cache on a function helps when:",
       "options": [
-        "I/O bound (waiting on network, disk, sleep)",
-        "CPU bound math on one core always",
-        "Never waiting",
-        "Only printing"
+        "The same arguments repeat and results can be reused",
+        "You need JSON parsing",
+        "You open files",
+        "You delete variables"
       ],
       "correctIndex": 0,
-      "explanation": "CPU-heavy work may need multiprocessing instead."
+      "explanation": "LRU cache stores recent call results to save work."
     },
     {
       "id": "8",
-      "type": "truefalse",
-      "prompt": "Calling an async function without await returns a coroutine object.",
-      "correct": true,
-      "explanation": "You must await it or schedule it on a loop."
+      "type": "choice",
+      "prompt": "itertools.chain([1, 2], [3]) conceptually:",
+      "options": [
+        "Iterates through each iterable in sequence",
+        "Sorts numbers only",
+        "Creates a set",
+        "Raises always"
+      ],
+      "correctIndex": 0,
+      "explanation": "chain flattens multiple iterables without building a big list first."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "async with supports:",
-      "options": [
-        "Async context managers that need await on enter/exit",
-        "Only lists",
-        "Only JSON",
-        "Only regex"
-      ],
-      "correctIndex": 0,
-      "explanation": "Some resources expose async __aenter__/__aexit__."
+      "type": "truefalse",
+      "prompt": "Generators can save memory compared to building a huge list upfront.",
+      "correct": true,
+      "explanation": "Lazy iteration produces one item at a time."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "The event loop:",
+      "prompt": "@decorator above def f(): is roughly equivalent to:",
       "options": [
-        "Schedules and runs coroutines",
-        "Replaces Python syntax",
-        "Is only for Flask",
-        "Cannot run gather"
+        "f = decorator(f)",
+        "decorator = f",
+        "import decorator",
+        "del f"
       ],
       "correctIndex": 0,
-      "explanation": "asyncio drives coroutine execution."
+      "explanation": "The decorator is applied at function definition time."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "await asyncio.sleep(1) during async code:",
+      "prompt": "filter(lambda n: n % 2 == 0, range(5)) keeps:",
       "options": [
-        "Yields for about one second without blocking the whole thread like time.sleep",
-        "Stops all programs",
-        "Commits SQLite",
-        "Parses HTML"
+        "Even numbers 0, 2, 4",
+        "Odd numbers only",
+        "All strings",
+        "Nothing"
       ],
       "correctIndex": 0,
-      "explanation": "Other tasks can run during the sleep."
+      "explanation": "filter keeps items where the function returns truthy."
     },
     {
       "id": "12",
-      "type": "truefalse",
-      "prompt": "async/await is built into Python syntax and the asyncio library.",
-      "correct": true,
-      "explanation": "Third-party libs add async APIs on top of the same model."
+      "type": "choice",
+      "prompt": "A generator expression (x for x in range(3)) is like:",
+      "options": [
+        "A compact lazy generator",
+        "A list comprehension with brackets",
+        "A class definition",
+        "A try/except block"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parentheses make a generator expression instead of a list."
     },
     {
       "id": "13",
-      "type": "choice",
-      "prompt": "A common bug is forgetting await, which leads to:",
-      "options": [
-        "Coroutines that never ran and 'coroutine was never awaited' warnings",
-        "Faster code always",
-        "Automatic JSON",
-        "SQL errors only"
-      ],
-      "correctIndex": 0,
-      "explanation": "Always await coroutines you intend to run."
+      "type": "truefalse",
+      "prompt": "lambda can contain only a single expression, not statements.",
+      "correct": true,
+      "explanation": "Use def for multi-line logic."
     },
     {
       "id": "14",
       "type": "choice",
-      "prompt": "Concurrent vs parallel in beginner terms:",
+      "prompt": "functools.partial(func, 2) creates:",
       "options": [
-        "Concurrent tasks take turns; parallel may use multiple CPUs",
-        "They mean the same always",
-        "Only for CSV",
-        "Only for tuples"
+        "A new callable with some arguments pre-filled",
+        "A JSON encoder",
+        "A thread lock",
+        "A CSV reader"
       ],
       "correctIndex": 0,
-      "explanation": "Async concurrency is often single-threaded cooperation."
+      "explanation": "partial fixes leading arguments for later calls."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "import asyncio is needed for:",
+      "prompt": "itertools.count(10) produces:",
       "options": [
-        "run, sleep, gather, and other loop utilities",
-        "json only",
-        "re only",
-        "pathlib only"
+        "An infinite iterator starting at 10",
+        "A list of length 10 only",
+        "A dict",
+        "A file path"
       ],
       "correctIndex": 0,
-      "explanation": "asyncio is the standard library async framework."
+      "explanation": "count is useful with islice to take a finite prefix."
     },
     {
       "id": "16",
-      "type": "truefalse",
-      "prompt": "You can mix sync and async code but boundaries need care (await from async only).",
-      "correct": true,
-      "explanation": "Do not call blocking sync I/O heavily inside async functions."
+      "type": "choice",
+      "prompt": "def gen(): yield 1; yield 2 — list(gen()) is:",
+      "options": [
+        "[1, 2]",
+        "[2, 1]",
+        "None",
+        "A map object"
+      ],
+      "correctIndex": 0,
+      "explanation": "Consuming the generator collects all yielded values."
     },
     {
       "id": "17",
-      "type": "choice",
-      "prompt": "async for is used to:",
-      "options": [
-        "Iterate async iterables",
-        "Sort lists",
-        "Open files only in binary",
-        "Run pytest"
-      ],
-      "correctIndex": 0,
-      "explanation": "Async generators produce items with await between steps."
+      "type": "truefalse",
+      "prompt": "Decorators can be used on functions and classes.",
+      "correct": true,
+      "explanation": "@ wraps callables or classes depending on what the decorator returns."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "When learning async, start with:",
+      "prompt": "Which is valid for a one-line key function?",
       "options": [
-        "Small scripts using asyncio.run and one or two coroutines",
-        "A huge framework first",
-        "No await",
-        "Only regex"
+        "key=lambda s: len(s)",
+        "key=def len(s): return len(s)",
+        "lambda def s:",
+        "sorted.key(len)"
       ],
       "correctIndex": 0,
-      "explanation": "Build mental model before large apps."
+      "explanation": "lambda s: len(s) sorts by string length."
     },
     {
       "id": "19",
       "type": "choice",
-      "prompt": "Task cancellation in asyncio requires:",
+      "prompt": "yield from other_gen delegates to:",
       "options": [
-        "Cooperative handling of CancelledError",
-        "Deleting Python",
-        "No event loop",
-        "Only JSON"
+        "Another iterable or generator",
+        "Only integers",
+        "SQLite cursors only",
+        "pytest fixtures only"
       ],
       "correctIndex": 0,
-      "explanation": "Advanced topic; be aware cleanup may be needed."
+      "explanation": "yield from forwards yields from a sub-iterator."
     },
     {
       "id": "20",
-      "type": "truefalse",
-      "prompt": "Not every program needs async; use it when I/O waiting is the bottleneck.",
-      "correct": true,
-      "explanation": "Simple scripts are fine with synchronous code."
+      "type": "choice",
+      "prompt": "When lambda is overused, readability often improves by:",
+      "options": [
+        "Using a normal def with a clear name",
+        "Deleting all functions",
+        "Removing return values",
+        "Avoiding tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Named functions document intent better than long lambdas."
     }
   ]
 }

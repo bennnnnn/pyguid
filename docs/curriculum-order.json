@@ -1,274 +1,922 @@
 {
-  "version": 10,
-  "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
+  "version": 11,
+  "description": "30-chapter Python-only curriculum (+ mini programs). Run: node scripts/sync-curriculum.mjs",
   "lessons": [
-    { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
-    { "slug": "first-print", "chapter": 1, "chapterTitle": "Getting Started" },
-    { "slug": "top-to-bottom", "chapter": 1, "chapterTitle": "Getting Started" },
-    { "slug": "syntax-errors", "chapter": 1, "chapterTitle": "Getting Started" },
-    { "slug": "comments", "chapter": 1, "chapterTitle": "Getting Started" },
-    { "slug": "about-me-project", "chapter": 1, "chapterTitle": "Getting Started" },
-
-    { "slug": "creating-variables", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "naming-rules", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "updating-values", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "variables-in-print", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "input-basics", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "input-conversion", "chapter": 2, "chapterTitle": "Variables" },
-    { "slug": "multiple-assignment", "chapter": 2, "chapterTitle": "Variables" },
-
-    { "slug": "data-types-overview", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "integers-floats", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "booleans", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "truthy-falsy", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "type-function", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "isinstance-basics", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "mutable-immutable", "chapter": 3, "chapterTitle": "Data Types" },
-    { "slug": "none-type", "chapter": 3, "chapterTitle": "Data Types" },
+    {
+      "slug": "what-is-python",
+      "chapter": 1,
+      "chapterTitle": "What is Python?"
+    },
+    {
+      "slug": "first-print",
+      "chapter": 2,
+      "chapterTitle": "Print, Comments, and Errors"
+    },
+    {
+      "slug": "top-to-bottom",
+      "chapter": 2,
+      "chapterTitle": "Print, Comments, and Errors"
+    },
+    {
+      "slug": "syntax-errors",
+      "chapter": 2,
+      "chapterTitle": "Print, Comments, and Errors"
+    },
+    {
+      "slug": "comments",
+      "chapter": 2,
+      "chapterTitle": "Print, Comments, and Errors"
+    },
+    {
+      "slug": "about-me-project",
+      "chapter": 2,
+      "chapterTitle": "Print, Comments, and Errors"
+    },
+    {
+      "slug": "creating-variables",
+      "chapter": 3,
+      "chapterTitle": "Variables"
+    },
+    {
+      "slug": "naming-rules",
+      "chapter": 3,
+      "chapterTitle": "Variables"
+    },
+    {
+      "slug": "updating-values",
+      "chapter": 3,
+      "chapterTitle": "Variables"
+    },
+    {
+      "slug": "variables-in-print",
+      "chapter": 3,
+      "chapterTitle": "Variables"
+    },
+    {
+      "slug": "input-basics",
+      "chapter": 4,
+      "chapterTitle": "Input and Type Conversion"
+    },
+    {
+      "slug": "input-conversion",
+      "chapter": 4,
+      "chapterTitle": "Input and Type Conversion"
+    },
+    {
+      "slug": "multiple-assignment",
+      "chapter": 4,
+      "chapterTitle": "Input and Type Conversion"
+    },
+    {
+      "slug": "data-types-overview",
+      "chapter": 5,
+      "chapterTitle": "Data Types"
+    },
+    {
+      "slug": "type-function",
+      "chapter": 5,
+      "chapterTitle": "Data Types"
+    },
+    {
+      "slug": "isinstance-basics",
+      "chapter": 5,
+      "chapterTitle": "Data Types"
+    },
+    {
+      "slug": "mutable-immutable",
+      "chapter": 5,
+      "chapterTitle": "Data Types"
+    },
+    {
+      "slug": "none-type",
+      "chapter": 5,
+      "chapterTitle": "Data Types"
+    },
+    {
+      "slug": "integers-floats",
+      "chapter": 6,
+      "chapterTitle": "Numbers and Operators"
+    },
+    {
+      "slug": "arithmetic-operators",
+      "chapter": 6,
+      "chapterTitle": "Numbers and Operators"
+    },
+    {
+      "slug": "assignment-operators",
+      "chapter": 6,
+      "chapterTitle": "Numbers and Operators"
+    },
+    {
+      "slug": "operator-precedence",
+      "chapter": 6,
+      "chapterTitle": "Numbers and Operators"
+    },
+    {
+      "slug": "tip-calculator-project",
+      "chapter": 6,
+      "chapterTitle": "Numbers and Operators"
+    },
     {
       "slug": "strings",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-upper-lower",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-strip",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-split",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-join",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-find-replace",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-count",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-startswith",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-in",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-format",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
     {
       "slug": "string-slicing",
-      "chapter": 3,
-      "chapterTitle": "Data Types",
-      "section": "Strings"
+      "chapter": 7,
+      "chapterTitle": "Strings"
     },
-
-    { "slug": "arithmetic-operators", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "assignment-operators", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "comparisons", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "not-operator", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "and-or", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "membership-identity", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "operator-precedence", "chapter": 4, "chapterTitle": "Operators" },
-    { "slug": "tip-calculator-project", "chapter": 4, "chapterTitle": "Operators" },
-
-    { "slug": "if-indentation", "chapter": 5, "chapterTitle": "If Statements" },
-    { "slug": "elif-else", "chapter": 5, "chapterTitle": "If Statements" },
-    { "slug": "nested-if", "chapter": 5, "chapterTitle": "If Statements" },
-    { "slug": "login-checker-project", "chapter": 5, "chapterTitle": "If Statements" },
-
-    { "slug": "while-loops", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "for-loops", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "range-function", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "break-continue", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "loop-else", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "infinite-loops", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "loop-patterns", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "nested-loops", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "guessing-game-project", "chapter": 6, "chapterTitle": "Loops" },
-    { "slug": "random-guessing-game", "chapter": 6, "chapterTitle": "Loops" },
-
-    { "slug": "lists-intro", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-indexing", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-slicing", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-append", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-extend", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-append-vs-extend", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-insert", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-remove", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-del", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-pop", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-clear", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-sort", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-reverse", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-copy", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-index-count", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-loops", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-enumerate", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-comprehensions", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "list-zip", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "todo-list-project", "chapter": 7, "chapterTitle": "Lists" },
-    { "slug": "nested-list-comprehensions", "chapter": 7, "chapterTitle": "Lists" },
-
-    { "slug": "tuples-intro", "chapter": 8, "chapterTitle": "Tuples" },
-    { "slug": "tuple-unpacking", "chapter": 8, "chapterTitle": "Tuples" },
-    { "slug": "tuple-immutability", "chapter": 8, "chapterTitle": "Tuples" },
-    { "slug": "tuple-one-item", "chapter": 8, "chapterTitle": "Tuples" },
-    { "slug": "namedtuple-preview", "chapter": 8, "chapterTitle": "Tuples" },
-
-    { "slug": "sets-intro", "chapter": 9, "chapterTitle": "Sets" },
-    { "slug": "set-add-remove", "chapter": 9, "chapterTitle": "Sets" },
-    { "slug": "set-empty-set", "chapter": 9, "chapterTitle": "Sets" },
-    { "slug": "set-operations", "chapter": 9, "chapterTitle": "Sets" },
-    { "slug": "set-comprehensions", "chapter": 9, "chapterTitle": "Sets" },
-    { "slug": "frozenset-basics", "chapter": 9, "chapterTitle": "Sets" },
-
-    { "slug": "dict-intro", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-key-rules", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-access", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-get", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-setdefault", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-keys", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-values", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-items", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-pop-update", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-popitem", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-nested", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-comprehensions", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "dict-loops", "chapter": 10, "chapterTitle": "Dictionaries" },
-    { "slug": "contact-book-project", "chapter": 10, "chapterTitle": "Dictionaries" },
-
-    { "slug": "functions-intro", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-arguments", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-default-args", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-args-kwargs", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-keyword-only", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-unpacking-calls", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-return", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "print-vs-return", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-docstrings", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "type-hints-intro", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "type-hints-depth", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "typing-typeddict-protocol", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "mypy-type-checking", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "function-scope", "chapter": 11, "chapterTitle": "Functions" },
-    { "slug": "builtin-functions", "chapter": 11, "chapterTitle": "Functions" },
-
-    { "slug": "modules-intro", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "python-packages", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "venv-and-requirements", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "main-module-guard", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "import-from-as", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "sys-argv-basics", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "argparse-cli", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "os-environ-vars", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "secrets-token-safety", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "subprocess-run-safety", "chapter": 12, "chapterTitle": "Modules" },
-    { "slug": "code-quality-tools", "chapter": 12, "chapterTitle": "Modules" },
-
-    { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "try-except", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "try-else-finally", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "raise-statement", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "common-exceptions", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "except-multiple-types", "chapter": 13, "chapterTitle": "Error Handling" },
-    { "slug": "exception-chaining", "chapter": 13, "chapterTitle": "Error Handling" },
     {
-      "slug": "safe-calculator-project",
+      "slug": "booleans",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "truthy-falsy",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "comparisons",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "not-operator",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "and-or",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "membership-identity",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "if-indentation",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "elif-else",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "nested-if",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "login-checker-project",
+      "chapter": 8,
+      "chapterTitle": "Booleans and Conditions"
+    },
+    {
+      "slug": "while-loops",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "for-loops",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "range-function",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "break-continue",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "loop-else",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "infinite-loops",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "loop-patterns",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "nested-loops",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "guessing-game-project",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "random-guessing-game",
+      "chapter": 9,
+      "chapterTitle": "Loops"
+    },
+    {
+      "slug": "lists-intro",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-indexing",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-slicing",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-append",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-extend",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-append-vs-extend",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-insert",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-remove",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-del",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-pop",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-clear",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-sort",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-reverse",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-copy",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-index-count",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-loops",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-enumerate",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "list-zip",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "todo-list-project",
+      "chapter": 10,
+      "chapterTitle": "Lists"
+    },
+    {
+      "slug": "tuples-intro",
+      "chapter": 11,
+      "chapterTitle": "Tuples"
+    },
+    {
+      "slug": "tuple-unpacking",
+      "chapter": 11,
+      "chapterTitle": "Tuples"
+    },
+    {
+      "slug": "tuple-immutability",
+      "chapter": 11,
+      "chapterTitle": "Tuples"
+    },
+    {
+      "slug": "tuple-one-item",
+      "chapter": 11,
+      "chapterTitle": "Tuples"
+    },
+    {
+      "slug": "namedtuple-preview",
+      "chapter": 11,
+      "chapterTitle": "Tuples"
+    },
+    {
+      "slug": "sets-intro",
+      "chapter": 12,
+      "chapterTitle": "Sets"
+    },
+    {
+      "slug": "set-add-remove",
+      "chapter": 12,
+      "chapterTitle": "Sets"
+    },
+    {
+      "slug": "set-empty-set",
+      "chapter": 12,
+      "chapterTitle": "Sets"
+    },
+    {
+      "slug": "set-operations",
+      "chapter": 12,
+      "chapterTitle": "Sets"
+    },
+    {
+      "slug": "frozenset-basics",
+      "chapter": 12,
+      "chapterTitle": "Sets"
+    },
+    {
+      "slug": "dict-intro",
       "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-key-rules",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-access",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-get",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-setdefault",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-keys",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-values",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-items",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-pop-update",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-popitem",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-nested",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "dict-loops",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "contact-book-project",
+      "chapter": 13,
+      "chapterTitle": "Dictionaries"
+    },
+    {
+      "slug": "functions-intro",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "function-arguments",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "function-default-args",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "function-return",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "print-vs-return",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "function-docstrings",
+      "chapter": 14,
+      "chapterTitle": "Functions"
+    },
+    {
+      "slug": "function-scope",
+      "chapter": 15,
+      "chapterTitle": "Scope"
+    },
+    {
+      "slug": "tracebacks",
+      "chapter": 16,
       "chapterTitle": "Error Handling"
     },
-
-    { "slug": "classes-intro", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "class-init-self", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "class-methods", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "class-property-decorator", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "classstaticmethod-classmethod", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "class-str-repr", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "inheritance", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "super-inheritance", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "class-instance-attributes", "chapter": 14, "chapterTitle": "Classes" },
-    { "slug": "dunder-methods-magic", "chapter": 14, "chapterTitle": "Classes" },
-
-    { "slug": "file-paths-modes", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "read-files", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "file-readlines-encoding", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "write-files", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "context-managers-custom", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "file-append-mode", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "pathlib-basics", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "pathlib-glob-files", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "shutil-file-ops", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "csv-read-write", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "pathlib-relative-absolute", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "configparser-ini-files", "chapter": 15, "chapterTitle": "Files" },
-    { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
-
-    { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "Debugging" },
-    { "slug": "pdb-debugger", "chapter": 16, "chapterTitle": "Debugging" },
-    { "slug": "cprofile-performance", "chapter": 16, "chapterTitle": "Debugging" },
-    { "slug": "timeit-benchmark", "chapter": 16, "chapterTitle": "Debugging" },
-
-    { "slug": "assert-testing-intro", "chapter": 17, "chapterTitle": "Testing" },
-    { "slug": "pytest-basics", "chapter": 17, "chapterTitle": "Testing" },
-    { "slug": "unittest-module", "chapter": 17, "chapterTitle": "Testing" },
-
-    { "slug": "lambda-functions", "chapter": 18, "chapterTitle": "Functional Python" },
-    { "slug": "decorators-preview", "chapter": 18, "chapterTitle": "Functional Python" },
-    { "slug": "generators-yield-intro", "chapter": 18, "chapterTitle": "Functional Python" },
-    { "slug": "functools-lru-cache", "chapter": 18, "chapterTitle": "Functional Python" },
-    { "slug": "itertools-preview", "chapter": 18, "chapterTitle": "Functional Python" },
-
-    { "slug": "collections-preview", "chapter": 19, "chapterTitle": "Standard Library" },
-    { "slug": "enum-module-preview", "chapter": 19, "chapterTitle": "Standard Library" },
-    { "slug": "math-random-module", "chapter": 19, "chapterTitle": "Standard Library" },
-    { "slug": "copy-deepcopy", "chapter": 19, "chapterTitle": "Standard Library" },
-
-    { "slug": "json-python", "chapter": 20, "chapterTitle": "JSON" },
-    { "slug": "json-todo-project", "chapter": 20, "chapterTitle": "JSON" },
-
-    { "slug": "dataclasses-preview", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
-    { "slug": "datetime-basics", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
-    { "slug": "match-case-preview", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
-
-    { "slug": "logging-basic", "chapter": 22, "chapterTitle": "Logging & Regex" },
-    { "slug": "regex-basics", "chapter": 22, "chapterTitle": "Logging & Regex" },
-
-    { "slug": "quiz-app-project", "chapter": 25, "chapterTitle": "Python Mini Programs" },
-    { "slug": "personality-quiz-project", "chapter": 25, "chapterTitle": "Python Mini Programs" },
+    {
+      "slug": "try-except",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "try-else-finally",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "raise-statement",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "common-exceptions",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "except-multiple-types",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "exception-chaining",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "safe-calculator-project",
+      "chapter": 16,
+      "chapterTitle": "Error Handling"
+    },
+    {
+      "slug": "file-paths-modes",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "read-files",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "file-readlines-encoding",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "write-files",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "context-managers-custom",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "file-append-mode",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "pathlib-basics",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "pathlib-glob-files",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "shutil-file-ops",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "csv-read-write",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "pathlib-relative-absolute",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "configparser-ini-files",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "notes-app-project",
+      "chapter": 17,
+      "chapterTitle": "Files"
+    },
+    {
+      "slug": "modules-intro",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "main-module-guard",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "import-from-as",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "sys-argv-basics",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "argparse-cli",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "os-environ-vars",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "secrets-token-safety",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "subprocess-run-safety",
+      "chapter": 18,
+      "chapterTitle": "Modules"
+    },
+    {
+      "slug": "python-packages",
+      "chapter": 19,
+      "chapterTitle": "Packages and Imports"
+    },
+    {
+      "slug": "venv-and-requirements",
+      "chapter": 19,
+      "chapterTitle": "Packages and Imports"
+    },
+    {
+      "slug": "builtin-functions",
+      "chapter": 20,
+      "chapterTitle": "Useful Built-in Functions"
+    },
+    {
+      "slug": "list-comprehensions",
+      "chapter": 21,
+      "chapterTitle": "Comprehensions"
+    },
+    {
+      "slug": "nested-list-comprehensions",
+      "chapter": 21,
+      "chapterTitle": "Comprehensions"
+    },
+    {
+      "slug": "dict-comprehensions",
+      "chapter": 21,
+      "chapterTitle": "Comprehensions"
+    },
+    {
+      "slug": "set-comprehensions",
+      "chapter": 21,
+      "chapterTitle": "Comprehensions"
+    },
+    {
+      "slug": "classes-intro",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "class-init-self",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "class-instance-attributes",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "class-methods",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "classstaticmethod-classmethod",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "class-property-decorator",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "class-str-repr",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "inheritance",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "super-inheritance",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "dunder-methods-magic",
+      "chapter": 22,
+      "chapterTitle": "Object-Oriented Python"
+    },
+    {
+      "slug": "function-args-kwargs",
+      "chapter": 23,
+      "chapterTitle": "Advanced Functions"
+    },
+    {
+      "slug": "function-keyword-only",
+      "chapter": 23,
+      "chapterTitle": "Advanced Functions"
+    },
+    {
+      "slug": "function-unpacking-calls",
+      "chapter": 23,
+      "chapterTitle": "Advanced Functions"
+    },
+    {
+      "slug": "lambda-functions",
+      "chapter": 23,
+      "chapterTitle": "Advanced Functions"
+    },
+    {
+      "slug": "functools-lru-cache",
+      "chapter": 23,
+      "chapterTitle": "Advanced Functions"
+    },
+    {
+      "slug": "generators-yield-intro",
+      "chapter": 24,
+      "chapterTitle": "Iterators and Generators"
+    },
+    {
+      "slug": "itertools-preview",
+      "chapter": 24,
+      "chapterTitle": "Iterators and Generators"
+    },
+    {
+      "slug": "decorators-preview",
+      "chapter": 25,
+      "chapterTitle": "Decorators"
+    },
+    {
+      "slug": "type-hints-intro",
+      "chapter": 26,
+      "chapterTitle": "Type Hints"
+    },
+    {
+      "slug": "type-hints-depth",
+      "chapter": 26,
+      "chapterTitle": "Type Hints"
+    },
+    {
+      "slug": "typing-typeddict-protocol",
+      "chapter": 26,
+      "chapterTitle": "Type Hints"
+    },
+    {
+      "slug": "mypy-type-checking",
+      "chapter": 26,
+      "chapterTitle": "Type Hints"
+    },
+    {
+      "slug": "collections-preview",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "enum-module-preview",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "math-random-module",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "copy-deepcopy",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "json-python",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "json-todo-project",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "dataclasses-preview",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "datetime-basics",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "match-case-preview",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "logging-basic",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "regex-basics",
+      "chapter": 27,
+      "chapterTitle": "Python Standard Library"
+    },
+    {
+      "slug": "debugging-help-dir",
+      "chapter": 28,
+      "chapterTitle": "Debugging Python Code"
+    },
+    {
+      "slug": "pdb-debugger",
+      "chapter": 28,
+      "chapterTitle": "Debugging Python Code"
+    },
+    {
+      "slug": "cprofile-performance",
+      "chapter": 28,
+      "chapterTitle": "Debugging Python Code"
+    },
+    {
+      "slug": "timeit-benchmark",
+      "chapter": 28,
+      "chapterTitle": "Debugging Python Code"
+    },
+    {
+      "slug": "assert-testing-intro",
+      "chapter": 29,
+      "chapterTitle": "Testing Python Code"
+    },
+    {
+      "slug": "pytest-basics",
+      "chapter": 29,
+      "chapterTitle": "Testing Python Code"
+    },
+    {
+      "slug": "unittest-module",
+      "chapter": 29,
+      "chapterTitle": "Testing Python Code"
+    },
+    {
+      "slug": "code-quality-tools",
+      "chapter": 30,
+      "chapterTitle": "Writing Clean Python"
+    },
+    {
+      "slug": "quiz-app-project",
+      "chapter": 31,
+      "chapterTitle": "Python Mini Programs"
+    },
+    {
+      "slug": "personality-quiz-project",
+      "chapter": 31,
+      "chapterTitle": "Python Mini Programs"
+    },
     {
       "slug": "multi-file-cli-capstone",
-      "chapter": 25,
+      "chapter": 31,
       "chapterTitle": "Python Mini Programs"
     }
   ]
 }
+

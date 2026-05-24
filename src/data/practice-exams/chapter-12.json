@@ -1,245 +1,245 @@
 {
   "chapter": 12,
-  "chapterTitle": "Modules",
-  "title": "Modules Practice Exam",
-  "description": "Test imports, virtual environments, pip, and running modules as scripts.",
+  "chapterTitle": "Sets",
+  "title": "Sets Quiz",
+  "description": "Check your knowledge of Python sets, uniqueness, and union and intersection.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "What does import math do?",
+      "prompt": "What is the main property of elements in a Python set?",
       "options": [
-        "Deletes the math module",
-        "Loads the math module so you can use math.sqrt, etc.",
-        "Runs math as a script only",
-        "Copies every name into the current namespace without a prefix"
+        "They are always sorted alphabetically",
+        "Each value appears at most once",
+        "They must be strings",
+        "They are stored in insertion order only"
       ],
       "correctIndex": 1,
-      "explanation": "import math brings in the module; access members as math.name."
+      "explanation": "Sets store unique elements; duplicates are ignored automatically."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "How do you import only sqrt from math?",
+      "prompt": "Which literal creates a set with two items?",
       "options": [
-        "from math import sqrt",
-        "import sqrt from math",
-        "include math.sqrt",
-        "math.import(sqrt)"
+        "{1, 2}",
+        "[1, 2]",
+        "(1, 2)",
+        "<1, 2>"
       ],
       "correctIndex": 0,
-      "explanation": "from module import name brings sqrt into the current namespace."
+      "explanation": "Curly braces with comma-separated values define a set (not an empty dict)."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "What is a Python module?",
+      "prompt": "How do you create an empty set?",
       "options": [
-        "A .py file (or package) whose code can be imported",
-        "Only files named main.py",
-        "A compiled .exe file",
-        "A virtual environment folder"
+        "{}",
+        "set()",
+        "[]",
+        "empty()"
       ],
-      "correctIndex": 0,
-      "explanation": "Any .py file you import acts as a module; packages are folders with __init__.py."
+      "correctIndex": 1,
+      "explanation": "{} creates an empty dictionary; use set() for an empty set."
     },
     {
       "id": "4",
       "type": "truefalse",
-      "prompt": "A virtual environment isolates project dependencies from the system Python.",
-      "correct": true,
-      "explanation": "venv gives each project its own site-packages and interpreter context."
+      "prompt": "A set can contain the same value twice if you add it twice.",
+      "correct": false,
+      "explanation": "Adding a duplicate has no effect; the set still holds one copy."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "Which command commonly creates a venv named .venv?",
+      "prompt": "What does s.add(3) do when 3 is not already in set s?",
       "options": [
-        "python -m venv .venv",
-        "pip install venv",
-        "python create .venv",
-        "venv --new .venv"
+        "Removes 3 from s",
+        "Adds 3 to s",
+        "Returns True if 3 exists",
+        "Raises KeyError"
       ],
-      "correctIndex": 0,
-      "explanation": "python -m venv .venv creates a virtual environment in the .venv directory."
+      "correctIndex": 1,
+      "explanation": "add() inserts a single element if it is not already present."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What does pip install requests do?",
+      "prompt": "Which method removes a specific element from a set?",
       "options": [
-        "Downloads and installs the requests package into the active environment",
-        "Deletes requests from PyPI",
-        "Runs all tests in your project",
-        "Creates a new virtual environment"
+        "s.pop(0)",
+        "s.remove(x)",
+        "s.delete(x)",
+        "del s[x]"
       ],
-      "correctIndex": 0,
-      "explanation": "pip installs third-party packages from PyPI (or another index)."
+      "correctIndex": 1,
+      "explanation": "remove(x) discards x and raises KeyError if x is missing."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "What does if __name__ == \"__main__\": guard?",
+      "prompt": "What is the result of len({1, 1, 2, 2})?",
       "options": [
-        "Code that runs only when the file is executed directly",
-        "Code that runs only when imported",
-        "All class definitions",
-        "Every import statement"
+        "4",
+        "3",
+        "2",
+        "1"
       ],
-      "correctIndex": 0,
-      "explanation": "__name__ is \"__main__\" when you run python file.py, not when importing."
+      "correctIndex": 2,
+      "explanation": "Duplicates collapse, so the set is {1, 2} with length 2."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "Where are third-party packages usually listed for reproducible installs?",
+      "prompt": "Which operator returns elements in either set A or B?",
       "options": [
-        "requirements.txt",
-        "README only",
-        ".gitignore",
-        "setup.py only (never requirements.txt)"
+        "A & B",
+        "A | B",
+        "A ^ B",
+        "A - B"
       ],
-      "correctIndex": 0,
-      "explanation": "requirements.txt (or pyproject.toml) documents dependencies for pip install -r."
+      "correctIndex": 1,
+      "explanation": "| is union: all elements that appear in A or B (or both)."
     },
     {
       "id": "9",
       "type": "truefalse",
-      "prompt": "When you import a module, Python may execute top-level code in that file once.",
+      "prompt": "The expression {1, 2} & {2, 3} evaluates to {2}.",
       "correct": true,
-      "explanation": "Import runs the module body the first time; results are cached in sys.modules."
+      "explanation": "& is intersection: only elements in both sets, here {2}."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What does import random as r allow?",
+      "prompt": "What does A & B return?",
       "options": [
-        "Using r.randint instead of random.randint",
-        "Renaming random to a built-in",
-        "Importing without loading the module",
-        "Running random as __main__ always"
+        "Elements in A or B",
+        "Elements in both A and B",
+        "Elements in A but not B",
+        "Elements in exactly one of A or B"
       ],
-      "correctIndex": 0,
-      "explanation": "as assigns a local alias for the imported module."
+      "correctIndex": 1,
+      "explanation": "Intersection keeps values that appear in every operand set."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "On macOS/Linux, how do you activate a venv in .venv?",
+      "prompt": "What is list({3, 1, 2}) most likely to show?",
       "options": [
-        "source .venv/bin/activate",
-        ".venv/run",
-        "python activate .venv",
-        "pip activate"
+        "[3, 1, 2] always in that order",
+        "A list of three unique numbers; order is not guaranteed",
+        "[1, 2, 3] always sorted",
+        "An error because sets cannot convert to lists"
       ],
-      "correctIndex": 0,
-      "explanation": "source .venv/bin/activate adjusts PATH to use the venv's python and pip."
+      "correctIndex": 1,
+      "explanation": "Sets are unordered; converting to a list gives arbitrary order."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "What is the standard library?",
+      "prompt": "How do you test membership in a set s?",
       "options": [
-        "Modules shipped with Python (e.g. os, json) without pip install",
-        "Only pip packages",
-        "Code on GitHub only",
-        "Virtual environments"
+        "x in s",
+        "s.contains(x)",
+        "s.has(x)",
+        "membership(x, s)"
       ],
       "correctIndex": 0,
-      "explanation": "The standard library comes with Python; pip adds external packages."
+      "explanation": "Use the in operator: x in s is True when x is in the set."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "Why use pip install -r requirements.txt?",
+      "prompt": "What does s.discard(x) do if x is not in s?",
       "options": [
-        "Install all listed packages at once for the project",
-        "Remove all packages",
-        "Upgrade Python itself",
-        "Create a new .py file"
+        "Raises KeyError",
+        "Does nothing",
+        "Adds x to s",
+        "Removes a random element"
       ],
-      "correctIndex": 0,
-      "explanation": "-r installs every requirement line from the file into the active environment."
+      "correctIndex": 1,
+      "explanation": "discard() removes x if present and silently does nothing otherwise."
     },
     {
       "id": "14",
       "type": "truefalse",
-      "prompt": "from module import * is generally discouraged in production code.",
-      "correct": true,
-      "explanation": "Star imports pollute the namespace and make names harder to trace."
+      "prompt": "You can use a list as an element inside a set.",
+      "correct": false,
+      "explanation": "Set elements must be hashable; lists are mutable and unhashable."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "If utils.py is in the same folder as main.py, how can main import utils?",
+      "prompt": "Which builds a set from a list with duplicates removed?",
       "options": [
-        "import utils (when both are on the module search path)",
-        "include utils.py",
-        "load utils",
-        "utils must be a pip package only"
+        "set([1, 1, 2])",
+        "list({1, 2})",
+        "unique([1, 1, 2])",
+        "{list([1, 2])}"
       ],
       "correctIndex": 0,
-      "explanation": "Same-directory modules are importable when the directory is on sys.path."
+      "explanation": "Passing a list to set() returns a set of unique values."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "What does python -m pip install --upgrade pip do?",
+      "prompt": "What does A - B mean for sets?",
       "options": [
-        "Runs pip as a module to upgrade pip itself",
-        "Imports pip into every .py file",
-        "Deletes pip",
-        "Creates __main__.py automatically"
+        "Elements in both A and B",
+        "Elements in A but not in B",
+        "Elements in B but not in A",
+        "Symmetric difference of A and B"
       ],
-      "correctIndex": 0,
-      "explanation": "python -m pip invokes pip with the current interpreter, often safer than a bare pip command."
+      "correctIndex": 1,
+      "explanation": "Difference A - B is elements that are in A and not in B."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "Which helps avoid installing packages into the wrong Python?",
+      "prompt": "What is {x for x in 'hello' if x != 'l'}?",
       "options": [
-        "Activate the project's venv before pip install",
-        "Always use sudo pip globally",
-        "Never use requirements.txt",
-        "Disable __name__ checks"
+        "A set comprehension",
+        "A list comprehension",
+        "A syntax error",
+        "A dictionary comprehension"
       ],
       "correctIndex": 0,
-      "explanation": "Activating the venv ensures pip targets that environment's site-packages."
+      "explanation": "Curly braces with a for clause define a set comprehension."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "What is __name__ when another file does import myapp?",
+      "prompt": "After s = {1, 2}; s.update([2, 3]), what is s?",
       "options": [
-        "\"myapp\" (the module name)",
-        "\"__main__\"",
-        "None",
-        "Always \"__main__\""
+        "{1, 2, 3}",
+        "{1, 2}",
+        "{2, 3}",
+        "{1, 2, 2, 3}"
       ],
       "correctIndex": 0,
-      "explanation": "When imported, __name__ is the module's name, not \"__main__\"."
+      "explanation": "update() adds multiple elements; duplicates are ignored."
     },
     {
       "id": "19",
       "type": "truefalse",
-      "prompt": "You can run a package module with python -m package.module.",
+      "prompt": "Sets are mutable: you can add and remove items after creation.",
       "correct": true,
-      "explanation": "-m runs a module as a script using the proper package context."
+      "explanation": "Regular sets support add, remove, and other mutating methods."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "What is a common reason to split code into multiple modules?",
+      "prompt": "Why might you use a set to filter duplicates from a list?",
       "options": [
-        "Organize related code and reuse it across files",
-        "Avoid using functions",
-        "Prevent imports entirely",
-        "Replace virtual environments"
+        "Sets preserve the original list order exactly",
+        "Sets automatically keep only unique values",
+        "Sets sort values as strings",
+        "Sets are faster only for empty lists"
       ],
-      "correctIndex": 0,
-      "explanation": "Modules keep projects maintainable and let you import shared logic."
+      "correctIndex": 1,
+      "explanation": "Converting to a set drops duplicates; you may convert back to a list if needed."
     }
   ]
 }

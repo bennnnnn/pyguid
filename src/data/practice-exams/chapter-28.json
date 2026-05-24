@@ -1,0 +1,239 @@
+{
+  "chapter": 28,
+  "chapterTitle": "Debugging Python Code",
+  "title": "Debugging Python Code Quiz",
+  "description": "Practice reading tracebacks, using pdb, and measuring performance with cProfile and timeit.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "What is a good first debugging step when code fails?",
+      "options": [
+        "Read the error message and traceback carefully",
+        "Delete the file",
+        "Disable all exceptions",
+        "Rewrite in another language"
+      ],
+      "correctIndex": 0,
+      "explanation": "The traceback points to the failing line and exception type."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does print() debugging mean?",
+      "options": [
+        "Inserting print statements to inspect variable values",
+        "Removing all output",
+        "Using only pytest",
+        "Converting code to JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "Temporary prints reveal what the program is doing at runtime."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "A debugger lets you pause execution and inspect variables line by line.",
+      "correct": true,
+      "explanation": "pdb and IDE debuggers help step through code beyond print statements."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "help(some_function) shows:",
+      "options": [
+        "Docstring and basic signature information",
+        "The function's source file on disk only",
+        "A guaranteed fix for bugs",
+        "SQL query results"
+      ],
+      "correctIndex": 0,
+      "explanation": "help() and dir() explore what an object can do."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "import pdb; pdb.set_trace() is used to:",
+      "options": [
+        "Start an interactive debugger at that line",
+        "Speed up loops automatically",
+        "Install packages",
+        "Parse JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "set_trace drops into pdb when that line runs."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "In pdb, the n command typically:",
+      "options": [
+        "Steps to the next line in the current function",
+        "Quits Python",
+        "Deletes variables",
+        "Runs pytest"
+      ],
+      "correctIndex": 0,
+      "explanation": "n (next) executes the current line and stops at the next."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "The bottom line of a traceback usually shows:",
+      "options": [
+        "The exception type and message",
+        "The Python version only",
+        "All installed pip packages",
+        "Your git branch"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeError, ValueError, etc. tell you what went wrong."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "Reading traceback frames from bottom to top shows where the error was raised.",
+      "correct": true,
+      "explanation": "The last frame is the immediate cause; frames above show the call chain."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "cProfile is used to:",
+      "options": [
+        "Measure where a program spends time",
+        "Format JSON",
+        "Open CSV files",
+        "Create classes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Profiling finds slow functions in real runs."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "timeit.timeit() helps you:",
+      "options": [
+        "Benchmark small code snippets repeatably",
+        "Fix syntax errors",
+        "Install Flask",
+        "Read files faster"
+      ],
+      "correctIndex": 0,
+      "explanation": "timeit runs code many times to compare approaches fairly."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Before optimizing, you should usually:",
+      "options": [
+        "Profile to find the actual bottleneck",
+        "Rewrite everything in assembly",
+        "Remove all loops",
+        "Skip measuring"
+      ],
+      "correctIndex": 0,
+      "explanation": "Measure first; optimize what actually costs time."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "A NameError often means a variable was used before it was defined.",
+      "correct": true,
+      "explanation": "Check spelling and that assignment happened before use."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "dir(obj) without arguments in pdb or a shell shows:",
+      "options": [
+        "Names available on obj",
+        "Only private methods",
+        "Git history",
+        "HTTP headers"
+      ],
+      "correctIndex": 0,
+      "explanation": "dir lists attributes and methods to explore APIs."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Reproducing a bug reliably means:",
+      "options": [
+        "You can trigger it again with known steps",
+        "The bug is fixed",
+        "Tests are deleted",
+        "The code has no inputs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reproduction is required before you can verify a fix."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Logging compared to random prints:",
+      "options": [
+        "Levels and format can be controlled in one place",
+        "Always slower than deleting code",
+        "Cannot go to a file",
+        "Replaces exceptions"
+      ],
+      "correctIndex": 0,
+      "explanation": "logging is structured; prints are fine for quick checks."
+    },
+    {
+      "id": "16",
+      "type": "truefalse",
+      "prompt": "Rubber duck debugging means explaining the problem out loud to clarify your thinking.",
+      "correct": true,
+      "explanation": "Teaching the code line by line often reveals the mistake."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "After fixing a bug, you should:",
+      "options": [
+        "Re-run the program and add a test if possible",
+        "Never run the code again",
+        "Remove all error handling",
+        "Disable tracebacks"
+      ],
+      "correctIndex": 0,
+      "explanation": "Verify the fix and prevent the bug from returning."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "python -m pdb script.py runs:",
+      "options": [
+        "script.py under the debugger from the start",
+        "Only unit tests",
+        "A web server",
+        "JSON validation only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The -m pdb flag starts pdb before the first line runs."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "An off-by-one error often appears as:",
+      "options": [
+        "IndexError or wrong loop count by one",
+        "Only JSON errors",
+        "Only import errors",
+        "Only file not found"
+      ],
+      "correctIndex": 0,
+      "explanation": "Check range bounds and whether you used < vs <=."
+    },
+    {
+      "id": "20",
+      "type": "truefalse",
+      "prompt": "Smaller test cases help isolate which input triggers a failure.",
+      "correct": true,
+      "explanation": "Shrink the example until the bug is obvious."
+    }
+  ]
+}

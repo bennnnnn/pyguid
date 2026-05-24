@@ -1,230 +1,245 @@
 {
   "chapter": 15,
-  "chapterTitle": "Files",
-  "title": "Files Practice Exam",
-  "description": "Practice reading and writing files, pathlib, and basic CSV handling.",
+  "chapterTitle": "Scope",
+  "title": "Scope Quiz",
+  "description": "Review defining functions, parameters, return values, scope, and basic *args.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "What does open(\"data.txt\", \"r\") do?",
+      "prompt": "Which keyword starts a function definition?",
       "options": [
-        "Opens data.txt for reading text",
-        "Creates data.txt in binary write-only mode",
-        "Deletes data.txt",
-        "Imports the os module"
+        "func",
+        "def",
+        "function",
+        "define"
       ],
-      "correctIndex": 0,
-      "explanation": "\"r\" is read mode; the file must exist unless you use modes that create it."
+      "correctIndex": 1,
+      "explanation": "Use def name(parameters): followed by an indented body."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "Why use with open(\"f.txt\") as f:?",
+      "prompt": "What does return 5 do inside a function?",
       "options": [
-        "Automatically closes the file when the block ends",
-        "Makes the file read-only forever",
-        "Prevents all exceptions",
-        "Replaces pathlib"
+        "Prints 5 to the console",
+        "Ends the function and sends 5 back to the caller",
+        "Assigns 5 to a global variable only",
+        "Raises an exception"
       ],
-      "correctIndex": 0,
-      "explanation": "Context managers ensure close() runs even if an error occurs."
+      "correctIndex": 1,
+      "explanation": "return passes a value out of the function to whoever called it."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "What does f.read() return for a text file?",
+      "prompt": "How do you call a function named greet with no arguments?",
       "options": [
-        "The entire file contents as one string",
-        "A list of lines always",
-        "Only the first byte as int",
-        "A pathlib Path object"
+        "call greet",
+        "greet()",
+        "def greet()",
+        "greet"
       ],
-      "correctIndex": 0,
-      "explanation": "read() loads the whole file; readline() and readlines() split by lines."
+      "correctIndex": 1,
+      "explanation": "Function calls use the name followed by parentheses."
     },
     {
       "id": "4",
       "type": "truefalse",
-      "prompt": "Mode \"w\" opens a file for writing and truncates it if it already exists.",
+      "prompt": "A function without a return statement returns None.",
       "correct": true,
-      "explanation": "Write mode overwrites existing content; use \"a\" to append instead."
+      "explanation": "If execution finishes without return, Python implicitly returns None."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "How do you write the string \"hi\" to an open text file f?",
+      "prompt": "What is a parameter in def add(a, b):?",
       "options": [
-        "f.write(\"hi\")",
-        "f.append(\"hi\")",
-        "write(f, \"hi\")",
-        "f.print(\"hi\")"
+        "The value passed when calling add(1, 2)",
+        "A name in the definition that receives a value",
+        "The return type of add",
+        "A global variable named a or b"
       ],
-      "correctIndex": 0,
-      "explanation": "write() sends a string to the file; you may need \\n for newlines."
+      "correctIndex": 1,
+      "explanation": "Parameters are names in the definition; arguments are the values at call time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What does Path(\"notes\") / \"todo.txt\" help with?",
+      "prompt": "What does def greet(name=\"Guest\"): allow?",
       "options": [
-        "Building paths in an OS-independent way",
-        "Opening files without code",
-        "Parsing CSV only",
-        "Running pytest"
+        "Calling greet() without an argument uses \"Guest\"",
+        "name must always be provided",
+        "name cannot be a string",
+        "Only keyword calls are allowed"
       ],
       "correctIndex": 0,
-      "explanation": "pathlib.Path joins path segments with the correct separator for the OS."
+      "explanation": "Default parameter values apply when the caller omits that argument."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "Which reads all lines into a list of strings?",
-      "options": ["f.readlines()", "f.readall()", "lines(f)", "f.line()"],
+      "prompt": "Inside a function, assigning to x without global usually creates:",
+      "options": [
+        "A local variable x",
+        "Always a global x",
+        "A syntax error",
+        "A module-level constant"
+      ],
       "correctIndex": 0,
-      "explanation": "readlines() returns a list including newline characters at line ends."
+      "explanation": "Assignment binds a local name unless declared global or nonlocal."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "What is a common way to loop over lines in a file object f?",
-      "options": ["for line in f:", "while f.line():", "for f in line:", "loop f.lines"],
+      "prompt": "What does *args collect in def f(*args):?",
+      "options": [
+        "Extra positional arguments as a tuple",
+        "Extra keyword arguments as a dict",
+        "Only the first argument",
+        "All global variables"
+      ],
       "correctIndex": 0,
-      "explanation": "Iterating the file object reads line by line efficiently."
+      "explanation": "*args packs any extra positional arguments into a tuple."
     },
     {
       "id": "9",
       "type": "truefalse",
-      "prompt": "The csv module helps read and write comma-separated values in Python.",
+      "prompt": "print() inside a function displays output but does not return a useful result to the caller by default.",
       "correct": true,
-      "explanation": "csv.reader and csv.writer handle delimiters and quoting for spreadsheet-like data."
+      "explanation": "print shows text; return is how you pass data back for further use."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What does open(\"log.txt\", \"a\") do?",
+      "prompt": "What is the result of:\ndef double(n):\n    return n * 2\n\ndouble(3)",
       "options": [
-        "Opens for appending at the end of the file",
-        "Opens read-only",
-        "Deletes the file first",
-        "Opens in binary read mode"
+        "6",
+        "None",
+        "\"33\"",
+        "An error"
       ],
       "correctIndex": 0,
-      "explanation": "\"a\" append mode writes new data after existing content."
+      "explanation": "The function returns 3 * 2, which is 6."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "Path(\"data.txt\").exists() returns:",
+      "prompt": "Which call matches def area(width, height):?",
       "options": [
-        "True if the path exists on disk",
-        "The file contents",
-        "A list of directories",
-        "Always True"
+        "area(width=4, height=5)",
+        "area 4 5",
+        "area{4, 5}",
+        "area: 4, 5"
       ],
       "correctIndex": 0,
-      "explanation": "exists() checks whether the path is present without opening it."
+      "explanation": "Keyword arguments match parameters by name: area(width=4, height=5)."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "Why specify encoding=\"utf-8\" when opening text files?",
+      "prompt": "What does reading a global variable inside a function do (without assigning to it)?",
       "options": [
-        "Decode and encode text consistently, especially across platforms",
-        "Make files binary only",
-        "Disable with statements",
-        "Speed up all disk access"
+        "Looks up the name in outer scopes",
+        "Always creates a new local copy",
+        "Raises SyntaxError",
+        "Deletes the global"
       ],
       "correctIndex": 0,
-      "explanation": "Explicit encoding avoids surprises with non-ASCII characters."
+      "explanation": "Reading a name searches local, enclosing, global, then builtin scopes."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "import csv\nwith open(\"t.csv\") as f:\n    rows = list(csv.reader(f))\nWhat is rows[0] likely to be?",
+      "prompt": "def total(*nums): return sum(nums)\nWhat is total(1, 2, 3)?",
       "options": [
-        "A list of fields from the first row",
-        "A single string of the whole file",
-        "An integer row count",
-        "A pathlib Path"
+        "6",
+        "(1, 2, 3)",
+        "3",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "csv.reader yields each row as a list of column strings."
+      "explanation": "*nums is (1, 2, 3); sum adds them to 6."
     },
     {
       "id": "14",
       "type": "truefalse",
-      "prompt": "You should close files or use with to avoid leaving handles open.",
+      "prompt": "Function names should use snake_case by common Python style.",
       "correct": true,
-      "explanation": "Open handles consume resources; with blocks close automatically."
+      "explanation": "PEP 8 recommends lowercase with underscores for function names."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "What does Path.home() typically represent?",
+      "prompt": "What is a docstring in a function?",
       "options": [
-        "The current user's home directory",
-        "The Python install folder only",
-        "The desktop always",
-        "A temporary file"
+        "A comment starting with #",
+        "A string literal right after def used as documentation",
+        "The return type annotation only",
+        "An import statement"
       ],
-      "correctIndex": 0,
-      "explanation": "Path.home() points to the user home directory on the system."
+      "correctIndex": 1,
+      "explanation": "A triple-quoted string as the first statement becomes __doc__."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "Reading a large file line-by-line in a for loop is often preferred because:",
+      "prompt": "Why return a value instead of only printing it?",
       "options": [
-        "It avoids loading the entire file into memory at once",
-        "It is always slower than read()",
-        "It converts the file to JSON",
-        "It requires admin rights"
+        "return is faster than print for all programs",
+        "The caller can use the result in expressions and other code",
+        "print cannot show numbers",
+        "return automatically saves to a file"
       ],
-      "correctIndex": 0,
-      "explanation": "Streaming lines scales better for big files."
+      "correctIndex": 1,
+      "explanation": "Return values let callers store, test, or combine results."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "What exception might open(\"nope.txt\") raise if the file is missing?",
-      "options": ["FileNotFoundError", "KeyError", "IndexError", "AttributeError"],
+      "prompt": "What happens if you call a function with too few required arguments?",
+      "options": [
+        "TypeError",
+        "It uses None for missing args automatically",
+        "SyntaxError at import time",
+        "The function runs with empty strings"
+      ],
       "correctIndex": 0,
-      "explanation": "Missing files raise FileNotFoundError (or OSError variants)."
+      "explanation": "Python raises TypeError when required parameters are not supplied."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "Path(\"docs\") / \"readme.md\" creates:",
+      "prompt": "Which is valid after def f(): pass?",
       "options": [
-        "A Path representing docs/readme.md (or docs\\readme.md on Windows)",
-        "A file handle ready for writing",
-        "A CSV dict",
-        "A pytest fixture"
+        "f()",
+        "call f",
+        "run f()",
+        "execute def f"
       ],
       "correctIndex": 0,
-      "explanation": "The / operator on Path objects joins path components."
+      "explanation": "pass is a no-op body; you still invoke the function with f()."
     },
     {
       "id": "19",
       "type": "truefalse",
-      "prompt": "Binary mode \"rb\" reads bytes instead of decoded text strings.",
+      "prompt": "Variables created inside a function are generally not visible outside it.",
       "correct": true,
-      "explanation": "Binary modes return bytes objects; text modes use str and encoding."
+      "explanation": "Locals stay inside the function unless returned or declared nonlocal/global."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "csv.writer(file) is used to:",
+      "prompt": "def show(*items):\n    for i in items:\n        print(i)\nshow(\"a\", \"b\") prints:",
       "options": [
-        "Write rows of data to a CSV file",
-        "Compile Python source",
-        "Create virtual environments",
-        "Parse JSON only"
+        "a then b on separate lines",
+        "the tuple ('a', 'b') as one line only",
+        "nothing",
+        "a syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "writerow() and writerows() output properly formatted CSV lines."
+      "explanation": "*items receives ('a', 'b'); the loop prints each element."
     }
   ]
 }

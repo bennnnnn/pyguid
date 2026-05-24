@@ -1,7 +1,7 @@
 {
   "chapter": 1,
-  "chapterTitle": "Getting Started",
-  "title": "Getting Started Practice Exam",
+  "chapterTitle": "What is Python?",
+  "title": "What is Python? Quiz",
   "description": "Test your understanding of print, Python syntax, comments, and how code runs top to bottom.",
   "passPercent": 70,
   "questions": [
@@ -9,7 +9,12 @@
       "id": "1",
       "type": "choice",
       "prompt": "Which function displays text in the terminal?",
-      "options": ["print()", "display()", "show()", "output()"],
+      "options": [
+        "print()",
+        "display()",
+        "show()",
+        "output()"
+      ],
       "correctIndex": 0,
       "explanation": "print() sends values to standard output so you can see them in the terminal."
     },
@@ -17,7 +22,12 @@
       "id": "2",
       "type": "choice",
       "prompt": "What is the output of `print('Hello')`?",
-      "options": ["Hello", "'Hello'", "print('Hello')", "Nothing"],
+      "options": [
+        "Hello",
+        "'Hello'",
+        "print('Hello')",
+        "Nothing"
+      ],
       "correctIndex": 0,
       "explanation": "print() outputs the string without the surrounding quotes."
     },
@@ -25,7 +35,12 @@
       "id": "3",
       "type": "choice",
       "prompt": "How do you write a single-line comment in Python?",
-      "options": ["# comment", "// comment", "/* comment */", "-- comment"],
+      "options": [
+        "# comment",
+        "// comment",
+        "/* comment */",
+        "-- comment"
+      ],
       "correctIndex": 0,
       "explanation": "Python uses # for comments; everything after # on that line is ignored."
     },
@@ -53,7 +68,12 @@
       "id": "6",
       "type": "choice",
       "prompt": "Which line will cause a SyntaxError?",
-      "options": ["print('hi')", "print(\"hi\")", "print(hi)", "print(42)"],
+      "options": [
+        "print('hi')",
+        "print(\"hi\")",
+        "print(hi)",
+        "print(42)"
+      ],
       "correctIndex": 2,
       "explanation": "hi without quotes is treated as a variable name, not a string literal."
     },
@@ -61,7 +81,12 @@
       "id": "7",
       "type": "choice",
       "prompt": "What does `print(2 + 3)` display?",
-      "options": ["5", "2 + 3", "23", "Error"],
+      "options": [
+        "5",
+        "2 + 3",
+        "23",
+        "Error"
+      ],
       "correctIndex": 0,
       "explanation": "Python evaluates the expression inside print() before displaying the result."
     },
@@ -122,7 +147,12 @@
       "id": "13",
       "type": "choice",
       "prompt": "Which file extension is standard for Python source files?",
-      "options": [".py", ".python", ".pt", ".pyt"],
+      "options": [
+        ".py",
+        ".python",
+        ".pt",
+        ".pyt"
+      ],
       "correctIndex": 0,
       "explanation": "Python source files conventionally use the .py extension."
     },
@@ -130,7 +160,12 @@
       "id": "14",
       "type": "choice",
       "prompt": "What does `print('3', '4')` display?",
-      "options": ["3 4", "34", "3,4", "7"],
+      "options": [
+        "3 4",
+        "34",
+        "3,4",
+        "7"
+      ],
       "correctIndex": 0,
       "explanation": "print() separates multiple arguments with a space by default."
     },
@@ -138,7 +173,12 @@
       "id": "15",
       "type": "choice",
       "prompt": "Reordering these lines changes the output. Which order prints C last?\n\nprint('A')\nprint('B')\nprint('C')",
-      "options": ["Keep them as written", "Swap A and C", "Put C first", "Delete B"],
+      "options": [
+        "Keep them as written",
+        "Swap A and C",
+        "Put C first",
+        "Delete B"
+      ],
       "correctIndex": 0,
       "explanation": "Top-to-bottom order means C prints last only when it is the final print statement."
     },
@@ -146,7 +186,12 @@
       "id": "16",
       "type": "choice",
       "prompt": "Which error message type often points to a typo or missing quote?",
-      "options": ["SyntaxError", "ValueError", "TypeError", "IndexError"],
+      "options": [
+        "SyntaxError",
+        "ValueError",
+        "TypeError",
+        "IndexError"
+      ],
       "correctIndex": 0,
       "explanation": "SyntaxError means Python could not parse the code, often due to bad punctuation."
     },
@@ -161,7 +206,12 @@
       "id": "18",
       "type": "choice",
       "prompt": "What is printed?\n\nx = 10\nprint(x)",
-      "options": ["10", "x", "Nothing", "Error because x is not defined yet"],
+      "options": [
+        "10",
+        "x",
+        "Nothing",
+        "Error because x is not defined yet"
+      ],
       "correctIndex": 0,
       "explanation": "Assignment runs before print, so x exists and its value 10 is displayed."
     },

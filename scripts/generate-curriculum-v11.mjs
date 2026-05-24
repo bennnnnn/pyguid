@@ -1,0 +1,327 @@
+#!/usr/bin/env node
+/**
+ * Emit docs/curriculum-order.json v11 — 30-chapter Python-only map + mini programs.
+ * Run: node scripts/generate-curriculum-v11.mjs > docs/curriculum-order.json
+ */
+const chapters = [
+  {
+    n: 1,
+    title: "What is Python?",
+    slugs: ["what-is-python"],
+  },
+  {
+    n: 2,
+    title: "Print, Comments, and Errors",
+    slugs: [
+      "first-print",
+      "top-to-bottom",
+      "syntax-errors",
+      "comments",
+      "about-me-project",
+    ],
+  },
+  {
+    n: 3,
+    title: "Variables",
+    slugs: [
+      "creating-variables",
+      "naming-rules",
+      "updating-values",
+      "variables-in-print",
+    ],
+  },
+  {
+    n: 4,
+    title: "Input and Type Conversion",
+    slugs: ["input-basics", "input-conversion", "multiple-assignment"],
+  },
+  {
+    n: 5,
+    title: "Data Types",
+    slugs: [
+      "data-types-overview",
+      "type-function",
+      "isinstance-basics",
+      "mutable-immutable",
+      "none-type",
+    ],
+  },
+  {
+    n: 6,
+    title: "Numbers and Operators",
+    slugs: [
+      "integers-floats",
+      "arithmetic-operators",
+      "assignment-operators",
+      "operator-precedence",
+      "tip-calculator-project",
+    ],
+  },
+  {
+    n: 7,
+    title: "Strings",
+    slugs: [
+      "strings",
+      "string-upper-lower",
+      "string-strip",
+      "string-split",
+      "string-join",
+      "string-find-replace",
+      "string-count",
+      "string-startswith",
+      "string-in",
+      "string-format",
+      "string-slicing",
+    ],
+  },
+  {
+    n: 8,
+    title: "Booleans and Conditions",
+    slugs: [
+      "booleans",
+      "truthy-falsy",
+      "comparisons",
+      "not-operator",
+      "and-or",
+      "membership-identity",
+      "if-indentation",
+      "elif-else",
+      "nested-if",
+      "login-checker-project",
+    ],
+  },
+  {
+    n: 9,
+    title: "Loops",
+    slugs: [
+      "while-loops",
+      "for-loops",
+      "range-function",
+      "break-continue",
+      "loop-else",
+      "infinite-loops",
+      "loop-patterns",
+      "nested-loops",
+      "guessing-game-project",
+      "random-guessing-game",
+    ],
+  },
+  {
+    n: 10,
+    title: "Lists",
+    slugs: [
+      "lists-intro",
+      "list-indexing",
+      "list-slicing",
+      "list-append",
+      "list-extend",
+      "list-append-vs-extend",
+      "list-insert",
+      "list-remove",
+      "list-del",
+      "list-pop",
+      "list-clear",
+      "list-sort",
+      "list-reverse",
+      "list-copy",
+      "list-index-count",
+      "list-loops",
+      "list-enumerate",
+      "list-zip",
+      "todo-list-project",
+    ],
+  },
+  { n: 11, title: "Tuples", slugs: ["tuples-intro", "tuple-unpacking", "tuple-immutability", "tuple-one-item", "namedtuple-preview"] },
+  {
+    n: 12,
+    title: "Sets",
+    slugs: ["sets-intro", "set-add-remove", "set-empty-set", "set-operations", "frozenset-basics"],
+  },
+  {
+    n: 13,
+    title: "Dictionaries",
+    slugs: [
+      "dict-intro",
+      "dict-key-rules",
+      "dict-access",
+      "dict-get",
+      "dict-setdefault",
+      "dict-keys",
+      "dict-values",
+      "dict-items",
+      "dict-pop-update",
+      "dict-popitem",
+      "dict-nested",
+      "dict-loops",
+      "contact-book-project",
+    ],
+  },
+  {
+    n: 14,
+    title: "Functions",
+    slugs: [
+      "functions-intro",
+      "function-arguments",
+      "function-default-args",
+      "function-return",
+      "print-vs-return",
+      "function-docstrings",
+    ],
+  },
+  { n: 15, title: "Scope", slugs: ["function-scope"] },
+  {
+    n: 16,
+    title: "Error Handling",
+    slugs: [
+      "tracebacks",
+      "try-except",
+      "try-else-finally",
+      "raise-statement",
+      "common-exceptions",
+      "except-multiple-types",
+      "exception-chaining",
+      "safe-calculator-project",
+    ],
+  },
+  {
+    n: 17,
+    title: "Files",
+    slugs: [
+      "file-paths-modes",
+      "read-files",
+      "file-readlines-encoding",
+      "write-files",
+      "context-managers-custom",
+      "file-append-mode",
+      "pathlib-basics",
+      "pathlib-glob-files",
+      "shutil-file-ops",
+      "csv-read-write",
+      "pathlib-relative-absolute",
+      "configparser-ini-files",
+      "notes-app-project",
+    ],
+  },
+  {
+    n: 18,
+    title: "Modules",
+    slugs: [
+      "modules-intro",
+      "main-module-guard",
+      "import-from-as",
+      "sys-argv-basics",
+      "argparse-cli",
+      "os-environ-vars",
+      "secrets-token-safety",
+      "subprocess-run-safety",
+    ],
+  },
+  {
+    n: 19,
+    title: "Packages and Imports",
+    slugs: ["python-packages", "venv-and-requirements"],
+  },
+  { n: 20, title: "Useful Built-in Functions", slugs: ["builtin-functions"] },
+  {
+    n: 21,
+    title: "Comprehensions",
+    slugs: [
+      "list-comprehensions",
+      "nested-list-comprehensions",
+      "dict-comprehensions",
+      "set-comprehensions",
+    ],
+  },
+  {
+    n: 22,
+    title: "Object-Oriented Python",
+    slugs: [
+      "classes-intro",
+      "class-init-self",
+      "class-instance-attributes",
+      "class-methods",
+      "classstaticmethod-classmethod",
+      "class-property-decorator",
+      "class-str-repr",
+      "inheritance",
+      "super-inheritance",
+      "dunder-methods-magic",
+    ],
+  },
+  {
+    n: 23,
+    title: "Advanced Functions",
+    slugs: [
+      "function-args-kwargs",
+      "function-keyword-only",
+      "function-unpacking-calls",
+      "lambda-functions",
+      "functools-lru-cache",
+    ],
+  },
+  {
+    n: 24,
+    title: "Iterators and Generators",
+    slugs: ["generators-yield-intro", "itertools-preview"],
+  },
+  { n: 25, title: "Decorators", slugs: ["decorators-preview"] },
+  {
+    n: 26,
+    title: "Type Hints",
+    slugs: [
+      "type-hints-intro",
+      "type-hints-depth",
+      "typing-typeddict-protocol",
+      "mypy-type-checking",
+    ],
+  },
+  {
+    n: 27,
+    title: "Python Standard Library",
+    slugs: [
+      "collections-preview",
+      "enum-module-preview",
+      "math-random-module",
+      "copy-deepcopy",
+      "json-python",
+      "json-todo-project",
+      "dataclasses-preview",
+      "datetime-basics",
+      "match-case-preview",
+      "logging-basic",
+      "regex-basics",
+    ],
+  },
+  {
+    n: 28,
+    title: "Debugging Python Code",
+    slugs: ["debugging-help-dir", "pdb-debugger", "cprofile-performance", "timeit-benchmark"],
+  },
+  {
+    n: 29,
+    title: "Testing Python Code",
+    slugs: ["assert-testing-intro", "pytest-basics", "unittest-module"],
+  },
+  { n: 30, title: "Writing Clean Python", slugs: ["code-quality-tools"] },
+  {
+    n: 31,
+    title: "Python Mini Programs",
+    slugs: ["quiz-app-project", "personality-quiz-project", "multi-file-cli-capstone"],
+  },
+];
+
+const lessons = [];
+for (const ch of chapters) {
+  for (const slug of ch.slugs) {
+    lessons.push({ slug, chapter: ch.n, chapterTitle: ch.title });
+  }
+}
+
+const out = {
+  version: 11,
+  description:
+    "30-chapter Python-only curriculum (+ mini programs). Run: node scripts/sync-curriculum.mjs",
+  lessons,
+};
+
+console.log(JSON.stringify(out, null, 2) + "\n");

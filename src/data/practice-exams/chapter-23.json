@@ -1,224 +1,245 @@
 {
   "chapter": 23,
-  "chapterTitle": "Databases",
-  "title": "Databases Practice Exam",
-  "description": "Practice SQLite basics, SQL parameters, and storing app data in tables.",
+  "chapterTitle": "Advanced Functions",
+  "title": "Advanced Functions Quiz",
+  "description": "Practice lambda, decorators, generators, functools, and itertools.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Which module is built into Python for SQLite databases?",
-      "options": ["sqlite3", "sqlalchemy", "mysql", "pandas"],
+      "prompt": "What does lambda x: x + 1 create?",
+      "options": [
+        "A small anonymous function",
+        "A class named lambda",
+        "A module import",
+        "A list of numbers"
+      ],
       "correctIndex": 0,
-      "explanation": "import sqlite3 connects to .db files without installing extra packages."
+      "explanation": "lambda makes a one-expression function without a def name."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What does conn.execute(\"SELECT * FROM todos\") return?",
+      "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
       "options": [
-        "A cursor you can fetch rows from",
-        "A Python list automatically",
-        "A JSON string only",
-        "A pytest fixture"
+        "[3, 2, 1]",
+        "[1, 2, 3]",
+        "[3, 1, 2]",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "execute runs SQL; fetchone/fetchall read result rows from the cursor."
+      "explanation": "key sorts by negated value, descending order."
     },
     {
       "id": "3",
       "type": "truefalse",
-      "prompt": "Using ? placeholders in SQL helps prevent SQL injection when passing user input.",
+      "prompt": "A decorator wraps a function to add behavior before or after it runs.",
       "correct": true,
-      "explanation": "Parameterized queries keep values separate from the SQL text."
+      "explanation": "Decorators are syntactic sugar for function transformation."
     },
     {
       "id": "4",
       "type": "choice",
-      "prompt": "conn.commit() is needed after INSERT because:",
+      "prompt": "yield inside a function makes it:",
       "options": [
-        "Changes are not saved permanently until you commit",
-        "It closes Python",
-        "It converts rows to JSON",
-        "It runs pytest"
+        "A generator function",
+        "A class",
+        "A module",
+        "A file handle"
       ],
       "correctIndex": 0,
-      "explanation": "SQLite uses transactions; commit writes pending changes to the database file."
+      "explanation": "Calling the function returns a generator object."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "A PRIMARY KEY column in a table:",
+      "prompt": "next(gen) on a generator:",
       "options": [
-        "Uniquely identifies each row",
-        "Must always be text",
-        "Cannot be an integer",
-        "Replaces all other columns"
+        "Runs until the next yield and returns that value",
+        "Deletes the generator",
+        "Imports itertools",
+        "Commits a database"
       ],
       "correctIndex": 0,
-      "explanation": "Primary keys give each row a stable unique id."
+      "explanation": "Generators produce values lazily one step at a time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What file extension is common for a SQLite database on disk?",
-      "options": [".db or .sqlite", ".json only", ".csv only", ".py"],
+      "prompt": "map(lambda x: x**2, [1, 2, 3]) in Python 3 is:",
+      "options": [
+        "A map object (lazy iterator)",
+        "Always [1, 4, 9] without list()",
+        "A dict",
+        "A syntax error"
+      ],
       "correctIndex": 0,
-      "explanation": "SQLite stores data in a single file such as todos.db."
+      "explanation": "Use list(map(...)) to materialize all results."
     },
     {
       "id": "7",
-      "type": "truefalse",
-      "prompt": "SQLite is a good fit for learning and small local apps.",
-      "correct": true,
-      "explanation": "It is serverless, file-based, and ships with Python."
+      "type": "choice",
+      "prompt": "@functools.lru_cache on a function helps when:",
+      "options": [
+        "The same arguments repeat and results can be reused",
+        "You need JSON parsing",
+        "You open files",
+        "You delete variables"
+      ],
+      "correctIndex": 0,
+      "explanation": "LRU cache stores recent call results to save work."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "CREATE TABLE IF NOT EXISTS todos (...) means:",
+      "prompt": "itertools.chain([1, 2], [3]) conceptually:",
       "options": [
-        "Create the table only when it does not already exist",
-        "Delete the table every time",
-        "Insert a row named IF NOT EXISTS",
-        "Export data to CSV"
+        "Iterates through each iterable in sequence",
+        "Sorts numbers only",
+        "Creates a set",
+        "Raises always"
       ],
       "correctIndex": 0,
-      "explanation": "IF NOT EXISTS avoids errors when setup runs more than once."
+      "explanation": "chain flattens multiple iterables without building a big list first."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "cursor.fetchall() returns:",
-      "options": [
-        "A list of row tuples from the query",
-        "The database file path",
-        "A single integer always",
-        "Nothing"
-      ],
-      "correctIndex": 0,
-      "explanation": "fetchall reads every remaining row from the last SELECT."
+      "type": "truefalse",
+      "prompt": "Generators can save memory compared to building a huge list upfront.",
+      "correct": true,
+      "explanation": "Lazy iteration produces one item at a time."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "Why use with sqlite3.connect() as conn?",
+      "prompt": "@decorator above def f(): is roughly equivalent to:",
       "options": [
-        "The connection closes reliably when the block ends",
-        "It disables commits",
-        "It replaces SQL with JSON",
-        "It imports Flask"
+        "f = decorator(f)",
+        "decorator = f",
+        "import decorator",
+        "del f"
       ],
       "correctIndex": 0,
-      "explanation": "Context managers ensure cleanup even if an error occurs."
+      "explanation": "The decorator is applied at function definition time."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "SQLAlchemy is mainly used to:",
+      "prompt": "filter(lambda n: n % 2 == 0, range(5)) keeps:",
       "options": [
-        "Work with databases using Python classes and an ORM layer",
-        "Replace the Python interpreter",
-        "Parse JSON only",
-        "Style HTML pages"
+        "Even numbers 0, 2, 4",
+        "Odd numbers only",
+        "All strings",
+        "Nothing"
       ],
       "correctIndex": 0,
-      "explanation": "ORMs map tables to Python objects for common database tasks."
+      "explanation": "filter keeps items where the function returns truthy."
     },
     {
       "id": "12",
-      "type": "truefalse",
-      "prompt": "An ORM can generate SQL while you work with Python objects.",
-      "correct": true,
-      "explanation": "SQLAlchemy builds queries from model definitions and sessions."
+      "type": "choice",
+      "prompt": "A generator expression (x for x in range(3)) is like:",
+      "options": [
+        "A compact lazy generator",
+        "A list comprehension with brackets",
+        "A class definition",
+        "A try/except block"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parentheses make a generator expression instead of a list."
     },
     {
       "id": "13",
-      "type": "choice",
-      "prompt": "INSERT INTO todos (text, done) VALUES (?, ?) adds:",
-      "options": [
-        "One new row with those column values",
-        "A new database file",
-        "All tables at once",
-        "A pytest file"
-      ],
-      "correctIndex": 0,
-      "explanation": "INSERT adds data; placeholders bind Python values safely."
+      "type": "truefalse",
+      "prompt": "lambda can contain only a single expression, not statements.",
+      "correct": true,
+      "explanation": "Use def for multi-line logic."
     },
     {
       "id": "14",
       "type": "choice",
-      "prompt": "SELECT id, text FROM todos WHERE done = 0 returns:",
+      "prompt": "functools.partial(func, 2) creates:",
       "options": [
-        "Rows where done is 0",
-        "Every table in the database",
-        "Only the schema",
-        "A regex match"
+        "A new callable with some arguments pre-filled",
+        "A JSON encoder",
+        "A thread lock",
+        "A CSV reader"
       ],
       "correctIndex": 0,
-      "explanation": "WHERE filters rows before they are returned."
+      "explanation": "partial fixes leading arguments for later calls."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Compared to a JSON file, a database helps when you need:",
+      "prompt": "itertools.count(10) produces:",
       "options": [
-        "Structured queries and many rows",
-        "No persistence",
-        "Only one string forever",
-        "To avoid any schema"
+        "An infinite iterator starting at 10",
+        "A list of length 10 only",
+        "A dict",
+        "A file path"
       ],
       "correctIndex": 0,
-      "explanation": "SQL queries filter, sort, and update specific rows efficiently."
+      "explanation": "count is useful with islice to take a finite prefix."
     },
     {
       "id": "16",
-      "type": "truefalse",
-      "prompt": "You should commit after writes in sqlite3 unless autocommit mode is on.",
-      "correct": true,
-      "explanation": "Without commit, changes may not persist when the connection closes."
+      "type": "choice",
+      "prompt": "def gen(): yield 1; yield 2 — list(gen()) is:",
+      "options": [
+        "[1, 2]",
+        "[2, 1]",
+        "None",
+        "A map object"
+      ],
+      "correctIndex": 0,
+      "explanation": "Consuming the generator collects all yielded values."
     },
     {
       "id": "17",
-      "type": "choice",
-      "prompt": "A database schema describes:",
-      "options": [
-        "Table names, columns, and types",
-        "Only CSS colors",
-        "HTTP headers",
-        "pytest fixtures"
-      ],
-      "correctIndex": 0,
-      "explanation": "Schema is the structure of your tables."
+      "type": "truefalse",
+      "prompt": "Decorators can be used on functions and classes.",
+      "correct": true,
+      "explanation": "@ wraps callables or classes depending on what the decorator returns."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "list_todos() style helpers in a project:",
+      "prompt": "Which is valid for a one-line key function?",
       "options": [
-        "Keep SQL in one place separate from menu code",
-        "Prevent all SQL",
-        "Replace sqlite3",
-        "Require Flask"
+        "key=lambda s: len(s)",
+        "key=def len(s): return len(s)",
+        "lambda def s:",
+        "sorted.key(len)"
       ],
       "correctIndex": 0,
-      "explanation": "Data-access functions are easier to test and reuse."
+      "explanation": "lambda s: len(s) sorts by string length."
     },
     {
       "id": "19",
       "type": "choice",
-      "prompt": "SQLAlchemy is installed with:",
-      "options": ["pip install sqlalchemy", "import sqlite3", "python -m json", "help()"],
+      "prompt": "yield from other_gen delegates to:",
+      "options": [
+        "Another iterable or generator",
+        "Only integers",
+        "SQLite cursors only",
+        "pytest fixtures only"
+      ],
       "correctIndex": 0,
-      "explanation": "sqlite3 is stdlib; SQLAlchemy is a third-party package."
+      "explanation": "yield from forwards yields from a sub-iterator."
     },
     {
       "id": "20",
-      "type": "truefalse",
-      "prompt": "Foreign keys can link rows in one table to rows in another.",
-      "correct": true,
-      "explanation": "Relationships model real-world links between entities."
+      "type": "choice",
+      "prompt": "When lambda is overused, readability often improves by:",
+      "options": [
+        "Using a normal def with a clear name",
+        "Deleting all functions",
+        "Removing return values",
+        "Avoiding tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Named functions document intent better than long lambdas."
     }
   ]
 }

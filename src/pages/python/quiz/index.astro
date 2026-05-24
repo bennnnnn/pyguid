@@ -10,7 +10,7 @@ const topics = getPublishedQuizTopics();
 
 const pageTitle = `Python quizzes by topic — ${SITE.name}`;
 const description =
-  "Chapter quizzes for PyGuide. Test yourself after the tutorials — separate from lesson pages and hands-on practice exercises.";
+  "Chapter quizzes for PyGuide. Test yourself after the tutorials — separate from lesson pages.";
 ---
 
 <TutorialLayout title={pageTitle} description={description} groups={groups}>
@@ -52,11 +52,5 @@ const description =
         })
       }
     </ul>
-
-    <p class="mt-10 text-sm text-text-muted">
-      Looking for coding exercises? See <a href="/python/practice/" class="text-link font-medium"
-        >Practice</a
-      > (hands-on drills — expanded over time).
-    </p>
   </article>
 </TutorialLayout>

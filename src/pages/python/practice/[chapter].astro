@@ -12,5 +12,5 @@ export function getStaticPaths() {
 const chapterNum = Number(Astro.params.chapter);
 const topic = getQuizTopicForChapter(chapterNum);
 if (topic) return Astro.redirect(quizUrl(topic.slug));
-return Astro.redirect("/python/practice/");
+return Astro.redirect("/python/quiz/");
 ---

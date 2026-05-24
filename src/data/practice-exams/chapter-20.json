@@ -1,224 +1,245 @@
 {
   "chapter": 20,
-  "chapterTitle": "JSON",
-  "title": "JSON Practice Exam",
-  "description": "Practice json.dumps, json.loads, files, and saving app data as JSON.",
+  "chapterTitle": "Useful Built-in Functions",
+  "title": "Built-in Functions Quiz",
+  "description": "Review defining functions, parameters, return values, scope, and basic *args.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Which module serializes Python data to JSON strings?",
-      "options": ["json", "csv", "os only", "re"],
-      "correctIndex": 0,
-      "explanation": "import json; json.dumps() and json.loads() convert between Python and JSON."
+      "prompt": "Which keyword starts a function definition?",
+      "options": [
+        "func",
+        "def",
+        "function",
+        "define"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use def name(parameters): followed by an indented body."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What does json.loads('{\"a\": 1}') return?",
+      "prompt": "What does return 5 do inside a function?",
       "options": [
-        "A Python dict {\"a\": 1}",
-        "The string unchanged",
-        "A list only",
-        "A file object"
+        "Prints 5 to the console",
+        "Ends the function and sends 5 back to the caller",
+        "Assigns 5 to a global variable only",
+        "Raises an exception"
       ],
-      "correctIndex": 0,
-      "explanation": "loads parses a JSON string into Python objects."
+      "correctIndex": 1,
+      "explanation": "return passes a value out of the function to whoever called it."
     },
     {
       "id": "3",
-      "type": "truefalse",
-      "prompt": "JSON keys in objects must be double-quoted strings.",
-      "correct": true,
-      "explanation": "Valid JSON requires double quotes around keys and string values."
+      "type": "choice",
+      "prompt": "How do you call a function named greet with no arguments?",
+      "options": [
+        "call greet",
+        "greet()",
+        "def greet()",
+        "greet"
+      ],
+      "correctIndex": 1,
+      "explanation": "Function calls use the name followed by parentheses."
     },
     {
       "id": "4",
-      "type": "choice",
-      "prompt": "json.dump(data, f) writes:",
-      "options": [
-        "JSON text to file f",
-        "Binary pickle only",
-        "SQL to f",
-        "HTML to f"
-      ],
-      "correctIndex": 0,
-      "explanation": "dump writes to a file-like object; dumps returns a string."
+      "type": "truefalse",
+      "prompt": "A function without a return statement returns None.",
+      "correct": true,
+      "explanation": "If execution finishes without return, Python implicitly returns None."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "Which JSON type maps to Python None?",
-      "options": ["null", "undefined", "nil", "empty"],
-      "correctIndex": 0,
-      "explanation": "JSON null becomes Python None when parsed."
+      "prompt": "What is a parameter in def add(a, b):?",
+      "options": [
+        "The value passed when calling add(1, 2)",
+        "A name in the definition that receives a value",
+        "The return type of add",
+        "A global variable named a or b"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parameters are names in the definition; arguments are the values at call time."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "json.load(f) expects f to be:",
+      "prompt": "What does def greet(name=\"Guest\"): allow?",
       "options": [
-        "A file opened for reading JSON text",
-        "A list only",
-        "A pytest fixture only",
-        "A lambda"
+        "Calling greet() without an argument uses \"Guest\"",
+        "name must always be provided",
+        "name cannot be a string",
+        "Only keyword calls are allowed"
       ],
       "correctIndex": 0,
-      "explanation": "load reads from a text file; loads parses from a string."
+      "explanation": "Default parameter values apply when the caller omits that argument."
     },
     {
       "id": "7",
-      "type": "truefalse",
-      "prompt": "Python tuples are not directly JSON-serializable with json.dumps by default.",
-      "correct": true,
-      "explanation": "JSON has arrays and objects; convert tuples to lists or use a custom encoder."
+      "type": "choice",
+      "prompt": "Inside a function, assigning to x without global usually creates:",
+      "options": [
+        "A local variable x",
+        "Always a global x",
+        "A syntax error",
+        "A module-level constant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Assignment binds a local name unless declared global or nonlocal."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "Saving todos to todos.json is useful because:",
+      "prompt": "What does *args collect in def f(*args):?",
       "options": [
-        "Data persists between program runs",
-        "JSON removes the need for variables",
-        "Files cannot be edited",
-        "JSON is only for web servers"
+        "Extra positional arguments as a tuple",
+        "Extra keyword arguments as a dict",
+        "Only the first argument",
+        "All global variables"
       ],
       "correctIndex": 0,
-      "explanation": "Serialization stores state on disk for later load."
+      "explanation": "*args packs any extra positional arguments into a tuple."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "json.dumps(obj, indent=2) mainly:",
-      "options": [
-        "Pretty-prints with indentation for humans",
-        "Encrypts data",
-        "Runs tests",
-        "Opens SQLite"
-      ],
-      "correctIndex": 0,
-      "explanation": "indent makes debug files easier to read."
+      "type": "truefalse",
+      "prompt": "print() inside a function displays output but does not return a useful result to the caller by default.",
+      "correct": true,
+      "explanation": "print shows text; return is how you pass data back for further use."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "A JSON array maps to Python:",
-      "options": ["list", "dict", "set", "tuple always"],
+      "prompt": "What is the result of:\ndef double(n):\n    return n * 2\n\ndouble(3)",
+      "options": [
+        "6",
+        "None",
+        "\"33\"",
+        "An error"
+      ],
       "correctIndex": 0,
-      "explanation": "JSON arrays become lists when parsed."
+      "explanation": "The function returns 3 * 2, which is 6."
     },
     {
       "id": "11",
-      "type": "truefalse",
-      "prompt": "JSON booleans are true and false lowercase.",
-      "correct": true,
-      "explanation": "They map to Python True and False."
+      "type": "choice",
+      "prompt": "Which call matches def area(width, height):?",
+      "options": [
+        "area(width=4, height=5)",
+        "area 4 5",
+        "area{4, 5}",
+        "area: 4, 5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Keyword arguments match parameters by name: area(width=4, height=5)."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "Invalid JSON (trailing comma) will cause:",
+      "prompt": "What does reading a global variable inside a function do (without assigning to it)?",
       "options": [
-        "json.JSONDecodeError on load",
-        "Silent success",
-        "Automatic repair",
-        "ImportError"
+        "Looks up the name in outer scopes",
+        "Always creates a new local copy",
+        "Raises SyntaxError",
+        "Deletes the global"
       ],
       "correctIndex": 0,
-      "explanation": "JSON is strict; fix syntax or validate input."
+      "explanation": "Reading a name searches local, enclosing, global, then builtin scopes."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "After loading JSON into a list of dicts, you often:",
+      "prompt": "def total(*nums): return sum(nums)\nWhat is total(1, 2, 3)?",
       "options": [
-        "Loop and access keys like item[\"text\"]",
-        "Cannot index dicts",
-        "Must use SQL only",
-        "Must use Flask"
+        "6",
+        "(1, 2, 3)",
+        "3",
+        "None"
       ],
       "correctIndex": 0,
-      "explanation": "Loaded data is normal Python structures."
+      "explanation": "*nums is (1, 2, 3); sum adds them to 6."
     },
     {
       "id": "14",
-      "type": "choice",
-      "prompt": "json.dumps vs json.dump:",
-      "options": [
-        "dumps returns str; dump writes to a file object",
-        "They are identical",
-        "dump returns str only",
-        "dumps opens files"
-      ],
-      "correctIndex": 0,
-      "explanation": "s for string, dump for file."
+      "type": "truefalse",
+      "prompt": "Function names should use snake_case by common Python style.",
+      "correct": true,
+      "explanation": "PEP 8 recommends lowercase with underscores for function names."
     },
     {
       "id": "15",
-      "type": "truefalse",
-      "prompt": "JSON is a common format for config files and APIs.",
-      "correct": true,
-      "explanation": "Many tools exchange data as JSON text."
+      "type": "choice",
+      "prompt": "What is a docstring in a function?",
+      "options": [
+        "A comment starting with #",
+        "A string literal right after def used as documentation",
+        "The return type annotation only",
+        "An import statement"
+      ],
+      "correctIndex": 1,
+      "explanation": "A triple-quoted string as the first statement becomes __doc__."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "Encoding ensures when writing JSON:",
+      "prompt": "Why return a value instead of only printing it?",
       "options": [
-        "Text files use a consistent character encoding like utf-8",
-        "Numbers become strings always",
-        "Keys are optional",
-        "Lists are forbidden"
+        "return is faster than print for all programs",
+        "The caller can use the result in expressions and other code",
+        "print cannot show numbers",
+        "return automatically saves to a file"
       ],
-      "correctIndex": 0,
-      "explanation": "open(..., encoding=\"utf-8\") is standard for text JSON files."
+      "correctIndex": 1,
+      "explanation": "Return values let callers store, test, or combine results."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "A todo dict {\"text\": \"Learn\", \"done\": false} in JSON uses:",
+      "prompt": "What happens if you call a function with too few required arguments?",
       "options": [
-        "false lowercase for boolean",
-        "False capitalized",
-        "0 only",
-        "null for false"
+        "TypeError",
+        "It uses None for missing args automatically",
+        "SyntaxError at import time",
+        "The function runs with empty strings"
       ],
       "correctIndex": 0,
-      "explanation": "JSON false is not Python False in the file text."
+      "explanation": "Python raises TypeError when required parameters are not supplied."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "Loading an empty or missing JSON file in an app often means:",
+      "prompt": "Which is valid after def f(): pass?",
       "options": [
-        "Start with a default empty list or dict",
-        "Crash without try/except always",
-        "Delete Python",
-        "Skip all logic"
+        "f()",
+        "call f",
+        "run f()",
+        "execute def f"
       ],
       "correctIndex": 0,
-      "explanation": "Handle FileNotFoundError and return sensible defaults."
+      "explanation": "pass is a no-op body; you still invoke the function with f()."
     },
     {
       "id": "19",
       "type": "truefalse",
-      "prompt": "JSON numbers map to Python int or float.",
+      "prompt": "Variables created inside a function are generally not visible outside it.",
       "correct": true,
-      "explanation": "No separate JSON int type beyond number."
+      "explanation": "Locals stay inside the function unless returned or declared nonlocal/global."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "Round-trip save and load should:",
+      "prompt": "def show(*items):\n    for i in items:\n        print(i)\nshow(\"a\", \"b\") prints:",
       "options": [
-        "Give equivalent data structures after load",
-        "Change all keys randomly",
-        "Remove lists",
-        "Require SQLAlchemy"
+        "a then b on separate lines",
+        "the tuple ('a', 'b') as one line only",
+        "nothing",
+        "a syntax error"
       ],
       "correctIndex": 0,
-      "explanation": "Test that dump then load preserves your app's state."
+      "explanation": "*items receives ('a', 'b'); the loop prints each element."
     }
   ]
 }

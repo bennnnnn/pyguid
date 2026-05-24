@@ -1,224 +1,245 @@
 {
   "chapter": 17,
-  "chapterTitle": "Testing",
-  "title": "Testing Practice Exam",
-  "description": "Practice assert, pytest, and the unittest module for automated checks.",
+  "chapterTitle": "Files",
+  "title": "Files Quiz",
+  "description": "Practice reading and writing files, pathlib, and basic CSV handling.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
-      "type": "truefalse",
-      "prompt": "pytest discovers test functions whose names start with test_.",
-      "correct": true,
-      "explanation": "By default pytest collects functions like test_add() in test_*.py files."
+      "type": "choice",
+      "prompt": "What does open(\"data.txt\", \"r\") do?",
+      "options": [
+        "Opens data.txt for reading text",
+        "Creates data.txt in binary write-only mode",
+        "Deletes data.txt",
+        "Imports the os module"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"r\" is read mode; the file must exist unless you use modes that create it."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What does assert x == 5 do in a test?",
+      "prompt": "Why use with open(\"f.txt\") as f:?",
       "options": [
-        "Passes if the expression is true, otherwise raises AssertionError",
-        "Always prints x",
-        "Imports unittest",
-        "Closes all files"
+        "Automatically closes the file when the block ends",
+        "Makes the file read-only forever",
+        "Prevents all exceptions",
+        "Replaces pathlib"
       ],
       "correctIndex": 0,
-      "explanation": "assert is the simplest check; pytest rewrites asserts for clearer failures."
+      "explanation": "Context managers ensure close() runs even if an error occurs."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "Which command often runs pytest in a project?",
-      "options": ["pytest", "python test", "json.load()", "pip debug"],
+      "prompt": "What does f.read() return for a text file?",
+      "options": [
+        "The entire file contents as one string",
+        "A list of lines always",
+        "Only the first byte as int",
+        "A pathlib Path object"
+      ],
       "correctIndex": 0,
-      "explanation": "After installing pytest, run pytest from the project root."
+      "explanation": "read() loads the whole file; readline() and readlines() split by lines."
     },
     {
       "id": "4",
-      "type": "choice",
-      "prompt": "Why write automated tests?",
-      "options": [
-        "Catch regressions when code changes",
-        "Replace reading tracebacks entirely",
-        "Disable functions",
-        "Avoid using modules"
-      ],
-      "correctIndex": 0,
-      "explanation": "Tests document expected behavior and fail when bugs return."
+      "type": "truefalse",
+      "prompt": "Mode \"w\" opens a file for writing and truncates it if it already exists.",
+      "correct": true,
+      "explanation": "Write mode overwrites existing content; use \"a\" to append instead."
     },
     {
       "id": "5",
-      "type": "truefalse",
-      "prompt": "unittest is in the Python standard library.",
-      "correct": true,
-      "explanation": "import unittest works without pip install."
+      "type": "choice",
+      "prompt": "How do you write the string \"hi\" to an open text file f?",
+      "options": [
+        "f.write(\"hi\")",
+        "f.append(\"hi\")",
+        "write(f, \"hi\")",
+        "f.print(\"hi\")"
+      ],
+      "correctIndex": 0,
+      "explanation": "write() sends a string to the file; you may need \\n for newlines."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "A test file named test_math.py is a common pytest convention because:",
+      "prompt": "What does Path(\"notes\") / \"todo.txt\" help with?",
       "options": [
-        "pytest finds files matching test_*.py or *_test.py by default",
-        "Python requires that exact name",
-        "It enables JSON output only",
-        "It replaces main()"
+        "Building paths in an OS-independent way",
+        "Opening files without code",
+        "Parsing CSV only",
+        "Running pytest"
       ],
       "correctIndex": 0,
-      "explanation": "Naming conventions help tools discover tests automatically."
+      "explanation": "pathlib.Path joins path segments with the correct separator for the OS."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "unittest.TestCase methods often start with:",
-      "options": ["test_", "run_", "main_", "json_"],
+      "prompt": "Which reads all lines into a list of strings?",
+      "options": [
+        "f.readlines()",
+        "f.readall()",
+        "lines(f)",
+        "f.line()"
+      ],
       "correctIndex": 0,
-      "explanation": "The unittest runner collects test* methods on TestCase subclasses."
+      "explanation": "readlines() returns a list including newline characters at line ends."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "self.assertEqual(a, b) in unittest checks:",
+      "prompt": "What is a common way to loop over lines in a file object f?",
       "options": [
-        "That a and b are equal, failing the test if not",
-        "That a is a file path",
-        "That b is None only",
-        "That pytest is installed"
+        "for line in f:",
+        "while f.line():",
+        "for f in line:",
+        "loop f.lines"
       ],
       "correctIndex": 0,
-      "explanation": "TestCase provides many assert* helpers similar to plain assert."
+      "explanation": "Iterating the file object reads line by line efficiently."
     },
     {
       "id": "9",
       "type": "truefalse",
-      "prompt": "Tests should be small and check one behavior when possible.",
+      "prompt": "The csv module helps read and write comma-separated values in Python.",
       "correct": true,
-      "explanation": "Focused tests make failures easier to diagnose."
+      "explanation": "csv.reader and csv.writer handle delimiters and quoting for spreadsheet-like data."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "Running tests before a commit helps you:",
+      "prompt": "What does open(\"log.txt\", \"a\") do?",
       "options": [
-        "Verify changes did not break existing behavior",
-        "Delete source files",
-        "Skip debugging forever",
-        "Remove type hints"
+        "Opens for appending at the end of the file",
+        "Opens read-only",
+        "Deletes the file first",
+        "Opens in binary read mode"
       ],
       "correctIndex": 0,
-      "explanation": "Fast feedback loops are a core developer habit."
+      "explanation": "\"a\" append mode writes new data after existing content."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "pytest -q typically means:",
-      "options": ["Quieter output", "Quit Python", "Query SQL", "Quick install"],
+      "prompt": "Path(\"data.txt\").exists() returns:",
+      "options": [
+        "True if the path exists on disk",
+        "The file contents",
+        "A list of directories",
+        "Always True"
+      ],
       "correctIndex": 0,
-      "explanation": "Flags adjust verbosity and reporting style."
+      "explanation": "exists() checks whether the path is present without opening it."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "A failing test output usually shows:",
+      "prompt": "Why specify encoding=\"utf-8\" when opening text files?",
       "options": [
-        "Which test failed and how actual differed from expected",
-        "Only the Python version",
-        "A random HTTP status",
-        "Nothing useful"
+        "Decode and encode text consistently, especially across platforms",
+        "Make files binary only",
+        "Disable with statements",
+        "Speed up all disk access"
       ],
       "correctIndex": 0,
-      "explanation": "Good runners highlight the assertion that failed."
+      "explanation": "Explicit encoding avoids surprises with non-ASCII characters."
     },
     {
       "id": "13",
-      "type": "truefalse",
-      "prompt": "You can test functions that raise exceptions with pytest.raises.",
-      "correct": true,
-      "explanation": "Expected errors are part of correct behavior for invalid input."
+      "type": "choice",
+      "prompt": "import csv\nwith open(\"t.csv\") as f:\n    rows = list(csv.reader(f))\nWhat is rows[0] likely to be?",
+      "options": [
+        "A list of fields from the first row",
+        "A single string of the whole file",
+        "An integer row count",
+        "A pathlib Path"
+      ],
+      "correctIndex": 0,
+      "explanation": "csv.reader yields each row as a list of column strings."
     },
     {
       "id": "14",
-      "type": "choice",
-      "prompt": "Arrange-Act-Assert describes:",
-      "options": [
-        "Set up data, run code, check the result",
-        "Three Python keywords only",
-        "A database schema",
-        "A Flask route"
-      ],
-      "correctIndex": 0,
-      "explanation": "Clear test structure improves readability."
+      "type": "truefalse",
+      "prompt": "You should close files or use with to avoid leaving handles open.",
+      "correct": true,
+      "explanation": "Open handles consume resources; with blocks close automatically."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Compared to manual clicking, automated tests are:",
+      "prompt": "What does Path.home() typically represent?",
       "options": [
-        "Repeatable and fast on every change",
-        "Impossible for beginners",
-        "Only for web apps",
-        "Always slower than shipping without tests"
+        "The current user's home directory",
+        "The Python install folder only",
+        "The desktop always",
+        "A temporary file"
       ],
       "correctIndex": 0,
-      "explanation": "Automation scales as the project grows."
+      "explanation": "Path.home() points to the user home directory on the system."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "if __name__ == \"__main__\": unittest.main() is used to:",
+      "prompt": "Reading a large file line-by-line in a for loop is often preferred because:",
       "options": [
-        "Run unittest tests when the file is executed directly",
-        "Import pytest automatically",
-        "Parse JSON",
-        "Open SQLite"
+        "It avoids loading the entire file into memory at once",
+        "It is always slower than read()",
+        "It converts the file to JSON",
+        "It requires admin rights"
       ],
       "correctIndex": 0,
-      "explanation": "The guard keeps tests from running on import."
+      "explanation": "Streaming lines scales better for big files."
     },
     {
       "id": "17",
-      "type": "truefalse",
-      "prompt": "Test code lives in separate files or modules from production code in most projects.",
-      "correct": true,
-      "explanation": "Keeping tests apart avoids shipping test helpers in the app."
+      "type": "choice",
+      "prompt": "What exception might open(\"nope.txt\") raise if the file is missing?",
+      "options": [
+        "FileNotFoundError",
+        "KeyError",
+        "IndexError",
+        "AttributeError"
+      ],
+      "correctIndex": 0,
+      "explanation": "Missing files raise FileNotFoundError (or OSError variants)."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "A regression is:",
+      "prompt": "Path(\"docs\") / \"readme.md\" creates:",
       "options": [
-        "Old behavior breaking after a new change",
-        "A type of loop",
-        "A CSV delimiter",
-        "A regex flag only"
+        "A Path representing docs/readme.md (or docs\\readme.md on Windows)",
+        "A file handle ready for writing",
+        "A CSV dict",
+        "A pytest fixture"
       ],
       "correctIndex": 0,
-      "explanation": "Tests exist partly to prevent regressions."
+      "explanation": "The / operator on Path objects joins path components."
     },
     {
       "id": "19",
-      "type": "choice",
-      "prompt": "assert 1 + 1 == 2 in a script (not pytest) will:",
-      "options": [
-        "Do nothing if true; raise AssertionError if false",
-        "Always crash Python",
-        "Write to a database",
-        "Start a web server"
-      ],
-      "correctIndex": 0,
-      "explanation": "Plain assert works outside test runners too."
+      "type": "truefalse",
+      "prompt": "Binary mode \"rb\" reads bytes instead of decoded text strings.",
+      "correct": true,
+      "explanation": "Binary modes return bytes objects; text modes use str and encoding."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "Good first tests for a function usually cover:",
+      "prompt": "csv.writer(file) is used to:",
       "options": [
-        "Typical input and at least one edge case",
-        "Only import lines",
-        "Only comments",
-        "Every file on disk"
+        "Write rows of data to a CSV file",
+        "Compile Python source",
+        "Create virtual environments",
+        "Parse JSON only"
       ],
       "correctIndex": 0,
-      "explanation": "Start with happy path plus one failure or boundary case."
+      "explanation": "writerow() and writerows() output properly formatted CSV lines."
     }
   ]
 }

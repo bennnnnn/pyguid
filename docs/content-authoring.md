@@ -22,7 +22,7 @@ faqs:
 
 Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
 
-**Practice exams:** Each chapter has a **20-question exam** at `/python/practice/{chapter}/` (hub: `/python/practice/`). Lesson pages use **TryIt** only — do not embed full exams in MDX.
+**Quizzes:** Each chapter has a **20-question quiz** at `/python/quiz/{topic-slug}/` (hub: `/python/quiz/`). Lesson pages use **TryIt** only — do not embed full quizzes in MDX.
 
 ## SEO lesson template (top traffic pages)
 
@@ -31,13 +31,13 @@ Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
 3. Plain-English explanation + analogy
 4. Runnable example + line-by-line
 5. Common mistake (`Callout`)
-6. **TryIt** (1–2 on lesson; full exams on Practice hub)
+6. **TryIt** (1–2 on lesson; full quizzes on Quiz hub)
 7. Recap + next lesson
 
 Rendered automatically on each lesson:
 
 - `QuickAnswer` from frontmatter
-- `PracticeExamsNote` → chapter on `/python/practice/#chapter-N`
+- `ChapterQuizNote` → link to `/python/quiz/{topic-slug}/`
 - `SeoFaq` + FAQPage JSON-LD from frontmatter
 - Related lessons + breadcrumbs schema
 

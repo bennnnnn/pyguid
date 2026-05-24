@@ -1,0 +1,239 @@
+{
+  "chapter": 29,
+  "chapterTitle": "Testing Python Code",
+  "title": "Testing Python Code Quiz",
+  "description": "Practice assert, pytest, and the unittest module for automated checks.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "truefalse",
+      "prompt": "pytest discovers test functions whose names start with test_.",
+      "correct": true,
+      "explanation": "By default pytest collects functions like test_add() in test_*.py files."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does assert x == 5 do in a test?",
+      "options": [
+        "Passes if the expression is true, otherwise raises AssertionError",
+        "Always prints x",
+        "Imports unittest",
+        "Closes all files"
+      ],
+      "correctIndex": 0,
+      "explanation": "assert is the simplest check; pytest rewrites asserts for clearer failures."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "Which command often runs pytest in a project?",
+      "options": [
+        "pytest",
+        "python test",
+        "json.load()",
+        "pip debug"
+      ],
+      "correctIndex": 0,
+      "explanation": "After installing pytest, run pytest from the project root."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "Why write automated tests?",
+      "options": [
+        "Catch regressions when code changes",
+        "Replace reading tracebacks entirely",
+        "Disable functions",
+        "Avoid using modules"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tests document expected behavior and fail when bugs return."
+    },
+    {
+      "id": "5",
+      "type": "truefalse",
+      "prompt": "unittest is in the Python standard library.",
+      "correct": true,
+      "explanation": "import unittest works without pip install."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "A test file named test_math.py is a common pytest convention because:",
+      "options": [
+        "pytest finds files matching test_*.py or *_test.py by default",
+        "Python requires that exact name",
+        "It enables JSON output only",
+        "It replaces main()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Naming conventions help tools discover tests automatically."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "unittest.TestCase methods often start with:",
+      "options": [
+        "test_",
+        "run_",
+        "main_",
+        "json_"
+      ],
+      "correctIndex": 0,
+      "explanation": "The unittest runner collects test* methods on TestCase subclasses."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "self.assertEqual(a, b) in unittest checks:",
+      "options": [
+        "That a and b are equal, failing the test if not",
+        "That a is a file path",
+        "That b is None only",
+        "That pytest is installed"
+      ],
+      "correctIndex": 0,
+      "explanation": "TestCase provides many assert* helpers similar to plain assert."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "Tests should be small and check one behavior when possible.",
+      "correct": true,
+      "explanation": "Focused tests make failures easier to diagnose."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Running tests before a commit helps you:",
+      "options": [
+        "Verify changes did not break existing behavior",
+        "Delete source files",
+        "Skip debugging forever",
+        "Remove type hints"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fast feedback loops are a core developer habit."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "pytest -q typically means:",
+      "options": [
+        "Quieter output",
+        "Quit Python",
+        "Query SQL",
+        "Quick install"
+      ],
+      "correctIndex": 0,
+      "explanation": "Flags adjust verbosity and reporting style."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "A failing test output usually shows:",
+      "options": [
+        "Which test failed and how actual differed from expected",
+        "Only the Python version",
+        "A random HTTP status",
+        "Nothing useful"
+      ],
+      "correctIndex": 0,
+      "explanation": "Good runners highlight the assertion that failed."
+    },
+    {
+      "id": "13",
+      "type": "truefalse",
+      "prompt": "You can test functions that raise exceptions with pytest.raises.",
+      "correct": true,
+      "explanation": "Expected errors are part of correct behavior for invalid input."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Arrange-Act-Assert describes:",
+      "options": [
+        "Set up data, run code, check the result",
+        "Three Python keywords only",
+        "A database schema",
+        "A Flask route"
+      ],
+      "correctIndex": 0,
+      "explanation": "Clear test structure improves readability."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Compared to manual clicking, automated tests are:",
+      "options": [
+        "Repeatable and fast on every change",
+        "Impossible for beginners",
+        "Only for web apps",
+        "Always slower than shipping without tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Automation scales as the project grows."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "if __name__ == \"__main__\": unittest.main() is used to:",
+      "options": [
+        "Run unittest tests when the file is executed directly",
+        "Import pytest automatically",
+        "Parse JSON",
+        "Open SQLite"
+      ],
+      "correctIndex": 0,
+      "explanation": "The guard keeps tests from running on import."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "Test code lives in separate files or modules from production code in most projects.",
+      "correct": true,
+      "explanation": "Keeping tests apart avoids shipping test helpers in the app."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "A regression is:",
+      "options": [
+        "Old behavior breaking after a new change",
+        "A type of loop",
+        "A CSV delimiter",
+        "A regex flag only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tests exist partly to prevent regressions."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "assert 1 + 1 == 2 in a script (not pytest) will:",
+      "options": [
+        "Do nothing if true; raise AssertionError if false",
+        "Always crash Python",
+        "Write to a database",
+        "Start a web server"
+      ],
+      "correctIndex": 0,
+      "explanation": "Plain assert works outside test runners too."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Good first tests for a function usually cover:",
+      "options": [
+        "Typical input and at least one edge case",
+        "Only import lines",
+        "Only comments",
+        "Every file on disk"
+      ],
+      "correctIndex": 0,
+      "explanation": "Start with happy path plus one failure or boundary case."
+    }
+  ]
+}

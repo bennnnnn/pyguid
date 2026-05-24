@@ -18,6 +18,11 @@ export default defineConfig({
     "/cheatsheet/": "/python/reference/",
     "/python/dict-methods/": "/python/dict-loops/",
     "/python/user-input/": "/python/input-basics/",
+    "/python/practice/": "/python/quiz/",
+    "/python/quiz/getting-started/": "/python/quiz/what-is-python/",
+    "/python/quiz/functional-python/": "/python/quiz/advanced-functions/",
+    "/python/quiz/dataclasses-dates/": "/python/quiz/standard-library/",
+    "/python/quiz/logging-regex/": "/python/quiz/standard-library/",
   },
   markdown: {
     shikiConfig: {

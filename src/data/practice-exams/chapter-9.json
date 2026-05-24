@@ -1,210 +1,245 @@
 {
   "chapter": 9,
-  "chapterTitle": "Sets",
-  "title": "Sets Practice Exam",
-  "description": "Check your knowledge of Python sets, uniqueness, and union and intersection.",
+  "chapterTitle": "Loops",
+  "title": "Loops Quiz",
+  "description": "Review while loops, for loops, range(), and using break and continue to control iteration.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "What is the main property of elements in a Python set?",
+      "prompt": "Which loop repeats while a condition remains True?",
       "options": [
-        "They are always sorted alphabetically",
-        "Each value appears at most once",
-        "They must be strings",
-        "They are stored in insertion order only"
+        "while",
+        "for",
+        "if",
+        "repeat"
       ],
-      "correctIndex": 1,
-      "explanation": "Sets store unique elements; duplicates are ignored automatically."
+      "correctIndex": 0,
+      "explanation": "while checks its condition before each iteration."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "Which literal creates a set with two items?",
-      "options": ["{1, 2}", "[1, 2]", "(1, 2)", "<1, 2>"],
+      "prompt": "What does `for i in range(3):` iterate over?",
+      "options": [
+        "0, 1, 2",
+        "1, 2, 3",
+        "3, 2, 1",
+        "0, 1, 2, 3"
+      ],
       "correctIndex": 0,
-      "explanation": "Curly braces with comma-separated values define a set (not an empty dict)."
+      "explanation": "range(3) produces integers from 0 up to but not including 3."
     },
     {
       "id": "3",
-      "type": "choice",
-      "prompt": "How do you create an empty set?",
-      "options": ["{}", "set()", "[]", "empty()"],
-      "correctIndex": 1,
-      "explanation": "{} creates an empty dictionary; use set() for an empty set."
+      "type": "truefalse",
+      "prompt": "break exits the innermost loop immediately.",
+      "correct": true,
+      "explanation": "break stops the current loop and continues after the loop block."
     },
     {
       "id": "4",
-      "type": "truefalse",
-      "prompt": "A set can contain the same value twice if you add it twice.",
-      "correct": false,
-      "explanation": "Adding a duplicate has no effect; the set still holds one copy."
+      "type": "choice",
+      "prompt": "What is printed?\n\nfor n in [1, 2, 3]:\n    print(n * 2)",
+      "options": [
+        "2, 4, 6 on separate lines",
+        "6",
+        "1 2 3",
+        "Nothing"
+      ],
+      "correctIndex": 0,
+      "explanation": "for assigns each list item to n and runs the body once per item."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "What does s.add(3) do when 3 is not already in set s?",
+      "prompt": "What does continue do in a loop?",
       "options": [
-        "Removes 3 from s",
-        "Adds 3 to s",
-        "Returns True if 3 exists",
-        "Raises KeyError"
+        "Skip to the next iteration",
+        "Exit the program",
+        "Restart Python",
+        "Break out of all loops"
       ],
-      "correctIndex": 1,
-      "explanation": "add() inserts a single element if it is not already present."
+      "correctIndex": 0,
+      "explanation": "continue jumps to the loop's next cycle without finishing the current body."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "Which method removes a specific element from a set?",
-      "options": ["s.pop(0)", "s.remove(x)", "s.delete(x)", "del s[x]"],
-      "correctIndex": 1,
-      "explanation": "remove(x) discards x and raises KeyError if x is missing."
+      "prompt": "How many times does this while loop run?\n\ncount = 0\nwhile count < 3:\n    count += 1",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "Forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "count goes 0→1→2→3; when count is 3, count < 3 is False and the loop stops after three runs."
     },
     {
       "id": "7",
-      "type": "choice",
-      "prompt": "What is the result of len({1, 1, 2, 2})?",
-      "options": ["4", "3", "2", "1"],
-      "correctIndex": 2,
-      "explanation": "Duplicates collapse, so the set is {1, 2} with length 2."
+      "type": "truefalse",
+      "prompt": "range(5) generates a list in memory in Python 3.",
+      "correct": false,
+      "explanation": "range returns a lazy range object, not a full list, unless you wrap it in list()."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "Which operator returns elements in either set A or B?",
-      "options": ["A & B", "A | B", "A ^ B", "A - B"],
-      "correctIndex": 1,
-      "explanation": "| is union: all elements that appear in A or B (or both)."
+      "prompt": "What is `list(range(2, 5))`?",
+      "options": [
+        "[2, 3, 4]",
+        "[2, 3, 4, 5]",
+        "[2, 5]",
+        "[0, 1, 2]"
+      ],
+      "correctIndex": 0,
+      "explanation": "range(start, stop) includes start and stops before stop."
     },
     {
       "id": "9",
-      "type": "truefalse",
-      "prompt": "The expression {1, 2} & {2, 3} evaluates to {2}.",
-      "correct": true,
-      "explanation": "& is intersection: only elements in both sets, here {2}."
+      "type": "choice",
+      "prompt": "What prints?\n\nfor ch in 'hi':\n    print(ch)",
+      "options": [
+        "h then i",
+        "hi on one line",
+        "2",
+        "Error"
+      ],
+      "correctIndex": 0,
+      "explanation": "for loops over any iterable, including strings, one character at a time."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What does A & B return?",
+      "prompt": "What is printed?\n\nfor n in range(5):\n    if n == 3:\n        break\n    print(n)",
       "options": [
-        "Elements in A or B",
-        "Elements in both A and B",
-        "Elements in A but not B",
-        "Elements in exactly one of A or B"
+        "0, 1, 2",
+        "0, 1, 2, 3",
+        "0 through 4",
+        "3 only"
       ],
-      "correctIndex": 1,
-      "explanation": "Intersection keeps values that appear in every operand set."
+      "correctIndex": 0,
+      "explanation": "When n is 3, break runs before print, so 3 is never printed."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "What is list({3, 1, 2}) most likely to show?",
+      "prompt": "What is printed?\n\nfor n in range(4):\n    if n % 2 == 0:\n        continue\n    print(n)",
       "options": [
-        "[3, 1, 2] always in that order",
-        "A list of three unique numbers; order is not guaranteed",
-        "[1, 2, 3] always sorted",
-        "An error because sets cannot convert to lists"
+        "1 then 3",
+        "0 2",
+        "0 1 2 3",
+        "Nothing"
       ],
-      "correctIndex": 1,
-      "explanation": "Sets are unordered; converting to a list gives arbitrary order."
+      "correctIndex": 0,
+      "explanation": "continue skips even numbers, so only 1 and 3 print."
     },
     {
       "id": "12",
-      "type": "choice",
-      "prompt": "How do you test membership in a set s?",
-      "options": ["x in s", "s.contains(x)", "s.has(x)", "membership(x, s)"],
-      "correctIndex": 0,
-      "explanation": "Use the in operator: x in s is True when x is in the set."
+      "type": "truefalse",
+      "prompt": "A while True loop can become an infinite loop if never broken or stopped.",
+      "correct": true,
+      "explanation": "Without a changing condition or break, while True never ends."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "What does s.discard(x) do if x is not in s?",
+      "prompt": "What does `range(0, 10, 2)` produce?",
       "options": [
-        "Raises KeyError",
-        "Does nothing",
-        "Adds x to s",
-        "Removes a random element"
+        "0, 2, 4, 6, 8",
+        "0, 1, 2, ..., 9",
+        "2, 4, 6, 8, 10",
+        "Every float from 0 to 10"
       ],
-      "correctIndex": 1,
-      "explanation": "discard() removes x if present and silently does nothing otherwise."
+      "correctIndex": 0,
+      "explanation": "The third argument is the step size."
     },
     {
       "id": "14",
-      "type": "truefalse",
-      "prompt": "You can use a list as an element inside a set.",
-      "correct": false,
-      "explanation": "Set elements must be hashable; lists are mutable and unhashable."
+      "type": "choice",
+      "prompt": "Which loop is best for iterating a known sequence like a list?",
+      "options": [
+        "for item in items",
+        "while item:",
+        "if item in items",
+        "repeat items"
+      ],
+      "correctIndex": 0,
+      "explanation": "for is idiomatic when you want each element from an iterable."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Which builds a set from a list with duplicates removed?",
+      "prompt": "What is the sum after this loop?\n\ntotal = 0\nfor x in [1, 2, 3]:\n    total += x",
       "options": [
-        "set([1, 1, 2])",
-        "list({1, 2})",
-        "unique([1, 1, 2])",
-        "{list([1, 2])}"
+        "6",
+        "3",
+        "0",
+        "123"
       ],
       "correctIndex": 0,
-      "explanation": "Passing a list to set() returns a set of unique values."
+      "explanation": "The accumulator adds each value: 0+1+2+3 = 6."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "What does A - B mean for sets?",
+      "prompt": "What danger does this pose?\n\nwhile n > 0:\n    print(n)",
       "options": [
-        "Elements in both A and B",
-        "Elements in A but not in B",
-        "Elements in B but not in A",
-        "Symmetric difference of A and B"
+        "Infinite loop if n is never decreased",
+        "SyntaxError",
+        "n must be a string",
+        "print cannot run in loops"
       ],
-      "correctIndex": 1,
-      "explanation": "Difference A - B is elements that are in A and not in B."
+      "correctIndex": 0,
+      "explanation": "The condition must eventually become False, usually by updating n inside the loop."
     },
     {
       "id": "17",
-      "type": "choice",
-      "prompt": "What is {x for x in 'hello' if x != 'l'}?",
-      "options": [
-        "A set comprehension",
-        "A list comprehension",
-        "A syntax error",
-        "A dictionary comprehension"
-      ],
-      "correctIndex": 0,
-      "explanation": "Curly braces with a for clause define a set comprehension."
+      "type": "truefalse",
+      "prompt": "You can use an else clause on a for or while loop that runs when the loop completes without break.",
+      "correct": true,
+      "explanation": "Loop else is a lesser-known feature that executes if no break occurred."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "After s = {1, 2}; s.update([2, 3]), what is s?",
-      "options": ["{1, 2, 3}", "{1, 2}", "{2, 3}", "{1, 2, 2, 3}"],
+      "prompt": "What is len(list(range(4)))?",
+      "options": [
+        "4",
+        "3",
+        "0",
+        "5"
+      ],
       "correctIndex": 0,
-      "explanation": "update() adds multiple elements; duplicates are ignored."
+      "explanation": "range(4) has four values: 0, 1, 2, 3."
     },
     {
       "id": "19",
-      "type": "truefalse",
-      "prompt": "Sets are mutable: you can add and remove items after creation.",
-      "correct": true,
-      "explanation": "Regular sets support add, remove, and other mutating methods."
+      "type": "choice",
+      "prompt": "What prints?\n\ni = 0\nwhile i < 2:\n    print(i)\n    i += 1",
+      "options": [
+        "0 then 1",
+        "0 1 2",
+        "1 then 2",
+        "Infinite 0s"
+      ],
+      "correctIndex": 0,
+      "explanation": "i starts at 0, prints, increments to 1, prints again, then i becomes 2 and the loop ends."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "Why might you use a set to filter duplicates from a list?",
+      "prompt": "When should you prefer while over for?",
       "options": [
-        "Sets preserve the original list order exactly",
-        "Sets automatically keep only unique values",
-        "Sets sort values as strings",
-        "Sets are faster only for empty lists"
+        "When repetitions depend on a condition, not a fixed sequence",
+        "Always",
+        "Never; for replaces while",
+        "Only for strings"
       ],
-      "correctIndex": 1,
-      "explanation": "Converting to a set drops duplicates; you may convert back to a list if needed."
+      "correctIndex": 0,
+      "explanation": "while fits open-ended repetition until a condition changes, like reading until valid input."
     }
   ]
 }

@@ -1,195 +1,245 @@
 {
   "chapter": 5,
-  "chapterTitle": "If Statements",
-  "title": "If Statements Practice Exam",
-  "description": "Assess your skills with if, elif, else, indentation rules, and nested conditionals.",
+  "chapterTitle": "Data Types",
+  "title": "Data Types Quiz",
+  "description": "Review integers, floats, booleans, strings, None, truthiness, and the type() function.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "Which keyword starts a conditional block that runs only when a test is True?",
-      "options": ["if", "when", "case", "check"],
+      "prompt": "What is the type of `3.14`?",
+      "options": [
+        "float",
+        "int",
+        "str",
+        "bool"
+      ],
       "correctIndex": 0,
-      "explanation": "if evaluates a condition and runs the indented block when it is truthy."
+      "explanation": "A decimal point makes the literal a float, not an int."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "What is required after an if statement's colon?",
-      "options": ["An indented block", "A semicolon", "Another if", "A return statement"],
+      "prompt": "What does `type(7)` return?",
+      "options": [
+        "<class 'int'>",
+        "<class 'float'>",
+        "7",
+        "'int'"
+      ],
       "correctIndex": 0,
-      "explanation": "Python uses indentation to define which lines belong to the if block."
+      "explanation": "type() returns the class object representing the value's type."
     },
     {
       "id": "3",
       "type": "truefalse",
-      "prompt": "elif is short for 'else if' and checks another condition when previous tests failed.",
+      "prompt": "In Python, `True` and `False` are boolean values.",
       "correct": true,
-      "explanation": "elif lets you chain multiple conditions without nesting every branch in else."
+      "explanation": "bool is the type for logical true and false; the literals are capitalized True and False."
     },
     {
       "id": "4",
       "type": "choice",
-      "prompt": "What prints when `score = 85`?\n\nif score >= 90:\n    print('A')\nelif score >= 80:\n    print('B')\nelse:\n    print('C')",
-      "options": ["B", "A", "C", "Nothing"],
+      "prompt": "Which value is falsy?",
+      "options": [
+        "0",
+        "1",
+        "'hello'",
+        "[1]"
+      ],
       "correctIndex": 0,
-      "explanation": "85 fails the >= 90 test but passes >= 80, so the elif block runs."
+      "explanation": "Zero, empty containers, None, and empty strings are falsy in boolean context."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "How many else clauses can a single if statement have?",
-      "options": ["At most one", "Unlimited", "Exactly two", "None; else is invalid"],
+      "prompt": "What is `bool('')`?",
+      "options": [
+        "False",
+        "True",
+        "None",
+        "''"
+      ],
       "correctIndex": 0,
-      "explanation": "else is optional and catches all remaining cases after if/elif tests."
+      "explanation": "An empty string is falsy, so bool('') is False."
     },
     {
       "id": "6",
       "type": "choice",
-      "prompt": "What happens if you mix tabs and spaces for indentation?",
+      "prompt": "What is the value of `None`?",
       "options": [
-        "IndentationError or inconsistent behavior",
-        "Python auto-converts tabs",
-        "Only comments break",
-        "Nothing; both are always equivalent"
+        "A special object meaning 'no value'",
+        "Same as 0",
+        "Same as False",
+        "An empty string"
       ],
       "correctIndex": 0,
-      "explanation": "Python 3 treats inconsistent indentation as an error."
+      "explanation": "None is its own type (NoneType) representing absence of a value."
     },
     {
       "id": "7",
-      "type": "truefalse",
-      "prompt": "An empty if block is allowed if you use pass.",
-      "correct": true,
-      "explanation": "pass is a no-op placeholder so syntactically valid blocks can be empty."
+      "type": "choice",
+      "prompt": "Which expression produces a string?",
+      "options": [
+        "'42'",
+        "42",
+        "42.0",
+        "True"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quotes create str literals; unquoted numbers and booleans are other types."
     },
     {
       "id": "8",
-      "type": "choice",
-      "prompt": "What prints?\n\nx = 0\nif x:\n    print('yes')\nelse:\n    print('no')",
-      "options": ["no", "yes", "0", "Error"],
-      "correctIndex": 0,
-      "explanation": "0 is falsy, so the else branch runs."
+      "type": "truefalse",
+      "prompt": "The empty list `[]` is falsy.",
+      "correct": true,
+      "explanation": "Empty sequences and collections evaluate to False in if statements and bool()."
     },
     {
       "id": "9",
       "type": "choice",
-      "prompt": "Nested if means what?",
+      "prompt": "What is `10 / 4` in Python 3?",
       "options": [
-        "An if block inside another if block",
-        "Two if keywords on one line",
-        "Using elif without if",
-        "An if without else"
+        "2.5",
+        "2",
+        "2.0 only if cast",
+        "3"
       ],
       "correctIndex": 0,
-      "explanation": "Nesting places one conditional inside the body of another."
+      "explanation": "The / operator always returns a float in Python 3, even when the result is whole."
     },
     {
       "id": "10",
       "type": "choice",
-      "prompt": "What prints when `age = 20` and `has_ticket = True`?\n\nif age >= 18:\n    if has_ticket:\n        print('Enter')\n    else:\n        print('Need ticket')\nelse:\n    print('Too young')",
-      "options": ["Enter", "Need ticket", "Too young", "Nothing"],
+      "prompt": "What does `type(None)` return?",
+      "options": [
+        "<class 'NoneType'>",
+        "<class 'null'>",
+        "None",
+        "<class 'None'>"
+      ],
       "correctIndex": 0,
-      "explanation": "Both the outer and inner conditions are True, so Enter prints."
+      "explanation": "None belongs to the NoneType class."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "Which condition checks that `name` is not empty?",
-      "options": ["if name:", "if name == False:", "if not name == '':", "if name is 0:"],
+      "prompt": "Which is truthy?",
+      "options": [
+        "'0'",
+        "0",
+        "[]",
+        "None"
+      ],
       "correctIndex": 0,
-      "explanation": "Non-empty strings are truthy; empty strings are falsy."
+      "explanation": "Non-empty strings are truthy, including the string '0'."
     },
     {
       "id": "12",
       "type": "truefalse",
-      "prompt": "Only the first matching elif or if branch runs; later branches are skipped.",
+      "prompt": "`isinstance(3, int)` returns True.",
       "correct": true,
-      "explanation": "Once a condition succeeds, Python skips remaining elif and else for that chain."
+      "explanation": "isinstance checks whether an object is an instance of a given type."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "What is wrong?\n\nif x > 5\n    print(x)",
+      "prompt": "What is `int(9.9)`?",
       "options": [
-        "Missing colon after the condition",
-        "print should be uppercase",
-        "x cannot be compared",
-        "else is required"
+        "9",
+        "10",
+        "9.9",
+        "Error"
       ],
       "correctIndex": 0,
-      "explanation": "Compound statements like if must end with a colon before the indented suite."
+      "explanation": "int() truncates toward zero; it does not round to the nearest integer."
     },
     {
       "id": "14",
       "type": "choice",
-      "prompt": "What prints?\n\ncolor = 'red'\nif color == 'blue':\n    print('sky')\nelif color == 'red':\n    print('apple')\nelse:\n    print('other')",
-      "options": ["apple", "sky", "other", "red"],
+      "prompt": "Which pair has the same type?",
+      "options": [
+        "3 and 99",
+        "3 and 3.0",
+        "True and 1",
+        "None and False"
+      ],
       "correctIndex": 0,
-      "explanation": "The elif branch matches color == 'red'."
+      "explanation": "Both 3 and 99 are int literals."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "When is else executed?",
+      "prompt": "What is `bool(None)`?",
       "options": [
-        "When all preceding if/elif conditions were False",
-        "Always",
-        "Only when if is True",
-        "Only with elif present"
+        "False",
+        "True",
+        "None",
+        "0"
       ],
       "correctIndex": 0,
-      "explanation": "else runs as the fallback when no earlier condition matched."
+      "explanation": "None is falsy."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "What prints?\n\nlogged_in = False\nis_admin = True\nif logged_in:\n    if is_admin:\n        print('Admin panel')\n    else:\n        print('Dashboard')\nelse:\n    print('Login')",
-      "options": ["Login", "Admin panel", "Dashboard", "Nothing"],
+      "prompt": "Strings are immutable. What does that mean?",
+      "options": [
+        "You cannot change characters in place; create a new string instead",
+        "Strings cannot be stored in variables",
+        "Strings are always falsy",
+        "str is not a built-in type"
+      ],
       "correctIndex": 0,
-      "explanation": "logged_in is False, so the outer else runs before inner checks matter."
+      "explanation": "Methods like .upper() return new strings rather than modifying the original."
     },
     {
       "id": "17",
       "type": "truefalse",
-      "prompt": "You can write `if 5:` because numbers can be used in boolean context.",
+      "prompt": "Every object in Python has a type.",
       "correct": true,
-      "explanation": "Non-zero numbers are truthy; zero is falsy."
+      "explanation": "All values are objects, and type() or isinstance can identify their class."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "Which combines login and age check cleanly?\n\nif logged_in and age >= 18:",
+      "prompt": "What is `float(5)`?",
       "options": [
-        "Runs only when both are True",
-        "Runs when either is True",
-        "Syntax error",
-        "Same as nested if always"
+        "5.0",
+        "5",
+        "'5.0'",
+        "Error"
       ],
       "correctIndex": 0,
-      "explanation": "and requires both conditions to be truthy."
+      "explanation": "float() converts integers to floating-point numbers."
     },
     {
       "id": "19",
       "type": "choice",
-      "prompt": "What prints?\n\nn = 3\nif n > 5:\n    print('big')\nif n > 2:\n    print('ok')",
-      "options": ["ok only", "big then ok", "big only", "Nothing"],
+      "prompt": "Which best describes Python's dynamic typing?",
+      "options": [
+        "A variable can refer to values of different types over time",
+        "Types are chosen at compile time only",
+        "All variables must be declared as int or str",
+        "Types cannot be inspected at runtime"
+      ],
       "correctIndex": 0,
-      "explanation": "These are separate if statements; the second runs independently of the first."
+      "explanation": "Names are not permanently tied to one type; assignment can change what type a name refers to."
     },
     {
       "id": "20",
       "type": "choice",
-      "prompt": "Why indent the body of an if statement?",
+      "prompt": "What is `type('3')`?",
       "options": [
-        "To show which statements belong to the if block",
-        "To make code run faster",
-        "Because # comments need it",
-        "Python has no block syntax without braces"
+        "<class 'str'>",
+        "<class 'int'>",
+        "<class 'float'>",
+        "3"
       ],
       "correctIndex": 0,
-      "explanation": "Indentation defines block structure in Python instead of curly braces."
+      "explanation": "Quotes make '3' a string, not the integer 3."
     }
   ]
 }

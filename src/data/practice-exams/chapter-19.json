@@ -1,215 +1,245 @@
 {
   "chapter": 19,
-  "chapterTitle": "Standard Library",
-  "title": "Standard Library Practice Exam",
-  "description": "Practice collections, enum, math/random, and copy/deepcopy.",
+  "chapterTitle": "Packages and Imports",
+  "title": "Packages and Imports Quiz",
+  "description": "Test imports, virtual environments, pip, and running modules as scripts.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
       "type": "choice",
-      "prompt": "collections.Counter is useful for:",
-      "options": ["Counting occurrences of items", "Sorting files", "HTTP requests", "Opening CSV"],
-      "correctIndex": 0,
-      "explanation": "Counter maps keys to counts, handy for tallies."
+      "prompt": "What does import math do?",
+      "options": [
+        "Deletes the math module",
+        "Loads the math module so you can use math.sqrt, etc.",
+        "Runs math as a script only",
+        "Copies every name into the current namespace without a prefix"
+      ],
+      "correctIndex": 1,
+      "explanation": "import math brings in the module; access members as math.name."
     },
     {
       "id": "2",
       "type": "choice",
-      "prompt": "collections.defaultdict avoids:",
+      "prompt": "How do you import only sqrt from math?",
       "options": [
-        "KeyError when accessing a missing key with a default factory",
-        "All loops",
-        "Type hints",
-        "Imports"
+        "from math import sqrt",
+        "import sqrt from math",
+        "include math.sqrt",
+        "math.import(sqrt)"
       ],
       "correctIndex": 0,
-      "explanation": "Missing keys call the factory (e.g. list) to create a default value."
+      "explanation": "from module import name brings sqrt into the current namespace."
     },
     {
       "id": "3",
       "type": "choice",
-      "prompt": "enum.Enum helps when you need:",
+      "prompt": "What is a Python module?",
       "options": [
-        "Named constants with a fixed set of values",
-        "Infinite random numbers",
-        "File deletion",
-        "Regex only"
+        "A .py file (or package) whose code can be imported",
+        "Only files named main.py",
+        "A compiled .exe file",
+        "A virtual environment folder"
       ],
       "correctIndex": 0,
-      "explanation": "Enums make valid states explicit and readable."
+      "explanation": "Any .py file you import acts as a module; packages are folders with __init__.py."
     },
     {
       "id": "4",
-      "type": "choice",
-      "prompt": "random.randint(1, 6) includes:",
-      "options": ["Both endpoints 1 and 6", "Only 1", "Only 6", "Neither endpoint"],
-      "correctIndex": 0,
-      "explanation": "randint is inclusive on both ends for integers."
+      "type": "truefalse",
+      "prompt": "A virtual environment isolates project dependencies from the system Python.",
+      "correct": true,
+      "explanation": "venv gives each project its own site-packages and interpreter context."
     },
     {
       "id": "5",
       "type": "choice",
-      "prompt": "math.sqrt(9) returns:",
-      "options": ["3.0", "9", "True", "A list"],
+      "prompt": "Which command commonly creates a venv named .venv?",
+      "options": [
+        "python -m venv .venv",
+        "pip install venv",
+        "python create .venv",
+        "venv --new .venv"
+      ],
       "correctIndex": 0,
-      "explanation": "math module functions often return floats."
+      "explanation": "python -m venv .venv creates a virtual environment in the .venv directory."
     },
     {
       "id": "6",
-      "type": "truefalse",
-      "prompt": "copy.copy makes a shallow copy of a collection.",
-      "correct": true,
-      "explanation": "Nested objects may still be shared between original and shallow copy."
+      "type": "choice",
+      "prompt": "What does pip install requests do?",
+      "options": [
+        "Downloads and installs the requests package into the active environment",
+        "Deletes requests from PyPI",
+        "Runs all tests in your project",
+        "Creates a new virtual environment"
+      ],
+      "correctIndex": 0,
+      "explanation": "pip installs third-party packages from PyPI (or another index)."
     },
     {
       "id": "7",
       "type": "choice",
-      "prompt": "copy.deepcopy is needed when:",
+      "prompt": "What does if __name__ == \"__main__\": guard?",
       "options": [
-        "Nested mutable objects must be duplicated independently",
-        "You only have integers",
-        "You need JSON",
-        "You need HTTP"
+        "Code that runs only when the file is executed directly",
+        "Code that runs only when imported",
+        "All class definitions",
+        "Every import statement"
       ],
       "correctIndex": 0,
-      "explanation": "deepcopy recursively copies inner objects."
+      "explanation": "__name__ is \"__main__\" when you run python file.py, not when importing."
     },
     {
       "id": "8",
       "type": "choice",
-      "prompt": "collections.deque is often used for:",
+      "prompt": "Where are third-party packages usually listed for reproducible installs?",
       "options": [
-        "Fast appends/pops from both ends",
-        "SQL queries",
-        "HTML templates",
-        "Git commits"
+        "requirements.txt",
+        "README only",
+        ".gitignore",
+        "setup.py only (never requirements.txt)"
       ],
       "correctIndex": 0,
-      "explanation": "deque is optimized for queue-like operations."
+      "explanation": "requirements.txt (or pyproject.toml) documents dependencies for pip install -r."
     },
     {
       "id": "9",
-      "type": "choice",
-      "prompt": "random.choice([1, 2, 3]) picks:",
-      "options": ["One random element from the sequence", "All elements", "Sorted order", "Nothing"],
-      "correctIndex": 0,
-      "explanation": "choice selects a single item uniformly from a non-empty sequence."
+      "type": "truefalse",
+      "prompt": "When you import a module, Python may execute top-level code in that file once.",
+      "correct": true,
+      "explanation": "Import runs the module body the first time; results are cached in sys.modules."
     },
     {
       "id": "10",
-      "type": "truefalse",
-      "prompt": "random.seed() can make random sequences reproducible for testing.",
-      "correct": true,
-      "explanation": "Same seed yields the same pseudo-random sequence."
+      "type": "choice",
+      "prompt": "What does import random as r allow?",
+      "options": [
+        "Using r.randint instead of random.randint",
+        "Renaming random to a built-in",
+        "Importing without loading the module",
+        "Running random as __main__ always"
+      ],
+      "correctIndex": 0,
+      "explanation": "as assigns a local alias for the imported module."
     },
     {
       "id": "11",
       "type": "choice",
-      "prompt": "After b = a on a list, mutating b affects a when:",
+      "prompt": "On macOS/Linux, how do you activate a venv in .venv?",
       "options": [
-        "You did not copy; both names refer to the same list",
-        "You used deepcopy always",
-        "Lists are immutable",
-        "a was a tuple"
+        "source .venv/bin/activate",
+        ".venv/run",
+        "python activate .venv",
+        "pip activate"
       ],
       "correctIndex": 0,
-      "explanation": "Assignment shares references; use copy or slice to duplicate."
+      "explanation": "source .venv/bin/activate adjusts PATH to use the venv's python and pip."
     },
     {
       "id": "12",
       "type": "choice",
-      "prompt": "Color.RED if Color is an Enum means:",
+      "prompt": "What is the standard library?",
       "options": [
-        "A member of the Color enumeration",
-        "A string only always",
-        "A syntax error always",
-        "A file path"
+        "Modules shipped with Python (e.g. os, json) without pip install",
+        "Only pip packages",
+        "Code on GitHub only",
+        "Virtual environments"
       ],
       "correctIndex": 0,
-      "explanation": "Enum members compare by identity and have .name and .value."
+      "explanation": "The standard library comes with Python; pip adds external packages."
     },
     {
       "id": "13",
       "type": "choice",
-      "prompt": "math.floor(3.9) is:",
-      "options": ["3", "4", "3.9", "True"],
+      "prompt": "Why use pip install -r requirements.txt?",
+      "options": [
+        "Install all listed packages at once for the project",
+        "Remove all packages",
+        "Upgrade Python itself",
+        "Create a new .py file"
+      ],
       "correctIndex": 0,
-      "explanation": "floor rounds toward negative infinity."
+      "explanation": "-r installs every requirement line from the file into the active environment."
     },
     {
       "id": "14",
-      "type": "choice",
-      "prompt": "Counter.most_common(2) returns:",
-      "options": [
-        "The two most frequent items and their counts",
-        "Only keys",
-        "A sorted file list",
-        "HTTP status codes"
-      ],
-      "correctIndex": 0,
-      "explanation": "most_common helps find top frequencies quickly."
+      "type": "truefalse",
+      "prompt": "from module import * is generally discouraged in production code.",
+      "correct": true,
+      "explanation": "Star imports pollute the namespace and make names harder to trace."
     },
     {
       "id": "15",
-      "type": "truefalse",
-      "prompt": "The standard library ships with Python and does not require pip for those modules.",
-      "correct": true,
-      "explanation": "collections, math, random, copy, enum are in the stdlib."
+      "type": "choice",
+      "prompt": "If utils.py is in the same folder as main.py, how can main import utils?",
+      "options": [
+        "import utils (when both are on the module search path)",
+        "include utils.py",
+        "load utils",
+        "utils must be a pip package only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Same-directory modules are importable when the directory is on sys.path."
     },
     {
       "id": "16",
       "type": "choice",
-      "prompt": "Shallow copy of nested list [[1], [2]]:",
+      "prompt": "What does python -m pip install --upgrade pip do?",
       "options": [
-        "Copies outer list but inner lists may still be shared",
-        "Deep copies everything always",
-        "Deletes inner lists",
-        "Converts to tuple"
+        "Runs pip as a module to upgrade pip itself",
+        "Imports pip into every .py file",
+        "Deletes pip",
+        "Creates __main__.py automatically"
       ],
       "correctIndex": 0,
-      "explanation": "Inner objects are not recursively duplicated in a shallow copy."
+      "explanation": "python -m pip invokes pip with the current interpreter, often safer than a bare pip command."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "random.shuffle(lst) modifies:",
-      "options": ["lst in place", "A new list only", "Nothing", "A JSON file"],
+      "prompt": "Which helps avoid installing packages into the wrong Python?",
+      "options": [
+        "Activate the project's venv before pip install",
+        "Always use sudo pip globally",
+        "Never use requirements.txt",
+        "Disable __name__ checks"
+      ],
       "correctIndex": 0,
-      "explanation": "shuffle reorders the existing list and returns None."
+      "explanation": "Activating the venv ensures pip targets that environment's site-packages."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "namedtuple (from collections) gives you:",
+      "prompt": "What is __name__ when another file does import myapp?",
       "options": [
-        "Tuple-like rows with named fields",
-        "A database connection",
-        "A web route",
-        "A regex engine"
+        "\"myapp\" (the module name)",
+        "\"__main__\"",
+        "None",
+        "Always \"__main__\""
       ],
       "correctIndex": 0,
-      "explanation": "namedtuple improves readability for fixed-field records."
+      "explanation": "When imported, __name__ is the module's name, not \"__main__\"."
     },
     {
       "id": "19",
-      "type": "choice",
-      "prompt": "When to prefer deepcopy over copy?",
-      "options": [
-        "Nested mutables must not alias the original",
-        "You only copy integers",
-        "You never mutate data",
-        "You need async"
-      ],
-      "correctIndex": 0,
-      "explanation": "Use deepcopy when inner objects must be independent."
+      "type": "truefalse",
+      "prompt": "You can run a package module with python -m package.module.",
+      "correct": true,
+      "explanation": "-m runs a module as a script using the proper package context."
     },
     {
       "id": "20",
-      "type": "truefalse",
-      "prompt": "Exploring help() on a stdlib module is a good way to discover useful tools.",
-      "correct": true,
-      "explanation": "Python's batteries included philosophy means many tools are already there."
+      "type": "choice",
+      "prompt": "What is a common reason to split code into multiple modules?",
+      "options": [
+        "Organize related code and reuse it across files",
+        "Avoid using functions",
+        "Prevent imports entirely",
+        "Replace virtual environments"
+      ],
+      "correctIndex": 0,
+      "explanation": "Modules keep projects maintainable and let you import shared logic."
     }
   ]
 }

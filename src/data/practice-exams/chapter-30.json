@@ -1,0 +1,245 @@
+{
+  "chapter": 30,
+  "chapterTitle": "Writing Clean Python",
+  "title": "Writing Clean Python Quiz",
+  "description": "Test imports, virtual environments, pip, and running modules as scripts.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "What does import math do?",
+      "options": [
+        "Deletes the math module",
+        "Loads the math module so you can use math.sqrt, etc.",
+        "Runs math as a script only",
+        "Copies every name into the current namespace without a prefix"
+      ],
+      "correctIndex": 1,
+      "explanation": "import math brings in the module; access members as math.name."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "How do you import only sqrt from math?",
+      "options": [
+        "from math import sqrt",
+        "import sqrt from math",
+        "include math.sqrt",
+        "math.import(sqrt)"
+      ],
+      "correctIndex": 0,
+      "explanation": "from module import name brings sqrt into the current namespace."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "What is a Python module?",
+      "options": [
+        "A .py file (or package) whose code can be imported",
+        "Only files named main.py",
+        "A compiled .exe file",
+        "A virtual environment folder"
+      ],
+      "correctIndex": 0,
+      "explanation": "Any .py file you import acts as a module; packages are folders with __init__.py."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "A virtual environment isolates project dependencies from the system Python.",
+      "correct": true,
+      "explanation": "venv gives each project its own site-packages and interpreter context."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "Which command commonly creates a venv named .venv?",
+      "options": [
+        "python -m venv .venv",
+        "pip install venv",
+        "python create .venv",
+        "venv --new .venv"
+      ],
+      "correctIndex": 0,
+      "explanation": "python -m venv .venv creates a virtual environment in the .venv directory."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What does pip install requests do?",
+      "options": [
+        "Downloads and installs the requests package into the active environment",
+        "Deletes requests from PyPI",
+        "Runs all tests in your project",
+        "Creates a new virtual environment"
+      ],
+      "correctIndex": 0,
+      "explanation": "pip installs third-party packages from PyPI (or another index)."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What does if __name__ == \"__main__\": guard?",
+      "options": [
+        "Code that runs only when the file is executed directly",
+        "Code that runs only when imported",
+        "All class definitions",
+        "Every import statement"
+      ],
+      "correctIndex": 0,
+      "explanation": "__name__ is \"__main__\" when you run python file.py, not when importing."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "Where are third-party packages usually listed for reproducible installs?",
+      "options": [
+        "requirements.txt",
+        "README only",
+        ".gitignore",
+        "setup.py only (never requirements.txt)"
+      ],
+      "correctIndex": 0,
+      "explanation": "requirements.txt (or pyproject.toml) documents dependencies for pip install -r."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "When you import a module, Python may execute top-level code in that file once.",
+      "correct": true,
+      "explanation": "Import runs the module body the first time; results are cached in sys.modules."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What does import random as r allow?",
+      "options": [
+        "Using r.randint instead of random.randint",
+        "Renaming random to a built-in",
+        "Importing without loading the module",
+        "Running random as __main__ always"
+      ],
+      "correctIndex": 0,
+      "explanation": "as assigns a local alias for the imported module."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "On macOS/Linux, how do you activate a venv in .venv?",
+      "options": [
+        "source .venv/bin/activate",
+        ".venv/run",
+        "python activate .venv",
+        "pip activate"
+      ],
+      "correctIndex": 0,
+      "explanation": "source .venv/bin/activate adjusts PATH to use the venv's python and pip."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "What is the standard library?",
+      "options": [
+        "Modules shipped with Python (e.g. os, json) without pip install",
+        "Only pip packages",
+        "Code on GitHub only",
+        "Virtual environments"
+      ],
+      "correctIndex": 0,
+      "explanation": "The standard library comes with Python; pip adds external packages."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "Why use pip install -r requirements.txt?",
+      "options": [
+        "Install all listed packages at once for the project",
+        "Remove all packages",
+        "Upgrade Python itself",
+        "Create a new .py file"
+      ],
+      "correctIndex": 0,
+      "explanation": "-r installs every requirement line from the file into the active environment."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "from module import * is generally discouraged in production code.",
+      "correct": true,
+      "explanation": "Star imports pollute the namespace and make names harder to trace."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "If utils.py is in the same folder as main.py, how can main import utils?",
+      "options": [
+        "import utils (when both are on the module search path)",
+        "include utils.py",
+        "load utils",
+        "utils must be a pip package only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Same-directory modules are importable when the directory is on sys.path."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What does python -m pip install --upgrade pip do?",
+      "options": [
+        "Runs pip as a module to upgrade pip itself",
+        "Imports pip into every .py file",
+        "Deletes pip",
+        "Creates __main__.py automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "python -m pip invokes pip with the current interpreter, often safer than a bare pip command."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "Which helps avoid installing packages into the wrong Python?",
+      "options": [
+        "Activate the project's venv before pip install",
+        "Always use sudo pip globally",
+        "Never use requirements.txt",
+        "Disable __name__ checks"
+      ],
+      "correctIndex": 0,
+      "explanation": "Activating the venv ensures pip targets that environment's site-packages."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What is __name__ when another file does import myapp?",
+      "options": [
+        "\"myapp\" (the module name)",
+        "\"__main__\"",
+        "None",
+        "Always \"__main__\""
+      ],
+      "correctIndex": 0,
+      "explanation": "When imported, __name__ is the module's name, not \"__main__\"."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "You can run a package module with python -m package.module.",
+      "correct": true,
+      "explanation": "-m runs a module as a script using the proper package context."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "What is a common reason to split code into multiple modules?",
+      "options": [
+        "Organize related code and reuse it across files",
+        "Avoid using functions",
+        "Prevent imports entirely",
+        "Replace virtual environments"
+      ],
+      "correctIndex": 0,
+      "explanation": "Modules keep projects maintainable and let you import shared logic."
+    }
+  ]
+}
