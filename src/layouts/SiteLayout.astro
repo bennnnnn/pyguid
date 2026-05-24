@@ -10,10 +10,8 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = `${SITE.name} — Learn Python for free`,
-  description = SITE.description,
-} = Astro.props;
+const { title = `${SITE.name} — Learn Python for free`, description = SITE.description } =
+  Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url);
 ---

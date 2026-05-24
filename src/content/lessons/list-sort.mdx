@@ -55,15 +55,17 @@ print("original:", original)
 print("ordered:", ordered)`}
 />
 
-| Function | Changes original? | Returns |
-| -------- | ----------------- | ------- |
-| `.sort()` | Yes | `None` |
-| `sorted()` | No | new list |
+| Function   | Changes original? | Returns  |
+| ---------- | ----------------- | -------- |
+| `.sort()`  | Yes               | `None`   |
+| `sorted()` | No                | new list |
 
 <Callout variant="warning">
-  You cannot sort a list that mixes incompatible types, like `[1, "two"]` — Python raises **`TypeError`**.
+  You cannot sort a list that mixes incompatible types, like `[1, "two"]` — Python raises
+  **`TypeError`**.
 </Callout>
 
 <Callout variant="tip">
-  Use `sort()` when you no longer need the old order. Use `sorted()` when you need both versions.
+  Use `sort()` when you no longer need the old order. Use `sorted()` when you need both
+  versions.
 </Callout>

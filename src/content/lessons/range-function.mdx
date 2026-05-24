@@ -35,7 +35,7 @@ Numbers from `0` up to (but not including) `stop`:
     print(i)
 
 for i in range(5, 0, -1):
-    print(i)`}
+print(i)`}
 />
 
 ## Convert to a list
@@ -57,15 +57,18 @@ for _ in range(10):
     print("Hello")
 
 # Indexes 0..len-1
+
 items = ["a", "b", "c"]
 for i in range(len(items)):
-    print(i, items[i])`}
+print(i, items[i])`}
 />
 
 <Callout variant="note">
-  `_` as a variable name means “I do not need this value” — common in `for _ in range(n):`.
+  `_` as a variable name means “I do not need this value” — common in `for _ in
+  range(n):`.
 </Callout>
 
 <Callout variant="tip">
-  Prefer `for item in items:` over `for i in range(len(items)):` unless you need the index for something else.
+  Prefer `for item in items:` over `for i in range(len(items)):` unless you need the index
+  for something else.
 </Callout>

@@ -7,59 +7,78 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-The **`append()`** method adds **one item** to the **end** of a list. The list changes in place (no new list is created).
+You have a shopping list on paper. You remember one more thing and write it **at the bottom**. Python lists work the same way with **`append()`**.
+
+## One new idea: add one item to the end
 
 <PythonExample
   filename="append.py"
-  code={`fruits = ["apple", "banana"]
-fruits.append("cherry")
-print(fruits)`}
+  code={`items = ["milk", "bread"]
+items.append("eggs")
+print(items)`}
 />
 
-## Append different types
+**Before → action → after**
 
-You can append any object — number, string, or even another list:
+| Step             | List                        |
+| ---------------- | --------------------------- |
+| Start            | `["milk", "bread"]`         |
+| `append("eggs")` | adds `"eggs"` at the end    |
+| After            | `["milk", "bread", "eggs"]` |
+
+**Line by line**
+
+- `items = [...]` — create the list
+- `items.append("eggs")` — tell **that same list** to grow by one item
+- `print(items)` — show the updated list
+
+## Real use case: building a cart
 
 <PythonExample
-  filename="append_types.py"
-  code={`nums = [1, 2, 3]
-nums.append(4)
-nums.append("five")
-print(nums)
+  filename="cart.py"
+  code={`cart = []
 
-nested = [1, 2]
-nested.append([3, 4])
-print(nested)`}
+cart.append("laptop")
+cart.append("mouse")
+cart.append("keyboard")
+
+print("Cart:", cart)
+print("Total items:", len(cart))`}
 />
 
-Appending a list adds it as **one element** (a nested list). To merge lists, use **`extend()`** (next lesson).
+You start empty, then add items as the user “clicks buy.”
 
-## Build a list in a loop
+## Common mistake: `append` returns `None`
 
-<PythonExample
-  filename="append_loop.py"
-  code={`squares = []
-for n in range(1, 6):
-    squares.append(n * n)
-print(squares)`}
-/>
-
-## Return value
-
-`append()` returns **`None`**. It modifies the list directly:
+`append()` changes the list **in place**. It does **not** return the new list.
 
 <PythonExample
   filename="append_none.py"
-  code={`items = ["a"]
-result = items.append("b")
+  code={`items = ["milk"]
+result = items.append("eggs")
+
 print(result)
 print(items)`}
 />
 
-<Callout variant="tip">
-  Use `append()` when you add items one at a time to the end — shopping cart items, log lines, or scores after each round.
+| Expression | What you get                       |
+| ---------- | ---------------------------------- |
+| `result`   | `None`                             |
+| `items`    | `["milk", "eggs"]` — the real data |
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  `items.append("a", "b")` fails — **one** item per `append()`. Use two calls or use
+  **`extend()`** for several items.
 </Callout>
 
-<Callout variant="warning">
-  `append()` takes exactly **one** argument. To add multiple top-level items, call `append()` several times or use `extend()`.
-</Callout>
+<TryIt title="Try it yourself" answer='["red", "green", "blue"]'>
+  Start with `colors = ["red"]`. Append `"green"` and `"blue"`. Print `colors`.
+</TryIt>
+
+## Recap
+
+- **`append(x)`** adds **one** item to the **end**
+- The list **changes in place**
+- Return value is **`None`** — use the list variable, not the result of `append`
+
+Next: **`extend()`** — add many items from another list.

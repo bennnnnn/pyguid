@@ -16,7 +16,7 @@ level: beginner
 text = "My email is ada@example.com"
 match = re.search(r"\\w+@\\w+\\.\\w+", text)
 if match:
-    print("Found:", match.group())`}
+print("Found:", match.group())`}
 />
 
 ## Common patterns
@@ -61,7 +61,8 @@ print(bool(pattern.match("555-1234")))`}
 />
 
 <Callout variant="warning">
-  Regex can get hard to read quickly. For simple tasks, try `in`, `.startswith()`, or `.split()` first.
+  Regex can get hard to read quickly. For simple tasks, try `in`, `.startswith()`, or
+  `.split()` first.
 </Callout>
 
 <Callout variant="tip">

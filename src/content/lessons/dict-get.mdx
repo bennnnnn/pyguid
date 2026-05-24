@@ -29,11 +29,11 @@ print(user.get("role", "guest"))`}
 
 ## get() vs bracket access
 
-| Code | Key missing |
-| ---- | ----------- |
-| `d["key"]` | **KeyError** |
-| `d.get("key")` | `None` |
-| `d.get("key", 0)` | `0` |
+| Code              | Key missing  |
+| ----------------- | ------------ |
+| `d["key"]`        | **KeyError** |
+| `d.get("key")`    | `None`       |
+| `d.get("key", 0)` | `0`          |
 
 <PythonExample
   filename="compare.py"
@@ -43,5 +43,6 @@ print(add)`}
 />
 
 <Callout variant="tip">
-  Use `get()` when the key might not exist — user settings, optional fields, counting with defaults.
+  Use `get()` when the key might not exist — user settings, optional fields, counting with
+  defaults.
 </Callout>

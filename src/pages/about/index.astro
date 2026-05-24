@@ -3,13 +3,16 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import { SITE } from "../../lib/site";
 ---
 
-<SiteLayout title={`About — ${SITE.name}`} description={`About ${SITE.name} — free Python tutorials with runnable examples.`}>
+<SiteLayout
+  title={`About — ${SITE.name}`}
+  description={`About ${SITE.name} — free Python tutorials with runnable examples.`}
+>
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
     <article class="lesson-prose">
       <h1>About {SITE.name}</h1>
       <p>
-        {SITE.name} is a free, static Python course for beginners. Each lesson covers one topic with short
-        explanations and examples you can run in the browser — no install required.
+        {SITE.name} is a free, static Python course for beginners. Each lesson covers one topic
+        with short explanations and examples you can run in the browser — no install required.
       </p>
       <h2>What you will find</h2>
       <ul>

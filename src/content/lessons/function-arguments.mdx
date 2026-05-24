@@ -46,7 +46,7 @@ print(power(3, 3))
 print(power(base=2, exponent=5))`}
 />
 
-## *args — many positional values
+## \*args — many positional values
 
 <PythonExample
   filename="args.py"
@@ -60,7 +60,7 @@ print(total(1, 2, 3))
 print(total(10, 20))`}
 />
 
-## **kwargs — many keyword values
+## \*\*kwargs — many keyword values
 
 <PythonExample
   filename="kwargs.py"
@@ -72,9 +72,11 @@ show_info(name="Ada", role="dev")`}
 />
 
 <Callout variant="warning">
-  Mutable defaults (like `def f(items=[]):`) are a common trap. Use `None` and create the list inside the function when you learn advanced patterns.
+  Mutable defaults (like `def f(items=[]):`) are a common trap. Use `None` and create the
+  list inside the function when you learn advanced patterns.
 </Callout>
 
 <Callout variant="tip">
-  For beginners, stick to simple parameters and one or two defaults. `*args` and `**kwargs` help when building flexible APIs.
+  For beginners, stick to simple parameters and one or two defaults. `*args` and
+  `**kwargs` help when building flexible APIs.
 </Callout>

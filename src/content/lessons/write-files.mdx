@@ -9,8 +9,8 @@ level: beginner
 
 Write to files with **`open(path, mode)`**:
 
-| Mode | Meaning                          |
-| ---- | -------------------------------- |
+| Mode  | Meaning                           |
+| ----- | --------------------------------- |
 | `"w"` | Write (creates or **overwrites**) |
 | `"a"` | Append to the end                 |
 
@@ -30,7 +30,8 @@ with open("log.txt", "a") as file:
 ```
 
 <Callout variant="warning">
-  Mode `"w"` **deletes** existing content. Use `"a"` to add without erasing, or confirm before overwriting.
+  Mode `"w"` **deletes** existing content. Use `"a"` to add without erasing, or confirm
+  before overwriting.
 </Callout>
 
 ## Simulate writing in memory
@@ -55,5 +56,6 @@ print(text)`}
 />
 
 <Callout variant="tip">
-  For CSV or JSON data, use the `csv` and `json` modules instead of manual string building when files grow large.
+  For CSV or JSON data, use the `csv` and `json` modules instead of manual string building
+  when files grow large.
 </Callout>

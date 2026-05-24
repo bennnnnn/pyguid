@@ -13,10 +13,10 @@ A **package** is a folder of modules. Large libraries (requests, pandas, etc.) a
 
 Python ships with many modules — no install needed:
 
-- `math` — math functions  
-- `random` — random numbers  
-- `datetime` — dates and times  
-- `json` — JSON data (covered later)  
+- `math` — math functions
+- `random` — random numbers
+- `datetime` — dates and times
+- `json` — JSON data (covered later)
 
 You already used `import math` in the first lesson of this chapter.
 
@@ -35,15 +35,17 @@ import requests
 ```
 
 <Callout variant="note">
-  **PyGuide’s Run button** cannot install packages from the internet. Examples here use the standard library or code you write. On your machine, open a terminal and use `pip` when a tutorial mentions an external library.
+  **PyGuide’s Run button** cannot install packages from the internet. Examples here use
+  the standard library or code you write. On your machine, open a terminal and use `pip`
+  when a tutorial mentions an external library.
 </Callout>
 
 ## Your own modules
 
 Split code into files:
 
-- `helpers.py` — functions you wrote  
-- `main.py` — `import helpers`  
+- `helpers.py` — functions you wrote
+- `main.py` — `import helpers`
 
 <PythonExample
   filename="concept.py"
@@ -52,11 +54,12 @@ Split code into files:
 #     return text.upper()
 
 def shout(text):
-    return text.upper()
+return text.upper()
 
 print(shout("hello"))`}
 />
 
 <Callout variant="tip">
-  Keep one clear responsibility per file. Small projects can start as one file; grow into modules when files get long.
+  Keep one clear responsibility per file. Small projects can start as one file; grow into
+  modules when files get long.
 </Callout>

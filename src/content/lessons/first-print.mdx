@@ -53,8 +53,8 @@ print("Line 3")`}
 
 ## Control spacing: sep and end
 
-- **`sep`** — what goes **between** items (default is a space)  
-- **`end`** — what goes **at the end** of the line (default is a new line)  
+- **`sep`** — what goes **between** items (default is a space)
+- **`end`** — what goes **at the end** of the line (default is a new line)
 
 <PythonExample
   filename="sep_end.py"
@@ -67,10 +67,10 @@ print(" done")`}
 
 Inside strings, some characters need a backslash:
 
-| Code | Meaning |
-| ---- | ------- |
-| `\n` | New line |
-| `\t` | Tab |
+| Code | Meaning                             |
+| ---- | ----------------------------------- |
+| `\n` | New line                            |
+| `\t` | Tab                                 |
 | `\"` | Quote inside a double-quoted string |
 
 <PythonExample
@@ -80,11 +80,17 @@ print("She said \\"Hello\\"")`}
 />
 
 <Callout variant="warning" title="Quotes matter">
-  `print("42")` is **text**. `print(42)` is a **number**. They look similar in the output but behave differently later in the course.
+  `print("42")` is **text**. `print(42)` is a **number**. They look similar in the output
+  but behave differently later in the course.
 </Callout>
 
 <Callout variant="danger" title="Common mistake">
-  `print(hello)` without quotes makes Python look for a variable named `hello`. You will learn variables in the next chapter. For now, put text in quotes.
+  `print(hello)` without quotes makes Python look for a variable named `hello`. You will
+  learn variables in the next chapter. For now, put text in quotes.
 </Callout>
+
+<TryIt title="Try it yourself" answer="Hello, your name here">
+  Change the text inside `print("Hello, Python!")` to your name. Run the code.
+</TryIt>
 
 Next: **How code runs** — why order of lines matters.

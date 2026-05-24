@@ -38,15 +38,17 @@ Use `is` and `is not` — not `==` (though `==` often works, `is` is preferred f
   code={`value = None
 
 if value is None:
-    print("No value set")
+print("No value set")
 
 def find_user(id):
-  # pretend not found
-  return None
+
+# pretend not found
+
+return None
 
 user = find_user(99)
 if user is None:
-    print("User not found")`}
+print("User not found")`}
 />
 
 ## .get() and None
@@ -62,9 +64,11 @@ print(email is None)`}
 />
 
 <Callout variant="warning">
-  Do not confuse `None` with `0`, `False`, or `""`. They are all “falsy” in `if` tests, but they mean different things.
+  Do not confuse `None` with `0`, `False`, or `""`. They are all “falsy” in `if` tests,
+  but they mean different things.
 </Callout>
 
 <Callout variant="tip">
-  Use `None` as a default in functions: `def f(x=None):` then set `x = []` inside if needed — never use `def f(x=[]):`.
+  Use `None` as a default in functions: `def f(x=None):` then set `x = []` inside if
+  needed — never use `def f(x=[]):`.
 </Callout>

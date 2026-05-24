@@ -49,11 +49,13 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
     <TutorialTopNav />
     <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
     <div class="mx-auto flex w-full max-w-[1500px] flex-1 flex-col lg:flex-row">
-      {sidebar === "reference" ? (
-        <ReferenceSidebar />
-      ) : (
-        <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
-      )}
+      {
+        sidebar === "reference" ? (
+          <ReferenceSidebar />
+        ) : (
+          <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
+        )
+      }
       <div class="flex min-w-0 flex-1 flex-col bg-surface">
         <main class="flex-1 px-4 py-8 sm:px-10 lg:px-12">
           <slot />

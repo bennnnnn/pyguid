@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://pyguide.example",
+  site: process.env.SITE_URL ?? "https://bennnnnn.github.io/pyguid",
   trailingSlash: "always",
   vite: {
     plugins: [tailwindcss()],

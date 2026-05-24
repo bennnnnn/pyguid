@@ -76,7 +76,10 @@ export function groupContainsLesson(group: LessonGroup, lessonId: string): boole
   return group.sections.some((s) => s.lessons.some((l) => l.id === lessonId));
 }
 
-export function sectionHasActiveLesson(section: LessonSection, lessonId?: string): boolean {
+export function sectionHasActiveLesson(
+  section: LessonSection,
+  lessonId?: string,
+): boolean {
   if (!lessonId) return false;
   return section.lessons.some((l) => l.id === lessonId);
 }
@@ -90,10 +93,9 @@ export function getChapterNavItems(group: LessonGroup): ChapterNavItem[] {
   const items: ChapterNavItem[] = [];
   const seenSections = new Set<string>();
 
-  const allLessons = [
-    ...group.lessons,
-    ...group.sections.flatMap((s) => s.lessons),
-  ].sort((a, b) => a.data.order - b.data.order);
+  const allLessons = [...group.lessons, ...group.sections.flatMap((s) => s.lessons)].sort(
+    (a, b) => a.data.order - b.data.order,
+  );
 
   for (const lesson of allLessons) {
     const sectionTitle = lesson.data.section;
@@ -120,4 +122,25 @@ export function getAdjacentLessons(
     prev: idx > 0 ? lessons[idx - 1]! : null,
     next: idx < lessons.length - 1 ? lessons[idx + 1]! : null,
   };
+}
+
+/** All lessons in a chapter, in sidebar order */
+export function getAllLessonsInGroup(group: LessonGroup): LessonEntry[] {
+  const items = getChapterNavItems(group);
+  const ordered: LessonEntry[] = [];
+  for (const item of items) {
+    if (item.kind === "lesson") {
+      ordered.push(item.lesson);
+    } else {
+      ordered.push(...item.section.lessons);
+    }
+  }
+  return ordered;
+}
+
+export function getTotalLessonCount(groups: LessonGroup[]): number {
+  return groups.reduce(
+    (n, g) => n + g.lessons.length + g.sections.reduce((m, s) => m + s.lessons.length, 0),
+    0,
+  );
 }

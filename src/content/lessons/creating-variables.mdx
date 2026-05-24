@@ -7,35 +7,74 @@ chapterTitle: "Variables"
 level: beginner
 ---
 
-A **variable** is a named place to store a value (a score, a name, a total) so you can reuse it in your program. You create one with the **`=`** operator (assignment).
+Imagine you are packing a box and you write **socks** on the outside. Next time you need socks, you open the box labeled **socks** — you do not hunt through everything again.
+
+In Python, a **variable** is that label. The **name** is on the left; the **value** is on the right.
+
+## One new idea: assignment with `=`
+
+The **`=`** sign **assigns** a value. It does **not** mean “equals” in math class (that is `==`, later).
+
+<PythonExample filename="step1.py" code={`age = 25`} />
+
+**Line by line**
+
+- `age` — the variable name you chose
+- `=` — “store this value under this name”
+- `25` — the number being stored
+
+Read it aloud: “**age is 25**.”
+
+## See what you stored
 
 <PythonExample
-  filename="variables.py"
+  filename="step2.py"
   code={`age = 25
-name = "Ada"
-print(name)
 print(age)`}
 />
 
-Read it as: “`age` **is** 25” and “`name` **is** `"Ada"`”.
+`print(age)` looks inside the label **age** and shows `25`.
 
-## The name and the value
+## Text needs quotes
 
-- The **variable name** goes on the left (`age`, `name`).
-- The **value** goes on the right (`25`, `"Ada"`).
+Words are **strings** — wrap them in quotes:
 
 <PythonExample
-  filename="more.py"
+  filename="text.py"
+  code={`name = "Ada"
+print(name)`}
+/>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  `name = Ada` without quotes makes Python think **Ada** is a variable name. If Ada does
+  not exist yet, you get a **NameError**. Quotes mean “this is text.”
+</Callout>
+
+## Two variables, one program
+
+<PythonExample
+  filename="two.py"
   code={`city = "London"
 year = 2024
 print(city)
 print(year)`}
 />
 
-<Callout variant="note">
-  A variable is not a fixed box with one type forever. The same name can hold text, then a number later — but only one value at a time.
-</Callout>
+Each line creates **one** label. `print` can use any label you already created.
 
-<Callout variant="tip">
-  Choose names that describe the data: `price`, `username`, `is_logged_in`. That makes programs easier to read than names like `x` or `a1`.
-</Callout>
+## Common mistake: swapping sides
+
+Writing `25 = age` is **invalid**. The **name** must be on the **left**, value on the **right**.
+
+<TryIt title="Try it yourself" answer="Hello, PyGuide">
+  Create a variable `message` with the text `Hello, PyGuide`, then `print(message)`.
+</TryIt>
+
+## Recap
+
+- A variable is a **name** for a **value**
+- Use **`=`** to assign
+- Use **`print(name)`** to show what is stored
+- Put **text in quotes**; leave **numbers** without quotes
+
+Next: **Naming variables** — rules for legal names and good habits.

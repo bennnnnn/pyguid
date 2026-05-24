@@ -20,7 +20,9 @@ Variables created inside a function are **local** — they exist only inside tha
     print(message)
 
 greet()
-# print(message)  # would error outside greet`}
+
+# print(message) # would error outside greet`}
+
 />
 
 ## Parameters are local
@@ -47,7 +49,7 @@ Functions can **read** global variables:
   code={`tax_rate = 0.08
 
 def price_with_tax(amount):
-    return amount + amount * tax_rate
+return amount + amount \* tax_rate
 
 print(price_with_tax(100))`}
 />
@@ -61,8 +63,8 @@ To **change** a global variable inside a function:
   code={`counter = 0
 
 def increment():
-    global counter
-    counter += 1
+global counter
+counter += 1
 
 increment()
 increment()
@@ -70,7 +72,8 @@ print(counter)`}
 />
 
 <Callout variant="warning">
-  Relying on many global variables makes programs hard to debug. Prefer passing values as parameters and returning results.
+  Relying on many global variables makes programs hard to debug. Prefer passing values as
+  parameters and returning results.
 </Callout>
 
 <Callout variant="tip">

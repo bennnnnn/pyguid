@@ -21,16 +21,16 @@ The **parent** (base) class provides common behavior. The **child** (subclass) a
         return "..."
 
 class Dog(Animal):
-    def speak(self):
-        return f"{self.name} says woof!"
+def speak(self):
+return f"{self.name} says woof!"
 
 class Cat(Animal):
-    def speak(self):
-        return f"{self.name} says meow!"
+def speak(self):
+return f"{self.name} says meow!"
 
 pets = [Dog("Buddy"), Cat("Luna")]
 for pet in pets:
-    print(pet.speak())`}
+print(pet.speak())`}
 />
 
 ## super() — call the parent
@@ -42,9 +42,9 @@ for pet in pets:
         self.name = name
 
 class Student(Person):
-    def __init__(self, name, student_id):
-        super().__init__(name)
-        self.student_id = student_id
+def **init**(self, name, student_id):
+super().**init**(name)
+self.student_id = student_id
 
 s = Student("Ada", "A123")
 print(s.name, s.student_id)`}
@@ -58,7 +58,7 @@ print(s.name, s.student_id)`}
     pass
 
 class Dog(Animal):
-    pass
+pass
 
 d = Dog()
 print(isinstance(d, Dog))
@@ -66,9 +66,11 @@ print(isinstance(d, Animal))`}
 />
 
 <Callout variant="tip">
-  Inheritance models “is-a” relationships: a `Dog` **is an** `Animal`. If the relationship is only “has-a” (a car **has an** engine), composition (attributes) is often better.
+  Inheritance models “is-a” relationships: a `Dog` **is an** `Animal`. If the relationship
+  is only “has-a” (a car **has an** engine), composition (attributes) is often better.
 </Callout>
 
 <Callout variant="note">
-  Python supports multiple inheritance, but beginners should master single inheritance first.
+  Python supports multiple inheritance, but beginners should master single inheritance
+  first.
 </Callout>

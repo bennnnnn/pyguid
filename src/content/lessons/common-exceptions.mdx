@@ -41,14 +41,14 @@ except TypeError as e:
 data = {"a": 1}
 
 try:
-    print(items[10])
+print(items[10])
 except IndexError:
-    print("Bad list index")
+print("Bad list index")
 
 try:
-    print(data["z"])
+print(data["z"])
 except KeyError:
-    print("Bad dict key")`}
+print("Bad dict key")`}
 />
 
 ## AttributeError
@@ -83,15 +83,17 @@ except ZeroDivisionError as e:
     return age
 
 try:
-    set_age(-1)
+set_age(-1)
 except ValueError as e:
-    print(e)`}
+print(e)`}
 />
 
 <Callout variant="tip">
-  Read the **last line** of a traceback first — it often states the exception type and message. Scroll up for the line number in your file.
+  Read the **last line** of a traceback first — it often states the exception type and
+  message. Scroll up for the line number in your file.
 </Callout>
 
 <Callout variant="note">
-  In development, letting an error crash can be fine — you fix the bug. In apps for users, catch expected errors and show helpful messages.
+  In development, letting an error crash can be fine — you fix the bug. In apps for users,
+  catch expected errors and show helpful messages.
 </Callout>

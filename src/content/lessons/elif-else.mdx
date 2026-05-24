@@ -9,8 +9,8 @@ level: beginner
 
 Often you need more than two outcomes. Python provides:
 
-- **`elif`** — “else if” — another condition to test  
-- **`else`** — runs when **no** previous condition was true  
+- **`elif`** — “else if” — another condition to test
+- **`else`** — runs when **no** previous condition was true
 
 ## elif
 
@@ -21,19 +21,20 @@ Python checks conditions **from top to bottom** and runs the **first** block tha
   code={`score = 85
 
 if score >= 90:
-    print("Grade: A")
+print("Grade: A")
 elif score >= 80:
-    print("Grade: B")
+print("Grade: B")
 elif score >= 70:
-    print("Grade: C")
+print("Grade: C")
 else:
-    print("Grade: F")`}
+print("Grade: F")`}
 />
 
 With `score = 85`, only “Grade: B” prints. The `elif score >= 70` block is **not** run, even though 85 is also ≥ 70.
 
 <Callout variant="note">
-  Order matters. Put **more specific** or **stricter** tests before looser ones when ranges overlap.
+  Order matters. Put **more specific** or **stricter** tests before looser ones when
+  ranges overlap.
 </Callout>
 
 ## else
@@ -45,11 +46,11 @@ With `score = 85`, only “Grade: B” prints. The `elif score >= 70` block is *
   code={`temperature = 15
 
 if temperature > 25:
-    print("Hot")
+print("Hot")
 elif temperature > 15:
-    print("Warm")
+print("Warm")
 else:
-    print("Cool or cold")`}
+print("Cool or cold")`}
 />
 
 ## if without elif
@@ -61,9 +62,9 @@ You can use `if` / `else` only:
   code={`password_correct = True
 
 if password_correct:
-    print("Access granted")
+print("Access granted")
 else:
-    print("Access denied")`}
+print("Access denied")`}
 />
 
 ## elif chain for categories
@@ -73,13 +74,13 @@ else:
   code={`light = "yellow"
 
 if light == "green":
-    print("Go")
+print("Go")
 elif light == "yellow":
-    print("Slow down")
+print("Slow down")
 elif light == "red":
-    print("Stop")
+print("Stop")
 else:
-    print("Unknown signal")`}
+print("Unknown signal")`}
 />
 
 ## Combining with and / or
@@ -92,11 +93,11 @@ Conditions in `if` and `elif` can use everything you learned:
 country = "US"
 
 if age < 18:
-    print("Too young")
+print("Too young")
 elif age >= 18 and country == "US":
-    print("Eligible in US")
+print("Eligible in US")
 else:
-    print("Check local rules")`}
+print("Check local rules")`}
 />
 
 ## Common mistakes
@@ -106,7 +107,9 @@ else:
 </Callout>
 
 <Callout variant="warning" title="Separate if vs elif">
-  Two separate `if` statements can both run. One `if` / `elif` chain runs **at most one** block. See the example below — both lines print because there are two independent `if` statements.
+  Two separate `if` statements can both run. One `if` / `elif` chain runs **at most one**
+  block. See the example below — both lines print because there are two independent `if`
+  statements.
 </Callout>
 
 <PythonExample
@@ -114,14 +117,15 @@ else:
   code={`x = 10
 
 if x > 5:
-    print("Greater than 5")
+print("Greater than 5")
 
 if x > 8:
-    print("Greater than 8")`}
+print("Greater than 8")`}
 />
 
 <Callout variant="tip">
-  Draw a flowchart on paper for tricky logic — it helps you see whether you need `elif` or separate `if` statements.
+  Draw a flowchart on paper for tricky logic — it helps you see whether you need `elif` or
+  separate `if` statements.
 </Callout>
 
 Continue to **Loops**, then **Lists** and the rest of the course.

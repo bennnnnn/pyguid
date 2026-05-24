@@ -9,15 +9,16 @@ level: beginner
 
 This chapter covers Python’s main **data types** — numbers, text, booleans, and `type()`. We start with **numbers**. For whole and decimal values you mainly use **two** types:
 
-| Type | Python name | What it stores |
-| ---- | ----------- | -------------- |
-| **Integer** | `int` | Whole numbers: `0`, `42`, `-7` (no decimal point) |
-| **Float** | `float` | Numbers with a decimal: `3.14`, `-0.5`, `9.99` |
+| Type        | Python name | What it stores                                    |
+| ----------- | ----------- | ------------------------------------------------- |
+| **Integer** | `int`       | Whole numbers: `0`, `42`, `-7` (no decimal point) |
+| **Float**   | `float`     | Numbers with a decimal: `3.14`, `-0.5`, `9.99`    |
 
 Together, `int` and `float` cover counting, measuring, money, scores, and most everyday math in beginner programs.
 
 <Callout variant="note">
-  Both are **numeric types**, but Python keeps them separate so it knows whether a value has a fractional part.
+  Both are **numeric types**, but Python keeps them separate so it knows whether a value
+  has a fractional part.
 </Callout>
 
 ## Create number values
@@ -39,12 +40,12 @@ print(price, type(price))`}
 
 Python supports familiar operators:
 
-| Operator | Meaning        | Example   |
-| -------- | -------------- | --------- |
-| `+`      | addition       | `2 + 3`   |
-| `-`      | subtraction    | `10 - 4`  |
-| `*`      | multiplication | `6 * 7`   |
-| `/`      | division       | `10 / 4`  |
+| Operator | Meaning        | Example  |
+| -------- | -------------- | -------- |
+| `+`      | addition       | `2 + 3`  |
+| `-`      | subtraction    | `10 - 4` |
+| `*`      | multiplication | `6 * 7`  |
+| `/`      | division       | `10 / 4` |
 
 <PythonExample
   filename="math.py"
@@ -100,13 +101,17 @@ print(type(x + y))`}
 />
 
 <Callout variant="note">
-  You do not need to memorize every operator today. Focus on `+`, `-`, `*`, and `/` first — they appear in almost every program.
+  You do not need to memorize every operator today. Focus on `+`, `-`, `*`, and `/` first
+  — they appear in almost every program.
 </Callout>
 
 <Callout variant="warning" title="Float surprises">
-  Some decimal math is not exact in binary, just like on a calculator. `print(0.1 + 0.2)` may show `0.30000000000000004`. For money and precision later, you will learn other tools; for now, know that tiny float differences can happen.
+  Some decimal math is not exact in binary, just like on a calculator. `print(0.1 + 0.2)`
+  may show `0.30000000000000004`. For money and precision later, you will learn other
+  tools; for now, know that tiny float differences can happen.
 </Callout>
 
 <Callout variant="tip">
-  Use `int` for counts (items in a cart) and `float` for measurements (height, price with cents).
+  Use `int` for counts (items in a cart) and `float` for measurements (height, price with
+  cents).
 </Callout>

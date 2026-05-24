@@ -11,17 +11,17 @@ An **`if`** statement runs a block of code **only when** a condition is `True` �
 
 ## Basic syntax
 
-1. Write `if` followed by a condition  
-2. End the line with a **colon** `:`  
-3. Indent the block below (usually **4 spaces**)  
+1. Write `if` followed by a condition
+2. End the line with a **colon** `:`
+3. Indent the block below (usually **4 spaces**)
 
 <PythonExample
   filename="if_basic.py"
   code={`age = 18
 
 if age >= 18:
-    print("You are an adult")
-    print("Welcome")`}
+print("You are an adult")
+print("Welcome")`}
 />
 
 Lines at the normal indent level run **before** and **after** the `if`, whether or not the condition is true:
@@ -32,7 +32,7 @@ Lines at the normal indent level run **before** and **after** the `if`, whether 
 print("Checking score...")
 
 if score >= 60:
-    print("Pass")
+print("Pass")
 
 print("Done")`}
 />
@@ -48,7 +48,7 @@ If the test is false, Python **skips** the indented block:
   code={`temperature = 10
 
 if temperature > 30:
-    print("Very hot")
+print("Very hot")
 
 print("Program continues")`}
 />
@@ -56,7 +56,8 @@ print("Program continues")`}
 ## Indentation rules
 
 <Callout variant="danger" title="Indentation errors">
-  All lines in the same block must use the **same** indentation. Mixing tabs and spaces, or using 2 spaces on one line and 4 on the next, causes `IndentationError`.
+  All lines in the same block must use the **same** indentation. Mixing tabs and spaces,
+  or using 2 spaces on one line and 4 on the next, causes `IndentationError`.
 </Callout>
 
 <PythonExample
@@ -64,8 +65,8 @@ print("Program continues")`}
   code={`logged_in = True
 
 if logged_in:
-    print("Hello")
-    print("Dashboard ready")`}
+print("Hello")
+print("Dashboard ready")`}
 />
 
 ## One-line body (optional)
@@ -89,16 +90,17 @@ You can put an `if` inside another `if`:
 has_license = True
 
 if age >= 18:
-    if has_license:
-        print("You may drive")
-    else:
-        print("You need a license")
+if has_license:
+print("You may drive")
 else:
-    print("Too young to drive")`}
+print("You need a license")
+else:
+print("Too young to drive")`}
 />
 
 <Callout variant="warning">
-  In the example above, the inner block uses 4 spaces inside the outer block’s 4 spaces (8 total). Stay consistent — most editors insert 4 spaces per Tab.
+  In the example above, the inner block uses 4 spaces inside the outer block’s 4 spaces (8
+  total). Stay consistent — most editors insert 4 spaces per Tab.
 </Callout>
 
 <Callout variant="tip">

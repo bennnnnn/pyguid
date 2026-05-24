@@ -1,11 +1,19 @@
 ---
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
-import { getAllLessons, getChapterNavItems, getLessonGroups, lessonUrl } from "../../lib/lessons";
+import {
+  getAllLessons,
+  getAllLessonsInGroup,
+  getChapterNavItems,
+  getLessonGroups,
+  getTotalLessonCount,
+  lessonUrl,
+} from "../../lib/lessons";
 import { SITE } from "../../lib/site";
 
 const groups = await getLessonGroups();
 const lessons = await getAllLessons();
 const first = lessons[0];
+const totalLessons = getTotalLessonCount(groups);
 ---
 
 <TutorialLayout
@@ -14,59 +22,92 @@ const first = lessons[0];
   groups={groups}
 >
   <div class="mx-auto max-w-5xl">
-  <header class="rounded-xl border border-border bg-surface-alt px-6 py-8 sm:px-8">
-    <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">Python tutorial</p>
-    <h1 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">Learn Python</h1>
-    <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
-      Work through the sections below or pick a lesson from the sidebar. Every example includes
-      <strong>Run code</strong> so you can try Python in your browser.
-    </p>
-    {
-      first && (
-        <a href={lessonUrl(first.id)} class="btn-primary mt-6">
-          Start with {first.data.title}
-        </a>
-      )
-    }
-  </header>
+    <header class="rounded-xl border border-border bg-surface-alt px-6 py-8 sm:px-8">
+      <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+        Python tutorial
+      </p>
+      <h1 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        Learn Python
+      </h1>
+      <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
+        {totalLessons} lessons from zero to files, functions, and classes. Every page has
+        <strong>Run code</strong> — try Python in your browser with no install.
+      </p>
+      {
+        first && (
+          <a href={lessonUrl(first.id)} class="btn-primary mt-6">
+            Start with {first.data.title}
+          </a>
+        )
+      }
+    </header>
 
-  <div class="mt-10 grid gap-6 sm:grid-cols-2">
-    {
-      groups.map((group) => (
-        <section class="rounded-xl border border-border bg-surface p-5">
-          <h2 class="m-0 text-base font-semibold text-text">{group.chapterTitle}</h2>
-          <ul class="mt-3 list-none space-y-1 p-0">
-            {
-              getChapterNavItems(group).map((item) => {
-                if (item.kind === "lesson") {
-                  return (
-                    <li>
-                      <a href={lessonUrl(item.lesson.id)} class="text-sm text-link no-underline hover:underline">
-                        {item.lesson.data.title}
-                      </a>
-                    </li>
-                  );
-                }
-                return (
-                  <li class="mt-2">
-                    <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">{item.section.title}</p>
-                    <ul class="mt-1 list-none space-y-1 pl-3">
-                      {item.section.lessons.map((lesson) => (
+    <div class="mt-10 space-y-8">
+      {
+        groups.map((group) => {
+          const path = getAllLessonsInGroup(group);
+          return (
+            <section class="rounded-xl border border-border bg-surface p-5 sm:p-6">
+              <h2 class="m-0 text-lg font-semibold text-text">{group.chapterTitle}</h2>
+              <p class="mt-1 mb-4 text-sm text-text-muted">
+                {path.length} lessons · follow this order
+              </p>
+              <ol class="m-0 list-decimal space-y-1.5 pl-5 text-sm">
+                {path.map((lesson) => (
+                  <li class="text-text-secondary">
+                    <a
+                      href={lessonUrl(lesson.id)}
+                      class="font-medium text-link no-underline hover:underline"
+                    >
+                      {lesson.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+              <details class="mt-4 text-sm">
+                <summary class="cursor-pointer font-medium text-text">
+                  Quick links (sidebar layout)
+                </summary>
+                <ul class="mt-2 list-none space-y-1 p-0">
+                  {getChapterNavItems(group).map((item) => {
+                    if (item.kind === "lesson") {
+                      return (
                         <li>
-                          <a href={lessonUrl(lesson.id)} class="text-sm text-link no-underline hover:underline">
-                            {lesson.data.title}
+                          <a
+                            href={lessonUrl(item.lesson.id)}
+                            class="text-link no-underline hover:underline"
+                          >
+                            {item.lesson.data.title}
                           </a>
                         </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </section>
-      ))
-    }
-  </div>
+                      );
+                    }
+                    return (
+                      <li class="mt-2">
+                        <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                          {item.section.title}
+                        </p>
+                        <ul class="mt-1 list-none space-y-1 pl-3">
+                          {item.section.lessons.map((lesson) => (
+                            <li>
+                              <a
+                                href={lessonUrl(lesson.id)}
+                                class="text-link no-underline hover:underline"
+                              >
+                                {lesson.data.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </details>
+            </section>
+          );
+        })
+      }
+    </div>
   </div>
 </TutorialLayout>

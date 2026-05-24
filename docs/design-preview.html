@@ -1,506 +1,1014 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PyGuide — Design Preview</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          },
-          colors: {
-            brand: {
-              50: '#f0fdf8',
-              100: '#ccfbf0',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
-              900: '#134e4a',
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyGuide — Design Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"DM Sans"', "system-ui", "sans-serif"],
+              mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
             },
-            ink: {
-              50: '#f8faf9',
-              100: '#f1f5f3',
-              200: '#e2e8e5',
-              400: '#94a39c',
-              600: '#4a5751',
-              800: '#1c2420',
-              900: '#0f1412',
+            colors: {
+              brand: {
+                50: "#f0fdf8",
+                100: "#ccfbf0",
+                500: "#14b8a6",
+                600: "#0d9488",
+                700: "#0f766e",
+                900: "#134e4a",
+              },
+              ink: {
+                50: "#f8faf9",
+                100: "#f1f5f3",
+                200: "#e2e8e5",
+                400: "#94a39c",
+                600: "#4a5751",
+                800: "#1c2420",
+                900: "#0f1412",
+              },
             },
           },
         },
-      },
-    };
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    .code-line::before {
-      content: attr(data-n);
-      display: inline-block;
-      width: 2rem;
-      margin-right: 1rem;
-      text-align: right;
-      color: #94a39c;
-      user-select: none;
-    }
-    .screen { display: none; }
-    .screen.active { display: block; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-in { animation: fadeUp 0.35s ease-out; }
-    .kw { color: #c678dd; }
-    .fn { color: #61afef; }
-    .str { color: #98c379; }
-    .cm { color: #5c6370; font-style: italic; }
-    .num { color: #d19a66; }
-  </style>
-</head>
-<body class="bg-ink-50 text-ink-800 font-sans antialiased">
-
-  <!-- Preview-only: switch mockup pages (removed in production) -->
-  <div class="border-b border-ink-200 bg-ink-100/80 px-4 py-1.5 text-center text-xs text-ink-600">
-    <span class="font-medium text-ink-500">Preview mockup ·</span>
-    <button type="button" data-screen="home" class="screen-tab mx-1 font-semibold text-brand-700">Home</button>
-    <button type="button" data-screen="lesson" class="screen-tab mx-1 hover:text-ink-900">Lesson</button>
-    <button type="button" data-screen="cheatsheet" class="screen-tab mx-1 hover:text-ink-900">Cheatsheet</button>
-  </div>
-
-  <!-- Single site header (same on every page) -->
-  <header class="sticky top-0 z-40 border-b border-ink-200 bg-white/95 backdrop-blur-md">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-      <a href="#" class="flex shrink-0 items-center gap-2.5">
-        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 font-mono text-sm font-bold text-white">&gt;_</span>
-        <span class="text-lg font-bold tracking-tight text-ink-900">PyGuide</span>
-      </a>
-      <div class="hidden items-center gap-8 text-sm font-medium text-ink-600 md:flex">
-        <a href="#" data-nav="learn" class="nav-link hover:text-ink-900">Learn</a>
-        <a href="#" data-nav="cheatsheet" class="nav-link hover:text-ink-900">Cheatsheet</a>
-        <a href="#" class="hover:text-ink-900">About</a>
-      </div>
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button type="button" id="open-signin" class="inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-2.5 py-2 text-sm font-semibold text-ink-800 hover:bg-ink-50 sm:px-3">
-          <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-          <span class="hidden sm:inline">Sign in</span>
-        </button>
-        <a href="#" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">Start learning</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- ═══════════════════ HOME ═══════════════════ -->
-  <div id="screen-home" class="screen active">
-    <section class="border-b border-ink-200 bg-white">
-      <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:py-24 md:items-center">
-        <div>
-          <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-            Free · No account required · Sign in with Google optional
-          </p>
-          <h1 class="text-4xl font-bold leading-tight tracking-tight text-ink-900 md:text-5xl">
-            Learn Python the simple way
-          </h1>
-          <p class="mt-5 text-lg leading-relaxed text-ink-600">
-            Short lessons, clear examples, and a one-click <strong class="font-semibold text-ink-800">Run</strong> button on every snippet — see the output instantly, then copy the code to your editor.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#" class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">Lesson 1 — Hello, Python</a>
-            <a href="#" class="rounded-lg border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50">View curriculum</a>
-          </div>
-          <p class="mt-8 text-sm text-ink-600">
-            <button type="button" id="open-signin-hero" class="font-semibold text-brand-700 underline-offset-2 hover:underline">Sign in with Google</button>
-            to save progress across devices — or keep browsing without an account.
-          </p>
-        </div>
-
-        <!-- Hero demo widget -->
-        <div class="animate-in rounded-xl border border-ink-200 bg-ink-900 shadow-xl shadow-ink-900/10 overflow-hidden">
-          <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-            <div class="flex gap-1.5">
-              <span class="h-3 w-3 rounded-full bg-red-400/90"></span>
-              <span class="h-3 w-3 rounded-full bg-amber-400/90"></span>
-              <span class="h-3 w-3 rounded-full bg-emerald-400/90"></span>
-            </div>
-            <span class="font-mono text-xs text-white/50">hello.py</span>
-            <div class="ml-auto flex gap-2">
-              <button type="button" class="rounded-md border border-white/10 px-2.5 py-1 text-xs font-medium text-white/70 hover:bg-white/5">Copy</button>
-              <button type="button" id="hero-run" class="rounded-md bg-brand-500 px-3 py-1 text-xs font-semibold text-white hover:bg-brand-600">▶ Run</button>
-            </div>
-          </div>
-          <div class="px-4 py-4 font-mono text-sm leading-relaxed text-white/90">
-            <div class="code-line" data-n="1"><span class="fn">print</span>(<span class="str">"Hello, Python!"</span>)</div>
-            <div class="code-line" data-n="2">name = <span class="str">"PyGuide"</span></div>
-            <div class="code-line" data-n="3"><span class="fn">print</span>(<span class="str">f"Welcome to {name}"</span>)</div>
-          </div>
-          <div class="border-t border-white/10 bg-black/40 px-4 py-3">
-            <p class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-white/40">Output</p>
-            <pre id="hero-output" class="font-mono text-sm text-emerald-400/90 min-h-[3rem]">Click Run to see output…</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mx-auto max-w-6xl px-4 py-16">
-      <div class="mb-10">
-        <h2 class="text-2xl font-bold text-ink-900">Chapters</h2>
-        <p class="mt-1 text-ink-600">Read in order — each chapter lists its sub-topics so you know what is inside</p>
-      </div>
-      <div class="grid gap-4 lg:grid-cols-2">
-        <a href="#" class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition">
-          <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">Chapter 1</span>
-          <h3 class="mt-1 text-lg font-semibold text-ink-900 group-hover:text-brand-700">Hello, Python</h3>
-          <p class="mt-2 text-sm text-ink-600">Get running without installing anything on your computer.</p>
-          <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-          <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
-            <li class="flex gap-2"><span class="text-brand-500">·</span>What Python is used for</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Your first <code class="font-mono text-xs">print()</code></li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>How code runs top to bottom</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Comments and readability</li>
-          </ul>
-        </a>
-        <a href="#" class="group rounded-xl border border-brand-200 bg-brand-50/60 p-6 ring-1 ring-brand-500/20">
-          <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">Chapter 2 · You are here</span>
-          <h3 class="mt-1 text-lg font-semibold text-ink-900">Variables</h3>
-          <p class="mt-2 text-sm text-ink-600">Store values under names and reuse them in your programs.</p>
-          <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-          <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Creating variables with <code class="font-mono text-xs">=</code></li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Naming rules and conventions</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Updating and reassigning values</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Using variables in <code class="font-mono text-xs">print()</code></li>
-          </ul>
-        </a>
-        <a href="#" class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition">
-          <span class="text-xs font-semibold uppercase tracking-wide text-ink-400">Chapter 3</span>
-          <h3 class="mt-1 text-lg font-semibold text-ink-900">Data types</h3>
-          <p class="mt-2 text-sm text-ink-600">Numbers, text, and true/false — and when to use each.</p>
-          <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-          <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Integers and floats</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Strings and quotes</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Booleans: <code class="font-mono text-xs">True</code> / <code class="font-mono text-xs">False</code></li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Checking types with <code class="font-mono text-xs">type()</code></li>
-          </ul>
-        </a>
-        <a href="#" class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition">
-          <span class="text-xs font-semibold uppercase tracking-wide text-ink-400">Chapter 4</span>
-          <h3 class="mt-1 text-lg font-semibold text-ink-900">If statements</h3>
-          <p class="mt-2 text-sm text-ink-600">Make decisions in your code based on conditions.</p>
-          <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-          <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
-            <li class="flex gap-2"><span class="text-brand-500">·</span><code class="font-mono text-xs">if</code> and indentation</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span><code class="font-mono text-xs">elif</code> and <code class="font-mono text-xs">else</code></li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Comparison operators</li>
-            <li class="flex gap-2"><span class="text-brand-500">·</span>Combining conditions with <code class="font-mono text-xs">and</code> / <code class="font-mono text-xs">or</code></li>
-          </ul>
-        </a>
-      </div>
-    </section>
-
-    <footer class="border-t border-ink-200 bg-white py-10">
-      <div class="mx-auto max-w-6xl px-4 text-center text-sm text-ink-600">
-        <p>PyGuide — design preview only</p>
-      </div>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════ LESSON ═══════════════════ -->
-  <div id="screen-lesson" class="screen">
-    <div class="mx-auto max-w-6xl px-4 py-8">
-      <div class="flex flex-col gap-8 lg:flex-row">
-        <!-- Sidebar -->
-        <aside class="lg:w-72 shrink-0">
-          <p class="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-3">Chapters</p>
-          <nav class="space-y-4 text-sm" aria-label="All chapters and sub-topics">
-            <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
-              <a href="#" class="block font-medium text-ink-800 hover:text-brand-700">1. Hello, Python</a>
-              <p class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-              <ul class="space-y-1 text-xs text-ink-600">
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">What Python is used for</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Your first <code class="font-mono">print()</code></a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">How code runs top to bottom</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Comments and readability</a></li>
-              </ul>
-            </div>
-            <div class="rounded-lg border border-brand-200 bg-brand-50/60 px-3 py-2 ring-1 ring-brand-500/20">
-              <a href="#" class="block font-semibold text-brand-800">2. Variables</a>
-              <p class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-brand-600/80">Sub-topics</p>
-              <ul class="space-y-1 text-xs">
-                <li><a href="#topic-assign" class="block rounded py-0.5 pl-2 border-l-2 border-brand-500 font-medium text-brand-800">Creating variables</a></li>
-                <li><a href="#topic-names" class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700">Naming rules</a></li>
-                <li><a href="#topic-update" class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700">Updating values</a></li>
-                <li><a href="#topic-print" class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700">Variables in print</a></li>
-              </ul>
-            </div>
-            <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
-              <a href="#" class="block font-medium text-ink-800 hover:text-brand-700">3. Data types</a>
-              <p class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-              <ul class="space-y-1 text-xs text-ink-600">
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Integers and floats</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Strings and quotes</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Booleans</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Checking types with <code class="font-mono">type()</code></a></li>
-              </ul>
-            </div>
-            <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
-              <a href="#" class="block font-medium text-ink-800 hover:text-brand-700">4. If statements</a>
-              <p class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400">Sub-topics</p>
-              <ul class="space-y-1 text-xs text-ink-600">
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700"><code class="font-mono">if</code> and indentation</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700"><code class="font-mono">elif</code> and <code class="font-mono">else</code></a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700">Comparison operators</a></li>
-                <li><a href="#" class="block rounded py-0.5 hover:text-brand-700"><code class="font-mono">and</code> / <code class="font-mono">or</code></a></li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
-
-        <!-- Article -->
-        <article class="min-w-0 flex-1 max-w-3xl">
-          <nav class="mb-4 text-sm text-ink-600">
-            <a href="#" class="hover:text-brand-700">Learn</a>
-            <span class="mx-1">/</span>
-            <span class="text-ink-900">Variables</span>
-          </nav>
-          <h1 class="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">Chapter 2 — Variables</h1>
-          <p class="mt-3 text-sm text-ink-600">Beginner</p>
-
-          <nav class="mt-6 rounded-xl border-2 border-brand-100 bg-brand-50/40 p-5" aria-label="Sub-topics in this chapter">
-            <p class="text-sm font-bold text-ink-900">Sub-topics in this chapter</p>
-            <p class="mt-1 text-xs text-ink-600">Jump to a section — each sub-topic is its own lesson block below.</p>
-            <ol class="mt-4 space-y-2 text-sm">
-              <li>
-                <a href="#topic-assign" class="flex items-center gap-3 rounded-lg border border-brand-200 bg-white px-3 py-2.5 font-medium text-brand-800 shadow-sm">
-                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">1</span>
-                  Creating variables with <code class="font-mono text-xs">=</code>
-                </a>
-              </li>
-              <li>
-                <a href="#topic-names" class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800">
-                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600">2</span>
-                  Naming rules and conventions
-                </a>
-              </li>
-              <li>
-                <a href="#topic-update" class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800">
-                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600">3</span>
-                  Updating and reassigning values
-                </a>
-              </li>
-              <li>
-                <a href="#topic-print" class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800">
-                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600">4</span>
-                  Using variables in <code class="font-mono text-xs">print()</code>
-                </a>
-              </li>
-            </ol>
-          </nav>
-
-          <div class="prose-custom mt-8 space-y-6 text-[17px] leading-relaxed text-ink-800">
-            <h2 id="topic-assign" class="text-xl font-bold text-ink-900 scroll-mt-24">Creating variables</h2>
-            <p>A <strong>variable</strong> is a name that refers to a value. You create one by assigning with <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm text-brand-800">=</code>.</p>
-
-            <!-- Example widget -->
-            <div class="not-prose my-8 rounded-xl border border-ink-200 overflow-hidden bg-white shadow-sm">
-              <div class="flex flex-wrap items-center gap-2 border-b border-ink-100 bg-ink-50 px-4 py-2.5">
-                <div class="flex gap-1.5 mr-2">
-                  <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-amber-400/80"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
-                </div>
-                <span class="font-mono text-xs text-ink-600">variables.py</span>
-                <span class="ml-auto flex gap-2">
-                  <button type="button" class="lesson-copy rounded-md border border-ink-200 bg-white px-2.5 py-1 text-xs font-medium text-ink-700 hover:bg-ink-50">Copy</button>
-                  <button type="button" class="lesson-run rounded-md bg-brand-600 px-3 py-1 text-xs font-semibold text-white hover:bg-brand-700">▶ Run</button>
-                </span>
-              </div>
-              <div class="bg-[#1e2228] px-4 py-4 font-mono text-[13px] leading-7 text-[#abb2bf]">
-                <div class="code-line" data-n="1">age = <span class="num">25</span></div>
-                <div class="code-line" data-n="2">name = <span class="str">"Ada"</span></div>
-                <div class="code-line" data-n="3"><span class="fn">print</span>(name)</div>
-                <div class="code-line" data-n="4"><span class="fn">print</span>(age)</div>
-              </div>
-              <div class="border-t border-ink-100 bg-ink-50 px-4 py-3">
-                <p class="mb-1 text-[10px] font-semibold uppercase tracking-widest text-ink-400">Output</p>
-                <pre class="lesson-output font-mono text-sm text-ink-800 min-h-[2.5rem]">Click Run…</pre>
-              </div>
-            </div>
-
-            <p>Variable names can use letters, numbers, and underscores. They cannot start with a number.</p>
-
-            <!-- Ad slot preview -->
-            <div class="not-prose my-8 flex h-24 items-center justify-center rounded-lg border border-dashed border-ink-200 bg-ink-100/50 text-xs text-ink-400">
-              Ad slot (between sections — desktop: optional sidebar instead)
-            </div>
-
-            <h2 id="topic-names" class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100">Naming rules</h2>
-            <p>Use <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm">snake_case</code> for multi-word names — it's the Python convention.</p>
-
-            <h2 id="topic-update" class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100">Updating values</h2>
-            <p>You can change what a variable holds by assigning again: <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm">age = 26</code> replaces the old value.</p>
-
-            <h2 id="topic-print" class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100">Variables in print</h2>
-            <p>Pass variables into <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm">print()</code> or use an f-string: <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm">print(f"Hello, {name}")</code>.</p>
-          </div>
-
-          <nav class="mt-12 flex justify-between gap-4 border-t border-ink-200 pt-8">
-            <a href="#" class="rounded-lg border border-ink-200 px-4 py-3 text-sm font-semibold hover:bg-ink-50">← Hello, Python</a>
-            <a href="#" class="rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700">Data types →</a>
-          </nav>
-        </article>
-
-        <!-- Right rail ad (desktop) -->
-        <aside class="hidden xl:block w-40 shrink-0">
-          <div class="sticky top-24 flex h-64 items-center justify-center rounded-lg border border-dashed border-ink-200 bg-ink-100/30 text-[10px] text-center text-ink-400 px-2">
-            Ad slot (sidebar)
-          </div>
-        </aside>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════ CHEATSHEET ═══════════════════ -->
-  <div id="screen-cheatsheet" class="screen">
-    <main class="mx-auto max-w-4xl px-4 py-12">
-      <h1 class="text-3xl font-bold text-ink-900">Python cheatsheet</h1>
-      <p class="mt-2 text-ink-600">Quick reference — great for search traffic</p>
-      <div class="mt-10 space-y-6">
-        <section class="rounded-xl border border-ink-200 bg-white overflow-hidden">
-          <h2 class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900">Strings</h2>
-          <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink-100">
-            <div class="p-5 font-mono text-sm text-ink-800">s = "hello"<br/>len(s)<br/>s.upper()</div>
-            <div class="p-5 text-sm text-ink-600 bg-ink-50/50">Length, uppercase, slicing…</div>
-          </div>
-        </section>
-        <section class="rounded-xl border border-ink-200 bg-white overflow-hidden">
-          <h2 class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900">Lists</h2>
-          <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink-100">
-            <div class="p-5 font-mono text-sm text-ink-800">nums = [1, 2, 3]<br/>nums.append(4)</div>
-            <div class="p-5 text-sm text-ink-600 bg-ink-50/50">Create, append, loop…</div>
-          </div>
-        </section>
-      </div>
-    </main>
-  </div>
-
-  <!-- Sign-in modal (Google only) -->
-  <div id="signin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" aria-hidden="true">
-    <div class="absolute inset-0 bg-ink-900/40 backdrop-blur-sm" data-close-signin></div>
-    <div class="relative w-full max-w-md rounded-2xl border border-ink-200 bg-white p-8 shadow-2xl animate-in" role="dialog" aria-labelledby="signin-title">
-      <button type="button" data-close-signin class="absolute right-4 top-4 rounded-lg p-1 text-ink-400 hover:bg-ink-100 hover:text-ink-800" aria-label="Close">✕</button>
-      <h2 id="signin-title" class="text-xl font-bold text-ink-900">Save your progress</h2>
-      <p class="mt-2 text-sm leading-relaxed text-ink-600">
-        Optional. Sign in with Google to remember which topics you have read. Everything stays free — no password, no email form.
-      </p>
-      <button type="button" class="mt-6 flex w-full items-center justify-center gap-3 rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm font-semibold text-ink-900 shadow-sm hover:bg-ink-50">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        Continue with Google
-      </button>
-      <button type="button" data-close-signin class="mt-4 w-full text-center text-sm font-medium text-ink-600 hover:text-ink-900">
-        Continue without signing in
-      </button>
-    </div>
-  </div>
-
-  <script>
-    const tabs = document.querySelectorAll('.screen-tab');
-    const screens = document.querySelectorAll('.screen');
-
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    function setActiveScreen(id) {
-      tabs.forEach((t) => {
-        const active = t.dataset.screen === id;
-        t.classList.toggle('font-semibold', active);
-        t.classList.toggle('text-brand-700', active);
-        t.classList.toggle('hover:text-ink-900', !active);
-      });
-      navLinks.forEach((link) => {
-        const on = (id === 'cheatsheet' && link.dataset.nav === 'cheatsheet')
-          || (id !== 'cheatsheet' && link.dataset.nav === 'learn');
-        link.classList.toggle('text-brand-700', on);
-      });
-      screens.forEach((s) => s.classList.remove('active'));
-      document.getElementById('screen-' + id)?.classList.add('active');
-      window.scrollTo(0, 0);
-    }
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => setActiveScreen(tab.dataset.screen));
-    });
-
-    navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        setActiveScreen(link.dataset.nav === 'cheatsheet' ? 'cheatsheet' : 'home');
-      });
-    });
-
-    function simulateRun(outputEl, lines, btn) {
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = 'Running…';
-      }
-      outputEl.textContent = '';
-      let i = 0;
-      const tick = () => {
-        if (i < lines.length) {
-          outputEl.textContent += (i ? '\n' : '') + lines[i];
-          i++;
-          setTimeout(tick, 120);
-        } else if (btn) {
-          btn.disabled = false;
-          btn.textContent = '▶ Run';
-        }
       };
-      setTimeout(tick, 200);
-    }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .code-line::before {
+        content: attr(data-n);
+        display: inline-block;
+        width: 2rem;
+        margin-right: 1rem;
+        text-align: right;
+        color: #94a39c;
+        user-select: none;
+      }
+      .screen {
+        display: none;
+      }
+      .screen.active {
+        display: block;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-in {
+        animation: fadeUp 0.35s ease-out;
+      }
+      .kw {
+        color: #c678dd;
+      }
+      .fn {
+        color: #61afef;
+      }
+      .str {
+        color: #98c379;
+      }
+      .cm {
+        color: #5c6370;
+        font-style: italic;
+      }
+      .num {
+        color: #d19a66;
+      }
+    </style>
+  </head>
+  <body class="bg-ink-50 text-ink-800 font-sans antialiased">
+    <!-- Preview-only: switch mockup pages (removed in production) -->
+    <div
+      class="border-b border-ink-200 bg-ink-100/80 px-4 py-1.5 text-center text-xs text-ink-600"
+    >
+      <span class="font-medium text-ink-500">Preview mockup ·</span>
+      <button
+        type="button"
+        data-screen="home"
+        class="screen-tab mx-1 font-semibold text-brand-700"
+      >
+        Home
+      </button>
+      <button
+        type="button"
+        data-screen="lesson"
+        class="screen-tab mx-1 hover:text-ink-900"
+      >
+        Lesson
+      </button>
+      <button
+        type="button"
+        data-screen="cheatsheet"
+        class="screen-tab mx-1 hover:text-ink-900"
+      >
+        Cheatsheet
+      </button>
+    </div>
 
-    document.getElementById('hero-run')?.addEventListener('click', () => {
-      simulateRun(
-        document.getElementById('hero-output'),
-        ['Hello, Python!', 'Welcome to PyGuide'],
-        document.getElementById('hero-run')
-      );
-    });
+    <!-- Single site header (same on every page) -->
+    <header
+      class="sticky top-0 z-40 border-b border-ink-200 bg-white/95 backdrop-blur-md"
+    >
+      <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+        <a href="#" class="flex shrink-0 items-center gap-2.5">
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 font-mono text-sm font-bold text-white"
+            >&gt;_</span
+          >
+          <span class="text-lg font-bold tracking-tight text-ink-900">PyGuide</span>
+        </a>
+        <div class="hidden items-center gap-8 text-sm font-medium text-ink-600 md:flex">
+          <a href="#" data-nav="learn" class="nav-link hover:text-ink-900">Learn</a>
+          <a href="#" data-nav="cheatsheet" class="nav-link hover:text-ink-900"
+            >Cheatsheet</a
+          >
+          <a href="#" class="hover:text-ink-900">About</a>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            id="open-signin"
+            class="inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-2.5 py-2 text-sm font-semibold text-ink-800 hover:bg-ink-50 sm:px-3"
+          >
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            <span class="hidden sm:inline">Sign in</span>
+          </button>
+          <a
+            href="#"
+            class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
+            >Start learning</a
+          >
+        </div>
+      </nav>
+    </header>
 
-    document.querySelector('.lesson-run')?.addEventListener('click', (e) => {
-      const box = document.querySelector('.lesson-output');
-      simulateRun(box, ['Ada', '25'], e.target);
-    });
+    <!-- ═══════════════════ HOME ═══════════════════ -->
+    <div id="screen-home" class="screen active">
+      <section class="border-b border-ink-200 bg-white">
+        <div
+          class="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:py-24 md:items-center"
+        >
+          <div>
+            <p
+              class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700"
+            >
+              Free · No account required · Sign in with Google optional
+            </p>
+            <h1
+              class="text-4xl font-bold leading-tight tracking-tight text-ink-900 md:text-5xl"
+            >
+              Learn Python the simple way
+            </h1>
+            <p class="mt-5 text-lg leading-relaxed text-ink-600">
+              Short lessons, clear examples, and a one-click
+              <strong class="font-semibold text-ink-800">Run</strong> button on every
+              snippet — see the output instantly, then copy the code to your editor.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#"
+                class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+                >Lesson 1 — Hello, Python</a
+              >
+              <a
+                href="#"
+                class="rounded-lg border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50"
+                >View curriculum</a
+              >
+            </div>
+            <p class="mt-8 text-sm text-ink-600">
+              <button
+                type="button"
+                id="open-signin-hero"
+                class="font-semibold text-brand-700 underline-offset-2 hover:underline"
+              >
+                Sign in with Google
+              </button>
+              to save progress across devices — or keep browsing without an account.
+            </p>
+          </div>
 
-    document.querySelectorAll('.lesson-copy').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const old = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
+          <!-- Hero demo widget -->
+          <div
+            class="animate-in rounded-xl border border-ink-200 bg-ink-900 shadow-xl shadow-ink-900/10 overflow-hidden"
+          >
+            <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
+              <div class="flex gap-1.5">
+                <span class="h-3 w-3 rounded-full bg-red-400/90"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-400/90"></span>
+                <span class="h-3 w-3 rounded-full bg-emerald-400/90"></span>
+              </div>
+              <span class="font-mono text-xs text-white/50">hello.py</span>
+              <div class="ml-auto flex gap-2">
+                <button
+                  type="button"
+                  class="rounded-md border border-white/10 px-2.5 py-1 text-xs font-medium text-white/70 hover:bg-white/5"
+                >
+                  Copy
+                </button>
+                <button
+                  type="button"
+                  id="hero-run"
+                  class="rounded-md bg-brand-500 px-3 py-1 text-xs font-semibold text-white hover:bg-brand-600"
+                >
+                  ▶ Run
+                </button>
+              </div>
+            </div>
+            <div class="px-4 py-4 font-mono text-sm leading-relaxed text-white/90">
+              <div class="code-line" data-n="1">
+                <span class="fn">print</span>(<span class="str">"Hello, Python!"</span>)
+              </div>
+              <div class="code-line" data-n="2">
+                name = <span class="str">"PyGuide"</span>
+              </div>
+              <div class="code-line" data-n="3">
+                <span class="fn">print</span>(<span class="str">f"Welcome to {name}"</span
+                >)
+              </div>
+            </div>
+            <div class="border-t border-white/10 bg-black/40 px-4 py-3">
+              <p
+                class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-white/40"
+              >
+                Output
+              </p>
+              <pre
+                id="hero-output"
+                class="font-mono text-sm text-emerald-400/90 min-h-[3rem]"
+              >
+Click Run to see output…</pre
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 py-16">
+        <div class="mb-10">
+          <h2 class="text-2xl font-bold text-ink-900">Chapters</h2>
+          <p class="mt-1 text-ink-600">
+            Read in order — each chapter lists its sub-topics so you know what is inside
+          </p>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <a
+            href="#"
+            class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition"
+          >
+            <span class="text-xs font-semibold uppercase tracking-wide text-brand-600"
+              >Chapter 1</span
+            >
+            <h3
+              class="mt-1 text-lg font-semibold text-ink-900 group-hover:text-brand-700"
+            >
+              Hello, Python
+            </h3>
+            <p class="mt-2 text-sm text-ink-600">
+              Get running without installing anything on your computer.
+            </p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">
+              Sub-topics
+            </p>
+            <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>What Python is used for
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Your first
+                <code class="font-mono text-xs">print()</code>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>How code runs top to bottom
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Comments and readability
+              </li>
+            </ul>
+          </a>
+          <a
+            href="#"
+            class="group rounded-xl border border-brand-200 bg-brand-50/60 p-6 ring-1 ring-brand-500/20"
+          >
+            <span class="text-xs font-semibold uppercase tracking-wide text-brand-600"
+              >Chapter 2 · You are here</span
+            >
+            <h3 class="mt-1 text-lg font-semibold text-ink-900">Variables</h3>
+            <p class="mt-2 text-sm text-ink-600">
+              Store values under names and reuse them in your programs.
+            </p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">
+              Sub-topics
+            </p>
+            <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Creating variables with
+                <code class="font-mono text-xs">=</code>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Naming rules and conventions
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Updating and reassigning values
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Using variables in
+                <code class="font-mono text-xs">print()</code>
+              </li>
+            </ul>
+          </a>
+          <a
+            href="#"
+            class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition"
+          >
+            <span class="text-xs font-semibold uppercase tracking-wide text-ink-400"
+              >Chapter 3</span
+            >
+            <h3 class="mt-1 text-lg font-semibold text-ink-900">Data types</h3>
+            <p class="mt-2 text-sm text-ink-600">
+              Numbers, text, and true/false — and when to use each.
+            </p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">
+              Sub-topics
+            </p>
+            <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Integers and floats
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Strings and quotes
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Booleans:
+                <code class="font-mono text-xs">True</code> /
+                <code class="font-mono text-xs">False</code>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Checking types with
+                <code class="font-mono text-xs">type()</code>
+              </li>
+            </ul>
+          </a>
+          <a
+            href="#"
+            class="group rounded-xl border border-ink-200 bg-white p-6 hover:border-brand-500/40 hover:shadow-md transition"
+          >
+            <span class="text-xs font-semibold uppercase tracking-wide text-ink-400"
+              >Chapter 4</span
+            >
+            <h3 class="mt-1 text-lg font-semibold text-ink-900">If statements</h3>
+            <p class="mt-2 text-sm text-ink-600">
+              Make decisions in your code based on conditions.
+            </p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-400">
+              Sub-topics
+            </p>
+            <ul class="mt-2 space-y-1.5 rounded-lg bg-ink-50 p-3 text-sm text-ink-700">
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span
+                ><code class="font-mono text-xs">if</code> and indentation
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span
+                ><code class="font-mono text-xs">elif</code> and
+                <code class="font-mono text-xs">else</code>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Comparison operators
+              </li>
+              <li class="flex gap-2">
+                <span class="text-brand-500">·</span>Combining conditions with
+                <code class="font-mono text-xs">and</code> /
+                <code class="font-mono text-xs">or</code>
+              </li>
+            </ul>
+          </a>
+        </div>
+      </section>
+
+      <footer class="border-t border-ink-200 bg-white py-10">
+        <div class="mx-auto max-w-6xl px-4 text-center text-sm text-ink-600">
+          <p>PyGuide — design preview only</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══════════════════ LESSON ═══════════════════ -->
+    <div id="screen-lesson" class="screen">
+      <div class="mx-auto max-w-6xl px-4 py-8">
+        <div class="flex flex-col gap-8 lg:flex-row">
+          <!-- Sidebar -->
+          <aside class="lg:w-72 shrink-0">
+            <p class="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-3">
+              Chapters
+            </p>
+            <nav class="space-y-4 text-sm" aria-label="All chapters and sub-topics">
+              <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
+                <a href="#" class="block font-medium text-ink-800 hover:text-brand-700"
+                  >1. Hello, Python</a
+                >
+                <p
+                  class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400"
+                >
+                  Sub-topics
+                </p>
+                <ul class="space-y-1 text-xs text-ink-600">
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >What Python is used for</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Your first <code class="font-mono">print()</code></a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >How code runs top to bottom</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Comments and readability</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="rounded-lg border border-brand-200 bg-brand-50/60 px-3 py-2 ring-1 ring-brand-500/20"
+              >
+                <a href="#" class="block font-semibold text-brand-800">2. Variables</a>
+                <p
+                  class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-brand-600/80"
+                >
+                  Sub-topics
+                </p>
+                <ul class="space-y-1 text-xs">
+                  <li>
+                    <a
+                      href="#topic-assign"
+                      class="block rounded py-0.5 pl-2 border-l-2 border-brand-500 font-medium text-brand-800"
+                      >Creating variables</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#topic-names"
+                      class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700"
+                      >Naming rules</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#topic-update"
+                      class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700"
+                      >Updating values</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#topic-print"
+                      class="block rounded py-0.5 pl-2 border-l-2 border-transparent text-ink-600 hover:text-brand-700"
+                      >Variables in print</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
+                <a href="#" class="block font-medium text-ink-800 hover:text-brand-700"
+                  >3. Data types</a
+                >
+                <p
+                  class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400"
+                >
+                  Sub-topics
+                </p>
+                <ul class="space-y-1 text-xs text-ink-600">
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Integers and floats</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Strings and quotes</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Booleans</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Checking types with <code class="font-mono">type()</code></a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="rounded-lg border border-ink-200 bg-white px-3 py-2">
+                <a href="#" class="block font-medium text-ink-800 hover:text-brand-700"
+                  >4. If statements</a
+                >
+                <p
+                  class="mt-2 mb-1 text-[10px] font-semibold uppercase tracking-wider text-ink-400"
+                >
+                  Sub-topics
+                </p>
+                <ul class="space-y-1 text-xs text-ink-600">
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      ><code class="font-mono">if</code> and indentation</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      ><code class="font-mono">elif</code> and
+                      <code class="font-mono">else</code></a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      >Comparison operators</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="block rounded py-0.5 hover:text-brand-700"
+                      ><code class="font-mono">and</code> /
+                      <code class="font-mono">or</code></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </aside>
+
+          <!-- Article -->
+          <article class="min-w-0 flex-1 max-w-3xl">
+            <nav class="mb-4 text-sm text-ink-600">
+              <a href="#" class="hover:text-brand-700">Learn</a>
+              <span class="mx-1">/</span>
+              <span class="text-ink-900">Variables</span>
+            </nav>
+            <h1 class="text-3xl font-bold tracking-tight text-ink-900 md:text-4xl">
+              Chapter 2 — Variables
+            </h1>
+            <p class="mt-3 text-sm text-ink-600">Beginner</p>
+
+            <nav
+              class="mt-6 rounded-xl border-2 border-brand-100 bg-brand-50/40 p-5"
+              aria-label="Sub-topics in this chapter"
+            >
+              <p class="text-sm font-bold text-ink-900">Sub-topics in this chapter</p>
+              <p class="mt-1 text-xs text-ink-600">
+                Jump to a section — each sub-topic is its own lesson block below.
+              </p>
+              <ol class="mt-4 space-y-2 text-sm">
+                <li>
+                  <a
+                    href="#topic-assign"
+                    class="flex items-center gap-3 rounded-lg border border-brand-200 bg-white px-3 py-2.5 font-medium text-brand-800 shadow-sm"
+                  >
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white"
+                      >1</span
+                    >
+                    Creating variables with <code class="font-mono text-xs">=</code>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#topic-names"
+                    class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800"
+                  >
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600"
+                      >2</span
+                    >
+                    Naming rules and conventions
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#topic-update"
+                    class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800"
+                  >
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600"
+                      >3</span
+                    >
+                    Updating and reassigning values
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#topic-print"
+                    class="flex items-center gap-3 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-ink-800 hover:border-brand-200 hover:text-brand-800"
+                  >
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-100 text-xs font-bold text-ink-600"
+                      >4</span
+                    >
+                    Using variables in <code class="font-mono text-xs">print()</code>
+                  </a>
+                </li>
+              </ol>
+            </nav>
+
+            <div
+              class="prose-custom mt-8 space-y-6 text-[17px] leading-relaxed text-ink-800"
+            >
+              <h2 id="topic-assign" class="text-xl font-bold text-ink-900 scroll-mt-24">
+                Creating variables
+              </h2>
+              <p>
+                A <strong>variable</strong> is a name that refers to a value. You create
+                one by assigning with
+                <code
+                  class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm text-brand-800"
+                  >=</code
+                >.
+              </p>
+
+              <!-- Example widget -->
+              <div
+                class="not-prose my-8 rounded-xl border border-ink-200 overflow-hidden bg-white shadow-sm"
+              >
+                <div
+                  class="flex flex-wrap items-center gap-2 border-b border-ink-100 bg-ink-50 px-4 py-2.5"
+                >
+                  <div class="flex gap-1.5 mr-2">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
+                  </div>
+                  <span class="font-mono text-xs text-ink-600">variables.py</span>
+                  <span class="ml-auto flex gap-2">
+                    <button
+                      type="button"
+                      class="lesson-copy rounded-md border border-ink-200 bg-white px-2.5 py-1 text-xs font-medium text-ink-700 hover:bg-ink-50"
+                    >
+                      Copy
+                    </button>
+                    <button
+                      type="button"
+                      class="lesson-run rounded-md bg-brand-600 px-3 py-1 text-xs font-semibold text-white hover:bg-brand-700"
+                    >
+                      ▶ Run
+                    </button>
+                  </span>
+                </div>
+                <div
+                  class="bg-[#1e2228] px-4 py-4 font-mono text-[13px] leading-7 text-[#abb2bf]"
+                >
+                  <div class="code-line" data-n="1">
+                    age = <span class="num">25</span>
+                  </div>
+                  <div class="code-line" data-n="2">
+                    name = <span class="str">"Ada"</span>
+                  </div>
+                  <div class="code-line" data-n="3">
+                    <span class="fn">print</span>(name)
+                  </div>
+                  <div class="code-line" data-n="4">
+                    <span class="fn">print</span>(age)
+                  </div>
+                </div>
+                <div class="border-t border-ink-100 bg-ink-50 px-4 py-3">
+                  <p
+                    class="mb-1 text-[10px] font-semibold uppercase tracking-widest text-ink-400"
+                  >
+                    Output
+                  </p>
+                  <pre
+                    class="lesson-output font-mono text-sm text-ink-800 min-h-[2.5rem]"
+                  >
+Click Run…</pre
+                  >
+                </div>
+              </div>
+
+              <p>
+                Variable names can use letters, numbers, and underscores. They cannot
+                start with a number.
+              </p>
+
+              <!-- Ad slot preview -->
+              <div
+                class="not-prose my-8 flex h-24 items-center justify-center rounded-lg border border-dashed border-ink-200 bg-ink-100/50 text-xs text-ink-400"
+              >
+                Ad slot (between sections — desktop: optional sidebar instead)
+              </div>
+
+              <h2
+                id="topic-names"
+                class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100"
+              >
+                Naming rules
+              </h2>
+              <p>
+                Use
+                <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm"
+                  >snake_case</code
+                >
+                for multi-word names — it's the Python convention.
+              </p>
+
+              <h2
+                id="topic-update"
+                class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100"
+              >
+                Updating values
+              </h2>
+              <p>
+                You can change what a variable holds by assigning again:
+                <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm"
+                  >age = 26</code
+                >
+                replaces the old value.
+              </p>
+
+              <h2
+                id="topic-print"
+                class="text-xl font-bold text-ink-900 pt-8 scroll-mt-28 border-t border-ink-100"
+              >
+                Variables in print
+              </h2>
+              <p>
+                Pass variables into
+                <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm"
+                  >print()</code
+                >
+                or use an f-string:
+                <code class="rounded bg-ink-100 px-1.5 py-0.5 font-mono text-sm"
+                  >print(f"Hello, {name}")</code
+                >.
+              </p>
+            </div>
+
+            <nav class="mt-12 flex justify-between gap-4 border-t border-ink-200 pt-8">
+              <a
+                href="#"
+                class="rounded-lg border border-ink-200 px-4 py-3 text-sm font-semibold hover:bg-ink-50"
+                >← Hello, Python</a
+              >
+              <a
+                href="#"
+                class="rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+                >Data types →</a
+              >
+            </nav>
+          </article>
+
+          <!-- Right rail ad (desktop) -->
+          <aside class="hidden xl:block w-40 shrink-0">
+            <div
+              class="sticky top-24 flex h-64 items-center justify-center rounded-lg border border-dashed border-ink-200 bg-ink-100/30 text-[10px] text-center text-ink-400 px-2"
+            >
+              Ad slot (sidebar)
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ CHEATSHEET ═══════════════════ -->
+    <div id="screen-cheatsheet" class="screen">
+      <main class="mx-auto max-w-4xl px-4 py-12">
+        <h1 class="text-3xl font-bold text-ink-900">Python cheatsheet</h1>
+        <p class="mt-2 text-ink-600">Quick reference — great for search traffic</p>
+        <div class="mt-10 space-y-6">
+          <section class="rounded-xl border border-ink-200 bg-white overflow-hidden">
+            <h2
+              class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900"
+            >
+              Strings
+            </h2>
+            <div
+              class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink-100"
+            >
+              <div class="p-5 font-mono text-sm text-ink-800">
+                s = "hello"<br />len(s)<br />s.upper()
+              </div>
+              <div class="p-5 text-sm text-ink-600 bg-ink-50/50">
+                Length, uppercase, slicing…
+              </div>
+            </div>
+          </section>
+          <section class="rounded-xl border border-ink-200 bg-white overflow-hidden">
+            <h2
+              class="border-b border-ink-100 bg-ink-50 px-5 py-3 font-semibold text-ink-900"
+            >
+              Lists
+            </h2>
+            <div
+              class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink-100"
+            >
+              <div class="p-5 font-mono text-sm text-ink-800">
+                nums = [1, 2, 3]<br />nums.append(4)
+              </div>
+              <div class="p-5 text-sm text-ink-600 bg-ink-50/50">
+                Create, append, loop…
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Sign-in modal (Google only) -->
+    <div
+      id="signin-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute inset-0 bg-ink-900/40 backdrop-blur-sm"
+        data-close-signin
+      ></div>
+      <div
+        class="relative w-full max-w-md rounded-2xl border border-ink-200 bg-white p-8 shadow-2xl animate-in"
+        role="dialog"
+        aria-labelledby="signin-title"
+      >
+        <button
+          type="button"
+          data-close-signin
+          class="absolute right-4 top-4 rounded-lg p-1 text-ink-400 hover:bg-ink-100 hover:text-ink-800"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <h2 id="signin-title" class="text-xl font-bold text-ink-900">
+          Save your progress
+        </h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-600">
+          Optional. Sign in with Google to remember which topics you have read. Everything
+          stays free — no password, no email form.
+        </p>
+        <button
+          type="button"
+          class="mt-6 flex w-full items-center justify-center gap-3 rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm font-semibold text-ink-900 shadow-sm hover:bg-ink-50"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            />
+            <path
+              fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+            />
+            <path
+              fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            />
+          </svg>
+          Continue with Google
+        </button>
+        <button
+          type="button"
+          data-close-signin
+          class="mt-4 w-full text-center text-sm font-medium text-ink-600 hover:text-ink-900"
+        >
+          Continue without signing in
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".screen-tab");
+      const screens = document.querySelectorAll(".screen");
+
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      function setActiveScreen(id) {
+        tabs.forEach((t) => {
+          const active = t.dataset.screen === id;
+          t.classList.toggle("font-semibold", active);
+          t.classList.toggle("text-brand-700", active);
+          t.classList.toggle("hover:text-ink-900", !active);
+        });
+        navLinks.forEach((link) => {
+          const on =
+            (id === "cheatsheet" && link.dataset.nav === "cheatsheet") ||
+            (id !== "cheatsheet" && link.dataset.nav === "learn");
+          link.classList.toggle("text-brand-700", on);
+        });
+        screens.forEach((s) => s.classList.remove("active"));
+        document.getElementById("screen-" + id)?.classList.add("active");
+        window.scrollTo(0, 0);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => setActiveScreen(tab.dataset.screen));
       });
-    });
 
-    const signinModal = document.getElementById('signin-modal');
-    function openSignin() {
-      signinModal.classList.remove('hidden');
-      signinModal.classList.add('flex');
-      signinModal.setAttribute('aria-hidden', 'false');
-    }
-    function closeSignin() {
-      signinModal.classList.add('hidden');
-      signinModal.classList.remove('flex');
-      signinModal.setAttribute('aria-hidden', 'true');
-    }
-    ['open-signin', 'open-signin-hero'].forEach((id) => {
-      document.getElementById(id)?.addEventListener('click', openSignin);
-    });
-    signinModal?.querySelectorAll('[data-close-signin]').forEach((el) => {
-      el.addEventListener('click', closeSignin);
-    });
-  </script>
-</body>
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          setActiveScreen(link.dataset.nav === "cheatsheet" ? "cheatsheet" : "home");
+        });
+      });
+
+      function simulateRun(outputEl, lines, btn) {
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = "Running…";
+        }
+        outputEl.textContent = "";
+        let i = 0;
+        const tick = () => {
+          if (i < lines.length) {
+            outputEl.textContent += (i ? "\n" : "") + lines[i];
+            i++;
+            setTimeout(tick, 120);
+          } else if (btn) {
+            btn.disabled = false;
+            btn.textContent = "▶ Run";
+          }
+        };
+        setTimeout(tick, 200);
+      }
+
+      document.getElementById("hero-run")?.addEventListener("click", () => {
+        simulateRun(
+          document.getElementById("hero-output"),
+          ["Hello, Python!", "Welcome to PyGuide"],
+          document.getElementById("hero-run"),
+        );
+      });
+
+      document.querySelector(".lesson-run")?.addEventListener("click", (e) => {
+        const box = document.querySelector(".lesson-output");
+        simulateRun(box, ["Ada", "25"], e.target);
+      });
+
+      document.querySelectorAll(".lesson-copy").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const old = btn.textContent;
+          btn.textContent = "Copied!";
+          setTimeout(() => {
+            btn.textContent = "Copy";
+          }, 1200);
+        });
+      });
+
+      const signinModal = document.getElementById("signin-modal");
+      function openSignin() {
+        signinModal.classList.remove("hidden");
+        signinModal.classList.add("flex");
+        signinModal.setAttribute("aria-hidden", "false");
+      }
+      function closeSignin() {
+        signinModal.classList.add("hidden");
+        signinModal.classList.remove("flex");
+        signinModal.setAttribute("aria-hidden", "true");
+      }
+      ["open-signin", "open-signin-hero"].forEach((id) => {
+        document.getElementById(id)?.addEventListener("click", openSignin);
+      });
+      signinModal?.querySelectorAll("[data-close-signin]").forEach((el) => {
+        el.addEventListener("click", closeSignin);
+      });
+    </script>
+  </body>
 </html>

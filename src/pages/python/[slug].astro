@@ -5,6 +5,7 @@ import LessonPager from "../../components/LessonPager.astro";
 import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
+import TryIt from "../../components/TryIt.astro";
 import { getAllLessons, getLessonGroups, getAdjacentLessons } from "../../lib/lessons";
 import { SITE } from "../../lib/site";
 
@@ -52,7 +53,7 @@ const pageTitle = `${lesson.data.title} — ${SITE.name}`;
       }
     </p>
     <h1>{lesson.data.title}</h1>
-    <Content components={{ PythonExample, Callout, OperatorTable }} />
+    <Content components={{ PythonExample, Callout, OperatorTable, TryIt }} />
     <LessonPager prev={prev} next={next} />
   </article>
 </TutorialLayout>

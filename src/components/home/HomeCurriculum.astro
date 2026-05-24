@@ -14,8 +14,8 @@ const { groups } = Astro.props;
     <div class="home-section-head">
       <h2>15 topics · 52 lessons</h2>
       <p>
-        A structured path from your first <code>print()</code> to classes, files, and JSON. Open the full course
-        to browse every lesson.
+        A structured path from your first <code>print()</code> to classes, files, and JSON.
+        Open the full course to browse every lesson.
       </p>
     </div>
 
@@ -36,11 +36,17 @@ const { groups } = Astro.props;
               )}
               <div class="home-curriculum-actions">
                 {first && (
-                  <a href={lessonUrl(first.id)} class="text-link text-sm font-semibold hover:underline">
+                  <a
+                    href={lessonUrl(first.id)}
+                    class="text-link text-sm font-semibold hover:underline"
+                  >
                     Start section
                   </a>
                 )}
-                <a href="/python/" class="text-sm text-text-muted hover:text-text-secondary">
+                <a
+                  href="/python/"
+                  class="text-sm text-text-muted hover:text-text-secondary"
+                >
                   All lessons
                 </a>
               </div>

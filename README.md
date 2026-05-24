@@ -1,13 +1,22 @@
-# pyguid (PyGuide)
+# PyGuide
 
-Free, static Python tutorial site (**W3Schools-style**): left sidebar with every topic, one page per lesson, **Run code** examples (Skulpt in the browser).
+Free Python tutorial for **absolute beginners** — short lessons, **Run code** in the browser (Skulpt), W3Schools-style sidebar, no install required.
 
-Repository: [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
+**Live site:** [bennnnnn.github.io/pyguid](https://bennnnnn.github.io/pyguid)  
+**Repository:** [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
+
+## Features
+
+- 74+ step-by-step lessons (Getting Started → data types → logic → collections → functions → files)
+- Runnable examples on every lesson page (Copy + Run)
+- Chapter learning paths on [/python/](https://bennnnnn.github.io/pyguid/python/)
+- Syntax reference at `/python/reference/`
 
 ## Quick start
 
 ```bash
-cd ~/Desktop/pyguide
+git clone https://github.com/bennnnnn/pyguid.git
+cd pyguid
 npm install
 npm run dev
 ```
@@ -16,37 +25,50 @@ Open [http://localhost:4321](http://localhost:4321).
 
 ## Commands
 
-| Command | Action |
-|---------|--------|
-| `npm run dev` | Dev server |
-| `npm run build` | Static site → `dist/` |
-| `npm run preview` | Preview production build |
+| Command                | Action                   |
+| ---------------------- | ------------------------ |
+| `npm run dev`          | Dev server               |
+| `npm run build`        | Static site → `dist/`    |
+| `npm run preview`      | Preview production build |
+| `npm run format`       | Format with Prettier     |
+| `npm run check:format` | Check formatting (CI)    |
+
+## Stack
+
+- [Astro](https://astro.build/) 6 + MDX content collections
+- Tailwind CSS v4
+- [Skulpt](https://skulpt.org/) for in-browser Python
 
 ## Project layout
 
 ```
 src/
-  content/lessons/    # One MDX file per topic (W3Schools-style pages)
-  components/         # UI (PythonExample, sidebar, header, …)
-  pages/              # Routes (home, learn, cheatsheet, about)
-  lib/                # Site config, chapter helpers
-docs/
-  content-authoring.md
-.cursor/skills/pyguide/
+  content/lessons/     # One MDX file per lesson
+  components/          # PythonExample, Callout, TryIt, sidebar, …
+  pages/python/        # Course + reference routes
+  lib/lessons.ts       # Grouping, sidebar order, lesson counts
+  scripts/             # Skulpt runner + example buttons
+docs/content-authoring.md
 ```
-
-## Add a lesson
-
-1. Create `src/content/lessons/my-topic.mdx`
-2. Set `order`, `title`, `chapter`, `chapterTitle`, `description`
-3. Add prose + `<PythonExample />` blocks
-
-See [docs/content-authoring.md](docs/content-authoring.md).
-
-## Auth (planned)
-
-Optional Google sign-in for progress only. Stub modal in place; wire Supabase Auth or Auth.js when ready.
 
 ## Deploy
 
-Build `dist/` and host on Vercel, Cloudflare Pages, or Netlify. Set `site` in `astro.config.mjs` to your real domain.
+```bash
+npm run build
+```
+
+Set `SITE_URL` when building for production (canonical URLs + sitemap):
+
+```bash
+SITE_URL=https://your-domain.com npm run build
+```
+
+Default site URL: `https://bennnnnn.github.io/pyguid` (see `astro.config.mjs`).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+## Topics
+
+`python` `tutorial` `beginners` `education` `astro` `mdx` `skulpt` `learn-python`

@@ -29,14 +29,14 @@ description: >-
 
 ## Key files
 
-| File | Purpose |
-|------|---------|
-| `src/layouts/TutorialLayout.astro` | Shell + sidebar |
-| `src/components/LearnSidebar.astro` | Learn nav |
-| `src/components/ReferenceSidebar.astro` | Reference nav |
-| `src/pages/python/[slug].astro` | Lesson page |
-| `src/components/PythonExample.astro` | Runnable example |
-| `src/scripts/python-examples.ts` | Copy/Run delegation |
+| File                                    | Purpose             |
+| --------------------------------------- | ------------------- |
+| `src/layouts/TutorialLayout.astro`      | Shell + sidebar     |
+| `src/components/LearnSidebar.astro`     | Learn nav           |
+| `src/components/ReferenceSidebar.astro` | Reference nav       |
+| `src/pages/python/[slug].astro`         | Lesson page         |
+| `src/components/PythonExample.astro`    | Runnable example    |
+| `src/scripts/python-examples.ts`        | Copy/Run delegation |
 
 ## Commands
 

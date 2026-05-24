@@ -26,24 +26,25 @@ Only the **first** `"dog"` is removed.
 target = "z"
 
 if target in items:
-    items.remove(target)
-    print("Removed")
+items.remove(target)
+print("Removed")
 else:
-    print("Not found")
+print("Not found")
 
 print(items)`}
 />
 
 <Callout variant="danger">
-  `items.remove("z")` when `"z"` is not in the list raises **`ValueError`**. Always check with `in` or use `try/except` if unsure.
+  `items.remove("z")` when `"z"` is not in the list raises **`ValueError`**. Always check
+  with `in` or use `try/except` if unsure.
 </Callout>
 
 ## remove() vs pop()
 
-| Method | Removes by | Returns |
-| ------ | ---------- | ------- |
-| `remove(value)` | **value** | `None` |
-| `pop(index)` | **index** | the removed item |
+| Method          | Removes by | Returns          |
+| --------------- | ---------- | ---------------- |
+| `remove(value)` | **value**  | `None`           |
+| `pop(index)`    | **index**  | the removed item |
 
 <PythonExample
   filename="vs_pop.py"
@@ -58,5 +59,6 @@ print(letters)`}
 />
 
 <Callout variant="tip">
-  Use `remove()` when you know the **value** but not the index. Use `pop()` when you know the **position** or want the last item.
+  Use `remove()` when you know the **value** but not the index. Use `pop()` when you know
+  the **position** or want the last item.
 </Callout>

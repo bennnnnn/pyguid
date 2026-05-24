@@ -1,5 +1,4 @@
 <!-- Shared sidebar styles and behavior -->
-
 <style is:global>
   .course-sidebar .submenu {
     display: none;
@@ -56,7 +55,10 @@
     color: var(--color-text-secondary);
     text-decoration: none;
     border-left: 3px solid transparent;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    transition:
+      background 0.15s,
+      color 0.15s,
+      border-color 0.15s;
   }
 
   .course-sidebar .lesson-link:hover {
@@ -158,7 +160,9 @@
         chapter?.querySelectorAll(".section-group.is-open").forEach((other) => {
           if (other !== group) {
             other.classList.remove("is-open");
-            other.querySelector(".section-trigger")?.setAttribute("aria-expanded", "false");
+            other
+              .querySelector(".section-trigger")
+              ?.setAttribute("aria-expanded", "false");
           }
         });
         group.classList.toggle("is-open", willOpen);

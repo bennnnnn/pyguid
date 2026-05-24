@@ -1,12 +1,12 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import HomeCurriculum from "../components/home/HomeCurriculum.astro";
-import { getLessonGroups } from "../lib/lessons";
+import { getLessonGroups, getTotalLessonCount } from "../lib/lessons";
 import { SITE } from "../lib/site";
 import "../styles/home.css";
 
 const groups = await getLessonGroups();
-const lessonCount = groups.reduce((n, g) => n + g.lessons.length, 0);
+const lessonCount = getTotalLessonCount(groups);
 const sectionCount = groups.length;
 const firstLesson = groups[0]?.lessons[0];
 ---

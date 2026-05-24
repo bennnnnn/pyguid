@@ -18,12 +18,12 @@ Static Astro site at `~/Desktop/pyguide`.
 
 ## Key files
 
-| File | Purpose |
-|------|---------|
-| `src/content/config.ts` | Chapter schema |
-| `src/pages/python/[slug].astro` | Lesson page |
-| `src/components/PythonExample.astro` | Runnable snippet UI |
-| `src/scripts/run-python.ts` | Skulpt runner |
+| File                                 | Purpose                  |
+| ------------------------------------ | ------------------------ |
+| `src/content.config.ts`              | Lesson collection schema |
+| `src/pages/python/[slug].astro`      | Lesson page              |
+| `src/components/PythonExample.astro` | Runnable snippet UI      |
+| `src/scripts/run-python.ts`          | Skulpt runner            |
 
 ## Skill
 

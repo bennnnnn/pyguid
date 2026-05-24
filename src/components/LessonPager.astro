@@ -12,7 +12,10 @@ const { prev, next } = Astro.props;
 
 {
   (prev || next) && (
-    <nav class="lesson-pager mt-14 flex items-center justify-between gap-4 border-t border-border pt-8" aria-label="Lesson navigation">
+    <nav
+      class="lesson-pager mt-14 flex items-center justify-between gap-4 border-t border-border pt-8"
+      aria-label="Lesson navigation"
+    >
       {prev ? (
         <a href={lessonUrl(prev.id)} class="lesson-pager-btn">
           Back

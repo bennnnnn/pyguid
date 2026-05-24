@@ -1,0 +1,6 @@
+dist
+node_modules
+.astro
+package-lock.json
+# prettier-plugin-astro parser bug on this file (build is fine)
+src/pages/index.astro

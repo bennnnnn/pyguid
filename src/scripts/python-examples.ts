@@ -1,4 +1,4 @@
-import { runPython } from "./run-python";
+import { loadSkulpt, runPython } from "./run-python";
 
 let initialized = false;
 
@@ -13,6 +13,11 @@ function getExampleCode(root: Element | null | undefined): string {
 export function initPythonExamples() {
   if (initialized) return;
   initialized = true;
+
+  // Warm-load Skulpt on first page with examples (non-blocking)
+  void loadSkulpt().catch(() => {
+    /* first Run click will surface the error */
+  });
 
   document.addEventListener("click", async (e) => {
     const target = e.target as HTMLElement;
@@ -39,11 +44,14 @@ export function initPythonExamples() {
     if (!output) return;
 
     runBtn.disabled = true;
-    runBtn.textContent = "Running…";
-    output.textContent = "";
+    const prevLabel = runBtn.textContent;
+    runBtn.textContent = "Loading…";
+    output.textContent = "Loading Python runner…";
     output.classList.remove("text-red-600");
 
     try {
+      runBtn.textContent = "Running…";
+      output.textContent = "";
       const result = await runPython(code);
       output.textContent = result || "(no output)";
       if (result.startsWith("Error:")) output.classList.add("text-red-600");
@@ -52,7 +60,7 @@ export function initPythonExamples() {
       output.classList.add("text-red-600");
     } finally {
       runBtn.disabled = false;
-      runBtn.textContent = "Run code";
+      runBtn.textContent = prevLabel ?? "Run code";
     }
   });
 }

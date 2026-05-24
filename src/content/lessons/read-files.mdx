@@ -19,11 +19,12 @@ with open("notes.txt", "r") as file:
     print(content)
 ```
 
-- `"r"` — read mode  
-- **`with`** — automatically closes the file when done  
+- `"r"` — read mode
+- **`with`** — automatically closes the file when done
 
 <Callout variant="note">
-  The browser **Run code** button cannot open real files on your disk. The examples below simulate file content so you can practice the ideas.
+  The browser **Run code** button cannot open real files on your disk. The examples below
+  simulate file content so you can practice the ideas.
 </Callout>
 
 ## Simulate reading lines
@@ -37,7 +38,7 @@ line three"""
 
 lines = content.splitlines()
 for line in lines:
-    print(line)`}
+print(line)`}
 />
 
 ## Read line by line
@@ -58,5 +59,6 @@ On your computer you might use `import os` and `os.path.exists("file.txt")` befo
 </Callout>
 
 <Callout variant="danger">
-  Never open untrusted paths from user input without validation — path tricks can be a security risk.
+  Never open untrusted paths from user input without validation — path tricks can be a
+  security risk.
 </Callout>

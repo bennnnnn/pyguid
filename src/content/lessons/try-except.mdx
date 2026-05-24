@@ -50,8 +50,8 @@ print(safe_divide(10, 0))`}
 
 ## else and finally
 
-- **`else`** — runs if no exception occurred  
-- **`finally`** — always runs (cleanup)  
+- **`else`** — runs if no exception occurred
+- **`finally`** — always runs (cleanup)
 
 <PythonExample
   filename="else_finally.py"
@@ -66,9 +66,11 @@ finally:
 />
 
 <Callout variant="warning">
-  Do not use bare `except:` that catches everything unless you re-raise or log — it hides bugs. Catch specific exception types.
+  Do not use bare `except:` that catches everything unless you re-raise or log — it hides
+  bugs. Catch specific exception types.
 </Callout>
 
 <Callout variant="tip">
-  Use try/except around risky operations: parsing user input, division, file access, network calls.
+  Use try/except around risky operations: parsing user input, division, file access,
+  network calls.
 </Callout>

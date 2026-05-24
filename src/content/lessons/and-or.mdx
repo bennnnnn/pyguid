@@ -9,11 +9,11 @@ level: beginner
 
 Use **`and`**, **`or`**, and **`not`** to combine boolean tests — for example, “old enough **and** has a ticket.” Comparisons give you one true/false answer; logical operators join several.
 
-| Operator | Meaning                         |
-| -------- | ------------------------------- |
-| `and`    | both parts must be true         |
-| `or`     | at least one part must be true  |
-| `not`    | flip true to false (and back)   |
+| Operator | Meaning                        |
+| -------- | ------------------------------ |
+| `and`    | both parts must be true        |
+| `or`     | at least one part must be true |
+| `not`    | flip true to false (and back)  |
 
 ## and
 
@@ -86,25 +86,26 @@ You will use these operators heavily inside **`if`** in the next chapter. Previe
 has_id = True
 
 if age >= 18 and has_id:
-    print("Entry allowed")
+print("Entry allowed")
 else:
-    print("Entry denied")`}
+print("Entry denied")`}
 />
 
 ## Truth tables (quick reference)
 
 **and** — only true when both are true:
 
-- `True and True` → `True`  
-- `True and False` → `False`  
+- `True and True` → `True`
+- `True and False` → `False`
 
 **or** — true when at least one is true:
 
-- `False or True` → `True`  
-- `False or False` → `False`  
+- `False or True` → `True`
+- `False or False` → `False`
 
 <Callout variant="tip">
-  If a condition feels long, store parts in boolean variables: `can_edit = is_owner and is_logged_in`.
+  If a condition feels long, store parts in boolean variables: `can_edit = is_owner and
+  is_logged_in`.
 </Callout>
 
 <Callout variant="warning" title="Each side must be complete">

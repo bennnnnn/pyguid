@@ -1,0 +1,67 @@
+---
+interface Props {
+  title?: string;
+  answer?: string;
+}
+
+const { title = "Try it yourself", answer } = Astro.props;
+---
+
+<aside class="try-it not-prose" role="note">
+  <p class="try-it-label">{title}</p>
+  <div class="try-it-body">
+    <slot />
+    {
+      answer && (
+        <details class="try-it-answer">
+          <summary>Show answer</summary>
+          <p>{answer}</p>
+        </details>
+      )
+    }
+  </div>
+</aside>
+
+<style>
+  .try-it {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-brand);
+    background: var(--color-brand-light);
+  }
+
+  .try-it-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  .try-it-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .try-it-body :global(p) {
+    margin: 0;
+  }
+
+  .try-it-answer {
+    margin-top: 0.75rem;
+  }
+
+  .try-it-answer summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .try-it-answer p {
+    margin-top: 0.5rem;
+  }
+</style>

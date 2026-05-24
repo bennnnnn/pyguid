@@ -19,7 +19,9 @@ const items = [
   class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
 >
   <div class="border-b border-border px-4 py-3">
-    <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">Reference</p>
+    <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">
+      Reference
+    </p>
   </div>
 
   <nav class="py-2" aria-label="Reference topics">
@@ -31,7 +33,9 @@ const items = [
               href={item.href}
               class:list={[
                 "lesson-link block py-2.5 px-4 text-sm",
-                path.startsWith("/python/reference") && hash === `#${item.id}` && "is-active",
+                path.startsWith("/python/reference") &&
+                  hash === `#${item.id}` &&
+                  "is-active",
               ]}
             >
               {item.label}
