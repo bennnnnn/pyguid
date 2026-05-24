@@ -88,4 +88,4 @@ Set on github.com/bennnnnn/pyguid:
 
 - **Description:** Free Python tutorials — 187 lessons, quizzes, references, runnable examples in the browser
 - **Website:** https://bennnnnn.github.io/pyguid
-- **Topics:** `python`, `tutorial`, `learn-python`, `education`, `astro`, `mdx`, `pytest`, `fastapi`
+- **Topics:** `python`, `tutorial`, `learn-python`, `education`, `astro`, `mdx`, `pytest`, `type-hints`

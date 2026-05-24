@@ -1,4 +1,8 @@
-import type { ReferenceEntry, ReferenceEntryPage, ReferenceSheet } from "./reference-sheets";
+import type {
+  ReferenceEntry,
+  ReferenceEntryPage,
+  ReferenceSheet,
+} from "./reference-sheets";
 
 export type ReferenceEntryCode = {
   code: string;
@@ -37,11 +41,7 @@ const SETUPS: Record<string, string[]> = {
   iterators: ["nums = [1, 2, 3]"],
   decorators: [],
   "type-hints": [],
-  stdlib: [
-    'data = {"name": "Ada"}',
-    "s = 'Order 42'",
-    "nested = [[1, 2], [3]]",
-  ],
+  stdlib: ['data = {"name": "Ada"}', "s = 'Order 42'", "nested = [[1, 2], [3]]"],
   debugging: [],
   testing: ["def add(a, b):\n    return a + b"],
   "clean-code": [],
@@ -51,13 +51,15 @@ const SETUPS: Record<string, string[]> = {
 const EXAMPLES: Record<string, Record<string, string>> = {
   "what-is-python": {
     "print()": 'print("Hello, Python!")',
-    ".py file": "# Save as hello.py, then run:\n# python hello.py\n\nprint(\"Hello from a file!\")",
+    ".py file":
+      '# Save as hello.py, then run:\n# python hello.py\n\nprint("Hello from a file!")',
     REPL: "# In the interactive REPL:\n# >>> 2 + 2\n# 4\n\nprint(2 + 2)",
   },
   "print-and-errors": {
     "print()": 'name = "Ada"\nprint("Hi", name)',
     "# comment": '# TODO: fix later\nprint("Comments start with #")',
-    SyntaxError: '# Missing closing quote causes SyntaxError:\n# print("oops\n\nprint("Use matching quotes")',
+    SyntaxError:
+      '# Missing closing quote causes SyntaxError:\n# print("oops\n\nprint("Use matching quotes")',
   },
   variables: {
     "name = value": "score = 10\nprint(score)",
@@ -66,13 +68,15 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     snake_case: "user_age = 25\nprint(user_age)",
   },
   input: {
-    "input()": '# name = input("Name: ")  # reads text from the user\nname = "Ada"\nprint(name)',
+    "input()":
+      '# name = input("Name: ")  # reads text from the user\nname = "Ada"\nprint(name)',
     "int()": 'n = int("42")\nprint(n, type(n))',
     "float()": 'x = float("3.5")\nprint(x)',
-    "str()": 'text = str(99)\nprint(text, type(text))',
+    "str()": "text = str(99)\nprint(text, type(text))",
   },
   "data-types": {
-    "int · float · str · bool": "print(type(42))\nprint(type(3.14))\nprint(type(\"hi\"))\nprint(type(True))",
+    "int · float · str · bool":
+      'print(type(42))\nprint(type(3.14))\nprint(type("hi"))\nprint(type(True))',
     "type()": "value = 42\nprint(type(value))",
     "isinstance()": "value = 42\nprint(isinstance(value, int))",
     None: "result = None\nprint(result is None)",
@@ -95,7 +99,8 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     ".replace()": 's = "hello"\nprint(s.replace("l", "L"))',
     ".find()": 's = "hello world"\nprint(s.find("world"))',
     ".count()": 's = "hello"\nprint(s.count("l"))',
-    ".startswith() · .endswith()": 's = "hello"\nprint(s.startswith("he"))\nprint(s.endswith("lo"))',
+    ".startswith() · .endswith()":
+      's = "hello"\nprint(s.startswith("he"))\nprint(s.endswith("lo"))',
     in: 's = "hello"\nprint("ell" in s)',
     'f"..."': 'name = "Ada"\nprint(f"Hi {name}")',
   },
@@ -103,9 +108,10 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     "True · False": "age = 20\nprint(age >= 18)",
     "==  !=  <  >  <=  >=": "age = 20\nprint(age >= 18, age != 0)",
     "and · or · not": "age = 20\nhas_ticket = True\nprint(age >= 18 and has_ticket)",
-    "if cond:": "age = 20\nif age >= 18:\n    print(\"adult\")",
-    "elif cond:": "age = 15\nif age >= 18:\n    print(\"adult\")\nelif age >= 13:\n    print(\"teen\")",
-    "else:": "age = 10\nif age >= 18:\n    print(\"adult\")\nelse:\n    print(\"child\")",
+    "if cond:": 'age = 20\nif age >= 18:\n    print("adult")',
+    "elif cond:":
+      'age = 15\nif age >= 18:\n    print("adult")\nelif age >= 13:\n    print("teen")',
+    "else:": 'age = 10\nif age >= 18:\n    print("adult")\nelse:\n    print("child")',
     in: 'print("a" in "abc")',
     is: "value = None\nprint(value is None)",
   },
@@ -164,13 +170,15 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     "[key] =": 'user = {"name": "Ada"}\nuser["age"] = 30\nprint(user)',
     ".update()": 'user = {"name": "Ada"}\nuser.update({"age": 30})\nprint(user)',
     ".pop()": 'user = {"name": "Ada", "age": 30}\nprint(user.pop("age"))',
-    ".setdefault()": 'user = {"name": "Ada"}\nuser.setdefault("role", "user")\nprint(user)',
+    ".setdefault()":
+      'user = {"name": "Ada"}\nuser.setdefault("role", "user")\nprint(user)',
     in: 'user = {"name": "Ada"}\nprint("name" in user)',
   },
   functions: {
-    "def()": "def greet():\n    print(\"Hello!\")\n\ngreet()",
-    "def(x)": "def greet(name):\n    print(f\"Hi {name}\")\n\ngreet(\"Ada\")",
-    "def(x=)": "def add_one(n=0):\n    return n + 1\n\nprint(add_one())\nprint(add_one(5))",
+    "def()": 'def greet():\n    print("Hello!")\n\ngreet()',
+    "def(x)": 'def greet(name):\n    print(f"Hi {name}")\n\ngreet("Ada")',
+    "def(x=)":
+      "def add_one(n=0):\n    return n + 1\n\nprint(add_one())\nprint(add_one(5))",
     return: "def double(x):\n    return x * 2\n\nprint(double(4))",
     '"""docstring"""':
       'def greet(name):\n    """Return a friendly greeting."""\n    return f"Hi {name}"\n\nprint(greet("Ada"))',
@@ -178,31 +186,33 @@ const EXAMPLES: Record<string, Record<string, string>> = {
   scope: {
     "local variable": "def f():\n    x = 1\n    print(x)\n\nf()",
     "global name": "count = 0\nprint(count)",
-    global: "count = 0\n\ndef bump():\n    global count\n    count += 1\n\nbump()\nprint(count)",
-    nonlocal: "def outer():\n    total = 0\n    def inner():\n        nonlocal total\n        total += 1\n    inner()\n    return total\n\nprint(outer())",
+    global:
+      "count = 0\n\ndef bump():\n    global count\n    count += 1\n\nbump()\nprint(count)",
+    nonlocal:
+      "def outer():\n    total = 0\n    def inner():\n        nonlocal total\n        total += 1\n    inner()\n    return total\n\nprint(outer())",
   },
   errors: {
-    "try:": 'text = "42"\ntry:\n    n = int(text)\n    print(n)\nexcept ValueError:\n    print("Not a number")',
+    "try:":
+      'text = "42"\ntry:\n    n = int(text)\n    print(n)\nexcept ValueError:\n    print("Not a number")',
     "except:":
       'text = "x"\ntry:\n    n = int(text)\nexcept ValueError:\n    print("Invalid number")',
     "except as:":
-      'try:\n    1 / 0\nexcept ZeroDivisionError as e:\n    print(type(e).__name__)',
+      "try:\n    1 / 0\nexcept ZeroDivisionError as e:\n    print(type(e).__name__)",
     "else:":
       'text = "5"\ntry:\n    n = int(text)\nexcept ValueError:\n    print("bad")\nelse:\n    print("ok", n)',
-    "finally:":
-      'f = None\ntry:\n    print("try")\nfinally:\n    print("always runs")',
+    "finally:": 'f = None\ntry:\n    print("try")\nfinally:\n    print("always runs")',
     raise: 'raise ValueError("bad input")',
   },
   files: {
     'open("r")':
       'import io\nf = io.StringIO("Hello\\nWorld")\ntext = f.read()\nprint(text)',
-    'open("w")': "# Opens a file for writing (overwrites)\nprint('Use: open(\"out.txt\", \"w\")')",
-    'open("a")': "# Opens a file for appending\nprint('Use: open(\"log.txt\", \"a\")')",
+    'open("w")':
+      '# Opens a file for writing (overwrites)\nprint(\'Use: open("out.txt", "w")\')',
+    'open("a")': '# Opens a file for appending\nprint(\'Use: open("log.txt", "a")\')',
     ".read()": 'import io\nf = io.StringIO("line1\\nline2")\nprint(f.read())',
     ".readlines()": 'import io\nf = io.StringIO("a\\nb\\n")\nprint(f.readlines())',
     ".write()": 'import io\nf = io.StringIO()\nf.write("Hi\\n")\nprint(f.getvalue())',
-    "with open():":
-      'import io\nwith io.StringIO("data") as f:\n    print(f.read())',
+    "with open():": 'import io\nwith io.StringIO("data") as f:\n    print(f.read())',
     "Path()": 'from pathlib import Path\np = Path("data") / "file.txt"\nprint(p)',
   },
   modules: {
@@ -214,10 +224,12 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     "sys.argv": "import sys\nprint(sys.argv[0] if sys.argv else 'script name')",
   },
   packages: {
-    "python -m venv": "# Terminal:\n# python -m venv .venv\nprint(\"Creates a virtual environment folder\")",
-    "pip install": "# Terminal:\n# pip install requests\nprint(\"Installs a package into the active environment\")",
+    "python -m venv":
+      '# Terminal:\n# python -m venv .venv\nprint("Creates a virtual environment folder")',
+    "pip install":
+      '# Terminal:\n# pip install requests\nprint("Installs a package into the active environment")',
     "requirements.txt":
-      "# Terminal:\n# pip install -r requirements.txt\nprint(\"Installs pinned packages from a list\")",
+      '# Terminal:\n# pip install -r requirements.txt\nprint("Installs pinned packages from a list")',
   },
   builtins: {
     "len()": "nums = [3, 1, 4]\nprint(len(nums))",
@@ -237,25 +249,26 @@ const EXAMPLES: Record<string, Record<string, string>> = {
   },
   classes: {
     "class:":
-      "class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        return f\"{self.name} says woof!\"\n\nbuddy = Dog(\"Max\")\nprint(buddy.bark())",
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        return f"{self.name} says woof!"\n\nbuddy = Dog("Max")\nprint(buddy.bark())',
     "def __init__():":
-      "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog(\"Max\").name)",
-    "self.": "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog(\"Max\").name)",
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog("Max").name)',
+    "self.":
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog("Max").name)',
     "def method():":
-      "class Dog:\n    def bark(self):\n        return \"woof!\"\n\nprint(Dog().bark())",
-    "Class()": 'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog("Max").name)',
+      'class Dog:\n    def bark(self):\n        return "woof!"\n\nprint(Dog().bark())',
+    "Class()":
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nprint(Dog("Max").name)',
     "class (Parent):":
-      "class Dog:\n    def speak(self):\n        return \"woof\"\n\nclass Puppy(Dog):\n    pass\n\nprint(Puppy().speak())",
+      'class Dog:\n    def speak(self):\n        return "woof"\n\nclass Puppy(Dog):\n    pass\n\nprint(Puppy().speak())',
     "super()":
-      "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nclass Puppy(Dog):\n    def __init__(self, name):\n        super().__init__(name)\n\nprint(Puppy(\"Max\").name)",
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nclass Puppy(Dog):\n    def __init__(self, name):\n        super().__init__(name)\n\nprint(Puppy("Max").name)',
     "__str__ · __repr__":
-      "class Dog:\n    def __init__(self, name):\n        self.name = name\n    def __str__(self):\n        return self.name\n\nprint(Dog(\"Max\"))",
+      'class Dog:\n    def __init__(self, name):\n        self.name = name\n    def __str__(self):\n        return self.name\n\nprint(Dog("Max"))',
   },
   "advanced-functions": {
     "*args": "def total(*args):\n    return sum(args)\n\nprint(total(1, 2, 3))",
     "**kwargs": "def show(**kwargs):\n    print(kwargs)\n\nshow(x=1, y=2)",
-    "lambda:":
-      "double = lambda x: x * 2\nprint(double(5))",
+    "lambda:": "double = lambda x: x * 2\nprint(double(5))",
     "@lru_cache":
       "from functools import lru_cache\n\n@lru_cache\n\ndef fib(n):\n    return n if n < 2 else fib(n - 1) + fib(n - 2)\n\nprint(fib(10))",
   },
@@ -265,32 +278,31 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     yield:
       "def countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nprint(list(countdown(3)))",
     StopIteration:
-      "nums = [1]\nit = iter(nums)\nprint(next(it))\ntry:\n    print(next(it))\nexcept StopIteration:\n    print(\"done\")",
+      'nums = [1]\nit = iter(nums)\nprint(next(it))\ntry:\n    print(next(it))\nexcept StopIteration:\n    print("done")',
   },
   decorators: {
     "@decorator":
-      "def loud(fn):\n    def wrap():\n        print(\"before\")\n        fn()\n        print(\"after\")\n    return wrap\n\n@loud\ndef hello():\n    print(\"hello\")\n\nhello()",
+      'def loud(fn):\n    def wrap():\n        print("before")\n        fn()\n        print("after")\n    return wrap\n\n@loud\ndef hello():\n    print("hello")\n\nhello()',
     "def decorator()":
-      "def repeat(fn):\n    def wrap():\n        fn()\n        fn()\n    return wrap\n\n@repeat\ndef hi():\n    print(\"hi\")\n\nhi()",
+      'def repeat(fn):\n    def wrap():\n        fn()\n        fn()\n    return wrap\n\n@repeat\ndef hi():\n    print("hi")\n\nhi()',
     "@property":
       "class Person:\n    def __init__(self, birth_year):\n        self.birth_year = birth_year\n    @property\n    def age(self):\n        return 2026 - self.birth_year\n\np = Person(2000)\nprint(p.age)",
   },
   "type-hints": {
     ": str":
-      "def greet(name: str) -> str:\n    return f\"Hi {name}\"\n\nprint(greet(\"Ada\"))",
-    "-> str": "def title() -> str:\n    return \"Hello\"\n\nprint(title())",
+      'def greet(name: str) -> str:\n    return f"Hi {name}"\n\nprint(greet("Ada"))',
+    "-> str": 'def title() -> str:\n    return "Hello"\n\nprint(title())',
     "list[int]": "nums: list[int] = [1, 2, 3]\nprint(nums)",
     "Optional[]":
-      "from typing import Optional\n\ndef find_user(user_id: int) -> Optional[str]:\n    return \"Ada\" if user_id == 1 else None\n\nprint(find_user(1))",
-    mypy: "# Terminal: mypy app.py\nprint(\"Static type checking before you run code\")",
+      'from typing import Optional\n\ndef find_user(user_id: int) -> Optional[str]:\n    return "Ada" if user_id == 1 else None\n\nprint(find_user(1))',
+    mypy: '# Terminal: mypy app.py\nprint("Static type checking before you run code")',
   },
   stdlib: {
-    "json.loads()": 'import json\nobj = json.loads(\'{"a": 1}\')\nprint(obj)',
+    "json.loads()": "import json\nobj = json.loads('{\"a\": 1}')\nprint(obj)",
     "json.dumps()": 'import json\ndata = {"a": 1}\nprint(json.dumps(data))',
-    "datetime.now()":
-      "from datetime import datetime\nprint(datetime.now().year)",
+    "datetime.now()": "from datetime import datetime\nprint(datetime.now().year)",
     "logging.info()":
-      "import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info(\"ok\")",
+      'import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info("ok")',
     "re.search()":
       'import re\nm = re.search(r"\\d+", "Order 42")\nprint(m.group() if m else None)',
     "copy.deepcopy()":
@@ -298,20 +310,22 @@ const EXAMPLES: Record<string, Record<string, string>> = {
   },
   debugging: {
     "help()": "print(help(len))",
-    "dir()": "print(dir([])[:5], \"...\")",
+    "dir()": 'print(dir([])[:5], "...")',
     "breakpoint()": "x = 1\n# breakpoint()  # pauses in a real debugger\nprint(x)",
     traceback:
-      "# When code fails, read the traceback bottom-up:\n#   File \"...\", line N\n#   ErrorType: message\nprint(\"See the terminal error output\")",
+      '# When code fails, read the traceback bottom-up:\n#   File "...", line N\n#   ErrorType: message\nprint("See the terminal error output")',
   },
   testing: {
-    assert: "def add(a, b):\n    return a + b\n\nassert add(1, 2) == 3\nprint(\"assert passed\")",
-    pytest: "# Terminal:\n# pytest\nprint(\"Runs test_*.py files with pytest\")",
+    assert:
+      'def add(a, b):\n    return a + b\n\nassert add(1, 2) == 3\nprint("assert passed")',
+    pytest: '# Terminal:\n# pytest\nprint("Runs test_*.py files with pytest")',
     "def test_()":
-      "def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(1, 2) == 3\n\ntest_add()\nprint(\"test passed\")",
+      'def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(1, 2) == 3\n\ntest_add()\nprint("test passed")',
   },
   "clean-code": {
-    "ruff check": "# Terminal:\n# ruff check .\nprint(\"Lints your project for bugs and style\")",
-    black: "# Terminal:\n# black src/\nprint(\"Auto-formats Python files\")",
+    "ruff check":
+      '# Terminal:\n# ruff check .\nprint("Lints your project for bugs and style")',
+    black: '# Terminal:\n# black src/\nprint("Auto-formats Python files")',
     "PEP 8": "# Style tips:\nuser_age = 25  # snake_case names\nprint(user_age)",
   },
 };
@@ -350,7 +364,11 @@ function fallbackCode(sheet: ReferenceSheet, entry: ReferenceEntry): string {
 }
 
 function shouldPrint(line: string): boolean {
-  if (/^(def |class |import |from |for |while |if |try:|except|elif |else:|finally:|with |@|return |yield |global |nonlocal |break$|continue$)/.test(line)) {
+  if (
+    /^(def |class |import |from |for |while |if |try:|except|elif |else:|finally:|with |@|return |yield |global |nonlocal |break$|continue$)/.test(
+      line,
+    )
+  ) {
     return false;
   }
   if (/[^!<>=]=/.test(line) && !line.trim().startsWith("print(")) {
@@ -362,10 +380,7 @@ function shouldPrint(line: string): boolean {
 export function getReferenceEntryCode(page: ReferenceEntryPage): ReferenceEntryCode {
   const { sheet, entry } = page;
   const sheetExamples = EXAMPLES[sheet.id];
-  const code =
-    entry.code ??
-    sheetExamples?.[entry.name] ??
-    fallbackCode(sheet, entry);
+  const code = entry.code ?? sheetExamples?.[entry.name] ?? fallbackCode(sheet, entry);
 
   const runnable = entry.runnable ?? !NON_RUNNABLE.has(entry.name);
 

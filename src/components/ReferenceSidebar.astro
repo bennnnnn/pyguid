@@ -7,8 +7,7 @@ import {
 } from "../lib/reference-sheets";
 
 const path = Astro.url.pathname;
-const { sheetId: activeSheetId, entrySlug: activeEntrySlug } =
-  parseReferencePath(path);
+const { sheetId: activeSheetId, entrySlug: activeEntrySlug } = parseReferencePath(path);
 
 function chapterIsOpen(sheetId: string): boolean {
   return activeSheetId === sheetId;
@@ -58,8 +57,7 @@ function chapterIsOpen(sheetId: string): boolean {
               <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
                 {sheet.entries.map((entry, index) => {
                   const slug = referenceEntrySlug(sheet.id, index);
-                  const isActive =
-                    activeSheetId === sheet.id && activeEntrySlug === slug;
+                  const isActive = activeSheetId === sheet.id && activeEntrySlug === slug;
                   return (
                     <li>
                       <a

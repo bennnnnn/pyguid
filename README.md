@@ -13,7 +13,7 @@
 - Chapter sidebar + ordered lesson path (Back / Next)
 - Small chapter exercises woven through the course (core Python only)
 - SEO: canonical URLs, Open Graph, JSON-LD on lessons, sitemap
-- Syntax reference at `/python/reference/`
+- Syntax reference at `/python/reference/` (per-topic pages, runnable examples)
 
 ## Quick start
 
@@ -52,9 +52,9 @@ src/
   pages/python/
     index.astro        # Tutorials landing
     [slug].astro       # Lesson pages
-    quiz/              # Quizzes hub + [topic] pages
-    reference/         # Reference hub
-  data/practice-exams/ # Quiz question JSON (internal name; public URL is /python/quiz/)
+    quiz/              # Quizzes hub + [topic] pages (no public practice/ route)
+    reference/         # Reference hub + [sheetId]/[entry] topic pages
+  data/practice-exams/ # Quiz JSON (internal; public URL is /python/quiz/)
   lib/lessons.ts       # Sidebar order, related lessons
 docs/
   curriculum-order.json
@@ -75,4 +75,4 @@ MIT — see [LICENSE](LICENSE).
 
 ## Topics
 
-`python` `tutorial` `learn-python` `beginners` `education` `astro` `mdx` `skulpt` `pytest` `fastapi` `type-hints`
+`python` `tutorial` `learn-python` `beginners` `education` `astro` `mdx` `skulpt` `pytest` `type-hints`
