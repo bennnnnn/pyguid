@@ -1,11 +1,25 @@
 ---
 title: "The type() function"
-description: "Check and convert between Python data types."
+description: "Python type() and isinstance() inspect object types at runtime. Beginner guide explains when to check types, basic introspection, and readable alternatives."
 order: 18
 chapter: 3
 chapterTitle: "Data Types"
 level: beginner
+quickAnswer: "Call type(x) to see an object's type, or isinstance(x, int) to test whether it is an int or a subclass without brittle exact-type checks."
+faqs:
+  - question: "What does type() return in Python?"
+    answer: "type(obj) returns the class of the object, such as <class 'int'> or <class 'str'>."
+  - question: "Should I use type(x) == int or isinstance(x, int)?"
+    answer: "Prefer isinstance for checks. It respects inheritance and is the conventional choice in library code."
+  - question: "Can type() create classes dynamically?"
+    answer: "Advanced use yes, but beginners mainly use type() for inspection and debugging, not for defining new types."
+  - question: "How do I check if a variable is a string?"
+    answer: "Use isinstance(x, str). Also remember that str is the text type; bytes is separate for raw binary data."
 ---
+
+## Why this matters
+
+Type checks guard functions that expect numbers or strings and help debug unexpected API data. Overusing type() hurts flexibility; isinstance() is usually better. Knowing types connects to int(), str(), and validation patterns in real scripts.
 
 Four kinds of luggage tags: **number**, **decimal**, **text**, **yes/no**. **`type()`** reads the tag when you are not sure what you are holding.
 

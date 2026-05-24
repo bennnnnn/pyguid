@@ -1,12 +1,26 @@
 ---
 title: "Formatting strings"
-description: "Build strings with f-strings, format(), and placeholders."
+description: "Python string formatting with f-strings, str.format(), and percent style. Beginner guide to readable output, placeholders, and rounding numbers in messages."
 order: 31
 chapter: 3
 chapterTitle: "Data Types"
 section: "Strings"
 level: beginner
+quickAnswer: "Use f-strings like f'Hello, {name}' to embed variables in strings; they are the preferred formatting style in modern Python."
+faqs:
+  - question: "What is an f-string in Python?"
+    answer: "An f-string is a string literal prefixed with f that evaluates expressions inside curly braces at runtime."
+  - question: "How do I format a float to two decimal places?"
+    answer: "Use an f-string format spec: f'{price:.2f}' prints two digits after the decimal point."
+  - question: "Is str.format() still used?"
+    answer: "Yes in older code and templates, but new projects favor f-strings for simplicity unless building reusable format templates."
+  - question: "Can I put expressions inside f-string braces?"
+    answer: "Yes. f'{len(items)} items' works. Keep expressions short so the string stays readable."
 ---
+
+## Why this matters
+
+Formatted strings turn data into human-readable logs, receipts, and UI text. f-strings are fast to write and read compared to concatenation or old percent formatting. Format specs such as `:.2f` after a variable solve rounding display without manual string math.
 
 Mad Libs: you fill blanks in a sentence. An **f-string** is the same — write a template with **`{holes}`** and Python drops variables in.
 

@@ -72,4 +72,7 @@ Use `<PythonExample />` with a **Run code** button (Skulpt loads on first Run). 
 
 ## Bulk SEO metadata
 
-Top-30 list: `docs/seo-top-30-meta.json` · apply with `npm run seo:apply-top30`
+| Batch | File                               | Command                    |
+| ----- | ---------------------------------- | -------------------------- |
+| 1     | `docs/seo-top-30-meta.json`        | `npm run seo:apply-top30`  |
+| 2     | `docs/seo-top-30-batch2-meta.json` | `npm run seo:apply-batch2` |

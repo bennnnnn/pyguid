@@ -1,11 +1,25 @@
 ---
 title: "Copying lists"
-description: "Copy lists with copy(), list(), and slicing — avoid shared references."
+description: "Python list copy: shallow copies with copy(), slicing, and list(). Learn why b = a shares references and how to avoid accidental mutation bugs."
 order: 68
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Use my_list.copy(), my_list[:], or list(my_list) to make a shallow copy so changes to one list do not affect the other."
+faqs:
+  - question: "How do I copy a list in Python?"
+    answer: "Use new_list = old_list.copy(), new_list = old_list[:], or new_list = list(old_list). All create a shallow copy."
+  - question: "Is b = a a copy of the list?"
+    answer: "No. b = a makes both variables refer to the same list object. Appending to b also changes a."
+  - question: "What is a shallow copy?"
+    answer: "A shallow copy duplicates the outer list but inner mutable objects (like nested lists) are still shared between copies."
+  - question: "When do I need copy.deepcopy()?"
+    answer: "Use deepcopy when nested lists or dicts inside the list must be fully independent copies, not shared references."
 ---
+
+## Why this matters
+
+Assignment b = a does not copy—it binds two names to the same list. Editing b also changes a, which breaks functions and loops silently. Shallow copy fixes top-level sharing; nested lists may still need deepcopy later.
 
 Two people share **one** notebook. If one person scribbles on page 3, the other sees it too. **`b = a`** for lists means **one notebook, two names** — not a photocopy.
 

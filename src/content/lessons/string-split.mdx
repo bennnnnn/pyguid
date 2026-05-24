@@ -1,12 +1,26 @@
 ---
 title: "split()"
-description: "Split a string into a list with split()."
+description: "Python string split() breaks text into a list by separator. Beginner tutorial covers default whitespace splits, maxsplit, and parsing CSV-like lines safely."
 order: 25
 chapter: 3
 chapterTitle: "Data Types"
 section: "Strings"
 level: beginner
+quickAnswer: "Call text.split() to split on whitespace into a list of words, or text.split(',') to split on a specific delimiter string."
+faqs:
+  - question: "What does str.split() do in Python?"
+    answer: "split() divides a string into a list of substrings using a separator. With no argument it splits on any whitespace."
+  - question: "How do I split a CSV line by commas?"
+    answer: "Use line.split(',') for simple cases. For quoted fields with commas inside, use the csv module instead."
+  - question: "What does the maxsplit argument do?"
+    answer: "split(sep, maxsplit=n) performs at most n splits, leaving the remainder in the final list element."
+  - question: "Does split() modify the original string?"
+    answer: "No. Strings are immutable. split() returns a new list and leaves the original string unchanged."
 ---
+
+## Why this matters
+
+split() is the first tool for parsing user input, file lines, and URLs into workable pieces. Wrong delimiter assumptions create silent data corruption. Combining split with strip and join covers most beginner text-processing tasks.
 
 A CSV row looks like one long string: `apple,banana,cherry`. **`split()`** is the knife that cuts it into separate pieces — a **list** of strings.
 

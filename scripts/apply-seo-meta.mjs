@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 /**
- * Apply docs/seo-top-30-meta.json to lesson MDX frontmatter + optional "Why this matters".
- * Usage: node scripts/apply-seo-meta.mjs
+ * Apply SEO meta JSON to lesson MDX frontmatter + optional "Why this matters".
+ * Usage: node scripts/apply-seo-meta.mjs [docs/seo-top-30-batch2-meta.json]
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const meta = JSON.parse(readFileSync(join(root, "docs/seo-top-30-meta.json"), "utf8"));
+const metaFile = process.argv[2] ?? "docs/seo-top-30-meta.json";
+const metaPath = metaFile.startsWith("/") ? metaFile : join(root, metaFile);
+const meta = JSON.parse(readFileSync(metaPath, "utf8"));
 const lessonsDir = join(root, "src/content/lessons");
 
 function parseFrontmatter(text) {

@@ -1,11 +1,25 @@
 ---
 title: "Reading tracebacks"
-description: "Understand Python error output from bottom to top."
+description: "Read Python tracebacks bottom-up to find errors fast. Beginner guide to error types, line numbers, call stacks, and the most common exception names."
 order: 131
 chapter: 13
 chapterTitle: "Error Handling"
 level: beginner
+quickAnswer: "A traceback lists the error type and message at the bottom and the call stack above it; read the last line first, then trace upward to your code."
+faqs:
+  - question: "How do I read a Python traceback?"
+    answer: "Start at the bottom for the exception type and message. Move up to find the most recent line in your own file that triggered it."
+  - question: "What is the difference between SyntaxError and other errors?"
+    answer: "SyntaxError happens before code runs, often with no full stack. Runtime errors like ValueError include a traceback of executing frames."
+  - question: "Why does the traceback show library files I did not write?"
+    answer: "The stack includes every function call leading to the error. Skip down to the first frame in your project code."
+  - question: "What does 'Traceback (most recent call last)' mean?"
+    answer: "It introduces the stack trace listing calls from oldest at the top to the most recent failure just above the exception line."
 ---
+
+## Why this matters
+
+Every Python developer spends time in tracebacks—typos, wrong types, missing keys. Learning the format turns panic into a checklist: what failed, where, and what called it. Faster reading means faster fixes and less copy-paste debugging.
 
 When Python crashes, it prints a **traceback** — a stack of “where was I when things broke?” Read it **bottom to top** for the real story.
 

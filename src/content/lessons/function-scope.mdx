@@ -1,11 +1,25 @@
 ---
 title: "Variable scope"
-description: "Understand local and global variables in functions."
+description: "Python function scope and the LEGB rule: local, enclosing, global, and built-in names. Beginner guide to shadows, globals, and avoiding surprise bugs."
 order: 114
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
+quickAnswer: "Names assigned inside a function are local unless declared global or nonlocal; Python looks up names local first, then enclosing, global, and built-in scopes."
+faqs:
+  - question: "What is the LEGB rule in Python?"
+    answer: "Python searches Local, Enclosing, Global, then Built-in scopes to resolve a name when you read or assign it."
+  - question: "Can a function read variables defined outside it?"
+    answer: "Yes for reading if the name is not assigned locally. Assigning inside the function creates a new local name unless you use global or nonlocal."
+  - question: "When should I use the global keyword?"
+    answer: "Rarely. global lets a function rebind a module-level variable. Prefer passing values in and returning results instead."
+  - question: "What is the difference between global and nonlocal?"
+    answer: "global targets module-level names. nonlocal targets variables in an enclosing function, useful in nested functions."
 ---
+
+## Why this matters
+
+Scope explains why a variable inside a function does not clobber an outer name—and when it accidentally does. Misusing global creates hidden coupling between functions. Understanding LEGB makes closures, defaults, and debugging NameError straightforward.
 
 A name tag at a party works **inside the room** — not on the street. **Scope** is where a variable name is valid: inside one function, or everywhere in the file.
 

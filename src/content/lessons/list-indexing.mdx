@@ -1,11 +1,25 @@
 ---
 title: "Access list items"
-description: "Use indexes, slicing, and negative indexes to access list items."
+description: "Python list indexing: access items by position with zero-based indices and negative indices from the end. Beginner examples plus IndexError pitfalls explained."
 order: 56
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Use my_list[0] for the first item, my_list[1] for the second, and my_list[-1] for the last element in a Python list."
+faqs:
+  - question: "Are Python lists zero-indexed?"
+    answer: "Yes. The first element is index 0, the second is index 1, and so on."
+  - question: "What does a negative index mean?"
+    answer: "Negative indices count from the end: -1 is the last item, -2 is second to last, which is handy without calling len()."
+  - question: "Can I change a list item with indexing?"
+    answer: "Yes. Assignment works: my_list[2] = 'new' replaces the element at that index in place."
+  - question: "What causes IndexError on a list?"
+    answer: "Using an index outside the valid range—such as index 5 on a three-item list—raises IndexError."
 ---
+
+## Why this matters
+
+Indexing is how you read and update one slot without looping—fixing a typo, swapping positions, or checking the latest log entry. Zero-based counting and negative indices appear everywhere in Python. Off-by-one errors start here, so solid indexing saves debugging time.
 
 A parking garage labels spots **0, 1, 2** from the entrance — not 1, 2, 3. Python lists count positions from **`0`** the same way.
 

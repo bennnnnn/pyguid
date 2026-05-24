@@ -1,11 +1,25 @@
 ---
 title: "List slicing"
-description: "Copy parts of a list with slice syntax."
+description: "Python list slicing with [start:stop:step] extracts sublists without loops. Beginner tutorial covers defaults, negative steps, and slice assignment basics."
 order: 57
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Use my_list[start:stop] to get elements from start up to but not including stop; omit start or stop to slice from the beginning or end."
+faqs:
+  - question: "What does my_list[1:4] return?"
+    answer: "Elements at indices 1, 2, and 3—a new list with three items. The stop index 4 is excluded."
+  - question: "How do I get the last three items of a list?"
+    answer: "Use my_list[-3:] to slice from the third-from-last index through the end."
+  - question: "How do I reverse a list with slicing?"
+    answer: "Use my_list[::-1]. A step of -1 walks backward through the whole list."
+  - question: "Does slicing modify the original list?"
+    answer: "Reading a slice creates a new list. Slice assignment like my_list[0:2] = [9, 9] can replace a section in place."
 ---
+
+## Why this matters
+
+Slicing lets you grab headers, tails, every other item, or reverse a sequence in one expression. It reads constantly in data cleaning and string-like list work. Slices return new lists (usually), so they pair well with sorting and copying patterns.
 
 You do not always need the whole list — sometimes just the **middle slice**. **`[start:end]`** cuts a piece; **`end` is not included**.
 

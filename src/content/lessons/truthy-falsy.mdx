@@ -1,11 +1,25 @@
 ---
 title: "Truthy and falsy values"
-description: "Which values act like True or False in if statements."
+description: "Python truthy and falsy values: which objects act as False in if conditions. Beginner guide covers empty collections, zero, None, and common if pitfalls."
 order: 17
 chapter: 3
 chapterTitle: "Data Types"
 level: beginner
+quickAnswer: "In Boolean context, falsy values include False, None, 0, empty strings, and empty lists, dicts, sets, and tuples; most other objects are truthy."
+faqs:
+  - question: "What values are falsy in Python?"
+    answer: "False, None, numeric zero (0, 0.0), empty sequences and collections ('', [], {}, set()), and empty range objects."
+  - question: "Is an empty list falsy?"
+    answer: "Yes. if []: does not run the block because an empty list is falsy."
+  - question: "How is truthy different from == True?"
+    answer: "Truthy means the value passes an if test. Non-boolean objects can be truthy without being equal to True."
+  - question: "Should I use if x is None or if not x?"
+    answer: "Use if x is None when None is the only case you care about. if not x also triggers on 0 and empty strings."
 ---
+
+## Why this matters
+
+Python lets you write if items: instead of if len(items) > 0:, which is idiomatic but surprising at first. Confusing falsy with is None or == False causes subtle bugs. Knowing truthiness makes conditionals, and, or, and all/any much clearer.
 
 Python can treat values as “yes” or “no” even when they are not literally `True` or `False`. An **empty** string feels like “no”; a non-zero number feels like “yes.”
 

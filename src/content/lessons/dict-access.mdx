@@ -1,11 +1,25 @@
 ---
 title: "Access dictionaries"
-description: "Get, change, add, and remove dictionary items safely."
+description: "Python dictionary access with brackets, get(), keys(), values(), and items(). Beginner tutorial on KeyError, safe lookups, and iterating dict data."
 order: 89
 chapter: 10
 chapterTitle: "Dictionaries"
 level: beginner
+quickAnswer: "Use d['key'] to read a value and raise KeyError if missing, or d.get('key', default) to return a default without raising."
+faqs:
+  - question: "How do I access a value in a Python dict?"
+    answer: "Use square brackets: user['name']. The key must exist or Python raises KeyError."
+  - question: "What does dict.get() do?"
+    answer: "get(key, default) returns the value if the key exists, otherwise default, without raising an error."
+  - question: "How do I loop over keys and values together?"
+    answer: "Use for key, value in my_dict.items(): to iterate pairs directly."
+  - question: "Can I use dot notation on dictionaries?"
+    answer: "Not on plain dicts. Brackets or get() are standard unless you use specialized objects like dataclasses or SimpleNamespace."
 ---
+
+## Why this matters
+
+Dicts map labels to values—JSON configs, user profiles, word counts. Wrong key access crashes programs with KeyError unless you use get() or in checks. items() unlocks clean loops over pairs without hunting keys twice.
 
 Your locker has **labels on the doors**, not numbers on the rows. **`user["name"]`** is opening the door marked `"name"` — you get exactly what is stored inside.
 

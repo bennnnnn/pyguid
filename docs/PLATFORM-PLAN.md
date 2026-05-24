@@ -42,14 +42,15 @@ See live page: `/python/roadmap/`
 - [x] Course schema on roadmap
 - [x] Skulpt loads on **Run** only (not on page load)
 - [x] Internal links: related lessons + roadmap
-- [x] **Track A (top 30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
+- [x] **Track A batch 1 (30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
+- [x] **Track A batch 2 (30):** same treatment — see `docs/seo-top-30-batch2-meta.json`
 - [x] **Practice hub** `/python/practice/` (exams separate from lessons)
 
 ### Next
 
 - [ ] Google Search Console + submit sitemap
 - [ ] Dedicated OG image (1200×630)
-- [ ] Next 30 SEO pages + more “vs” comparisons
+- [ ] Track A batch 3 (30) + more “vs” comparison pages (`list-vs-tuple`, etc.)
 - [ ] **Practice exams** content per chapter (on practice hub only)
 - [ ] Interview question hub
 

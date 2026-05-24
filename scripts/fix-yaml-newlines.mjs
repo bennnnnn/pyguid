@@ -4,7 +4,9 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const meta = JSON.parse(readFileSync(join(root, "docs/seo-top-30-meta.json"), "utf8"));
+const metaFile = process.argv[2] ?? "docs/seo-top-30-meta.json";
+const metaPath = metaFile.startsWith("/") ? metaFile : join(root, metaFile);
+const meta = JSON.parse(readFileSync(metaPath, "utf8"));
 
 for (const slug of Object.keys(meta.lessons)) {
   const path = join(root, "src/content/lessons", `${slug}.mdx`);

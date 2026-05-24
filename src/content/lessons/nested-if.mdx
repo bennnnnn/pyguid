@@ -1,11 +1,25 @@
 ---
 title: "Nested if statements"
-description: "Put if blocks inside other if blocks for layered decisions."
+description: "Python nested if places conditions inside other conditions for multi-step decisions. Beginner examples and tips to flatten logic with elif and booleans."
 order: 43
 chapter: 5
 chapterTitle: "If Statements"
 level: beginner
+quickAnswer: "A nested if is an if block inside another if block, so the inner condition runs only when the outer condition is already true."
+faqs:
+  - question: "What is a nested if in Python?"
+    answer: "It is an if statement written inside the body of another if, testing a second condition only after the first passes."
+  - question: "How is elif different from nested if?"
+    answer: "elif chains mutually exclusive branches at one level. Nested if handles dependent checks where the inner test matters only if the outer is true."
+  - question: "How deep should if nesting go?"
+    answer: "Try to stay shallow. Combine related tests with and/or, early returns in functions, or guard clauses to reduce indentation."
+  - question: "Do nested if blocks need extra indentation?"
+    answer: "Yes. Each nested level adds another four-space indent for its body under the parent if."
 ---
+
+## Why this matters
+
+Nested if mirrors real rules—login then role check, valid input then range check. Deep nesting gets hard to read fast, so learning when to combine conditions or use elif keeps code maintainable. This pattern appears before you reach dictionaries or classes.
 
 A bouncer checks ID, **then** checks the guest list. **Nested `if`** means: only run the inner check if the outer check already passed.
 

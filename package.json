@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "check:format": "prettier --check .",
     "sync:curriculum": "node scripts/sync-curriculum.mjs",
-    "seo:apply-top30": "node scripts/apply-seo-meta.mjs"
+    "seo:apply-top30": "node scripts/apply-seo-meta.mjs",
+    "seo:apply-batch2": "node scripts/apply-seo-meta.mjs docs/seo-top-30-batch2-meta.json && node scripts/fix-yaml-newlines.mjs docs/seo-top-30-batch2-meta.json"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

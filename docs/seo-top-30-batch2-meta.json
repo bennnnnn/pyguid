@@ -1,0 +1,694 @@
+{
+  "lessons": {
+    "list-pop": {
+      "description": "Python list pop() removes and returns an item by index or from the end. Beginner tutorial with examples, pop vs remove, and common stack-style list patterns.",
+      "quickAnswer": "Call list.pop() to remove and return the last item, or list.pop(index) to remove and return the item at that position.",
+      "whyMatters": "pop() is how you take items off a list and use them immediately—undo stacks, processing queues, and parsing nested data all rely on it. Unlike remove(), pop() works by index and gives you the value back. Confusing pop with remove or append causes silent logic bugs in loops.",
+      "faqs": [
+        {
+          "question": "What does list.pop() do in Python?",
+          "answer": "pop() removes one item from a list and returns it. With no argument it removes the last item; with an index it removes that position."
+        },
+        {
+          "question": "What is the difference between pop() and remove()?",
+          "answer": "pop() uses an index (or the end) and returns the removed value. remove() searches by value and deletes the first match without returning it."
+        },
+        {
+          "question": "Does pop() modify the list in place?",
+          "answer": "Yes. pop() changes the original list and returns the removed element. It does not create a new list."
+        },
+        {
+          "question": "What happens if I pop from an empty list?",
+          "answer": "Python raises IndexError. Check len(my_list) or use a try/except block before popping when the list might be empty."
+        }
+      ]
+    },
+    "list-remove": {
+      "description": "Python list remove() deletes the first matching value by content, not index. Beginner guide with examples, remove vs pop, and how to handle ValueError safely.",
+      "quickAnswer": "Call list.remove(value) to delete the first occurrence of that value from a list; it returns None and raises ValueError if the value is missing.",
+      "whyMatters": "remove() fits when you know what to delete but not where it sits—deduplicating names, dropping a bad entry, or cleaning user input. It searches by equality, so custom objects need predictable comparison. Knowing remove vs pop prevents wrong deletions in real scripts.",
+      "faqs": [
+        {
+          "question": "What does list.remove() do in Python?",
+          "answer": "remove() finds the first element equal to the given value and deletes it from the list. It looks at value, not index."
+        },
+        {
+          "question": "Does remove() return the deleted item?",
+          "answer": "No. remove() returns None. If you need the removed value, use pop() with an index instead."
+        },
+        {
+          "question": "What if the value is not in the list?",
+          "answer": "Python raises ValueError. Use if value in my_list before remove(), or catch the exception when absence is acceptable."
+        },
+        {
+          "question": "Can remove() delete all duplicates at once?",
+          "answer": "No. remove() only removes the first match. Loop or use a list comprehension if you need to drop every occurrence."
+        }
+      ]
+    },
+    "list-sort": {
+      "description": "Python list sort() orders items in place; sorted() returns a new list. Beginner tutorial covers ascending, descending, key functions, and stable sorting.",
+      "quickAnswer": "Call list.sort() to sort a list in place, or sorted(list) to get a new sorted list without changing the original.",
+      "whyMatters": "Sorting turns raw data into readable reports, leaderboards, and search results. sort() vs sorted() trips up beginners who accidentally mutate shared lists. The key= argument unlocks sorting by length, date, or custom rules without rewriting data.",
+      "faqs": [
+        {
+          "question": "What is the difference between sort() and sorted()?",
+          "answer": "sort() modifies the list in place and returns None. sorted() returns a new sorted list and leaves the original unchanged."
+        },
+        {
+          "question": "How do I sort a list in reverse order?",
+          "answer": "Use list.sort(reverse=True) or sorted(my_list, reverse=True) to sort from largest to smallest."
+        },
+        {
+          "question": "Can I sort a list of strings by length?",
+          "answer": "Yes. Pass key=len: names.sort(key=len) sorts by string length while keeping the original strings intact."
+        },
+        {
+          "question": "Does sort() work on lists with mixed types?",
+          "answer": "Not reliably. Python 3 compares compatible types, but mixing numbers and strings usually raises TypeError. Normalize types first."
+        }
+      ]
+    },
+    "list-copy": {
+      "description": "Python list copy: shallow copies with copy(), slicing, and list(). Learn why b = a shares references and how to avoid accidental mutation bugs.",
+      "quickAnswer": "Use my_list.copy(), my_list[:], or list(my_list) to make a shallow copy so changes to one list do not affect the other.",
+      "whyMatters": "Assignment b = a does not copy—it binds two names to the same list. Editing b also changes a, which breaks functions and loops silently. Shallow copy fixes top-level sharing; nested lists may still need deepcopy later.",
+      "faqs": [
+        {
+          "question": "How do I copy a list in Python?",
+          "answer": "Use new_list = old_list.copy(), new_list = old_list[:], or new_list = list(old_list). All create a shallow copy."
+        },
+        {
+          "question": "Is b = a a copy of the list?",
+          "answer": "No. b = a makes both variables refer to the same list object. Appending to b also changes a."
+        },
+        {
+          "question": "What is a shallow copy?",
+          "answer": "A shallow copy duplicates the outer list but inner mutable objects (like nested lists) are still shared between copies."
+        },
+        {
+          "question": "When do I need copy.deepcopy()?",
+          "answer": "Use deepcopy when nested lists or dicts inside the list must be fully independent copies, not shared references."
+        }
+      ]
+    },
+    "list-indexing": {
+      "description": "Python list indexing: access items by position with zero-based indices and negative indices from the end. Beginner examples plus IndexError pitfalls explained.",
+      "quickAnswer": "Use my_list[0] for the first item, my_list[1] for the second, and my_list[-1] for the last element in a Python list.",
+      "whyMatters": "Indexing is how you read and update one slot without looping—fixing a typo, swapping positions, or checking the latest log entry. Zero-based counting and negative indices appear everywhere in Python. Off-by-one errors start here, so solid indexing saves debugging time.",
+      "faqs": [
+        {
+          "question": "Are Python lists zero-indexed?",
+          "answer": "Yes. The first element is index 0, the second is index 1, and so on."
+        },
+        {
+          "question": "What does a negative index mean?",
+          "answer": "Negative indices count from the end: -1 is the last item, -2 is second to last, which is handy without calling len()."
+        },
+        {
+          "question": "Can I change a list item with indexing?",
+          "answer": "Yes. Assignment works: my_list[2] = 'new' replaces the element at that index in place."
+        },
+        {
+          "question": "What causes IndexError on a list?",
+          "answer": "Using an index outside the valid range—such as index 5 on a three-item list—raises IndexError."
+        }
+      ]
+    },
+    "list-slicing": {
+      "description": "Python list slicing with [start:stop:step] extracts sublists without loops. Beginner tutorial covers defaults, negative steps, and slice assignment basics.",
+      "quickAnswer": "Use my_list[start:stop] to get elements from start up to but not including stop; omit start or stop to slice from the beginning or end.",
+      "whyMatters": "Slicing lets you grab headers, tails, every other item, or reverse a sequence in one expression. It reads constantly in data cleaning and string-like list work. Slices return new lists (usually), so they pair well with sorting and copying patterns.",
+      "faqs": [
+        {
+          "question": "What does my_list[1:4] return?",
+          "answer": "Elements at indices 1, 2, and 3—a new list with three items. The stop index 4 is excluded."
+        },
+        {
+          "question": "How do I get the last three items of a list?",
+          "answer": "Use my_list[-3:] to slice from the third-from-last index through the end."
+        },
+        {
+          "question": "How do I reverse a list with slicing?",
+          "answer": "Use my_list[::-1]. A step of -1 walks backward through the whole list."
+        },
+        {
+          "question": "Does slicing modify the original list?",
+          "answer": "Reading a slice creates a new list. Slice assignment like my_list[0:2] = [9, 9] can replace a section in place."
+        }
+      ]
+    },
+    "list-enumerate": {
+      "description": "Python enumerate() pairs each list item with its index in a for loop. Beginner tutorial shows enumerate vs range(len()) and cleaner loop patterns.",
+      "quickAnswer": "Use for index, value in enumerate(my_list): to loop with both the position and the item without manual counter variables.",
+      "whyMatters": "enumerate() removes boilerplate index tracking and the range(len(x)) smell from beginner code. You need both index and value when printing numbered menus, updating parallel lists, or reporting errors by line. It is the idiomatic Python loop pattern.",
+      "faqs": [
+        {
+          "question": "What does enumerate() return?",
+          "answer": "An enumerate object that yields (index, item) pairs as you loop. By default indices start at 0."
+        },
+        {
+          "question": "Can I start enumerate at 1 instead of 0?",
+          "answer": "Yes. Pass start=1: for i, item in enumerate(items, start=1): for human-friendly numbering."
+        },
+        {
+          "question": "Is enumerate better than range(len(my_list))?",
+          "answer": "When you need both index and value, enumerate is clearer and avoids indexing the list again inside the loop."
+        },
+        {
+          "question": "Does enumerate work on strings and tuples?",
+          "answer": "Yes. enumerate works on any iterable, not only lists."
+        }
+      ]
+    },
+    "break-continue": {
+      "description": "Python break and continue control loop flow: exit early or skip to the next iteration. Beginner examples for search loops, validation, and common pitfalls.",
+      "quickAnswer": "break exits the innermost loop immediately; continue skips the rest of the current iteration and jumps to the next loop cycle.",
+      "whyMatters": "break and continue let you stop searching once you find a match or skip bad rows without nested if pyramids. They appear in input validation, parsing, and game loops. Used wisely they simplify logic; overused they can hide confusing flow.",
+      "faqs": [
+        {
+          "question": "What does break do in a Python loop?",
+          "answer": "break stops the loop entirely and execution continues on the first line after the loop block."
+        },
+        {
+          "question": "What does continue do in a Python loop?",
+          "answer": "continue ends the current iteration early and moves to the next item without running remaining code in the loop body."
+        },
+        {
+          "question": "Do break and continue work in while loops?",
+          "answer": "Yes. Both keywords work in for and while loops and always affect only the innermost enclosing loop."
+        },
+        {
+          "question": "Can break exit nested loops at once?",
+          "answer": "No. break only leaves one loop level. Refactor with a function return or a flag variable for deeper exits."
+        }
+      ]
+    },
+    "nested-loops": {
+      "description": "Python nested loops run an inner loop inside an outer loop for grids, pairs, and tables. Beginner tutorial with row-column examples and complexity tips.",
+      "quickAnswer": "A nested loop places one for or while loop inside another, so the inner loop runs completely for each step of the outer loop.",
+      "whyMatters": "Nested loops model tables, coordinate grids, comparing every pair, and nested JSON structures. They are the brute-force tool before smarter algorithms. Understanding outer vs inner iteration prevents infinite-looking slowdowns on large data.",
+      "faqs": [
+        {
+          "question": "What is a nested loop in Python?",
+          "answer": "It is a loop inside another loop. The inner loop finishes all its iterations for each single iteration of the outer loop."
+        },
+        {
+          "question": "How many times does a double loop run?",
+          "answer": "Roughly outer_count times inner_count. A 10-by-10 pair of loops performs about 100 inner-body executions."
+        },
+        {
+          "question": "Can I use different loop types together?",
+          "answer": "Yes. You can nest for inside while or the other way around depending on what your problem needs."
+        },
+        {
+          "question": "How do I print a multiplication table with nested loops?",
+          "answer": "Use an outer loop for rows and an inner loop for columns, multiplying the two counters each time."
+        }
+      ]
+    },
+    "loop-patterns": {
+      "description": "Common Python loop patterns: accumulate totals, build lists, search, and count matches. Beginner recipes you will reuse in every script and project.",
+      "quickAnswer": "Typical loop patterns include summing with a total variable, collecting results in a list, searching with break, and counting with a counter.",
+      "whyMatters": "Most real loops are variations of a small set of patterns—sum, filter, find, transform. Recognizing the pattern lets you write correct code faster than inventing from scratch. These recipes bridge basic for loops to comprehensions and functions.",
+      "faqs": [
+        {
+          "question": "How do I sum numbers in a loop in Python?",
+          "answer": "Set total = 0 before the loop, then total += n for each number. Return or print total after the loop."
+        },
+        {
+          "question": "How do I build a new list in a loop?",
+          "answer": "Start with results = [], append or extend inside the loop, and use results when done. List comprehensions often replace this pattern later."
+        },
+        {
+          "question": "What is the search loop pattern?",
+          "answer": "Loop until you find a match, then break. Optionally store a found flag or the matched item before exiting."
+        },
+        {
+          "question": "When should I use a loop instead of a comprehension?",
+          "answer": "Use a plain loop when logic spans many lines, needs side effects, or is hard to read as a one-liner comprehension."
+        }
+      ]
+    },
+    "function-default-args": {
+      "description": "Python default arguments let parameters fall back to preset values when callers omit them. Beginner guide covers syntax, defaults, and the mutable default trap.",
+      "quickAnswer": "Define defaults in the function header with name=value, such as def greet(name='World'):, so omitted arguments use that default.",
+      "whyMatters": "Defaults make APIs friendlier—optional flags, sensible starting values, and fewer required parameters. The mutable default list bug is a classic interview and production footgun. Learning safe defaults early prevents shared-state surprises across calls.",
+      "faqs": [
+        {
+          "question": "How do I set a default argument in Python?",
+          "answer": "Put default=value after the parameter name in the def line. Parameters with defaults must come after those without."
+        },
+        {
+          "question": "Can I pass None as a default?",
+          "answer": "Yes. def f(items=None): with if items is None: items = [] avoids the mutable default list problem."
+        },
+        {
+          "question": "What is wrong with def f(x=[]):?",
+          "answer": "The same list object is reused across calls, so append mutations persist. Use None and create a fresh list inside the function."
+        },
+        {
+          "question": "Do default values evaluate once or every call?",
+          "answer": "Default expressions are evaluated once when the function is defined, which is why mutable defaults are shared."
+        }
+      ]
+    },
+    "function-args-kwargs": {
+      "description": "Python *args and **kwargs accept variable positional and keyword arguments. Beginner tutorial explains packing, unpacking, and when flexible signatures help.",
+      "quickAnswer": "Use *args to collect extra positional arguments as a tuple and **kwargs to collect extra keyword arguments as a dictionary.",
+      "whyMatters": "args and kwargs power wrappers, decorators, and functions that forward calls to other APIs. You will see * unpacking in print, max, and custom helpers. They are optional for day one, but recognizing them prevents mystifying library code.",
+      "faqs": [
+        {
+          "question": "What does *args mean in a Python function?",
+          "answer": "*args gathers any extra positional arguments into a tuple named args (the name is conventional, not required)."
+        },
+        {
+          "question": "What does **kwargs mean?",
+          "answer": "**kwargs gathers extra keyword arguments into a dict mapping parameter names to values passed by the caller."
+        },
+        {
+          "question": "What is argument unpacking with * and **?",
+          "answer": "When calling a function, *sequence spreads positional values and **mapping spreads keyword arguments into the call."
+        },
+        {
+          "question": "Do beginners need *args and **kwargs daily?",
+          "answer": "Not usually. Learn fixed parameters first, then args/kwargs when you write flexible helpers or read framework source."
+        }
+      ]
+    },
+    "function-scope": {
+      "description": "Python function scope and the LEGB rule: local, enclosing, global, and built-in names. Beginner guide to shadows, globals, and avoiding surprise bugs.",
+      "quickAnswer": "Names assigned inside a function are local unless declared global or nonlocal; Python looks up names local first, then enclosing, global, and built-in scopes.",
+      "whyMatters": "Scope explains why a variable inside a function does not clobber an outer name—and when it accidentally does. Misusing global creates hidden coupling between functions. Understanding LEGB makes closures, defaults, and debugging NameError straightforward.",
+      "faqs": [
+        {
+          "question": "What is the LEGB rule in Python?",
+          "answer": "Python searches Local, Enclosing, Global, then Built-in scopes to resolve a name when you read or assign it."
+        },
+        {
+          "question": "Can a function read variables defined outside it?",
+          "answer": "Yes for reading if the name is not assigned locally. Assigning inside the function creates a new local name unless you use global or nonlocal."
+        },
+        {
+          "question": "When should I use the global keyword?",
+          "answer": "Rarely. global lets a function rebind a module-level variable. Prefer passing values in and returning results instead."
+        },
+        {
+          "question": "What is the difference between global and nonlocal?",
+          "answer": "global targets module-level names. nonlocal targets variables in an enclosing function, useful in nested functions."
+        }
+      ]
+    },
+    "nested-if": {
+      "description": "Python nested if places conditions inside other conditions for multi-step decisions. Beginner examples and tips to flatten logic with elif and booleans.",
+      "quickAnswer": "A nested if is an if block inside another if block, so the inner condition runs only when the outer condition is already true.",
+      "whyMatters": "Nested if mirrors real rules—login then role check, valid input then range check. Deep nesting gets hard to read fast, so learning when to combine conditions or use elif keeps code maintainable. This pattern appears before you reach dictionaries or classes.",
+      "faqs": [
+        {
+          "question": "What is a nested if in Python?",
+          "answer": "It is an if statement written inside the body of another if, testing a second condition only after the first passes."
+        },
+        {
+          "question": "How is elif different from nested if?",
+          "answer": "elif chains mutually exclusive branches at one level. Nested if handles dependent checks where the inner test matters only if the outer is true."
+        },
+        {
+          "question": "How deep should if nesting go?",
+          "answer": "Try to stay shallow. Combine related tests with and/or, early returns in functions, or guard clauses to reduce indentation."
+        },
+        {
+          "question": "Do nested if blocks need extra indentation?",
+          "answer": "Yes. Each nested level adds another four-space indent for its body under the parent if."
+        }
+      ]
+    },
+    "truthy-falsy": {
+      "description": "Python truthy and falsy values: which objects act as False in if conditions. Beginner guide covers empty collections, zero, None, and common if pitfalls.",
+      "quickAnswer": "In Boolean context, falsy values include False, None, 0, empty strings, and empty lists, dicts, sets, and tuples; most other objects are truthy.",
+      "whyMatters": "Python lets you write if items: instead of if len(items) > 0:, which is idiomatic but surprising at first. Confusing falsy with is None or == False causes subtle bugs. Knowing truthiness makes conditionals, and, or, and all/any much clearer.",
+      "faqs": [
+        {
+          "question": "What values are falsy in Python?",
+          "answer": "False, None, numeric zero (0, 0.0), empty sequences and collections ('', [], {}, set()), and empty range objects."
+        },
+        {
+          "question": "Is an empty list falsy?",
+          "answer": "Yes. if []: does not run the block because an empty list is falsy."
+        },
+        {
+          "question": "How is truthy different from == True?",
+          "answer": "Truthy means the value passes an if test. Non-boolean objects can be truthy without being equal to True."
+        },
+        {
+          "question": "Should I use if x is None or if not x?",
+          "answer": "Use if x is None when None is the only case you care about. if not x also triggers on 0 and empty strings."
+        }
+      ]
+    },
+    "none-type": {
+      "description": "Python None represents no value or a missing result. Beginner tutorial covers NoneType, is None checks, default returns, and why None is not the string 'None'.",
+      "quickAnswer": "None is Python's null value—a singleton object meaning nothing here; test with is None, not ==, when checking for absence.",
+      "whyMatters": "Functions without return implicitly return None; APIs use None for optional fields and not found results. Confusing None with 0, False, or empty strings breaks validation logic. Correct None checks prevent crashes when chaining method calls on missing data.",
+      "faqs": [
+        {
+          "question": "What is None in Python?",
+          "answer": "None is a special constant of type NoneType that represents the absence of a value or a deliberate empty result."
+        },
+        {
+          "question": "Should I compare with None using == or is?",
+          "answer": "Prefer x is None and x is not None. is checks identity and is the idiomatic, reliable pattern."
+        },
+        {
+          "question": "What does a function return if it has no return statement?",
+          "answer": "It returns None automatically when execution finishes without hitting an explicit return value."
+        },
+        {
+          "question": "Is None the same as False or 0?",
+          "answer": "No. None is its own object. It is falsy in if tests but not equal to False, 0, or '' unless you use loose equality carelessly."
+        }
+      ]
+    },
+    "integers-floats": {
+      "description": "Python integers and floats: whole numbers vs decimals, division, and mixing types. Beginner tutorial with int(), float(), and rounding examples.",
+      "quickAnswer": "int holds whole numbers without size limit in modern Python; float holds decimal values and uses binary floating point, which can surprise with fractions.",
+      "whyMatters": "Numbers drive scores, prices, counters, and scientific code. / always gives float in Python 3 while // floors division—mixing them causes off-by-one bugs. Knowing int vs float helps you pick the right input parsing and display format.",
+      "faqs": [
+        {
+          "question": "What is the difference between int and float in Python?",
+          "answer": "int stores integers. float stores real numbers with a decimal point and follows IEEE floating-point rules."
+        },
+        {
+          "question": "Why does 0.1 + 0.2 not equal 0.3 exactly?",
+          "answer": "Floats use binary approximations. Use round() or decimal.Decimal when exact decimal math matters."
+        },
+        {
+          "question": "How do I convert a string to int or float?",
+          "answer": "Use int('42') or float('3.14'). Invalid text raises ValueError."
+        },
+        {
+          "question": "What is the difference between / and //?",
+          "answer": "/ is true division and returns a float. // is floor division, truncating toward negative infinity for integers."
+        }
+      ]
+    },
+    "type-function": {
+      "description": "Python type() and isinstance() inspect object types at runtime. Beginner guide explains when to check types, basic introspection, and readable alternatives.",
+      "quickAnswer": "Call type(x) to see an object's type, or isinstance(x, int) to test whether it is an int or a subclass without brittle exact-type checks.",
+      "whyMatters": "Type checks guard functions that expect numbers or strings and help debug unexpected API data. Overusing type() hurts flexibility; isinstance() is usually better. Knowing types connects to int(), str(), and validation patterns in real scripts.",
+      "faqs": [
+        {
+          "question": "What does type() return in Python?",
+          "answer": "type(obj) returns the class of the object, such as <class 'int'> or <class 'str'>."
+        },
+        {
+          "question": "Should I use type(x) == int or isinstance(x, int)?",
+          "answer": "Prefer isinstance for checks. It respects inheritance and is the conventional choice in library code."
+        },
+        {
+          "question": "Can type() create classes dynamically?",
+          "answer": "Advanced use yes, but beginners mainly use type() for inspection and debugging, not for defining new types."
+        },
+        {
+          "question": "How do I check if a variable is a string?",
+          "answer": "Use isinstance(x, str). Also remember that str is the text type; bytes is separate for raw binary data."
+        }
+      ]
+    },
+    "assignment-operators": {
+      "description": "Python assignment operators: =, +=, -=, *=, /=, and related in-place updates. Beginner tutorial shows shorthand that modifies variables and mutating types.",
+      "quickAnswer": "Assignment operators combine assignment with an operation, such as x += 1 meaning x = x + 1, often updating the variable in place for mutable objects.",
+      "whyMatters": "+= and friends appear in every counter, accumulator, and loop. For lists, += behaves like extend, which surprises people expecting append. Clear assignment shorthand makes loops readable and matches how C-style languages express updates.",
+      "faqs": [
+        {
+          "question": "What does += do in Python?",
+          "answer": "x += y evaluates x + y and binds the result back to x, equivalent to x = x + y for numbers and many types."
+        },
+        {
+          "question": "Does list += add one element or many?",
+          "answer": "For lists, += with an iterable extends the list with each element, similar to extend(), not a single nested append."
+        },
+        {
+          "question": "Are assignment operators the same as math operators?",
+          "answer": "They combine math (or string/list ops) with assignment. //=, %=, **=, and others follow the same pattern."
+        },
+        {
+          "question": "Can I use assignment operators on strings?",
+          "answer": "Yes. s += '!' appends text because strings support concatenation with +, creating a new string object."
+        }
+      ]
+    },
+    "not-operator": {
+      "description": "Python not operator negates Boolean conditions and works with truthy and falsy values. Beginner examples for if tests, De Morgan patterns, and readable logic.",
+      "quickAnswer": "Place not before a condition to flip its truth value: not True is False, and not empty_list is True because empty lists are falsy.",
+      "whyMatters": "not expresses absence and invalid states—if not found:, if not user.is_active:. Double negatives get confusing, so pairing not with clear names matters. It works with and and or to build compact guards without extra variables.",
+      "faqs": [
+        {
+          "question": "What does the not operator do in Python?",
+          "answer": "not returns the opposite Boolean value of its operand after applying truthiness rules to the operand."
+        },
+        {
+          "question": "Can I write if not x == 5?",
+          "answer": "Yes, but if x != 5: is usually clearer. Use not for general falsiness, != for specific inequality."
+        },
+        {
+          "question": "Does not have higher precedence than and?",
+          "answer": "Yes. not binds tighter than and and or. Use parentheses when mixing operators for readability."
+        },
+        {
+          "question": "Is not the same as the ! operator in other languages?",
+          "answer": "Conceptually yes for Boolean negation, but Python spells it not instead of !."
+        }
+      ]
+    },
+    "string-split": {
+      "description": "Python string split() breaks text into a list by separator. Beginner tutorial covers default whitespace splits, maxsplit, and parsing CSV-like lines safely.",
+      "quickAnswer": "Call text.split() to split on whitespace into a list of words, or text.split(',') to split on a specific delimiter string.",
+      "whyMatters": "split() is the first tool for parsing user input, file lines, and URLs into workable pieces. Wrong delimiter assumptions create silent data corruption. Combining split with strip and join covers most beginner text-processing tasks.",
+      "faqs": [
+        {
+          "question": "What does str.split() do in Python?",
+          "answer": "split() divides a string into a list of substrings using a separator. With no argument it splits on any whitespace."
+        },
+        {
+          "question": "How do I split a CSV line by commas?",
+          "answer": "Use line.split(',') for simple cases. For quoted fields with commas inside, use the csv module instead."
+        },
+        {
+          "question": "What does the maxsplit argument do?",
+          "answer": "split(sep, maxsplit=n) performs at most n splits, leaving the remainder in the final list element."
+        },
+        {
+          "question": "Does split() modify the original string?",
+          "answer": "No. Strings are immutable. split() returns a new list and leaves the original string unchanged."
+        }
+      ]
+    },
+    "string-format": {
+      "description": "Python string formatting with f-strings, str.format(), and percent style. Beginner guide to readable output, placeholders, and rounding numbers in messages.",
+      "quickAnswer": "Use f-strings like f'Hello, {name}' to embed variables in strings; they are the preferred formatting style in modern Python.",
+      "whyMatters": "Formatted strings turn data into human-readable logs, receipts, and UI text. f-strings are fast to write and read compared to concatenation or old % formatting. Precision specifiers like f'{pi:.2f}' solve rounding display without manual string math.",
+      "faqs": [
+        {
+          "question": "What is an f-string in Python?",
+          "answer": "An f-string is a string literal prefixed with f that evaluates expressions inside curly braces at runtime."
+        },
+        {
+          "question": "How do I format a float to two decimal places?",
+          "answer": "Use an f-string format spec: f'{price:.2f}' prints two digits after the decimal point."
+        },
+        {
+          "question": "Is str.format() still used?",
+          "answer": "Yes in older code and templates, but new projects favor f-strings for simplicity unless building reusable format templates."
+        },
+        {
+          "question": "Can I put expressions inside f-string braces?",
+          "answer": "Yes. f'{len(items)} items' works. Keep expressions short so the string stays readable."
+        }
+      ]
+    },
+    "string-slicing": {
+      "description": "Python string slicing extracts substrings with [start:stop:step] just like lists. Beginner tutorial on indexing, reversing text, and immutability reminders.",
+      "quickAnswer": "Use text[start:stop] to slice a substring; text[0:3] gives the first three characters and text[-1] gives the last character.",
+      "whyMatters": "String slicing powers prefixes, extensions, and parsing fixed-width fields without regex. Because strings are immutable, slices always produce new text. Mastering slice notation transfers directly to lists and bytes.",
+      "faqs": [
+        {
+          "question": "How do I get the first three characters of a string?",
+          "answer": "Use text[:3] or text[0:3]. Both return a new string with the first three characters."
+        },
+        {
+          "question": "Can I change a character with string slicing?",
+          "answer": "No. Strings are immutable. Build a new string by concatenating slices and replacement text instead."
+        },
+        {
+          "question": "How do I reverse a string in Python?",
+          "answer": "Use text[::-1] with a step of -1, or reversed(text) inside join for another idiomatic approach."
+        },
+        {
+          "question": "Are string slices inclusive of the stop index?",
+          "answer": "No. The stop index is excluded, same as list slicing: 'Python'[0:3] is 'Pyt'."
+        }
+      ]
+    },
+    "dict-access": {
+      "description": "Python dictionary access with brackets, get(), keys(), values(), and items(). Beginner tutorial on KeyError, safe lookups, and iterating dict data.",
+      "quickAnswer": "Use d['key'] to read a value and raise KeyError if missing, or d.get('key', default) to return a default without raising.",
+      "whyMatters": "Dicts map labels to values—JSON configs, user profiles, word counts. Wrong key access crashes programs with KeyError unless you use get() or in checks. items() unlocks clean loops over pairs without hunting keys twice.",
+      "faqs": [
+        {
+          "question": "How do I access a value in a Python dict?",
+          "answer": "Use square brackets: user['name']. The key must exist or Python raises KeyError."
+        },
+        {
+          "question": "What does dict.get() do?",
+          "answer": "get(key, default) returns the value if the key exists, otherwise default, without raising an error."
+        },
+        {
+          "question": "How do I loop over keys and values together?",
+          "answer": "Use for key, value in my_dict.items(): to iterate pairs directly."
+        },
+        {
+          "question": "Can I use dot notation on dictionaries?",
+          "answer": "Not on plain dicts. Brackets or get() are standard unless you use specialized objects like dataclasses or SimpleNamespace."
+        }
+      ]
+    },
+    "dict-comprehensions": {
+      "description": "Python dict comprehensions build dictionaries in one line from loops and conditions. Beginner syntax with key-value patterns and when to use plain loops.",
+      "quickAnswer": "A dict comprehension looks like {key_expr: value_expr for item in iterable} and creates a new dictionary in a single line.",
+      "whyMatters": "Dict comprehensions invert lists into lookup tables, tally counts, and transform JSON fields compactly. They mirror list comprehensions, so learning both keeps Python code idiomatic. When logic grows complex, switch back to a regular loop for clarity.",
+      "faqs": [
+        {
+          "question": "What is a dict comprehension in Python?",
+          "answer": "It is a concise way to build a dict by evaluating key and value expressions for each item in an iterable, optionally with if filters."
+        },
+        {
+          "question": "How is a dict comprehension different from a list comprehension?",
+          "answer": "Dict comprehensions use curly braces with a colon between key and value expressions. List comprehensions use square brackets only."
+        },
+        {
+          "question": "Can I swap keys and values with a comprehension?",
+          "answer": "Yes if values are unique: {v: k for k, v in original.items()} builds a reverse map when values are valid keys."
+        },
+        {
+          "question": "Do dict comprehensions modify an existing dict?",
+          "answer": "No. They always produce a new dictionary object."
+        }
+      ]
+    },
+    "tracebacks": {
+      "description": "Read Python tracebacks bottom-up to find errors fast. Beginner guide to error types, line numbers, call stacks, and the most common exception names.",
+      "quickAnswer": "A traceback lists the error type and message at the bottom and the call stack above it; read the last line first, then trace upward to your code.",
+      "whyMatters": "Every Python developer spends time in tracebacks—typos, wrong types, missing keys. Learning the format turns panic into a checklist: what failed, where, and what called it. Faster reading means faster fixes and less copy-paste debugging.",
+      "faqs": [
+        {
+          "question": "How do I read a Python traceback?",
+          "answer": "Start at the bottom for the exception type and message. Move up to find the most recent line in your own file that triggered it."
+        },
+        {
+          "question": "What is the difference between SyntaxError and other errors?",
+          "answer": "SyntaxError happens before code runs, often with no full stack. Runtime errors like ValueError include a traceback of executing frames."
+        },
+        {
+          "question": "Why does the traceback show library files I did not write?",
+          "answer": "The stack includes every function call leading to the error. Skip down to the first frame in your project code."
+        },
+        {
+          "question": "What does 'Traceback (most recent call last)' mean?",
+          "answer": "It introduces the stack trace listing calls from oldest at the top to the most recent failure just above the exception line."
+        }
+      ]
+    },
+    "pytest-basics": {
+      "description": "pytest basics for Python beginners: write test functions, run pytest, and assert outcomes. Covers discovery, reading failures, and simple test file layout.",
+      "quickAnswer": "Name test files test_*.py, write functions starting with test_, and run pytest in the terminal; pytest reports failures with helpful assert output.",
+      "whyMatters": "Automated tests catch regressions before users do and document expected behavior. pytest's plain assert syntax lowers the barrier compared to heavyweight frameworks. Even a few tests on core functions build confidence when refactoring beginner projects.",
+      "faqs": [
+        {
+          "question": "How do I run pytest?",
+          "answer": "Install pytest, then run the pytest command in your project directory. It discovers test_*.py files and test_* functions automatically."
+        },
+        {
+          "question": "What makes a function a pytest test?",
+          "answer": "The function name must start with test_ and live in a module pytest can import, typically a test_*.py file."
+        },
+        {
+          "question": "Can I use plain assert in pytest?",
+          "answer": "Yes. pytest rewrites asserts to show detailed comparisons on failure, unlike running assert-only scripts with python file.py."
+        },
+        {
+          "question": "Do I need classes to write pytest tests?",
+          "answer": "No. Simple test functions are enough for beginners. Classes are optional for grouping related tests later."
+        }
+      ]
+    },
+    "pathlib-basics": {
+      "description": "Python pathlib basics: Path objects for files and folders with / syntax. Beginner tutorial on joining paths, reading text, and listing directories.",
+      "quickAnswer": "Use Path from pathlib and / to build paths portably, e.g. Path('data') / 'file.txt', instead of manual string concatenation with os.path.",
+      "whyMatters": "Scripts touch files constantly—logs, CSV exports, config folders. pathlib avoids Windows vs Unix slash bugs and reads cleaner than os.path.join chains. It is the modern default for new Python file code.",
+      "faqs": [
+        {
+          "question": "What is pathlib in Python?",
+          "answer": "pathlib provides Path objects that represent filesystem paths and offer methods to read, write, and inspect files and directories."
+        },
+        {
+          "question": "How do I join paths with pathlib?",
+          "answer": "Use the / operator: Path('folder') / 'file.txt'. Python combines segments correctly for your operating system."
+        },
+        {
+          "question": "How do I read a text file with Path?",
+          "answer": "Use path.read_text(encoding='utf-8') on a Path object, or path.open() for more control."
+        },
+        {
+          "question": "Is pathlib better than os.path for beginners?",
+          "answer": "For new code, yes. Path methods are chained and readable, and pathlib is recommended over string paths in modern Python."
+        }
+      ]
+    },
+    "json-python": {
+      "description": "Python json module: load and dump JSON files and strings with json.load, json.loads, json.dump, and json.dumps. Beginner tutorial for APIs and config files.",
+      "quickAnswer": "Use json.loads(text) or json.load(file) to parse JSON into Python dicts and lists; use json.dumps(obj) or json.dump(obj, file) to serialize back to JSON.",
+      "whyMatters": "JSON is the lingua franca of web APIs and config files. Python's json module maps cleanly to dicts and lists you already know. Handling encoding, pretty printing, and serializable types prevents silent data loss when saving projects.",
+      "faqs": [
+        {
+          "question": "What is the difference between json.load and json.loads?",
+          "answer": "json.load reads from a file object. json.loads parses a JSON string already in memory."
+        },
+        {
+          "question": "What Python types does JSON support?",
+          "answer": "JSON maps to dict, list, str, int, float, bool, and None. Custom classes need conversion before dumping."
+        },
+        {
+          "question": "How do I write pretty-printed JSON?",
+          "answer": "Use json.dumps(data, indent=2) or json.dump(data, f, indent=2) to add readable indentation."
+        },
+        {
+          "question": "Why do I get TypeError when calling json.dumps?",
+          "answer": "The object contains values JSON cannot encode, like datetime or bytes. Convert them to strings or numbers first."
+        }
+      ]
+    },
+    "classes-intro": {
+      "description": "Python classes and objects for beginners: define a class, create instances, and use self and methods. Intro tutorial with attributes, __init__, and OOP basics.",
+      "quickAnswer": "A class defines a blueprint; you create objects with MyClass() and methods take self as the first parameter to access instance data.",
+      "whyMatters": "Classes bundle data and behavior—users, bank accounts, game sprites. Even script-heavy Python eventually uses objects from libraries built on classes. Understanding __init__, self, and attributes makes Django, pytest fixtures, and dataclasses approachable.",
+      "faqs": [
+        {
+          "question": "What is a class in Python?",
+          "answer": "A class is a template for creating objects that share attributes and methods. It is defined with the class keyword."
+        },
+        {
+          "question": "What does self mean in a method?",
+          "answer": "self refers to the specific instance the method is called on, giving access to that object's attributes."
+        },
+        {
+          "question": "What is __init__ used for?",
+          "answer": "__init__ initializes a new instance, setting starting attributes when you call ClassName()."
+        },
+        {
+          "question": "How is a class different from a dictionary?",
+          "answer": "Both hold data, but classes define typed behavior with methods and enforce structure; dicts are flexible key-value maps without fixed behavior."
+        }
+      ]
+    }
+  }
+}

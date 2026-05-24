@@ -1,11 +1,25 @@
 ---
 title: "sort()"
-description: "Sort a list in place with sort() and sorted()."
+description: "Python list sort() orders items in place; sorted() returns a new list. Beginner tutorial covers ascending, descending, key functions, and stable sorting."
 order: 66
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.sort() to sort a list in place, or sorted(list) to get a new sorted list without changing the original."
+faqs:
+  - question: "What is the difference between sort() and sorted()?"
+    answer: "sort() modifies the list in place and returns None. sorted() returns a new sorted list and leaves the original unchanged."
+  - question: "How do I sort a list in reverse order?"
+    answer: "Use list.sort(reverse=True) or sorted(my_list, reverse=True) to sort from largest to smallest."
+  - question: "Can I sort a list of strings by length?"
+    answer: "Yes. Pass key=len: names.sort(key=len) sorts by string length while keeping the original strings intact."
+  - question: "Does sort() work on lists with mixed types?"
+    answer: "Not reliably. Python 3 compares compatible types, but mixing numbers and strings usually raises TypeError. Normalize types first."
 ---
+
+## Why this matters
+
+Sorting turns raw data into readable reports, leaderboards, and search results. sort() vs sorted() trips up beginners who accidentally mutate shared lists. The key= argument unlocks sorting by length, date, or custom rules without rewriting data.
 
 High scores on a leaderboard should go **low → high** (or the other way). **`sort()`** rearranges the **same list** so items are in order — like sorting cards in your hand without getting a second deck.
 

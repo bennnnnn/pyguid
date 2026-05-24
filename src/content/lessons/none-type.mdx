@@ -1,11 +1,25 @@
 ---
 title: "None"
-description: "Use None to represent missing or empty values in Python."
+description: "Python None represents no value or a missing result. Beginner tutorial covers NoneType, is None checks, default returns, and why None is not the string 'None'."
 order: 21
 chapter: 3
 chapterTitle: "Data Types"
 level: beginner
+quickAnswer: "None is Python's null value—a singleton object meaning nothing here; test with is None, not ==, when checking for absence."
+faqs:
+  - question: "What is None in Python?"
+    answer: "None is a special constant of type NoneType that represents the absence of a value or a deliberate empty result."
+  - question: "Should I compare with None using == or is?"
+    answer: "Prefer x is None and x is not None. is checks identity and is the idiomatic, reliable pattern."
+  - question: "What does a function return if it has no return statement?"
+    answer: "It returns None automatically when execution finishes without hitting an explicit return value."
+  - question: "Is None the same as False or 0?"
+    answer: "No. None is its own object. It is falsy in if tests but not equal to False, 0, or '' unless you use loose equality carelessly."
 ---
+
+## Why this matters
+
+Functions without return implicitly return None; APIs use None for optional fields and not found results. Confusing None with 0, False, or empty strings breaks validation logic. Correct None checks prevent crashes when chaining method calls on missing data.
 
 An empty slot on a form — not zero, not false, just **blank**. **`None`** is Python’s way to say “no value here” or “not found.”
 

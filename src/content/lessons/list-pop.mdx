@@ -1,11 +1,25 @@
 ---
 title: "pop()"
-description: "Remove and return an item by index with pop()."
+description: "Python list pop() removes and returns an item by index or from the end. Beginner tutorial with examples, pop vs remove, and common stack-style list patterns."
 order: 64
 chapter: 7
 chapterTitle: "Lists"
 level: beginner
+quickAnswer: "Call list.pop() to remove and return the last item, or list.pop(index) to remove and return the item at that position."
+faqs:
+  - question: "What does list.pop() do in Python?"
+    answer: "pop() removes one item from a list and returns it. With no argument it removes the last item; with an index it removes that position."
+  - question: "What is the difference between pop() and remove()?"
+    answer: "pop() uses an index (or the end) and returns the removed value. remove() searches by value and deletes the first match without returning it."
+  - question: "Does pop() modify the list in place?"
+    answer: "Yes. pop() changes the original list and returns the removed element. It does not create a new list."
+  - question: "What happens if I pop from an empty list?"
+    answer: "Python raises IndexError. Check len(my_list) or use a try/except block before popping when the list might be empty."
 ---
+
+## Why this matters
+
+pop() is how you take items off a list and use them immediately—undo stacks, processing queues, and parsing nested data all rely on it. Unlike remove(), pop() works by index and gives you the value back. Confusing pop with remove or append causes silent logic bugs in loops.
 
 A stack of plates: you take the **top** one off and **hold it in your hand**. **`pop()`** removes an item from the list and **hands it back to you** in code.
 

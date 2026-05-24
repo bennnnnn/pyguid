@@ -1,11 +1,25 @@
 ---
 title: "Assignment operators"
-description: "Update variables with +=, -=, *=, and related shortcuts."
+description: "Python assignment operators: =, +=, -=, *=, /=, and related in-place updates. Beginner tutorial shows shorthand that modifies variables and mutating types."
 order: 34
 chapter: 4
 chapterTitle: "Operators"
 level: beginner
+quickAnswer: "Assignment operators combine assignment with an operation, such as x += 1 meaning x = x + 1, often updating the variable in place for mutable objects."
+faqs:
+  - question: "What does += do in Python?"
+    answer: "x += y evaluates x + y and binds the result back to x, equivalent to x = x + y for numbers and many types."
+  - question: "Does list += add one element or many?"
+    answer: "For lists, += with an iterable extends the list with each element, similar to extend(), not a single nested append."
+  - question: "Are assignment operators the same as math operators?"
+    answer: "They combine math (or string/list ops) with assignment. //=, %=, **=, and others follow the same pattern."
+  - question: "Can I use assignment operators on strings?"
+    answer: "Yes. s += '!' appends text because strings support concatenation with +, creating a new string object."
 ---
+
+## Why this matters
+
++= and friends appear in every counter, accumulator, and loop. For lists, += behaves like extend, which surprises people expecting append. Clear assignment shorthand makes loops readable and matches how C-style languages express updates.
 
 You already know **`score = score + 10`**. **`+=`** is the shorthand: “add to what is already in the box.”
 
