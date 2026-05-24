@@ -1,0 +1,50 @@
+---
+import { AI_TERMINOLOGY_SECTIONS } from "../lib/ai-terminology";
+import { aiTerminologySectionUrl } from "../lib/ai-terminology/helpers";
+
+const path = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<aside
+  id="tutorial-sidebar"
+  class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
+>
+  <div class="border-b border-border px-4 py-3">
+    <a href="/ai-terminology/" class="text-xs font-semibold uppercase tracking-wider text-text-muted no-underline hover:text-link">
+      AI terminology
+    </a>
+  </div>
+
+  <nav class="py-2" aria-label="AI terminology groups">
+    <ul class="m-0 list-none p-0">
+      {
+        AI_TERMINOLOGY_SECTIONS.map((section) => {
+          const href = aiTerminologySectionUrl(section.id);
+          const sectionPath = href.replace(/\/$/, "");
+          const isActive = path === sectionPath;
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  "lesson-link block py-2.5 pl-4 pr-4 text-sm font-medium",
+                  isActive && "is-active",
+                ]}
+                aria-current={isActive ? "page" : undefined}
+                data-ai-term-sidebar-link={isActive ? "" : undefined}
+              >
+                {section.title}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById("tutorial-sidebar");
+  const active = sidebar?.querySelector("[data-ai-term-sidebar-link]");
+  active?.scrollIntoView({ block: "nearest", behavior: "instant" });
+</script>

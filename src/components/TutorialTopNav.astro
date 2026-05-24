@@ -11,12 +11,13 @@ const isTutorials =
     !path.startsWith("/python/quiz"));
 const isQuiz = path.startsWith("/python/quiz");
 const isReference = path.startsWith("/python/reference");
+const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology/");
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-nav-bg">
   <div class="mx-auto flex h-14 max-w-[1500px] items-center gap-2 px-3 sm:gap-3 sm:px-4">
     {
-      !isHome && (
+      !isHome && (isTutorials || isQuiz || isReference || isAiTerms) && (
         <button
           type="button"
           id="sidebar-toggle"
@@ -73,6 +74,12 @@ const isReference = path.startsWith("/python/reference");
           class:list={["topnav-link text-xs sm:text-sm", isReference && "is-active"]}
         >
           References
+        </a>
+        <a
+          href="/ai-terminology/"
+          class:list={["topnav-link text-xs sm:text-sm", isAiTerms && "is-active"]}
+        >
+          AI Terms
         </a>
       </nav>
     </div>

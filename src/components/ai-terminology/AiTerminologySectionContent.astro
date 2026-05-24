@@ -1,0 +1,52 @@
+---
+import type { AiTerminologySection } from "../../lib/ai-terminology/types";
+import AiTermGlossary from "./AiTermGlossary.astro";
+
+interface Props {
+  section: AiTerminologySection;
+}
+
+const { section } = Astro.props;
+---
+
+<article class="ai-term-section-page">
+  {
+    section.intro && (
+      <div class="ai-term-intro-callout">
+        <p>{section.intro}</p>
+      </div>
+    )
+  }
+
+  <AiTermGlossary sectionId={section.id} terms={section.terms} />
+
+  {
+    section.codeExample && (
+      <div class="ai-term-code-block">
+        <p class="ai-term-code-label">Example</p>
+        <pre class="ai-term-code" aria-label="Example code">
+          <code>{section.codeExample}</code>
+        </pre>
+      </div>
+    )
+  }
+
+  {
+    section.links && section.links.length > 0 && (
+      <div class="ai-term-links-box">
+        <p class="ai-term-links-label">Learn more</p>
+        <ul class="ai-term-links">
+          {
+            section.links.map((link) => (
+              <li>
+                <a href={link.href} rel="noopener noreferrer" target="_blank">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    )
+  }
+</article>

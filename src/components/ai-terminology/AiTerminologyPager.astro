@@ -1,0 +1,28 @@
+---
+import { aiTerminologySectionUrl } from "../../lib/ai-terminology/helpers";
+import PagerNav from "../PagerNav.astro";
+import type { AiTerminologySection } from "../../lib/ai-terminology/types";
+
+interface Props {
+  prev: AiTerminologySection | null;
+  next: AiTerminologySection | null;
+  placement?: "top" | "bottom";
+}
+
+const { prev, next, placement = "bottom" } = Astro.props;
+---
+
+<PagerNav
+  prev={
+    prev
+      ? { href: aiTerminologySectionUrl(prev.id), label: "Back", topic: prev.title }
+      : null
+  }
+  next={
+    next
+      ? { href: aiTerminologySectionUrl(next.id), label: "Next", topic: next.title }
+      : null
+  }
+  placement={placement}
+  ariaLabel="Topic navigation"
+/>

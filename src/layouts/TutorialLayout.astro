@@ -3,6 +3,7 @@ import "../styles/global.css";
 import TutorialTopNav from "../components/TutorialTopNav.astro";
 import LearnSidebar from "../components/LearnSidebar.astro";
 import ReferenceSidebar from "../components/ReferenceSidebar.astro";
+import AiTerminologySidebar from "../components/AiTerminologySidebar.astro";
 import SidebarScripts from "../components/SidebarScripts.astro";
 import PythonExampleScripts from "../components/PythonExampleScripts.astro";
 import TutorialFooter from "../components/TutorialFooter.astro";
@@ -16,7 +17,7 @@ interface Props {
   description?: string;
   groups?: LessonGroup[];
   currentLessonId?: string;
-  sidebar?: "learn" | "reference";
+  sidebar?: "learn" | "reference" | "ai-terms";
   ogType?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -63,6 +64,8 @@ const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
       {
         sidebar === "reference" ? (
           <ReferenceSidebar />
+        ) : sidebar === "ai-terms" ? (
+          <AiTerminologySidebar />
         ) : (
           <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
         )

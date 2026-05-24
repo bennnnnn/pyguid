@@ -1,0 +1,18 @@
+---
+import { termCountAriaLabel } from "../../lib/ai-terminology/display";
+
+interface Props {
+  count: number;
+  size?: "md" | "sm";
+}
+
+const { count, size = "md" } = Astro.props;
+---
+
+<span
+  class:list={["ai-term-count", size === "sm" && "ai-term-count-sm"]}
+  aria-label={termCountAriaLabel(count)}
+  title={termCountAriaLabel(count)}
+>
+  {count}
+</span>

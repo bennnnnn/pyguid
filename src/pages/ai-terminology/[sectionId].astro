@@ -1,0 +1,72 @@
+---
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import AiTermGroupTitle from "../../components/ai-terminology/AiTermGroupTitle.astro";
+import AiTermJumpNav from "../../components/ai-terminology/AiTermJumpNav.astro";
+import AiTerminologySectionContent from "../../components/ai-terminology/AiTerminologySectionContent.astro";
+import AiTerminologyPager from "../../components/ai-terminology/AiTerminologyPager.astro";
+import {
+  getAiTerminologySection,
+  getAdjacentAiTerminologySections,
+} from "../../lib/ai-terminology";
+import { AI_TERMINOLOGY_SECTIONS } from "../../lib/ai-terminology";
+import { aiTerminologySectionUrl, termAnchorsForSection } from "../../lib/ai-terminology/helpers";
+import { breadcrumbListJsonLd, definedTermSetJsonLd } from "../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../lib/site";
+import "../../styles/ai-terminology.css";
+
+export function getStaticPaths() {
+  return AI_TERMINOLOGY_SECTIONS.map((section) => ({
+    params: { sectionId: section.id },
+  }));
+}
+
+const sectionId = Astro.params.sectionId ?? "";
+const section = getAiTerminologySection(sectionId);
+if (!section) return Astro.redirect("/ai-terminology/");
+
+const { prev, next } = getAdjacentAiTerminologySections(sectionId);
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL(aiTerminologySectionUrl(sectionId), `${siteUrl}/`).href;
+const pageTitle = `${section.title} — AI Glossary — ${SITE.name}`;
+const description = section.intro
+  ? `${section.intro.slice(0, 155)}…`
+  : `${section.title} — AI and ML terms for Python developers on ${SITE.name}.`;
+
+const anchors = termAnchorsForSection(section.id, section.terms);
+const jsonLd = [
+  breadcrumbListJsonLd([
+    { name: SITE.name, url: `${siteUrl}/` },
+    { name: "AI Terminology", url: `${siteUrl}/ai-terminology/` },
+    { name: section.title, url: pageUrl },
+  ]),
+  definedTermSetJsonLd({
+    pageUrl,
+    name: section.title,
+    description: section.intro ?? description,
+    terms: section.terms.map((entry, index) => ({
+      name: entry.term,
+      description: entry.meaning,
+      url: `${pageUrl}#${anchors[index]}`,
+    })),
+  }),
+];
+---
+
+<TutorialLayout title={pageTitle} description={description} jsonLd={jsonLd} sidebar="ai-terms">
+  <div class="ai-term-main">
+    <header class="ai-term-hero">
+      <AiTermGroupTitle
+        as="h1"
+        class="!mt-0"
+        title={section.title}
+        count={section.terms.length}
+      />
+    </header>
+
+    <AiTermJumpNav sectionId={section.id} terms={section.terms} />
+
+    <AiTerminologySectionContent section={section} />
+
+    <AiTerminologyPager prev={prev} next={next} placement="bottom" />
+  </div>
+</TutorialLayout>

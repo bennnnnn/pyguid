@@ -1,0 +1,31 @@
+---
+import type { AiTerm } from "../../lib/ai-terminology/types";
+import { termAnchorsForSection } from "../../lib/ai-terminology/helpers";
+
+interface Props {
+  sectionId: string;
+  terms: AiTerm[];
+  /** Show jump list when at least this many terms (default 8). */
+  minTerms?: number;
+}
+
+const { sectionId, terms, minTerms = 8 } = Astro.props;
+const show = terms.length >= minTerms;
+const anchors = termAnchorsForSection(sectionId, terms);
+---
+
+{
+  show && (
+    <nav class="ai-term-jump" aria-label="Jump to terms on this page">
+      <ul class="ai-term-jump-list">
+        {terms.map((entry, index) => (
+          <li>
+            <a href={`#${anchors[index]}`} class="ai-term-jump-link">
+              {entry.term}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

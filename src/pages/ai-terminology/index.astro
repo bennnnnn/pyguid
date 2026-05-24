@@ -1,0 +1,78 @@
+---
+import AiTermGroupTitle from "../../components/ai-terminology/AiTermGroupTitle.astro";
+import AiTermSearch from "../../components/ai-terminology/AiTermSearch.astro";
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import {
+  AI_TERMINOLOGY_META,
+  AI_TERMINOLOGY_SECTIONS,
+  getAiTerminologyStats,
+} from "../../lib/ai-terminology";
+import { aiTerminologySectionUrl } from "../../lib/ai-terminology/helpers";
+import { breadcrumbListJsonLd, itemListJsonLd } from "../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../lib/site";
+import "../../styles/ai-terminology.css";
+
+const { title, subtitle, description } = AI_TERMINOLOGY_META;
+const { sectionCount, termCount } = getAiTerminologyStats();
+const pageTitle = `${title} — ${SITE.name}`;
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL("/ai-terminology/", `${siteUrl}/`).href;
+
+const jsonLd = [
+  breadcrumbListJsonLd([
+    { name: SITE.name, url: `${siteUrl}/` },
+    { name: title, url: pageUrl },
+  ]),
+  itemListJsonLd({
+    pageUrl,
+    name: title,
+    items: AI_TERMINOLOGY_SECTIONS.map((section) => ({
+      name: section.title,
+      url: new URL(aiTerminologySectionUrl(section.id), `${siteUrl}/`).href,
+    })),
+  }),
+];
+---
+
+<TutorialLayout title={pageTitle} description={description} jsonLd={jsonLd} sidebar="ai-terms">
+  <article class="ai-term-main lesson-prose-wide">
+    <header class="ai-term-hero">
+      <h1 class="ai-term-hero-title !mt-0">
+        <span>{title}</span>
+        <span class="ai-term-count ai-term-count-hero" title={`${termCount} terms`}>
+          {termCount}
+        </span>
+      </h1>
+      <p class="lead">
+        {subtitle} <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} groups</span>
+      </p>
+    </header>
+
+    <AiTermSearch />
+
+    <section class="ai-term-index-grid" aria-label="Topic groups">
+      <ul class="ai-term-group-cards">
+        {
+          AI_TERMINOLOGY_SECTIONS.map((section) => (
+            <li data-ai-term-section-card={section.id}>
+              <a href={aiTerminologySectionUrl(section.id)} class="ai-term-group-card">
+                <AiTermGroupTitle title={section.title} count={section.terms.length} />
+                {section.intro && <p class="ai-term-group-card-intro">{section.intro}</p>}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="ai-term-search-empty" data-ai-term-search-empty hidden>
+        No groups match your search. Try a different term or clear the search box.
+      </p>
+    </section>
+
+    <footer class="ai-term-footer-note">
+      <p>
+        Separate from the <a href="/python/">Python tutorials</a> — this glossary is for AI/ML
+        vocabulary while you build with Python.
+      </p>
+    </footer>
+  </article>
+</TutorialLayout>

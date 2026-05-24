@@ -101,6 +101,46 @@ export function pythonChapterUrl(siteUrl: string, chapterTitle: string): string 
   return `${siteUrl}/python/#${anchor || "topic"}`;
 }
 
+export function definedTermSetJsonLd(opts: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  terms: { name: string; description: string; url: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    name: opts.name,
+    description: opts.description,
+    url: opts.pageUrl,
+    hasDefinedTerm: opts.terms.map((term) => ({
+      "@type": "DefinedTerm",
+      name: term.name,
+      description: term.description,
+      url: term.url,
+    })),
+  };
+}
+
+export function itemListJsonLd(opts: {
+  pageUrl: string;
+  name: string;
+  items: { name: string; url: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: opts.name,
+    url: opts.pageUrl,
+    itemListElement: opts.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  };
+}
+
 export function lessonLearningResourceJsonLd(opts: {
   siteUrl: string;
   url: string;

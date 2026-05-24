@@ -1,0 +1,19 @@
+---
+import AiTermCountBadge from "./AiTermCountBadge.astro";
+
+interface Props {
+  title: string;
+  count: number;
+  /** h1 on section pages, default inline elsewhere */
+  as?: "h1" | "span";
+  badgeSize?: "md" | "sm";
+  class?: string;
+}
+
+const { title, count, as: Tag = "span", badgeSize = "md", class: className } = Astro.props;
+---
+
+<Tag class:list={["ai-term-group-title", className]}>
+  <span class="ai-term-group-title-text">{title}</span>
+  <AiTermCountBadge count={count} size={badgeSize} />
+</Tag>

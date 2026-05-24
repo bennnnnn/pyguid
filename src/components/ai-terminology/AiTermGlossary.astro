@@ -1,0 +1,40 @@
+---
+import type { AiTerm } from "../../lib/ai-terminology/types";
+import { termAnchorsForSection } from "../../lib/ai-terminology/helpers";
+import { termLabelClass, toGlossaryEntries } from "../../lib/ai-terminology/display";
+
+interface Props {
+  sectionId: string;
+  terms: AiTerm[];
+}
+
+const { sectionId, terms } = Astro.props;
+const entries = toGlossaryEntries(terms, termAnchorsForSection(sectionId, terms));
+---
+
+<ol class="ai-glossary not-prose">
+  {
+    entries.map((entry, index) => (
+      <li id={entry.anchorId} class="ai-glossary-item scroll-mt-24">
+        <div class="ai-glossary-item-inner">
+          <span class="ai-glossary-index" aria-hidden="true">
+            {index + 1}
+          </span>
+          <div class="ai-glossary-body">
+            <p class={termLabelClass(entry.term)}>{entry.term}</p>
+            <div class="ai-glossary-definition">
+              <p>{entry.meaning}</p>
+              {entry.python && (
+                <p class="ai-glossary-python">
+                  <span class="ai-glossary-python-label">Python</span>
+                  {entry.python}
+                </p>
+              )}
+              {entry.example && <p class="ai-glossary-example">{entry.example}</p>}
+            </div>
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ol>

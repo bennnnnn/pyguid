@@ -2,6 +2,8 @@
 export type PagerLink = {
   href: string;
   label: string;
+  /** Optional topic name (shows with arrow for glossary-style navigation). */
+  topic?: string;
 };
 
 interface Props {
@@ -21,19 +23,48 @@ const isTop = placement === "top";
       class:list={[
         "lesson-pager-nav",
         isTop ? "lesson-pager-nav-top" : "lesson-pager-nav-bottom",
+        (prev?.topic || next?.topic) && "lesson-pager-nav-topic",
       ]}
       aria-label={ariaLabel}
     >
       {prev ? (
-        <a href={prev.href} class="lesson-pager-btn">
-          {prev.label}
+        <a
+          href={prev.href}
+          class:list={["lesson-pager-btn", prev.topic && "lesson-pager-btn-topic"]}
+        >
+          {prev.topic ? (
+            <>
+              <span class="lesson-pager-arrow" aria-hidden="true">
+                ←
+              </span>
+              <span class="lesson-pager-topic">{prev.topic}</span>
+            </>
+          ) : (
+            prev.label
+          )}
         </a>
       ) : (
         <span class="lesson-pager-spacer" aria-hidden="true" />
       )}
       {next ? (
-        <a href={next.href} class="lesson-pager-btn lesson-pager-btn-next">
-          {next.label}
+        <a
+          href={next.href}
+          class:list={[
+            "lesson-pager-btn",
+            "lesson-pager-btn-next",
+            next.topic && "lesson-pager-btn-topic",
+          ]}
+        >
+          {next.topic ? (
+            <>
+              <span class="lesson-pager-topic">{next.topic}</span>
+              <span class="lesson-pager-arrow" aria-hidden="true">
+                →
+              </span>
+            </>
+          ) : (
+            next.label
+          )}
         </a>
       ) : (
         <span class="lesson-pager-spacer" aria-hidden="true" />

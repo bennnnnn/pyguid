@@ -1,0 +1,149 @@
+---
+import {
+  buildAiTerminologySearchIndex,
+  buildAiTerminologySectionSearchRows,
+} from "../../lib/ai-terminology/search-index";
+
+const termHits = buildAiTerminologySearchIndex();
+const sectionRows = buildAiTerminologySectionSearchRows();
+---
+
+<div class="ai-term-search" data-ai-term-search>
+  <label class="ai-term-search-label" for="ai-term-search-input">Search terms</label>
+  <div class="ai-term-search-field">
+    <input
+      id="ai-term-search-input"
+      type="search"
+      class="ai-term-search-input"
+      placeholder="Search all groups…"
+      autocomplete="off"
+      spellcheck="false"
+      aria-controls="ai-term-search-results"
+      aria-expanded="false"
+    />
+    <button type="button" class="ai-term-search-clear" hidden aria-label="Clear search">
+      Clear
+    </button>
+  </div>
+  <p class="ai-term-search-hint" data-search-hint>
+    Search {termHits.length} terms across {sectionRows.length} groups
+  </p>
+  <div
+    id="ai-term-search-results"
+    class="ai-term-search-results"
+    hidden
+    role="region"
+    aria-live="polite"
+    aria-label="Search results"
+  >
+    <p class="ai-term-search-results-meta" data-results-meta></p>
+    <ul class="ai-term-search-results-list" data-results-list></ul>
+  </div>
+</div>
+
+<script define:vars={{ termHits, sectionRows }}>
+  const root = document.querySelector("[data-ai-term-search]");
+  if (!root) return;
+
+  const input = root.querySelector("#ai-term-search-input");
+  const clearBtn = root.querySelector(".ai-term-search-clear");
+  const hint = root.querySelector("[data-search-hint]");
+  const panel = root.querySelector(".ai-term-search-results");
+  const meta = root.querySelector("[data-results-meta]");
+  const list = root.querySelector("[data-results-list]");
+  const cards = document.querySelectorAll("[data-ai-term-section-card]");
+  const empty = document.querySelector("[data-ai-term-search-empty]");
+
+  const normalize = (s) =>
+    s
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "");
+
+  const scoreTerm = (q, hit) => {
+    const term = normalize(hit.term);
+    const meaning = normalize(hit.meaning);
+    const title = normalize(hit.sectionTitle);
+    if (term === q) return 100;
+    if (term.startsWith(q)) return 80;
+    if (term.includes(q)) return 60;
+    if (title.includes(q)) return 40;
+    if (meaning.includes(q)) return 25;
+    return 0;
+  };
+
+  const scoreSection = (q, row) => {
+    const title = normalize(row.title);
+    const intro = normalize(row.intro);
+    if (title.includes(q)) return 50;
+    if (intro.includes(q)) return 20;
+    return 0;
+  };
+
+  const render = () => {
+    const raw = input.value.trim();
+    const q = normalize(raw);
+
+    if (!q) {
+      clearBtn.hidden = true;
+      panel.hidden = true;
+      input.setAttribute("aria-expanded", "false");
+      if (hint) hint.hidden = false;
+      cards.forEach((el) => el.removeAttribute("hidden"));
+      if (empty) empty.hidden = true;
+      return;
+    }
+
+    clearBtn.hidden = false;
+    if (hint) hint.hidden = true;
+    input.setAttribute("aria-expanded", "true");
+    panel.hidden = false;
+
+    const termResults = termHits
+      .map((hit) => ({ hit, score: scoreTerm(q, hit) }))
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 24);
+
+    const sectionIds = new Set(
+      sectionRows
+        .filter((row) => scoreSection(q, row) > 0)
+        .map((row) => row.id),
+    );
+    termResults.forEach(({ hit }) => sectionIds.add(hit.sectionId));
+
+    cards.forEach((el) => {
+      const id = el.getAttribute("data-ai-term-section-card");
+      if (sectionIds.has(id)) el.removeAttribute("hidden");
+      else el.setAttribute("hidden", "");
+    });
+
+    if (empty) empty.hidden = sectionIds.size > 0 || termResults.length > 0;
+
+    meta.textContent =
+      termResults.length === 0
+        ? `No terms match “${raw}”.`
+        : `${termResults.length} matching term${termResults.length === 1 ? "" : "s"}`;
+
+    list.replaceChildren(
+      ...termResults.map(({ hit }) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = hit.href;
+        a.className = "ai-term-search-hit";
+        a.innerHTML = `<span class="ai-term-search-hit-term"></span><span class="ai-term-search-hit-meta"></span>`;
+        a.querySelector(".ai-term-search-hit-term").textContent = hit.term;
+        a.querySelector(".ai-term-search-hit-meta").textContent = hit.sectionTitle;
+        li.append(a);
+        return li;
+      }),
+    );
+  };
+
+  input.addEventListener("input", render);
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    input.focus();
+    render();
+  });
+</script>
