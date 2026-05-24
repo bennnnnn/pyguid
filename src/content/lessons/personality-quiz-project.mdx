@@ -1,0 +1,69 @@
+---
+title: "Capstone: Personality quiz"
+description: "Build a scored quiz with dicts, if/elif, and print formatting."
+order: 159
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Buzzfeed-style quizzes map answers to a **type**. You will score choices with a **dict**, branch with **`if`/`elif`**, and print a result — the same pattern as the **Quiz app**, but you pick the theme.
+
+## Questions and scoring
+
+<PythonExample
+  filename="quiz.py"
+  code={`scores = {"explorer": 0, "builder": 0, "helper": 0}
+
+def answer(choice):
+scores[choice] = scores.get(choice, 0) + 1
+
+# Simulated answers
+
+answer("explorer")
+answer("builder")
+answer("explorer")
+
+winner = max(scores, key=scores.get)
+print("Your type:", winner)
+print("Breakdown:", scores)`}
+/>
+
+**Line by line**
+
+- **`scores` dict** — tallies per personality
+- **`answer`** bumps one key
+- **`max(..., key=scores.get)`** — highest score wins ties arbitrarily
+
+## Add questions (local)
+
+```python
+print("1) Adventure  2) Build  3) Help friends")
+choice = input("> ")
+if choice == "1":
+    answer("explorer")
+elif choice == "2":
+    answer("builder")
+else:
+    answer("helper")
+```
+
+Repeat for 3–5 questions, then print the winner.
+
+## Stretch goals
+
+- Store questions in a **list of dicts**
+- Save results to **JSON** (see **JSON todo**)
+- Use **enum** for result types
+
+<TryIt title="Try it yourself" answer="explorer">
+  With the simulated answers, which type wins?
+</TryIt>
+
+## Recap
+
+- **Dict** for scores, **max** for winner
+- Combines **if**, **input**, and presentation skills
+- Customize names and questions for your own quiz site idea
+
+Next: **Dataclasses** preview.

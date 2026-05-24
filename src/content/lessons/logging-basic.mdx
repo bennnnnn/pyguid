@@ -1,0 +1,68 @@
+---
+title: "Logging basics"
+description: "Record events with levels instead of print debugging."
+order: 163
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+`print` works until you need **timestamps**, **severity**, or **files** of history. The **`logging`** module is the standard way to record what your program did — and what went wrong.
+
+## One new idea: getLogger and levels
+
+<PythonExample
+  filename="logging_demo.py"
+  code={`import logging
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger("myapp")
+
+log.debug("Detail only for developers")
+log.info("Server started")
+log.warning("Disk almost full")
+log.error("Could not save file")`}
+/>
+
+| Level     | When to use              |
+| --------- | ------------------------ |
+| `DEBUG`   | verbose development info |
+| `INFO`    | normal milestones        |
+| `WARNING` | odd but not fatal        |
+| `ERROR`   | something failed         |
+
+With `level=INFO`, **debug** lines are hidden.
+
+## Log to a file (local)
+
+```python
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+```
+
+## print vs logging
+
+| print             | logging                       |
+| ----------------- | ----------------------------- |
+| quick experiments | real apps and servers         |
+| always shows      | levels and files              |
+| hard to filter    | turn down noise in production |
+
+<Callout variant="tip">
+  Replace stray debug prints with **`log.debug`** as projects grow.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Server started">
+  At INFO level, does the debug line appear? (Run and check output.)
+</TryIt>
+
+## Recap
+
+- **`logging.getLogger(__name__)`**
+- **Levels** filter noise
+- **`basicConfig`** for simple scripts
+
+Next: **Regular expressions** basics.

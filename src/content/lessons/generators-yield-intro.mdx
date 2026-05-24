@@ -1,0 +1,63 @@
+---
+title: "Generators and yield"
+description: "Produce values lazily with yield instead of return."
+order: 153
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+A **`return`** sends one value and stops. **`yield`** pauses the function, hands you a value, and **resumes** where it left off — perfect for long sequences you do not want to store all at once.
+
+## One new idea: yield one at a time
+
+<PythonExample
+  filename="gen.py"
+  code={`def count_up_to(n):
+    current = 1
+    while current <= n:
+        yield current
+        current += 1
+
+for num in count_up_to(3):
+print(num)`}
+/>
+
+Calling `count_up_to(3)` returns a **generator object** — the loop pulls 1, then 2, then 3.
+
+## Compare to a list
+
+<PythonExample
+  filename="compare.py"
+  code={`def squares_list(n):
+    result = []
+    for i in range(1, n + 1):
+        result.append(i * i)
+    return result
+
+def squares_gen(n):
+for i in range(1, n + 1):
+yield i \* i
+
+print(list(squares_list(3)))
+print(list(squares_gen(3)))`}
+/>
+
+Same output; the generator does not build the full list until you ask (e.g. `list(...)`).
+
+<Callout variant="tip">
+  Use generators for **large** or **infinite** streams. Use lists when you need indexing
+  and length often.
+</Callout>
+
+<TryIt title="Try it yourself" answer="1 2 3">
+  Run `count_up_to(3)`. What three numbers print?
+</TryIt>
+
+## Recap
+
+- **`yield`** makes a generator function
+- **`for x in gen()`** drives it
+- Pairs with **itertools.islice**
+
+Next: **Decorators preview**.

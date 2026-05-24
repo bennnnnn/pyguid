@@ -1,0 +1,68 @@
+---
+title: "CLI with argparse"
+description: "Build command-line tools with flags, help text, and types."
+order: 119
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+`sys.argv` works, but users forget argument order. **`argparse`** builds a **help message**, **flags**, and **typed** options — like `--count 3` instead of guessing positions.
+
+## One new idea: ArgumentParser
+
+<PythonExample
+  filename="argparse_demo.py"
+  code={`import argparse
+
+parser = argparse.ArgumentParser(description="Say hello")
+parser.add_argument("name", help="Who to greet")
+parser.add_argument("--loud", action="store_true", help="SHOUT")
+
+# Simulated parse (local: args = parser.parse_args())
+
+args = parser.parse_args(["Ada", "--loud"])
+
+message = f"Hello, {args.name}"
+if args.loud:
+message = message.upper()
+print(message)`}
+/>
+
+**Line by line**
+
+- `ArgumentParser` — defines your CLI
+- `add_argument("name")` — required positional
+- `--loud` with `store_true` — flag (False unless present)
+
+## Local usage
+
+```bash
+python greet.py Ada --loud
+python greet.py --help
+```
+
+`--help` prints usage automatically.
+
+| Feature    | argparse gives you      |
+| ---------- | ----------------------- |
+| `--help`   | auto-generated          |
+| `--flag`   | optional switches       |
+| `type=int` | convert strings to ints |
+
+<Callout variant="warning">
+  Run argparse scripts in a **terminal** on your computer. The browser runner may not
+  mirror real CLI behavior.
+</Callout>
+
+<TryIt title="Try it yourself" answer="HELLO, ADA">
+  In the example, what prints when `--loud` is passed?
+</TryIt>
+
+## Recap
+
+- **`argparse.ArgumentParser()`** + **`add_argument`**
+- **`parse_args()`** returns an object with attributes
+- Better UX than raw **`sys.argv`**
+
+Next: **Tracebacks** — reading error reports.

@@ -1,0 +1,63 @@
+---
+title: "staticmethod and classmethod"
+description: "Functions on a class that do not need instance data, or need the class itself."
+order: 131
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+Not every function on a class uses **`self`**. A **staticmethod** is a plain function namespaced under the class. A **classmethod** receives the **class** as first argument — handy for alternate constructors.
+
+## One new idea: @staticmethod
+
+<PythonExample
+  filename="static.py"
+  code={`class MathTools:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+print(MathTools.add(2, 3))`}
+/>
+
+No `self` — call as `MathTools.add(2, 3)`.
+
+## One new idea: @classmethod
+
+<PythonExample
+  filename="classmethod_demo.py"
+  code={`class User:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+
+    @classmethod
+    def guest(cls):
+        return cls("Guest", "visitor")
+
+ada = User("Ada", "admin")
+g = User.guest()
+print(ada.name, ada.role)
+print(g.name, g.role)`}
+/>
+
+`cls` is the class (`User`). **`User.guest()`** builds an instance without hard-coding `User(...)` in callers.
+
+| Decorator       | First arg | Typical use               |
+| --------------- | --------- | ------------------------- |
+| (normal method) | `self`    | instance data             |
+| `@staticmethod` | none      | utility on namespace      |
+| `@classmethod`  | `cls`     | factory / alt constructor |
+
+<TryIt title="Try it yourself" answer="5">
+  Print `MathTools.add(2, 3)`.
+</TryIt>
+
+## Recap
+
+- **staticmethod** — no instance needed
+- **classmethod** — receives class, great for factories
+- Ordinary methods still use **`self`** most often
+
+Next: **`__str__` and `__repr__`**.

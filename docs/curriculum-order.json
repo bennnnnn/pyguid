@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -176,6 +176,7 @@
     { "slug": "print-vs-return", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-docstrings", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "type-hints-intro", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "type-hints-depth", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-scope", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "builtin-functions", "chapter": 11, "chapterTitle": "Functions" },
 
@@ -184,6 +185,8 @@
     { "slug": "venv-and-requirements", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "main-module-guard", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "import-from-as", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "sys-argv-basics", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "argparse-cli", "chapter": 12, "chapterTitle": "Modules" },
 
     { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "try-except", "chapter": 13, "chapterTitle": "Error Handling" },
@@ -200,6 +203,8 @@
     { "slug": "classes-intro", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-init-self", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-methods", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "class-property-decorator", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "classstaticmethod-classmethod", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-str-repr", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "inheritance", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "super-inheritance", "chapter": 14, "chapterTitle": "Classes" },
@@ -209,20 +214,31 @@
     { "slug": "read-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "file-readlines-encoding", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "write-files", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "context-managers-custom", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "file-append-mode", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "pathlib-basics", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "pathlib-glob-files", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "shutil-file-ops", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
 
     { "slug": "math-random-module", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "collections-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "assert-testing-intro", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "pytest-basics", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "enum-module-preview", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "itertools-preview", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "generators-yield-intro", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "decorators-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-todo-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "quiz-app-project", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "personality-quiz-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "dataclasses-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "datetime-basics", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "match-case-preview", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "logging-basic", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "regex-basics", "chapter": 16, "chapterTitle": "More Python" }
   ]
 }

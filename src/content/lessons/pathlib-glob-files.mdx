@@ -1,0 +1,63 @@
+---
+title: "Finding files with glob"
+description: "List matching paths with pathlib Path.glob."
+order: 143
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+A librarian finds every book whose title starts with “Py”. **`Path.glob`** searches a folder for names matching a **pattern** — like `*.txt` for all text files.
+
+## One new idea: glob patterns
+
+<PythonExample
+  filename="glob_demo.py"
+  code={`from pathlib import Path
+
+# Simulated folder listing (local: Path(".").glob("\*.py"))
+
+names = ["main.py", "utils.py", "notes.txt"]
+py_files = [n for n in names if n.endswith(".py")]
+
+for name in py_files:
+print(name)`}
+/>
+
+On your computer:
+
+```python
+from pathlib import Path
+
+for path in Path(".").glob("*.py"):
+    print(path.name)
+```
+
+| Pattern   | Matches                |
+| --------- | ---------------------- |
+| `*.py`    | ends with `.py`        |
+| `**/*.md` | `.md` in any subfolder |
+| `data_*`  | starts with `data_`    |
+
+## Combine with read
+
+```python
+for path in Path("notes").glob("*.txt"):
+    print(path.read_text(encoding="utf-8")[:50])
+```
+
+<Callout variant="warning">
+  `**` recursive glob can scan huge trees — start with one folder while learning.
+</Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  How many `.py` files in the simulated list?
+</TryIt>
+
+## Recap
+
+- **`Path.glob(pattern)`** — find files by name
+- Works with **pathlib** paths you already know
+- Pair with **read_text** / **write_text**
+
+Next: **shutil** — copy and move files.

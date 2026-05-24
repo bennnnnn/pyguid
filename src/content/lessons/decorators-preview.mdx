@@ -1,0 +1,57 @@
+---
+title: "Decorators preview"
+description: "Wrap functions to add logging or checks with @syntax."
+order: 154
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Gift wrap goes around a box without changing the gift inside. A **decorator** wraps a **function** — same call signature outside, extra behavior before or after inside.
+
+## One new idea: function that returns function
+
+<PythonExample
+  filename="decorator.py"
+  code={`def log_calls(func):
+    def wrapper(*args, **kwargs):
+        print("Calling", func.__name__)
+        result = func(*args, **kwargs)
+        print("Done", func.__name__)
+        return result
+    return wrapper
+
+@log_calls
+def add(a, b):
+return a + b
+
+print(add(2, 3))`}
+/>
+
+`@log_calls` above `add` means `add = log_calls(add)`.
+
+## What you already used
+
+| Decorator         | You saw it in   |
+| ----------------- | --------------- |
+| `@property`       | Classes chapter |
+| `@staticmethod`   | Classes chapter |
+| `@contextmanager` | Files chapter   |
+
+Decorators are the **same pattern** — wrap callable, return callable.
+
+<Callout variant="warning">
+  Decorators look magical at first. Trace one line at a time: wrapper calls original.
+</Callout>
+
+<TryIt title="Try it yourself" answer="5">
+  What does `add(2, 3)` return with the logger?
+</TryIt>
+
+## Recap
+
+- **`@decorator`** sugar for wrapping
+- **`wrapper`** calls the original function
+- Read `@property` and `@staticmethod` with this lens
+
+Next: **Lambda functions**.

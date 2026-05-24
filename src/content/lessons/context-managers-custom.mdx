@@ -1,0 +1,63 @@
+---
+title: "Custom context managers"
+description: "Use with and contextlib to guarantee setup and cleanup."
+order: 140
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+Opening a file with **`with`** already guarantees the file **closes** even if an error happens. You can write the same pattern for **timers**, **locks**, or **temporary settings** using **`contextlib`**.
+
+## Files already use with
+
+```python
+with open("notes.txt", encoding="utf-8") as f:
+    text = f.read()
+# file closed here automatically
+```
+
+## One new idea: contextlib.contextmanager
+
+<PythonExample
+  filename="context_demo.py"
+  code={`from contextlib import contextmanager
+
+@contextmanager
+def tag(name):
+print(f"[{name}] start")
+try:
+yield name
+finally:
+print(f"[{name}] end")
+
+with tag("job") as label:
+print("Working inside", label)`}
+/>
+
+**Line by line**
+
+- Code **before** `yield` — setup
+- **`yield`** — body of `with` block runs
+- Code **after** `yield` in `finally` — cleanup always runs
+
+## Class-based style (preview)
+
+Classes can implement `__enter__` and `__exit__` — same idea, more boilerplate. `contextmanager` is the quick version.
+
+<Callout variant="tip">
+  Use context managers whenever you pair **open/close**, **acquire/release**, or
+  **start/stop**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="[job] end">
+  What is the last line printed when the block finishes?
+</TryIt>
+
+## Recap
+
+- **`with`** guarantees cleanup
+- **`@contextmanager`** + **`yield`** for custom blocks
+- **`finally`** runs even on errors
+
+Next: **Append mode** for growing files.

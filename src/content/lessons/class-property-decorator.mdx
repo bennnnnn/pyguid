@@ -1,0 +1,70 @@
+---
+title: "The @property decorator"
+description: "Expose computed attributes with dot syntax and optional setters."
+order: 130
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+A circle stores **radius**, but you often want **area** without storing duplicate data. **`@property`** lets you write `circle.area` while a method does the math behind the scenes.
+
+## One new idea: read-only property
+
+<PythonExample
+  filename="property_demo.py"
+  code={`class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+c = Circle(3)
+print(c.radius)
+print(c.area)`}
+/>
+
+Call **`c.area`** — no parentheses. It runs the method and returns the result.
+
+## Setter (optional)
+
+<PythonExample
+  filename="property_set.py"
+  code={`class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError("Too cold")
+        self._celsius = value
+
+t = Temperature(20)
+t.celsius = 25
+print(t.celsius)`}
+/>
+
+Leading **`_celsius`** signals “internal” — convention, not enforced.
+
+<Callout variant="tip">
+  Use `@property` when an attribute is **derived** or needs validation on assignment.
+</Callout>
+
+<TryIt title="Try it yourself" answer="28.27431">
+  Create `Circle(3)` and print `area` (approx 28.27).
+</TryIt>
+
+## Recap
+
+- **`@property`** — attribute-style access
+- **`@name.setter`** — control writes
+- Keeps public API clean (`obj.area` not `obj.get_area()`)
+
+Next: **staticmethod and classmethod**.

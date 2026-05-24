@@ -1,0 +1,55 @@
+---
+title: "enum — named constants"
+description: "Group related constants with the enum module."
+order: 151
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Magic strings like `"pending"` and `"done"` are easy to mistype. **Enums** give each choice a **name** and a **value** — autocomplete-friendly and readable.
+
+## One new idea: Enum class
+
+<PythonExample
+  filename="enum_demo.py"
+  code={`from enum import Enum
+
+class Status(Enum):
+PENDING = "pending"
+DONE = "done"
+FAILED = "failed"
+
+task = Status.PENDING
+print(task)
+print(task.name)
+print(task.value)
+
+if task is Status.PENDING:
+print("Still waiting")`}
+/>
+
+Compare with **`is`** or **`==`** to other enum members — not random strings.
+
+## Why not plain strings?
+
+| Approach         | Typos? | IDE help? |
+| ---------------- | ------ | --------- |
+| `"pendng"` typo  | yes    | no        |
+| `Status.PENDING` | harder | yes       |
+
+<Callout variant="tip">
+  Use enums for **fixed sets**: order status, user roles, compass directions.
+</Callout>
+
+<TryIt title="Try it yourself" answer="pending">
+  What is `Status.DONE.value`?
+</TryIt>
+
+## Recap
+
+- **`from enum import Enum`**
+- Members are **`Name = value`**
+- Safer than scattered string constants
+
+Next: **itertools** preview.

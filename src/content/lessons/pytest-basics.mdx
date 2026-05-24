@@ -1,0 +1,77 @@
+---
+title: "pytest basics"
+description: "Organize tests in files and run them with pytest."
+order: 150
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+**assert** checks one idea at a time. **pytest** runs **many** checks from files named `test_*.py` and reports pass/fail clearly — how most Python teams test code.
+
+## One new idea: test functions
+
+```python
+# test_slugify.py
+from myapp import slugify
+
+def test_lowercase():
+    assert slugify("Hello") == "hello"
+
+def test_spaces():
+    assert slugify("a b") == "a-b"
+```
+
+Rules pytest expects:
+
+- File name starts with **`test_`**
+- Function name starts with **`test_`**
+- Body uses plain **`assert`**
+
+## Run locally
+
+```bash
+pip install pytest
+pytest
+```
+
+Pytest discovers tests automatically and shows green/red output.
+
+## Browser-safe demo
+
+<PythonExample
+  filename="test_demo.py"
+  code={`def double(n):
+    return n * 2
+
+def test_double_even():
+assert double(2) == 4
+
+def test_double_zero():
+assert double(0) == 0
+
+# Manual run without pytest
+
+test_double_even()
+test_double_zero()
+print("All tests passed")`}
+/>
+
+On your PC, pytest calls those functions for you and stops on the first failure.
+
+<Callout variant="note">
+  Install pytest in a **venv** (see **venv and requirements**). Skulpt does not run
+  pytest.
+</Callout>
+
+<TryIt title="Try it yourself" answer="All tests passed">
+  Run the manual demo. What prints?
+</TryIt>
+
+## Recap
+
+- **`test_*.py`** files with **`test_*` functions**
+- **`pytest`** command runs the suite
+- Builds on **Testing with assert**
+
+Next: **enum** — named constants.

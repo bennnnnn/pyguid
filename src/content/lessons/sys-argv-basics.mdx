@@ -1,0 +1,60 @@
+---
+title: "Command-line arguments (sys.argv)"
+description: "Read script arguments from the terminal with sys.argv."
+order: 118
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+When you run `python greet.py Ada`, the name **Ada** travels with the script. **`sys.argv`** is the list of command-line words Python received.
+
+## One new idea: argv is a list of strings
+
+<PythonExample
+  filename="argv_demo.py"
+  code={`import sys
+
+# Simulated argv (on your PC, Python fills this automatically)
+
+sys.argv = ["greet.py", "Ada", "Bob"]
+
+print("Script:", sys.argv[0])
+print("Args:", sys.argv[1:])
+
+for name in sys.argv[1:]:
+print("Hello,", name)`}
+/>
+
+**Line by line**
+
+- `sys.argv[0]` — script name (`greet.py`)
+- `sys.argv[1:]` — everything **after** the script name
+- All pieces are **strings** — convert with `int()` when needed
+
+## Typical local script
+
+```python
+import sys
+
+if len(sys.argv) < 2:
+    print("Usage: python greet.py NAME")
+else:
+    print("Hello,", sys.argv[1])
+```
+
+<Callout variant="note">
+  Skulpt sets `sys.argv` differently. Practice CLI scripts on your machine with Python 3.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello, Ada">
+  With the simulated argv above, what prints for the first argument name?
+</TryIt>
+
+## Recap
+
+- **`import sys`** then **`sys.argv`**
+- Index `0` = script, `1+` = arguments
+- Foundation for **argparse**
+
+Next: **argparse** — friendly CLI help text.

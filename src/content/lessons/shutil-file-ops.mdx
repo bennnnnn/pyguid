@@ -1,0 +1,63 @@
+---
+title: "Copy and move files (shutil)"
+description: "Copy, move, and remove files and folders with shutil."
+order: 144
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+You mastered reading and writing one file. **`shutil`** (shell utilities) copies whole files, moves them, or duplicates folders — like drag-and-drop in the file manager, but in code.
+
+## One new idea: copy and move
+
+```python
+import shutil
+from pathlib import Path
+
+src = Path("notes.txt")
+dst = Path("backup/notes.txt")
+
+dst.parent.mkdir(parents=True, exist_ok=True)
+shutil.copy(src, dst)
+shutil.move("old_name.txt", "new_name.txt")
+```
+
+| Function              | What it does             |
+| --------------------- | ------------------------ |
+| `shutil.copy(a, b)`   | copy file content        |
+| `shutil.move(a, b)`   | move or rename           |
+| `shutil.rmtree(path)` | delete folder + contents |
+
+## Simulated backup list
+
+<PythonExample
+  filename="shutil_demo.py"
+  code={`files = ["notes.txt", "todo.json"]
+backup = []
+
+for name in files:
+backup.append(f"backup/{name}")
+
+print("Backed up:")
+for path in backup:
+print(path)`}
+/>
+
+Real `shutil.copy` needs files to exist on disk — practice in a test folder locally.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  `rmtree` is **permanent**. Double-check the path before deleting a directory tree.
+</Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  How many backup paths in the simulated example?
+</TryIt>
+
+## Recap
+
+- **`import shutil`** for file operations beyond read/write
+- **`mkdir(parents=True, exist_ok=True)`** before copying into new folders
+- Always test on **copies** first
+
+Next: **Notes app** project.

@@ -1,0 +1,69 @@
+---
+title: "Type hints: lists, dicts, and Optional"
+description: "Annotate collections and values that may be missing."
+order: 110
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+You labeled single values with `str` and `int`. Real functions take **lists of names**, **dicts of scores**, and sometimes **nothing** when a lookup fails. Modern hints describe those shapes too.
+
+## One new idea: list and dict hints
+
+<PythonExample
+  filename="hints_collections.py"
+  code={`def total(scores: list[int]) -> int:
+    return sum(scores)
+
+def greet_all(names: list[str]) -> None:
+for name in names:
+print(f"Hi, {name}")
+
+def show_user(profile: dict[str, str]) -> None:
+print(profile.get("name", "unknown"))
+
+print(total([90, 85, 92]))
+greet_all(["Ada", "Bob"])`}
+/>
+
+Python 3.9+ uses `list[int]`. Older code wrote `List[int]` from `typing` — same idea.
+
+## Optional — value or None
+
+<PythonExample
+  filename="optional.py"
+  code={`def find_user(users: list[str], name: str) -> str | None:
+    for user in users:
+        if user == name:
+            return user
+    return None
+
+result = find_user(["Ada", "Bob"], "Zoe")
+print(result)`}
+/>
+
+`str | None` means “text **or** missing.” You can also write `Optional[str]` after `from typing import Optional`.
+
+| Hint             | Meaning               |
+| ---------------- | --------------------- |
+| `list[str]`      | list of strings       |
+| `dict[str, int]` | string keys, int vals |
+| `str \| None`    | maybe missing         |
+
+<Callout variant="note">
+  Hints are still **not enforced** at runtime by default. They help **you** and your
+  editor.
+</Callout>
+
+<TryIt title="Try it yourself" answer="267">
+  Call `total([100, 87, 80])`.
+</TryIt>
+
+## Recap
+
+- **`list[T]`**, **`dict[K, V]`** for collections
+- **`T | None`** when a function might return nothing useful
+- Builds on **Type hints intro**
+
+Next: **Variable scope** in functions.

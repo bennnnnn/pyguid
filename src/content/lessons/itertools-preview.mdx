@@ -1,0 +1,63 @@
+---
+title: "itertools preview"
+description: "Chain iterables and slice infinite streams with itertools."
+order: 152
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+You chained lists with **`+`** and loops. **`itertools`** offers memory-friendly tools to **link** iterables and **take slices** from streams without building giant lists first.
+
+## One new idea: chain
+
+<PythonExample
+  filename="chain_demo.py"
+  code={`from itertools import chain
+
+a = [1, 2]
+b = [3, 4]
+for n in chain(a, b):
+print(n)`}
+/>
+
+Walks **a** then **b** — like `for n in a + b` but works on any iterables.
+
+## islice — take first N
+
+<PythonExample
+  filename="islice_demo.py"
+  code={`from itertools import islice
+
+def counter():
+n = 0
+while True:
+yield n
+n += 1
+
+first_five = list(islice(counter(), 5))
+print(first_five)`}
+/>
+
+`islice` grabs the first **5** items from an infinite generator safely.
+
+| Tool     | Does                                |
+| -------- | ----------------------------------- |
+| `chain`  | flatten iterables one after another |
+| `islice` | first N items from any stream       |
+
+<Callout variant="note">
+  More tools exist (`cycle`, `combinations`) — explore when you need them.
+</Callout>
+
+<TryIt title="Try it yourself" answer="[0, 1, 2, 3, 4]">
+  Run `islice` example. What list prints?
+</TryIt>
+
+## Recap
+
+- **`from itertools import chain, islice`**
+- Great with **generators**
+- Standard library — no pip
+
+Next: **Generators and yield**.

@@ -1,0 +1,68 @@
+---
+title: "match / case (Python 3.10+)"
+description: "Branch on values with structural pattern matching."
+order: 162
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Long **`if` / `elif`** chains on one variable get noisy. **`match`** / **`case`** (Python 3.10+) express “when this shape, do that” — especially nice for **strings** and **simple patterns**.
+
+## One new idea: match command
+
+<PythonExample
+  filename="match_demo.py"
+  code={`def handle(command):
+    match command:
+        case "quit":
+            return "Goodbye"
+        case "help":
+            return "Commands: help, quit"
+        case _:
+            return "Unknown command"
+
+print(handle("help"))
+print(handle("fly"))`}
+/>
+
+**Line by line**
+
+- `match command:` — what you are inspecting
+- `case "quit":` — exact string match
+- `case _:` — wildcard (like `else`)
+
+## Multiple values in one case
+
+<PythonExample
+  filename="match_multi.py"
+  code={`def http_label(code):
+    match code:
+        case 200 | 201:
+            return "OK"
+        case 404:
+            return "Not found"
+        case _:
+            return "Other"
+
+print(http_label(200))
+print(http_label(500))`}
+/>
+
+`|` inside a case means “or”.
+
+<Callout variant="note">
+  Need Python **3.10+**. Older versions stick with **`if` / `elif`** — still fine.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Commands: help, quit">
+  What does `handle("help")` return?
+</TryIt>
+
+## Recap
+
+- **`match`** + **`case`** for clear branching
+- **`case _:`** is the default
+- Optional upgrade from **elif** chains
+
+Next: **Logging** basics.
