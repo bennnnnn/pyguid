@@ -1,0 +1,71 @@
+---
+title: "Capstone: Database todo app"
+description: "Persist todos in SQLite with insert, select, and update."
+order: 178
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Your list-based **todo** and **JSON todo** projects stored data in memory or text. SQLite keeps todos in **`todos.db`** — one file, real queries, ready for a menu CLI.
+
+## Schema
+
+```sql
+CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    done INTEGER NOT NULL DEFAULT 0
+);
+```
+
+## Core functions (local Python)
+
+```python
+import sqlite3
+
+def add_todo(conn, text):
+    conn.execute("INSERT INTO todos (text, done) VALUES (?, ?)", (text, 0))
+    conn.commit()
+
+def list_todos(conn):
+    return conn.execute(
+        "SELECT id, text, done FROM todos ORDER BY id"
+    ).fetchall()
+
+def mark_done(conn, todo_id):
+    conn.execute("UPDATE todos SET done = 1 WHERE id = ?", (todo_id,))
+    conn.commit()
+```
+
+## Browser-safe preview
+
+<PythonExample
+  filename="db_todo.py"
+  code={`rows = [
+    (1, "Learn sqlite3", 1),
+    (2, "Build capstone", 0),
+]
+
+for todo_id, text, done in rows:
+mark = "x" if done else " "
+print(f"[{mark}] {todo_id}. {text}")`}
+/>
+
+## Stretch goals
+
+- Menu loop with **argparse**
+- Export to **CSV**
+- Tests with **pytest** on helper functions
+
+<TryIt title="Try it yourself" answer="[ ] 2. Build capstone">
+  Which task is still open in the preview?
+</TryIt>
+
+## Recap
+
+- **CREATE / INSERT / SELECT / UPDATE**
+- Parameterized `?` queries
+- Bridges **JSON todo** and **multi-file CLI**
+
+Next: **Multi-file CLI capstone**.

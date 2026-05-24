@@ -1,0 +1,64 @@
+---
+title: "Environment variables (os.environ)"
+description: "Read configuration and secrets from the environment."
+order: 122
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Apps store API keys and database URLs in **environment variables** — not hard-coded in source. **`os.environ`** is a dict-like map of names to values your OS provides.
+
+## One new idea: read a variable
+
+<PythonExample
+  filename="environ.py"
+  code={`import os
+
+# Simulated environment (your shell sets these for real)
+
+os.environ["APP_NAME"] = "PyGuide"
+os.environ["DEBUG"] = "true"
+
+print(os.environ["APP_NAME"])
+print(os.environ.get("DEBUG", "false"))
+print(os.environ.get("MISSING", "default"))`}
+/>
+
+Use **`.get`** with a default when the variable might be missing.
+
+## Set locally (terminal)
+
+```bash
+export APP_NAME=PyGuide
+python app.py
+```
+
+Windows PowerShell:
+
+```powershell
+$env:APP_NAME = "PyGuide"
+```
+
+## Why not hard-code secrets?
+
+| In source code    | In environment        |
+| ----------------- | --------------------- |
+| leaks in git      | stays on your machine |
+| same for everyone | different per deploy  |
+
+<Callout variant="warning">
+  Never commit `.env` files with real passwords. Add `.env` to `.gitignore`.
+</Callout>
+
+<TryIt title="Try it yourself" answer="PyGuide">
+  What does `os.environ["APP_NAME"]` print in the demo?
+</TryIt>
+
+## Recap
+
+- **`import os`** → **`os.environ`**
+- **`.get(name, default)`** for safe reads
+- Next: **secrets** for generating tokens
+
+Next: **secrets and token safety**.

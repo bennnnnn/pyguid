@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -177,6 +177,8 @@
     { "slug": "function-docstrings", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "type-hints-intro", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "type-hints-depth", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "typing-typeddict-protocol", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "mypy-type-checking", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-scope", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "builtin-functions", "chapter": 11, "chapterTitle": "Functions" },
 
@@ -187,6 +189,10 @@
     { "slug": "import-from-as", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "sys-argv-basics", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "argparse-cli", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "os-environ-vars", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "secrets-token-safety", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "subprocess-run-safety", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "pyproject-packaging", "chapter": 12, "chapterTitle": "Modules" },
 
     { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "try-except", "chapter": 13, "chapterTitle": "Error Handling" },
@@ -219,6 +225,9 @@
     { "slug": "pathlib-basics", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "pathlib-glob-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "shutil-file-ops", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "csv-read-write", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "pathlib-relative-absolute", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "configparser-ini-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
 
     { "slug": "math-random-module", "chapter": 16, "chapterTitle": "More Python" },
@@ -232,6 +241,7 @@
     { "slug": "decorators-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "sqlite3-database-basics", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-todo-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "quiz-app-project", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "personality-quiz-project", "chapter": 16, "chapterTitle": "More Python" },
@@ -239,6 +249,12 @@
     { "slug": "datetime-basics", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "match-case-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "logging-basic", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "http-client-intro", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "unittest-module", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "functools-lru-cache", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "copy-deepcopy", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "database-todo-project", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "multi-file-cli-capstone", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "regex-basics", "chapter": 16, "chapterTitle": "More Python" }
   ]
 }

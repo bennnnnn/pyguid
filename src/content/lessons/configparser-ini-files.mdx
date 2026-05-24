@@ -1,0 +1,64 @@
+---
+title: "INI config files"
+description: "Load settings from .ini files with configparser."
+order: 153
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+Games store graphics settings in a config file. **INI** files group **sections** (`[database]`) and **key = value** lines. **`configparser`** reads them without writing your own parser.
+
+## One new idea: read_string
+
+<PythonExample
+  filename="ini.py"
+  code={`import configparser
+
+text = """
+[app]
+name = PyGuide
+debug = true
+
+[database]
+path = data/app.db
+"""
+
+config = configparser.ConfigParser()
+config.read_string(text)
+
+print(config["app"]["name"])
+print(config.getboolean("app", "debug"))
+print(config["database"]["path"])`}
+/>
+
+**Line by line**
+
+- `ConfigParser()` — empty config object
+- `read_string` — load from text (use `read("settings.ini")` on disk)
+- `config["section"]["key"]` — access values
+
+## get with types
+
+| Method       | Returns    |
+| ------------ | ---------- |
+| `get`        | string     |
+| `getint`     | integer    |
+| `getboolean` | True/False |
+
+<Callout variant="note">
+  JSON and **environment variables** are also popular for config. INI stays readable for
+  humans.
+</Callout>
+
+<TryIt title="Try it yourself" answer="data/app.db">
+  What is the database path?
+</TryIt>
+
+## Recap
+
+- **`configparser.ConfigParser`**
+- Sections in **`[brackets]`**
+- Pair with **os.environ** for secrets (not in INI)
+
+Next: **Notes app** project.

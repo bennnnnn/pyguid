@@ -1,0 +1,70 @@
+---
+title: "HTTP clients: urllib and requests"
+description: "Fetch URLs with the standard library or the requests package."
+order: 174
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Websites speak **HTTP**. Python can **GET** a URL and read the response — weather APIs, JSON feeds, or HTML pages.
+
+## Standard library: urllib
+
+```python
+from urllib.request import urlopen
+
+with urlopen("https://example.com") as response:
+    html = response.read().decode("utf-8")
+    print(html[:200])
+```
+
+Runs with **no pip install**. Always use HTTPS URLs you trust.
+
+## requests (third-party, popular)
+
+```bash
+pip install requests
+```
+
+```python
+import requests
+
+response = requests.get("https://api.github.com")
+print(response.status_code)
+print(response.json().keys())
+```
+
+| Tool     | Install  | API style   |
+| -------- | -------- | ----------- |
+| urllib   | built-in | lower-level |
+| requests | pip      | friendly    |
+
+## Simulated response (browser)
+
+<PythonExample
+  filename="http_demo.py"
+  code={`# Simulated HTTP response
+status_code = 200
+body = '{"message": "Hello, API"}'
+
+print("Status:", status_code)
+print("Body:", body)`}
+/>
+
+<Callout variant="note">
+  Network calls do not run in Skulpt. Test HTTP code locally. Respect API rate limits and
+  terms of service.
+</Callout>
+
+<TryIt title="Try it yourself" answer="200">
+  What status code does the demo print?
+</TryIt>
+
+## Recap
+
+- **urllib** for simple GET
+- **requests** when you want convenience
+- Async HTTP is a later topic
+
+Next: **unittest** module.

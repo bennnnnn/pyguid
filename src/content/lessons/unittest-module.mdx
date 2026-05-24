@@ -1,0 +1,64 @@
+---
+title: "unittest module"
+description: "Organize tests in classes with the built-in unittest framework."
+order: 175
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+**pytest** is popular today, but **`unittest`** ships with Python — same ideas: run checks, report failures.
+
+## One new idea: TestCase class
+
+<PythonExample
+  filename="unittest_demo.py"
+  code={`import unittest
+
+def double(n):
+return n \* 2
+
+class TestDouble(unittest.TestCase):
+def test_two(self):
+self.assertEqual(double(2), 4)
+
+    def test_zero(self):
+        self.assertEqual(double(0), 0)
+
+suite = unittest.TestLoader().loadTestsFromTestCase(TestDouble)
+runner = unittest.TextTestRunner()
+result = runner.run(suite)
+print("Failures:", len(result.failures))`}
+/>
+
+Methods must start with **`test_`**. Use **`self.assertEqual`**, **`self.assertTrue`**, etc.
+
+## Run from terminal
+
+```bash
+python -m unittest test_double.py
+```
+
+## pytest vs unittest
+
+| unittest            | pytest             |
+| ------------------- | ------------------ |
+| built-in            | pip install        |
+| class-based         | plain functions OK |
+| verbose boilerplate | less code          |
+
+<Callout variant="tip">
+  Read legacy code in **unittest**; write new tests in **pytest** if you choose one style.
+</Callout>
+
+<TryIt title="Try it yourself" answer="0">
+  How many failures in the demo run?
+</TryIt>
+
+## Recap
+
+- **`unittest.TestCase`** + **`test_*` methods**
+- **`python -m unittest`** to discover tests
+- Same goals as **pytest basics**
+
+Next: **functools.lru_cache**.

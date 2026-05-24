@@ -1,0 +1,52 @@
+---
+title: "Caching with lru_cache"
+description: "Speed up pure functions by remembering past results."
+order: 176
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Fibonacci with recursion recalculates the same numbers forever. **`@lru_cache`** remembers results so repeated calls return instantly — a memoization decorator from **`functools`**.
+
+## One new idea: @lru_cache
+
+<PythonExample
+  filename="fib.py"
+  code={`from functools import lru_cache
+
+@lru_cache
+def fib(n):
+if n < 2:
+return n
+return fib(n - 1) + fib(n - 2)
+
+print(fib(10))
+print(fib.cache_info())`}
+/>
+
+Second call with the same `n` hits the cache.
+
+## When it helps
+
+| Good cache candidate    | Poor cache candidate    |
+| ----------------------- | ----------------------- |
+| pure function           | depends on global state |
+| same args → same result | huge argument objects   |
+| expensive compute       | fast already            |
+
+<Callout variant="warning">
+  Cached functions keep arguments in memory. Use **`maxsize=`** on huge inputs if needed.
+</Callout>
+
+<TryIt title="Try it yourself" answer="55">
+  What is `fib(10)`?
+</TryIt>
+
+## Recap
+
+- **`from functools import lru_cache`**
+- Decorate expensive **pure** functions
+- Inspect **`cache_info()`** while learning
+
+Next: **copy and deepcopy**.

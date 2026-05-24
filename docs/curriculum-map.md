@@ -4,7 +4,7 @@
 
 ## Current scale
 
-**164 lessons** · **16 chapters** · teaching flow + TryIt on every page
+**180 lessons** · **16 chapters** · teaching flow + TryIt on every page
 
 ## Chapter summary
 
@@ -12,61 +12,60 @@
 | -- | --------------- | ------- | ----------------------------------------------------- |
 | 1  | Getting Started | 6       | About Me                                              |
 | 2  | Variables       | 7       | Profile generator                                     |
-| 3  | Data Types      | 22      | isinstance, mutable/immutable, string count           |
+| 3  | Data Types      | 22      | isinstance, mutable/immutable                         |
 | 4  | Operators       | 8       | Tip calculator                                        |
 | 5  | If Statements   | 4       | Login checker                                         |
-| 6  | Loops           | 10      | Guessing game + random randint                        |
-| 7  | Lists           | 20      | zip, todo, nested comprehensions                      |
-| 8  | Tuples          | 5       | namedtuple preview                                    |
-| 9  | Sets            | 6       | set comprehensions, frozenset                         |
-| 10 | Dictionaries    | 14      | setdefault, contact book                              |
-| 11 | Functions       | 13      | type hints depth                                      |
-| 12 | Modules         | 7       | sys.argv, argparse                                    |
-| 13 | Error Handling  | 7       | multiple except types                                 |
+| 6  | Loops           | 10      | Guessing + random                                     |
+| 7  | Lists           | 20      | Todo list project                                     |
+| 8  | Tuples          | 5       | namedtuple                                            |
+| 9  | Sets            | 6       | comprehensions, frozenset                             |
+| 10 | Dictionaries    | 14      | Contact book                                          |
+| 11 | Functions       | 15      | TypedDict, Protocol, mypy                             |
+| 12 | Modules         | 11      | env, secrets, subprocess, pyproject                   |
+| 13 | Error Handling  | 7       | Safe calculator                                       |
 | 14 | Classes         | 9       | property, static/classmethod                          |
-| 15 | Files           | 10      | context managers, glob, shutil                        |
-| 16 | More Python     | 18      | pytest, enum, itertools, generators, personality quiz |
+| 15 | Files           | 13      | CSV, paths, INI config                                |
+| 16 | More Python     | 25      | sqlite, HTTP, capstones, unittest, functools          |
 
-## Wave 5 completed
+## Wave 6 completed
 
-- [x] Type hints depth (`list[str]`, `str | None`)
-- [x] `sys.argv` and **argparse**
-- [x] Custom **context managers** (`contextlib`)
-- [x] **enum**, **itertools**, **generators**
-- [x] **pytest** lesson
-- [x] **logging** basics
-- [x] **match/case** preview
-- [x] **Decorators** preview
-- [x] `@property`, staticmethod, classmethod
-- [x] pathlib **glob**, **shutil** copy/move
-- [x] **Personality quiz** capstone
+- [x] TypedDict and Protocol
+- [x] mypy static checking
+- [x] os.environ and secrets
+- [x] subprocess.run + shell safety
+- [x] pyproject.toml packaging
+- [x] CSV, relative/absolute paths, configparser INI
+- [x] sqlite3 basics
+- [x] HTTP (urllib + requests teaser)
+- [x] unittest module
+- [x] functools.lru_cache, copy.deepcopy
+- [x] Database todo + multi-file CLI capstones
 
-## Remaining backlog (wave 6+)
+## Remaining backlog (wave 7+)
 
-- [ ] Async / HTTP — out of scope unless requested
-- [ ] Full mypy / typing (`Protocol`, `TypedDict`)
-- [ ] `subprocess` and shell safety
-- [ ] `sqlite3` mini database lesson
-- [ ] `requests` / HTTP (external dep)
-- [ ] Packaging (`pyproject.toml`, publish teaser)
-- [ ] Capstone: multi-file CLI app combining argparse + JSON + tests
+- [ ] Async / aiohttp — only if requested
+- [ ] PyPI publish walkthrough (hands-on)
+- [ ] SQLAlchemy ORM teaser
+- [ ] Git for Python devs (branch, commit, PR)
+- [ ] Performance profiling (`cProfile`)
+- [ ] Web framework teaser (Flask/FastAPI one-pager)
 
 ## Projects track
 
-| Project            | Chapter | Status |
-| ------------------ | ------- | ------ |
-| About Me           | 1       | done   |
+| Project              | Chapter | Status |
+| -------------------- | ------- | ------ |
+| About Me             | 1       | done   |
 | Tip calculator       | 4       | done   |
 | Login checker        | 5       | done   |
-| Guessing game        | 6       | done   |
-| Random guessing      | 6       | done   |
+| Guessing games       | 6       | done   |
 | Todo list            | 7       | done   |
 | Contact book         | 10      | done   |
 | Safe calculator      | 13      | done   |
 | Notes app            | 15      | done   |
-| Quiz app             | 16      | done   |
+| Quiz / personality   | 16      | done   |
 | JSON todo            | 16      | done   |
-| Personality quiz     | 16      | done   |
+| Database todo        | 16      | done   |
+| Multi-file CLI       | 16      | done   |
 
 ## Reordering
 

@@ -1,0 +1,67 @@
+---
+title: "subprocess.run and shell safety"
+description: "Run external commands without shell injection risks."
+order: 124
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Sometimes Python calls another program — `git status`, `python -m pytest`, a formatter. **`subprocess.run`** starts that process and waits for the result.
+
+## One new idea: list form (safe)
+
+```python
+import subprocess
+
+result = subprocess.run(
+    ["python", "--version"],
+    capture_output=True,
+    text=True,
+)
+print(result.stdout)
+print("Exit code:", result.returncode)
+```
+
+Pass the command as a **list of strings** — no shell interprets spaces or `;`.
+
+## Simulated result (browser)
+
+<PythonExample
+  filename="subprocess_demo.py"
+  code={`# What subprocess returns conceptually
+class Result:
+    def __init__(self):
+        self.returncode = 0
+        self.stdout = "Python 3.12.0\\n"
+
+result = Result()
+print(result.stdout)
+print("Exit code:", result.returncode)`}
+/>
+
+## Avoid shell=True
+
+| Style                           | Risk                             |
+| ------------------------------- | -------------------------------- |
+| `run(["git", "status"])`        | safer                            |
+| `run("git status", shell=True)` | injection if user input mixed in |
+
+If you must use the shell, never paste untrusted text into the command string.
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  User input in `shell=True` strings can run **arbitrary** commands. Use the **list
+  form**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="0">
+  In the demo, what is `returncode` on success?
+</TryIt>
+
+## Recap
+
+- **`subprocess.run([...])`** with a list
+- **`capture_output=True, text=True`** for stdout
+- Avoid **`shell=True`** unless you understand the risk
+
+Next: **pyproject.toml** packaging teaser.

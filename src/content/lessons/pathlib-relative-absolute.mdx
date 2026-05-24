@@ -1,0 +1,65 @@
+---
+title: "Relative and absolute paths"
+description: "Join paths safely and resolve . and .. with pathlib."
+order: 152
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+A relative path says “next to me” (`data/notes.txt`). An **absolute** path starts from the drive root (`/Users/you/project/...`). **pathlib** joins and resolves without manual slash juggling.
+
+## One new idea: / operator
+
+<PythonExample
+  filename="paths.py"
+  code={`from pathlib import Path
+
+base = Path("project")
+notes = base / "data" / "notes.txt"
+print(notes)
+print(notes.name)
+print(notes.parent)`}
+/>
+
+`/` builds paths — cleaner than `"project" + "/" + "data"`.
+
+## resolve() — absolute path
+
+```python
+here = Path(".")
+absolute = here.resolve()
+print(absolute)
+```
+
+`resolve()` follows `.` and `..` to a canonical location (local disk).
+
+## is_absolute and parts
+
+<PythonExample
+  filename="absolute.py"
+  code={`from pathlib import Path
+
+p = Path("/tmp/log.txt")
+print("Absolute?", p.is_absolute())
+
+q = Path("logs/app.log")
+print("Absolute?", q.is_absolute())`}
+/>
+
+<Callout variant="tip">
+  Build paths with **`Path(__file__).parent`** in scripts so files work no matter where
+  you run the command.
+</Callout>
+
+<TryIt title="Try it yourself" answer="notes.txt">
+  What does `.name` return for `project/data/notes.txt`?
+</TryIt>
+
+## Recap
+
+- **`Path("a") / "b"`** — join
+- **`resolve()`** — absolute path
+- **`is_absolute()`** — quick check
+
+Next: **INI config files**.

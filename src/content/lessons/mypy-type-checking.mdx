@@ -1,0 +1,64 @@
+---
+title: "Static checking with mypy"
+description: "Find type mistakes before you run code using mypy."
+order: 112
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+Type hints are labels. **mypy** reads those labels and reports mismatches **before** runtime — like spell-check for types.
+
+## One new idea: run mypy locally
+
+```python
+# greet.py
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+greet(42)  # mypy flags this
+```
+
+```bash
+pip install mypy
+mypy greet.py
+```
+
+mypy reports: expected `str`, got `int`.
+
+## Clean example (browser-safe logic)
+
+<PythonExample
+  filename="typed_ok.py"
+  code={`def add(a: int, b: int) -> int:
+    return a + b
+
+result: int = add(2, 3)
+print(result)`}
+/>
+
+Hints document intent; mypy verifies callers on your machine.
+
+## When to adopt
+
+| Stage               | Action                 |
+| ------------------- | ---------------------- |
+| Learning            | hints on new functions |
+| Small scripts       | optional mypy          |
+| Team / library code | mypy in CI             |
+
+<Callout variant="tip">
+  Start with **`mypy your_file.py`** on one module. Fix errors incrementally.
+</Callout>
+
+<TryIt title="Try it yourself" answer="5">
+  Run the clean example. What is `result`?
+</TryIt>
+
+## Recap
+
+- **mypy** checks hints statically
+- Catches wrong argument types early
+- Works with **TypedDict** and **Protocol**
+
+Next: **Variable scope** in functions.

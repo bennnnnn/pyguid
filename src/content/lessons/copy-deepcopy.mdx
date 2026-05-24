@@ -1,0 +1,52 @@
+---
+title: "copy and deepcopy"
+description: "Clone objects without accidental shared nested lists."
+order: 177
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+`b = a` makes two names point at the **same** list. **`copy.copy`** makes a new outer list, but nested lists may still be shared. **`copy.deepcopy`** clones everything inside.
+
+## One new idea: shallow vs deep
+
+<PythonExample
+  filename="copy_demo.py"
+  code={`import copy
+
+original = [[1, 2], [3, 4]]
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+
+original[0].append(99)
+
+print("original:", original)
+print("shallow:", shallow)
+print("deep:", deep)`}
+/>
+
+**shallow** inner lists still alias **original**. **deep** is fully independent.
+
+| Assignment / copy  | Nested lists shared? |
+| ------------------ | -------------------- |
+| `b = a`            | yes (same object)    |
+| `copy.copy(a)`     | maybe                |
+| `copy.deepcopy(a)` | no                   |
+
+<Callout variant="tip">
+  You saw similar issues with **list copy** and **mutable class attributes** — same
+  underlying idea.
+</Callout>
+
+<TryIt title="Try it yourself" answer="[[1, 2, 99], [3, 4]]">
+  After append, does `deep[0]` include 99?
+</TryIt>
+
+## Recap
+
+- **`import copy`**
+- **Shallow** — outer container only
+- **Deep** — full tree duplicated
+
+Next: **Database todo** capstone.

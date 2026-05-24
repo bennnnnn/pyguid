@@ -1,0 +1,62 @@
+---
+title: "CSV files"
+description: "Read and write spreadsheet-style data with the csv module."
+order: 151
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+Spreadsheets export **CSV** — comma-separated rows. Python’s **`csv`** module reads and writes those tables without Excel.
+
+## One new idea: writer and reader
+
+<PythonExample
+  filename="csv_demo.py"
+  code={`import csv
+import io
+
+buffer = io.StringIO()
+writer = csv.writer(buffer)
+writer.writerow(["name", "score"])
+writer.writerow(["Ada", 95])
+writer.writerow(["Bob", 88])
+
+text = buffer.getvalue()
+print(text)
+
+reader = csv.reader(io.StringIO(text))
+for row in reader:
+print(row)`}
+/>
+
+`io.StringIO` simulates a file in memory — works in the browser. Locally use `open("scores.csv", newline="")`.
+
+## DictReader for named columns
+
+<PythonExample
+  filename="csv_dict.py"
+  code={`import csv
+import io
+
+text = "name,score\\nAda,95\\nBob,88\\n"
+reader = csv.DictReader(io.StringIO(text))
+for row in reader:
+print(row["name"], row["score"])`}
+/>
+
+<Callout variant="warning">
+  Always use `newline=""` when opening CSV files on Windows with `open(..., newline="")`.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Ada 95">
+  In DictReader output, what score for Ada?
+</TryIt>
+
+## Recap
+
+- **`csv.writer`**, **`csv.reader`**
+- **`csv.DictReader`** when the first row is headers
+- Great export format before **sqlite**
+
+Next: **Relative and absolute paths**.

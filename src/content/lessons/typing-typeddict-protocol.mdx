@@ -1,0 +1,71 @@
+---
+title: "TypedDict and Protocol"
+description: "Describe dict shapes and duck-typed interfaces with typing."
+order: 111
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+A contact card always has **name** and **phone** keys. **TypedDict** documents that shape. A **Protocol** describes behavior (“has a `.save()` method”) without forcing one parent class.
+
+## TypedDict — dict with required keys
+
+<PythonExample
+  filename="typeddict.py"
+  code={`from typing import TypedDict
+
+class Contact(TypedDict):
+name: str
+phone: str
+
+def show(contact: Contact) -> None:
+print(contact["name"], contact["phone"])
+
+ada: Contact = {"name": "Ada", "phone": "555-0100"}
+show(ada)`}
+/>
+
+Editors warn if you forget a key or use the wrong type. At runtime it is still a normal **dict**.
+
+## Protocol — structural typing
+
+<PythonExample
+  filename="protocol.py"
+  code={`from typing import Protocol
+
+class Saver(Protocol):
+def save(self) -> None: ...
+
+class FileNote:
+def save(self) -> None:
+print("Saved to file")
+
+class CloudNote:
+def save(self) -> None:
+print("Uploaded")
+
+def backup(item: Saver) -> None:
+item.save()
+
+backup(FileNote())
+backup(CloudNote())`}
+/>
+
+Anything with **`save()`** matches — no inheritance required.
+
+<Callout variant="note">
+  These are **typing** tools. Use when projects grow; optional for tiny scripts.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Ada 555-0100">
+  Run `show(ada)`. What prints?
+</TryIt>
+
+## Recap
+
+- **TypedDict** — dict shape in hints
+- **Protocol** — “must have these methods”
+- Pairs with **mypy** checking
+
+Next: **mypy type checking**.
