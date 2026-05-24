@@ -1,0 +1,68 @@
+---
+title: "Dataclasses preview"
+description: "A shorter way to write data-focused classes with @dataclass."
+order: 128
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Writing **`__init__`** for classes that only hold data gets repetitive. **`@dataclass`** (Python 3.7+) generates boilerplate for you.
+
+## One new idea: @dataclass
+
+On your computer:
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Point:
+    x: int
+    y: int
+
+p = Point(3, 4)
+print(p)
+print(p.x)
+```
+
+## What you get for free
+
+- **`__init__`** from the fields you list
+- Nice **`__repr__`** for printing
+- Less code than manual classes
+
+## Compare to manual class
+
+<PythonExample
+  filename="manual.py"
+  code={`class PointManual:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"PointManual({self.x}, {self.y})"
+
+p = PointManual(3, 4)
+print(p)`}
+/>
+
+Same idea — dataclass saves typing when you have **many fields**.
+
+<Callout variant="note">
+  Browser runner may not support **`dataclasses`**. Learn the pattern locally; use normal
+  classes in PyGuide lessons until then.
+</Callout>
+
+<TryIt title="Try it yourself" answer="PointManual(3, 4)">
+  Run the manual `PointManual` example. What prints?
+</TryIt>
+
+## Recap
+
+- **`@dataclass`** — data containers with less boilerplate
+- Fields look like **`name: type`**
+- Great next step after **`__init__` / `self`**
+
+Next: **Dates and times**.

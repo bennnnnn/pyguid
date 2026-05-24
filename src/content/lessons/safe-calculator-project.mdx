@@ -1,0 +1,55 @@
+---
+title: "Mini project: Safe calculator"
+description: "Handle bad input with try and except in a calculator."
+order: 110
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+A calculator should not crash when someone types **hello** instead of a number. Wrap risky steps in **`try` / `except`**.
+
+## Simulated safe divide
+
+<PythonExample
+  filename="safe_calc.py"
+  code={`def safe_divide(a_text, b_text):
+    try:
+        a = float(a_text)
+        b = float(b_text)
+        result = a / b
+    except ValueError:
+        return "Please enter numbers"
+    except ZeroDivisionError:
+        return "Cannot divide by zero"
+    else:
+        return f"Result: {result}"
+
+print(safe_divide("10", "2"))
+print(safe_divide("10", "0"))
+print(safe_divide("ten", "2"))`}
+/>
+
+**Line by line**
+
+- **`ValueError`** — bad number text
+- **`ZeroDivisionError`** — divide by zero
+- **`else`** — only when no error
+
+## Stretch goals
+
+- Chain operations (+, -, \*)
+- Loop until user types `quit`
+- Log errors to a list for debugging
+
+<TryIt title="Try it yourself" answer="Result: 5.0">
+  Call `safe_divide("10", "2")` and read the output.
+</TryIt>
+
+## Recap
+
+- **`try`** around conversion and math
+- **Specific `except`** types give clear messages
+- Real tools stay running when users make mistakes
+
+Next chapter: **Classes**.

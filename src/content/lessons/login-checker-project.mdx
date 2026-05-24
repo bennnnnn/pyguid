@@ -1,0 +1,53 @@
+---
+title: "Mini project: Login checker"
+description: "Practice if, elif, else, and and with a simple login flow."
+order: 44
+chapter: 5
+chapterTitle: "If Statements"
+level: beginner
+---
+
+A door checks **username** and **password** before you enter. You will code that decision tree with **`if`**, **`elif`**, **`else`**, and **`and`**.
+
+## Simulated login (browser-safe)
+
+<PythonExample
+  filename="login.py"
+  code={`# Simulated input
+username = "ada"
+password = "secret123"
+
+correct_user = "ada"
+correct_pass = "secret123"
+
+if username == correct_user and password == correct_pass:
+print("Welcome back!")
+elif username != correct_user:
+print("Unknown user")
+else:
+print("Wrong password")`}
+/>
+
+**Line by line**
+
+- **`and`** — both must be true for success
+- **`elif`** — wrong username path
+- **`else`** — username OK but password wrong
+
+## Stretch goals
+
+- Count failed attempts with a counter
+- Use **`in`** to block empty username `""`
+- Add **`not`** for locked accounts
+
+<TryIt title="Try it yourself" answer="Welcome back!">
+  Set both `username` and `password` to match `correct_*` values. Run — what prints?
+</TryIt>
+
+## Recap
+
+- Real apps are **nested decisions**
+- **`and`** combines conditions
+- Order **`if` / `elif` / `else`** matters
+
+Next chapter: **Loops** — repeat without copy-paste.

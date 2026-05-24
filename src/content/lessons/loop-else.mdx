@@ -1,0 +1,56 @@
+---
+title: "else on loops"
+description: "Run code when a for or while loop finishes without break."
+order: 49
+chapter: 6
+chapterTitle: "Loops"
+level: beginner
+---
+
+A search party **`else`** clause: “we finished the whole area and **did not** find anything.” Loop **`else`** runs only if the loop ended **without** **`break`**.
+
+## One new idea: for ... else
+
+<PythonExample
+  filename="for_else.py"
+  code={`nums = [2, 4, 6, 8]
+
+for n in nums:
+if n % 2 != 0:
+print("Found odd:", n)
+break
+else:
+print("All numbers were even")`}
+/>
+
+| What happened  | `else` runs? |
+| -------------- | ------------ |
+| Loop completes | **Yes**      |
+| `break` used   | **No**       |
+
+## Search pattern
+
+<PythonExample
+  filename="search.py"
+  code={`names = ["Ada", "Ben", "Cara"]
+target = "Zoe"
+
+for name in names:
+if name == target:
+print("Found", name)
+break
+else:
+print(target, "not in list")`}
+/>
+
+<TryIt title="Try it yourself" answer="All numbers were even">
+  Run the first example. Does the `else` block print?
+</TryIt>
+
+## Recap
+
+- **`else`** on **`for`/`while`** — no `break` happened
+- Useful for “not found” messages
+- Uncommon at first — remember it exists
+
+Next: **Infinite loops** — `while True` with care.

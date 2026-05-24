@@ -1,0 +1,58 @@
+---
+title: "Dictionary comprehensions"
+description: "Build dictionaries in one line with a comprehension."
+order: 89
+chapter: 10
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+List comprehensions build lists; **dict comprehensions** build **`{key: value}`** dicts in one readable line.
+
+## One new idea: dict comprehension syntax
+
+<PythonExample
+  filename="dictcomp.py"
+  code={`nums = [1, 2, 3, 4]
+squares = {n: n * n for n in nums}
+print(squares)`}
+/>
+
+| Input `nums` | Result dict             |
+| ------------ | ----------------------- |
+| `[1,2,3,4]`  | `{1:1, 2:4, 3:9, 4:16}` |
+
+## With a filter
+
+<PythonExample
+  filename="filter.py"
+  code={`words = ["apple", "pie", "banana"]
+long_words = {w: len(w) for w in words if len(w) > 3}
+print(long_words)`}
+/>
+
+## Swap keys and values (when values are unique)
+
+<PythonExample
+  filename="swap.py"
+  code={`original = {"a": 1, "b": 2}
+flipped = {v: k for k, v in original.items()}
+print(flipped)`}
+/>
+
+<Callout variant="warning">
+  If values repeat, flipping keys **collides** — last one wins. Only swap when values are
+  unique.
+</Callout>
+
+<TryIt title="Try it yourself" answer="{1: 10, 2: 20}">
+  With `nums = [1, 2]`, build `d = {n: n * 10 for n in nums}` and print `d`.
+</TryIt>
+
+## Recap
+
+- **`{k: v for item in iterable}`**
+- Optional **`if`** filter
+- Same spirit as list comprehensions
+
+Next: **Loop through dictionaries**.

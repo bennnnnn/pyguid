@@ -1,0 +1,65 @@
+---
+title: "*args and **kwargs"
+description: "Accept variable numbers of positional and keyword arguments."
+order: 94
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+Sometimes you do not know how many arguments callers will send. `*args` collects extra positional values; `**kwargs` collects extra keyword arguments.
+
+## One new idea: *args as a tuple
+
+<PythonExample
+  filename="args.py"
+  code={`def total(*nums):
+    result = 0
+    for n in nums:
+        result += n
+    return result
+
+print(total(1, 2, 3))
+print(total(10, 20))`}
+/>
+
+Inside `total`, **`nums`** is a **tuple** of all values passed.
+
+## **kwargs as a dict
+
+<PythonExample
+  filename="kwargs.py"
+  code={`def show_profile(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+show_profile(name="Ada", role="dev")`}
+/>
+
+## Order in def (advanced signature)
+
+```python
+def f(required, default=1, *args, **kwargs):
+    ...
+```
+
+| Part       | Collects           |
+| ---------- | ------------------ |
+| `*args`    | extra positions    |
+| `**kwargs` | extra `name=value` |
+
+<Callout variant="tip">
+  Names **`args`** / **`kwargs`** are convention — the stars matter, not the words.
+</Callout>
+
+<TryIt title="Try it yourself" answer="6">
+  Define `def add(*nums): return sum(nums)` and print `add(1, 2, 3)`.
+</TryIt>
+
+## Recap
+
+- `*args` — tuple of extras
+- `**kwargs` — dict of keyword extras
+- Unpack with `*` / `**` when calling too (later)
+
+Next: **Return values**.

@@ -1,0 +1,60 @@
+---
+title: "Nested dictionaries"
+description: "Store dictionaries inside dictionaries for structured data."
+order: 88
+chapter: 10
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+A contact card can hold **address** details inside the same person. **Nested dicts** model JSON-like records: keys pointing to **more** dicts.
+
+## One new idea: dict inside dict
+
+<PythonExample
+  filename="nested.py"
+  code={`user = {
+    "name": "Ada",
+    "address": {
+        "city": "London",
+        "zip": "SW1A"
+    }
+}
+
+print(user["name"])
+print(user["address"]["city"])`}
+/>
+
+**Line by line**
+
+- `user["address"]` — inner dict
+- `["city"]` — key inside inner dict
+
+## Real use case: simple catalog
+
+<PythonExample
+  filename="catalog.py"
+  code={`products = {
+    "p1": {"name": "Mouse", "price": 25},
+    "p2": {"name": "Keyboard", "price": 80}
+}
+
+for pid, info in products.items():
+print(pid, info["name"], info["price"])`}
+/>
+
+<Callout variant="tip">
+  API and JSON data often look like **nested dicts** — practice bracket chaining.
+</Callout>
+
+<TryIt title="Try it yourself" answer="London">
+  With nested `user` above, print `user["address"]["city"]`.
+</TryIt>
+
+## Recap
+
+- **Outer key** → inner dict
+- Chain brackets: **`d["a"]["b"]`**
+- Loop with **`.items()`** on outer dict
+
+Next: **Dictionary comprehensions**.

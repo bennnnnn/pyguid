@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -22,6 +22,8 @@
     { "slug": "booleans", "chapter": 3, "chapterTitle": "Data Types" },
     { "slug": "truthy-falsy", "chapter": 3, "chapterTitle": "Data Types" },
     { "slug": "type-function", "chapter": 3, "chapterTitle": "Data Types" },
+    { "slug": "isinstance-basics", "chapter": 3, "chapterTitle": "Data Types" },
+    { "slug": "mutable-immutable", "chapter": 3, "chapterTitle": "Data Types" },
     { "slug": "none-type", "chapter": 3, "chapterTitle": "Data Types" },
     {
       "slug": "strings",
@@ -55,6 +57,12 @@
     },
     {
       "slug": "string-find-replace",
+      "chapter": 3,
+      "chapterTitle": "Data Types",
+      "section": "Strings"
+    },
+    {
+      "slug": "string-count",
       "chapter": 3,
       "chapterTitle": "Data Types",
       "section": "Strings"
@@ -96,11 +104,14 @@
     { "slug": "if-indentation", "chapter": 5, "chapterTitle": "If Statements" },
     { "slug": "elif-else", "chapter": 5, "chapterTitle": "If Statements" },
     { "slug": "nested-if", "chapter": 5, "chapterTitle": "If Statements" },
+    { "slug": "login-checker-project", "chapter": 5, "chapterTitle": "If Statements" },
 
     { "slug": "while-loops", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "for-loops", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "range-function", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "break-continue", "chapter": 6, "chapterTitle": "Loops" },
+    { "slug": "loop-else", "chapter": 6, "chapterTitle": "Loops" },
+    { "slug": "infinite-loops", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "loop-patterns", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "nested-loops", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "guessing-game-project", "chapter": 6, "chapterTitle": "Loops" },
@@ -112,6 +123,7 @@
     { "slug": "list-extend", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-insert", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-remove", "chapter": 7, "chapterTitle": "Lists" },
+    { "slug": "list-del", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-pop", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-clear", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-sort", "chapter": 7, "chapterTitle": "Lists" },
@@ -133,17 +145,22 @@
     { "slug": "set-operations", "chapter": 9, "chapterTitle": "Sets" },
 
     { "slug": "dict-intro", "chapter": 10, "chapterTitle": "Dictionaries" },
+    { "slug": "dict-key-rules", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-access", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-get", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-keys", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-values", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-items", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-pop-update", "chapter": 10, "chapterTitle": "Dictionaries" },
+    { "slug": "dict-popitem", "chapter": 10, "chapterTitle": "Dictionaries" },
+    { "slug": "dict-nested", "chapter": 10, "chapterTitle": "Dictionaries" },
+    { "slug": "dict-comprehensions", "chapter": 10, "chapterTitle": "Dictionaries" },
     { "slug": "dict-loops", "chapter": 10, "chapterTitle": "Dictionaries" },
 
     { "slug": "functions-intro", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-arguments", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-default-args", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "function-args-kwargs", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-return", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "print-vs-return", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-docstrings", "chapter": 11, "chapterTitle": "Functions" },
@@ -161,20 +178,32 @@
     { "slug": "try-else-finally", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "raise-statement", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "common-exceptions", "chapter": 13, "chapterTitle": "Error Handling" },
+    {
+      "slug": "safe-calculator-project",
+      "chapter": 13,
+      "chapterTitle": "Error Handling"
+    },
 
     { "slug": "classes-intro", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-init-self", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-methods", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "class-str-repr", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "inheritance", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "super-inheritance", "chapter": 14, "chapterTitle": "Classes" },
 
     { "slug": "file-paths-modes", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "read-files", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "file-readlines-encoding", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "write-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "pathlib-basics", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
 
+    { "slug": "math-random-module", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "quiz-app-project", "chapter": 16, "chapterTitle": "More Python" },
+    { "slug": "dataclasses-preview", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "datetime-basics", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "regex-basics", "chapter": 16, "chapterTitle": "More Python" }
   ]

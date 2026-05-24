@@ -1,0 +1,52 @@
+---
+title: "popitem()"
+description: "Remove and return an arbitrary key-value pair from a dict."
+order: 87
+chapter: 10
+chapterTitle: "Dictionaries"
+level: beginner
+---
+
+When you do not care **which** entry leaves first (often the last inserted in modern Python), **`popitem()`** removes **one** pair and gives it back as a tuple.
+
+## One new idea: popitem()
+
+<PythonExample
+  filename="popitem.py"
+  code={`cache = {"a": 1, "b": 2, "c": 3}
+pair = cache.popitem()
+print("Removed:", pair)
+print("Left:", cache)`}
+/>
+
+**Line by line**
+
+- `popitem()` — remove one item, return **`(key, value)`**
+- Handy for processing dicts until empty
+
+## Empty dict error
+
+<PythonExample
+  filename="empty.py"
+  code={`data = {}
+if data:
+    data.popitem()
+else:
+    print("Nothing to pop")`}
+/>
+
+<Callout variant="note">
+  **`pop(key)`** — you choose the key. **`popitem()`** — Python picks one (LIFO in 3.7+).
+</Callout>
+
+<TryIt title="Try it yourself" answer="1">
+  With `d = {"x": 1}`, set `k, v = d.popitem()`. Print `v`.
+</TryIt>
+
+## Recap
+
+- **`popitem()`** → `(key, value)` and shrinks dict
+- Errors on **empty** dict
+- Different from **`pop("key")`**
+
+Next: **Nested dictionaries**.

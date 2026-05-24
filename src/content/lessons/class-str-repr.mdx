@@ -1,0 +1,59 @@
+---
+title: "__str__ and __repr__"
+description: "Control how objects print with __str__ and __repr__."
+order: 114
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+**`print(obj)`** should look friendly for humans. **`repr(obj)`** is for developers — often a string you could paste to recreate the object. You customize both with **`__str__`** and **`__repr__`**.
+
+## One new idea: **str**
+
+<PythonExample
+  filename="str_demo.py"
+  code={`class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"Dog named {self.name}"
+
+buddy = Dog("Buddy")
+print(buddy)
+print(str(buddy))`}
+/>
+
+## **repr** for developers
+
+<PythonExample
+  filename="repr_demo.py"
+  code={`class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"Point({self.x}, {self.y})"
+
+p = Point(3, 4)
+print(repr(p))`}
+/>
+
+<Callout variant="note">
+  Beginners: implement **`__str__`** first. **`__repr__`** matters more in debugging and
+  the REPL.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Cat named Luna">
+  Add `__str__` to a `Cat` class returning `f"Cat named {self.name}"`. Print the object.
+</TryIt>
+
+## Recap
+
+- **`__str__`** — readable `print()` text
+- **`__repr__`** — developer representation
+- Both return **strings**
+
+Next: **Inheritance**.

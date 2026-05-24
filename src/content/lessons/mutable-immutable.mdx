@@ -1,0 +1,62 @@
+---
+title: "Mutable vs immutable"
+description: "Which Python types can change in place and which cannot."
+order: 20
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+A whiteboard you can erase is **mutable**. A tattoo is **immutable** — you make a new design instead of editing ink in the skin. Python types split the same way.
+
+## One new idea: two families
+
+| Mutable (can change in place) | Immutable (cannot)     |
+| ----------------------------- | ---------------------- |
+| `list`                        | `int`, `float`, `bool` |
+| `dict`                        | `str`                  |
+| `set`                         | `tuple`                |
+
+<PythonExample
+  filename="demo.py"
+  code={`nums = [1, 2, 3]
+nums.append(4)
+print("list changed:", nums)
+
+text = "hi"
+
+# text[0] = "H" # TypeError if uncommented
+
+text = "Hello"
+print("new string:", text)`}
+/>
+
+Lists **grow**; strings need a **new** string assigned.
+
+## Why it matters: shared references
+
+<PythonExample
+  filename="alias.py"
+  code={`a = [1, 2]
+b = a
+b.append(3)
+print("a:", a)`}
+/>
+
+Mutable + two names = **one list**, both see changes.
+
+<Callout variant="tip">
+  **Immutable** values are safer as dict **keys** (you will use strings, numbers, tuples).
+</Callout>
+
+<TryIt title="Try it yourself" answer="['a', 'b']">
+  Start `letters = ['a']`, `append('b')`, print `letters`.
+</TryIt>
+
+## Recap
+
+- **Mutable** — edit in place (`list`, `dict`, `set`)
+- **Immutable** — create new value (`str`, `tuple`, numbers)
+- Explains **aliasing** surprises with lists
+
+Next: **`None`** — the “no value yet” placeholder.

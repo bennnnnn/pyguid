@@ -1,0 +1,56 @@
+---
+title: "readlines() and encoding"
+description: "Read files line by line and specify text encoding."
+order: 119
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+Big files are easier **one line at a time**. **`readlines()`** returns a list of lines; **`encoding="utf-8"`** tells Python how to decode bytes into text.
+
+## One new idea: lines as a list
+
+<PythonExample
+  filename="lines_sim.py"
+  code={`# Simulated file content
+content = "alpha\\nbeta\\ngamma\\n"
+lines = content.splitlines()
+
+for line in lines:
+print(repr(line))`}
+/>
+
+On your PC:
+
+```python
+with open("notes.txt", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())
+```
+
+Looping the file object is **memory-friendly** for huge files.
+
+## encoding parameter
+
+| Issue                | Fix                                                    |
+| -------------------- | ------------------------------------------------------ |
+| `UnicodeDecodeError` | open with **`encoding="utf-8"`** (or correct encoding) |
+| Weird symbols        | wrong encoding guessed                                 |
+
+<Callout variant="note">
+  PyGuide simulates text in memory. Practice **`encoding=`** on your machine with real
+  files.
+</Callout>
+
+<TryIt title="Try it yourself" answer="3">
+  Split `"a\\nb\\nc"` with `splitlines()` and print `len(...)` of the result.
+</TryIt>
+
+## Recap
+
+- **`readlines()`** / **loop file** — line by line
+- **`encoding="utf-8"`** — standard for text
+- **`strip()`** — remove newline characters when printing
+
+Next: **Write files**.

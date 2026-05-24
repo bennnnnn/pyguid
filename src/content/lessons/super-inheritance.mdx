@@ -1,0 +1,64 @@
+---
+title: "super() in inheritance"
+description: "Call parent class methods with super()."
+order: 116
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+A child class can **extend** a parent without rewriting everything. **`super()`** calls the **parent’s** version of a method — often **`__init__`** first.
+
+## One new idea: super().**init**()
+
+<PythonExample
+  filename="super_init.py"
+  code={`class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Dog(Animal):
+def **init**(self, name, breed):
+super().**init**(name)
+self.breed = breed
+
+    def describe(self):
+        return f"{self.name} is a {self.breed}"
+
+d = Dog("Buddy", "lab")
+print(d.describe())`}
+/>
+
+**Line by line**
+
+- `Dog` inherits from `Animal`
+- `super().__init__(name)` runs parent setup
+- `self.breed` is **Dog-specific**
+
+## Override but reuse parent
+
+<PythonExample
+  filename="override.py"
+  code={`class Greeter:
+    def greet(self):
+        return "Hello"
+
+class LoudGreeter(Greeter):
+def greet(self):
+base = super().greet()
+return base + "!!!"
+
+print(LoudGreeter().greet())`}
+/>
+
+<TryIt title="Try it yourself" answer="Buddy is a lab">
+  Run the `Dog` example. What does `describe()` return?
+</TryIt>
+
+## Recap
+
+- **`super()`** — parent class methods
+- Common in **`__init__`** and overridden methods
+- Keeps parent logic in **one place**
+
+Next chapter: **Files**.

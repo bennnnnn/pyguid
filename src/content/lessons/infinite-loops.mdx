@@ -1,0 +1,57 @@
+---
+title: "Infinite loops"
+description: "Use while True with break to repeat until a condition."
+order: 50
+chapter: 6
+chapterTitle: "Loops"
+level: beginner
+---
+
+A game loop runs forever until you press quit. **`while True:`** means “keep going” — you **must** have a **`break`** or the program never stops (on your PC, Ctrl+C interrupts).
+
+## One new idea: while True + break
+
+<PythonExample
+  filename="simulated.py"
+  code={`# Simulated menu — not a real infinite loop in browser
+choices = ["add", "add", "quit"]
+for action in choices:
+    print("Action:", action)
+    if action == "quit":
+        print("Goodbye")
+        break`}
+/>
+
+On your computer:
+
+```python
+while True:
+    cmd = input("Command (quit to exit): ")
+    if cmd == "quit":
+        break
+    print("You typed:", cmd)
+```
+
+## Danger: no break
+
+```python
+while True:
+    print("Forever")  # never stops — avoid this
+```
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  Forgot **`break`** → infinite output or frozen program. Always plan the **exit**
+  condition first.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Goodbye">
+  Run the simulated example. What prints last?
+</TryIt>
+
+## Recap
+
+- **`while True`** — loop until **`break`**
+- Menus and games use this pattern
+- Always know how to **exit**
+
+Next: **Loop patterns** — sum, count, search, filter.

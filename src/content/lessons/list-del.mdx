@@ -1,0 +1,58 @@
+---
+title: "del on lists"
+description: "Delete list items or slices with del."
+order: 61
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+**`remove()`** deletes by **value**. **`pop()`** removes and returns. **`del`** deletes by **index** or **slice** — no return value.
+
+## One new idea: del by index
+
+<PythonExample
+  filename="del_index.py"
+  code={`items = ["a", "b", "c", "d"]
+del items[1]
+print(items)`}
+/>
+
+**Before → after**
+
+| Before              | `del items[1]` | After           |
+| ------------------- | -------------- | --------------- |
+| `["a","b","c","d"]` | remove index 1 | `["a","c","d"]` |
+
+## Delete a slice
+
+<PythonExample
+  filename="del_slice.py"
+  code={`nums = [0, 1, 2, 3, 4, 5]
+del nums[1:4]
+print(nums)`}
+/>
+
+## del vs pop vs remove
+
+| Tool           | You specify… | Returns removed? |
+| -------------- | ------------ | ---------------- |
+| `del items[i]` | index/slice  | no               |
+| `pop(i)`       | index        | yes              |
+| `remove(x)`    | value        | no               |
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`del items[99]`** on a short list → **IndexError**. Same rules as indexing.
+</Callout>
+
+<TryIt title="Try it yourself" answer='["x", "z"]'>
+  With `items = ["x", "y", "z"]`, `del items[1]`, print `items`.
+</TryIt>
+
+## Recap
+
+- **`del list[i]`** — delete one slot
+- **`del list[a:b]`** — delete a range
+- Changes list **in place**
+
+Next: **`pop()`** — remove and get the value back.

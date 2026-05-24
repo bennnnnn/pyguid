@@ -1,0 +1,61 @@
+---
+title: "help() and dir()"
+description: "Explore objects with help() and dir() while debugging."
+order: 124
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+Stuck? Python can show what an object **knows**. **`dir(x)`** lists names; **`help(x)`** shows documentation (in the terminal REPL).
+
+## One new idea: dir()
+
+<PythonExample
+  filename="dir_demo.py"
+  code={`nums = [1, 2, 3]
+names = [n for n in dir(nums) if not n.startswith("_")]
+print(names[:8])
+print("append" in dir(nums))`}
+/>
+
+Filters hide internal names starting with **`_`**.
+
+## help() — best in REPL
+
+On your computer:
+
+```python
+help(str.upper)
+help(list.append)
+```
+
+In PyGuide, read lesson pages instead — but remember **`help`** when coding locally.
+
+## Print debugging
+
+<PythonExample
+  filename="debug_print.py"
+  code={`def average(nums):
+    print("DEBUG nums:", nums)
+    print("DEBUG len:", len(nums))
+    return sum(nums) / len(nums)
+
+print(average([10, 20, 30]))`}
+/>
+
+<Callout variant="tip">
+  **`print("DEBUG", variable)`** is the oldest debugger — still effective for beginners.
+</Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  Print whether `"append"` is in `dir([])`.
+</TryIt>
+
+## Recap
+
+- **`dir(obj)`** — what attributes/methods exist
+- **`help(obj)`** — docs in terminal
+- **`print` debugging** — trace values
+
+Next: **Lambda functions**.

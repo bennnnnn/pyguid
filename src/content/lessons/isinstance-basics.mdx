@@ -1,0 +1,55 @@
+---
+title: "isinstance()"
+description: "Check whether a value is a certain type with isinstance()."
+order: 19
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+`type(x) == int` works, but **`isinstance(x, int)`** is the friendly way to ask “is this a number?” — and it handles inheritance later (advanced topic).
+
+## One new idea: isinstance(value, type)
+
+<PythonExample
+  filename="isinstance_demo.py"
+  code={`age = 25
+name = "Ada"
+
+print(isinstance(age, int))
+print(isinstance(name, int))
+print(isinstance(name, str))`}
+/>
+
+| Call                    | Result  |
+| ----------------------- | ------- |
+| `isinstance(age, int)`  | `True`  |
+| `isinstance(name, int)` | `False` |
+| `isinstance(name, str)` | `True`  |
+
+## Real use case: safe math
+
+<PythonExample
+  filename="safe.py"
+  code={`def double_if_number(x):
+    if isinstance(x, (int, float)):
+        return x * 2
+    return "Not a number"
+
+print(double_if_number(10))
+print(double_if_number("10"))`}
+/>
+
+Tuple of types `(int, float)` means “int **or** float.”
+
+<TryIt title="Try it yourself" answer="True">
+  Print `isinstance(3.14, float)`.
+</TryIt>
+
+## Recap
+
+- **`isinstance(x, T)`** — yes/no for type checks
+- Prefer over **`type(x) == T`** in real code
+- Use **`(int, float)`** for several types
+
+Next: **Mutable vs immutable** — what can change in place.

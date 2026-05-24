@@ -1,0 +1,53 @@
+---
+title: "count()"
+description: "Count how many times a substring appears in a string."
+order: 28
+chapter: 3
+chapterTitle: "Data Types"
+section: "Strings"
+level: beginner
+---
+
+How many times does the letter **a** appear in a word? **`count()`** on a string answers that — like **`count()`** on a list, but for text inside text.
+
+## One new idea: str.count(substring)
+
+<PythonExample
+  filename="count.py"
+  code={`word = "banana"
+print(word.count("a"))
+print(word.count("na"))
+print(word.count("z"))`}
+/>
+
+| Call          | Result | Meaning              |
+| ------------- | ------ | -------------------- |
+| `count("a")`  | `3`    | three a's            |
+| `count("na")` | `2`    | overlapping allowed  |
+| `count("z")`  | `0`    | not found — no error |
+
+## count() vs find()
+
+| Goal            | Use           |
+| --------------- | ------------- |
+| How many times? | **`count()`** |
+| First position? | **`find()`**  |
+
+<PythonExample
+  filename="email.py"
+  code={`email = "user@example.com"
+print("@" in email)
+print(email.count("@"))`}
+/>
+
+<TryIt title="Try it yourself" answer="2">
+  Print `"hello".count("l")`.
+</TryIt>
+
+## Recap
+
+- **`text.count(sub)`** — number of non-overlapping occurrences (default)
+- Returns **`0`** if missing
+- Pairs with **`find()`** and **`in`**
+
+Next: **`startswith()` and `endswith()`**.

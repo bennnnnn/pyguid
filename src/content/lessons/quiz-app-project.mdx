@@ -1,0 +1,63 @@
+---
+title: "Mini project: Quiz app"
+description: "Build a multiple-choice quiz with dicts and loops."
+order: 127
+chapter: 16
+chapterTitle: "More Python"
+level: beginner
+---
+
+One **dict** per question, a **list** of questions, a **loop**, and a **score** — a tiny quiz engine tying together dicts and control flow.
+
+## Starter quiz
+
+<PythonExample
+  filename="quiz.py"
+  code={`questions = [
+    {
+        "prompt": "What is 2 + 2?",
+        "answer": "4"
+    },
+    {
+        "prompt": "Capital of France?",
+        "answer": "Paris"
+    }
+]
+
+score = 0
+
+# Simulated answers from the "player"
+
+player_answers = ["4", "London", "Paris"]
+
+for i, q in enumerate(questions):
+given = player_answers[i]
+print(q["prompt"])
+print("You said:", given)
+if given == q["answer"]:
+print("Correct!")
+score += 1
+else:
+print("Wrong. Answer:", q["answer"])
+print()
+
+print("Final score:", score, "/", len(questions))`}
+/>
+
+## Stretch goals
+
+- Load questions from JSON (see **JSON** lesson)
+- Randomize order with **`random.shuffle`**
+- Track best score in a variable
+
+<TryIt title="Try it yourself" answer="1">
+  Change the second simulated answer to `"Paris"`. Run again. What is the final score?
+</TryIt>
+
+## Recap
+
+- **List of dicts** — flexible records
+- **Loop + if** — grading logic
+- Foundation for JSON-driven apps later
+
+Next: **Dataclasses** preview.
