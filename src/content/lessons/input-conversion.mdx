@@ -1,0 +1,89 @@
+---
+title: "Converting input"
+description: "Turn input strings into int and float for math."
+order: 12
+chapter: 2
+chapterTitle: "Variables"
+level: beginner
+---
+
+You ask for someone’s age and they type `25`. Python still stores **`"25"`** (text), not the number **25**. That is why this line crashes:
+
+```python
+age = "25"
+print(age + 1)  # TypeError
+```
+
+## One new idea: wrap input with int() or float()
+
+<PythonExample
+  filename="convert.py"
+  code={`# age_text = input("Age: ")
+age_text = "25"
+age = int(age_text)
+print(age + 1)`}
+/>
+
+**Before → after**
+
+| Step       | `age` means   |
+| ---------- | ------------- |
+| `age_text` | `"25"` string |
+| `int(...)` | `25` number   |
+| `age + 1`  | `26`          |
+
+## Shorthand: convert in one line
+
+<PythonExample
+  filename="one_line.py"
+  code={`# age = int(input("Age: "))
+age = int("25")
+print("Next year:", age + 1)`}
+/>
+
+## Floats for decimals
+
+<PythonExample
+  filename="float_input.py"
+  code={`# price = float(input("Price: "))
+price = float("9.99")
+print("With tax:", price * 1.08)`}
+/>
+
+## Common mistake: forget int()
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`"5" + "5"`** → **`"55"`** (text glued together). **`5 + 5`** → **`10`**. After
+  `input()`, use **`int()`** or **`float()`** before math.
+</Callout>
+
+<TryIt title="Try it yourself" answer="30">
+  Set `text = "12"`, then `n = int(text)`, then `print(n + 18)`.
+</TryIt>
+
+## Chapter 2 mini project: profile generator
+
+<PythonExample
+  filename="profile.py"
+  code={`# Simulate input for the browser
+name = "Sam"
+age_text = "20"
+age = int(age_text)
+city = "London"
+
+print("=== Profile ===")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"City: {city}")
+print(f"In 5 years you will be {age + 5}")`}
+/>
+
+Change the simulated strings. On your PC, replace them with real `input()` calls.
+
+## Recap
+
+- **`input()`** → always **str**
+- **`int(text)`** / **`float(text)`** → numbers for math
+- Convert **before** adding or comparing numbers
+
+Next: **Multiple assignment** — several names in one line.

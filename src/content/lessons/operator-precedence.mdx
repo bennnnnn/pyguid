@@ -1,0 +1,62 @@
+---
+title: "Operator precedence"
+description: "Which operations run first — and how parentheses help."
+order: 36
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+In math class, multiplication happens before addition. Python follows similar **precedence** rules — unless **parentheses** change the order.
+
+## One new idea: \* before +
+
+<PythonExample
+  filename="order.py"
+  code={`print(2 + 3 * 4)
+print((2 + 3) * 4)`}
+/>
+
+| Expression  | Result | Why               |
+| ----------- | ------ | ----------------- |
+| `2 + 3 * 4` | `14`   | `3*4` first → 12  |
+| `(2+3) * 4` | `20`   | parentheses first |
+
+## Quick reference (beginner)
+
+| Higher priority (first) | Examples   |
+| ----------------------- | ---------- |
+| Parentheses             | `( )`      |
+| Power                   | `**`       |
+| Multiply / divide       | `* / // %` |
+| Add / subtract          | `+ -`      |
+| Comparisons             | `== < >=`  |
+| `not`                   | `not x`    |
+| `and`                   | `a and b`  |
+| `or`                    | `a or b`   |
+
+## Real use case: average
+
+<PythonExample
+  filename="avg.py"
+  code={`total = 80 + 90 + 70
+count = 3
+average = total / count
+print(average)`}
+/>
+
+Use parentheses when **you** want a specific order:
+
+<PythonExample filename="parens.py" code={`print((5 + 5) / 2)`} />
+
+<TryIt title="Try it yourself" answer="20">
+  Print `(10 + 10) / 2`.
+</TryIt>
+
+## Recap
+
+- **`*` `/`** before **`+` `-`**
+- **`()`** overrides everything
+- When unsure, add parentheses — clarity beats guessing
+
+Next chapter: **If statements** — run code only when a test is true.

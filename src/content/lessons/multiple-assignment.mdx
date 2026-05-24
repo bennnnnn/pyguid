@@ -1,0 +1,64 @@
+---
+title: "Multiple assignment"
+description: "Assign several variables at once and swap values in Python."
+order: 13
+chapter: 2
+chapterTitle: "Variables"
+level: beginner
+---
+
+You label three boxes in one go: `x`, `y`, and `z` each get a value. Python can assign **multiple names** in a single line — clean and common in real code.
+
+## One new idea: several names, one line
+
+<PythonExample
+  filename="multi.py"
+  code={`x, y, z = 1, 2, 3
+print(x, y, z)`}
+/>
+
+**Line by line**
+
+- Left side: three names
+- Right side: three values
+- Python pairs them **left to right**
+
+## Swap without a temp variable
+
+<PythonExample
+  filename="swap.py"
+  code={`a = 10
+b = 20
+print("before:", a, b)
+
+a, b = b, a
+print("after:", a, b)`}
+/>
+
+| Before       | After swap   |
+| ------------ | ------------ |
+| `a=10, b=20` | `a=20, b=10` |
+
+## Real use case: coordinates
+
+<PythonExample
+  filename="coords.py"
+  code={`width, height = 800, 600
+print(f"Screen: {width} x {height}")`}
+/>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`x, y = 1`** — not enough values on the right. Counts on both sides must **match**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="3 4 5">
+  Use `a, b, c = 3, 4, 5` and `print(a, b, c)`.
+</TryIt>
+
+## Recap
+
+- **`a, b = 1, 2`** — multiple assignment
+- **`a, b = b, a`** — swap values
+- Left and right must have the **same number** of items
+
+Next chapter: **Data types** — what kind of value each name holds.

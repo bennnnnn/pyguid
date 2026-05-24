@@ -15,6 +15,8 @@ export default defineConfig({
   redirects: {
     "/learn/": "/python/",
     "/cheatsheet/": "/python/reference/",
+    "/python/dict-methods/": "/python/dict-loops/",
+    "/python/user-input/": "/python/input-basics/",
   },
   markdown: {
     shikiConfig: {

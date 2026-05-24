@@ -6,6 +6,7 @@ Static Astro site at `~/Desktop/pyguide`.
 
 - Astro 6 + MDX content collections + Tailwind v4
 - Lessons in `src/content/lessons/*.mdx` (one topic per page)
+- Lesson order: `docs/curriculum-order.json` → run `npm run sync:curriculum`
 - `PythonExample` component: read-only fake IDE, Copy, Run (Skulpt CDN)
 
 ## Conventions

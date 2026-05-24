@@ -1,0 +1,67 @@
+---
+title: "Syntax errors"
+description: "Read common Python error messages and fix typos calmly."
+order: 4
+chapter: 1
+chapterTitle: "Getting Started"
+level: beginner
+---
+
+You typed a text message with a missing closing quote — your phone underlines it. Python does the same with **syntax errors**: the grammar of the code is broken **before** the program can run.
+
+## One new idea: Python stops and points at the problem
+
+<PythonExample filename="broken.py" code={`print("Hello"`} />
+
+Run it. You will see something like **SyntaxError** — often mentioning a missing `)` or `"`.
+
+**What it means in plain English**
+
+| Message hint     | You probably forgot |
+| ---------------- | ------------------- |
+| `unexpected EOF` | closing `)` or `"`  |
+| `invalid syntax` | typo, wrong symbol  |
+
+Python is **not** broken. Your **line** needs a small fix.
+
+## Fix and run again
+
+<PythonExample filename="fixed.py" code={`print("Hello")`} />
+
+**Before → after**
+
+| Broken          | Fixed            |
+| --------------- | ---------------- |
+| `print("Hello"` | `print("Hello")` |
+
+## Real habit: read the last lines first
+
+Error output often shows:
+
+```text
+  File "example.py", line 1
+    print("Hello"
+                ^
+SyntaxError: ...
+```
+
+1. **Line number** — where to look
+2. **`^` caret** — roughly where Python got confused
+3. **Error type** — `SyntaxError` = grammar, not logic yet
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  Do not panic. Every programmer sees syntax errors **daily**. Fix one character, run
+  again.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello">
+  Fix the broken line: add the missing `)` so it prints `Hello`.
+</TryIt>
+
+## Recap
+
+- **Syntax errors** = code cannot run yet — usually a typo
+- Read the **line number** and the **caret**
+- Fix, run again — that is normal workflow
+
+Next: **Comments** — notes Python skips.

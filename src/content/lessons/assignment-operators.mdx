@@ -1,0 +1,53 @@
+---
+title: "Assignment operators"
+description: "Update variables with +=, -=, *=, and related shortcuts."
+order: 31
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+You already know **`score = score + 10`**. **`+=`** is the shorthand: “add to what is already in the box.”
+
+## One new idea: += and friends
+
+<PythonExample
+  filename="plus_eq.py"
+  code={`points = 10
+points += 5
+print(points)`}
+/>
+
+| Long form             | Shortcut      |
+| --------------------- | ------------- |
+| `points = points + 5` | `points += 5` |
+| `x = x - 1`           | `x -= 1`      |
+| `n = n * 2`           | `n *= 2`      |
+| `n = n / 2`           | `n /= 2`      |
+
+## Real use case: game score
+
+<PythonExample
+  filename="game.py"
+  code={`score = 0
+score += 10
+score += 25
+score += 3
+print("Final score:", score)`}
+/>
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`+=`** is **not** the same as **`==`**. **`+=`** updates a variable; **`==`** compares
+  two values.
+</Callout>
+
+<TryIt title="Try it yourself" answer="8">
+  Set `x = 10`, then `x -= 2`, then print `x`.
+</TryIt>
+
+## Recap
+
+- **`+=` `-=` `*=` `/=`** update in place
+- Same meaning as the long `x = x + ...` form
+
+Next: **Comparison operators** — `==`, `<`, `>=`, and more.

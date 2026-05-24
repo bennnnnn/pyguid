@@ -1,8 +1,8 @@
 ---
 title: "Loop through dictionaries"
 description: "Patterns for iterating over dictionary data."
-order: 54
-chapter: 11
+order: 73
+chapter: 10
 chapterTitle: "Dictionaries"
 level: beginner
 ---
@@ -54,14 +54,12 @@ passed[subject] = score
 print("Passed:", passed)`}
 />
 
-Loop, decide, and **build** a new dictionary — a pattern you will use often.
-
 ## Format output with f-strings
 
 <PythonExample
   filename="format_loop.py"
   code={
-    'prices = {"apple": 1.2, "banana": 0.8, "cherry": 2.5}\nfor fruit, price in prices.items():\n    print(f"{fruit}: ${price:.2f}")'
+    'prices = {"apple": 1.2, "banana": 0.8}\nfor fruit, price in prices.items():\n    print(fruit, ":", price)'
   }
 />
 
@@ -76,10 +74,8 @@ Loop, decide, and **build** a new dictionary — a pattern you will use often.
 
 for user_id, info in users.items():
 status = "online" if info["active"] else "offline"
-print(user_id, info["name"], "→", status)`}
+print(user_id, info["name"], "->", status)`}
 />
-
-Outer loop: user IDs. Inner dict: fields for each user.
 
 <Callout variant="note" title="Oops — modifying while looping">
   Do not add or remove keys while looping over **`d.keys()`** directly. Loop over
@@ -87,8 +83,8 @@ Outer loop: user IDs. Inner dict: fields for each user.
 </Callout>
 
 <TryIt title="Try it yourself" answer="175">
-  With `scores = {"math": 90, "english": 85}`, use a loop over `.values()` and
-  `total = total + score` (start `total = 0`). Print `total`.
+  With `scores = {"math": 90, "english": 85}`, loop over `.values()` and add to `total`
+  starting at `0`. Print `total`.
 </TryIt>
 
 ## Recap
@@ -97,4 +93,4 @@ Outer loop: user IDs. Inner dict: fields for each user.
 - Build new dicts by looping and assigning
 - Nested dicts: outer **`.items()`**, then inner bracket access
 
-You finished the **Dictionaries** chapter. Next up: **Functions** — reusable blocks of code.
+You finished the **Dictionaries** chapter. Next: **Functions**.

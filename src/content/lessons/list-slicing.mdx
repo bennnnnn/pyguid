@@ -1,0 +1,56 @@
+---
+title: "List slicing"
+description: "Copy parts of a list with slice syntax."
+order: 48
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+You do not always need the whole list — sometimes just the **middle slice**. **`[start:end]`** cuts a piece; **`end` is not included**.
+
+## One new idea: slice a list
+
+<PythonExample
+  filename="slice.py"
+  code={`nums = [0, 1, 2, 3, 4, 5]
+print(nums[1:4])
+print(nums[:3])
+print(nums[2:])
+print(nums[:])`}
+/>
+
+| Slice   | Result              |
+| ------- | ------------------- |
+| `[1:4]` | `[1, 2, 3]`         |
+| `[:3]`  | first three         |
+| `[2:]`  | from index 2        |
+| `[:]`   | **copy** whole list |
+
+## Change a slice assignment (advanced)
+
+<PythonExample
+  filename="replace_slice.py"
+  code={`letters = ["a", "b", "c", "d"]
+letters[1:3] = ["B", "C"]
+print(letters)`}
+/>
+
+## Common mistake: index vs slice
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`nums[3]`** — one item. **`nums[1:3]`** — items at index 1 and 2 only. Off-by-one at
+  the **end** trips everyone up.
+</Callout>
+
+<TryIt title="Try it yourself" answer="[10, 20]">
+  With `data = [10, 20, 30, 40]`, print `data[0:2]`.
+</TryIt>
+
+## Recap
+
+- **`[start:end]`** — end excluded
+- **`[:]`** — shallow copy
+- Same rules as string slicing
+
+Next: **`append()`** — add to the end.

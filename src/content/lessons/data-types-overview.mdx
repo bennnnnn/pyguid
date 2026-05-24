@@ -1,0 +1,70 @@
+---
+title: "What are data types?"
+description: "Why Python values have types and what you can do with each kind."
+order: 14
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+A toolbox has wrenches, tape, and glue — you do not use glue to tighten a bolt. **Data types** tell Python which “tool” fits each value: number math, text joining, or yes/no logic.
+
+## One new idea: type decides behavior
+
+<PythonExample
+  filename="types_demo.py"
+  code={`print("5" + "5")
+print(5 + 5)
+print(type("5"))
+print(type(5))`}
+/>
+
+**Output**
+
+```text
+55
+10
+<class 'str'>
+<class 'int'>
+```
+
+| Value | Type  | `+` means        |
+| ----- | ----- | ---------------- |
+| `"5"` | `str` | glue text → `55` |
+| `5`   | `int` | add → `10`       |
+
+## Core types in this chapter
+
+| Type    | Example | Use for        |
+| ------- | ------- | -------------- |
+| `int`   | `42`    | whole counts   |
+| `float` | `3.14`  | decimals       |
+| `str`   | `"hi"`  | text           |
+| `bool`  | `True`  | yes/no         |
+| `None`  | `None`  | “no value yet” |
+
+Later chapters add **list**, **tuple**, **set**, and **dict** — containers for many values.
+
+## What you will learn in this chapter
+
+1. **Numbers** — `int` and `float`
+2. **Booleans** and **truthy/falsy**
+3. **`type()`** and conversion
+4. **`None`**
+5. **Strings** — many methods in the sidebar section
+
+<Callout variant="tip">
+  When something surprises you, run **`type(value)`** — your best friend while learning.
+</Callout>
+
+<TryIt title="Try it yourself" answer="hellohello">
+  Print `"hello" + "hello"`, then print `type("hello")`.
+</TryIt>
+
+## Recap
+
+- Every value has a **type**
+- The type controls what **operators** and **methods** work
+- **`type(x)`** shows which type you have
+
+Next: **Numbers** — `int` and `float`.

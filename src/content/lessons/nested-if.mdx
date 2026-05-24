@@ -1,0 +1,65 @@
+---
+title: "Nested if statements"
+description: "Put if blocks inside other if blocks for layered decisions."
+order: 39
+chapter: 5
+chapterTitle: "If Statements"
+level: beginner
+---
+
+A bouncer checks ID, **then** checks the guest list. **Nested `if`** means: only run the inner check if the outer check already passed.
+
+## One new idea: if inside if
+
+<PythonExample
+  filename="nested.py"
+  code={`age = 20
+has_ticket = True
+
+if age >= 18:
+if has_ticket:
+print("Come in")
+else:
+print("Need a ticket")
+else:
+print("Too young")`}
+/>
+
+**Line by line**
+
+- Outer `if` — adult?
+- Inner `if` — only runs when outer is true
+- Each block needs **4 spaces** more than its parent
+
+## Real use case: login levels
+
+<PythonExample
+  filename="login.py"
+  code={`username = "ada"
+password_ok = True
+
+if username:
+if password_ok:
+print("Welcome")
+else:
+print("Wrong password")
+else:
+print("Enter a username")`}
+/>
+
+<Callout variant="tip">
+  Too many nested levels get hard to read. Sometimes **`and`** is clearer:
+  `if age >= 18 and has_ticket:`.
+</Callout>
+
+<TryIt title="Try it yourself" answer="OK">
+  Set `x = 10`. If `x > 5`, print `"big"`, and inside that if `x < 20`, print `"OK"`.
+</TryIt>
+
+## Recap
+
+- **Nested `if`** — decision inside decision
+- Indent **4 spaces** per level
+- Consider **`and`** when tests are independent on one line
+
+Next chapter: **Loops** — repeat without copy-paste.

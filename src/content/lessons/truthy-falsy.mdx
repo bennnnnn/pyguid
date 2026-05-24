@@ -1,0 +1,60 @@
+---
+title: "Truthy and falsy values"
+description: "Which values act like True or False in if statements."
+order: 17
+chapter: 3
+chapterTitle: "Data Types"
+level: beginner
+---
+
+Python can treat values as “yes” or “no” even when they are not literally `True` or `False`. An **empty** string feels like “no”; a non-zero number feels like “yes.”
+
+## One new idea: truthy vs falsy
+
+<PythonExample
+  filename="truthy.py"
+  code={`print(bool(0))
+print(bool(1))
+print(bool(""))
+print(bool("hi"))`}
+/>
+
+| Value  | `bool(...)` | Called |
+| ------ | ----------- | ------ |
+| `0`    | `False`     | falsy  |
+| `1`    | `True`      | truthy |
+| `""`   | `False`     | falsy  |
+| `"hi"` | `True`      | truthy |
+
+Common **falsy** values: `0`, `0.0`, `""`, `[]`, `{}`, `None`, `False`.  
+Most other values are **truthy**.
+
+## Use in if (preview)
+
+<PythonExample
+  filename="if_name.py"
+  code={`name = "Ada"
+if name:
+    print("Name is set")
+else:
+    print("Name is empty")`}
+/>
+
+`if name:` means “if name is truthy (non-empty).”
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  Do not confuse **`if x:`** with **`if x == True:`**. Prefer **`if x:`** for “does x
+  exist / have content?”
+</Callout>
+
+<TryIt title="Try it yourself" answer="False">
+  Print `bool("")` and `bool("a")`.
+</TryIt>
+
+## Recap
+
+- **Falsy** — acts like `False` in conditions
+- **Truthy** — everything else (usually)
+- Empty collections and `None` are falsy
+
+Next: **`type()`** and converting between types.

@@ -1,0 +1,73 @@
+---
+title: "Loop patterns"
+description: "Sum, count, search, and filter with for loops."
+order: 44
+chapter: 6
+chapterTitle: "Loops"
+level: beginner
+---
+
+Loops are not only syntax — they are **patterns** you reuse. Four classics: **sum**, **count**, **search**, **filter**.
+
+## Pattern 1: sum
+
+<PythonExample
+  filename="sum.py"
+  code={`prices = [10, 20, 30]
+total = 0
+for price in prices:
+    total += price
+print(total)`}
+/>
+
+Start **`total = 0`**, add each item.
+
+## Pattern 2: count
+
+<PythonExample
+  filename="count.py"
+  code={`scores = [88, 42, 95, 64]
+passing = 0
+for s in scores:
+    if s >= 60:
+        passing += 1
+print(passing)`}
+/>
+
+## Pattern 3: search (found flag)
+
+<PythonExample
+  filename="search.py"
+  code={`users = ["ada", "ben", "cara"]
+target = "ben"
+found = False
+for name in users:
+    if name == target:
+        found = True
+print(found)`}
+/>
+
+## Pattern 4: filter (new list)
+
+<PythonExample
+  filename="filter.py"
+  code={`nums = [1, 2, 3, 4, 5, 6]
+evens = []
+for n in nums:
+    if n % 2 == 0:
+        evens.append(n)
+print(evens)`}
+/>
+
+<TryIt title="Try it yourself" answer="15">
+  Sum `[1, 2, 3, 4, 5]` with a loop starting `total = 0`.
+</TryIt>
+
+## Recap
+
+- **Sum** — `total += item`
+- **Count** — `count += 1` when condition true
+- **Search** — `found` flag
+- **Filter** — `append` to new list
+
+Next: **Nested loops** — loop inside loop.

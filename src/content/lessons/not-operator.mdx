@@ -1,0 +1,60 @@
+---
+title: "The not operator"
+description: "Flip True and False with not in Python."
+order: 33
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+A light switch labeled **not on** flips the meaning. **`not`** reverses a boolean — `True` becomes `False` and back.
+
+## One new idea: not
+
+<PythonExample
+  filename="not_demo.py"
+  code={`is_raining = False
+print(not is_raining)
+
+is_closed = True
+print(not is_closed)`}
+/>
+
+| Expression  | Result  |
+| ----------- | ------- |
+| `not False` | `True`  |
+| `not True`  | `False` |
+
+## With comparisons
+
+<PythonExample
+  filename="not_compare.py"
+  code={`age = 15
+print(not age >= 18)`}
+/>
+
+Same as “not an adult” for this simple check.
+
+## Real use case: while a flag is false
+
+<PythonExample
+  filename="flag.py"
+  code={`done = False
+if not done:
+    print("Keep going")`}
+/>
+
+<Callout variant="tip">
+  **`not x`** is clearer than **`x == False`** when `x` is already a boolean.
+</Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  Set `logged_in = False`. Print `not logged_in`.
+</TryIt>
+
+## Recap
+
+- **`not`** flips booleans
+- Works on comparison results too
+
+Next: **`and` and `or`** — combine tests.

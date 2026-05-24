@@ -1,0 +1,60 @@
+---
+title: "enumerate()"
+description: "Loop with index and value using enumerate()."
+order: 60
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+You want item **and** position without writing `range(len(...))`. **`enumerate()`** hands you both each time through the loop.
+
+## One new idea: for index, item in enumerate(list)
+
+<PythonExample
+  filename="enum.py"
+  code={`fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(index, fruit)`}
+/>
+
+| index | fruit    |
+| ----- | -------- |
+| `0`   | `apple`  |
+| `1`   | `banana` |
+| `2`   | `cherry` |
+
+## Start counting from 1
+
+<PythonExample
+  filename="start1.py"
+  code={`tasks = ["email", "code", "test"]
+for num, task in enumerate(tasks, start=1):
+    print(f"{num}. {task}")`}
+/>
+
+## vs range(len())
+
+<PythonExample
+  filename="compare.py"
+  code={`colors = ["red", "green"]
+for i in range(len(colors)):
+    print(i, colors[i])
+
+for i, color in enumerate(colors):
+print(i, color)`}
+/>
+
+**`enumerate`** is clearer when you need both.
+
+<TryIt title="Try it yourself" answer="0 a">
+  Loop `enumerate(["a", "b"])` and print index and letter on one line (two lines output).
+</TryIt>
+
+## Recap
+
+- **`enumerate(list)`** → index + value
+- **`start=1`** for human-friendly numbering
+- Prefer over **`range(len(x))`** when you need both
+
+Next: **List comprehensions** — build lists in one line.

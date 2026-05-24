@@ -1,0 +1,61 @@
+---
+title: "Arithmetic operators"
+description: "Add, subtract, multiply, divide, and more in Python."
+order: 30
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+Math class symbols meet Python: **`+` `-` `*` `/`** plus **`//` `%` `**`\*\* for whole division, remainders, and powers.
+
+## One new idea: the seven arithmetic operators
+
+<PythonExample
+  filename="arith.py"
+  code={`a = 17
+b = 5
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+print(a % b)
+print(a ** 2)`}
+/>
+
+| Operator | Name           | Example   | Result |
+| -------- | -------------- | --------- | ------ |
+| `+`      | add            | `17 + 5`  | `22`   |
+| `-`      | subtract       | `17 - 5`  | `12`   |
+| `*`      | multiply       | `17 * 5`  | `85`   |
+| `/`      | divide (float) | `17 / 5`  | `3.4`  |
+| `//`     | floor divide   | `17 // 5` | `3`    |
+| `%`      | remainder      | `17 % 5`  | `2`    |
+| `**`     | power          | `5 ** 2`  | `25`   |
+
+## Real use case: receipt
+
+<PythonExample
+  filename="receipt.py"
+  code={`price = 8
+qty = 3
+total = price * qty
+print("Total:", total)`}
+/>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`"5" + 5`** → **TypeError**. Use **`int()`** if you have text that should be a number.
+</Callout>
+
+<TryIt title="Try it yourself" answer="2">
+  Print `17 % 5` (remainder).
+</TryIt>
+
+## Recap
+
+- **`/`** always gives a **float**
+- **`//`** and **`%`** — divide and leftover
+- **`**`\*\* — exponents
+
+Next: **Assignment operators** — `+=` and friends.

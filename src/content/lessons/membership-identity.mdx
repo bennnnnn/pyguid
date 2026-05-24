@@ -1,0 +1,57 @@
+---
+title: "in, is, and identity"
+description: "Membership with in and identity with is in Python."
+order: 35
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+Two different questions: “Is this **in** the collection?” vs “Is this **the same object** in memory?” Beginners mostly need **`in`**; **`is`** appears for `None` checks.
+
+## One new idea: in and not in
+
+<PythonExample
+  filename="in_demo.py"
+  code={`colors = ["red", "green", "blue"]
+print("red" in colors)
+print("yellow" in colors)
+print("yellow" not in colors)`}
+/>
+
+Works on strings too: **`"@" in email`**.
+
+## is — same object?
+
+<PythonExample
+  filename="is_demo.py"
+  code={`a = None
+b = None
+print(a is None)
+print(a is b)`}
+/>
+
+| Operator | Meaning                   |
+| -------- | ------------------------- |
+| `==`     | same **value**            |
+| `is`     | same **object** in memory |
+
+<Callout variant="tip">
+  Prefer **`x is None`** instead of **`x == None`** for checking “no value.”
+</Callout>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  Do not use **`is`** for numbers or strings you created separately — use **`==`**.
+  **`is`** is for `None` and special cases later.
+</Callout>
+
+<TryIt title="Try it yourself" answer="True">
+  With `nums = [1, 2, 3]`, print whether `2 in nums`.
+</TryIt>
+
+## Recap
+
+- **`in` / `not in`** — membership (lists, strings, dict keys, …)
+- **`is` / `is not`** — identity; common for **`None`**
+
+Next: **Operator precedence** — who goes first in `2 + 3 * 4`.
