@@ -1,13 +1,24 @@
 ---
 title: "Define functions"
 description: "Create reusable blocks of code with def and function calls."
-order: 100
+order: 101
 chapter: 11
 chapterTitle: "Functions"
 level: beginner
 ---
 
 A recipe card says “mix eggs and flour” once — you follow it every time you bake. A **function** is that card for code: write the steps **once**, **call** the name whenever you need them.
+
+## Why functions matter
+
+Without functions, programs become long copy-paste scripts. When requirements change, you hunt every duplicate block. Functions give you:
+
+- **Reuse** — one definition, many calls
+- **Names** — `price_with_tax()` reads better than ten loose lines
+- **Testing** — check one function in isolation
+- **Team work** — each function is a small contract
+
+Professional Python (L4 path) assumes you reach for functions before repeating logic three times.
 
 ## One new idea: def and call
 
@@ -66,32 +77,61 @@ print(price_with_tax(25))`}
 
 If the tax rate changes, you edit **one function** — not every calculation in your program.
 
-<Callout variant="note">
-  Code inside a function runs only when you **call** it. Defining a function does not run
-  its body.
+## Common mistakes
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **IndentationError** — every line in the function body must use the **same** indent
+  (usually 4 spaces). The line after `def` cannot start at column 0.
 </Callout>
 
-<Callout variant="tip">
-  If a block of code appears twice, turn it into a function. Change it in one place later.
+<Callout variant="warning">
+  **Calling before defining** — Python must see `def greet():` before `greet()`. Put
+  definitions above calls (or import from another module later).
 </Callout>
+
+| Mistake                      | Fix                                                |
+| ---------------------------- | -------------------------------------------------- |
+| Forgot `()` on call          | `greet` references the function; `greet()` runs it |
+| No `return` but need a value | use `return` (next lessons)                        |
+| Same code in three places    | extract one `def`                                  |
+
+## Change-it exercise
+
+Edit `tax.py` so tax is `0.10` (10%). Run again — only one line inside the function should change.
 
 <TryIt title="Try it yourself" answer="Hello, Sam">
   Define `def greet(name):` that prints `f"Hello, {name}"`. Call it with `"Sam"`.
 </TryIt>
 
+<TryIt title="Challenge" answer="33.0">
+  Write `def add(a, b): return a + b` and print `add(10, 23)`.
+</TryIt>
+
+## FAQ
+
+**What is the difference between a parameter and an argument?**  
+In `def f(x):`, `x` is a **parameter**. In `f(5)`, `5` is an **argument** passed at call time.
+
+**Can a function call itself?**  
+Yes — that is **recursion** (covered in advanced topics). Start with simple non-recursive functions.
+
+**Do I need `return` on every function?**  
+No. Functions without `return` give back `None`. Use `return` when callers need a value — see **Return values**.
+
 ## What this chapter covers
 
-| #   | Lesson             | You will learn                        |
-| --- | ------------------ | ------------------------------------- |
-| 1   | Define functions   | `def`, calls, parameters (this page)  |
-| 2   | Function arguments | Defaults, keyword args, `*args`       |
-| 3   | Return values      | Send results back with `return`       |
-| 4   | Variable scope     | Local vs global, chapter mini project |
+| #   | Lesson             | You will learn                       |
+| --- | ------------------ | ------------------------------------ |
+| 1   | Define functions   | `def`, calls, parameters (this page) |
+| 2   | Function arguments | Defaults, keyword args, `*args`      |
+| 3   | Return values      | Send results back with `return`      |
+| 4   | Variable scope     | Local vs global                      |
 
 ## Recap
 
 - **`def name():`** — define reusable code
 - **Parameters** — pass data in
 - **Call** with `name()` — run the body
+- Extract repeated blocks early — core L4 habit
 
 Next: **Function arguments** — defaults and keyword parameters.

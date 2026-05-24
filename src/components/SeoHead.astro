@@ -1,0 +1,56 @@
+---
+import { SITE, getSiteUrl } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute canonical URL. If omitted, built from Astro.url + site. */
+  canonical?: string;
+  /** Open Graph type */
+  ogType?: "website" | "article";
+  /** Optional JSON-LD object or array (injected as script type=application/ld+json) */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Noindex for drafts or utility pages */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical: canonicalProp,
+  ogType = "website",
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = getSiteUrl(Astro.site);
+const canonical = canonicalProp ?? new URL(Astro.url.pathname, `${siteUrl}/`).href;
+const ogImage = `${siteUrl}/favicon.svg`;
+
+const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={ogType} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{
+  jsonLdScripts.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}

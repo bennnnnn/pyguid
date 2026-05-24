@@ -1,0 +1,44 @@
+---
+import type { LessonEntry } from "../lib/lessons";
+import { lessonUrl } from "../lib/lessons";
+
+interface Props {
+  current: LessonEntry;
+  chapterLessons: LessonEntry[];
+}
+
+const { current, chapterLessons } = Astro.props;
+
+const related = chapterLessons.filter((l) => l.id !== current.id).slice(0, 5);
+---
+
+{
+  related.length > 0 && (
+    <aside class="lesson-related not-prose mt-10 rounded-lg border border-border bg-surface-muted/40 p-5">
+      <h2 class="!mt-0 text-base font-semibold text-text">Related in this chapter</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {related.map((lesson) => (
+          <li>
+            <a
+              href={lessonUrl(lesson.id)}
+              class="text-link font-medium no-underline hover:underline"
+            >
+              {lesson.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 text-sm text-text-muted">
+        New here? Follow the course from{" "}
+        <a href="/python/what-is-python/" class="text-link no-underline hover:underline">
+          What is Python?
+        </a>{" "}
+        or browse the{" "}
+        <a href="/python/roadmap/" class="text-link no-underline hover:underline">
+          full roadmap
+        </a>
+        .
+      </p>
+    </aside>
+  )
+}

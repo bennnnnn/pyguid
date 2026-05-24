@@ -144,3 +144,10 @@ export function getTotalLessonCount(groups: LessonGroup[]): number {
     0,
   );
 }
+
+/** Other lessons in the same chapter (sidebar order), for internal linking / SEO. */
+export function getChapterLessons(groups: LessonGroup[], chapter: number): LessonEntry[] {
+  const group = groups.find((g) => g.chapter === chapter);
+  if (!group) return [];
+  return getAllLessonsInGroup(group);
+}

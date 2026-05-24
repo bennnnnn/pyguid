@@ -8,7 +8,8 @@ import PythonExampleScripts from "../components/PythonExampleScripts.astro";
 import TutorialFooter from "../components/TutorialFooter.astro";
 import SignInModal from "../components/SignInModal.astro";
 import type { LessonGroup } from "../lib/lessons";
-import { SITE } from "../lib/site";
+import { SITE, getSiteUrl } from "../lib/site";
+import SeoHead from "../components/SeoHead.astro";
 
 interface Props {
   title?: string;
@@ -16,6 +17,7 @@ interface Props {
   groups: LessonGroup[];
   currentLessonId?: string;
   sidebar?: "learn" | "reference";
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -24,9 +26,11 @@ const {
   groups,
   currentLessonId,
   sidebar = "learn",
+  jsonLd,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, SITE.url);
+const siteUrl = getSiteUrl(Astro.site);
+const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
 ---
 
 <!doctype html>
@@ -34,8 +38,13 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <SeoHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogType="article"
+      jsonLd={jsonLd}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

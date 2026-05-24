@@ -122,6 +122,7 @@
     { "slug": "list-slicing", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-append", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-extend", "chapter": 7, "chapterTitle": "Lists" },
+    { "slug": "list-append-vs-extend", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-insert", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-remove", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-del", "chapter": 7, "chapterTitle": "Lists" },

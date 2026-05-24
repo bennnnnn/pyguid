@@ -1,0 +1,76 @@
+---
+title: "append() vs extend() in Python"
+description: "Compare list append and extend with examples, return values, and when to use each."
+order: 60
+chapter: 7
+chapterTitle: "Lists"
+level: beginner
+---
+
+**Short answer:** `append()` adds **one** item (any type). `extend()` adds **many** items by copying elements from another iterable.
+
+## append() — one item at the end
+
+<PythonExample
+  filename="append_one.py"
+  code={`items = ["a", "b"]
+items.append("c")
+print(items)`}
+/>
+
+## extend() — merge another iterable
+
+<PythonExample
+  filename="extend_many.py"
+  code={`items = ["a", "b"]
+items.extend(["c", "d"])
+print(items)`}
+/>
+
+## Side-by-side
+
+|                     | `append(x)`                     | `extend(iterable)`             |
+| ------------------- | ------------------------------- | ------------------------------ |
+| Adds                | **one** object `x`              | **each element** from iterable |
+| `append(["x","y"])` | list becomes `[..., ["x","y"]]` | —                              |
+| `extend(["x","y"])` | —                               | list becomes `[..., "x", "y"]` |
+| Returns             | `None`                          | `None`                         |
+| Changes original    | yes                             | yes                            |
+
+## Common mistake: nested list with append
+
+<PythonExample
+  filename="nested.py"
+  code={`row = [1, 2]
+grid = []
+grid.append(row)
+row.append(3)
+print(grid)`}
+/>
+
+`append(row)` stores **one** list object — aliasing bites later. Use `extend` or `copy` when building grids.
+
+## FAQ
+
+**Does append create a new list?**  
+No. It mutates the same list in place.
+
+**Why does append return None?**  
+So you do not confuse the return value with the updated list. Use the variable: `items.append(x)` then `items`.
+
+**Can I append multiple items at once?**  
+Not in one `append` call. Use `extend`, a loop, or `+=` on lists.
+
+**New to lists?** Read [Lists intro](/python/lists-intro/) first. **Next:** [extend()](/python/list-extend/).
+
+<TryIt title="Try it yourself" answer='["a", "b", "c", "d"]'>
+  Start `items = ["a", "b"]`. Use `extend(["c", "d"])`. Print `items`.
+</TryIt>
+
+## Recap
+
+- **append** — single item
+- **extend** — unpack an iterable into the list
+- Both return **None**; both modify in place
+
+Next: **list extend()** in depth.

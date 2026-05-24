@@ -64,6 +64,15 @@ const isReference = path.startsWith("/python/reference");
         class:list={["topnav-link text-xs sm:text-sm", isLearn && "is-active"]}>Learn</a
       >
       <a
+        href="/python/roadmap/"
+        class:list={[
+          "topnav-link text-xs sm:text-sm",
+          path.startsWith("/python/roadmap") && "is-active",
+        ]}
+      >
+        Roadmap
+      </a>
+      <a
         href="/python/reference/"
         class:list={["topnav-link text-xs sm:text-sm", isReference && "is-active"]}
       >

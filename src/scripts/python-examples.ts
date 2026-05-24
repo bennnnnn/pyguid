@@ -1,4 +1,4 @@
-import { loadSkulpt, runPython } from "./run-python";
+import { runPython } from "./run-python";
 
 let initialized = false;
 
@@ -14,10 +14,7 @@ export function initPythonExamples() {
   if (initialized) return;
   initialized = true;
 
-  // Warm-load Skulpt on first page with examples (non-blocking)
-  void loadSkulpt().catch(() => {
-    /* first Run click will surface the error */
-  });
+  // Skulpt loads on first Run click only (keeps non-lesson pages lighter)
 
   document.addEventListener("click", async (e) => {
     const target = e.target as HTMLElement;

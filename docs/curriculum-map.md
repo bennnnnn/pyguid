@@ -8,24 +8,24 @@
 
 ## Chapter summary
 
-| Ch | Title           | Lessons | Projects / notes                                      |
-| -- | --------------- | ------- | ----------------------------------------------------- |
-| 1  | Getting Started | 6       | About Me                                              |
-| 2  | Variables       | 7       | Profile generator                                     |
-| 3  | Data Types      | 22      |                                                       |
-| 4  | Operators       | 8       | Tip calculator                                        |
-| 5  | If Statements   | 4       | Login checker                                         |
-| 6  | Loops           | 10      | Guessing games                                        |
-| 7  | Lists           | 20      | Todo list                                             |
-| 8  | Tuples          | 5       |                                                       |
-| 9  | Sets            | 6       |                                                       |
-| 10 | Dictionaries    | 14      | Contact book                                          |
-| 11 | Functions       | 15      | TypedDict, mypy                                       |
-| 12 | Modules         | 15      | git, PyPI, GitHub Actions, ruff/black                 |
-| 13 | Error Handling  | 8       | Exception chaining                                    |
-| 14 | Classes         | 10      | Dunder methods                                        |
-| 15 | Files           | 13      | CSV, INI, paths                                       |
-| 16 | More Python     | 35      | async, Flask, FastAPI, ORM, Jupyter                   |
+| Ch  | Title           | Lessons | Projects / notes                      |
+| --- | --------------- | ------- | ------------------------------------- |
+| 1   | Getting Started | 6       | About Me                              |
+| 2   | Variables       | 7       | Profile generator                     |
+| 3   | Data Types      | 22      |                                       |
+| 4   | Operators       | 8       | Tip calculator                        |
+| 5   | If Statements   | 4       | Login checker                         |
+| 6   | Loops           | 10      | Guessing games                        |
+| 7   | Lists           | 20      | Todo list                             |
+| 8   | Tuples          | 5       |                                       |
+| 9   | Sets            | 6       |                                       |
+| 10  | Dictionaries    | 14      | Contact book                          |
+| 11  | Functions       | 15      | TypedDict, mypy                       |
+| 12  | Modules         | 15      | git, PyPI, GitHub Actions, ruff/black |
+| 13  | Error Handling  | 8       | Exception chaining                    |
+| 14  | Classes         | 10      | Dunder methods                        |
+| 15  | Files           | 13      | CSV, INI, paths                       |
+| 16  | More Python     | 35      | async, Flask, FastAPI, ORM, Jupyter   |
 
 ## Wave 7 completed
 
@@ -53,12 +53,12 @@
 
 ## Projects track
 
-| Project              | Chapter | Status |
-| -------------------- | ------- | ------ |
-| CLI capstones        | 12/16   | done   |
-| Database todo        | 16      | done   |
-| Flask JSON API       | 16      | done   |
-| All chapter minis    | 1–16    | done   |
+| Project           | Chapter | Status |
+| ----------------- | ------- | ------ |
+| CLI capstones     | 12/16   | done   |
+| Database todo     | 16      | done   |
+| Flask JSON API    | 16      | done   |
+| All chapter minis | 1–16    | done   |
 
 ## Reordering
 
