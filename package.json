@@ -12,6 +12,7 @@
     "astro": "astro",
     "format": "prettier --write .",
     "check:format": "prettier --check .",
+    "check:routes": "node scripts/verify-no-practice-route.mjs",
     "sync:curriculum": "node scripts/sync-curriculum.mjs",
     "curriculum:generate": "node scripts/generate-curriculum-v11.mjs > docs/curriculum-order.json && npm run sync:curriculum",
     "seo:apply-top30": "node scripts/apply-seo-meta.mjs",
