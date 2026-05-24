@@ -1,0 +1,63 @@
+---
+title: "Mini project: Guessing game"
+description: "Build a number guessing game with while loops and break."
+order: 47
+chapter: 6
+chapterTitle: "Loops"
+level: beginner
+---
+
+Pick a secret number. The player guesses until they get it right — classic **`while`** + **`if`** + **`break`** practice.
+
+## Simulated version (browser-safe)
+
+<PythonExample
+  filename="guess.py"
+  code={`secret = 7
+guesses = [3, 9, 7]
+
+for guess in guesses:
+print("You guessed:", guess)
+if guess == secret:
+print("Correct!")
+break
+elif guess < secret:
+print("Too low")
+else:
+print("Too high")`}
+/>
+
+On your computer, replace the list with **`while True:`** and **`int(input(...))`**.
+
+## Full while loop pattern (local Python)
+
+```python
+secret = 7
+while True:
+    guess = int(input("Guess: "))
+    if guess == secret:
+        print("You win!")
+        break
+    elif guess < secret:
+        print("Too low")
+    else:
+        print("Too high")
+```
+
+## Stretch goals
+
+- Count guesses with a counter
+- Limit to 5 tries, then `break` with "Game over"
+- Use `random.randint(1, 10)` from `import random` (local)
+
+<TryIt title="Try it yourself" answer="Too low">
+  With `secret = 10` and `guess = 4`, print `"Too low"` or `"Too high"` using `if` /
+  `elif`.
+</TryIt>
+
+## Recap
+
+- **`while`** repeats until **`break`**
+- Compare guess to secret with **`==`**, **`<`**, **`>`**
+
+Next chapter: **Lists** — many values in one variable.

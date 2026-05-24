@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -91,6 +91,7 @@
     { "slug": "and-or", "chapter": 4, "chapterTitle": "Operators" },
     { "slug": "membership-identity", "chapter": 4, "chapterTitle": "Operators" },
     { "slug": "operator-precedence", "chapter": 4, "chapterTitle": "Operators" },
+    { "slug": "tip-calculator-project", "chapter": 4, "chapterTitle": "Operators" },
 
     { "slug": "if-indentation", "chapter": 5, "chapterTitle": "If Statements" },
     { "slug": "elif-else", "chapter": 5, "chapterTitle": "If Statements" },
@@ -102,6 +103,7 @@
     { "slug": "break-continue", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "loop-patterns", "chapter": 6, "chapterTitle": "Loops" },
     { "slug": "nested-loops", "chapter": 6, "chapterTitle": "Loops" },
+    { "slug": "guessing-game-project", "chapter": 6, "chapterTitle": "Loops" },
 
     { "slug": "lists-intro", "chapter": 7, "chapterTitle": "Lists" },
     { "slug": "list-indexing", "chapter": 7, "chapterTitle": "Lists" },
@@ -122,8 +124,12 @@
 
     { "slug": "tuples-intro", "chapter": 8, "chapterTitle": "Tuples" },
     { "slug": "tuple-unpacking", "chapter": 8, "chapterTitle": "Tuples" },
+    { "slug": "tuple-immutability", "chapter": 8, "chapterTitle": "Tuples" },
+    { "slug": "tuple-one-item", "chapter": 8, "chapterTitle": "Tuples" },
 
     { "slug": "sets-intro", "chapter": 9, "chapterTitle": "Sets" },
+    { "slug": "set-add-remove", "chapter": 9, "chapterTitle": "Sets" },
+    { "slug": "set-empty-set", "chapter": 9, "chapterTitle": "Sets" },
     { "slug": "set-operations", "chapter": 9, "chapterTitle": "Sets" },
 
     { "slug": "dict-intro", "chapter": 10, "chapterTitle": "Dictionaries" },
@@ -137,21 +143,35 @@
 
     { "slug": "functions-intro", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-arguments", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "function-default-args", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-return", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "print-vs-return", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "function-docstrings", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "type-hints-intro", "chapter": 11, "chapterTitle": "Functions" },
     { "slug": "function-scope", "chapter": 11, "chapterTitle": "Functions" },
+    { "slug": "builtin-functions", "chapter": 11, "chapterTitle": "Functions" },
 
     { "slug": "modules-intro", "chapter": 12, "chapterTitle": "Modules" },
     { "slug": "python-packages", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "venv-and-requirements", "chapter": 12, "chapterTitle": "Modules" },
+    { "slug": "main-module-guard", "chapter": 12, "chapterTitle": "Modules" },
 
+    { "slug": "tracebacks", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "try-except", "chapter": 13, "chapterTitle": "Error Handling" },
+    { "slug": "try-else-finally", "chapter": 13, "chapterTitle": "Error Handling" },
+    { "slug": "raise-statement", "chapter": 13, "chapterTitle": "Error Handling" },
     { "slug": "common-exceptions", "chapter": 13, "chapterTitle": "Error Handling" },
 
     { "slug": "classes-intro", "chapter": 14, "chapterTitle": "Classes" },
+    { "slug": "class-init-self", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "class-methods", "chapter": 14, "chapterTitle": "Classes" },
     { "slug": "inheritance", "chapter": 14, "chapterTitle": "Classes" },
 
+    { "slug": "file-paths-modes", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "read-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "write-files", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "pathlib-basics", "chapter": 15, "chapterTitle": "Files" },
+    { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
 
     { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
     { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },

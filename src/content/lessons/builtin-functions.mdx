@@ -1,0 +1,68 @@
+---
+title: "Useful built-in functions"
+description: "len, sum, min, max, sorted, enumerate, zip, any, and all."
+order: 88
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+Python ships with a **toolbox** of ready-made functions — no `import` needed. These appear in almost every real script.
+
+## One new idea: call them on your data
+
+<PythonExample
+  filename="builtins.py"
+  code={`nums = [3, 1, 4, 1, 5]
+
+print(len(nums))
+print(sum(nums))
+print(min(nums))
+print(max(nums))
+print(sorted(nums))
+print(list(enumerate(["a", "b"])))`}
+/>
+
+| Function      | Job                 |
+| ------------- | ------------------- |
+| `len(x)`      | how many items      |
+| `sum(list)`   | add numbers in list |
+| `min` / `max` | smallest / largest  |
+| `sorted(x)`   | new sorted list     |
+| `enumerate`   | index + value pairs |
+
+## zip, any, all
+
+<PythonExample
+  filename="more.py"
+  code={`names = ["Ada", "Ben"]
+scores = [90, 85]
+for name, score in zip(names, scores):
+    print(name, score)
+
+print(any([False, True, False]))
+print(all([True, True, False]))`}
+/>
+
+| Function | Meaning                    |
+| -------- | -------------------------- |
+| `zip`    | pair up two sequences      |
+| `any`    | True if **one** is truthy  |
+| `all`    | True if **all** are truthy |
+
+<Callout variant="tip">
+  You already used **`print`**, **`input`**, **`type`**, **`int`**, **`range`**,
+  **`open`** — they are built-ins too.
+</Callout>
+
+<TryIt title="Try it yourself" answer="15">
+  Print `sum([5, 10])`.
+</TryIt>
+
+## Recap
+
+- **Built-ins** — always available
+- **`len` `sum` `min` `max` `sorted`** — collections
+- **`enumerate` `zip` `any` `all`** — loops and logic helpers
+
+Next chapter: **Modules** — code in other files.

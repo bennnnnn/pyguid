@@ -1,0 +1,54 @@
+---
+title: "Default parameters"
+description: "Give function parameters default values."
+order: 82
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+A coffee order defaults to “medium” unless you say “large.” **Default parameters** let callers skip arguments you already filled in.
+
+## One new idea: name=default in def
+
+<PythonExample
+  filename="defaults.py"
+  code={`def greet(name, greeting="Hello"):
+    print(f"{greeting}, {name}")
+
+greet("Ada")
+greet("Ben", "Hi")`}
+/>
+
+| Call                | `greeting` used |
+| ------------------- | --------------- |
+| `greet("Ada")`      | `"Hello"`       |
+| `greet("Ben","Hi")` | `"Hi"`          |
+
+## Real use case: power function
+
+<PythonExample
+  filename="power.py"
+  code={`def power(base, exponent=2):
+    return base ** exponent
+
+print(power(5))
+print(power(5, 3))`}
+/>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  Put parameters **with defaults after** parameters **without** defaults: **`def f(a,
+  b=1):`** not **`def f(a=1, b):`**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Hello, Sam">
+  Define `def show(name, prefix="Hello")` and call `show("Sam")`.
+</TryIt>
+
+## Recap
+
+- **`param=default`** in `def`
+- Caller can omit that argument
+- Defaults go **at the end** of the parameter list
+
+Next: **Return values** — send data back to the caller.

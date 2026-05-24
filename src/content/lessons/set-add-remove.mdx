@@ -1,0 +1,52 @@
+---
+title: "add(), remove(), and discard()"
+description: "Change sets with add, remove, and discard."
+order: 69
+chapter: 9
+chapterTitle: "Sets"
+level: beginner
+---
+
+A set of unique stickers: you **add** new ones, **remove** one you know is there, or **discard** without crashing if it is missing.
+
+## One new idea: add()
+
+<PythonExample
+  filename="add.py"
+  code={`tags = {"python", "web"}
+tags.add("data")
+tags.add("python")
+print(tags)`}
+/>
+
+**`add("python")` twice** — still one `"python"` (sets ignore duplicates).
+
+## remove() vs discard()
+
+<PythonExample
+  filename="remove_discard.py"
+  code={`colors = {"red", "green", "blue"}
+
+colors.discard("yellow")
+print(colors)
+
+colors.remove("red")
+print(colors)`}
+/>
+
+| Method       | If item missing |
+| ------------ | --------------- |
+| `discard(x)` | no error        |
+| `remove(x)`  | **KeyError**    |
+
+<TryIt title="Try it yourself" answer='{"a", "b"}'>
+  Start `s = {"a"}`, `add("b")`, print `s`.
+</TryIt>
+
+## Recap
+
+- **`add()`** — insert one item
+- **`remove()`** — delete (errors if missing)
+- **`discard()`** — delete safely
+
+Next: **Empty sets** — not the same as `{}` for dicts.

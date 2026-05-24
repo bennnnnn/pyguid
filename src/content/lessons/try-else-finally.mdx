@@ -1,0 +1,63 @@
+---
+title: "else and finally"
+description: "Use else and finally with try and except blocks."
+order: 95
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+**`try` / `except`** has optional teammates: **`else`** runs when **no** error happened; **`finally`** runs **always** — cleanup time.
+
+## One new idea: else and finally
+
+<PythonExample
+  filename="else_finally.py"
+  code={`def divide(a, b):
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+        return
+    else:
+        print("Division OK:", result)
+    finally:
+        print("Done with divide")
+
+divide(10, 2)
+print("---")
+divide(10, 0)`}
+/>
+
+| Block     | When it runs           |
+| --------- | ---------------------- |
+| `try`     | first — risky code     |
+| `except`  | if matching error      |
+| `else`    | if **no** error in try |
+| `finally` | **always**             |
+
+## Real use case: close a resource
+
+```python
+try:
+    f = open("data.txt")
+    data = f.read()
+except OSError:
+    print("File missing")
+finally:
+    print("Cleanup runs either way")
+```
+
+With **`with open(...)`** you often skip manual close — `finally` still matters for other resources.
+
+<TryIt title="Try it yourself" answer="Done with divide">
+  Run the example with `divide(10, 2)`. What does **finally** print?
+</TryIt>
+
+## Recap
+
+- **`else`** — success path after `try`
+- **`finally`** — always runs
+- Use for cleanup and clear structure
+
+Next: **`raise`** — throw your own errors.

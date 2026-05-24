@@ -1,0 +1,56 @@
+---
+title: "Tuple immutability"
+description: "Why tuples cannot change after creation."
+order: 66
+chapter: 8
+chapterTitle: "Tuples"
+level: beginner
+---
+
+A printed receipt is **frozen** — you cannot erase one digit without a new printout. **Tuples** are frozen lists: you can **read** items, not **replace** them in place.
+
+## One new idea: tuples do not change
+
+<PythonExample
+  filename="immutable.py"
+  code={`coords = (10, 20)
+print(coords[0])
+
+# coords[0] = 99 # TypeError if you uncomment`}
+
+/>
+
+Lists allow `coords[0] = 99` — tuples do **not**.
+
+## Why use something you cannot edit?
+
+| Use tuple when…        | Use list when…      |
+| ---------------------- | ------------------- |
+| Data should stay fixed | You will add/remove |
+| Dict keys (later)      | Shopping cart       |
+| Returning fixed pairs  | Growing collection  |
+
+<PythonExample
+  filename="rgb.py"
+  code={`rgb = (255, 128, 0)
+print("Red channel:", rgb[0])`}
+/>
+
+## Common mistake
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`my_tuple[0] = 1`** → **TypeError: 'tuple' object does not support item assignment**.
+  Build a **new** tuple instead: **`coords = (99, coords[1])`**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="3">
+  With `t = (1, 2, 3)`, print `t[2]`.
+</TryIt>
+
+## Recap
+
+- Tuples are **immutable**
+- Good for fixed groups of values
+- Need to change? Use a **list**
+
+Next: **One-item tuples** — the comma trap.

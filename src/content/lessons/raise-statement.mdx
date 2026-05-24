@@ -1,0 +1,60 @@
+---
+title: "The raise statement"
+description: "Signal errors on purpose with raise."
+order: 96
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+Sometimes **you** know the input is invalid before Python trips on its own. **`raise`** stops the program flow and reports an error — like **`except`** in reverse.
+
+## One new idea: raise an exception
+
+<PythonExample
+  filename="raise_demo.py"
+  code={`def set_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    print("Age set to", age)
+
+set_age(25)
+try:
+set_age(-1)
+except ValueError as e:
+print("Caught:", e)`}
+/>
+
+**Line by line**
+
+- `raise ValueError("...")` — create and throw an error
+- Caller can **`except ValueError`** like any other error
+
+## Real use case: guard early
+
+<PythonExample
+  filename="guard.py"
+  code={`def withdraw(balance, amount):
+    if amount > balance:
+        raise ValueError("Not enough money")
+    return balance - amount
+
+print(withdraw(100, 40))`}
+/>
+
+<Callout variant="warning">
+  Do not **`raise`** for normal control flow (like skipping loops). Use **`if`** /
+  **`return`** when no error is involved.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Caught:">
+  Run the first example. Does `set_age(-1)` get caught?
+</TryIt>
+
+## Recap
+
+- **`raise`** — report a problem
+- Pick a **sensible type** (`ValueError`, etc.)
+- Pair with **`try` / `except`** where you call risky functions
+
+Next: **Common exceptions** — practice handling input safely.

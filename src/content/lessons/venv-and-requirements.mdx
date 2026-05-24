@@ -1,0 +1,57 @@
+---
+title: "Virtual environments and requirements.txt"
+description: "Isolate project packages with venv and pin dependencies."
+order: 91
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+Your project gets its own **sandbox** so package versions do not fight other projects. A **virtual environment (`venv`)** is that sandbox; **`requirements.txt`** lists what to install.
+
+## One new idea: venv per project
+
+On your computer (terminal):
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Mac/Linux
+# .venv\Scripts\activate    # Windows
+pip install requests
+pip freeze > requirements.txt
+```
+
+| Step               | Why                            |
+| ------------------ | ------------------------------ |
+| `python -m venv`   | create isolated Python         |
+| `activate`         | use that Python for `pip`      |
+| `requirements.txt` | share exact packages with team |
+
+## requirements.txt example
+
+```text
+requests==2.31.0
+```
+
+Teammates run:
+
+```bash
+pip install -r requirements.txt
+```
+
+<Callout variant="note">
+  PyGuide lessons do not run `pip` in the browser. Learn the commands locally when you
+  start real projects.
+</Callout>
+
+<TryIt title="Try it yourself" answer="(conceptual)">
+  In your own words: why is `venv` safer than installing every package globally?
+</TryIt>
+
+## Recap
+
+- **`venv`** — isolated environment per project
+- **`pip freeze > requirements.txt`** — save dependencies
+- **`pip install -r requirements.txt`** — restore them
+
+Next: **`if __name__ == "__main__"`** — runnable modules.

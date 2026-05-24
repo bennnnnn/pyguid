@@ -1,0 +1,47 @@
+---
+title: "One-item tuples"
+description: "Create a tuple with a single element using a trailing comma."
+order: 67
+chapter: 8
+chapterTitle: "Tuples"
+level: beginner
+---
+
+Parentheses alone do not always make a tuple. **`(42)`** is just the number 42. **`(42,)`** — comma included — is a **one-item tuple**.
+
+## One new idea: the trailing comma
+
+<PythonExample
+  filename="one.py"
+  code={`not_a_tuple = (42)
+a_tuple = (42,)
+
+print(type(not_a_tuple))
+print(type(a_tuple))
+print(a_tuple)`}
+/>
+
+| Expression | Type    |
+| ---------- | ------- |
+| `(42)`     | `int`   |
+| `(42,)`    | `tuple` |
+
+## Real use case: single return value
+
+Functions often return tuples. One value still uses a comma for consistency:
+
+```python
+def only_x():
+    return (100,)
+```
+
+<TryIt title="Try it yourself" answer="tuple">
+  Create `t = ("only",)` and print `type(t).__name__`.
+</TryIt>
+
+## Recap
+
+- **One-item tuple** needs a **comma**: `(x,)`
+- **`(x)`** is not a tuple — just grouped math
+
+Next chapter: **Sets** — unique items only.

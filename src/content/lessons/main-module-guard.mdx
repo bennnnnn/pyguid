@@ -1,0 +1,52 @@
+---
+title: 'if __name__ == "__main__"'
+description: "Run code only when a file is executed directly."
+order: 92
+chapter: 12
+chapterTitle: "Modules"
+level: beginner
+---
+
+A file can be **imported** as a module or **run** as the main program. **`if __name__ == "__main__":`** wraps code that should run **only** when you execute the file directly.
+
+## One new idea: two ways to use a file
+
+<PythonExample
+  filename="main_demo.py"
+  code={`def add(a, b):
+    return a + b
+
+print("Module loaded, name is:", **name**)
+
+if **name** == "**main**":
+print("Running as main script")
+print(add(2, 3))`}
+/>
+
+When **Run** here, `__name__` is `"__main__"` — the block runs.
+
+When another file **`import`s** this module, `__name__` is the module name — the block is **skipped**.
+
+## Real pattern
+
+```python
+def main():
+    print("Start here")
+
+if __name__ == "__main__":
+    main()
+```
+
+Keeps **reusable functions** at the top and **script steps** at the bottom.
+
+<TryIt title="Try it yourself" answer="__main__">
+  Run the example and note what `__name__` prints.
+</TryIt>
+
+## Recap
+
+- **`import`** — `__name__` is module name
+- **Run file directly** — `__name__` is `"__main__"`
+- Put script-only code inside the **`if`** block
+
+Next chapter: **Error handling**.

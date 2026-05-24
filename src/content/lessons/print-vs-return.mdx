@@ -1,0 +1,60 @@
+---
+title: "print() vs return"
+description: "When to show output vs when to send a value back."
+order: 84
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+**`print`** is a megaphone to the screen. **`return`** is handing a result back to whoever called the function — they decide what to do with it.
+
+## One new idea: two different jobs
+
+<PythonExample
+  filename="compare.py"
+  code={`def show_sum(a, b):
+    print(a + b)
+
+def get_sum(a, b):
+return a + b
+
+show_sum(2, 3)
+total = get_sum(2, 3)
+print("Stored:", total)`}
+/>
+
+| Function   | Effect                         |
+| ---------- | ------------------------------ |
+| `show_sum` | displays `5`, returns `None`   |
+| `get_sum`  | returns `5` — caller stores it |
+
+## Use return when building pipelines
+
+<PythonExample
+  filename="pipeline.py"
+  code={`def double(n):
+    return n * 2
+
+x = double(4)
+y = double(x)
+print(y)`}
+/>
+
+`double(double(4))` works because **`return`** feeds the next step.
+
+<Callout variant="tip">
+  **`print`** for humans debugging. **`return`** for values other code needs.
+</Callout>
+
+<TryIt title="Try it yourself" answer="10">
+  Write `def triple(n): return n * 3` and `print(triple(3))`.
+</TryIt>
+
+## Recap
+
+- **`print`** — display only
+- **`return`** — give a value back
+- Most reusable functions **`return`**
+
+Next: **Docstrings** — document your functions.

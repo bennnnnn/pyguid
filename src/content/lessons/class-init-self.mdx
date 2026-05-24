@@ -1,0 +1,66 @@
+---
+title: "__init__ and self"
+description: "Initialize objects with __init__ and the self parameter."
+order: 99
+chapter: 14
+chapterTitle: "Classes"
+level: beginner
+---
+
+A cookie cutter shapes each cookie the same way but each cookie has **its own** sprinkles. **`__init__`** sets up **each object**; **`self`** means “this particular object.”
+
+## One new idea: def **init**(self, ...)
+
+<PythonExample
+  filename="init.py"
+  code={`class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(self.name, "says woof")
+
+buddy = Dog("Buddy")
+luna = Dog("Luna")
+buddy.speak()
+luna.speak()`}
+/>
+
+**Line by line**
+
+- `__init__` runs **automatically** when you call `Dog("Buddy")`
+- `self` — the new object being built
+- `self.name = name` — store data **on** the object
+
+## Why self?
+
+<PythonExample
+  filename="two_dogs.py"
+  code={`class Dog:
+    def __init__(self, name):
+        self.name = name
+
+a = Dog("Max")
+b = Dog("Zoe")
+print(a.name, b.name)`}
+/>
+
+`a.name` and `b.name` are **separate** — each `self` was different during `__init__`.
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  Forgetting **`self`** in a method: **`def speak():`** inside a class → **`TypeError`**
+  when called. Instance methods need **`self`** as the first parameter.
+</Callout>
+
+<TryIt title="Try it yourself" answer="Milo says woof">
+  Add class `Cat` with `__init__(self, name)` and `speak` printing `name` and `meow`.
+  Create `Cat("Milo")` and call `speak()`.
+</TryIt>
+
+## Recap
+
+- **`__init__`** — setup for each object
+- **`self`** — this instance inside methods
+- **`self.attribute`** — data stored on the object
+
+Next: **Class methods** — behavior on the class.

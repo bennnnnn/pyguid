@@ -1,0 +1,63 @@
+---
+title: "Mini project: Tip calculator"
+description: "Build a tip calculator with operators, variables, and conversion."
+order: 37
+chapter: 4
+chapterTitle: "Operators"
+level: beginner
+---
+
+You know the bill and tip percent — Python can do the math. This project combines **variables**, **operators**, and **`float()`** (simulated input).
+
+## What you are building
+
+Given a bill and tip percent, print:
+
+```text
+Bill:   50.0
+Tip:    7.5
+Total:  57.5
+```
+
+## Starter code
+
+<PythonExample
+  filename="tip.py"
+  code={`# Simulated input (on your PC use float(input(...)))
+bill_text = "50.00"
+tip_percent_text = "15"
+
+bill = float(bill_text)
+tip_percent = float(tip_percent_text)
+
+tip_amount = bill \* tip_percent / 100
+total = bill + tip_amount
+
+print("Bill: ", bill)
+print("Tip: ", tip_amount)
+print("Total: ", total)`}
+/>
+
+**Line by line**
+
+- Convert text to **`float`** before math
+- **`bill * tip_percent / 100`** — tip in dollars
+- **`total`** — bill + tip
+
+## Stretch goals
+
+- Round with `round(tip_amount, 2)`
+- Split between friends: `total / 3`
+- Check tip percent is between 0 and 100 with `if`
+
+<TryIt title="Try it yourself" answer="Total: 22.0">
+  Bill `20`, tip `10` percent. Compute tip `2` and total `22`. Print `Total:` and the
+  total.
+</TryIt>
+
+## Recap
+
+- Real programs = **input → convert → calculate → output**
+- **`/`** and **`%`** show up in everyday apps
+
+Next chapter: **If statements** — decisions in code.

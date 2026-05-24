@@ -1,0 +1,65 @@
+---
+title: "Reading tracebacks"
+description: "Understand Python error output from bottom to top."
+order: 93
+chapter: 13
+chapterTitle: "Error Handling"
+level: beginner
+---
+
+When Python crashes, it prints a **traceback** — a stack of “where was I when things broke?” Read it **bottom to top** for the real story.
+
+## One new idea: last line is the error type
+
+<PythonExample
+  filename="crash.py"
+  code={`def greet():
+    print(message)
+
+greet()`}
+/>
+
+Run it. You will see **NameError** — `message` was never defined inside `greet`.
+
+**How to read it**
+
+```text
+Traceback (most recent call last):
+  File "...", line X, in <module>
+    greet()
+  File "...", line Y, in greet
+    print(message)
+NameError: name 'message' is not defined
+```
+
+1. **Bottom line** — error **type** and message
+2. **Lines above** — which function, which line
+3. **Top** — where execution started
+
+## Common error types (beginner)
+
+| Error               | Often means             |
+| ------------------- | ----------------------- |
+| `SyntaxError`       | typo before run         |
+| `NameError`         | variable does not exist |
+| `TypeError`         | wrong types together    |
+| `ValueError`        | right type, bad value   |
+| `IndexError`        | list index out of range |
+| `KeyError`          | dict key missing        |
+| `ZeroDivisionError` | divide by zero          |
+
+<Callout variant="tip">
+  Fix **one** error, run again. The next error may have been hidden behind the first.
+</Callout>
+
+<TryIt title="Try it yourself" answer="NameError">
+  Run the example above. What error **type** appears on the last line?
+</TryIt>
+
+## Recap
+
+- Traceback = path through your code to the crash
+- Read the **last line** first
+- Then find **your** file and **line number**
+
+Next: **`try` and `except`** — catch errors safely.

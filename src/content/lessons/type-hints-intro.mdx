@@ -1,0 +1,52 @@
+---
+title: "Type hints intro"
+description: "Annotate parameters and return types in modern Python."
+order: 86
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+Labels on storage bins say “integers” or “text.” **Type hints** label what a function **expects** and **returns** — they do not change how Python runs your code at beginner level.
+
+## One new idea: colon types
+
+<PythonExample
+  filename="hints.py"
+  code={`def greet(name: str) -> None:
+    print(f"Hello, {name}")
+
+def add(a: int, b: int) -> int:
+return a + b
+
+print(add(2, 3))`}
+/>
+
+| Part        | Meaning                |
+| ----------- | ---------------------- |
+| `name: str` | expect text            |
+| `-> int`    | returns an integer     |
+| `-> None`   | returns nothing useful |
+
+## Why bother?
+
+- Editors can **highlight** wrong types
+- Readers see intent without guessing
+- Same syntax in **2026** tutorials and jobs
+
+<Callout variant="note">
+  Python **does not** enforce hints at runtime by default. Wrong types can still run until
+  they cause an error. Tools like **mypy** check later — optional for you now.
+</Callout>
+
+<TryIt title="Try it yourself" answer="6">
+  Define `def double(n: int) -> int: return n * 2` and print `double(3)`.
+</TryIt>
+
+## Recap
+
+- **`param: type`** and **`-> return_type`**
+- Documentation for humans and tools
+- Not required on every beginner function — use on new code when easy
+
+Next: **Variable scope** — where names exist.

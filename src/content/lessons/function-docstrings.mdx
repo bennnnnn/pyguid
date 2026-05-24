@@ -1,0 +1,53 @@
+---
+title: "Docstrings"
+description: "Document functions with triple-quoted docstrings."
+order: 85
+chapter: 11
+chapterTitle: "Functions"
+level: beginner
+---
+
+A sticky note on a recipe card explains what the dish is for. A **docstring** is that note on a function — the first string right under **`def`**.
+
+## One new idea: triple quotes under def
+
+<PythonExample
+  filename="doc.py"
+  code={`def area(width, height):
+    """Return rectangle area (width * height)."""
+    return width * height
+
+print(area.**doc**)
+print(area(4, 5))`}
+/>
+
+**Line by line**
+
+- `"""..."""` — docstring (usually one short sentence)
+- `area.__doc__` — read the text (tools like `help(area)` use this too)
+
+## Real use case: explain units
+
+<PythonExample
+  filename="celsius.py"
+  code={`def to_fahrenheit(celsius):
+    """Convert Celsius to Fahrenheit."""
+    return celsius * 9 / 5 + 32
+
+print(to_fahrenheit(0))`}
+/>
+
+<Callout variant="tip">
+  Say **what** the function returns, not every line of how — unless the how is surprising.
+</Callout>
+
+<TryIt title="Try it yourself" answer="8">
+  Add a one-line docstring to `def add(a, b): return a + b` and print `add(3, 5)`.
+</TryIt>
+
+## Recap
+
+- First string in function body = **docstring**
+- Helps **you** and teammates months later
+
+Next: **Type hints** — optional labels for parameters.

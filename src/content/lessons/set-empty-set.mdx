@@ -1,0 +1,51 @@
+---
+title: "Empty sets"
+description: "Create an empty set with set() — not {}."
+order: 70
+chapter: 9
+chapterTitle: "Sets"
+level: beginner
+---
+
+Empty box for **unique** items only. **`{}`** in Python means an empty **dictionary**, not an empty set. Use **`set()`** instead.
+
+## One new idea: set() for empty
+
+<PythonExample
+  filename="empty.py"
+  code={`empty_set = set()
+empty_dict = {}
+
+print(type(empty_set))
+print(type(empty_dict))
+
+empty_set.add("first")
+print(empty_set)`}
+/>
+
+| Code    | Creates        |
+| ------- | -------------- |
+| `set()` | empty **set**  |
+| `{}`    | empty **dict** |
+
+## Real use case: collect unique visitors
+
+<PythonExample
+  filename="visitors.py"
+  code={`seen = set()
+for name in ["Ada", "Ben", "Ada", "Cara"]:
+    seen.add(name)
+print(seen)
+print("Count:", len(seen))`}
+/>
+
+<TryIt title="Try it yourself" answer="set">
+  Print `type(set()).__name__`.
+</TryIt>
+
+## Recap
+
+- **`set()`** — empty set
+- **`{}`** — empty dict (different type!)
+
+Next: **Set operations** — union and intersection.

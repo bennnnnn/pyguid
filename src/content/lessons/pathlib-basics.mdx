@@ -1,0 +1,63 @@
+---
+title: "pathlib basics"
+description: "Work with file paths using pathlib.Path."
+order: 105
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+String paths get messy with slashes. **`pathlib`** (standard library) treats paths as objects — cleaner joins and checks.
+
+## One new idea: Path objects
+
+On your computer:
+
+```python
+from pathlib import Path
+
+folder = Path("data")
+file = folder / "notes.txt"
+print(file)
+print(file.name)
+print(file.suffix)
+```
+
+| Property / op            | Example result |
+| ------------------------ | -------------- |
+| `Path("data") / "a.txt"` | `data/a.txt`   |
+| `.name`                  | `notes.txt`    |
+| `.suffix`                | `.txt`         |
+
+## Simulate the idea
+
+<PythonExample
+  filename="path_sim.py"
+  code={`# pathlib needs a real filesystem — concept demo
+parts = ["data", "notes.txt"]
+joined = "/".join(parts)
+print("Path string:", joined)
+print("Filename:", "notes.txt")
+print("Extension:", ".txt")`}
+/>
+
+## Why pathlib?
+
+- **`/` operator** joins paths (OS-aware on real `Path`)
+- **`.exists()`**, **`.read_text()`** — readable methods (local Python 3)
+
+<Callout variant="tip">
+  New projects often prefer **`pathlib`** over manual string paths with **`os.path`**.
+</Callout>
+
+<TryIt title="Try it yourself" answer="notes.txt">
+  With `parts = ["data", "notes.txt"]`, print `parts[-1]`.
+</TryIt>
+
+## Recap
+
+- **`from pathlib import Path`**
+- **`folder / "file.txt"`** — join paths
+- Use on your PC for real file work
+
+Next: **Notes app** mini project.

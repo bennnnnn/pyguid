@@ -1,0 +1,65 @@
+---
+title: "Mini project: Notes app"
+description: "Combine read, write, and loops in a simple notes program."
+order: 106
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+Keep a list of notes in memory (or in a file on your PC). This project ties **lists**, **loops**, and **file ideas** together.
+
+## In-memory version (browser)
+
+<PythonExample
+  filename="notes.py"
+  code={`notes = []
+
+def add_note(text):
+notes.append(text)
+
+def show_notes():
+if not notes:
+print("No notes yet.")
+return
+for i, note in enumerate(notes, start=1):
+print(f"{i}. {note}")
+
+add_note("Learn Python")
+add_note("Practice loops")
+show_notes()`}
+/>
+
+## File version (on your computer)
+
+```python
+from pathlib import Path
+
+path = Path("notes.txt")
+
+def save_notes(lines):
+    path.write_text("\\n".join(lines))
+
+def load_notes():
+    if not path.exists():
+        return []
+    return path.read_text().splitlines()
+```
+
+## Stretch goals
+
+- Menu loop: `1) add 2) list 3) quit`
+- Save after each add
+- Count notes with `len(notes)`
+
+<TryIt title="Try it yourself" answer="2. Practice loops">
+  Run the in-memory example. How many notes print?
+</TryIt>
+
+## Recap
+
+- **List** holds notes; **loop** displays them
+- **Files** persist data between runs (local)
+- Menu **`while`** loops tie it together
+
+Next chapter: **More Python** — lambda, JSON, and more.

@@ -1,0 +1,56 @@
+---
+title: "File paths and modes"
+description: "Understand paths and open() modes r, w, and a."
+order: 102
+chapter: 15
+chapterTitle: "Files"
+level: beginner
+---
+
+A file has an **address** (path) and an **action** (read, write, or append). **`open(path, mode)`** needs both.
+
+## One new idea: mode letters
+
+| Mode  | Meaning                          |
+| ----- | -------------------------------- |
+| `"r"` | **read** (file must exist)       |
+| `"w"` | **write** (creates or **wipes**) |
+| `"a"` | **append** (add to end)          |
+
+<PythonExample
+  filename="modes_sim.py"
+  code={`# Simulated: what each mode does
+path = "notes.txt"
+
+print("r = read existing text")
+print("w = write (overwrites file)")
+print("a = append (keeps old, adds end)")`}
+/>
+
+## Paths: relative vs absolute
+
+```text
+notes.txt           # same folder as script
+data/notes.txt      # folder data next to script
+/Users/you/notes.txt  # absolute (Mac/Linux)
+```
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`open("x.txt", "w")`** **deletes** old content. Double-check before writing.
+</Callout>
+
+<Callout variant="note">
+  Browser **Run code** cannot touch your real disk. Practice paths on your machine in a
+  `.py` file.
+</Callout>
+
+<TryIt title="Try it yourself" answer="w">
+  Which mode **overwrites** a file: `r`, `w`, or `a`?
+</TryIt>
+
+## Recap
+
+- **`"r"`** read · **`"w"`** overwrite write · **`"a"`** append
+- Paths can be **relative** or **absolute**
+
+Next: **Read files** — pull text in.
