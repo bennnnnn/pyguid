@@ -50,7 +50,10 @@ function expandDescription(title, description, chapterTitle) {
 function buildQuickAnswer(title, description) {
   const topic = title.replace(/\(\)$/, "");
   if (description.length >= 40) {
-    return trimToLength(`${description.replace(/\.$/, "")}. This PyGuide lesson shows ${topic} with examples you can run in the browser.`, 220);
+    return trimToLength(
+      `${description.replace(/\.$/, "")}. This PyGuide lesson shows ${topic} with examples you can run in the browser.`,
+      220,
+    );
   }
   return trimToLength(
     `${topic} in Python — this lesson explains the idea with short examples and common beginner mistakes to avoid.`,
