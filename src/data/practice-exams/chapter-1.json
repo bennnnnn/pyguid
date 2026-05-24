@@ -1,0 +1,195 @@
+{
+  "chapter": 1,
+  "chapterTitle": "Getting Started",
+  "title": "Getting Started Practice Exam",
+  "description": "Test your understanding of print, Python syntax, comments, and how code runs top to bottom.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which function displays text in the terminal?",
+      "options": ["print()", "display()", "show()", "output()"],
+      "correctIndex": 0,
+      "explanation": "print() sends values to standard output so you can see them in the terminal."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What is the output of `print('Hello')`?",
+      "options": ["Hello", "'Hello'", "print('Hello')", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "print() outputs the string without the surrounding quotes."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "How do you write a single-line comment in Python?",
+      "options": ["# comment", "// comment", "/* comment */", "-- comment"],
+      "correctIndex": 0,
+      "explanation": "Python uses # for comments; everything after # on that line is ignored."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "Python runs statements from top to bottom, one at a time.",
+      "correct": true,
+      "explanation": "By default, Python executes code sequentially from the first line to the last."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What happens when you run this code?\n\nprint('A')\nprint('B')",
+      "options": [
+        "A then B on separate lines",
+        "B then A",
+        "AB on one line",
+        "A syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Statements run in order: the first print runs, then the second."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "Which line will cause a SyntaxError?",
+      "options": ["print('hi')", "print(\"hi\")", "print(hi)", "print(42)"],
+      "correctIndex": 2,
+      "explanation": "hi without quotes is treated as a variable name, not a string literal."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What does `print(2 + 3)` display?",
+      "options": ["5", "2 + 3", "23", "Error"],
+      "correctIndex": 0,
+      "explanation": "Python evaluates the expression inside print() before displaying the result."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "Comments are executed by Python at runtime.",
+      "correct": false,
+      "explanation": "Comments are ignored entirely; they are not executed."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "Which is a valid way to print multiple values in one call?",
+      "options": [
+        "print('a', 'b')",
+        "print['a', 'b']",
+        "print{'a', 'b'}",
+        "print <'a', 'b'>"
+      ],
+      "correctIndex": 0,
+      "explanation": "print() accepts multiple arguments separated by commas."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What character must match to close a string started with a single quote?",
+      "options": [
+        "A single quote '",
+        "A double quote \"",
+        "Either quote",
+        "A backtick `"
+      ],
+      "correctIndex": 0,
+      "explanation": "Strings must use matching quote characters: '...' or \"...\"."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What is the output?\n\nprint('Line 1')  # print('hidden')\nprint('Line 2')",
+      "options": [
+        "Line 1 then Line 2",
+        "hidden then Line 2",
+        "Only Line 1",
+        "Syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "The second print on line 1 is inside a comment and never runs."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "Python is case-sensitive, so `Print` and `print` are different names.",
+      "correct": true,
+      "explanation": "Built-in names like print must be spelled exactly; Print is not defined by default."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "Which file extension is standard for Python source files?",
+      "options": [".py", ".python", ".pt", ".pyt"],
+      "correctIndex": 0,
+      "explanation": "Python source files conventionally use the .py extension."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "What does `print('3', '4')` display?",
+      "options": ["3 4", "34", "3,4", "7"],
+      "correctIndex": 0,
+      "explanation": "print() separates multiple arguments with a space by default."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Reordering these lines changes the output. Which order prints C last?\n\nprint('A')\nprint('B')\nprint('C')",
+      "options": ["Keep them as written", "Swap A and C", "Put C first", "Delete B"],
+      "correctIndex": 0,
+      "explanation": "Top-to-bottom order means C prints last only when it is the final print statement."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Which error message type often points to a typo or missing quote?",
+      "options": ["SyntaxError", "ValueError", "TypeError", "IndexError"],
+      "correctIndex": 0,
+      "explanation": "SyntaxError means Python could not parse the code, often due to bad punctuation."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "You can nest comments inside string literals using #.",
+      "correct": false,
+      "explanation": "Inside a string, # is just a character; only # outside strings starts a comment."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What is printed?\n\nx = 10\nprint(x)",
+      "options": ["10", "x", "Nothing", "Error because x is not defined yet"],
+      "correctIndex": 0,
+      "explanation": "Assignment runs before print, so x exists and its value 10 is displayed."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "Why might `print('It's fine')` fail?",
+      "options": [
+        "The apostrophe ends the string early",
+        "print cannot print apostrophes",
+        "Strings cannot contain letters",
+        "It always works"
+      ],
+      "correctIndex": 0,
+      "explanation": "An unescaped ' inside single-quoted strings terminates the string and causes a syntax error."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Which best describes a Python program's default execution flow?",
+      "options": [
+        "Sequential, line by line",
+        "Random order",
+        "All lines at once",
+        "Only the last line runs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unless control flow (like loops or if) changes it, code runs sequentially from top to bottom."
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "chapter": 6,
+  "chapterTitle": "Loops",
+  "title": "Loops Practice Exam",
+  "description": "Review while loops, for loops, range(), and using break and continue to control iteration.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which loop repeats while a condition remains True?",
+      "options": ["while", "for", "if", "repeat"],
+      "correctIndex": 0,
+      "explanation": "while checks its condition before each iteration."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does `for i in range(3):` iterate over?",
+      "options": ["0, 1, 2", "1, 2, 3", "3, 2, 1", "0, 1, 2, 3"],
+      "correctIndex": 0,
+      "explanation": "range(3) produces integers from 0 up to but not including 3."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "break exits the innermost loop immediately.",
+      "correct": true,
+      "explanation": "break stops the current loop and continues after the loop block."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "What is printed?\n\nfor n in [1, 2, 3]:\n    print(n * 2)",
+      "options": ["2, 4, 6 on separate lines", "6", "1 2 3", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "for assigns each list item to n and runs the body once per item."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What does continue do in a loop?",
+      "options": [
+        "Skip to the next iteration",
+        "Exit the program",
+        "Restart Python",
+        "Break out of all loops"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue jumps to the loop's next cycle without finishing the current body."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "How many times does this while loop run?\n\ncount = 0\nwhile count < 3:\n    count += 1",
+      "options": ["3", "2", "4", "Forever"],
+      "correctIndex": 0,
+      "explanation": "count goes 0→1→2→3; when count is 3, count < 3 is False and the loop stops after three runs."
+    },
+    {
+      "id": "7",
+      "type": "truefalse",
+      "prompt": "range(5) generates a list in memory in Python 3.",
+      "correct": false,
+      "explanation": "range returns a lazy range object, not a full list, unless you wrap it in list()."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "What is `list(range(2, 5))`?",
+      "options": ["[2, 3, 4]", "[2, 3, 4, 5]", "[2, 5]", "[0, 1, 2]"],
+      "correctIndex": 0,
+      "explanation": "range(start, stop) includes start and stops before stop."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "What prints?\n\nfor ch in 'hi':\n    print(ch)",
+      "options": ["h then i", "hi on one line", "2", "Error"],
+      "correctIndex": 0,
+      "explanation": "for loops over any iterable, including strings, one character at a time."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What is printed?\n\nfor n in range(5):\n    if n == 3:\n        break\n    print(n)",
+      "options": ["0, 1, 2", "0, 1, 2, 3", "0 through 4", "3 only"],
+      "correctIndex": 0,
+      "explanation": "When n is 3, break runs before print, so 3 is never printed."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What is printed?\n\nfor n in range(4):\n    if n % 2 == 0:\n        continue\n    print(n)",
+      "options": ["1 then 3", "0 2", "0 1 2 3", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "continue skips even numbers, so only 1 and 3 print."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "A while True loop can become an infinite loop if never broken or stopped.",
+      "correct": true,
+      "explanation": "Without a changing condition or break, while True never ends."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does `range(0, 10, 2)` produce?",
+      "options": [
+        "0, 2, 4, 6, 8",
+        "0, 1, 2, ..., 9",
+        "2, 4, 6, 8, 10",
+        "Every float from 0 to 10"
+      ],
+      "correctIndex": 0,
+      "explanation": "The third argument is the step size."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Which loop is best for iterating a known sequence like a list?",
+      "options": ["for item in items", "while item:", "if item in items", "repeat items"],
+      "correctIndex": 0,
+      "explanation": "for is idiomatic when you want each element from an iterable."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What is the sum after this loop?\n\ntotal = 0\nfor x in [1, 2, 3]:\n    total += x",
+      "options": ["6", "3", "0", "123"],
+      "correctIndex": 0,
+      "explanation": "The accumulator adds each value: 0+1+2+3 = 6."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What danger does this pose?\n\nwhile n > 0:\n    print(n)",
+      "options": [
+        "Infinite loop if n is never decreased",
+        "SyntaxError",
+        "n must be a string",
+        "print cannot run in loops"
+      ],
+      "correctIndex": 0,
+      "explanation": "The condition must eventually become False, usually by updating n inside the loop."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "You can use an else clause on a for or while loop that runs when the loop completes without break.",
+      "correct": true,
+      "explanation": "Loop else is a lesser-known feature that executes if no break occurred."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What is len(list(range(4)))?",
+      "options": ["4", "3", "0", "5"],
+      "correctIndex": 0,
+      "explanation": "range(4) has four values: 0, 1, 2, 3."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "What prints?\n\ni = 0\nwhile i < 2:\n    print(i)\n    i += 1",
+      "options": ["0 then 1", "0 1 2", "1 then 2", "Infinite 0s"],
+      "correctIndex": 0,
+      "explanation": "i starts at 0, prints, increments to 1, prints again, then i becomes 2 and the loop ends."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "When should you prefer while over for?",
+      "options": [
+        "When repetitions depend on a condition, not a fixed sequence",
+        "Always",
+        "Never; for replaces while",
+        "Only for strings"
+      ],
+      "correctIndex": 0,
+      "explanation": "while fits open-ended repetition until a condition changes, like reading until valid input."
+    }
+  ]
+}

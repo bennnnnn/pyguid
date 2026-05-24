@@ -1,0 +1,190 @@
+{
+  "chapter": 2,
+  "chapterTitle": "Variables",
+  "title": "Variables Practice Exam",
+  "description": "Check your knowledge of naming, assignment, user input, and converting input to numbers.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which is a valid variable name?",
+      "options": ["user_age", "2fast", "user-age", "class"],
+      "correctIndex": 0,
+      "explanation": "Names can use letters, digits, and underscores but cannot start with a digit or use hyphens."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What value does `score` hold after `score = 7`?",
+      "options": ["7", "score", "None", "Error"],
+      "correctIndex": 0,
+      "explanation": "The = operator assigns the value on the right to the name on the left."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "Variable names in Python are case-sensitive.",
+      "correct": true,
+      "explanation": "count and Count are two different variables."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "What does `input('Name: ')` return?",
+      "options": ["A string", "An integer", "True or False", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "input() always reads text from the user and returns it as a str."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "How do you convert the string `'42'` to an integer?",
+      "options": ["int('42')", "str('42')", "float('42')", "integer('42')"],
+      "correctIndex": 0,
+      "explanation": "int() parses a string that looks like an integer and returns an int."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "After `x = 5` then `x = x + 1`, what is `x`?",
+      "options": ["6", "5", "1", "51"],
+      "correctIndex": 0,
+      "explanation": "x + 1 is evaluated as 6, then assigned back to x, replacing the old value."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "Which name is NOT valid because it is a Python keyword?",
+      "options": ["for", "total", "_count", "name2"],
+      "correctIndex": 0,
+      "explanation": "Keywords like for, if, and while cannot be used as variable names."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "You must convert input to int before doing arithmetic like addition with numbers.",
+      "correct": true,
+      "explanation": "input() returns strings; '2' + '3' concatenates text instead of adding numbers."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "What is printed?\n\nname = 'Ada'\nprint(name)",
+      "options": ["Ada", "name", "'Ada'", "Error"],
+      "correctIndex": 0,
+      "explanation": "print displays the value stored in the variable, not the variable name."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Which converts a number to a string?",
+      "options": ["str(99)", "int(99)", "string(99)", "text(99)"],
+      "correctIndex": 0,
+      "explanation": "str() creates a string representation of a value."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What does `a, b = 1, 2` do?",
+      "options": [
+        "Assigns 1 to a and 2 to b",
+        "Compares a and b",
+        "Creates a tuple only",
+        "Raises an error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Multiple assignment unpacks values on the right into names on the left."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "A variable must be assigned before you can use its value.",
+      "correct": true,
+      "explanation": "Referencing an undefined name raises NameError."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "User enters `19.5` at input. Which gives a float?",
+      "options": [
+        "float(input())",
+        "int(input())",
+        "bool(input())",
+        "input() already returns float"
+      ],
+      "correctIndex": 0,
+      "explanation": "float() converts numeric strings with a decimal point to floating-point numbers."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Which is the best name for a variable storing a user's email?",
+      "options": ["user_email", "x", "e", "data1"],
+      "correctIndex": 0,
+      "explanation": "Descriptive snake_case names make code easier to read and maintain."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What happens?\n\nage = input('Age: ')\nprint(age + 1)",
+      "options": [
+        "TypeError",
+        "Prints age plus 1 numerically",
+        "Prints the string 'age1'",
+        "SyntaxError"
+      ],
+      "correctIndex": 0,
+      "explanation": "You cannot add an int to a str without converting age with int() first."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What is `n` after `n = 10` then `n += 5`?",
+      "options": ["15", "105", "5", "10"],
+      "correctIndex": 0,
+      "explanation": "+= adds 5 to the current value of n, equivalent to n = n + 5."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "Underscores at the start of a name, like `_private`, are allowed in Python.",
+      "correct": true,
+      "explanation": "Leading underscores are valid and often signal internal or private use by convention."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What does `print(f'Hi {name}')` require?",
+      "options": [
+        "name must already be assigned",
+        "name must be an integer",
+        "import f",
+        "Quotes around name in braces"
+      ],
+      "correctIndex": 0,
+      "explanation": "An f-string inserts the value of variables that exist in the current scope."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "Which assignment creates two variables with swapped values?\n\na, b = 3, 7\n???",
+      "options": ["a, b = b, a", "a = b", "swap(a, b)", "a, b = 7, 3 only if a was 7"],
+      "correctIndex": 0,
+      "explanation": "Parallel assignment evaluates the right side first, then binds both names."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Why use `int(input('How many? '))` instead of bare input() for a count?",
+      "options": [
+        "So you can use + and * with numbers",
+        "Because input() runs faster",
+        "Because input cannot read digits",
+        "To avoid printing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Converting to int lets you perform numeric operations on the user's answer."
+    }
+  ]
+}

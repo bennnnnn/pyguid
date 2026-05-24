@@ -14,14 +14,15 @@ const label = topic ?? chapterTitle;
   class="practice-exams-note not-prose my-8 rounded-lg border border-brand/30 bg-brand/5 px-4 py-4"
 >
   <p class="!m-0 text-sm leading-relaxed text-text-secondary">
-    <strong class="text-text">Practice exams:</strong> Short TryIt checks live on this lesson.
-    Full topic-by-topic exams for <strong>{label}</strong> live on our{" "}
+    <strong class="text-text">Practice exams:</strong> TryIt checks are on this page. Take the{
+      " "
+    }
     <a
-      href={`/python/practice/#chapter-${chapter}`}
+      href={`/python/practice/${chapter}/`}
       class="text-link font-medium no-underline hover:underline"
     >
-      Practice hub
+      20-question {label} exam
     </a>{" "}
-    (expand as we publish each chapter).
+    when you are ready to test the whole chapter.
   </p>
 </aside>

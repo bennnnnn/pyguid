@@ -1,0 +1,230 @@
+{
+  "chapter": 13,
+  "chapterTitle": "Error Handling",
+  "title": "Error Handling Practice Exam",
+  "description": "Practice try/except, reading tracebacks, raising errors, and common exceptions.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which block catches exceptions in Python?",
+      "options": ["try / except", "catch / throw", "handle / rescue", "if / error"],
+      "correctIndex": 0,
+      "explanation": "try runs code; except handles specified exception types."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does except ValueError: do?",
+      "options": [
+        "Catches only ValueError (and subclasses)",
+        "Catches every possible error",
+        "Stops the program without handling",
+        "Raises ValueError automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Naming an exception type limits what the except block handles."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "What is a traceback?",
+      "options": [
+        "A report showing where an error occurred and the call chain",
+        "A type of loop",
+        "A comment in code",
+        "A pip package"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tracebacks list file, line, and function calls leading to the exception."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "You can read the bottom line of a traceback to see the exception type and message.",
+      "correct": true,
+      "explanation": "The last line usually states something like ValueError: invalid literal."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What does raise ValueError(\"bad input\") do?",
+      "options": [
+        "Creates and throws a ValueError with that message",
+        "Silently ignores errors",
+        "Imports the ValueError module",
+        "Prints a warning only"
+      ],
+      "correctIndex": 0,
+      "explanation": "raise stops normal flow and propagates an exception to callers or except blocks."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "Which exception is raised by int(\"abc\")?",
+      "options": ["ValueError", "KeyError", "IndexError", "ImportError"],
+      "correctIndex": 0,
+      "explanation": "Invalid conversion to int raises ValueError."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What happens if an exception is not caught?",
+      "options": [
+        "The program terminates and prints a traceback",
+        "Python ignores it",
+        "It becomes a warning only",
+        "The line is skipped silently"
+      ],
+      "correctIndex": 0,
+      "explanation": "Uncaught exceptions bubble up and stop execution with a traceback."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "What does d[\"missing\"] raise when the key is absent?",
+      "options": ["KeyError", "ValueError", "TypeError", "SyntaxError"],
+      "correctIndex": 0,
+      "explanation": "Dictionary lookup with [] on a missing key raises KeyError."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "A bare except: catches all exceptions including KeyboardInterrupt.",
+      "correct": true,
+      "explanation": "Bare except is broad; prefer specific types and avoid masking system exits."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What does the else clause on a try block run?",
+      "options": [
+        "When no exception occurred in try",
+        "When any exception occurred",
+        "Always before try",
+        "Only in finally"
+      ],
+      "correctIndex": 0,
+      "explanation": "try/except/else: else runs if try completed without raising."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What does finally do?",
+      "options": [
+        "Runs whether or not an exception occurred",
+        "Runs only on success",
+        "Replaces except entirely",
+        "Imports modules"
+      ],
+      "correctIndex": 0,
+      "explanation": "finally is for cleanup code that must run in all cases."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "Which is raised when dividing by zero?",
+      "options": [
+        "ZeroDivisionError",
+        "ValueError",
+        "OverflowError",
+        "ArithmeticWarning"
+      ],
+      "correctIndex": 0,
+      "explanation": "Division or modulo by zero raises ZeroDivisionError."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does except Exception as e: give you?",
+      "options": [
+        "A reference to the exception instance in e",
+        "A list of all tracebacks",
+        "Only the error message as a string in e always",
+        "A syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "as e binds the caught exception object for logging or inspection."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "SyntaxError happens before the program runs, often when parsing invalid code.",
+      "correct": true,
+      "explanation": "Syntax errors are detected at compile/parse time, not during normal runtime logic."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What is IndexError?",
+      "options": [
+        "Sequence index out of range",
+        "Invalid dictionary key",
+        "Wrong import path",
+        "File not found"
+      ],
+      "correctIndex": 0,
+      "explanation": "Accessing list[i] with an invalid index raises IndexError."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Why handle expected errors with try/except?",
+      "options": [
+        "Provide friendly recovery instead of crashing",
+        "Make code slower on purpose",
+        "Hide all bugs permanently",
+        "Replace testing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Handle predictable failures (bad input, missing files) with clear user-facing behavior."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "What does TypeError usually mean?",
+      "options": [
+        "An operation was applied to the wrong type",
+        "A key was missing",
+        "Division by zero",
+        "Invalid syntax in source file"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeError: unsupported operand or wrong argument types."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "After except handles an error, execution continues:",
+      "options": [
+        "After the try/except block unless you re-raise",
+        "At the line that caused the error",
+        "Only inside the traceback",
+        "Never; the program always exits"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unless you raise again or exit, code after the block runs normally."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "It is good practice to catch only the exceptions you expect and can handle.",
+      "correct": true,
+      "explanation": "Specific except clauses avoid hiding unexpected bugs."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "What does FileNotFoundError indicate?",
+      "options": [
+        "An open() or similar call could not find the file",
+        "A variable was undefined",
+        "A list index was too large",
+        "Invalid indentation"
+      ],
+      "correctIndex": 0,
+      "explanation": "FileNotFoundError is a common OSError subclass for missing paths."
+    }
+  ]
+}

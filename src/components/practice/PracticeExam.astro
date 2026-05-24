@@ -1,0 +1,113 @@
+---
+import type { PracticeExam } from "../../lib/practice-exams";
+
+interface Props {
+  exam: PracticeExam;
+}
+
+const { exam } = Astro.props;
+const examPayload = {
+  chapter: exam.chapter,
+  chapterTitle: exam.chapterTitle,
+  title: exam.title,
+  passPercent: exam.passPercent,
+  questions: exam.questions,
+};
+---
+
+<div id="practice-exam-root" class="practice-exam">
+  <script
+    type="application/json"
+    id="practice-exam-data"
+    set:html={JSON.stringify(examPayload)}
+  />
+  <header class="practice-exam-header">
+    <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-brand">
+      Practice exam
+    </p>
+    <h1>{exam.title}</h1>
+    <p class="mt-2 text-text-secondary">{exam.description}</p>
+    <div class="practice-exam-meta mt-4">
+      <span>Chapter {exam.chapter}</span>
+      <span>{exam.questions.length} questions</span>
+      <span>Pass: {exam.passPercent}%+</span>
+    </div>
+  </header>
+
+  <div data-exam-form>
+    <div class="practice-progress">
+      <div class="practice-progress-track">
+        <div class="practice-progress-fill" data-progress-fill style="width: 0%"></div>
+      </div>
+      <p class="practice-progress-label">
+        <span>Answer every question, then submit</span>
+        <span data-progress-answered>0 of {exam.questions.length} answered</span>
+      </p>
+    </div>
+
+    {
+      exam.questions.map((q, i) => (
+        <article class="practice-question-card" data-question-card data-q-index={i}>
+          <span class="practice-q-number">Q{i + 1}</span>
+          <p class="practice-q-prompt">{q.prompt}</p>
+          {q.type === "choice" ? (
+            <div class="practice-options">
+              {q.options.map((opt, oi) => (
+                <label class="practice-option">
+                  <input
+                    type="radio"
+                    name={`q-${q.id}`}
+                    value={oi}
+                    aria-label={`Option ${oi + 1}`}
+                  />
+                  <span class="practice-option-label">{opt}</span>
+                </label>
+              ))}
+            </div>
+          ) : (
+            <div class="practice-tf-options practice-options">
+              <label class="practice-option">
+                <input type="radio" name={`q-${q.id}`} value="true" />
+                <span class="practice-option-label">True</span>
+              </label>
+              <label class="practice-option">
+                <input type="radio" name={`q-${q.id}`} value="false" />
+                <span class="practice-option-label">False</span>
+              </label>
+            </div>
+          )}
+        </article>
+      ))
+    }
+
+    <div class="practice-submit-bar">
+      <p class="text-sm text-text-muted">
+        Unanswered questions are highlighted when you submit.
+      </p>
+      <button type="button" class="btn-primary" data-submit-exam>Submit exam</button>
+    </div>
+  </div>
+
+  <section class="practice-results practice-hidden" data-exam-results aria-live="polite">
+    <div class="practice-score-ring" data-score-ring style="--score-pct: 0">
+      <div class="practice-score-ring-inner">
+        <span class="practice-score-value" data-score-value>0%</span>
+        <span class="practice-score-label">Score</span>
+      </div>
+    </div>
+    <p class="practice-results-verdict practice-results-fail" data-results-verdict></p>
+    <p class="practice-results-summary" data-results-summary></p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <button type="button" class="btn-primary" data-retry-exam>Try again</button>
+      <a href="/python/practice/" class="btn-secondary no-underline">All practice exams</a
+      >
+      <a href={`/python/`} class="btn-secondary no-underline"> Back to lessons </a>
+    </div>
+    <div class="practice-review-list" data-review-list></div>
+  </section>
+</div>
+
+<script>
+  import { initPracticeExam } from "../../scripts/practice-exam";
+  initPracticeExam();
+</script>

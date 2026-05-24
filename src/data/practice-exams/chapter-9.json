@@ -1,0 +1,210 @@
+{
+  "chapter": 9,
+  "chapterTitle": "Sets",
+  "title": "Sets Practice Exam",
+  "description": "Check your knowledge of Python sets, uniqueness, and union and intersection.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "What is the main property of elements in a Python set?",
+      "options": [
+        "They are always sorted alphabetically",
+        "Each value appears at most once",
+        "They must be strings",
+        "They are stored in insertion order only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sets store unique elements; duplicates are ignored automatically."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "Which literal creates a set with two items?",
+      "options": ["{1, 2}", "[1, 2]", "(1, 2)", "<1, 2>"],
+      "correctIndex": 0,
+      "explanation": "Curly braces with comma-separated values define a set (not an empty dict)."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "How do you create an empty set?",
+      "options": ["{}", "set()", "[]", "empty()"],
+      "correctIndex": 1,
+      "explanation": "{} creates an empty dictionary; use set() for an empty set."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "A set can contain the same value twice if you add it twice.",
+      "correct": false,
+      "explanation": "Adding a duplicate has no effect; the set still holds one copy."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What does s.add(3) do when 3 is not already in set s?",
+      "options": [
+        "Removes 3 from s",
+        "Adds 3 to s",
+        "Returns True if 3 exists",
+        "Raises KeyError"
+      ],
+      "correctIndex": 1,
+      "explanation": "add() inserts a single element if it is not already present."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "Which method removes a specific element from a set?",
+      "options": ["s.pop(0)", "s.remove(x)", "s.delete(x)", "del s[x]"],
+      "correctIndex": 1,
+      "explanation": "remove(x) discards x and raises KeyError if x is missing."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What is the result of len({1, 1, 2, 2})?",
+      "options": ["4", "3", "2", "1"],
+      "correctIndex": 2,
+      "explanation": "Duplicates collapse, so the set is {1, 2} with length 2."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "Which operator returns elements in either set A or B?",
+      "options": ["A & B", "A | B", "A ^ B", "A - B"],
+      "correctIndex": 1,
+      "explanation": "| is union: all elements that appear in A or B (or both)."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "The expression {1, 2} & {2, 3} evaluates to {2}.",
+      "correct": true,
+      "explanation": "& is intersection: only elements in both sets, here {2}."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What does A & B return?",
+      "options": [
+        "Elements in A or B",
+        "Elements in both A and B",
+        "Elements in A but not B",
+        "Elements in exactly one of A or B"
+      ],
+      "correctIndex": 1,
+      "explanation": "Intersection keeps values that appear in every operand set."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What is list({3, 1, 2}) most likely to show?",
+      "options": [
+        "[3, 1, 2] always in that order",
+        "A list of three unique numbers; order is not guaranteed",
+        "[1, 2, 3] always sorted",
+        "An error because sets cannot convert to lists"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sets are unordered; converting to a list gives arbitrary order."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "How do you test membership in a set s?",
+      "options": ["x in s", "s.contains(x)", "s.has(x)", "membership(x, s)"],
+      "correctIndex": 0,
+      "explanation": "Use the in operator: x in s is True when x is in the set."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does s.discard(x) do if x is not in s?",
+      "options": [
+        "Raises KeyError",
+        "Does nothing",
+        "Adds x to s",
+        "Removes a random element"
+      ],
+      "correctIndex": 1,
+      "explanation": "discard() removes x if present and silently does nothing otherwise."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "You can use a list as an element inside a set.",
+      "correct": false,
+      "explanation": "Set elements must be hashable; lists are mutable and unhashable."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Which builds a set from a list with duplicates removed?",
+      "options": [
+        "set([1, 1, 2])",
+        "list({1, 2})",
+        "unique([1, 1, 2])",
+        "{list([1, 2])}"
+      ],
+      "correctIndex": 0,
+      "explanation": "Passing a list to set() returns a set of unique values."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What does A - B mean for sets?",
+      "options": [
+        "Elements in both A and B",
+        "Elements in A but not in B",
+        "Elements in B but not in A",
+        "Symmetric difference of A and B"
+      ],
+      "correctIndex": 1,
+      "explanation": "Difference A - B is elements that are in A and not in B."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "What is {x for x in 'hello' if x != 'l'}?",
+      "options": [
+        "A set comprehension",
+        "A list comprehension",
+        "A syntax error",
+        "A dictionary comprehension"
+      ],
+      "correctIndex": 0,
+      "explanation": "Curly braces with a for clause define a set comprehension."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "After s = {1, 2}; s.update([2, 3]), what is s?",
+      "options": ["{1, 2, 3}", "{1, 2}", "{2, 3}", "{1, 2, 2, 3}"],
+      "correctIndex": 0,
+      "explanation": "update() adds multiple elements; duplicates are ignored."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "Sets are mutable: you can add and remove items after creation.",
+      "correct": true,
+      "explanation": "Regular sets support add, remove, and other mutating methods."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Why might you use a set to filter duplicates from a list?",
+      "options": [
+        "Sets preserve the original list order exactly",
+        "Sets automatically keep only unique values",
+        "Sets sort values as strings",
+        "Sets are faster only for empty lists"
+      ],
+      "correctIndex": 1,
+      "explanation": "Converting to a set drops duplicates; you may convert back to a list if needed."
+    }
+  ]
+}

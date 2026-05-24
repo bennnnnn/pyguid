@@ -22,7 +22,7 @@ faqs:
 
 Body: prose + `<PythonExample />` + `<Callout />` + `<TryIt />` blocks.
 
-**Practice exams** live on `/python/practice/` (topic hubs) — lesson pages only use quick **TryIt** checks. Do not add full exams inside lessons.
+**Practice exams:** Each chapter has a **20-question exam** at `/python/practice/{chapter}/` (hub: `/python/practice/`). Lesson pages use **TryIt** only — do not embed full exams in MDX.
 
 ## SEO lesson template (top traffic pages)
 

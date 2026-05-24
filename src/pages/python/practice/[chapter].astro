@@ -1,0 +1,35 @@
+---
+import TutorialLayout from "../../../layouts/TutorialLayout.astro";
+import PracticeExam from "../../../components/practice/PracticeExam.astro";
+import { getLessonGroups } from "../../../lib/lessons";
+import { getAllPracticeExams, getPracticeExam } from "../../../lib/practice-exams";
+import { SITE } from "../../../lib/site";
+
+export function getStaticPaths() {
+  return getAllPracticeExams().map((exam) => ({
+    params: { chapter: String(exam.chapter) },
+  }));
+}
+
+const chapterNum = Number(Astro.params.chapter);
+const exam = getPracticeExam(chapterNum);
+if (!exam) return Astro.redirect("/python/practice/");
+
+const groups = await getLessonGroups();
+const pageTitle = `${exam.title} — ${SITE.name}`;
+---
+
+<TutorialLayout title={pageTitle} description={exam.description} groups={groups}>
+  <article class="lesson-prose lesson-prose-wide">
+    <p class="!mt-0 text-sm text-text-muted">
+      <a href="/" class="text-link no-underline hover:underline">{SITE.name}</a>
+      <span class="mx-1.5">/</span>
+      <a href="/python/practice/" class="text-link no-underline hover:underline"
+        >Practice</a
+      >
+      <span class="mx-1.5">/</span>
+      <span>Chapter {exam.chapter}</span>
+    </p>
+    <PracticeExam exam={exam} />
+  </article>
+</TutorialLayout>

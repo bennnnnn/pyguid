@@ -1,0 +1,230 @@
+{
+  "chapter": 14,
+  "chapterTitle": "Classes",
+  "title": "Classes Practice Exam",
+  "description": "Review classes, __init__, methods, instances, and basic inheritance.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which keyword defines a new class?",
+      "options": ["class", "struct", "object", "def"],
+      "correctIndex": 0,
+      "explanation": "class Name: starts a class body with methods and attributes."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What is __init__ used for?",
+      "options": [
+        "Initialize a new instance when it is created",
+        "Delete an instance",
+        "Import modules",
+        "Convert a class to a dict only"
+      ],
+      "correctIndex": 0,
+      "explanation": "__init__ sets up instance state; it runs after the object is created."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "What is self in def greet(self):?",
+      "options": [
+        "The instance the method is called on",
+        "A global variable",
+        "The class name as a string",
+        "Always None"
+      ],
+      "correctIndex": 0,
+      "explanation": "By convention, self refers to the current object."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "dog = Dog() creates an instance of the Dog class.",
+      "correct": true,
+      "explanation": "Calling the class like a function constructs a new instance."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "How do you set an instance attribute name inside __init__?",
+      "options": ["self.name = name", "name = self", "Dog.name only", "global name"],
+      "correctIndex": 0,
+      "explanation": "self.attribute stores data on the instance."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What is a method?",
+      "options": [
+        "A function defined inside a class and called on instances",
+        "Any import statement",
+        "A module-level variable only",
+        "A built-in like len only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Methods are functions on objects; the first parameter is typically self."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "class Cat(Animal): means Cat:",
+      "options": [
+        "Inherits from Animal",
+        "Cannot use Animal methods",
+        "Is unrelated to Animal",
+        "Must not define __init__"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parentheses list base classes; subclasses inherit attributes and methods."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "How do you call a parent __init__ from a child class?",
+      "options": [
+        "super().__init__(...)",
+        "parent.init()",
+        "Animal.__init__ only without super",
+        "self.parent()"
+      ],
+      "correctIndex": 0,
+      "explanation": "super() reaches the parent implementation in the method resolution order."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "Instance attributes belong to a specific object, not shared by all instances unless defined on the class.",
+      "correct": true,
+      "explanation": "self.x in __init__ creates per-instance data; class attributes are shared."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What does p.speak() require speak to be?",
+      "options": [
+        "A method on p's class (or inherited)",
+        "A global function only",
+        "A module import",
+        "A property that cannot take ()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dot access on an instance looks up methods on the class hierarchy."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What is an instance?",
+      "options": [
+        "One concrete object built from a class",
+        "The class definition itself",
+        "A pip package",
+        "A traceback"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each call to Class() produces a separate instance with its own state."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "Which defines a simple class with no custom methods yet?",
+      "options": [
+        "class Box:\n    pass",
+        "def Box():",
+        "object Box = {}",
+        "class Box();"
+      ],
+      "correctIndex": 0,
+      "explanation": "class Box: pass is valid; you can add methods later."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "Why use classes instead of only functions and dicts?",
+      "options": [
+        "Bundle data and behavior for related concepts",
+        "Avoid all methods",
+        "Replace Python's type system",
+        "Disable inheritance"
+      ],
+      "correctIndex": 0,
+      "explanation": "Classes model entities (users, accounts) with both state and operations."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "A subclass can override a method from its parent class.",
+      "correct": true,
+      "explanation": "Defining the same method name in the child replaces the parent's version for that class."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What does __str__ typically customize?",
+      "options": [
+        "The human-readable string from str(obj)",
+        "File open mode",
+        "Import order",
+        "Exception handling"
+      ],
+      "correctIndex": 0,
+      "explanation": "__str__ returns a nice string for print() and str()."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\nPoint(1, 2).y is:",
+      "options": ["2", "1", "Point", "None"],
+      "correctIndex": 0,
+      "explanation": "The second argument sets self.y to 2."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "What is the class attribute used for?",
+      "options": [
+        "Data or defaults shared by all instances of the class",
+        "Only private files",
+        "Replacing __init__",
+        "Running pip"
+      ],
+      "correctIndex": 0,
+      "explanation": "Attributes defined on the class object are shared unless shadowed on an instance."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "isinstance(obj, Dog) checks whether:",
+      "options": [
+        "obj is an instance of Dog or a subclass",
+        "obj is the Dog class itself only",
+        "Dog is a module",
+        "obj has no methods"
+      ],
+      "correctIndex": 0,
+      "explanation": "isinstance respects inheritance in the class hierarchy."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "__init__ must always return a value explicitly with return.",
+      "correct": false,
+      "explanation": "__init__ should return None; it initializes the already-created instance."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "In inheritance, method lookup generally follows:",
+      "options": [
+        "The method resolution order (child before parent)",
+        "Random order",
+        "Only the parent, never the child",
+        "Builtins before everything else always for all names"
+      ],
+      "correctIndex": 0,
+      "explanation": "Python searches the class and its bases (MRO) to find a matching attribute."
+    }
+  ]
+}

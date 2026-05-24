@@ -1,0 +1,190 @@
+{
+  "chapter": 8,
+  "chapterTitle": "Tuples",
+  "title": "Tuples Practice Exam",
+  "description": "Review tuple basics, unpacking values, and why tuples are immutable.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which literal creates a tuple?",
+      "options": ["(1, 2, 3)", "[1, 2, 3]", "{1, 2, 3}", "<1, 2, 3>"],
+      "correctIndex": 0,
+      "explanation": "Parentheses with commas define tuples; square brackets define lists."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What is `type((42,))`?",
+      "options": ["<class 'tuple'>", "<class 'int'>", "<class 'list'>", "<class 'set'>"],
+      "correctIndex": 0,
+      "explanation": "The trailing comma makes a one-element tuple."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "Tuples are immutable—you cannot reassign their elements after creation.",
+      "correct": true,
+      "explanation": "You cannot do t[0] = 5 on a tuple; create a new tuple instead."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "What does `x, y = (3, 7)` do?",
+      "options": [
+        "Assigns 3 to x and 7 to y",
+        "Creates a nested tuple",
+        "Compares x and y",
+        "Raises TypeError always"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tuple unpacking matches positions to variable names on the left."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What is `(1, 2)[0]`?",
+      "options": ["1", "(1, 2)", "0", "Error because tuples cannot be indexed"],
+      "correctIndex": 0,
+      "explanation": "Tuples support indexing and slicing like lists, but not assignment."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What is `point = 4, 5`?",
+      "options": [
+        "A tuple (4, 5) assigned to point",
+        "Two separate assignments",
+        "SyntaxError",
+        "A list [4, 5]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Comma-separated values without brackets form a tuple (tuple packing)."
+    },
+    {
+      "id": "7",
+      "type": "truefalse",
+      "prompt": "A single value in parentheses like `(99)` is a tuple.",
+      "correct": false,
+      "explanation": "(99) is just the integer 99; you need a comma: (99,) for a one-item tuple."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "What happens?\n\nt = (1, 2, 3)\nt[1] = 9",
+      "options": ["TypeError", "t becomes (1, 9, 3)", "SyntaxError", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "Tuple objects do not support item assignment."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "What is `len(( 'a', 'b' ))`?",
+      "options": ["2", "1", "0", "Error"],
+      "correctIndex": 0,
+      "explanation": "len counts elements in the tuple."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Which unpacks the first two items from `(10, 20, 30)` into a and b?",
+      "options": [
+        "a, b, _ = (10, 20, 30)",
+        "a, b = (10, 20, 30)",
+        "a | b = (10, 20, 30)",
+        "unpack(a, b)"
+      ],
+      "correctIndex": 0,
+      "explanation": "You need the same number of targets as values, or use * or _ for extras."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What is `(1, 2) + (3,)`?",
+      "options": ["(1, 2, 3)", "(1, 2, (3,))", "(6,)", "Error"],
+      "correctIndex": 0,
+      "explanation": "+ concatenates tuples into a new tuple."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "Tuples can be used as keys in dictionaries if all elements are hashable.",
+      "correct": true,
+      "explanation": "Immutable hashable tuples work as dict keys; lists cannot."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does `first, *rest = (1, 2, 3, 4)` set rest to?",
+      "options": ["[2, 3, 4]", "(2, 3, 4)", "2", "Error"],
+      "correctIndex": 0,
+      "explanation": "*rest collects remaining items into a list during unpacking."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Why might you choose a tuple over a list for coordinates (x, y)?",
+      "options": [
+        "Fixed size and immutability signal the pair should not change",
+        "Tuples are always faster to type",
+        "Lists cannot hold numbers",
+        "Tuples support append"
+      ],
+      "correctIndex": 0,
+      "explanation": "Immutability makes tuples good for fixed collections used as records or dict keys."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What is `(3, 4)[1:]`?",
+      "options": ["(4,)", "(3, 4)", "4", "[4]"],
+      "correctIndex": 0,
+      "explanation": "Slicing a tuple returns a new tuple."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What is returned by `(5, 2, 8).count(2)`?",
+      "options": ["1", "2", "(2,)", "True"],
+      "correctIndex": 0,
+      "explanation": "count tells how many times a value appears in the tuple."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "tuple([1, 2]) converts a list into a tuple.",
+      "correct": true,
+      "explanation": "tuple() builds a tuple from any iterable."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "What is `a` after `a, b = b, a` if `a = 1` and `b = 2`?",
+      "options": ["2", "1", "(1, 2)", "Error"],
+      "correctIndex": 0,
+      "explanation": "Right side evaluates as (2, 1) before assignment, swapping values without a temp variable."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "Can a tuple contain a mutable list?",
+      "options": [
+        "Yes, but the tuple itself still cannot replace that list element",
+        "No, tuples may only hold numbers",
+        "Only if converted to frozenset",
+        "Yes, and then the whole tuple becomes mutable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The tuple cannot rebind t[0], but a list inside can still be modified in place."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "What is `(1,) * 3`?",
+      "options": ["(1, 1, 1)", "(1, 3)", "(3,)", "Error"],
+      "correctIndex": 0,
+      "explanation": "Repeating a tuple with * concatenates copies."
+    }
+  ]
+}

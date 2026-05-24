@@ -1,0 +1,210 @@
+{
+  "chapter": 10,
+  "chapterTitle": "Dictionaries",
+  "title": "Dictionaries Practice Exam",
+  "description": "Practice dictionary keys, access methods, looping, and basic comprehensions.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "What does {\"a\": 1, \"b\": 2} represent in Python?",
+      "options": [
+        "A list of tuples",
+        "A dictionary mapping keys to values",
+        "A set of strings",
+        "Two separate variables"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dictionaries store key–value pairs inside curly braces."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "How do you read the value for key \"name\" in dict user?",
+      "options": ["user.name", "user[\"name\"]", "user(name)", "get user name"],
+      "correctIndex": 1,
+      "explanation": "Bracket notation user[\"name\"] looks up the key and returns its value."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "What does user.get(\"age\", 0) return if \"age\" is missing?",
+      "options": ["KeyError", "None only", "0", "False"],
+      "correctIndex": 2,
+      "explanation": "get() returns the default (here 0) when the key is not found."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "Dictionary keys must be immutable and hashable.",
+      "correct": true,
+      "explanation": "Keys like strings, numbers, and tuples work; lists cannot be keys."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What does d.items() return?",
+      "options": [
+        "A list of keys only",
+        "A view of (key, value) pairs",
+        "A sorted list of values",
+        "The number of entries"
+      ],
+      "correctIndex": 1,
+      "explanation": "items() yields key–value pairs, useful when looping over a dict."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "Which loop prints each key and value in dict d?",
+      "options": [
+        "for k, v in d.items():",
+        "for k, v in d.keys():",
+        "for v in d.pairs():",
+        "for k in d.values(): print(k, v)"
+      ],
+      "correctIndex": 0,
+      "explanation": "items() unpacks into key and value in a for loop."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What does scores.pop(\"quiz\") do?",
+      "options": [
+        "Returns the value for \"quiz\" and removes that entry",
+        "Returns True if \"quiz\" exists",
+        "Copies \"quiz\" without removing it",
+        "Adds \"quiz\" with value None"
+      ],
+      "correctIndex": 0,
+      "explanation": "pop(key) removes the key and returns its value; missing keys raise KeyError."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "How do you add or change key \"x\" to value 10 in dict d?",
+      "options": [
+        "d.add(\"x\", 10)",
+        "d[\"x\"] = 10",
+        "d.insert(\"x\", 10)",
+        "d.set(\"x\", 10)"
+      ],
+      "correctIndex": 1,
+      "explanation": "Assignment with brackets creates or updates an entry."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "Accessing d[\"missing\"] when the key is absent raises KeyError.",
+      "correct": true,
+      "explanation": "Bracket lookup fails loudly; use get() for a safe default."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What is {k: v * 2 for k, v in {\"a\": 1}.items()}?",
+      "options": [
+        "A dict comprehension",
+        "A list comprehension",
+        "A set comprehension",
+        "Invalid syntax"
+      ],
+      "correctIndex": 0,
+      "explanation": "{key_expr: value_expr for ...} builds a new dictionary."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "What does len({\"a\": 1, \"b\": 2}) return?",
+      "options": ["4", "3", "2", "1"],
+      "correctIndex": 2,
+      "explanation": "len() counts key–value pairs, here two entries."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "Which expression lists all keys in dict d?",
+      "options": ["d.keys()", "d.values()", "d.items()", "keys(d)"],
+      "correctIndex": 0,
+      "explanation": "keys() returns a dynamic view of the dictionary's keys."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does \"city\" in address check?",
+      "options": [
+        "Whether the value \"city\" appears",
+        "Whether \"city\" is a key in address",
+        "Whether address is empty",
+        "Whether address is a list"
+      ],
+      "correctIndex": 1,
+      "explanation": "in tests key membership for dictionaries."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "dict.update(other) merges key–value pairs from other into the dict.",
+      "correct": true,
+      "explanation": "update() adds or overwrites entries from another mapping or iterable of pairs."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "What does d.clear() do?",
+      "options": [
+        "Deletes the variable d",
+        "Removes all entries from d",
+        "Returns a copy of d",
+        "Sorts d by key"
+      ],
+      "correctIndex": 1,
+      "explanation": "clear() empties the dictionary in place."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Which creates an empty dictionary?",
+      "options": ["{}", "set()", "[]", "dict[]"],
+      "correctIndex": 0,
+      "explanation": "{} or dict() creates an empty dict; set() creates a set."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "What is the value of {\"a\": 1}.get(\"b\") with no default given?",
+      "options": ["0", "KeyError", "None", "\"\""],
+      "correctIndex": 2,
+      "explanation": "get() returns None when the key is missing and no default is provided."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "Why use .items() instead of looping only over .keys() when you need values too?",
+      "options": [
+        "keys() is deprecated",
+        "items() gives both key and value in one loop",
+        "values() cannot be read from a dict",
+        "items() sorts the dict automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": "items() avoids a second lookup per key when you need each value."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "In Python 3.7+, dictionaries preserve insertion order.",
+      "correct": true,
+      "explanation": "Modern dicts remember the order keys were added, though you should not rely on order for logic unless needed."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "What does {x: x**2 for x in range(3)} produce?",
+      "options": ["{0: 0, 1: 1, 2: 4}", "[0, 1, 4]", "{0, 1, 4}", "A syntax error"],
+      "correctIndex": 0,
+      "explanation": "The comprehension maps each x in 0,1,2 to its square."
+    }
+  ]
+}

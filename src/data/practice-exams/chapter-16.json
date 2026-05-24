@@ -1,0 +1,225 @@
+{
+  "chapter": 16,
+  "chapterTitle": "More Python",
+  "title": "More Python Practice Exam",
+  "description": "Cover JSON, pytest basics, list comprehensions, lambda, and debugging habits.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which module serializes Python data to JSON strings?",
+      "options": ["json", "csv", "pickle only", "os"],
+      "correctIndex": 0,
+      "explanation": "import json; json.dumps() and json.loads() convert between Python and JSON."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does json.loads('{\"a\": 1}') return?",
+      "options": [
+        "A Python dict {\"a\": 1}",
+        "The string unchanged",
+        "A list [\"a\", 1]",
+        "A file object"
+      ],
+      "correctIndex": 0,
+      "explanation": "loads parses a JSON string into Python objects (dict, list, str, number, bool, null)."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "What is [x * 2 for x in range(3)]?",
+      "options": [
+        "A list comprehension",
+        "A dict comprehension",
+        "A generator only with no list",
+        "Invalid syntax"
+      ],
+      "correctIndex": 0,
+      "explanation": "[expr for var in iterable] builds a new list."
+    },
+    {
+      "id": "4",
+      "type": "truefalse",
+      "prompt": "pytest discovers test functions whose names start with test_.",
+      "correct": true,
+      "explanation": "By default pytest collects functions like test_add() in test_*.py files."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "What does lambda x: x + 1 create?",
+      "options": [
+        "A small anonymous function",
+        "A class named lambda",
+        "A module import",
+        "A list of numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": "lambda makes a one-expression function without a def name."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "In pytest, what does assert add(2, 3) == 5 do?",
+      "options": [
+        "Passes the test if the expression is true",
+        "Always fails",
+        "Prints JSON",
+        "Opens a file"
+      ],
+      "correctIndex": 0,
+      "explanation": "Failed assertions show helpful output from pytest's assertion rewriting."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "What does json.dump(data, f) do?",
+      "options": [
+        "Writes JSON representation of data to file f",
+        "Reads JSON from file f into data",
+        "Deletes file f",
+        "Runs all tests in data"
+      ],
+      "correctIndex": 0,
+      "explanation": "dump writes to a file-like object; dumps returns a string."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "[n for n in range(10) if n % 2 == 0] contains:",
+      "options": [
+        "Even numbers from 0 through 9",
+        "All odd numbers only",
+        "Only the number 2",
+        "A syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "The if clause filters to even n: 0, 2, 4, 6, 8."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "JSON keys in objects must be double-quoted strings.",
+      "correct": true,
+      "explanation": "Valid JSON requires double quotes around keys and string values."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
+      "options": ["[3, 2, 1]", "[1, 2, 3]", "[3, 1, 2]", "None"],
+      "correctIndex": 0,
+      "explanation": "key=lambda x: -x sorts by negated value, descending order."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Which command often runs pytest in a project?",
+      "options": ["pytest", "python test", "pip pytest only", "json.test()"],
+      "correctIndex": 0,
+      "explanation": "After installing pytest, run pytest from the project root to execute tests."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "What is a good first debugging step when code fails?",
+      "options": [
+        "Read the error message and traceback carefully",
+        "Delete the file",
+        "Disable all exceptions",
+        "Rewrite the program in another language"
+      ],
+      "correctIndex": 0,
+      "explanation": "The traceback points to the failing line and exception type."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What does print() debugging mean?",
+      "options": [
+        "Inserting print statements to inspect variable values",
+        "Removing all output",
+        "Using only pytest",
+        "Converting code to JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "Temporary prints (or logging) reveal what the program is doing at runtime."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "List comprehensions are often more readable than an equivalent for-loop when building a simple transformed list.",
+      "correct": true,
+      "explanation": "Short comprehensions are idiomatic; complex logic may be clearer in a loop."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Which JSON type maps to Python None?",
+      "options": ["null", "undefined", "nil", "empty"],
+      "correctIndex": 0,
+      "explanation": "JSON null becomes Python None when parsed."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "map(lambda x: x**2, [1, 2, 3]) in Python 3 is:",
+      "options": [
+        "A map object (lazy iterator)",
+        "Always [1, 4, 9] without list()",
+        "A dict",
+        "A syntax error"
+      ],
+      "correctIndex": 0,
+      "explanation": "map returns an iterator; use list(map(...)) to materialize all results."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "Why write automated tests with pytest?",
+      "options": [
+        "Catch regressions when code changes",
+        "Replace reading tracebacks entirely",
+        "Avoid using functions",
+        "Disable the interpreter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tests document expected behavior and fail when bugs are reintroduced."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "json.load(f) expects f to be:",
+      "options": [
+        "A file object opened for reading JSON text",
+        "A list only",
+        "A pytest fixture only",
+        "A lambda function"
+      ],
+      "correctIndex": 0,
+      "explanation": "load reads from a text file; loads parses from a string."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "A debugger lets you pause execution and inspect variables line by line.",
+      "correct": true,
+      "explanation": "Tools like pdb or the IDE debugger help step through code beyond print statements."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Which is valid for a one-line function passed to sorted?",
+      "options": [
+        "key=lambda s: len(s)",
+        "key=def len(s): return len(s)",
+        "lambda def s:",
+        "sorted.key(len)"
+      ],
+      "correctIndex": 0,
+      "explanation": "lambda s: len(s) is a compact key function for sorting by string length."
+    }
+  ]
+}

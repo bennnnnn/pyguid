@@ -1,0 +1,195 @@
+{
+  "chapter": 5,
+  "chapterTitle": "If Statements",
+  "title": "If Statements Practice Exam",
+  "description": "Assess your skills with if, elif, else, indentation rules, and nested conditionals.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which keyword starts a conditional block that runs only when a test is True?",
+      "options": ["if", "when", "case", "check"],
+      "correctIndex": 0,
+      "explanation": "if evaluates a condition and runs the indented block when it is truthy."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What is required after an if statement's colon?",
+      "options": ["An indented block", "A semicolon", "Another if", "A return statement"],
+      "correctIndex": 0,
+      "explanation": "Python uses indentation to define which lines belong to the if block."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "elif is short for 'else if' and checks another condition when previous tests failed.",
+      "correct": true,
+      "explanation": "elif lets you chain multiple conditions without nesting every branch in else."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "What prints when `score = 85`?\n\nif score >= 90:\n    print('A')\nelif score >= 80:\n    print('B')\nelse:\n    print('C')",
+      "options": ["B", "A", "C", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "85 fails the >= 90 test but passes >= 80, so the elif block runs."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "How many else clauses can a single if statement have?",
+      "options": ["At most one", "Unlimited", "Exactly two", "None; else is invalid"],
+      "correctIndex": 0,
+      "explanation": "else is optional and catches all remaining cases after if/elif tests."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What happens if you mix tabs and spaces for indentation?",
+      "options": [
+        "IndentationError or inconsistent behavior",
+        "Python auto-converts tabs",
+        "Only comments break",
+        "Nothing; both are always equivalent"
+      ],
+      "correctIndex": 0,
+      "explanation": "Python 3 treats inconsistent indentation as an error."
+    },
+    {
+      "id": "7",
+      "type": "truefalse",
+      "prompt": "An empty if block is allowed if you use pass.",
+      "correct": true,
+      "explanation": "pass is a no-op placeholder so syntactically valid blocks can be empty."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "What prints?\n\nx = 0\nif x:\n    print('yes')\nelse:\n    print('no')",
+      "options": ["no", "yes", "0", "Error"],
+      "correctIndex": 0,
+      "explanation": "0 is falsy, so the else branch runs."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "Nested if means what?",
+      "options": [
+        "An if block inside another if block",
+        "Two if keywords on one line",
+        "Using elif without if",
+        "An if without else"
+      ],
+      "correctIndex": 0,
+      "explanation": "Nesting places one conditional inside the body of another."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "What prints when `age = 20` and `has_ticket = True`?\n\nif age >= 18:\n    if has_ticket:\n        print('Enter')\n    else:\n        print('Need ticket')\nelse:\n    print('Too young')",
+      "options": ["Enter", "Need ticket", "Too young", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "Both the outer and inner conditions are True, so Enter prints."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Which condition checks that `name` is not empty?",
+      "options": ["if name:", "if name == False:", "if not name == '':", "if name is 0:"],
+      "correctIndex": 0,
+      "explanation": "Non-empty strings are truthy; empty strings are falsy."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "Only the first matching elif or if branch runs; later branches are skipped.",
+      "correct": true,
+      "explanation": "Once a condition succeeds, Python skips remaining elif and else for that chain."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "What is wrong?\n\nif x > 5\n    print(x)",
+      "options": [
+        "Missing colon after the condition",
+        "print should be uppercase",
+        "x cannot be compared",
+        "else is required"
+      ],
+      "correctIndex": 0,
+      "explanation": "Compound statements like if must end with a colon before the indented suite."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "What prints?\n\ncolor = 'red'\nif color == 'blue':\n    print('sky')\nelif color == 'red':\n    print('apple')\nelse:\n    print('other')",
+      "options": ["apple", "sky", "other", "red"],
+      "correctIndex": 0,
+      "explanation": "The elif branch matches color == 'red'."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "When is else executed?",
+      "options": [
+        "When all preceding if/elif conditions were False",
+        "Always",
+        "Only when if is True",
+        "Only with elif present"
+      ],
+      "correctIndex": 0,
+      "explanation": "else runs as the fallback when no earlier condition matched."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "What prints?\n\nlogged_in = False\nis_admin = True\nif logged_in:\n    if is_admin:\n        print('Admin panel')\n    else:\n        print('Dashboard')\nelse:\n    print('Login')",
+      "options": ["Login", "Admin panel", "Dashboard", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "logged_in is False, so the outer else runs before inner checks matter."
+    },
+    {
+      "id": "17",
+      "type": "truefalse",
+      "prompt": "You can write `if 5:` because numbers can be used in boolean context.",
+      "correct": true,
+      "explanation": "Non-zero numbers are truthy; zero is falsy."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "Which combines login and age check cleanly?\n\nif logged_in and age >= 18:",
+      "options": [
+        "Runs only when both are True",
+        "Runs when either is True",
+        "Syntax error",
+        "Same as nested if always"
+      ],
+      "correctIndex": 0,
+      "explanation": "and requires both conditions to be truthy."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "What prints?\n\nn = 3\nif n > 5:\n    print('big')\nif n > 2:\n    print('ok')",
+      "options": ["ok only", "big then ok", "big only", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "These are separate if statements; the second runs independently of the first."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Why indent the body of an if statement?",
+      "options": [
+        "To show which statements belong to the if block",
+        "To make code run faster",
+        "Because # comments need it",
+        "Python has no block syntax without braces"
+      ],
+      "correctIndex": 0,
+      "explanation": "Indentation defines block structure in Python instead of curly braces."
+    }
+  ]
+}
