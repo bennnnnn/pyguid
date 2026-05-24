@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-**`remove(value)`** deletes the **first** item that equals `value`. The value must exist in the list.
+You cross **one** line off a shopping list — the first line that says “milk,” not every “milk” in the notebook. **`remove(value)`** deletes the **first** item that matches that value.
+
+## One new idea: delete by value
 
 <PythonExample
   filename="remove.py"
@@ -16,9 +18,28 @@ pets.remove("dog")
 print(pets)`}
 />
 
-Only the **first** `"dog"` is removed.
+**Before → action → after**
 
-## ValueError if missing
+| Before                          | After `remove("dog")`    |
+| ------------------------------- | ------------------------ |
+| `["cat", "dog", "bird", "dog"]` | `["cat", "bird", "dog"]` |
+
+Only the **first** `"dog"` is gone. The second `"dog"` stays.
+
+## Real use case: unsubscribe one email
+
+<PythonExample
+  filename="unsub.py"
+  code={`subscribers = ["ada@x.com", "ben@x.com", "cara@x.com"]
+to_remove = "ben@x.com"
+
+subscribers.remove(to_remove)
+print("Still subscribed:", subscribers)`}
+/>
+
+## Safe remove: check first
+
+If the value is **not** in the list, **`remove()`** raises **ValueError**.
 
 <PythonExample
   filename="remove_safe.py"
@@ -34,31 +55,38 @@ print("Not found")
 print(items)`}
 />
 
-<Callout variant="danger">
-  `items.remove("z")` when `"z"` is not in the list raises **`ValueError`**. Always check
-  with `in` or use `try/except` if unsure.
-</Callout>
-
 ## remove() vs pop()
 
-| Method          | Removes by | Returns          |
-| --------------- | ---------- | ---------------- |
-| `remove(value)` | **value**  | `None`           |
-| `pop(index)`    | **index**  | the removed item |
+| Method          | You know…     | Returns          |
+| --------------- | ------------- | ---------------- |
+| `remove(value)` | the **value** | `None`           |
+| `pop(index)`    | the **index** | the removed item |
 
 <PythonExample
   filename="vs_pop.py"
   code={`nums = [10, 20, 30]
 nums.remove(20)
-print(nums)
+print("after remove:", nums)
 
 letters = ["a", "b", "c"]
 gone = letters.pop(1)
-print(gone)
-print(letters)`}
+print("pop returned:", gone)
+print("after pop:", letters)`}
 />
 
-<Callout variant="tip">
-  Use `remove()` when you know the **value** but not the index. Use `pop()` when you know
-  the **position** or want the last item.
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`items.remove("z")`** when `"z"` is missing → **ValueError**. Use **`if "z" in
+  items`** first, or handle the error later with `try/except`.
 </Callout>
+
+<TryIt title="Try it yourself" answer='["red", "blue"]'>
+  With `colors = ["red", "green", "blue"]`, `remove("green")`. Print `colors`.
+</TryIt>
+
+## Recap
+
+- **`remove(x)`** deletes the **first** match of **`x`**
+- Returns **`None`**; the list changes in place
+- Use **`pop()`** when you care about **position** or want the removed value back
+
+Next: **`pop()`** — remove by index and get the item back.

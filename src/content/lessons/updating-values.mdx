@@ -7,7 +7,11 @@ chapterTitle: "Variables"
 level: beginner
 ---
 
-A variable can point to a **new value** at any time. Use `=` again to update it:
+A sticky note on your monitor can say **“score: 10”** today and **“score: 20”** tomorrow. The label **score** stays the same; you **replace** what is written on it.
+
+Variables work the same way: the **name** stays, the **value** can change.
+
+## One new idea: assign again with `=`
 
 <PythonExample
   filename="update.py"
@@ -17,11 +21,18 @@ score = 20
 print(score)`}
 />
 
-The first `print` shows `10`. After `score = 20`, the old value is gone — `score` now means 20.
+**Before → action → after**
 
-## Update using the current value
+| Step           | What `score` means |
+| -------------- | ------------------ |
+| `score = 10`   | `10`               |
+| `print(score)` | shows `10`         |
+| `score = 20`   | old `10` is gone   |
+| `print(score)` | shows `20`         |
 
-You can use the variable on the right side when assigning:
+The second `=` does **not** add — it **replaces** whatever was there.
+
+## Use the current value when updating
 
 <PythonExample
   filename="increment.py"
@@ -30,6 +41,14 @@ count = count + 1
 print(count)`}
 />
 
+**Line by line**
+
+- `count = 1` — start at 1
+- `count = count + 1` — read current `count` (1), add 1, store 2
+- `print(count)` — shows `2`
+
+## Shorthand: `+=`
+
 <PythonExample
   filename="shorthand.py"
   code={`points = 5
@@ -37,11 +56,30 @@ points += 3
 print(points)`}
 />
 
-`points += 3` means the same as `points = points + 3`.
+`points += 3` means the same as `points = points + 3`. You will see `+=`, `-=`, `*=` often in real code.
 
-## Change type
+## Real use case: game score
 
-A variable can hold a different **type** of value after an update:
+<PythonExample
+  filename="game.py"
+  code={`score = 0
+print("Start:", score)
+
+score += 10
+print("Coin:", score)
+
+score += 50
+print("Boss:", score)`}
+/>
+
+## Common mistake: `=` vs `==`
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`=`** stores a value. **`==`** checks if two values are equal (you will use that in
+  comparison lessons). Writing `if score = 10` is invalid — use `if score == 10`.
+</Callout>
+
+## You can change the type (careful)
 
 <PythonExample
   filename="reassign.py"
@@ -51,12 +89,22 @@ x = "ten"
 print(x)`}
 />
 
+`x` first held a number, then text. Python allows it, but flipping types in one variable can confuse **you** when reading code. Prefer a new name when the meaning changes.
+
 <Callout variant="note">
-  Updating a variable does not change other variables. If you copy a value into two names,
-  each name can be updated separately.
+  Updating `score` does not change other variables. If two names pointed at the same list
+  (later chapter), that is a different story — for simple numbers and strings, each name
+  is independent.
 </Callout>
 
-<Callout variant="warning">
-  Be careful not to confuse `=` (assignment) with `==` (comparison). You will use `==`
-  when checking if two values are equal in later lessons.
-</Callout>
+<TryIt title="Try it yourself" answer="15">
+  Set `lives = 3`, then use `lives -= 1` twice (or `lives = lives - 1`). Print `lives`.
+</TryIt>
+
+## Recap
+
+- Assign again with **`=`** to replace a value
+- **`count = count + 1`** and **`count += 1`** do the same thing
+- Do not confuse **`=`** with **`==`**
+
+Next: **Printing variables** — show names and values in friendly messages.

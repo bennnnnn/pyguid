@@ -7,14 +7,17 @@ chapterTitle: "Variables"
 level: beginner
 ---
 
-Variable names must follow Python’s rules:
+You cannot label a box **`2socks`** — names that start with a number confuse everyone. Python has similar rules for variable names: they must be **readable labels** the computer can parse.
 
-- Letters (`a`–`z`, `A`–`Z`), digits (`0`–`9`), and underscores (`_`)
-- **Cannot** start with a digit
-- **Cannot** contain spaces
-- Case matters: `name` and `Name` are different variables
+## One new idea: legal names
 
-Valid examples:
+A variable name may use:
+
+- Letters (`a`–`z`, `A`–`Z`)
+- Digits (`0`–`9`) — but **not** as the first character
+- Underscores (`_`)
+
+No spaces. No hyphens (Python reads `-` as minus).
 
 <PythonExample
   filename="valid.py"
@@ -24,9 +27,16 @@ _private = True
 print(user_name)`}
 />
 
-## snake_case
+**Line by line**
 
-When a name has several words, Python style uses **snake_case**: lowercase words joined by underscores.
+- `user_name` — two words joined with `_` (good style)
+- `score2` — digit at the **end** is fine
+- `_private` — leading underscore is allowed (often means “internal use”)
+- `print(user_name)` — shows `Sam`
+
+## Several words: snake_case
+
+When a name has more than one word, Python style uses **snake_case**: lowercase words separated by `_`.
 
 <PythonExample
   filename="snake.py"
@@ -36,17 +46,42 @@ full_name = first_name + " " + last_name
 print(full_name)`}
 />
 
-<Callout variant="warning" title="Invalid names">
-  These will cause errors: `2score` (starts with a number), `my-var` (hyphen is minus),
-  `my var` (space).
+Read `first_name` as “first name,” not `firstname` mashed together.
+
+## Case matters
+
+`name` and `Name` are **two different** variables. Pick one style and stick to it.
+
+<PythonExample
+  filename="case.py"
+  code={`name = "ada"
+Name = "Ada"
+print(name)
+print(Name)`}
+/>
+
+## Common mistakes: illegal names
+
+| You write | Problem                          |
+| --------- | -------------------------------- |
+| `2score`  | starts with a digit              |
+| `my-var`  | `-` is subtraction, not a letter |
+| `my var`  | space splits into two tokens     |
+
+<Callout variant="danger" title="Oops — Python is yelling">
+  Do not use **keywords** as variable names: `if`, `for`, `print`, `True`, `class`, and
+  others already mean something special. `print = 5` would break `print()` later.
 </Callout>
 
-<Callout variant="danger" title="Reserved words">
-  Do not use Python keywords as variable names, such as `if`, `for`, `print`, `True`, or
-  `class`. They already mean something special to the language.
-</Callout>
+<TryIt title="Try it yourself" answer="Ada Lovelace">
+  Create `first_name` with `"Ada"`, `last_name` with `"Lovelace"`, then `full_name` as
+  `first_name + " " + last_name`. Print `full_name`.
+</TryIt>
 
-<Callout variant="tip">
-  Stick to English letters and snake_case in this course. That matches most real-world
-  Python code.
-</Callout>
+## Recap
+
+- Names use letters, digits, `_` — **not** starting with a digit
+- Use **snake_case** for multi-word names
+- **`=`** assigns; keywords are off-limits
+
+Next: **Updating values** — change what a variable stores without changing its name.

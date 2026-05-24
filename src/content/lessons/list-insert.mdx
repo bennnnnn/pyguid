@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-**`insert(index, item)`** adds an item **at a specific position**. Items at that index and after shift to the right.
+**`append()`** only adds at the **bottom**. **`insert()`** is like sliding a new song **into the middle** of a playlist — everything after that spot shifts right.
+
+## One new idea: `insert(index, item)`
 
 <PythonExample
   filename="insert.py"
@@ -16,11 +18,23 @@ colors.insert(1, "yellow")
 print(colors)`}
 />
 
-`"yellow"` is now at index `1`; `"blue"` moved to index `2`.
+**Before → action → after**
 
-## Insert at the start
+| Index | Before    | After `insert(1, "yellow")` |
+| ----- | --------- | --------------------------- |
+| `0`   | `"red"`   | `"red"`                     |
+| `1`   | `"blue"`  | `"yellow"` ← new            |
+| `2`   | `"green"` | `"blue"` (shifted)          |
+| `3`   | —         | `"green"` (shifted)         |
 
-Use index **`0`**:
+Result: `["red", "yellow", "blue", "green"]`
+
+**Line by line**
+
+- `insert(1, "yellow")` — at index **`1`**, put **`"yellow"`**
+- Items that were at index `1` and higher move one slot right
+
+## Put something at the very start
 
 <PythonExample
   filename="insert_start.py"
@@ -29,13 +43,11 @@ tasks.insert(0, "standup")
 print(tasks)`}
 />
 
-## Insert at the end
+Index **`0`** is always the front.
 
-`insert(len(items), x)` works, but **`append(x)`** is simpler for the end.
+## At the end? Prefer append()
 
-## Index out of range
-
-`insert()` allows inserting at `len(list)` (append position). It does **not** error for index `len` like indexing does:
+`insert(len(items), x)` works, but **`append(x)`** is simpler for the last slot.
 
 <PythonExample
   filename="insert_end.py"
@@ -44,12 +56,23 @@ nums.insert(3, 4)
 print(nums)`}
 />
 
-<Callout variant="warning">
-  Negative indexes work: `insert(-1, x)` inserts before the last item, not after it. For
-  the end, use `append()`.
+Index `3` is valid here — it means “after the last item,” same idea as append.
+
+## Common mistake: negative index confusion
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`insert(-1, x)`** inserts **before** the last item, not after it. For the true end,
+  use **`append(x)`**.
 </Callout>
 
-<Callout variant="tip">
-  Use `insert()` when order matters — priority queues, inserting a step in the middle of
-  instructions.
-</Callout>
+<TryIt title="Try it yourself" answer='["a", "NEW", "b", "c"]'>
+  With `letters = ["a", "b", "c"]`, `insert(1, "NEW")`. Print `letters`.
+</TryIt>
+
+## Recap
+
+- **`insert(i, item)`** adds at position **`i`** and shifts the rest
+- **`insert(0, x)`** — front of the list
+- **`append(x)`** — end of the list (simpler than `insert` at the end)
+
+Next: **`remove()`** — delete by **value**.

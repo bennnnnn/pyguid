@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-**`reverse()`** reverses the list **in place** — first becomes last.
+You flip a row of dominoes so the first becomes last. **`reverse()`** mirrors the **current** order — it does **not** sort by size.
+
+## One new idea: flip the list in place
 
 <PythonExample
   filename="reverse.py"
@@ -16,10 +18,13 @@ nums.reverse()
 print(nums)`}
 />
 
-## reverse() vs sort(reverse=True)
+**Before → after**
 
-- `reverse()` — flips current order only
-- `sort(reverse=True)` — sorts largest-first
+| Before            | After `reverse()` |
+| ----------------- | ----------------- |
+| `[1, 2, 3, 4, 5]` | `[5, 4, 3, 2, 1]` |
+
+## reverse() vs sort(reverse=True)
 
 <PythonExample
   filename="compare.py"
@@ -32,9 +37,14 @@ b.sort(reverse=True)
 print("sort reverse:", b)`}
 />
 
-## Slicing trick (new list)
+| Method               | What it does                     |
+| -------------------- | -------------------------------- |
+| `reverse()`          | flip whatever order you have now |
+| `sort(reverse=True)` | sort largest-first by value      |
 
-`reversed_list = original[::-1]` creates a **copy** in reverse without changing `original`:
+Example: `[3, 1, 4, 2]` → `reverse` → `[2, 4, 1, 3]`; `sort(reverse=True)` → `[4, 3, 2, 1]`.
+
+## Keep the original: slice copy
 
 <PythonExample
   filename="slice_reverse.py"
@@ -44,19 +54,31 @@ print("original:", letters)
 print("backward:", backward)`}
 />
 
-## reversed() function
+`[::-1]` builds a **new** reversed list; **`letters`** stays the same.
 
-**`reversed(list)`** returns an iterator for loops — does not change the list:
+## Loop with reversed()
 
 <PythonExample
   filename="reversed_func.py"
   code={`nums = [1, 2, 3]
 for n in reversed(nums):
     print(n)
-print(nums)`}
+print("list unchanged:", nums)`}
 />
 
 <Callout variant="note">
-  `reverse()` returns `None`. Use slicing or `reversed()` if you need to keep the original
-  order.
+  **`reverse()`** returns **`None`**. Use **`[::-1]`** or **`reversed()`** when you must
+  keep the original order intact.
 </Callout>
+
+<TryIt title="Try it yourself" answer="[3, 2, 1]">
+  With `nums = [1, 2, 3]`, call `reverse()`, then print `nums`.
+</TryIt>
+
+## Recap
+
+- **`reverse()`** — mirror order in place
+- Not the same as **`sort(reverse=True)`**
+- **`[::-1]`** — reversed **copy**
+
+Next: **Copying lists** — avoid accidental shared edits.

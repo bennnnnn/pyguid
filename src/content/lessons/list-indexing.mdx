@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-Access a list item by its **index** in square brackets:
+A parking garage labels spots **0, 1, 2** from the entrance — not 1, 2, 3. Python lists count positions from **`0`** the same way.
+
+## One new idea: index with `[ ]`
 
 <PythonExample
   filename="access.py"
@@ -17,9 +19,19 @@ print(colors[1])
 print(colors[2])`}
 />
 
-## Change an item
+| Index | Item      |
+| ----- | --------- |
+| `0`   | `"red"`   |
+| `1`   | `"green"` |
+| `2`   | `"blue"`  |
 
-Lists are **mutable** — assign to an index to update:
+**Line by line**
+
+- `colors[0]` — first item
+- `colors[1]` — second item
+- `colors[2]` — third item
+
+## Change one item (lists are mutable)
 
 <PythonExample
   filename="change.py"
@@ -28,63 +40,67 @@ colors[1] = "yellow"
 print(colors)`}
 />
 
-## Negative indexes
+**Before → after**
+
+| Before index `1` | After      |
+| ---------------- | ---------- |
+| `"green"`        | `"yellow"` |
+
+Full list: `["red", "yellow", "blue"]`
+
+## Negative indexes: count from the end
 
 <PythonExample
   filename="negative.py"
   code={`items = [10, 20, 30, 40, 50]
 print(items[-1])
-print(items[-2])
-print(items[len(items) - 1])`}
+print(items[-2])`}
 />
 
-## Slicing
+| Index | Item                   |
+| ----- | ---------------------- |
+| `-1`  | last (`50`)            |
+| `-2`  | second from end (`40`) |
 
-`[start:end]` — `end` is **not** included:
+## Slicing: a piece of the list
+
+`[start:end]` — **`end` is not included**
 
 <PythonExample
   filename="slice.py"
   code={`nums = [0, 1, 2, 3, 4, 5]
 print(nums[1:4])
 print(nums[:3])
-print(nums[2:])
-print(nums[:])`}
+print(nums[2:])`}
 />
 
-## Step in slices
+| Slice   | Result         | Meaning              |
+| ------- | -------------- | -------------------- |
+| `[1:4]` | `[1, 2, 3]`    | index 1 up to, not 4 |
+| `[:3]`  | `[0, 1, 2]`    | from start           |
+| `[2:]`  | `[2, 3, 4, 5]` | from index 2 to end  |
 
-<PythonExample
-  filename="step.py"
-  code={`nums = [0, 1, 2, 3, 4, 5]
-print(nums[::2])
-print(nums[1::2])
-print(nums[::-1])`}
-/>
+## Common mistakes
 
-## Slicing creates a copy
-
-<PythonExample
-  filename="slice_copy.py"
-  code={`original = [1, 2, 3]
-part = original[0:2]
-part[0] = 99
-print("original:", original)
-print("part:", part)`}
-/>
-
-## Check if an item exists
-
-<PythonExample
-  filename="in_list.py"
-  code={`fruits = ["apple", "banana"]
-print("apple" in fruits)
-print("grape" in fruits)`}
-/>
-
-<Callout variant="warning" title="Index out of range">
-  `colors[99]` raises **`IndexError`**. Valid indexes: `0` through `len(colors) - 1`.
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`colors[99]`** when the list is shorter → **IndexError**. Valid indexes: `0` through
+  **`len(colors) - 1`** (or negative shortcuts).
 </Callout>
 
-<Callout variant="danger">
-  You cannot use `colors[3] = "x"` to grow a list — use `append()` or `insert()` instead.
+<Callout variant="warning">
+  **`colors[3] = "pink"`** does **not** grow a list with only 3 items (indexes `0`–`2`).
+  Use **`append()`** or **`insert()`** to add new slots.
 </Callout>
+
+<TryIt title="Try it yourself" answer="banana">
+  With `fruits = ["apple", "banana", "cherry"]`, print the item at index `1`.
+</TryIt>
+
+## Recap
+
+- Indexes start at **`0`**
+- **`list[i] = new`** changes one item
+- **`list[start:end]`** copies a slice; **`end`** is excluded
+- **`-1`** is the last item
+
+Next: **`append()`** — add one item to the end.

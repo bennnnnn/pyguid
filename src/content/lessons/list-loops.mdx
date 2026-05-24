@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-A **`for`** loop visits each item in a list:
+A teacher reads names from a class list, one at a time. A **`for`** loop does that with a Python list — no need to count indexes unless you want them.
+
+## One new idea: for item in my_list
 
 <PythonExample
   filename="for_list.py"
@@ -16,7 +18,30 @@ for fruit in fruits:
     print(fruit)`}
 />
 
-## Loop with index using range()
+**Line by line**
+
+- `for fruit in fruits` — each time through, **`fruit`** is the **next** item
+- `print(fruit)` — runs once per item (three lines of output)
+
+## When you need the index too: enumerate()
+
+<PythonExample
+  filename="enumerate.py"
+  code={`fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+
+print("---")
+for index, fruit in enumerate(fruits, start=1):
+print(f"{index}. {fruit}")`}
+/>
+
+| Tool         | Gives you                        |
+| ------------ | -------------------------------- |
+| `for x in L` | each **value**                   |
+| `enumerate`  | **index** and **value** together |
+
+## Loop with range() (classic style)
 
 <PythonExample
   filename="index_loop.py"
@@ -25,21 +50,9 @@ for i in range(len(fruits)):
     print(i, fruits[i])`}
 />
 
-## enumerate()
+Works, but **`for fruit in fruits`** is simpler when you only need values.
 
-Gets **index and value** together — preferred when you need both:
-
-<PythonExample
-  filename="enumerate.py"
-  code={`fruits = ["apple", "banana", "cherry"]
-for index, fruit in enumerate(fruits):
-    print(index, fruit)
-
-for index, fruit in enumerate(fruits, start=1):
-print(f"{index}. {fruit}")`}
-/>
-
-## Build a new list in a loop
+## Real use case: build a new list
 
 <PythonExample
   filename="build.py"
@@ -50,7 +63,9 @@ for n in numbers:
 print(doubled)`}
 />
 
-## Loop with a condition
+Pattern: empty list → loop → **`append`** → finished list.
+
+## Filter with a condition
 
 <PythonExample
   filename="filter_loop.py"
@@ -62,7 +77,7 @@ for s in scores:
 print(passing)`}
 />
 
-## Nested lists
+## Nested lists: loop inside loop
 
 <PythonExample
   filename="nested_loop.py"
@@ -74,10 +89,41 @@ for row in grid:
 />
 
 <Callout variant="tip">
-  Prefer `for item in my_list:` when you only need values. Use `enumerate` when you need
-  the index too.
+  Prefer **`for item in my_list:`** when you only need values. Use **`enumerate`** when
+  you need position numbers for display or logic.
 </Callout>
 
-<Callout variant="note">
-  **List comprehensions** (later chapter) shorten many “build a new list” loops.
-</Callout>
+<TryIt title="Try it yourself" answer="6">
+  With `nums = [1, 2, 3]`, use a loop to add each number to `total` (start `total = 0`).
+  Print `total`.
+</TryIt>
+
+## Chapter 8 mini project: todo list
+
+Use what you learned — create, add, loop, and count:
+
+<PythonExample
+  filename="todo.py"
+  code={`tasks = []
+
+tasks.append("Learn lists")
+tasks.append("Practice loops")
+tasks.append("Build a mini project")
+
+print("Your tasks:")
+for i, task in enumerate(tasks, start=1):
+print(f" {i}. {task}")
+
+print("Total:", len(tasks))
+print("First task:", tasks[0])`}
+/>
+
+Change the tasks. Try `remove` on one item and run again.
+
+## Recap
+
+- **`for x in list:`** — visit each value
+- **`enumerate(list)`** — index + value
+- Loops often **build** new lists with **`append`**
+
+You finished the **Lists** chapter. Next: **Tuples** — ordered collections that do not change.

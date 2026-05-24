@@ -7,7 +7,9 @@ chapterTitle: "Variables"
 level: beginner
 ---
 
-Pass a variable to **`print()`** to show its value:
+You filled out a form: **Name: \_\_\_**, **Age: \_\_\_**. Printing with variables is the same idea — you have labels (`name`, `age`) and you drop them into a sentence.
+
+## One new idea: print a variable
 
 <PythonExample
   filename="print_var.py"
@@ -15,9 +17,11 @@ Pass a variable to **`print()`** to show its value:
 print(name)`}
 />
 
-## Mix text and variables
+`print(name)` does **not** print the word `name` — it looks up the **value** stored in `name` and shows `Ada`.
 
-Use commas to combine text and variables — `print()` adds a space between items:
+## Mix labels and values with commas
+
+`print()` can take **several** items. It puts a **space** between them.
 
 <PythonExample
   filename="comma.py"
@@ -27,9 +31,16 @@ print("Name:", name)
 print("Age:", age)`}
 />
 
-## f-strings (recommended)
+**Output**
 
-An **f-string** starts with `f` before the quotes. Put expressions inside `{curly braces}`:
+```text
+Name: Ada
+Age: 36
+```
+
+## f-strings: fill in the blanks (recommended)
+
+Put **`f`** before the quotes. Inside **`{curly braces}`**, write a variable or expression:
 
 <PythonExample
   filename="fstring.py"
@@ -40,11 +51,9 @@ print(f"Age: {age}")
 print(f"Next year: {age + 1}")`}
 />
 
-You can put math and other expressions inside `{}`.
+Read `f"Next year: {age + 1}"` as: build this sentence and **compute** whatever is inside `{}`.
 
-## Concatenation with +
-
-You can join strings with `+`, but every part must be a string:
+## Join strings with `+`
 
 <PythonExample
   filename="concat.py"
@@ -53,14 +62,57 @@ name = "Ada"
 print(greeting + name)`}
 />
 
-<Callout variant="tip">
-  Prefer **f-strings** for readable messages. They are the modern Python style for
-  building text with variables.
+Every piece joined with `+` must be a **string**.
+
+## Common mistake: number + text
+
+If you tried `print("Age: " + age)` with `age = 36`, Python would raise **TypeError** — you cannot add a string and a number with `+`.
+
+Use one of these instead:
+
+<PythonExample
+  filename="safe_print.py"
+  code={`age = 36
+print("Age:", age)
+print(f"Age: {age}")`}
+/>
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  `"Age: " + age` fails when `age` is a number — you cannot add text and int with `+`. Use
+  **`f"Age: {age}"`** or **`print("Age:", age)`**.
 </Callout>
 
-<Callout variant="warning" title="Numbers and +">
-  `"Age: " + age` fails if `age` is a number. Use `f"Age: {age}"` or `print("Age:", age)`
-  instead.
-</Callout>
+<TryIt title="Try it yourself" answer="Hello, Sam! You are 12 years old.">
+  Set `name = "Sam"` and `age = 12`. Print one f-string: `f"Hello, {name}! You are {age}{" "}
+  years old."`
+</TryIt>
 
-You have finished the **Variables** section. Next up: **data types** — strings, numbers, and booleans in more detail.
+## Chapter 2 mini project: player card
+
+Put the chapter together — create variables, update one, print a card:
+
+<PythonExample
+  filename="player_card.py"
+  code={`player = "Sam"
+level = 1
+xp = 0
+
+xp += 25
+xp += 10
+level = 2
+
+print("--- Player card ---")
+print(f"Name: {player}")
+print(f"Level: {level}")
+print(f"XP: {xp}")`}
+/>
+
+Run it. Change the name and XP gains. That is how small games track state with variables.
+
+## Recap
+
+- **`print(variable)`** shows the stored value
+- **Commas** and **f-strings** mix text and data safely
+- Prefer **f-strings** for readable messages
+
+You finished **Variables**. Next chapter: **Data types** — strings, numbers, and booleans in more detail.

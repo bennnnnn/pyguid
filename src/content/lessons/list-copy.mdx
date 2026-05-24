@@ -7,21 +7,28 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-Assignment copies the **reference**, not the list data:
+Two people share **one** notebook. If one person scribbles on page 3, the other sees it too. **`b = a`** for lists means **one notebook, two names** — not a photocopy.
+
+## One new idea: assignment is not a copy
 
 <PythonExample
   filename="reference.py"
   code={`a = [1, 2, 3]
 b = a
 b.append(4)
-print(a)`}
+print("a:", a)
+print("b:", b)`}
 />
 
-Changing `b` also changes `a` — they are the same list.
+**What happened**
 
-## copy() and list()
+| Step          | Reality                         |
+| ------------- | ------------------------------- |
+| `b = a`       | `b` points at the **same** list |
+| `b.append(4)` | that list is now `[1, 2, 3, 4]` |
+| `print(a)`    | **`a`** sees the change too     |
 
-Create an independent **shallow copy**:
+## Make a real copy: copy() or [:]
 
 <PythonExample
   filename="copy.py"
@@ -29,44 +36,64 @@ Create an independent **shallow copy**:
 b = a.copy()
 b.append(4)
 print("a:", a)
-print("b:", b)
-
-c = [1, 2, 3]
-d = list(c)
-d.append(99)
-print("c:", c)`}
+print("b:", b)`}
 />
 
-## Slice copy
+**Before → after `b.append(4)`**
+
+| Variable | List           |
+| -------- | -------------- |
+| `a`      | `[1, 2, 3]`    |
+| `b`      | `[1, 2, 3, 4]` |
+
+Another way: **`clone = original[:]`** (slice the whole list).
 
 <PythonExample
   filename="slice_copy.py"
   code={`original = ["x", "y", "z"]
 clone = original[:]
 clone[0] = "changed"
-print(original)
-print(clone)`}
+print("original:", original)
+print("clone:", clone)`}
 />
 
-## Shallow vs nested lists
+## Real use case: safe backup before editing
 
-Shallow copy copies **top-level** items only. Nested lists still share inner lists:
+<PythonExample
+  filename="backup.py"
+  code={`scores = [88, 72, 95]
+backup = scores.copy()
+
+scores.sort()
+print("Sorted:", scores)
+print("Backup:", backup)`}
+/>
+
+## Shallow copy warning (nested lists)
 
 <PythonExample
   filename="shallow.py"
   code={`a = [[1, 2], [3, 4]]
 b = a.copy()
 b[0].append(99)
-print(a)`}
+print("a:", a)`}
 />
 
-For deep copies of nested structures, use `copy.deepcopy()` from the `copy` module (advanced topic).
+Both **`a`** and **`b`** still share the **inner** lists. For deep nesting, advanced code uses `copy.deepcopy()` — not required yet.
 
-<Callout variant="danger" title="Common bug">
-  `b = a` is not a copy. Use `b = a.copy()` or `b = a[:]` when you need a separate list.
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`b = a`** is **not** a copy. Use **`b = a.copy()`** or **`b = a[:]`** when edits to
+  **`b`** must not touch **`a`**.
 </Callout>
 
-<Callout variant="tip">
-  Use `.copy()` when passing a list to a function that might modify it, if you want to
-  keep the original safe.
-</Callout>
+<TryIt title="Try it yourself" answer="[1, 2]">
+  With `a = [1, 2]`, set `b = a.copy()`, `append(3)` to **`b` only**, print **`a`**.
+</TryIt>
+
+## Recap
+
+- **`b = a`** — shared list
+- **`b = a.copy()`** or **`b = a[:]`** — separate top-level list
+- Shallow copy: inner lists may still be shared
+
+Next: **`index()`** and **`count()`** — find and count items.

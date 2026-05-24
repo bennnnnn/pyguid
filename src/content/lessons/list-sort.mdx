@@ -7,7 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-**`sort()`** sorts a list **in place** — smallest to largest by default.
+High scores on a leaderboard should go **low → high** (or the other way). **`sort()`** rearranges the **same list** so items are in order — like sorting cards in your hand without getting a second deck.
+
+## One new idea: sort in place
 
 <PythonExample
   filename="sort.py"
@@ -16,7 +18,15 @@ scores.sort()
 print(scores)`}
 />
 
-## Reverse order
+**Before → after**
+
+| Before                 | After `sort()`         |
+| ---------------------- | ---------------------- |
+| `[88, 72, 95, 64, 85]` | `[64, 72, 85, 88, 95]` |
+
+Default: **smallest → largest**.
+
+## Biggest first
 
 <PythonExample
   filename="sort_reverse.py"
@@ -25,7 +35,7 @@ nums.sort(reverse=True)
 print(nums)`}
 />
 
-## Sort strings alphabetically
+## Sort words (case matters)
 
 <PythonExample
   filename="sort_strings.py"
@@ -34,7 +44,7 @@ names.sort()
 print(names)`}
 />
 
-Sorting is **case-sensitive** (`"Ben"` before `"ada"`). For case-insensitive sort:
+Capital letters sort **before** lowercase in ASCII order (`"Ben"` before `"ada"`). For friendlier order:
 
 <PythonExample
   filename="sort_key.py"
@@ -43,9 +53,7 @@ names.sort(key=str.lower)
 print(names)`}
 />
 
-## sorted() — new list
-
-**`sorted(iterable)`** returns a **new** sorted list and leaves the original unchanged:
+## sorted() — keep the original order too
 
 <PythonExample
   filename="sorted.py"
@@ -55,17 +63,31 @@ print("original:", original)
 print("ordered:", ordered)`}
 />
 
-| Function   | Changes original? | Returns  |
-| ---------- | ----------------- | -------- |
-| `.sort()`  | Yes               | `None`   |
-| `sorted()` | No                | new list |
+| Tool       | Changes original? | Returns      |
+| ---------- | ----------------- | ------------ |
+| `.sort()`  | Yes               | `None`       |
+| `sorted()` | No                | **new** list |
 
-<Callout variant="warning">
-  You cannot sort a list that mixes incompatible types, like `[1, "two"]` — Python raises
-  **`TypeError`**.
+## Common mistake: expecting a return from sort()
+
+<Callout variant="warning" title="Oops — Python is yelling">
+  **`result = scores.sort()`** sets **`result`** to **`None`**. The sorted data is in
+  **`scores`**, not in `result`.
 </Callout>
 
-<Callout variant="tip">
-  Use `sort()` when you no longer need the old order. Use `sorted()` when you need both
-  versions.
+<Callout variant="danger">
+  **`[1, "two"].sort()`** → **TypeError**. Python cannot compare number and text to order
+  them.
 </Callout>
+
+<TryIt title="Try it yourself" answer="[1, 2, 3]">
+  With `nums = [3, 1, 2]`, call `sort()`, then print `nums`.
+</TryIt>
+
+## Recap
+
+- **`list.sort()`** — reorder **this** list; returns **`None`**
+- **`sorted(list)`** — new sorted list; original unchanged
+- **`reverse=True`** — largest first
+
+Next: **`reverse()`** — flip order without sorting.

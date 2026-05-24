@@ -7,9 +7,9 @@ chapterTitle: "Lists"
 level: beginner
 ---
 
-## count()
+You search a spreadsheet: **how many** times does “banana” appear, and **where is the first** “banana”? **`count()`** answers “how many”; **`index()`** answers “where first.”
 
-**`count(value)`** returns how many times `value` appears:
+## One new idea: count()
 
 <PythonExample
   filename="count.py"
@@ -18,11 +18,12 @@ print(letters.count("a"))
 print(letters.count("z"))`}
 />
 
-`count("z")` returns `0` — no error.
+| Call         | Result | Meaning              |
+| ------------ | ------ | -------------------- |
+| `count("a")` | `3`    | three `"a"` items    |
+| `count("z")` | `0`    | not found — no error |
 
-## index()
-
-**`index(value)`** returns the **index of the first** match:
+## index() — first position of a value
 
 <PythonExample
   filename="index.py"
@@ -31,20 +32,32 @@ print(fruits.index("banana"))
 print(fruits.index("cherry"))`}
 />
 
-## ValueError if not found
+| Value      | `index()` returns | Why              |
+| ---------- | ----------------- | ---------------- |
+| `"banana"` | `1`               | first at index 1 |
+| `"cherry"` | `2`               | only one         |
+
+Only the **first** match — not every `"banana"`.
+
+## Safe search before you act
 
 <PythonExample
   filename="index_safe.py"
   code={`items = [10, 20, 30]
-if 25 in items:
-    print(items.index(25))
+target = 25
+
+if target in items:
+print(items.index(target))
 else:
-    print("25 not in list")`}
+print("25 not in list")`}
 />
 
-## Start search at a position
+<Callout variant="danger" title="Oops — Python is yelling">
+  **`items.index(25)`** when `25` is missing → **ValueError**. Use **`in`** first, like
+  with **`remove()`**.
+</Callout>
 
-`index(value, start)` and `index(value, start, stop)` limit the search range:
+## Start searching later in the list
 
 <PythonExample
   filename="index_start.py"
@@ -53,19 +66,25 @@ print(nums.index(2))
 print(nums.index(2, 2))`}
 />
 
-## len() reminder
+Second call: find **`2`** starting at index **`2`** → finds the `2` at index `3`.
 
-**`len(list)`** is the number of items — not a method on the list, but used constantly:
+## Real use case: count before removing duplicates
 
 <PythonExample
-  filename="len.py"
-  code={`data = [10, 20, 30, 40]
-print(len(data))
-print(data[len(data) - 1])`}
+  filename="tally.py"
+  code={`votes = ["yes", "no", "yes", "yes", "no"]
+print("yes:", votes.count("yes"))
+print("no:", votes.count("no"))`}
 />
 
-Last item: `data[-1]` is simpler than `data[len(data)-1]`.
+<TryIt title="Try it yourself" answer="1">
+  With `colors = ["red", "green", "blue"]`, print `colors.index("green")`.
+</TryIt>
 
-<Callout variant="tip">
-  Use `count()` before `remove()` when you need to know if a value exists more than once.
-</Callout>
+## Recap
+
+- **`count(x)`** — how many times **`x`** appears (0 if none)
+- **`index(x)`** — index of **first** **`x`** (error if missing)
+- Check **`x in list`** before **`index`** or **`remove`**
+
+Next: **Loop through lists** — visit every item.
