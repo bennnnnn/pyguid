@@ -1,0 +1,35 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { SITE } from "../lib/site";
+---
+
+<SiteLayout
+  title={`Page not found — ${SITE.name}`}
+  description="This page could not be found. Browse Python tutorials, quizzes, and reference topics on PyGuide."
+  noindex
+>
+  <div class="mx-auto max-w-xl px-4 py-16 text-center sm:py-24">
+    <p class="text-sm font-semibold uppercase tracking-wide text-brand">404</p>
+    <h1 class="mt-2 text-3xl font-bold text-text">Page not found</h1>
+    <p class="mt-4 text-text-secondary">
+      The link may be outdated or the page was moved. Try one of these sections:
+    </p>
+    <ul class="mt-8 flex flex-col gap-3 text-left text-sm">
+      <li>
+        <a href="/python/" class="text-link font-medium">Python tutorials</a>
+        — step-by-step lessons
+      </li>
+      <li>
+        <a href="/python/quiz/" class="text-link font-medium">Quizzes</a>
+        — chapter practice tests
+      </li>
+      <li>
+        <a href="/python/reference/" class="text-link font-medium">Reference</a>
+        — syntax lookup with examples
+      </li>
+      <li>
+        <a href="/" class="text-link font-medium">Home</a>
+      </li>
+    </ul>
+  </div>
+</SiteLayout>

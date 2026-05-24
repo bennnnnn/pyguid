@@ -1,0 +1,22 @@
+---
+import { getReferenceSheetByChapter, referenceChapterUrl } from "../lib/reference-sheets";
+
+interface Props {
+  chapter: number;
+}
+
+const { chapter } = Astro.props;
+const sheet = getReferenceSheetByChapter(chapter);
+---
+
+{
+  sheet && (
+    <p class="lesson-reference-link not-prose mt-8 text-sm text-text-secondary">
+      Need a quick syntax reminder? See the{" "}
+      <a href={referenceChapterUrl(sheet.id)} class="font-semibold text-link">
+        {sheet.title} reference
+      </a>
+      .
+    </p>
+  )
+}

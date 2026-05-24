@@ -2,16 +2,22 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import HomeCurriculum from "../components/home/HomeCurriculum.astro";
 import { getLessonGroups, getTotalLessonCount } from "../lib/lessons";
-import { SITE } from "../lib/site";
+import { websiteJsonLd } from "../lib/seo-schema";
+import { SITE, getSiteUrl } from "../lib/site";
 import "../styles/home.css";
 
 const groups = await getLessonGroups();
 const lessonCount = getTotalLessonCount(groups);
 const sectionCount = groups.length;
 const firstLesson = groups[0]?.lessons[0];
+const siteUrl = getSiteUrl(Astro.site);
 ---
 
-<SiteLayout title={SITE.title} description={SITE.description}>
+<SiteLayout
+  title={SITE.title}
+  description={SITE.description}
+  jsonLd={websiteJsonLd(siteUrl)}
+>
   <!-- Hero -->
   <section class="home-hero">
     <div class="home-container home-hero-inner">

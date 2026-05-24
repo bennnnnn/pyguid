@@ -6,15 +6,6 @@ chapter: 7
 chapterTitle: "Strings"
 level: beginner
 quickAnswer: "Use text[start:stop] to slice a substring; text[0:3] gives the first three characters and text[-1] gives the last character."
-faqs:
-  - question: "How do I get the first three characters of a string?"
-    answer: "Use text[:3] or text[0:3]. Both return a new string with the first three characters."
-  - question: "Can I change a character with string slicing?"
-    answer: "No. Strings are immutable. Build a new string by concatenating slices and replacement text instead."
-  - question: "How do I reverse a string in Python?"
-    answer: "Use text[::-1] with a step of -1, or reversed(text) inside join for another idiomatic approach."
-  - question: "Are string slices inclusive of the stop index?"
-    answer: "No. The stop index is excluded, same as list slicing: 'Python'[0:3] is 'Pyt'."
 ---
 
 ## Why this matters

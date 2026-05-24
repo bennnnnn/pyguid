@@ -14,9 +14,6 @@ chapterTitle: "Lists"
 section: "Lists" # optional
 level: beginner
 quickAnswer: "One-sentence direct answer for the top of the page."
-faqs:
-  - question: "Does append return a new list?"
-    answer: "No. append() returns None and mutates the list in place."
 ---
 ```
 
@@ -26,7 +23,7 @@ Body: prose + `<PythonExample />` + `<Callout />` blocks.
 
 ## SEO lesson template (top traffic pages)
 
-1. **Frontmatter** — `description`, `quickAnswer`, `faqs` (3–4 items)
+1. **Frontmatter** — `description`, `quickAnswer`
 2. **Why this matters** — 2–3 sentences (or use `seo:apply-top30` from `docs/seo-top-30-meta.json`)
 3. Plain-English explanation + analogy
 4. Runnable example + line-by-line

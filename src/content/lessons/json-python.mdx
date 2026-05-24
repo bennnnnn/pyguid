@@ -6,15 +6,6 @@ chapter: 27
 chapterTitle: "Python Standard Library"
 level: beginner
 quickAnswer: "Use json.loads(text) or json.load(file) to parse JSON into Python dicts and lists; use json.dumps(obj) or json.dump(obj, file) to serialize back to JSON."
-faqs:
-  - question: "What is the difference between json.load and json.loads?"
-    answer: "json.load reads from a file object. json.loads parses a JSON string already in memory."
-  - question: "What Python types does JSON support?"
-    answer: "JSON maps to dict, list, str, int, float, bool, and None. Custom classes need conversion before dumping."
-  - question: "How do I write pretty-printed JSON?"
-    answer: "Use json.dumps(data, indent=2) or json.dump(data, f, indent=2) to add readable indentation."
-  - question: "Why do I get TypeError when calling json.dumps?"
-    answer: "The object contains values JSON cannot encode, like datetime or bytes. Convert them to strings or numbers first."
 ---
 
 ## Why this matters

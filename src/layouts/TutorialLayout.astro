@@ -17,6 +17,7 @@ interface Props {
   groups: LessonGroup[];
   currentLessonId?: string;
   sidebar?: "learn" | "reference";
+  ogType?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -26,6 +27,7 @@ const {
   groups,
   currentLessonId,
   sidebar = "learn",
+  ogType = "website",
   jsonLd,
 } = Astro.props;
 
@@ -42,7 +44,7 @@ const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
       title={title}
       description={description}
       canonical={canonical}
-      ogType="article"
+      ogType={ogType}
       jsonLd={jsonLd}
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

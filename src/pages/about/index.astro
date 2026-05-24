@@ -1,11 +1,15 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getLessonGroups, getTotalLessonCount } from "../../lib/lessons";
 import { SITE } from "../../lib/site";
+
+const groups = await getLessonGroups();
+const lessonCount = getTotalLessonCount(groups);
 ---
 
 <SiteLayout
   title={`About — ${SITE.name}`}
-  description={`About ${SITE.name} — free Python tutorials with runnable examples.`}
+  description={`About ${SITE.name} — free Python tutorials with runnable examples, chapter quizzes, and syntax reference.`}
 >
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
     <article class="lesson-prose">
@@ -16,9 +20,10 @@ import { SITE } from "../../lib/site";
       </p>
       <h2>What you will find</h2>
       <ul>
-        <li>52 lessons from basics through classes, files, and more</li>
+        <li>{lessonCount} step-by-step lessons from basics through testing and clean code</li>
+        <li>Chapter quizzes at <a href="/python/quiz/">/python/quiz/</a></li>
+        <li>A syntax reference at <a href="/python/reference/">/python/reference/</a></li>
         <li>Runnable code on every example page</li>
-        <li>A separate syntax reference for quick lookup</li>
       </ul>
       <p class="flex flex-wrap gap-3">
         <a href="/python/what-is-python/" class="btn-primary">Start the course</a>

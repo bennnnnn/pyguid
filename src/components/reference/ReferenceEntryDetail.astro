@@ -13,6 +13,7 @@ interface Props {
 const { page } = Astro.props;
 const { sheet, entry, index } = page;
 const { code, runnable, filename } = getReferenceEntryCode(page);
+const tutorialChapterUrl = `/python/#chapter-${sheet.chapter}`;
 
 const prev =
   index > 0
@@ -44,6 +45,16 @@ const next =
     <code>{entry.name}</code>
   </h1>
   <p class="ref-entry-lead">{entry.summary}</p>
+
+  <p class="text-sm text-text-secondary">
+    <a href={tutorialChapterUrl} class="text-link font-medium">
+      Read the {sheet.title} tutorials
+    </a>
+    <span class="mx-1.5">·</span>
+    <a href={referenceChapterUrl(sheet.id)} class="text-link font-medium">
+      All {sheet.title} syntax
+    </a>
+  </p>
 
   {
     runnable ? (

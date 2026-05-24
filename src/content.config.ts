@@ -15,15 +15,6 @@ const lessons = defineCollection({
     level: z.enum(["beginner", "intermediate"]).default("beginner"),
     /** One-sentence direct answer for SEO snippets and scanners */
     quickAnswer: z.string().optional(),
-    /** FAQ for page body + FAQPage JSON-LD */
-    faqs: z
-      .array(
-        z.object({
-          question: z.string(),
-          answer: z.string(),
-        }),
-      )
-      .optional(),
   }),
 });
 

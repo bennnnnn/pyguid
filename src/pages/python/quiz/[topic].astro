@@ -8,7 +8,8 @@ import {
   getQuizTopic,
   quizUrl,
 } from "../../../lib/quiz-topics";
-import { SITE } from "../../../lib/site";
+import { breadcrumbListJsonLd, quizLearningResourceJsonLd } from "../../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../../lib/site";
 
 export function getStaticPaths() {
   return getPublishedQuizTopics().map((topic) => ({
@@ -24,9 +25,31 @@ if (!exam) return Astro.redirect("/python/quiz/");
 
 const groups = await getLessonGroups();
 const pageTitle = `${topic.title} Quiz — ${SITE.name}`;
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL(quizUrl(topic.slug), `${siteUrl}/`).href;
+const jsonLd = [
+  breadcrumbListJsonLd([
+    { name: SITE.name, url: `${siteUrl}/` },
+    { name: "Quizzes", url: `${siteUrl}/python/quiz/` },
+    { name: topic.title, url: pageUrl },
+  ]),
+  quizLearningResourceJsonLd({
+    siteUrl,
+    url: pageUrl,
+    name: exam.title,
+    description: exam.description,
+    chapterTitle: topic.title,
+  }),
+];
 ---
 
-<TutorialLayout title={pageTitle} description={exam.description} groups={groups}>
+<TutorialLayout
+  title={pageTitle}
+  description={exam.description}
+  groups={groups}
+  ogType="article"
+  jsonLd={jsonLd}
+>
   <article class="lesson-prose lesson-prose-wide">
     <p class="!mt-0 text-sm text-text-muted">
       <a href="/" class="text-link">{SITE.name}</a>

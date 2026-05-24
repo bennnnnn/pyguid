@@ -15,7 +15,9 @@
     "sync:curriculum": "node scripts/sync-curriculum.mjs",
     "curriculum:generate": "node scripts/generate-curriculum-v11.mjs > docs/curriculum-order.json && npm run sync:curriculum",
     "seo:apply-top30": "node scripts/apply-seo-meta.mjs",
-    "seo:apply-batch2": "node scripts/apply-seo-meta.mjs docs/seo-top-30-batch2-meta.json && node scripts/fix-yaml-newlines.mjs docs/seo-top-30-batch2-meta.json"
+    "seo:apply-batch2": "node scripts/apply-seo-meta.mjs docs/seo-top-30-batch2-meta.json && node scripts/fix-yaml-newlines.mjs docs/seo-top-30-batch2-meta.json",
+    "seo:generate-batch3": "node scripts/generate-remaining-seo-meta.mjs",
+    "seo:apply-batch3": "node scripts/apply-seo-meta.mjs docs/seo-batch3-meta.json && node scripts/fix-yaml-newlines.mjs docs/seo-batch3-meta.json"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

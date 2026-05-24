@@ -1091,3 +1091,7 @@ export function parseReferencePath(pathname: string): {
 export function getReferenceSheet(id: string): ReferenceSheet | undefined {
   return REFERENCE_SHEETS.find((s) => s.id === id);
 }
+
+export function getReferenceSheetByChapter(chapter: number): ReferenceSheet | undefined {
+  return REFERENCE_SHEETS.find((s) => s.chapter === chapter);
+}

@@ -6,7 +6,13 @@ import {
   getAllReferenceEntryPages,
   getReferenceEntryPage,
 } from "../../../../lib/reference-sheets";
-import { SITE } from "../../../../lib/site";
+import { getReferenceEntryCode } from "../../../../lib/reference-entry-code";
+import { breadcrumbListJsonLd, techArticleJsonLd } from "../../../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../../../lib/site";
+import {
+  referenceChapterUrl,
+  referenceEntryUrl,
+} from "../../../../lib/reference-sheets";
 import "../../../../styles/reference.css";
 
 export function getStaticPaths() {
@@ -21,8 +27,30 @@ const page = getReferenceEntryPage(sheetId, entrySlug);
 if (!page) return Astro.redirect("/python/reference/");
 
 const groups = await getLessonGroups();
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL(referenceEntryUrl(sheetId, entrySlug), `${siteUrl}/`).href;
+const chapterRefUrl = new URL(referenceChapterUrl(sheetId), `${siteUrl}/`).href;
+const { code } = getReferenceEntryCode(page);
 const title = `${page.entry.name} — ${page.sheet.title} — ${SITE.name}`;
-const description = `${page.entry.summary} Example: ${page.entry.example ?? page.entry.name}`;
+const description =
+  page.entry.summary.length >= 120
+    ? `${page.entry.summary} Runnable Python example on ${SITE.name}.`
+    : `${page.entry.summary} Python ${page.sheet.title.toLowerCase()} syntax reference with a runnable example on ${SITE.name}.`;
+const jsonLd = [
+  breadcrumbListJsonLd([
+    { name: SITE.name, url: `${siteUrl}/` },
+    { name: "Reference", url: `${siteUrl}/python/reference/` },
+    { name: page.sheet.title, url: chapterRefUrl },
+    { name: page.entry.name, url: pageUrl },
+  ]),
+  techArticleJsonLd({
+    siteUrl,
+    url: pageUrl,
+    headline: `${page.entry.name} — ${page.sheet.title}`,
+    description: page.entry.summary,
+    articleBody: code,
+  }),
+];
 ---
 
 <TutorialLayout
@@ -30,6 +58,8 @@ const description = `${page.entry.summary} Example: ${page.entry.example ?? page
   description={description}
   groups={groups}
   sidebar="reference"
+  ogType="article"
+  jsonLd={jsonLd}
 >
   <div class="lesson-prose-wide">
     <ReferenceEntryDetail page={page} />

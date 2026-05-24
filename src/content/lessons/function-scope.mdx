@@ -6,15 +6,6 @@ chapter: 15
 chapterTitle: "Scope"
 level: beginner
 quickAnswer: "Names assigned inside a function are local unless declared global or nonlocal; Python looks up names local first, then enclosing, global, and built-in scopes."
-faqs:
-  - question: "What is the LEGB rule in Python?"
-    answer: "Python searches Local, Enclosing, Global, then Built-in scopes to resolve a name when you read or assign it."
-  - question: "Can a function read variables defined outside it?"
-    answer: "Yes for reading if the name is not assigned locally. Assigning inside the function creates a new local name unless you use global or nonlocal."
-  - question: "When should I use the global keyword?"
-    answer: "Rarely. global lets a function rebind a module-level variable. Prefer passing values in and returning results instead."
-  - question: "What is the difference between global and nonlocal?"
-    answer: "global targets module-level names. nonlocal targets variables in an enclosing function, useful in nested functions."
 ---
 
 ## Why this matters

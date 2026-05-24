@@ -6,15 +6,6 @@ chapter: 14
 chapterTitle: "Functions"
 level: beginner
 quickAnswer: "Use print() to display text for humans; use return to hand a value back to calling code for further use."
-faqs:
-  - question: "Should my function print or return the result?"
-    answer: "Return the result if another part of the program needs it. Print only when the goal is to show something to the user right there."
-  - question: "Why does my function print correctly but assign None?"
-    answer: "print returns None. Assigning x = my_func() stores None unless my_func uses return."
-  - question: "Can I use both print and return in one function?"
-    answer: "Yes, for debugging or user messages while still returning data. Keep returns for logic and prints for optional visibility."
-  - question: "Do automated tests check print or return?"
-    answer: "Tests usually assert on return values or object state, not printed text, unless the exercise explicitly checks output."
 ---
 
 ## Why this matters

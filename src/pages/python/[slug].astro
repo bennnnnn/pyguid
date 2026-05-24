@@ -7,13 +7,16 @@ import PythonExample from "../../components/PythonExample.astro";
 import Callout from "../../components/Callout.astro";
 import OperatorTable from "../../components/OperatorTable.astro";
 import QuickAnswer from "../../components/QuickAnswer.astro";
-import SeoFaq from "../../components/SeoFaq.astro";
+import LessonReferenceLink from "../../components/LessonReferenceLink.astro";
+import RelatedLessons from "../../components/RelatedLessons.astro";
 import {
   getAllLessons,
   getLessonGroups,
   getAdjacentLessons,
+  getChapterLessons,
   lessonUrl,
 } from "../../lib/lessons";
+import { breadcrumbListJsonLd, pythonChapterUrl } from "../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../lib/site";
 export async function getStaticPaths() {
   const lessons = await getAllLessons();
@@ -32,40 +35,18 @@ if (!lesson) return Astro.redirect("/python/");
 
 const { Content } = await render(lesson);
 const { prev, next } = getAdjacentLessons(lessons, slug);
+const chapterLessons = getChapterLessons(groups, lesson.data.chapter);
 
 const pageTitle = `${lesson.data.title} — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(lessonUrl(slug), `${siteUrl}/`).href;
-const breadcrumbLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: SITE.name,
-      item: `${siteUrl}/`,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Python",
-      item: `${siteUrl}/python/`,
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: lesson.data.chapterTitle,
-      item: pageUrl,
-    },
-    {
-      "@type": "ListItem",
-      position: 4,
-      name: lesson.data.title,
-      item: pageUrl,
-    },
-  ],
-};
+const chapterUrl = pythonChapterUrl(siteUrl, lesson.data.chapter);
+const breadcrumbLd = breadcrumbListJsonLd([
+  { name: SITE.name, url: `${siteUrl}/` },
+  { name: "Python", url: `${siteUrl}/python/` },
+  { name: lesson.data.chapterTitle, url: chapterUrl },
+  { name: lesson.data.title, url: pageUrl },
+]);
 
 const articleLd = {
   "@context": "https://schema.org",
@@ -87,23 +68,7 @@ const articleLd = {
   },
 };
 
-const faqLd =
-  lesson.data.faqs && lesson.data.faqs.length > 0
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: lesson.data.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
-        })),
-      }
-    : null;
-
-const jsonLd = faqLd ? [breadcrumbLd, articleLd, faqLd] : [breadcrumbLd, articleLd];
+const jsonLd = [breadcrumbLd, articleLd];
 ---
 
 <TutorialLayout
@@ -111,6 +76,7 @@ const jsonLd = faqLd ? [breadcrumbLd, articleLd, faqLd] : [breadcrumbLd, article
   description={lesson.data.description}
   groups={groups}
   currentLessonId={slug}
+  ogType="article"
   jsonLd={jsonLd}
 >
   <article class="lesson-prose">
@@ -134,12 +100,13 @@ const jsonLd = faqLd ? [breadcrumbLd, articleLd, faqLd] : [breadcrumbLd, article
     <h1>{lesson.data.title}</h1>
     {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
     <Content components={{ PythonExample, Callout, OperatorTable }} />
-    {
-      lesson.data.faqs && lesson.data.faqs.length > 0 && (
-        <SeoFaq items={lesson.data.faqs} />
-      )
-    }
+    <LessonReferenceLink chapter={lesson.data.chapter} />
     <LessonQuizCta chapter={lesson.data.chapter} />
+    <RelatedLessons
+      lessons={chapterLessons}
+      currentLessonId={slug}
+      chapterTitle={lesson.data.chapterTitle}
+    />
     <LessonFooterNav prev={prev} next={next} />
   </article>
 </TutorialLayout>

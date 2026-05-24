@@ -1,0 +1,30 @@
+---
+import type { LessonEntry } from "../lib/lessons";
+import { lessonUrl } from "../lib/lessons";
+
+interface Props {
+  lessons: LessonEntry[];
+  currentLessonId: string;
+  chapterTitle: string;
+}
+
+const { lessons, currentLessonId, chapterTitle } = Astro.props;
+const related = lessons.filter((l) => l.id !== currentLessonId);
+---
+
+{
+  related.length > 0 && (
+    <section class="related-lessons not-prose mt-10 border-t border-border pt-8">
+      <h2 class="!mt-0 text-lg font-semibold text-text">More in {chapterTitle}</h2>
+      <ul class="mt-3 list-none space-y-2 p-0">
+        {related.map((lesson) => (
+          <li>
+            <a href={lessonUrl(lesson.id)} class="text-link text-sm font-medium">
+              {lesson.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

@@ -6,15 +6,6 @@ chapter: 10
 chapterTitle: "Lists"
 level: beginner
 quickAnswer: "Use append() to add one element; use extend() to add each element from an iterable. append([1,2]) nests a list; extend([1,2]) adds 1 and 2."
-faqs:
-  - question: "Should I use append or extend to combine two lists?"
-    answer: "Use extend(other_list) or a slice assignment if you want all elements merged. append(other_list) adds the second list as one nested element."
-  - question: "What happens if I append a list to a list?"
-    answer: "You get a list containing another list as a single item, for example [1, 2, [3, 4]], not [1, 2, 3, 4]."
-  - question: "Is list += the same as extend?"
-    answer: "For lists, += with another list behaves like extend for standard list objects, adding elements in place. Still know append vs extend for clarity when reading code."
-  - question: "Which is faster, append or extend?"
-    answer: "For many items, extend is clearer and avoids repeated function calls in a loop. For one item, append is correct. Readability and correct structure matter more than micro-speed here."
 ---
 
 ## Why this matters

@@ -20,15 +20,7 @@ function parseFrontmatter(text) {
 }
 
 function upsertYamlField(yaml, key, value, indent = "") {
-  const serialized =
-    key === "faqs"
-      ? `faqs:\n${value
-          .map(
-            (f) =>
-              `  - question: ${JSON.stringify(f.question)}\n    answer: ${JSON.stringify(f.answer)}`,
-          )
-          .join("\n")}\n`
-      : `${key}: ${JSON.stringify(value)}\n`;
+  const serialized = `${key}: ${JSON.stringify(value)}\n`;
 
   const re = new RegExp(`^${key}:.*(?:\\n(?:  .*)*)*`, "m");
   if (re.test(yaml)) {
@@ -58,7 +50,6 @@ for (const [slug, entry] of Object.entries(meta.lessons)) {
 
   if (entry.description) yaml = upsertYamlField(yaml, "description", entry.description);
   if (entry.quickAnswer) yaml = upsertYamlField(yaml, "quickAnswer", entry.quickAnswer);
-  if (entry.faqs) yaml = upsertYamlField(yaml, "faqs", entry.faqs);
 
   if (entry.whyMatters && !body.includes("## Why this matters")) {
     body = `## Why this matters\n\n${entry.whyMatters}\n\n${body}`;
