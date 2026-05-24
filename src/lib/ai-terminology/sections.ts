@@ -1,6 +1,7 @@
 import type { AiTerminologySection } from "./types";
+import { enrichSectionTerms } from "./enrich";
 import { AI_TERM_EXPANSIONS } from "./expansions";
-import { gloss } from "./helpers";
+import { gloss, termAnchorsForSection } from "./helpers";
 
 /** Curated glossary sections for AI terminology reference. */
 const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
@@ -1188,10 +1189,15 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
   },
 ];
 
-/** Sections with optional expansion terms merged per group. */
+function mergeSectionTerms(section: AiTerminologySection): AiTerminologySection {
+  const extra = AI_TERM_EXPANSIONS[section.id];
+  const terms = extra?.length
+    ? [...section.terms, ...gloss(extra)]
+    : [...section.terms];
+  const anchors = termAnchorsForSection(section.id, terms);
+  return { ...section, terms: enrichSectionTerms(section.id, terms, anchors) };
+}
+
+/** Sections with expansion terms and search/display enrichment applied. */
 export const AI_TERMINOLOGY_SECTIONS: AiTerminologySection[] =
-  AI_TERMINOLOGY_SECTIONS_BASE.map((section) => {
-    const extra = AI_TERM_EXPANSIONS[section.id];
-    if (!extra?.length) return section;
-    return { ...section, terms: [...section.terms, ...gloss(extra)] };
-  });
+  AI_TERMINOLOGY_SECTIONS_BASE.map(mergeSectionTerms);

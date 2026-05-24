@@ -427,6 +427,11 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
   ],
   "deep-learning": [
     [
+      "Neural network",
+      "A network of layers that transforms inputs step by step into predictions or embeddings.",
+      "Built by stacking torch.nn.Module layers; depth means more than one hidden layer.",
+    ],
+    [
       "Perceptron / MLP",
       "Fully connected stacks—torch.nn.Linear layers for tabular and simple baselines.",
     ],

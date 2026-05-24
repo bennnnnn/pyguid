@@ -1,0 +1,26 @@
+---
+import { buildStarterTermLinks } from "../../lib/ai-terminology/starter-links";
+
+const starterLinks = buildStarterTermLinks();
+---
+
+<section class="ai-term-panel" aria-labelledby="starter-100-heading">
+  <h2 id="starter-100-heading">First 100 AI terms to learn</h2>
+  <p class="ai-term-panel-intro">
+    A curated path through essential vocabulary. Search also matches aliases (for example LLM, RAG,
+    MCP) and related terms.
+  </p>
+  <ol class="ai-term-starter-list">
+    {
+      starterLinks.map((link, index) => (
+        <li>
+          <a href={link.href} class="ai-term-starter-link">
+            <span class="ai-term-starter-rank">{index + 1}</span>
+            <span class="ai-term-starter-label">{link.term}</span>
+            <span class="ai-term-starter-group">{link.sectionTitle}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>

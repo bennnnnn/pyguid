@@ -1,9 +1,14 @@
+import { termSearchBlob } from "./enrich";
 import { AI_TERMINOLOGY_SECTIONS } from "./sections";
 import { aiTerminologySectionUrl, termAnchorsForSection } from "./helpers";
 
 export type AiTermSearchHit = {
   term: string;
   meaning: string;
+  simple?: string;
+  aliases: string[];
+  related: string[];
+  searchText: string;
   sectionId: string;
   sectionTitle: string;
   href: string;
@@ -26,6 +31,10 @@ export function buildAiTerminologySearchIndex(): AiTermSearchHit[] {
       hits.push({
         term: entry.term,
         meaning: entry.meaning,
+        simple: entry.simple,
+        aliases: entry.aliases ?? [],
+        related: entry.related ?? [],
+        searchText: termSearchBlob(entry, section.title),
         sectionId: section.id,
         sectionTitle: section.title,
         href: `${base}#${anchors[index]}`,

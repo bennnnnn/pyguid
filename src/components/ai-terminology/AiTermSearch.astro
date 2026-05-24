@@ -26,7 +26,8 @@ const sectionRows = buildAiTerminologySectionSearchRows();
     </button>
   </div>
   <p class="ai-term-search-hint" data-search-hint>
-    Search {termHits.length} terms across {sectionRows.length} groups
+    Search {termHits.length} terms (including aliases and related terms) across {sectionRows.length}{" "}
+    groups
   </p>
   <div
     id="ai-term-search-results"
@@ -63,11 +64,22 @@ const sectionRows = buildAiTerminologySectionSearchRows();
   const scoreTerm = (q, hit) => {
     const term = normalize(hit.term);
     const meaning = normalize(hit.meaning);
+    const simple = normalize(hit.simple ?? "");
     const title = normalize(hit.sectionTitle);
+    const blob = normalize(hit.searchText ?? "");
+    const aliases = (hit.aliases ?? []).map((a) => normalize(a));
+    const related = (hit.related ?? []).map((r) => normalize(r));
+
     if (term === q) return 100;
+    if (aliases.some((a) => a === q)) return 95;
+    if (aliases.some((a) => a.startsWith(q))) return 88;
     if (term.startsWith(q)) return 80;
+    if (related.some((r) => r.includes(q))) return 72;
     if (term.includes(q)) return 60;
+    if (aliases.some((a) => a.includes(q))) return 55;
+    if (simple.includes(q)) return 48;
     if (title.includes(q)) return 40;
+    if (blob.includes(q)) return 30;
     if (meaning.includes(q)) return 25;
     return 0;
   };
@@ -132,8 +144,13 @@ const sectionRows = buildAiTerminologySectionSearchRows();
         a.href = hit.href;
         a.className = "ai-term-search-hit";
         a.innerHTML = `<span class="ai-term-search-hit-term"></span><span class="ai-term-search-hit-meta"></span>`;
+        const aliasNote =
+          hit.aliases?.length && hit.aliases.some((a) => normalize(a).includes(q))
+            ? ` · also: ${hit.aliases.slice(0, 2).join(", ")}`
+            : "";
         a.querySelector(".ai-term-search-hit-term").textContent = hit.term;
-        a.querySelector(".ai-term-search-hit-meta").textContent = hit.sectionTitle;
+        a.querySelector(".ai-term-search-hit-meta").textContent =
+          hit.sectionTitle + aliasNote;
         li.append(a);
         return li;
       }),

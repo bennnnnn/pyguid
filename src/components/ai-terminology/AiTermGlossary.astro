@@ -23,7 +23,20 @@ const entries = toGlossaryEntries(terms, termAnchorsForSection(sectionId, terms)
           <div class="ai-glossary-body">
             <p class={termLabelClass(entry.term)}>{entry.term}</p>
             <div class="ai-glossary-definition">
+              {entry.simple && <p class="ai-glossary-simple">{entry.simple}</p>}
               <p>{entry.meaning}</p>
+              {entry.aliases && entry.aliases.length > 0 && (
+                <p class="ai-glossary-aliases">
+                  <span class="ai-glossary-meta-label">Also called</span>
+                  {entry.aliases.join(", ")}
+                </p>
+              )}
+              {entry.related && entry.related.length > 0 && (
+                <p class="ai-glossary-related">
+                  <span class="ai-glossary-meta-label">Related</span>
+                  {entry.related.join(", ")}
+                </p>
+              )}
               {entry.python && (
                 <p class="ai-glossary-python">
                   <span class="ai-glossary-python-label">Python</span>

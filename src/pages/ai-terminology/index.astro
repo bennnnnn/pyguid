@@ -1,14 +1,18 @@
 ---
 import AiTermGroupTitle from "../../components/ai-terminology/AiTermGroupTitle.astro";
+import AiTermFaq from "../../components/ai-terminology/AiTermFaq.astro";
 import AiTermSearch from "../../components/ai-terminology/AiTermSearch.astro";
+import AiTermStarterHundred from "../../components/ai-terminology/AiTermStarterHundred.astro";
+import AiTermStudyOrder from "../../components/ai-terminology/AiTermStudyOrder.astro";
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import {
   AI_TERMINOLOGY_META,
   AI_TERMINOLOGY_SECTIONS,
   getAiTerminologyStats,
 } from "../../lib/ai-terminology";
+import { AI_TERMINOLOGY_FAQ } from "../../lib/ai-terminology/faq";
 import { aiTerminologySectionUrl } from "../../lib/ai-terminology/helpers";
-import { breadcrumbListJsonLd, itemListJsonLd } from "../../lib/seo-schema";
+import { breadcrumbListJsonLd, faqPageJsonLd, itemListJsonLd } from "../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../lib/site";
 import "../../styles/ai-terminology.css";
 
@@ -31,6 +35,7 @@ const jsonLd = [
       url: new URL(aiTerminologySectionUrl(section.id), `${siteUrl}/`).href,
     })),
   }),
+  faqPageJsonLd(AI_TERMINOLOGY_FAQ),
 ];
 ---
 
@@ -47,6 +52,10 @@ const jsonLd = [
         {subtitle} <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} groups</span>
       </p>
     </header>
+
+    <AiTermStudyOrder />
+
+    <AiTermStarterHundred />
 
     <AiTermSearch />
 
@@ -67,6 +76,8 @@ const jsonLd = [
         No groups match your search. Try a different term or clear the search box.
       </p>
     </section>
+
+    <AiTermFaq />
 
     <footer class="ai-term-footer-note">
       <p>
