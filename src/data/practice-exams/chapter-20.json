@@ -1,0 +1,224 @@
+{
+  "chapter": 20,
+  "chapterTitle": "JSON",
+  "title": "JSON Practice Exam",
+  "description": "Practice json.dumps, json.loads, files, and saving app data as JSON.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which module serializes Python data to JSON strings?",
+      "options": ["json", "csv", "os only", "re"],
+      "correctIndex": 0,
+      "explanation": "import json; json.dumps() and json.loads() convert between Python and JSON."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does json.loads('{\"a\": 1}') return?",
+      "options": [
+        "A Python dict {\"a\": 1}",
+        "The string unchanged",
+        "A list only",
+        "A file object"
+      ],
+      "correctIndex": 0,
+      "explanation": "loads parses a JSON string into Python objects."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "JSON keys in objects must be double-quoted strings.",
+      "correct": true,
+      "explanation": "Valid JSON requires double quotes around keys and string values."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "json.dump(data, f) writes:",
+      "options": [
+        "JSON text to file f",
+        "Binary pickle only",
+        "SQL to f",
+        "HTML to f"
+      ],
+      "correctIndex": 0,
+      "explanation": "dump writes to a file-like object; dumps returns a string."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "Which JSON type maps to Python None?",
+      "options": ["null", "undefined", "nil", "empty"],
+      "correctIndex": 0,
+      "explanation": "JSON null becomes Python None when parsed."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "json.load(f) expects f to be:",
+      "options": [
+        "A file opened for reading JSON text",
+        "A list only",
+        "A pytest fixture only",
+        "A lambda"
+      ],
+      "correctIndex": 0,
+      "explanation": "load reads from a text file; loads parses from a string."
+    },
+    {
+      "id": "7",
+      "type": "truefalse",
+      "prompt": "Python tuples are not directly JSON-serializable with json.dumps by default.",
+      "correct": true,
+      "explanation": "JSON has arrays and objects; convert tuples to lists or use a custom encoder."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "Saving todos to todos.json is useful because:",
+      "options": [
+        "Data persists between program runs",
+        "JSON removes the need for variables",
+        "Files cannot be edited",
+        "JSON is only for web servers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Serialization stores state on disk for later load."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "json.dumps(obj, indent=2) mainly:",
+      "options": [
+        "Pretty-prints with indentation for humans",
+        "Encrypts data",
+        "Runs tests",
+        "Opens SQLite"
+      ],
+      "correctIndex": 0,
+      "explanation": "indent makes debug files easier to read."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "A JSON array maps to Python:",
+      "options": ["list", "dict", "set", "tuple always"],
+      "correctIndex": 0,
+      "explanation": "JSON arrays become lists when parsed."
+    },
+    {
+      "id": "11",
+      "type": "truefalse",
+      "prompt": "JSON booleans are true and false lowercase.",
+      "correct": true,
+      "explanation": "They map to Python True and False."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "Invalid JSON (trailing comma) will cause:",
+      "options": [
+        "json.JSONDecodeError on load",
+        "Silent success",
+        "Automatic repair",
+        "ImportError"
+      ],
+      "correctIndex": 0,
+      "explanation": "JSON is strict; fix syntax or validate input."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "After loading JSON into a list of dicts, you often:",
+      "options": [
+        "Loop and access keys like item[\"text\"]",
+        "Cannot index dicts",
+        "Must use SQL only",
+        "Must use Flask"
+      ],
+      "correctIndex": 0,
+      "explanation": "Loaded data is normal Python structures."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "json.dumps vs json.dump:",
+      "options": [
+        "dumps returns str; dump writes to a file object",
+        "They are identical",
+        "dump returns str only",
+        "dumps opens files"
+      ],
+      "correctIndex": 0,
+      "explanation": "s for string, dump for file."
+    },
+    {
+      "id": "15",
+      "type": "truefalse",
+      "prompt": "JSON is a common format for config files and APIs.",
+      "correct": true,
+      "explanation": "Many tools exchange data as JSON text."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Encoding ensures when writing JSON:",
+      "options": [
+        "Text files use a consistent character encoding like utf-8",
+        "Numbers become strings always",
+        "Keys are optional",
+        "Lists are forbidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "open(..., encoding=\"utf-8\") is standard for text JSON files."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "A todo dict {\"text\": \"Learn\", \"done\": false} in JSON uses:",
+      "options": [
+        "false lowercase for boolean",
+        "False capitalized",
+        "0 only",
+        "null for false"
+      ],
+      "correctIndex": 0,
+      "explanation": "JSON false is not Python False in the file text."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "Loading an empty or missing JSON file in an app often means:",
+      "options": [
+        "Start with a default empty list or dict",
+        "Crash without try/except always",
+        "Delete Python",
+        "Skip all logic"
+      ],
+      "correctIndex": 0,
+      "explanation": "Handle FileNotFoundError and return sensible defaults."
+    },
+    {
+      "id": "19",
+      "type": "truefalse",
+      "prompt": "JSON numbers map to Python int or float.",
+      "correct": true,
+      "explanation": "No separate JSON int type beyond number."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Round-trip save and load should:",
+      "options": [
+        "Give equivalent data structures after load",
+        "Change all keys randomly",
+        "Remove lists",
+        "Require SQLAlchemy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Test that dump then load preserves your app's state."
+    }
+  ]
+}

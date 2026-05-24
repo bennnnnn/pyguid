@@ -1,0 +1,230 @@
+{
+  "chapter": 22,
+  "chapterTitle": "Logging & Regex",
+  "title": "Logging & Regex Practice Exam",
+  "description": "Practice the logging module and regular expressions with re.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "logging.info('msg') is better than print for apps because:",
+      "options": [
+        "You can set levels and send output to files",
+        "It runs faster always",
+        "It replaces Python",
+        "It parses JSON automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Logging scales from dev to production configuration."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "logging.DEBUG is:",
+      "options": [
+        "A lower severity level than INFO",
+        "Higher than CRITICAL",
+        "A regex flag",
+        "A file mode"
+      ],
+      "correctIndex": 0,
+      "explanation": "Levels order: DEBUG, INFO, WARNING, ERROR, CRITICAL."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "import re; re.search(r'\\d+', text) finds:",
+      "options": [
+        "First run of digits in text",
+        "All files",
+        "SQL tables",
+        "Only letters"
+      ],
+      "correctIndex": 0,
+      "explanation": "search looks anywhere in the string for a match."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "In a raw string r'\\d+', \\d means:",
+      "options": ["A digit character", "A literal d only", "End of string", "Whitespace"],
+      "correctIndex": 0,
+      "explanation": "Raw strings reduce escaping headaches in regex patterns."
+    },
+    {
+      "id": "5",
+      "type": "truefalse",
+      "prompt": "re.findall returns all non-overlapping matches as strings.",
+      "correct": true,
+      "explanation": "findall is handy for extracting every match."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "logging.basicConfig(level=logging.INFO) sets:",
+      "options": [
+        "Minimum level shown by default handlers",
+        "Python version",
+        "File encoding only",
+        "SQL dialect"
+      ],
+      "correctIndex": 0,
+      "explanation": "Messages below the level are ignored."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "re.sub(r'cat', 'dog', text) replaces:",
+      "options": [
+        "Matches of the pattern with the replacement",
+        "Nothing ever",
+        "Only the first character",
+        "File paths only"
+      ],
+      "correctIndex": 0,
+      "explanation": "sub can replace all or limit count with count=."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "The . in regex normally matches:",
+      "options": [
+        "Any character except newline (by default)",
+        "Only dots",
+        "Only digits",
+        "End of file"
+      ],
+      "correctIndex": 0,
+      "explanation": "Flags like re.DOTALL change behavior."
+    },
+    {
+      "id": "9",
+      "type": "truefalse",
+      "prompt": "Complex regex can often be replaced with simpler string methods when possible.",
+      "correct": true,
+      "explanation": "startswith, in, and split are clearer for simple tasks."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "m.group(0) after a successful match is:",
+      "options": [
+        "The whole matched substring",
+        "The pattern only",
+        "Always None",
+        "A list"
+      ],
+      "correctIndex": 0,
+      "explanation": "Groups 1+ are captured parentheses."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "logging.exception('msg') logs:",
+      "options": [
+        "ERROR level with traceback info",
+        "Only DEBUG",
+        "Only to JSON",
+        "Nothing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use inside except blocks to record stack traces."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "^ in a regex anchor means:",
+      "options": ["Start of string (or line)", "End only", "Any digit", "Optional"],
+      "correctIndex": 0,
+      "explanation": "$ anchors the end."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "re.compile(pattern) is useful when:",
+      "options": [
+        "You reuse the same pattern many times",
+        "You never match twice",
+        "You only log once",
+        "You need SQL"
+      ],
+      "correctIndex": 0,
+      "explanation": "Compiled patterns avoid re-parsing the regex each call."
+    },
+    {
+      "id": "14",
+      "type": "truefalse",
+      "prompt": "Invalid regex patterns raise re.error.",
+      "correct": true,
+      "explanation": "Test patterns on sample strings during development."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "A logger name like logging.getLogger(__name__) helps:",
+      "options": [
+        "Identify which module emitted a message",
+        "Delete logs",
+        "Run Flask",
+        "Open CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hierarchical logger names map to code structure."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "[a-z]+ matches:",
+      "options": [
+        "One or more lowercase letters",
+        "Exactly one letter",
+        "Digits only",
+        "Nothing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Character classes and quantifiers combine in patterns."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "FileHandler in logging sends messages to:",
+      "options": ["A file on disk", "HTTP only", "SQLite only", "pytest only"],
+      "correctIndex": 0,
+      "explanation": "Handlers route records to destinations."
+    },
+    {
+      "id": "18",
+      "type": "truefalse",
+      "prompt": "Emails and URLs are easy to get wrong with naive regex; validate carefully.",
+      "correct": true,
+      "explanation": "Use dedicated libraries or strict specs for production validation."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "if m := re.search(pat, s): uses:",
+      "options": [
+        "Walrus operator to bind match in condition",
+        "JSON walrus",
+        "SQL join",
+        "async await"
+      ],
+      "correctIndex": 0,
+      "explanation": ":= assigns and tests in one expression."
+    },
+    {
+      "id": "20",
+      "type": "choice",
+      "prompt": "Production apps often log WARNING and above to reduce noise because:",
+      "options": [
+        "Routine INFO/DEBUG is too verbose at scale",
+        "Warnings disable Python",
+        "Errors are ignored",
+        "Logs cannot go to files"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tune levels per environment (dev vs prod)."
+    }
+  ]
+}

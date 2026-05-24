@@ -1,0 +1,219 @@
+{
+  "chapter": 21,
+  "chapterTitle": "Dataclasses & Dates",
+  "title": "Dataclasses & Dates Practice Exam",
+  "description": "Practice @dataclass, datetime, and match/case pattern matching.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "@dataclass on a class mainly auto-generates:",
+      "options": ["__init__, __repr__, and more", "Flask routes", "SQL tables", "Regex patterns"],
+      "correctIndex": 0,
+      "explanation": "dataclasses reduce boilerplate for data-holding classes."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "from datetime import datetime; datetime.now() returns:",
+      "options": [
+        "Current local date and time",
+        "Only a string",
+        "A JSON file",
+        "A pytest runner"
+      ],
+      "correctIndex": 0,
+      "explanation": "datetime objects represent points in time."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "match/case was added in Python 3.10 for structural pattern matching.",
+      "correct": true,
+      "explanation": "match compares a subject against patterns with case branches."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "case 200: in match status: handles:",
+      "options": [
+        "When status equals 200",
+        "All values always",
+        "Only strings",
+        "Only files"
+      ],
+      "correctIndex": 0,
+      "explanation": "Literal patterns match equal values."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "timedelta is used to:",
+      "options": [
+        "Represent a duration to add or subtract from datetimes",
+        "Parse JSON",
+        "Sort lists only",
+        "Open databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "timedelta handles days, seconds, etc. between times."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "dataclasses.field(default_factory=list) avoids:",
+      "options": [
+        "Shared mutable default on the class",
+        "All attributes",
+        "Type hints",
+        "Imports"
+      ],
+      "correctIndex": 0,
+      "explanation": "Never use mutable literals as direct defaults on dataclass fields."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "strftime formats a datetime as:",
+      "options": ["A string for display", "An integer only", "A set", "SQL"],
+      "correctIndex": 0,
+      "explanation": "strftime turns datetime into human-readable text."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "case _: acts like a default wildcard branch in match.",
+      "correct": true,
+      "explanation": "_ catches anything not matched above."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "datetime.fromisoformat('2024-01-15') parses:",
+      "options": [
+        "An ISO-style date string",
+        "Only JSON",
+        "Only regex",
+        "Binary data"
+      ],
+      "correctIndex": 0,
+      "explanation": "ISO strings are common in logs and APIs."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "frozen=True on a dataclass makes instances:",
+      "options": ["Immutable", "Faster at HTTP", "Always None", "Always dicts"],
+      "correctIndex": 0,
+      "explanation": "Frozen dataclasses cannot assign new field values after creation."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "match point: case (x, y): matches:",
+      "options": [
+        "A tuple subject with two items",
+        "Any string",
+        "Only ints",
+        "Only classes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sequence patterns unpack structure."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "datetime objects are often timezone-aware or naive; know which you use.",
+      "correct": true,
+      "explanation": "Use timezone.utc or zoneinfo when correctness across regions matters."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "Compared to a plain dict, a dataclass gives:",
+      "options": [
+        "Named attributes and clearer types",
+        "Automatic SQL",
+        "HTTP server",
+        "No __init__"
+      ],
+      "correctIndex": 0,
+      "explanation": "Attributes like user.name read better than user['name']."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "case {'type': 'error'}: in match msg: is:",
+      "options": [
+        "A mapping pattern on dict structure",
+        "Invalid syntax",
+        "Only for lists",
+        "Only for CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mapping patterns match dict keys and nested structure."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "date.today() returns:",
+      "options": [
+        "Today's date without time",
+        "A full timestamp always",
+        "A JSON string",
+        "A file handle"
+      ],
+      "correctIndex": 0,
+      "explanation": "date and datetime serve different precision needs."
+    },
+    {
+      "id": "16",
+      "type": "truefalse",
+      "prompt": "match can replace long if/elif chains when checking structure.",
+      "correct": true,
+      "explanation": "Use it when patterns are clearer than nested conditionals."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "asdict() from dataclasses converts a dataclass to:",
+      "options": ["A dict", "A list only", "SQL", "HTML"],
+      "correctIndex": 0,
+      "explanation": "Helpful before json.dumps for serialization."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "Parsing user date input safely often needs:",
+      "options": [
+        "Validation and clear error messages",
+        "Only print",
+        "Only regex",
+        "Deleting files"
+      ],
+      "correctIndex": 0,
+      "explanation": "Try/except or validation prevents bad data from breaking logic."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "case int() as n: in match is an example of:",
+      "options": [
+        "A class pattern with capture",
+        "JSON loading",
+        "File modes",
+        "pytest"
+      ],
+      "correctIndex": 0,
+      "explanation": "Class patterns match isinstance and bind attributes."
+    },
+    {
+      "id": "20",
+      "type": "truefalse",
+      "prompt": "dataclasses need from dataclasses import dataclass in Python 3.7+.",
+      "correct": true,
+      "explanation": "The decorator is in the standard library dataclasses module."
+    }
+  ]
+}

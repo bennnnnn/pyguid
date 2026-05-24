@@ -1,141 +1,25 @@
 {
   "chapter": 16,
-  "chapterTitle": "More Python",
-  "title": "More Python Practice Exam",
-  "description": "Cover JSON, pytest basics, list comprehensions, lambda, and debugging habits.",
+  "chapterTitle": "Debugging",
+  "title": "Debugging Practice Exam",
+  "description": "Practice reading tracebacks, using pdb, and measuring performance with cProfile and timeit.",
   "passPercent": 70,
   "questions": [
     {
       "id": "1",
-      "type": "choice",
-      "prompt": "Which module serializes Python data to JSON strings?",
-      "options": ["json", "csv", "pickle only", "os"],
-      "correctIndex": 0,
-      "explanation": "import json; json.dumps() and json.loads() convert between Python and JSON."
-    },
-    {
-      "id": "2",
-      "type": "choice",
-      "prompt": "What does json.loads('{\"a\": 1}') return?",
-      "options": [
-        "A Python dict {\"a\": 1}",
-        "The string unchanged",
-        "A list [\"a\", 1]",
-        "A file object"
-      ],
-      "correctIndex": 0,
-      "explanation": "loads parses a JSON string into Python objects (dict, list, str, number, bool, null)."
-    },
-    {
-      "id": "3",
-      "type": "choice",
-      "prompt": "What is [x * 2 for x in range(3)]?",
-      "options": [
-        "A list comprehension",
-        "A dict comprehension",
-        "A generator only with no list",
-        "Invalid syntax"
-      ],
-      "correctIndex": 0,
-      "explanation": "[expr for var in iterable] builds a new list."
-    },
-    {
-      "id": "4",
-      "type": "truefalse",
-      "prompt": "pytest discovers test functions whose names start with test_.",
-      "correct": true,
-      "explanation": "By default pytest collects functions like test_add() in test_*.py files."
-    },
-    {
-      "id": "5",
-      "type": "choice",
-      "prompt": "What does lambda x: x + 1 create?",
-      "options": [
-        "A small anonymous function",
-        "A class named lambda",
-        "A module import",
-        "A list of numbers"
-      ],
-      "correctIndex": 0,
-      "explanation": "lambda makes a one-expression function without a def name."
-    },
-    {
-      "id": "6",
-      "type": "choice",
-      "prompt": "In pytest, what does assert add(2, 3) == 5 do?",
-      "options": [
-        "Passes the test if the expression is true",
-        "Always fails",
-        "Prints JSON",
-        "Opens a file"
-      ],
-      "correctIndex": 0,
-      "explanation": "Failed assertions show helpful output from pytest's assertion rewriting."
-    },
-    {
-      "id": "7",
-      "type": "choice",
-      "prompt": "What does json.dump(data, f) do?",
-      "options": [
-        "Writes JSON representation of data to file f",
-        "Reads JSON from file f into data",
-        "Deletes file f",
-        "Runs all tests in data"
-      ],
-      "correctIndex": 0,
-      "explanation": "dump writes to a file-like object; dumps returns a string."
-    },
-    {
-      "id": "8",
-      "type": "choice",
-      "prompt": "[n for n in range(10) if n % 2 == 0] contains:",
-      "options": [
-        "Even numbers from 0 through 9",
-        "All odd numbers only",
-        "Only the number 2",
-        "A syntax error"
-      ],
-      "correctIndex": 0,
-      "explanation": "The if clause filters to even n: 0, 2, 4, 6, 8."
-    },
-    {
-      "id": "9",
-      "type": "truefalse",
-      "prompt": "JSON keys in objects must be double-quoted strings.",
-      "correct": true,
-      "explanation": "Valid JSON requires double quotes around keys and string values."
-    },
-    {
-      "id": "10",
-      "type": "choice",
-      "prompt": "sorted([3, 1, 2], key=lambda x: -x) returns:",
-      "options": ["[3, 2, 1]", "[1, 2, 3]", "[3, 1, 2]", "None"],
-      "correctIndex": 0,
-      "explanation": "key=lambda x: -x sorts by negated value, descending order."
-    },
-    {
-      "id": "11",
-      "type": "choice",
-      "prompt": "Which command often runs pytest in a project?",
-      "options": ["pytest", "python test", "pip pytest only", "json.test()"],
-      "correctIndex": 0,
-      "explanation": "After installing pytest, run pytest from the project root to execute tests."
-    },
-    {
-      "id": "12",
       "type": "choice",
       "prompt": "What is a good first debugging step when code fails?",
       "options": [
         "Read the error message and traceback carefully",
         "Delete the file",
         "Disable all exceptions",
-        "Rewrite the program in another language"
+        "Rewrite in another language"
       ],
       "correctIndex": 0,
       "explanation": "The traceback points to the failing line and exception type."
     },
     {
-      "id": "13",
+      "id": "2",
       "type": "choice",
       "prompt": "What does print() debugging mean?",
       "options": [
@@ -145,81 +29,211 @@
         "Converting code to JSON"
       ],
       "correctIndex": 0,
-      "explanation": "Temporary prints (or logging) reveal what the program is doing at runtime."
+      "explanation": "Temporary prints reveal what the program is doing at runtime."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "A debugger lets you pause execution and inspect variables line by line.",
+      "correct": true,
+      "explanation": "pdb and IDE debuggers help step through code beyond print statements."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "help(some_function) shows:",
+      "options": [
+        "Docstring and basic signature information",
+        "The function's source file on disk only",
+        "A guaranteed fix for bugs",
+        "SQL query results"
+      ],
+      "correctIndex": 0,
+      "explanation": "help() and dir() explore what an object can do."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "import pdb; pdb.set_trace() is used to:",
+      "options": [
+        "Start an interactive debugger at that line",
+        "Speed up loops automatically",
+        "Install packages",
+        "Parse JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "set_trace drops into pdb when that line runs."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "In pdb, the n command typically:",
+      "options": [
+        "Steps to the next line in the current function",
+        "Quits Python",
+        "Deletes variables",
+        "Runs pytest"
+      ],
+      "correctIndex": 0,
+      "explanation": "n (next) executes the current line and stops at the next."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "The bottom line of a traceback usually shows:",
+      "options": [
+        "The exception type and message",
+        "The Python version only",
+        "All installed pip packages",
+        "Your git branch"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeError, ValueError, etc. tell you what went wrong."
+    },
+    {
+      "id": "8",
+      "type": "truefalse",
+      "prompt": "Reading traceback frames from bottom to top shows where the error was raised.",
+      "correct": true,
+      "explanation": "The last frame is the immediate cause; frames above show the call chain."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "cProfile is used to:",
+      "options": [
+        "Measure where a program spends time",
+        "Format JSON",
+        "Open CSV files",
+        "Create classes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Profiling finds slow functions in real runs."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "timeit.timeit() helps you:",
+      "options": [
+        "Benchmark small code snippets repeatably",
+        "Fix syntax errors",
+        "Install Flask",
+        "Read files faster"
+      ],
+      "correctIndex": 0,
+      "explanation": "timeit runs code many times to compare approaches fairly."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "Before optimizing, you should usually:",
+      "options": [
+        "Profile to find the actual bottleneck",
+        "Rewrite everything in assembly",
+        "Remove all loops",
+        "Skip measuring"
+      ],
+      "correctIndex": 0,
+      "explanation": "Measure first; optimize what actually costs time."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "A NameError often means a variable was used before it was defined.",
+      "correct": true,
+      "explanation": "Check spelling and that assignment happened before use."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "dir(obj) without arguments in pdb or a shell shows:",
+      "options": [
+        "Names available on obj",
+        "Only private methods",
+        "Git history",
+        "HTTP headers"
+      ],
+      "correctIndex": 0,
+      "explanation": "dir lists attributes and methods to explore APIs."
     },
     {
       "id": "14",
-      "type": "truefalse",
-      "prompt": "List comprehensions are often more readable than an equivalent for-loop when building a simple transformed list.",
-      "correct": true,
-      "explanation": "Short comprehensions are idiomatic; complex logic may be clearer in a loop."
+      "type": "choice",
+      "prompt": "Reproducing a bug reliably means:",
+      "options": [
+        "You can trigger it again with known steps",
+        "The bug is fixed",
+        "Tests are deleted",
+        "The code has no inputs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reproduction is required before you can verify a fix."
     },
     {
       "id": "15",
       "type": "choice",
-      "prompt": "Which JSON type maps to Python None?",
-      "options": ["null", "undefined", "nil", "empty"],
+      "prompt": "Logging compared to random prints:",
+      "options": [
+        "Levels and format can be controlled in one place",
+        "Always slower than deleting code",
+        "Cannot go to a file",
+        "Replaces exceptions"
+      ],
       "correctIndex": 0,
-      "explanation": "JSON null becomes Python None when parsed."
+      "explanation": "logging is structured; prints are fine for quick checks."
     },
     {
       "id": "16",
-      "type": "choice",
-      "prompt": "map(lambda x: x**2, [1, 2, 3]) in Python 3 is:",
-      "options": [
-        "A map object (lazy iterator)",
-        "Always [1, 4, 9] without list()",
-        "A dict",
-        "A syntax error"
-      ],
-      "correctIndex": 0,
-      "explanation": "map returns an iterator; use list(map(...)) to materialize all results."
+      "type": "truefalse",
+      "prompt": "Rubber duck debugging means explaining the problem out loud to clarify your thinking.",
+      "correct": true,
+      "explanation": "Teaching the code line by line often reveals the mistake."
     },
     {
       "id": "17",
       "type": "choice",
-      "prompt": "Why write automated tests with pytest?",
+      "prompt": "After fixing a bug, you should:",
       "options": [
-        "Catch regressions when code changes",
-        "Replace reading tracebacks entirely",
-        "Avoid using functions",
-        "Disable the interpreter"
+        "Re-run the program and add a test if possible",
+        "Never run the code again",
+        "Remove all error handling",
+        "Disable tracebacks"
       ],
       "correctIndex": 0,
-      "explanation": "Tests document expected behavior and fail when bugs are reintroduced."
+      "explanation": "Verify the fix and prevent the bug from returning."
     },
     {
       "id": "18",
       "type": "choice",
-      "prompt": "json.load(f) expects f to be:",
+      "prompt": "python -m pdb script.py runs:",
       "options": [
-        "A file object opened for reading JSON text",
-        "A list only",
-        "A pytest fixture only",
-        "A lambda function"
+        "script.py under the debugger from the start",
+        "Only unit tests",
+        "A web server",
+        "JSON validation only"
       ],
       "correctIndex": 0,
-      "explanation": "load reads from a text file; loads parses from a string."
+      "explanation": "The -m pdb flag starts pdb before the first line runs."
     },
     {
       "id": "19",
-      "type": "truefalse",
-      "prompt": "A debugger lets you pause execution and inspect variables line by line.",
-      "correct": true,
-      "explanation": "Tools like pdb or the IDE debugger help step through code beyond print statements."
+      "type": "choice",
+      "prompt": "An off-by-one error often appears as:",
+      "options": [
+        "IndexError or wrong loop count by one",
+        "Only JSON errors",
+        "Only import errors",
+        "Only file not found"
+      ],
+      "correctIndex": 0,
+      "explanation": "Check range bounds and whether you used < vs <=."
     },
     {
       "id": "20",
-      "type": "choice",
-      "prompt": "Which is valid for a one-line function passed to sorted?",
-      "options": [
-        "key=lambda s: len(s)",
-        "key=def len(s): return len(s)",
-        "lambda def s:",
-        "sorted.key(len)"
-      ],
-      "correctIndex": 0,
-      "explanation": "lambda s: len(s) is a compact key function for sorting by string length."
+      "type": "truefalse",
+      "prompt": "Smaller test cases help isolate which input triggers a failure.",
+      "correct": true,
+      "explanation": "Shrink the example until the bug is obvious."
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { isCurriculumLesson } from "./curriculum";
 
 export type LessonEntry = CollectionEntry<"lessons">;
 
@@ -18,7 +19,9 @@ export type LessonGroup = {
 
 export async function getAllLessons(): Promise<LessonEntry[]> {
   const lessons = await getCollection("lessons");
-  return lessons.sort((a, b) => a.data.order - b.data.order);
+  return lessons
+    .filter((lesson) => isCurriculumLesson(lesson.id))
+    .sort((a, b) => a.data.order - b.data.order);
 }
 
 export async function getLessonById(id: string): Promise<LessonEntry | undefined> {

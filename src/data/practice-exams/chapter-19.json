@@ -1,0 +1,215 @@
+{
+  "chapter": 19,
+  "chapterTitle": "Standard Library",
+  "title": "Standard Library Practice Exam",
+  "description": "Practice collections, enum, math/random, and copy/deepcopy.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "collections.Counter is useful for:",
+      "options": ["Counting occurrences of items", "Sorting files", "HTTP requests", "Opening CSV"],
+      "correctIndex": 0,
+      "explanation": "Counter maps keys to counts, handy for tallies."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "collections.defaultdict avoids:",
+      "options": [
+        "KeyError when accessing a missing key with a default factory",
+        "All loops",
+        "Type hints",
+        "Imports"
+      ],
+      "correctIndex": 0,
+      "explanation": "Missing keys call the factory (e.g. list) to create a default value."
+    },
+    {
+      "id": "3",
+      "type": "choice",
+      "prompt": "enum.Enum helps when you need:",
+      "options": [
+        "Named constants with a fixed set of values",
+        "Infinite random numbers",
+        "File deletion",
+        "Regex only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Enums make valid states explicit and readable."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "random.randint(1, 6) includes:",
+      "options": ["Both endpoints 1 and 6", "Only 1", "Only 6", "Neither endpoint"],
+      "correctIndex": 0,
+      "explanation": "randint is inclusive on both ends for integers."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "math.sqrt(9) returns:",
+      "options": ["3.0", "9", "True", "A list"],
+      "correctIndex": 0,
+      "explanation": "math module functions often return floats."
+    },
+    {
+      "id": "6",
+      "type": "truefalse",
+      "prompt": "copy.copy makes a shallow copy of a collection.",
+      "correct": true,
+      "explanation": "Nested objects may still be shared between original and shallow copy."
+    },
+    {
+      "id": "7",
+      "type": "choice",
+      "prompt": "copy.deepcopy is needed when:",
+      "options": [
+        "Nested mutable objects must be duplicated independently",
+        "You only have integers",
+        "You need JSON",
+        "You need HTTP"
+      ],
+      "correctIndex": 0,
+      "explanation": "deepcopy recursively copies inner objects."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "collections.deque is often used for:",
+      "options": [
+        "Fast appends/pops from both ends",
+        "SQL queries",
+        "HTML templates",
+        "Git commits"
+      ],
+      "correctIndex": 0,
+      "explanation": "deque is optimized for queue-like operations."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "random.choice([1, 2, 3]) picks:",
+      "options": ["One random element from the sequence", "All elements", "Sorted order", "Nothing"],
+      "correctIndex": 0,
+      "explanation": "choice selects a single item uniformly from a non-empty sequence."
+    },
+    {
+      "id": "10",
+      "type": "truefalse",
+      "prompt": "random.seed() can make random sequences reproducible for testing.",
+      "correct": true,
+      "explanation": "Same seed yields the same pseudo-random sequence."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "After b = a on a list, mutating b affects a when:",
+      "options": [
+        "You did not copy; both names refer to the same list",
+        "You used deepcopy always",
+        "Lists are immutable",
+        "a was a tuple"
+      ],
+      "correctIndex": 0,
+      "explanation": "Assignment shares references; use copy or slice to duplicate."
+    },
+    {
+      "id": "12",
+      "type": "choice",
+      "prompt": "Color.RED if Color is an Enum means:",
+      "options": [
+        "A member of the Color enumeration",
+        "A string only always",
+        "A syntax error always",
+        "A file path"
+      ],
+      "correctIndex": 0,
+      "explanation": "Enum members compare by identity and have .name and .value."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "math.floor(3.9) is:",
+      "options": ["3", "4", "3.9", "True"],
+      "correctIndex": 0,
+      "explanation": "floor rounds toward negative infinity."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "Counter.most_common(2) returns:",
+      "options": [
+        "The two most frequent items and their counts",
+        "Only keys",
+        "A sorted file list",
+        "HTTP status codes"
+      ],
+      "correctIndex": 0,
+      "explanation": "most_common helps find top frequencies quickly."
+    },
+    {
+      "id": "15",
+      "type": "truefalse",
+      "prompt": "The standard library ships with Python and does not require pip for those modules.",
+      "correct": true,
+      "explanation": "collections, math, random, copy, enum are in the stdlib."
+    },
+    {
+      "id": "16",
+      "type": "choice",
+      "prompt": "Shallow copy of nested list [[1], [2]]:",
+      "options": [
+        "Copies outer list but inner lists may still be shared",
+        "Deep copies everything always",
+        "Deletes inner lists",
+        "Converts to tuple"
+      ],
+      "correctIndex": 0,
+      "explanation": "Inner objects are not recursively duplicated in a shallow copy."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "random.shuffle(lst) modifies:",
+      "options": ["lst in place", "A new list only", "Nothing", "A JSON file"],
+      "correctIndex": 0,
+      "explanation": "shuffle reorders the existing list and returns None."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "namedtuple (from collections) gives you:",
+      "options": [
+        "Tuple-like rows with named fields",
+        "A database connection",
+        "A web route",
+        "A regex engine"
+      ],
+      "correctIndex": 0,
+      "explanation": "namedtuple improves readability for fixed-field records."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "When to prefer deepcopy over copy?",
+      "options": [
+        "Nested mutables must not alias the original",
+        "You only copy integers",
+        "You never mutate data",
+        "You need async"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use deepcopy when inner objects must be independent."
+    },
+    {
+      "id": "20",
+      "type": "truefalse",
+      "prompt": "Exploring help() on a stdlib module is a good way to discover useful tools.",
+      "correct": true,
+      "explanation": "Python's batteries included philosophy means many tools are already there."
+    }
+  ]
+}

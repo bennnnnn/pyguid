@@ -3,7 +3,6 @@ import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import {
   getAllLessons,
   getAllLessonsInGroup,
-  getChapterNavItems,
   getLessonGroups,
   getTotalLessonCount,
   lessonUrl,
@@ -48,11 +47,8 @@ const totalLessons = getTotalLessonCount(groups);
           const path = getAllLessonsInGroup(group);
           return (
             <section class="rounded-xl border border-border bg-surface p-5 sm:p-6">
-              <h2 class="m-0 text-lg font-semibold text-text">{group.chapterTitle}</h2>
-              <p class="mt-1 mb-4 text-sm text-text-muted">
-                {path.length} lessons · follow this order
-              </p>
-              <ol class="m-0 list-decimal space-y-1.5 pl-5 text-sm">
+              <h2 class="m-0 mb-4 text-lg font-semibold text-text">{group.chapterTitle}</h2>
+              <ol class="m-0 list-decimal columns-1 gap-x-10 space-y-1.5 pl-5 text-sm sm:columns-2 [&>li]:break-inside-avoid">
                 {path.map((lesson) => (
                   <li class="text-text-secondary">
                     <a
@@ -64,46 +60,6 @@ const totalLessons = getTotalLessonCount(groups);
                   </li>
                 ))}
               </ol>
-              <details class="mt-4 text-sm">
-                <summary class="cursor-pointer font-medium text-text">
-                  Quick links (sidebar layout)
-                </summary>
-                <ul class="mt-2 list-none space-y-1 p-0">
-                  {getChapterNavItems(group).map((item) => {
-                    if (item.kind === "lesson") {
-                      return (
-                        <li>
-                          <a
-                            href={lessonUrl(item.lesson.id)}
-                            class="text-link no-underline hover:underline"
-                          >
-                            {item.lesson.data.title}
-                          </a>
-                        </li>
-                      );
-                    }
-                    return (
-                      <li class="mt-2">
-                        <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
-                          {item.section.title}
-                        </p>
-                        <ul class="mt-1 list-none space-y-1 pl-3">
-                          {item.section.lessons.map((lesson) => (
-                            <li>
-                              <a
-                                href={lessonUrl(lesson.id)}
-                                class="text-link no-underline hover:underline"
-                              >
-                                {lesson.data.title}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </details>
             </section>
           );
         })

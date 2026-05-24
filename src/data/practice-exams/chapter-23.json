@@ -1,0 +1,224 @@
+{
+  "chapter": 23,
+  "chapterTitle": "Databases",
+  "title": "Databases Practice Exam",
+  "description": "Practice SQLite basics, SQL parameters, and storing app data in tables.",
+  "passPercent": 70,
+  "questions": [
+    {
+      "id": "1",
+      "type": "choice",
+      "prompt": "Which module is built into Python for SQLite databases?",
+      "options": ["sqlite3", "sqlalchemy", "mysql", "pandas"],
+      "correctIndex": 0,
+      "explanation": "import sqlite3 connects to .db files without installing extra packages."
+    },
+    {
+      "id": "2",
+      "type": "choice",
+      "prompt": "What does conn.execute(\"SELECT * FROM todos\") return?",
+      "options": [
+        "A cursor you can fetch rows from",
+        "A Python list automatically",
+        "A JSON string only",
+        "A pytest fixture"
+      ],
+      "correctIndex": 0,
+      "explanation": "execute runs SQL; fetchone/fetchall read result rows from the cursor."
+    },
+    {
+      "id": "3",
+      "type": "truefalse",
+      "prompt": "Using ? placeholders in SQL helps prevent SQL injection when passing user input.",
+      "correct": true,
+      "explanation": "Parameterized queries keep values separate from the SQL text."
+    },
+    {
+      "id": "4",
+      "type": "choice",
+      "prompt": "conn.commit() is needed after INSERT because:",
+      "options": [
+        "Changes are not saved permanently until you commit",
+        "It closes Python",
+        "It converts rows to JSON",
+        "It runs pytest"
+      ],
+      "correctIndex": 0,
+      "explanation": "SQLite uses transactions; commit writes pending changes to the database file."
+    },
+    {
+      "id": "5",
+      "type": "choice",
+      "prompt": "A PRIMARY KEY column in a table:",
+      "options": [
+        "Uniquely identifies each row",
+        "Must always be text",
+        "Cannot be an integer",
+        "Replaces all other columns"
+      ],
+      "correctIndex": 0,
+      "explanation": "Primary keys give each row a stable unique id."
+    },
+    {
+      "id": "6",
+      "type": "choice",
+      "prompt": "What file extension is common for a SQLite database on disk?",
+      "options": [".db or .sqlite", ".json only", ".csv only", ".py"],
+      "correctIndex": 0,
+      "explanation": "SQLite stores data in a single file such as todos.db."
+    },
+    {
+      "id": "7",
+      "type": "truefalse",
+      "prompt": "SQLite is a good fit for learning and small local apps.",
+      "correct": true,
+      "explanation": "It is serverless, file-based, and ships with Python."
+    },
+    {
+      "id": "8",
+      "type": "choice",
+      "prompt": "CREATE TABLE IF NOT EXISTS todos (...) means:",
+      "options": [
+        "Create the table only when it does not already exist",
+        "Delete the table every time",
+        "Insert a row named IF NOT EXISTS",
+        "Export data to CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "IF NOT EXISTS avoids errors when setup runs more than once."
+    },
+    {
+      "id": "9",
+      "type": "choice",
+      "prompt": "cursor.fetchall() returns:",
+      "options": [
+        "A list of row tuples from the query",
+        "The database file path",
+        "A single integer always",
+        "Nothing"
+      ],
+      "correctIndex": 0,
+      "explanation": "fetchall reads every remaining row from the last SELECT."
+    },
+    {
+      "id": "10",
+      "type": "choice",
+      "prompt": "Why use with sqlite3.connect() as conn?",
+      "options": [
+        "The connection closes reliably when the block ends",
+        "It disables commits",
+        "It replaces SQL with JSON",
+        "It imports Flask"
+      ],
+      "correctIndex": 0,
+      "explanation": "Context managers ensure cleanup even if an error occurs."
+    },
+    {
+      "id": "11",
+      "type": "choice",
+      "prompt": "SQLAlchemy is mainly used to:",
+      "options": [
+        "Work with databases using Python classes and an ORM layer",
+        "Replace the Python interpreter",
+        "Parse JSON only",
+        "Style HTML pages"
+      ],
+      "correctIndex": 0,
+      "explanation": "ORMs map tables to Python objects for common database tasks."
+    },
+    {
+      "id": "12",
+      "type": "truefalse",
+      "prompt": "An ORM can generate SQL while you work with Python objects.",
+      "correct": true,
+      "explanation": "SQLAlchemy builds queries from model definitions and sessions."
+    },
+    {
+      "id": "13",
+      "type": "choice",
+      "prompt": "INSERT INTO todos (text, done) VALUES (?, ?) adds:",
+      "options": [
+        "One new row with those column values",
+        "A new database file",
+        "All tables at once",
+        "A pytest file"
+      ],
+      "correctIndex": 0,
+      "explanation": "INSERT adds data; placeholders bind Python values safely."
+    },
+    {
+      "id": "14",
+      "type": "choice",
+      "prompt": "SELECT id, text FROM todos WHERE done = 0 returns:",
+      "options": [
+        "Rows where done is 0",
+        "Every table in the database",
+        "Only the schema",
+        "A regex match"
+      ],
+      "correctIndex": 0,
+      "explanation": "WHERE filters rows before they are returned."
+    },
+    {
+      "id": "15",
+      "type": "choice",
+      "prompt": "Compared to a JSON file, a database helps when you need:",
+      "options": [
+        "Structured queries and many rows",
+        "No persistence",
+        "Only one string forever",
+        "To avoid any schema"
+      ],
+      "correctIndex": 0,
+      "explanation": "SQL queries filter, sort, and update specific rows efficiently."
+    },
+    {
+      "id": "16",
+      "type": "truefalse",
+      "prompt": "You should commit after writes in sqlite3 unless autocommit mode is on.",
+      "correct": true,
+      "explanation": "Without commit, changes may not persist when the connection closes."
+    },
+    {
+      "id": "17",
+      "type": "choice",
+      "prompt": "A database schema describes:",
+      "options": [
+        "Table names, columns, and types",
+        "Only CSS colors",
+        "HTTP headers",
+        "pytest fixtures"
+      ],
+      "correctIndex": 0,
+      "explanation": "Schema is the structure of your tables."
+    },
+    {
+      "id": "18",
+      "type": "choice",
+      "prompt": "list_todos() style helpers in a project:",
+      "options": [
+        "Keep SQL in one place separate from menu code",
+        "Prevent all SQL",
+        "Replace sqlite3",
+        "Require Flask"
+      ],
+      "correctIndex": 0,
+      "explanation": "Data-access functions are easier to test and reuse."
+    },
+    {
+      "id": "19",
+      "type": "choice",
+      "prompt": "SQLAlchemy is installed with:",
+      "options": ["pip install sqlalchemy", "import sqlite3", "python -m json", "help()"],
+      "correctIndex": 0,
+      "explanation": "sqlite3 is stdlib; SQLAlchemy is a third-party package."
+    },
+    {
+      "id": "20",
+      "type": "truefalse",
+      "prompt": "Foreign keys can link rows in one table to rows in another.",
+      "correct": true,
+      "explanation": "Relationships model real-world links between entities."
+    }
+  ]
+}

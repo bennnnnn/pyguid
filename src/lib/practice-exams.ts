@@ -14,6 +14,15 @@ import ch13 from "../data/practice-exams/chapter-13.json";
 import ch14 from "../data/practice-exams/chapter-14.json";
 import ch15 from "../data/practice-exams/chapter-15.json";
 import ch16 from "../data/practice-exams/chapter-16.json";
+import ch17 from "../data/practice-exams/chapter-17.json";
+import ch18 from "../data/practice-exams/chapter-18.json";
+import ch19 from "../data/practice-exams/chapter-19.json";
+import ch20 from "../data/practice-exams/chapter-20.json";
+import ch21 from "../data/practice-exams/chapter-21.json";
+import ch22 from "../data/practice-exams/chapter-22.json";
+import ch23 from "../data/practice-exams/chapter-23.json";
+import ch24 from "../data/practice-exams/chapter-24.json";
+import ch25 from "../data/practice-exams/chapter-25.json";
 
 export type ChoiceQuestion = {
   id: string;
@@ -60,6 +69,15 @@ const exams: PracticeExam[] = [
   ch14,
   ch15,
   ch16,
+  ch17,
+  ch18,
+  ch19,
+  ch20,
+  ch21,
+  ch22,
+  ch23,
+  ch24,
+  ch25,
 ] as PracticeExam[];
 
 export function getAllPracticeExams(): PracticeExam[] {

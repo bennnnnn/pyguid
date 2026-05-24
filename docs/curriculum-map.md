@@ -4,7 +4,7 @@
 
 ## Current scale
 
-**196 lessons** · **16 chapters** · teaching flow + TryIt on every page
+**191 lessons** · **25 chapters** · core Python only (web frameworks archived separately)
 
 ## Chapter summary
 
@@ -25,7 +25,16 @@
 | 13  | Error Handling  | 8       | Exception chaining                    |
 | 14  | Classes         | 10      | Dunder methods                        |
 | 15  | Files           | 13      | CSV, INI, paths                       |
-| 16  | More Python     | 35      | async, Flask, FastAPI, ORM, Jupyter   |
+| 16  | Debugging       | 4       | pdb, cProfile, timeit                 |
+| 17  | Testing         | 3       | assert, pytest, unittest              |
+| 18  | Functional Python | 5     | lambda, decorators, generators        |
+| 19  | Standard Library | 4      | collections, enum, math, copy         |
+| 20  | JSON            | 2       | json module + todo project            |
+| 21  | Dataclasses & Dates | 3   | dataclass, datetime, match            |
+| 22  | Logging & Regex | 2       | logging, re                           |
+| 23  | Databases       | 3       | SQLite, SQLAlchemy preview            |
+| 24  | Async Python    | 1       | async/await (stdlib asyncio)          |
+| 25  | Projects        | 3       | quiz apps, multi-file CLI capstone    |
 
 ## Wave 7 completed
 

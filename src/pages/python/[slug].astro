@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import LessonPager from "../../components/LessonPager.astro";
 import PythonExample from "../../components/PythonExample.astro";
@@ -20,7 +20,7 @@ import SeoFaq from "../../components/SeoFaq.astro";
 import PracticeExamsNote from "../../components/PracticeExamsNote.astro";
 
 export async function getStaticPaths() {
-  const lessons = await getCollection("lessons");
+  const lessons = await getAllLessons();
   return lessons.map((lesson) => ({
     params: { slug: lesson.id },
   }));

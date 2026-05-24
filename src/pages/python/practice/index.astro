@@ -22,14 +22,14 @@ const description =
       with explanations.
     </p>
 
-    <ul class="not-prose mt-8 grid gap-4 sm:grid-cols-2">
+    <ul class="practice-exam-grid mt-8 grid list-none gap-4 p-0 sm:grid-cols-2">
       {
         groups.map((g) => {
           const exam = examByChapter.get(g.chapter);
           return (
             <li
               id={`chapter-${g.chapter}`}
-              class="scroll-mt-20 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow hover:border-brand/40 hover:shadow-md"
+              class="m-0 list-none scroll-mt-20 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow hover:border-brand/40 hover:shadow-md"
             >
               <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-brand">
                 Chapter {g.chapter}
@@ -57,11 +57,5 @@ const description =
         })
       }
     </ul>
-
-    <p class="mt-10">
-      <a href="/python/what-is-python/" class="btn-secondary inline-block no-underline">
-        Back to course
-      </a>
-    </p>
   </article>
 </TutorialLayout>

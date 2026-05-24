@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 9,
   "description": "Source of truth for lesson order and chapter grouping. Run: node scripts/sync-curriculum.mjs",
   "lessons": [
     { "slug": "what-is-python", "chapter": 1, "chapterTitle": "Getting Started" },
@@ -237,41 +237,44 @@
     { "slug": "configparser-ini-files", "chapter": 15, "chapterTitle": "Files" },
     { "slug": "notes-app-project", "chapter": 15, "chapterTitle": "Files" },
 
-    { "slug": "math-random-module", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "pdb-debugger", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "cprofile-performance", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "timeit-benchmark", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "collections-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "assert-testing-intro", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "pytest-basics", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "enum-module-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "itertools-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "generators-yield-intro", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "decorators-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "lambda-functions", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "json-python", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "sqlite3-database-basics", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "sqlalchemy-orm-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "json-todo-project", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "quiz-app-project", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "personality-quiz-project", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "dataclasses-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "datetime-basics", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "match-case-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "logging-basic", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "http-client-intro", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "async-await-intro", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "aiohttp-async-http", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "unittest-module", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "functools-lru-cache", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "copy-deepcopy", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "database-todo-project", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "multi-file-cli-capstone", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "flask-quickstart", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "fastapi-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "flask-json-api-capstone", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "jupyter-notebooks-preview", "chapter": 16, "chapterTitle": "More Python" },
-    { "slug": "regex-basics", "chapter": 16, "chapterTitle": "More Python" }
+    { "slug": "debugging-help-dir", "chapter": 16, "chapterTitle": "Debugging" },
+    { "slug": "pdb-debugger", "chapter": 16, "chapterTitle": "Debugging" },
+    { "slug": "cprofile-performance", "chapter": 16, "chapterTitle": "Debugging" },
+    { "slug": "timeit-benchmark", "chapter": 16, "chapterTitle": "Debugging" },
+
+    { "slug": "assert-testing-intro", "chapter": 17, "chapterTitle": "Testing" },
+    { "slug": "pytest-basics", "chapter": 17, "chapterTitle": "Testing" },
+    { "slug": "unittest-module", "chapter": 17, "chapterTitle": "Testing" },
+
+    { "slug": "lambda-functions", "chapter": 18, "chapterTitle": "Functional Python" },
+    { "slug": "decorators-preview", "chapter": 18, "chapterTitle": "Functional Python" },
+    { "slug": "generators-yield-intro", "chapter": 18, "chapterTitle": "Functional Python" },
+    { "slug": "functools-lru-cache", "chapter": 18, "chapterTitle": "Functional Python" },
+    { "slug": "itertools-preview", "chapter": 18, "chapterTitle": "Functional Python" },
+
+    { "slug": "collections-preview", "chapter": 19, "chapterTitle": "Standard Library" },
+    { "slug": "enum-module-preview", "chapter": 19, "chapterTitle": "Standard Library" },
+    { "slug": "math-random-module", "chapter": 19, "chapterTitle": "Standard Library" },
+    { "slug": "copy-deepcopy", "chapter": 19, "chapterTitle": "Standard Library" },
+
+    { "slug": "json-python", "chapter": 20, "chapterTitle": "JSON" },
+    { "slug": "json-todo-project", "chapter": 20, "chapterTitle": "JSON" },
+
+    { "slug": "dataclasses-preview", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
+    { "slug": "datetime-basics", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
+    { "slug": "match-case-preview", "chapter": 21, "chapterTitle": "Dataclasses & Dates" },
+
+    { "slug": "logging-basic", "chapter": 22, "chapterTitle": "Logging & Regex" },
+    { "slug": "regex-basics", "chapter": 22, "chapterTitle": "Logging & Regex" },
+
+    { "slug": "sqlite3-database-basics", "chapter": 23, "chapterTitle": "Databases" },
+    { "slug": "sqlalchemy-orm-preview", "chapter": 23, "chapterTitle": "Databases" },
+    { "slug": "database-todo-project", "chapter": 23, "chapterTitle": "Databases" },
+
+    { "slug": "async-await-intro", "chapter": 24, "chapterTitle": "Async Python" },
+
+    { "slug": "quiz-app-project", "chapter": 25, "chapterTitle": "Projects" },
+    { "slug": "personality-quiz-project", "chapter": 25, "chapterTitle": "Projects" },
+    { "slug": "multi-file-cli-capstone", "chapter": 25, "chapterTitle": "Projects" }
   ]
 }
