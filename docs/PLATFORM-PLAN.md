@@ -12,14 +12,14 @@ External review (~5.8/10) assumed a small beginner-only site. Much of **Track B*
 
 | Mode               | User                 | Experience                                |
 | ------------------ | -------------------- | ----------------------------------------- |
-| **Course path**    | “Teach me Python”    | Chapters 1→16, projects, roadmap          |
+| **Course path**    | “Teach me Python”    | Chapters 1→16, projects                   |
 | **Search landing** | “python list append” | One focused page → related links → course |
 
-Implemented: roadmap page, related-lesson block, comparison lesson `list-append-vs-extend`. Next: FAQ schema per lesson, more comparison pages.
+Implemented: related-lesson block, comparison lesson `list-append-vs-extend`. Next: FAQ schema per lesson, more comparison pages.
 
 ## Level map (zero → L4)
 
-See live page: `/python/roadmap/`
+Documented in `docs/curriculum-map.md` and chapter order in the course sidebar.
 
 | Level | Focus                                | Status                  |
 | ----- | ------------------------------------ | ----------------------- |
@@ -39,9 +39,8 @@ See live page: `/python/roadmap/`
 - [x] `robots.txt` + sitemap URL fixed
 - [x] Open Graph + Twitter meta (`SeoHead.astro`)
 - [x] JSON-LD: `LearningResource` + `BreadcrumbList` on lessons
-- [x] Course schema on roadmap
 - [x] Skulpt loads on **Run** only (not on page load)
-- [x] Internal links: related lessons + roadmap
+- [x] Internal links: related lessons per chapter
 - [x] **Track A batch 1 (30):** `quickAnswer`, `faqs`, FAQPage schema, “Why this matters”
 - [x] **Track A batch 2 (30):** same treatment — see `docs/seo-top-30-batch2-meta.json`
 - [x] **Practice hub** `/python/practice/` (exams separate from lessons)
@@ -85,6 +84,6 @@ Roll out by rewriting highest-traffic pages first (`list-append`, `for-loops`, `
 
 Set on github.com/bennnnnn/pyguid:
 
-- **Description:** Free Python course — 197 lessons, runnable examples, zero to job-ready roadmap
+- **Description:** Free Python course — 197 lessons, runnable examples, zero to job-ready Python
 - **Website:** https://bennnnnn.github.io/pyguid
 - **Topics:** `python`, `tutorial`, `learn-python`, `education`, `astro`, `mdx`, `pytest`, `fastapi`

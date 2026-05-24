@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   redirects: {
     "/learn/": "/python/",
+    "/python/roadmap/": "/python/",
     "/cheatsheet/": "/python/reference/",
     "/python/dict-methods/": "/python/dict-loops/",
     "/python/user-input/": "/python/input-basics/",

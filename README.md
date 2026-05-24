@@ -3,7 +3,6 @@
 **Learn Python from zero to job-ready** — 197+ lessons, **Run code** in the browser (Skulpt), projects, and a path through testing, typing, Git, APIs, and databases.
 
 **Live site:** [bennnnnn.github.io/pyguid](https://bennnnnn.github.io/pyguid)  
-**Roadmap:** [/python/roadmap/](https://bennnnnn.github.io/pyguid/python/roadmap/)  
 **Repository:** [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
 
 ## Features
@@ -49,7 +48,7 @@ Open [http://localhost:4321](http://localhost:4321).
 src/
   content/lessons/     # One MDX file per lesson
   components/          # PythonExample, TryIt, SeoHead, Callout, …
-  pages/python/        # Course + roadmap + reference
+  pages/python/        # Course + practice + reference
   lib/lessons.ts       # Sidebar order, related lessons
 docs/
   curriculum-order.json
