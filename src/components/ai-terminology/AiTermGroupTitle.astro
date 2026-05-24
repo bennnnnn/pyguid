@@ -10,7 +10,13 @@ interface Props {
   class?: string;
 }
 
-const { title, count, as: Tag = "span", badgeSize = "md", class: className } = Astro.props;
+const {
+  title,
+  count,
+  as: Tag = "span",
+  badgeSize = "md",
+  class: className,
+} = Astro.props;
 ---
 
 <Tag class:list={["ai-term-group-title", className]}>

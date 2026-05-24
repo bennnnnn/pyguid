@@ -20,7 +20,12 @@ export const CURRICULUM_PARTS: CurriculumPart[] = [
   { id: 4, title: "Booleans and conditions", chapterFrom: 13, chapterTo: 14 },
   { id: 5, title: "Collections and loops", chapterFrom: 15, chapterTo: 21 },
   { id: 6, title: "Functions", chapterFrom: 22, chapterTo: 25 },
-  { id: 7, title: "Files, modules, and the standard library", chapterFrom: 26, chapterTo: 35 },
+  {
+    id: 7,
+    title: "Files, modules, and the standard library",
+    chapterFrom: 26,
+    chapterTo: 35,
+  },
   { id: 8, title: "Object-oriented Python", chapterFrom: 36, chapterTo: 40 },
   { id: 9, title: "Advanced Python", chapterFrom: 41, chapterTo: 49 },
   { id: 10, title: "Debugging, testing, and clean code", chapterFrom: 50, chapterTo: 54 },

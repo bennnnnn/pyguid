@@ -9,7 +9,10 @@ import {
   getAdjacentAiTerminologySections,
 } from "../../lib/ai-terminology";
 import { AI_TERMINOLOGY_SECTIONS } from "../../lib/ai-terminology";
-import { aiTerminologySectionUrl, termAnchorsForSection } from "../../lib/ai-terminology/helpers";
+import {
+  aiTerminologySectionUrl,
+  termAnchorsForSection,
+} from "../../lib/ai-terminology/helpers";
 import { breadcrumbListJsonLd, definedTermSetJsonLd } from "../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../lib/site";
 import "../../styles/ai-terminology.css";
@@ -52,7 +55,12 @@ const jsonLd = [
 ];
 ---
 
-<TutorialLayout title={pageTitle} description={description} jsonLd={jsonLd} sidebar="ai-terms">
+<TutorialLayout
+  title={pageTitle}
+  description={description}
+  jsonLd={jsonLd}
+  sidebar="ai-terms"
+>
   <div class="ai-term-main">
     <header class="ai-term-hero">
       <AiTermGroupTitle

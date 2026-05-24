@@ -15,7 +15,9 @@ export function termLooksLikeCode(label: string): boolean {
 }
 
 export function termLabelClass(label: string): string {
-  return termLooksLikeCode(label) ? "ai-glossary-term ai-glossary-term-code" : "ai-glossary-term";
+  return termLooksLikeCode(label)
+    ? "ai-glossary-term ai-glossary-term-code"
+    : "ai-glossary-term";
 }
 
 export type GlossaryEntryView = AiTerm & {

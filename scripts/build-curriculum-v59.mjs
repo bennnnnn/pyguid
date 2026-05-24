@@ -203,7 +203,10 @@ const SLUG_MAP = {
   "class-instance-attributes": { chapter: 36, section: "Instance attributes" },
   "class-methods": { chapter: 36, section: "Methods" },
 
-  "classstaticmethod-classmethod": { chapter: 37, section: "classmethod and staticmethod" },
+  "classstaticmethod-classmethod": {
+    chapter: 37,
+    section: "classmethod and staticmethod",
+  },
   "class-property-decorator": { chapter: 37, section: "@property" },
   "class-str-repr": { chapter: 37, section: "__str__ and __repr__" },
 
@@ -463,9 +466,9 @@ const current = JSON.parse(
   readFileSync(join(root, "docs/curriculum-order.json"), "utf8"),
 );
 const EXTRA_SLUGS = ["escape-characters"];
-const allSlugs = [...new Set([...current.lessons.map((l) => l.slug), ...EXTRA_SLUGS])].filter(
-  (slug) => SLUG_MAP[slug],
-);
+const allSlugs = [
+  ...new Set([...current.lessons.map((l) => l.slug), ...EXTRA_SLUGS]),
+].filter((slug) => SLUG_MAP[slug]);
 const orderSlugs = buildPedagogicalOrder(allSlugs);
 
 const missing = orderSlugs.filter((s) => !SLUG_MAP[s]);
@@ -496,5 +499,10 @@ const out = {
   lessons,
 };
 
-writeFileSync(join(root, "docs/curriculum-order.json"), JSON.stringify(out, null, 2) + "\n");
-console.log(`Wrote ${lessons.length} lessons to docs/curriculum-order.json (v${out.version})`);
+writeFileSync(
+  join(root, "docs/curriculum-order.json"),
+  JSON.stringify(out, null, 2) + "\n",
+);
+console.log(
+  `Wrote ${lessons.length} lessons to docs/curriculum-order.json (v${out.version})`,
+);

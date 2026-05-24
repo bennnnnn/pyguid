@@ -33,14 +33,20 @@ const next =
 
 <article class="ref-entry-page lesson-prose">
   <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="top" />
-  <p class="ref-entry-breadcrumb m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+  <p
+    class="ref-entry-breadcrumb m-0 text-xs font-semibold uppercase tracking-wide text-text-muted"
+  >
     {sheet.title}
   </p>
   <h1 class="ref-entry-title !mt-2">
     <code>{entry.syntax}</code>
   </h1>
   <p class="ref-entry-lead">{entry.summary}</p>
-  {entry.title !== entry.syntax && <p class="ref-entry-alt m-0 text-sm text-text-muted">{entry.title}</p>}
+  {
+    entry.title !== entry.syntax && (
+      <p class="ref-entry-alt m-0 text-sm text-text-muted">{entry.title}</p>
+    )
+  }
 
   {
     runnable ? (

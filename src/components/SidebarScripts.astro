@@ -148,16 +148,14 @@
         if (!group || group.classList.contains("section-group")) return;
         const willOpen = !group.classList.contains("is-open");
         const siblingList = group.parentElement;
-        siblingList
-          ?.querySelectorAll(":scope > .menu-group.is-open")
-          .forEach((other) => {
-            if (other !== group) {
-              other.classList.remove("is-open");
-              other
-                .querySelector(":scope > .menu-trigger")
-                ?.setAttribute("aria-expanded", "false");
-            }
-          });
+        siblingList?.querySelectorAll(":scope > .menu-group.is-open").forEach((other) => {
+          if (other !== group) {
+            other.classList.remove("is-open");
+            other
+              .querySelector(":scope > .menu-trigger")
+              ?.setAttribute("aria-expanded", "false");
+          }
+        });
         group.classList.toggle("is-open", willOpen);
         trigger.setAttribute("aria-expanded", String(willOpen));
       });

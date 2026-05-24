@@ -13,16 +13,12 @@ const { prev, next, placement = "bottom" } = Astro.props;
 ---
 
 <PagerNav
-  prev={
-    prev
-      ? { href: aiTerminologySectionUrl(prev.id), label: "Back", topic: prev.title }
-      : null
-  }
-  next={
-    next
-      ? { href: aiTerminologySectionUrl(next.id), label: "Next", topic: next.title }
-      : null
-  }
+  prev={prev
+    ? { href: aiTerminologySectionUrl(prev.id), label: "Back", topic: prev.title }
+    : null}
+  next={next
+    ? { href: aiTerminologySectionUrl(next.id), label: "Next", topic: next.title }
+    : null}
   placement={placement}
   ariaLabel="Topic navigation"
 />

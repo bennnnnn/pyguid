@@ -49,7 +49,10 @@ for (const [i, entry] of entries.entries()) {
     if (/^partTitle:/m.test(updated)) {
       updated = updated.replace(/^partTitle:\s*.+$/m, `partTitle: "${entry.partTitle}"`);
     } else {
-      updated = updated.replace(/^(part:\s*\d+\n)/m, `$1partTitle: "${entry.partTitle}"\n`);
+      updated = updated.replace(
+        /^(part:\s*\d+\n)/m,
+        `$1partTitle: "${entry.partTitle}"\n`,
+      );
     }
   } else {
     updated = updated.replace(/^part:\s*\d+\n/m, "").replace(/^partTitle:\s*.+\n/m, "");
@@ -57,7 +60,10 @@ for (const [i, entry] of entries.entries()) {
 
   if (entry.section) {
     if (/^section:/m.test(updated)) {
-      updated = updated.replace(/^section:\s*.+$/m, `section: ${JSON.stringify(entry.section)}`);
+      updated = updated.replace(
+        /^section:\s*.+$/m,
+        `section: ${JSON.stringify(entry.section)}`,
+      );
     } else {
       updated = updated.replace(
         /^(chapterTitle:.+\n)/m,

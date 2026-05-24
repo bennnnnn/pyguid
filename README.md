@@ -28,17 +28,17 @@ Open [http://localhost:4321](http://localhost:4321).
 
 ## Commands
 
-| Command                   | Action                                  |
-| ------------------------- | --------------------------------------- |
-| `npm run dev`             | Dev server                              |
-| `npm run build`           | Static site → `dist/`                   |
-| `npm run preview`         | Preview production build                |
-| `npm run format`          | Format with Prettier                    |
-| `npm run check:format`    | Check formatting (CI)                   |
-| `npm run check:routes`    | Fail if legacy `practice/` route exists |
-| `npm run check`           | Routes + format + build (local CI)      |
-| `npm run sync:curriculum` | Apply `docs/curriculum-order.json`      |
-| `npm run curriculum:build-v59` | Rebuild 59-chapter map + sync lessons |
+| Command                        | Action                                  |
+| ------------------------------ | --------------------------------------- |
+| `npm run dev`                  | Dev server                              |
+| `npm run build`                | Static site → `dist/`                   |
+| `npm run preview`              | Preview production build                |
+| `npm run format`               | Format with Prettier                    |
+| `npm run check:format`         | Check formatting (CI)                   |
+| `npm run check:routes`         | Fail if legacy `practice/` route exists |
+| `npm run check`                | Routes + format + build (local CI)      |
+| `npm run sync:curriculum`      | Apply `docs/curriculum-order.json`      |
+| `npm run curriculum:build-v59` | Rebuild 59-chapter map + sync lessons   |
 
 ## Stack
 

@@ -36,15 +36,13 @@ const { section } = Astro.props;
       <div class="ai-term-links-box">
         <p class="ai-term-links-label">Learn more</p>
         <ul class="ai-term-links">
-          {
-            section.links.map((link) => (
-              <li>
-                <a href={link.href} rel="noopener noreferrer" target="_blank">
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
+          {section.links.map((link) => (
+            <li>
+              <a href={link.href} rel="noopener noreferrer" target="_blank">
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     )

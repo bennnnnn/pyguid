@@ -12,7 +12,11 @@ import {
 } from "../../lib/ai-terminology";
 import { AI_TERMINOLOGY_FAQ } from "../../lib/ai-terminology/faq";
 import { aiTerminologySectionUrl } from "../../lib/ai-terminology/helpers";
-import { breadcrumbListJsonLd, faqPageJsonLd, itemListJsonLd } from "../../lib/seo-schema";
+import {
+  breadcrumbListJsonLd,
+  faqPageJsonLd,
+  itemListJsonLd,
+} from "../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../lib/site";
 import "../../styles/ai-terminology.css";
 
@@ -39,7 +43,12 @@ const jsonLd = [
 ];
 ---
 
-<TutorialLayout title={pageTitle} description={description} jsonLd={jsonLd} sidebar="ai-terms">
+<TutorialLayout
+  title={pageTitle}
+  description={description}
+  jsonLd={jsonLd}
+  sidebar="ai-terms"
+>
   <article class="ai-term-main lesson-prose-wide">
     <header class="ai-term-hero">
       <h1 class="ai-term-hero-title !mt-0">
@@ -49,7 +58,8 @@ const jsonLd = [
         </span>
       </h1>
       <p class="lead">
-        {subtitle} <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} groups</span>
+        {subtitle}
+        <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} groups</span>
       </p>
     </header>
 

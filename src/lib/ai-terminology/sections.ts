@@ -123,10 +123,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "y vector (targets)",
         "Conventional sklearn name for supervised labels paired row-wise with X.",
       ],
-      [
-        "Label set",
-        "The categorical or ordinal tag space for supervised problems.",
-      ],
+      ["Label set", "The categorical or ordinal tag space for supervised problems."],
       [
         "Pandas DataFrame",
         "Labeled tables ideal for exploratory analysis, joins, and feature engineering pipelines.",
@@ -161,10 +158,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Model",
         "A parameterized function plus training procedure that maps inputs to predictions or generations.",
       ],
-      [
-        "Algorithm",
-        "The recipe for updating parameters (or structure) from data.",
-      ],
+      ["Algorithm", "The recipe for updating parameters (or structure) from data."],
       [
         "Loss / objective",
         "A scalar score to minimize (or maximize) comparing predictions to desired outcomes.",
@@ -209,10 +203,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Classification",
         "Predict discrete labels/probabilities mapping inputs to categorical outputs.",
       ],
-      [
-        "Regression",
-        "Predict continuous values (pricing, dwell time, telemetry).",
-      ],
+      ["Regression", "Predict continuous values (pricing, dwell time, telemetry)."],
       [
         "Binary vs multiclass",
         "Decision boundaries differ; strategies include one-vs-rest and softmax distributions.",
@@ -281,18 +272,12 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Backward pass (backprop)",
         "Apply the chain rule to propagate loss gradients through the graph/modules.",
       ],
-      [
-        "Epoch",
-        "One complete traversal of the training dataset iterator.",
-      ],
+      ["Epoch", "One complete traversal of the training dataset iterator."],
       [
         "Batch / minibatch",
         "Subset of samples per optimizer step balancing noise vs memory.",
       ],
-      [
-        "Learning rate",
-        "Step scale controlling convergence speed vs stability.",
-      ],
+      ["Learning rate", "Step scale controlling convergence speed vs stability."],
       [
         "Optimizer",
         "SGD, Adam, AdamW-like adaptive methods estimating per-parameter momentum.",
@@ -327,22 +312,13 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Precision",
         "Among predicted positives, what fraction truly belong to the positive class?",
       ],
-      [
-        "Recall",
-        "Among actual positives, what fraction did we catch?",
-      ],
-      [
-        "F1 score",
-        "Harmonic mean balancing precision/recall.",
-      ],
+      ["Recall", "Among actual positives, what fraction did we catch?"],
+      ["F1 score", "Harmonic mean balancing precision/recall."],
       [
         "ROC-AUC",
         "Area under the receiver operating characteristic assessing ranking quality across thresholds.",
       ],
-      [
-        "Mean squared error",
-        "Common regression penalty squaring residuals.",
-      ],
+      ["Mean squared error", "Common regression penalty squaring residuals."],
       [
         "sklearn.metrics helpers",
         "Functions emitting scores from y_true, y_pred, or y_score arrays.",
@@ -371,10 +347,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Batch normalization",
         "Stabilize activations via running statistics centered per channel/batch regime.",
       ],
-      [
-        "Dropout",
-        "Random neuron masking during training to reduce co-adaptation.",
-      ],
+      ["Dropout", "Random neuron masking during training to reduce co-adaptation."],
       [
         "Convolutional neural network (CNN)",
         "Spatially local filters dominating vision tasks.",
@@ -383,10 +356,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Recurrent nets (RNN/LSTM)",
         "Hidden states summarizing sequential inputs before transformers dominated NLP.",
       ],
-      [
-        "Residual connections",
-        "Skip pathways easing optimization in very deep stacks.",
-      ],
+      ["Residual connections", "Skip pathways easing optimization in very deep stacks."],
       [
         "PyTorch tensors",
         "GPU-accelerated n-dimensional arrays tracking autograd graphs when requires_grad=True.",
@@ -425,10 +395,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Named entity recognition (NER)",
         "Detect spans for people, locations, SKUs—common structured extraction precursor.",
       ],
-      [
-        "Sequence labeling",
-        "Per-token classification such as tagging or slot filling.",
-      ],
+      ["Sequence labeling", "Per-token classification such as tagging or slot filling."],
       [
         "Language modeling",
         "Predict upcoming tokens conditioned on preceding context—the heart of GPT-style stacks.",
@@ -481,18 +448,12 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
     intro:
       "Crafting textual instructions so LLMs reliably follow policies, schemas, tools, or reasoning motifs.",
     terms: gloss([
-      [
-        "Prompt",
-        "User + system messages conditioning model behavior at inference time.",
-      ],
+      ["Prompt", "User + system messages conditioning model behavior at inference time."],
       [
         "System prompt",
         "Highest-priority instruction block defining persona, tooling policy, refusal boundaries.",
       ],
-      [
-        "Zero-shot prompting",
-        "Direct instruction without demos—fast but brittle.",
-      ],
+      ["Zero-shot prompting", "Direct instruction without demos—fast but brittle."],
       [
         "Few-shot prompting",
         "Provide exemplars inside the prompt to anchor formatting or rationale.",
@@ -797,10 +758,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
     intro:
       "Adapt foundation weights toward domain tone, tooling behavior, or low-resource languages using extra supervised signals.",
     terms: gloss([
-      [
-        "Full fine-tuning",
-        "Update every parameter—powerful yet expensive.",
-      ],
+      ["Full fine-tuning", "Update every parameter—powerful yet expensive."],
       [
         "Parameter-efficient fine-tuning (PEFT)",
         "LoRA/QLoRA-style adapters injecting low-rank deltas into attention blocks.",
@@ -829,10 +787,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
     intro:
       "Turn trained artifacts into scalable online predictions or streaming generations respecting latency budgets.",
     terms: gloss([
-      [
-        "Inference",
-        "Forward-only execution path without gradient updates.",
-      ],
+      ["Inference", "Forward-only execution path without gradient updates."],
       [
         "Throughput vs latency",
         "Batch sizing trades tokens/sec against individual completion delay.",
@@ -845,10 +800,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Speculative decoding",
         "Draft small models speculate tokens verified by bigger models for speed wins.",
       ],
-      [
-        "ONNX / TorchScript / TensorRT exports",
-        "Graph lowering for optimized runtimes.",
-      ],
+      ["ONNX / TorchScript / TensorRT exports", "Graph lowering for optimized runtimes."],
       [
         "Model serving stacks",
         "vLLM, Triton, Ray Serve patterns batching GPUs behind HTTP/grpc.",
@@ -873,18 +825,9 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Encoder-only transformers",
         "Bidirectional comprehension models (BERT family lineages).",
       ],
-      [
-        "Decoder-only causal LMs",
-        "Autoregressive generators dominating chat APIs.",
-      ],
-      [
-        "Encoder–decoder seq2seq",
-        "Machine translation staples—sometimes hybridized.",
-      ],
-      [
-        "Multimodal models",
-        "Unified towers over vision+audio+text modalities.",
-      ],
+      ["Decoder-only causal LMs", "Autoregressive generators dominating chat APIs."],
+      ["Encoder–decoder seq2seq", "Machine translation staples—sometimes hybridized."],
+      ["Multimodal models", "Unified towers over vision+audio+text modalities."],
       [
         "Diffusion backbone",
         "Noise scheduling models for imagery/video when not autoregressive tokens.",
@@ -901,10 +844,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Autoregressive generation",
         "Sample next token/frame conditioned on prefix—core to LLMs/audio codecs.",
       ],
-      [
-        "Diffusion models",
-        "Iterative denoising pipelines for photoreal synthesis.",
-      ],
+      ["Diffusion models", "Iterative denoising pipelines for photoreal synthesis."],
       [
         "GANs",
         "Adversarial min-max games between generator and discriminator—older dominant for imagery.",
@@ -925,26 +865,11 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
     intro:
       "Teaching machines pixels → semantics via convolutions, vision transformers, and specialized heads.",
     terms: gloss([
-      [
-        "Image classification",
-        "Assign holistic labels describing entire scenes.",
-      ],
-      [
-        "Object detection",
-        "Bounding boxes + class IDs localizing multiple entities.",
-      ],
-      [
-        "Semantic segmentation",
-        "Per-pixel class maps without instance separation.",
-      ],
-      [
-        "Instance segmentation",
-        "Separate masks per entity instance.",
-      ],
-      [
-        "Vision Transformer (ViT)",
-        "Patchify frames + transformer blocks rivaling CNNs.",
-      ],
+      ["Image classification", "Assign holistic labels describing entire scenes."],
+      ["Object detection", "Bounding boxes + class IDs localizing multiple entities."],
+      ["Semantic segmentation", "Per-pixel class maps without instance separation."],
+      ["Instance segmentation", "Separate masks per entity instance."],
+      ["Vision Transformer (ViT)", "Patchify frames + transformer blocks rivaling CNNs."],
       [
         "Transfer learning backbone",
         "Reuse ImageNet pretrained encoders heads for downstream fine-tuning.",
@@ -965,14 +890,8 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Text-to-speech (TTS)",
         "Rendered speech from text conditioning prosody embeddings.",
       ],
-      [
-        "Mel spectrograms",
-        "Time-frequency representations feeding acoustic models.",
-      ],
-      [
-        "Speaker diarization",
-        "Who spoke when timelines for meetings/call centers.",
-      ],
+      ["Mel spectrograms", "Time-frequency representations feeding acoustic models."],
+      ["Speaker diarization", "Who spoke when timelines for meetings/call centers."],
       [
         "Voice activity detection (VAD)",
         "Cheap gating preprocessing streaming pipelines.",
@@ -993,14 +912,8 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Prompt injection",
         "Untrusted embedded text coaxing assistants to disobey developer policies.",
       ],
-      [
-        "Data poisoning",
-        "Malicious training points biasing downstream behavior.",
-      ],
-      [
-        "Red teaming",
-        "Structured probing surfacing refusal gaps before launch.",
-      ],
+      ["Data poisoning", "Malicious training points biasing downstream behavior."],
+      ["Red teaming", "Structured probing surfacing refusal gaps before launch."],
       [
         "Fairness metrics",
         "Disparate impact, demographic parity nuances—ethical + legal mandates.",
@@ -1029,10 +942,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Guardrails UX",
         "Inline reminders, disclaimers, safe defaults before risky actions.",
       ],
-      [
-        "Cost dashboards",
-        "Token spend, infra burn, SLA adherence tied to SKU pricing.",
-      ],
+      ["Cost dashboards", "Token spend, infra burn, SLA adherence tied to SKU pricing."],
       [
         "Experimentation loops",
         "A/B prompting, model swap toggles staged behind feature flags.",
@@ -1081,22 +991,13 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Experiment tracking",
         "MLflow, Weights & Biases, Neptune logging metrics/parameters/artifacts.",
       ],
-      [
-        "CI/CD for ML",
-        "Automated training + evaluation gates before staging promotion.",
-      ],
-      [
-        "Model registry",
-        "Canonical lineage mapping artifacts ↔ approvals.",
-      ],
+      ["CI/CD for ML", "Automated training + evaluation gates before staging promotion."],
+      ["Model registry", "Canonical lineage mapping artifacts ↔ approvals."],
       [
         "Drift detection",
         "Statistical monitors on inputs/outputs alerting retrain workflows.",
       ],
-      [
-        "Feature store",
-        "Serving + training parity for curated features lowering skew.",
-      ],
+      ["Feature store", "Serving + training parity for curated features lowering skew."],
     ]),
   },
   {
@@ -1109,10 +1010,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
         "Linear algebra",
         "Vectors, matrices, eigen decompositions underlying attention projections.",
       ],
-      [
-        "Calculus",
-        "Partial derivatives powering autograd differentiation.",
-      ],
+      ["Calculus", "Partial derivatives powering autograd differentiation."],
       [
         "Probability",
         "Distributions calibration, Bayesian views, PAC-style generalization narratives.",
@@ -1191,9 +1089,7 @@ const AI_TERMINOLOGY_SECTIONS_BASE: AiTerminologySection[] = [
 
 function mergeSectionTerms(section: AiTerminologySection): AiTerminologySection {
   const extra = AI_TERM_EXPANSIONS[section.id];
-  const terms = extra?.length
-    ? [...section.terms, ...gloss(extra)]
-    : [...section.terms];
+  const terms = extra?.length ? [...section.terms, ...gloss(extra)] : [...section.terms];
   const anchors = termAnchorsForSection(section.id, terms);
   return { ...section, terms: enrichSectionTerms(section.id, terms, anchors) };
 }

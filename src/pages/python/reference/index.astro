@@ -19,13 +19,14 @@ const entryCount = nav.reduce(
   <article class="lesson-prose-wide lesson-prose">
     <h1 class="!mt-0">Python reference</h1>
     <p class="text-text-secondary">
-      Quick lookup for <strong>syntax</strong>, <strong>built-in functions</strong>, and common
-      <strong>methods</strong> — organized for coding, not as a mirror of the tutorial outline. Open
-      a topic for a cheat-sheet table, or jump straight to a specific pattern.
+      Quick lookup for <strong>syntax</strong>, <strong>built-in functions</strong>, and
+      common
+      <strong>methods</strong> — organized for coding, not as a mirror of the tutorial outline.
+      Open a topic for a cheat-sheet table, or jump straight to a specific pattern.
     </p>
     <p class="text-sm text-text-muted">
-      {entryCount} entries across {nav.length} areas · Runnable examples where Python runs in the
-      browser
+      {entryCount} entries across {nav.length} areas · Runnable examples where Python runs in
+      the browser
     </p>
 
     <div class="ref-index-categories not-prose">
@@ -40,7 +41,8 @@ const entryCount = nav.reduce(
                   <a href={referenceChapterUrl(sheet.id)} class="ref-index-sheet-link">
                     <span class="ref-index-sheet-name">{sheet.title}</span>
                     <span class="ref-index-sheet-meta">
-                      {sheet.entries.length} {sheet.entries.length === 1 ? "entry" : "entries"}
+                      {sheet.entries.length}{" "}
+                      {sheet.entries.length === 1 ? "entry" : "entries"}
                     </span>
                   </a>
                 </li>

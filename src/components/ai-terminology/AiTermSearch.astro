@@ -26,7 +26,9 @@ const sectionRows = buildAiTerminologySectionSearchRows();
     </button>
   </div>
   <p class="ai-term-search-hint" data-search-hint>
-    Search {termHits.length} terms (including aliases and related terms) across {sectionRows.length}{" "}
+    Search {termHits.length} terms (including aliases and related terms) across {
+      sectionRows.length
+    }{" "}
     groups
   </p>
   <div
@@ -55,11 +57,7 @@ const sectionRows = buildAiTerminologySectionSearchRows();
   const cards = document.querySelectorAll("[data-ai-term-section-card]");
   const empty = document.querySelector("[data-ai-term-search-empty]");
 
-  const normalize = (s) =>
-    s
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/\p{M}/gu, "");
+  const normalize = (s) => s.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
 
   const scoreTerm = (q, hit) => {
     const term = normalize(hit.term);
@@ -118,9 +116,7 @@ const sectionRows = buildAiTerminologySectionSearchRows();
       .slice(0, 24);
 
     const sectionIds = new Set(
-      sectionRows
-        .filter((row) => scoreSection(q, row) > 0)
-        .map((row) => row.id),
+      sectionRows.filter((row) => scoreSection(q, row) > 0).map((row) => row.id),
     );
     termResults.forEach(({ hit }) => sectionIds.add(hit.sectionId));
 

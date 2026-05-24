@@ -38,9 +38,7 @@ export function topicAnchorId(title: string): string {
 }
 
 export function groupHasLessons(group: LessonGroup): boolean {
-  return (
-    group.lessons.length > 0 || group.sections.some((s) => s.lessons.length > 0)
-  );
+  return group.lessons.length > 0 || group.sections.some((s) => s.lessons.length > 0);
 }
 
 export async function getAllLessons(): Promise<LessonEntry[]> {
@@ -151,4 +149,3 @@ export function getTotalLessonCount(groups: LessonGroup[]): number {
     0,
   );
 }
-

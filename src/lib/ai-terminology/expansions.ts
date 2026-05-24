@@ -46,8 +46,14 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
     ],
   ],
   "python-ecosystem": [
-    ["pandas", "Tabular data manipulation—joins, groupby, missing-value handling before X/y extraction."],
-    ["NumPy", "N-dimensional arrays and vectorized ufuncs underlying most numeric ML code."],
+    [
+      "pandas",
+      "Tabular data manipulation—joins, groupby, missing-value handling before X/y extraction.",
+    ],
+    [
+      "NumPy",
+      "N-dimensional arrays and vectorized ufuncs underlying most numeric ML code.",
+    ],
     [
       "scikit-learn",
       "Classic ML estimators, preprocessing, model selection, and metrics with a consistent API.",
@@ -68,7 +74,10 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Hugging Face Hub",
       "Model/dataset hosting with huggingface_hub download and upload from Python scripts.",
     ],
-    ["polars", "Fast DataFrame engine often used for large ETL before training pipelines."],
+    [
+      "polars",
+      "Fast DataFrame engine often used for large ETL before training pipelines.",
+    ],
     ["DuckDB", "In-process analytics SQL over Parquet/CSV—handy in notebook ETL."],
     [
       "Poetry / uv",
@@ -171,7 +180,10 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Generalization gap",
       "Difference between training performance and performance on new data.",
     ],
-    ["Capacity", "How complex a model is—too much capacity invites overfitting without enough data."],
+    [
+      "Capacity",
+      "How complex a model is—too much capacity invites overfitting without enough data.",
+    ],
     [
       "L1 / L2 regularization",
       "Add |w| or w² penalties—sparse vs smooth weight shrinkage in linear models.",
@@ -192,10 +204,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Pipeline (sklearn)",
       "Chain preprocessors + model so fit/predict never leaks test statistics.",
     ],
-    [
-      "Estimator",
-      "sklearn object implementing fit, predict, and often transform.",
-    ],
+    ["Estimator", "sklearn object implementing fit, predict, and often transform."],
     [
       "Classifier vs regressor",
       "API variants for discrete vs continuous targets—check is_classifier helpers.",
@@ -250,14 +259,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Calibration curve",
       "Reliability diagram comparing predicted vs observed positive rates.",
     ],
-    [
-      "ROC curve",
-      "TPR vs FPR across thresholds—useful when class balance varies.",
-    ],
-    [
-      "PR curve",
-      "Precision vs recall—often more informative on imbalanced data.",
-    ],
+    ["ROC curve", "TPR vs FPR across thresholds—useful when class balance varies."],
+    ["PR curve", "Precision vs recall—often more informative on imbalanced data."],
     [
       "Linear regression",
       "Predict continuous targets with weighted sum of features—baseline for tabular.",
@@ -284,10 +287,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Hierarchical clustering",
       "Dendrogram merges/splits—scipy.cluster.hierarchy or sklearn wrappers.",
     ],
-    [
-      "DBSCAN",
-      "Density-based clusters plus noise points—no fixed k required.",
-    ],
+    ["DBSCAN", "Density-based clusters plus noise points—no fixed k required."],
     [
       "Gaussian mixture model (GMM)",
       "Soft cluster assignments via mixture of Gaussians—GaussianMixture in sklearn.",
@@ -308,14 +308,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Silhouette score",
       "Cluster quality heuristic—compare to domain validation, not alone.",
     ],
-    [
-      "Elbow method",
-      "Heuristic for choosing k in k-means by plotting inertia vs k.",
-    ],
-    [
-      "Isolation Forest",
-      "Tree-based anomaly detector—sklearn.ensemble.IsolationForest.",
-    ],
+    ["Elbow method", "Heuristic for choosing k in k-means by plotting inertia vs k."],
+    ["Isolation Forest", "Tree-based anomaly detector—sklearn.ensemble.IsolationForest."],
     [
       "Association rules",
       "Market-basket style frequent itemsets—Apriori-style analytics.",
@@ -370,10 +364,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Label smoothing",
       "Soften one-hot targets to reduce overconfidence—common in classification fine-tunes.",
     ],
-    [
-      "Class weights",
-      "Pass weight to CrossEntropyLoss to upweight rare classes.",
-    ],
+    ["Class weights", "Pass weight to CrossEntropyLoss to upweight rare classes."],
   ],
   evaluation: [
     [
@@ -388,26 +379,14 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "k-fold cross-validation",
       "cross_val_score rotates folds for stabler metric estimates on small data.",
     ],
-    [
-      "Stratified k-fold",
-      "Preserves class ratios per fold—default for classification.",
-    ],
+    ["Stratified k-fold", "Preserves class ratios per fold—default for classification."],
     [
       "Matthews correlation coefficient (MCC)",
       "Balanced single metric for binary classification under imbalance.",
     ],
-    [
-      "Log loss",
-      "Penalizes confident wrong probabilities—log_loss in sklearn.",
-    ],
-    [
-      "MAE / RMSE",
-      "Regression errors—mean_absolute_error, mean_squared_error.",
-    ],
-    [
-      "R² score",
-      "Explained variance fraction—can mislead on nonlinear problems.",
-    ],
+    ["Log loss", "Penalizes confident wrong probabilities—log_loss in sklearn."],
+    ["MAE / RMSE", "Regression errors—mean_absolute_error, mean_squared_error."],
+    ["R² score", "Explained variance fraction—can mislead on nonlinear problems."],
     [
       "Calibration (Brier score)",
       "Measures probability accuracy—not just ranking quality.",
@@ -463,14 +442,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Transfer learning",
       "Start from pretrained weights, replace head, fine-tune on your task.",
     ],
-    [
-      "Fine-tune head only",
-      "Freeze backbone, train classifier—fast when data is small.",
-    ],
-    [
-      "torch.nn.Module",
-      "Base class implementing forward; compose layers in __init__.",
-    ],
+    ["Fine-tune head only", "Freeze backbone, train classifier—fast when data is small."],
+    ["torch.nn.Module", "Base class implementing forward; compose layers in __init__."],
     [
       "Autograd",
       "PyTorch records ops for backward()—disable with torch.no_grad() at inference.",
@@ -479,20 +452,14 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Device placement",
       "model.to('cuda') and tensors on same device—common source of runtime errors.",
     ],
-    [
-      "torch.compile",
-      "PyTorch 2 graph compilation for speedups when shapes stable.",
-    ],
+    ["torch.compile", "PyTorch 2 graph compilation for speedups when shapes stable."],
   ],
   nlp: [
     [
       "Bag-of-words",
       "Count or TF-IDF vectors ignoring order—CountVectorizer, TfidfVectorizer.",
     ],
-    [
-      "TF-IDF",
-      "Downweight common tokens, upweight distinctive terms in a corpus.",
-    ],
+    ["TF-IDF", "Downweight common tokens, upweight distinctive terms in a corpus."],
     [
       "Word embedding (Word2Vec / GloVe)",
       "Static dense word vectors—largely superseded by contextual transformers.",
@@ -501,26 +468,11 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Subword tokenization",
       "Split rare words into pieces so open vocabulary is manageable.",
     ],
-    [
-      "Vocabulary",
-      "Mapping token strings to integer IDs used by embedding layers.",
-    ],
-    [
-      "Padding / truncation",
-      "Batch sequences to fixed max_length in tokenizer calls.",
-    ],
-    [
-      "Attention mask",
-      "Binary mask telling the model which tokens are real vs pad.",
-    ],
-    [
-      "Sentiment analysis",
-      "Classify opinion polarity—classic supervised NLP task.",
-    ],
-    [
-      "Text classification",
-      "Assign whole documents to categories—spam, intent, topic.",
-    ],
+    ["Vocabulary", "Mapping token strings to integer IDs used by embedding layers."],
+    ["Padding / truncation", "Batch sequences to fixed max_length in tokenizer calls."],
+    ["Attention mask", "Binary mask telling the model which tokens are real vs pad."],
+    ["Sentiment analysis", "Classify opinion polarity—classic supervised NLP task."],
+    ["Text classification", "Assign whole documents to categories—spam, intent, topic."],
     [
       "Summarization",
       "Abstractive or extractive shortening—seq2seq or prompt-based with LLMs.",
@@ -587,14 +539,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Completion vs chat API",
       "Raw text continuation vs role-structured messages—chat is standard for assistants.",
     ],
-    [
-      "Stop sequences",
-      "Strings that halt generation—prevent run-on outputs in APIs.",
-    ],
-    [
-      "Logprobs",
-      "Token log probabilities returned for uncertainty UI or evaluators.",
-    ],
+    ["Stop sequences", "Strings that halt generation—prevent run-on outputs in APIs."],
+    ["Logprobs", "Token log probabilities returned for uncertainty UI or evaluators."],
     [
       "Reasoning model",
       "Models trained for longer internal chains (o-series style)—higher latency/cost.",
@@ -651,10 +597,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
     ],
   ],
   embeddings: [
-    [
-      "Dense retrieval",
-      "Search by vector similarity instead of keyword match alone.",
-    ],
+    ["Dense retrieval", "Search by vector similarity instead of keyword match alone."],
     [
       "Sparse retrieval (BM25)",
       "Lexical scoring—rank_bm25 or Elasticsearch-style indexes.",
@@ -667,10 +610,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Cosine similarity",
       "Normalize vectors and dot product—standard in semantic search.",
     ],
-    [
-      "FAISS",
-      "Facebook AI Similarity Search—popular ANN library from Python bindings.",
-    ],
+    ["FAISS", "Facebook AI Similarity Search—popular ANN library from Python bindings."],
     [
       "HNSW index",
       "Graph-based ANN offering strong speed/recall tradeoffs in vector DBs.",
@@ -705,10 +645,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Ingestion pipeline",
       "Load PDFs, HTML, tickets; extract text; dedupe; version corpora.",
     ],
-    [
-      "Document loader",
-      "LangChain/LlamaIndex loaders wrapping files, Notion, S3, etc.",
-    ],
+    ["Document loader", "LangChain/LlamaIndex loaders wrapping files, Notion, S3, etc."],
     [
       "Overlap chunking",
       "Sliding windows with shared sentences so boundaries do not cut facts.",
@@ -717,10 +654,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Parent–child chunking",
       "Retrieve small chunks, return larger parent context to the LLM.",
     ],
-    [
-      "Query rewriting",
-      "LLM expands or decomposes user query before retrieval.",
-    ],
+    ["Query rewriting", "LLM expands or decomposes user query before retrieval."],
     [
       "HyDE",
       "Hypothetical document embeddings—generate fake answer, embed it, retrieve.",
@@ -729,10 +663,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Context window budget",
       "Allocate tokens among system, history, chunks, and completion reserve.",
     ],
-    [
-      "Attribution",
-      "Surface source filenames/page numbers with generated answers.",
-    ],
+    ["Attribution", "Surface source filenames/page numbers with generated answers."],
     [
       "Faithfulness eval",
       "NLI or LLM-judge checks if answer is supported by retrieved text.",
@@ -741,14 +672,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Answer abstention",
       "Model refuses when retrieval confidence is low—reduces fabrication.",
     ],
-    [
-      "LlamaIndex",
-      "Python framework for indexing, querying, and agentic RAG workflows.",
-    ],
-    [
-      "GraphRAG",
-      "Combine knowledge graphs with retrieval for structured domain Q&A.",
-    ],
+    ["LlamaIndex", "Python framework for indexing, querying, and agentic RAG workflows."],
+    ["GraphRAG", "Combine knowledge graphs with retrieval for structured domain Q&A."],
   ],
   agents: [
     [
@@ -767,18 +692,9 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Checkpointing (LangGraph)",
       "Persist graph state to resume long workflows after crashes.",
     ],
-    [
-      "Interrupt / resume",
-      "Pause agent for human input then continue from saved state.",
-    ],
-    [
-      "Sub-agent",
-      "Nested agent invoked as a tool by a parent orchestrator.",
-    ],
-    [
-      "Computer use",
-      "Agents driving GUI/browser automation—high risk; sandbox heavily.",
-    ],
+    ["Interrupt / resume", "Pause agent for human input then continue from saved state."],
+    ["Sub-agent", "Nested agent invoked as a tool by a parent orchestrator."],
+    ["Computer use", "Agents driving GUI/browser automation—high risk; sandbox heavily."],
     [
       "Code interpreter tool",
       "Ephemeral Python sandbox executing model-written code on sample data.",
@@ -809,10 +725,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "stdio transport",
       "Local subprocess JSON-RPC over stdin/stdout—common for desktop integrations.",
     ],
-    [
-      "SSE / HTTP transport",
-      "Remote MCP servers reachable over network with auth.",
-    ],
+    ["SSE / HTTP transport", "Remote MCP servers reachable over network with auth."],
     [
       "Resource (MCP)",
       "Readable URI-backed data (file tree, schema) models can fetch for context.",
@@ -825,10 +738,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Capability negotiation",
       "Client and server agree on supported tool/resource features at connect time.",
     ],
-    [
-      "Roots",
-      "Filesystem boundaries an MCP file server may expose—security critical.",
-    ],
+    ["Roots", "Filesystem boundaries an MCP file server may expose—security critical."],
     [
       "Sampling (MCP)",
       "Server can ask the host model to complete sub-requests—advanced pattern.",
@@ -837,14 +747,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Cursor / Claude Desktop MCP",
       "Editors launching configured MCP servers from JSON config files.",
     ],
-    [
-      "FastMCP",
-      "Python SDK for building MCP servers quickly with decorators.",
-    ],
-    [
-      "Tool approval UI",
-      "Human confirms high-risk MCP invocations before execution.",
-    ],
+    ["FastMCP", "Python SDK for building MCP servers quickly with decorators."],
+    ["Tool approval UI", "Human confirms high-risk MCP invocations before execution."],
     [
       "Idempotent tools",
       "Design tools safe to retry when agents double-call after timeouts.",
@@ -855,18 +759,9 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "LoRA",
       "Low-rank adapters injected into attention layers—train small matrices only.",
     ],
-    [
-      "QLoRA",
-      "LoRA on quantized base weights—fits large models on consumer GPUs.",
-    ],
-    [
-      "PEFT library",
-      "Hugging Face peft package configuring LoRA/AdaLoRA adapters.",
-    ],
-    [
-      "TRL / SFTTrainer",
-      "Training helpers for supervised fine-tuning of causal LMs.",
-    ],
+    ["QLoRA", "LoRA on quantized base weights—fits large models on consumer GPUs."],
+    ["PEFT library", "Hugging Face peft package configuring LoRA/AdaLoRA adapters."],
+    ["TRL / SFTTrainer", "Training helpers for supervised fine-tuning of causal LMs."],
     [
       "DPO (direct preference optimization)",
       "Align from preference pairs without explicit reward model RL loop.",
@@ -905,10 +800,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Batch inference",
       "Process many inputs together for GPU utilization—higher latency per item possible.",
     ],
-    [
-      "Streaming inference",
-      "Token-by-token generation over HTTP chunked responses.",
-    ],
+    ["Streaming inference", "Token-by-token generation over HTTP chunked responses."],
     [
       "Time to first token (TTFT)",
       "Latency until first streamed chunk—critical for chat UX.",
@@ -917,14 +809,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Tokens per second",
       "Throughput metric for capacity planning and model comparison.",
     ],
-    [
-      "GGUF / llama.cpp",
-      "CPU/GPU efficient local inference format for open models.",
-    ],
-    [
-      "vLLM",
-      "Serving engine with PagedAttention for high-throughput LLM APIs.",
-    ],
+    ["GGUF / llama.cpp", "CPU/GPU efficient local inference format for open models."],
+    ["vLLM", "Serving engine with PagedAttention for high-throughput LLM APIs."],
     [
       "Continuous batching",
       "Dynamically pack requests in flight—improves GPU utilization in servers.",
@@ -951,10 +837,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
     ],
   ],
   "model-types": [
-    [
-      "Linear model",
-      "Simple baseline and interpretable coefficients on tabular data.",
-    ],
+    ["Linear model", "Simple baseline and interpretable coefficients on tabular data."],
     [
       "Kernel SVM",
       "Nonlinear boundaries via implicit feature maps—scales poorly to huge n.",
@@ -963,18 +846,12 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Random forest",
       "Bagged trees with feature subsampling—strong default on structured data.",
     ],
-    [
-      "Seq2seq model",
-      "Encoder maps input sequence; decoder generates output sequence.",
-    ],
+    ["Seq2seq model", "Encoder maps input sequence; decoder generates output sequence."],
     [
       "Masked language model",
       "BERT-style fill-in-the-blank pretraining for bidirectional context.",
     ],
-    [
-      "Causal language model",
-      "GPT-style next-token prediction for generation and chat.",
-    ],
+    ["Causal language model", "GPT-style next-token prediction for generation and chat."],
     [
       "Vision-language model (VLM)",
       "Accepts images + text—screenshot understanding, document QA.",
@@ -1005,10 +882,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Classifier-free guidance",
       "Trade diversity vs adherence in diffusion by scaling conditional vs unconditional scores.",
     ],
-    [
-      "ControlNet",
-      "Condition image generation on edges/depth/pose maps.",
-    ],
+    ["ControlNet", "Condition image generation on edges/depth/pose maps."],
     [
       "Stable Diffusion",
       "Popular open latent diffusion stack for images—Python pipelines via diffusers.",
@@ -1039,14 +913,8 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
     ],
   ],
   "computer-vision": [
-    [
-      "Convolution",
-      "Slide learnable filters across spatial grids—nn.Conv2d in PyTorch.",
-    ],
-    [
-      "Pooling",
-      "Downsample feature maps—max/average pooling reduces resolution.",
-    ],
+    ["Convolution", "Slide learnable filters across spatial grids—nn.Conv2d in PyTorch."],
+    ["Pooling", "Downsample feature maps—max/average pooling reduces resolution."],
     [
       "Data augmentation (vision)",
       "Random crops, flips, color jitter—torchvision.transforms pipelines.",
@@ -1059,22 +927,10 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "IoU (intersection over union)",
       "Overlap score for box/mask matching in detection benchmarks.",
     ],
-    [
-      "YOLO family",
-      "Real-time one-stage detectors popular in edge video analytics.",
-    ],
-    [
-      "OpenCV",
-      "Classic Python/C++ CV library for capture, transforms, classical CV.",
-    ],
-    [
-      "torchvision",
-      "Datasets, pretrained CNN/ViT weights, and transforms for vision.",
-    ],
-    [
-      "OCR",
-      "Optical character recognition—detect text regions then transcribe.",
-    ],
+    ["YOLO family", "Real-time one-stage detectors popular in edge video analytics."],
+    ["OpenCV", "Classic Python/C++ CV library for capture, transforms, classical CV."],
+    ["torchvision", "Datasets, pretrained CNN/ViT weights, and transforms for vision."],
+    ["OCR", "Optical character recognition—detect text regions then transcribe."],
     [
       "Face detection / recognition",
       "Specialized pipelines with privacy and consent requirements.",
@@ -1089,42 +945,24 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Whisper",
       "OpenASR model family with robust multilingual transcription—openai-whisper package.",
     ],
-    [
-      "Phoneme",
-      "Speech sound unit—TTS pipelines map text → phonemes → audio.",
-    ],
+    ["Phoneme", "Speech sound unit—TTS pipelines map text → phonemes → audio."],
     [
       "Sample rate",
       "Audio Hz (e.g., 16 kHz telephony vs 44.1 kHz music)—resample consistently.",
     ],
-    [
-      "librosa",
-      "Python library for audio features, spectrograms, and basic analysis.",
-    ],
-    [
-      "torchaudio",
-      "PyTorch audio I/O, transforms, and model zoo pieces.",
-    ],
+    ["librosa", "Python library for audio features, spectrograms, and basic analysis."],
+    ["torchaudio", "PyTorch audio I/O, transforms, and model zoo pieces."],
     [
       "Streaming ASR",
       "Partial transcripts as audio arrives—WebSocket pipelines in prod.",
     ],
-    [
-      "Wake word",
-      "Low-power detector triggering full ASR—edge device pattern.",
-    ],
-    [
-      "Noise suppression",
-      "Preprocess audio before ASR/TTS in calls and meetings.",
-    ],
+    ["Wake word", "Low-power detector triggering full ASR—edge device pattern."],
+    ["Noise suppression", "Preprocess audio before ASR/TTS in calls and meetings."],
     [
       "Speaker embedding",
       "Vector representing voice identity—for verification or diarization.",
     ],
-    [
-      "Alignment (ASR)",
-      "Map audio frames to text tokens for subtitles and editing.",
-    ],
+    ["Alignment (ASR)", "Map audio frames to text tokens for subtitles and editing."],
   ],
   safety: [
     [
@@ -1135,10 +973,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "System prompt hardening",
       "Explicit refusal rules and scope limits in trusted system messages.",
     ],
-    [
-      "Output filter",
-      "Post-process model text for PII, toxicity, or policy violations.",
-    ],
+    ["Output filter", "Post-process model text for PII, toxicity, or policy violations."],
     [
       "Input filter",
       "Block or sanitize prompts and uploads before they reach the model.",
@@ -1151,10 +986,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Model card",
       "Documentation of intended use, limitations, biases, and eval results.",
     ],
-    [
-      "Bias audit",
-      "Measure performance gaps across demographic or regional slices.",
-    ],
+    ["Bias audit", "Measure performance gaps across demographic or regional slices."],
     [
       "Differential privacy (awareness)",
       "Noise mechanisms limiting memorization of individuals—specialized training.",
@@ -1173,10 +1005,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Latency SLO",
       "Product promise on p95 response time—drives model size and caching choices.",
     ],
-    [
-      "Fallback model",
-      "Cheaper/smaller model when primary times out or rate-limits.",
-    ],
+    ["Fallback model", "Cheaper/smaller model when primary times out or rate-limits."],
     [
       "Graceful degradation",
       "Show cached answer or shorter reply when dependencies fail.",
@@ -1193,10 +1022,7 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Prompt library",
       "Curated templates per job role—product feature reducing blank-page friction.",
     ],
-    [
-      "Usage metering",
-      "Track tokens per tenant for billing and abuse detection.",
-    ],
+    ["Usage metering", "Track tokens per tenant for billing and abuse detection."],
     [
       "Rate limiting",
       "Protect APIs from overload—per-user and global quotas in Python middleware.",
@@ -1215,18 +1041,9 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Correlation matrix",
       "Heatmap of feature relationships—spurious correlations abound.",
     ],
-    [
-      "Histogram / KDE",
-      "Distribution views guiding transforms and outlier policies.",
-    ],
-    [
-      "Box plot",
-      "Compare medians and spread across segments quickly.",
-    ],
-    [
-      "Power analysis",
-      "Estimate sample size needed to detect effect in A/B tests.",
-    ],
+    ["Histogram / KDE", "Distribution views guiding transforms and outlier policies."],
+    ["Box plot", "Compare medians and spread across segments quickly."],
+    ["Power analysis", "Estimate sample size needed to detect effect in A/B tests."],
     [
       "Confidence interval",
       "Range estimating parameter uncertainty—not the same as model CI from trees.",
@@ -1247,20 +1064,14 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Notebook reproducibility",
       "Pin seeds, data snapshots, and package versions when sharing EDA.",
     ],
-    [
-      "matplotlib / seaborn",
-      "Standard Python plotting for EDA and report charts.",
-    ],
+    ["matplotlib / seaborn", "Standard Python plotting for EDA and report charts."],
   ],
   mlops: [
     [
       "Artifact",
       "Serialized model files, metrics JSON, plots stored per experiment run.",
     ],
-    [
-      "DVC",
-      "Data version control tracking large files outside git blobs.",
-    ],
+    ["DVC", "Data version control tracking large files outside git blobs."],
     [
       "Feature pipeline",
       "Batch or streaming jobs producing training/serving features identically.",
@@ -1269,18 +1080,9 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Training-serving skew",
       "Different code paths online vs offline—silent metric collapse in prod.",
     ],
-    [
-      "Shadow deployment",
-      "Run new model on copies of traffic without affecting users.",
-    ],
-    [
-      "Canary release",
-      "Route small traffic share to new model before full cutover.",
-    ],
-    [
-      "Rollback",
-      "Revert to prior model version when monitors fire—automate in CD.",
-    ],
+    ["Shadow deployment", "Run new model on copies of traffic without affecting users."],
+    ["Canary release", "Route small traffic share to new model before full cutover."],
+    ["Rollback", "Revert to prior model version when monitors fire—automate in CD."],
     [
       "Kubernetes + GPUs",
       "Schedule inference/training pods with nvidia.com/gpu resource limits.",
@@ -1293,16 +1095,10 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Prometheus / Grafana",
       "Metrics stacks watching latency, errors, GPU utilization on inference.",
     ],
-    [
-      "Airflow / Prefect",
-      "Orchestrate periodic retraining and ETL DAGs in Python.",
-    ],
+    ["Airflow / Prefect", "Orchestrate periodic retraining and ETL DAGs in Python."],
   ],
   math: [
-    [
-      "Dot product",
-      "Similarity building block for attention scores and embeddings.",
-    ],
+    ["Dot product", "Similarity building block for attention scores and embeddings."],
     [
       "Matrix multiplication",
       "Core op in neural nets—implemented efficiently via BLAS on GPU.",
@@ -1361,18 +1157,12 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Sandboxed execution",
       "Run untrusted model code in containers with network disabled.",
     ],
-    [
-      "Static analysis hook",
-      "Run ruff/mypy after AI edits before CI merge.",
-    ],
+    ["Static analysis hook", "Run ruff/mypy after AI edits before CI merge."],
     [
       "Code embedding",
       "Vectors for semantic code search—sourcegraph-style retrieval aids agents.",
     ],
-    [
-      "Docstring generation",
-      "LLM drafts docs—verify against actual behavior and types.",
-    ],
+    ["Docstring generation", "LLM drafts docs—verify against actual behavior and types."],
     [
       "Migration assistant",
       "Help upgrade frameworks (2→3, pandas API changes) with human review.",
@@ -1387,30 +1177,15 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "LangSmith / Langfuse",
       "Trace LLM chains—inputs, outputs, latencies, costs per span.",
     ],
-    [
-      "OpenTelemetry",
-      "Vendor-neutral tracing/metrics—instrument Python LLM middleware.",
-    ],
+    ["OpenTelemetry", "Vendor-neutral tracing/metrics—instrument Python LLM middleware."],
     [
       "Token usage logging",
       "Prompt/completion token counts per request for finance and debugging.",
     ],
-    [
-      "LLM-as-judge",
-      "Use a strong model to score weaker model outputs on rubrics.",
-    ],
-    [
-      "Golden dataset",
-      "Curated prompt/answer pairs regression-tested each release.",
-    ],
-    [
-      "Regression eval",
-      "Compare new model vs baseline on fixed suite before ship.",
-    ],
-    [
-      "Toxicity score",
-      "Automated classifier flagging harmful generations in logs.",
-    ],
+    ["LLM-as-judge", "Use a strong model to score weaker model outputs on rubrics."],
+    ["Golden dataset", "Curated prompt/answer pairs regression-tested each release."],
+    ["Regression eval", "Compare new model vs baseline on fixed suite before ship."],
+    ["Toxicity score", "Automated classifier flagging harmful generations in logs."],
     [
       "Latency histogram",
       "Track p50/p95/p99 for retrieval, LLM, and tool steps separately.",
@@ -1419,9 +1194,6 @@ export const AI_TERM_EXPANSIONS: Record<string, GlossTuple[]> = {
       "Cost per request",
       "Attribute spend to tenant/feature—drives caching and model routing.",
     ],
-    [
-      "PII scrubbing in logs",
-      "Redact emails/IDs from stored prompts and completions.",
-    ],
+    ["PII scrubbing in logs", "Redact emails/IDs from stored prompts and completions."],
   ],
 };
