@@ -17,9 +17,15 @@ const practiceChapterRedirects = Object.fromEntries(
   }),
 );
 
+const siteUrl = process.env.SITE_URL ?? "https://bennnnnn.github.io/pyguid";
+const siteOrigin = new URL(siteUrl).origin;
+/** GitHub Pages project site: https://user.github.io/repo/ */
+const siteBase = new URL(siteUrl).pathname.replace(/\/$/, "") || undefined;
+
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL ?? "https://bennnnnn.github.io/pyguid",
+  site: siteOrigin,
+  base: siteBase,
   trailingSlash: "always",
   vite: {
     plugins: [tailwindcss()],

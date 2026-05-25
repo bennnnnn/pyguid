@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../lib/site";
+import { pathFromRoot } from "../lib/paths";
 
 const path = Astro.url.pathname;
 const isHome = path === "/" || path === "";
@@ -46,7 +47,7 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
 
     <div class="flex min-w-0 flex-1 items-center gap-3 sm:gap-6">
       <a
-        href="/"
+        href={pathFromRoot("")}
         class="site-brand flex min-w-0 shrink-0 items-center gap-2 no-underline sm:gap-2.5"
         aria-current={isHome ? "page" : undefined}
       >
@@ -59,24 +60,24 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
 
       <nav class="flex min-w-0 items-center gap-0.5 sm:gap-1" aria-label="Main">
         <a
-          href="/python/"
+          href={pathFromRoot("python/")}
           class:list={["topnav-link text-xs sm:text-sm", isTutorials && "is-active"]}
           >Tutorials</a
         >
         <a
-          href="/python/quiz/"
+          href={pathFromRoot("python/quiz/")}
           class:list={["topnav-link text-xs sm:text-sm", isQuiz && "is-active"]}
         >
           Quizzes
         </a>
         <a
-          href="/python/reference/"
+          href={pathFromRoot("python/reference/")}
           class:list={["topnav-link text-xs sm:text-sm", isReference && "is-active"]}
         >
           References
         </a>
         <a
-          href="/ai-terminology/"
+          href={pathFromRoot("ai-terminology/")}
           class:list={["topnav-link text-xs sm:text-sm", isAiTerms && "is-active"]}
         >
           AI Terms
@@ -94,7 +95,7 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
         Sign in soon
       </button>
       <a
-        href="/python/what-is-programming/"
+        href={pathFromRoot("python/what-is-programming/")}
         class="btn-primary whitespace-nowrap px-3 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm"
       >
         Get started

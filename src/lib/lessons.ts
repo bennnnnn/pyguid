@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { CURRICULUM_PARTS } from "./curriculum-outline";
 import { isCurriculumLesson } from "./curriculum";
+import { pathFromRoot } from "./paths";
 
 export type LessonEntry = CollectionEntry<"lessons">;
 
@@ -49,7 +50,7 @@ export async function getAllLessons(): Promise<LessonEntry[]> {
 }
 
 export function lessonUrl(id: string): string {
-  return `/python/${id}/`;
+  return pathFromRoot(`python/${id}/`);
 }
 
 function buildSections(lessons: LessonEntry[]): LessonSection[] {

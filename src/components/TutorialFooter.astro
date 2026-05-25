@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../lib/site";
+import { pathFromRoot } from "../lib/paths";
 
 const year = new Date().getFullYear();
 const path = Astro.url.pathname;
@@ -23,7 +24,7 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
       aria-label="Footer"
     >
       <a
-        href="/python/"
+        href={pathFromRoot("python/")}
         class:list={["nav-link", isTutorials && "is-active"]}
         aria-current={isTutorials ? "page" : undefined}>Tutorials</a
       >
@@ -33,12 +34,12 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
         aria-current={isQuiz ? "page" : undefined}>Quizzes</a
       >
       <a
-        href="/python/reference/"
+        href={pathFromRoot("python/reference/")}
         class:list={["nav-link", isReference && "is-active"]}
         aria-current={isReference ? "page" : undefined}>References</a
       >
       <a
-        href="/ai-terminology/"
+        href={pathFromRoot("ai-terminology/")}
         class:list={["nav-link", isAiTerms && "is-active"]}
         aria-current={isAiTerms ? "page" : undefined}>AI Terms</a
       >

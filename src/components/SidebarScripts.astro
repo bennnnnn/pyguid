@@ -1,11 +1,19 @@
 <!-- Shared sidebar styles and behavior -->
 <style is:global>
+  /* Mobile: collapse chapters until opened */
   .course-sidebar .submenu {
     display: none;
   }
 
   .course-sidebar .menu-group.is-open > .submenu {
     display: block;
+  }
+
+  /* Desktop: flat menu — always show lesson links under each chapter */
+  @media (min-width: 1024px) {
+    .course-sidebar .chapter-group > .submenu {
+      display: block;
+    }
   }
 
   .course-sidebar .menu-icon {

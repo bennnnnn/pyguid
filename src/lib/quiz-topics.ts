@@ -1,4 +1,5 @@
 import { getAllQuizzes, getQuizByChapter, type ChapterQuiz } from "./quizzes";
+import { pathFromRoot } from "./paths";
 
 /** URL slug under /python/quiz/{slug}/ */
 export type QuizTopic = {
@@ -252,7 +253,7 @@ export function getQuizTopicForChapter(chapter: number): QuizTopic | undefined {
 }
 
 export function quizUrl(slug: string): string {
-  return `/python/quiz/${slug}/`;
+  return pathFromRoot(`python/quiz/${slug}/`);
 }
 
 export function getQuizExam(topic: QuizTopic): ChapterQuiz | undefined {

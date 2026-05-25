@@ -39,7 +39,13 @@ function chapterIsOpen(group: LessonGroup): boolean {
           const groupId = topicAnchorId(group.chapterTitle);
           const lessons = getAllLessonsInGroup(group);
           return (
-            <li class:list={["menu-group", "chapter-group", isOpen && "is-open"]}>
+            <li
+              class:list={[
+                "menu-group",
+                "chapter-group",
+                isOpen && "is-open",
+              ]}
+            >
               <button
                 type="button"
                 class="menu-trigger flex w-full items-center justify-between gap-2 py-2 pl-4 pr-4 text-left text-sm font-semibold"
