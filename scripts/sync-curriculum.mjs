@@ -19,7 +19,7 @@ for (const file of readdirSync(lessonsDir)) {
   const slug = file.replace(/\.mdx$/, "");
   if (!slugSet.has(slug)) {
     console.warn(
-      `WARN: ${slug} not in curriculum-order.json — move to src/archive/lessons or add to curriculum`,
+      `WARN: ${slug} not in curriculum-order.json — delete the file or add it to the curriculum`,
     );
   }
 }

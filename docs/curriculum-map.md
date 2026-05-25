@@ -48,10 +48,6 @@ Chapter quizzes: `/python/quiz/{topic-slug}/` — see `src/lib/quiz-topics.ts`.
 
 Chapter 4 (Input) quiz: published (`chapter-4.json`).
 
-## Archived (not in course)
-
-See `src/archive/lessons/README.md` — web frameworks, databases, Git/CI/PyPI, async I/O track.
-
 ## Maintainer workflow
 
 1. Edit `docs/curriculum-order.json` or regenerate with `generate-curriculum-v11.mjs`

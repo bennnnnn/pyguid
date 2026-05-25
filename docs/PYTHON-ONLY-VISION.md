@@ -98,6 +98,6 @@ Target intent like: `python variables`, `python list append`, `python append vs 
 7. Advanced pure-Python chapters (split/rename toward 30-chapter map)
 8. **Python Mini Programs** — small programs, not capstones
 
-## Archive policy
+## Removing lessons
 
-Lessons under `src/archive/lessons/` are **not** in `curriculum-order.json` and are not published. Restore by moving back to `src/content/lessons/` and re-adding to the curriculum, then `npm run sync:curriculum`.
+To retire a lesson: delete its file under `src/content/lessons/`, remove its entry from `docs/curriculum-order.json`, add a redirect in `astro.config.mjs` if the URL was public, then run `npm run sync:curriculum`. Past versions stay in git history if you ever want to restore one.
