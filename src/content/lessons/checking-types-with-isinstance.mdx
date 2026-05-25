@@ -1,0 +1,79 @@
+---
+title: "Checking types with isinstance()"
+navTitle: "isinstance()"
+description: "isinstance(value, type) returns True or False—isinstance(age, int) is often better than type() == int."
+order: 45
+chapter: 9
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "isinstance(value, int) returns True if value is an int. Prefer it over type(x) == int in most real code."
+---
+
+## Why this matters
+
+You often need a **yes/no** answer: “Is this a number?” **`isinstance()`** returns **`True`** or **`False`** and is the Pythonic way to check types.
+
+## isinstance() basics
+
+<PythonExample
+  filename="isinstance_demo.py"
+  code={`age = 25
+
+print(isinstance(age, int))
+print(isinstance(age, str))`}
+/>
+
+Output:
+
+```text
+True
+False
+```
+
+**`age`** is an **`int`**, not a **`str`**.
+
+## Compare to type()
+
+Both can ask the same question:
+
+```python
+type(age) == int      # True, but less flexible later
+isinstance(age, int)  # True — preferred style
+```
+
+Beginners can use either; **`isinstance()`** scales better as you learn classes and subclasses.
+
+## Check several types at once
+
+Use a **tuple** of types for “int **or** float”:
+
+<PythonExample
+  filename="number_check.py"
+  code={`value = 3.14
+
+print(isinstance(value, (int, float)))`}
+/>
+
+Output: **`True`**
+
+## Small real-world pattern
+
+<PythonExample
+  filename="safe_double.py"
+  code={`def double_if_number(x):
+    if isinstance(x, (int, float)):
+        return x * 2
+    return "Not a number"
+
+print(double_if_number(10))
+print(double_if_number("10"))`}
+/>
+
+## Recap
+
+- **`isinstance(value, SomeType)`** → **`True`** or **`False`**
+- Often **better** than **`type(x) == SomeType`**
+- Use **`(int, float)`** to allow more than one type
+- Works great with **`if`** in the next chapters

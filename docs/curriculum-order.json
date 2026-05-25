@@ -276,64 +276,8 @@
       "partTitle": "Variables and input"
     },
     {
-      "slug": "data-types-overview",
-      "chapter": 8,
-      "chapterTitle": "Data Types",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "Core data types"
-    },
-    {
-      "slug": "type-function",
-      "chapter": 8,
-      "chapterTitle": "Data Types",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "type()"
-    },
-    {
-      "slug": "isinstance-basics",
-      "chapter": 8,
-      "chapterTitle": "Data Types",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "isinstance()"
-    },
-    {
-      "slug": "none-type",
-      "chapter": 8,
-      "chapterTitle": "Data Types",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "None"
-    },
-    {
-      "slug": "mutable-immutable",
-      "chapter": 8,
-      "chapterTitle": "Data Types",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "Mutable vs immutable"
-    },
-    {
-      "slug": "integers-floats",
-      "chapter": 9,
-      "chapterTitle": "Numbers",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "Integers and floats"
-    },
-    {
-      "slug": "math-random-module",
-      "chapter": 9,
-      "chapterTitle": "Numbers",
-      "part": 3,
-      "partTitle": "Types, numbers, and strings",
-      "section": "math and random preview"
-    },
-    {
       "slug": "arithmetic-operators",
-      "chapter": 10,
+      "chapter": 8,
       "chapterTitle": "Operators",
       "part": 3,
       "partTitle": "Types, numbers, and strings",
@@ -341,7 +285,7 @@
     },
     {
       "slug": "assignment-operators",
-      "chapter": 10,
+      "chapter": 8,
       "chapterTitle": "Operators",
       "part": 3,
       "partTitle": "Types, numbers, and strings",
@@ -349,19 +293,47 @@
     },
     {
       "slug": "operator-precedence",
-      "chapter": 10,
+      "chapter": 8,
       "chapterTitle": "Operators",
       "part": 3,
       "partTitle": "Types, numbers, and strings",
       "section": "Operator precedence"
     },
     {
-      "slug": "tip-calculator-project",
+      "slug": "what-are-data-types-in-python",
+      "chapter": 9,
+      "chapterTitle": "Data Types",
+      "part": 3,
+      "partTitle": "Types, numbers, and strings"
+    },
+    {
+      "slug": "checking-types-with-type",
+      "chapter": 9,
+      "chapterTitle": "Data Types",
+      "part": 3,
+      "partTitle": "Types, numbers, and strings"
+    },
+    {
+      "slug": "checking-types-with-isinstance",
+      "chapter": 9,
+      "chapterTitle": "Data Types",
+      "part": 3,
+      "partTitle": "Types, numbers, and strings"
+    },
+    {
+      "slug": "common-data-type-mistakes",
+      "chapter": 9,
+      "chapterTitle": "Data Types",
+      "part": 3,
+      "partTitle": "Types, numbers, and strings"
+    },
+    {
+      "slug": "integers-floats",
       "chapter": 10,
-      "chapterTitle": "Operators",
+      "chapterTitle": "Numbers",
       "part": 3,
       "partTitle": "Types, numbers, and strings",
-      "section": "Mini project"
+      "section": "Integers, floats, and complex"
     },
     {
       "slug": "strings",

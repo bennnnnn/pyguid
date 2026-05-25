@@ -3,8 +3,8 @@ export const SITE = {
   title: "PyGuide — Learn Python from Zero to Advanced Core Python",
   description:
     "Free Python-only tutorials, quizzes, and references with runnable examples. Learn Python from the basics to advanced core Python topics.",
-  /** Canonical URL — set SITE_URL env at build time to override (see astro.config.mjs) */
-  url: "https://bennnnnn.github.io/pyguid",
+  /** Canonical URL — set SITE_URL at build time (Vercel env); local default below */
+  url: "http://localhost:4321",
   locale: "en_US",
 } as const;
 

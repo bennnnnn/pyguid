@@ -2,8 +2,8 @@
 
 **Learn Python from zero to advanced core Python** — 187 tutorials, **Run code** in the browser (Skulpt), chapter quizzes, and a syntax reference.
 
-**Live site:** [bennnnnn.github.io/pyguid](https://bennnnnn.github.io/pyguid)  
-**Repository:** [github.com/bennnnnn/pyguid](https://github.com/bennnnnn/pyguid)
+**Local dev:** `npm run dev` → http://localhost:4321  
+**Production:** deploy to Vercel; set `SITE_URL` to your domain (e.g. `https://pyguide.vercel.app`).
 
 ## Features
 
@@ -68,7 +68,7 @@ docs/
 ## Deploy
 
 ```bash
-SITE_URL=https://bennnnnn.github.io/pyguid npm run build
+SITE_URL=https://your-domain.vercel.app npm run build
 ```
 
 Default site URL is set in `astro.config.mjs`. Override with `SITE_URL` for custom domains.

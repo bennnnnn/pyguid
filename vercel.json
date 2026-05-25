@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/pyguid", "destination": "/", "permanent": false },
+    { "source": "/pyguid/", "destination": "/", "permanent": false },
+    { "source": "/pyguid/:path*", "destination": "/:path*", "permanent": false }
+  ]
+}

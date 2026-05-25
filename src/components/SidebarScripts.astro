@@ -1,19 +1,11 @@
 <!-- Shared sidebar styles and behavior -->
 <style is:global>
-  /* Mobile: collapse chapters until opened */
   .course-sidebar .submenu {
     display: none;
   }
 
   .course-sidebar .menu-group.is-open > .submenu {
     display: block;
-  }
-
-  /* Desktop: flat menu — always show lesson links under each chapter */
-  @media (min-width: 1024px) {
-    .course-sidebar .chapter-group > .submenu {
-      display: block;
-    }
   }
 
   .course-sidebar .menu-icon {
@@ -155,21 +147,13 @@
       });
     });
 
-    sidebar.querySelectorAll(".menu-group > .menu-trigger").forEach((trigger) => {
+    sidebar.querySelectorAll(".chapter-group > .menu-trigger").forEach((trigger) => {
       trigger.addEventListener("click", (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        const group = trigger.closest(".menu-group");
-        if (!group || group.classList.contains("section-group")) return;
+        const group = trigger.closest(".chapter-group");
+        if (!group) return;
         const willOpen = !group.classList.contains("is-open");
-        const siblingList = group.parentElement;
-        siblingList?.querySelectorAll(":scope > .menu-group.is-open").forEach((other) => {
-          if (other !== group) {
-            other.classList.remove("is-open");
-            other
-              .querySelector(":scope > .menu-trigger")
-              ?.setAttribute("aria-expanded", "false");
-          }
-        });
         group.classList.toggle("is-open", willOpen);
         trigger.setAttribute("aria-expanded", String(willOpen));
       });

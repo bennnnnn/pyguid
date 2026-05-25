@@ -1,0 +1,75 @@
+---
+title: "Checking data types with type()"
+navTitle: "type()"
+description: "Use Python type() to see what kind of value you have—debugging and learning tool for beginners."
+order: 44
+chapter: 9
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "type(value) returns the type of a value, e.g. <class 'int'>. Helpful while learning and debugging."
+---
+
+## Why this matters
+
+When output is weird, **`type()`** answers “what am I actually working with?” It is a learning and debugging tool — you will use **`isinstance()`** next for cleaner yes/no checks.
+
+## type() tells you the type
+
+Call **`type(value)`** with any value inside the parentheses:
+
+<PythonExample
+  filename="type_checks.py"
+  code={`print(type(25))
+print(type(3.14))
+print(type("hello"))
+print(type(True))
+print(type(None))`}
+/>
+
+Output:
+
+```text
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'bool'>
+<class 'NoneType'>
+```
+
+## Useful on variables
+
+<PythonExample
+  filename="vars.py"
+  code={`age = 25
+name = "Bini"
+
+print(type(age))
+print(type(name))`}
+/>
+
+## Useful when learning
+
+If **`+`** or **`print`** surprises you, check types first:
+
+<PythonExample
+  filename="debug.py"
+  code={`a = "5"
+b = 5
+print(type(a), type(b))`}
+/>
+
+You will see **`str`** vs **`int`** — that explains why **`a + b`** fails.
+
+<Callout variant="tip">
+  For yes/no “is this an int?” questions, **`isinstance()`** (next lesson) is usually better
+  than comparing **`type(x) == int`** in real programs.
+</Callout>
+
+## Recap
+
+- **`type(value)`** shows the value’s type
+- Output looks like **`<class 'int'>`**
+- Great for **debugging** and **learning**
+- Pair with the lessons on **int**, **str**, **bool**, and **None**

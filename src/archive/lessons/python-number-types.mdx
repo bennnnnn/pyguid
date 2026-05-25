@@ -1,0 +1,81 @@
+---
+title: "Python number types: int and float"
+navTitle: "Numbers"
+description: "int and float in Python—whole numbers, decimals, negatives, and type() examples for beginner learners."
+order: 41
+chapter: 8
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "Use int for whole numbers like 25 and float for decimals like 19.99. Numbers are written without quotes."
+---
+
+## Why this matters
+
+Counts, prices, scores, and measurements are **numbers**. Python splits everyday numbers into **`int`** (whole) and **`float`** (decimal). Knowing which you have helps when you do math or compare values.
+
+## int — whole numbers
+
+**`int`** is for **whole numbers** — positive, negative, or zero.
+
+<PythonExample
+  filename="ints.py"
+  code={`age = 25
+year = 2024
+below_zero = -3
+
+print(age)
+print(year)
+print(below_zero)`}
+/>
+
+No quotes around numbers. Quotes would turn them into **text**.
+
+## float — decimal numbers
+
+**`float`** is for numbers **with a decimal part**.
+
+<PythonExample
+  filename="floats.py"
+  code={`price = 19.99
+temperature = -4.5
+
+print(price)
+print(temperature)`}
+/>
+
+## Check types with type()
+
+<PythonExample
+  filename="number_types.py"
+  code={`age = 25
+price = 19.99
+
+print(type(age))
+print(type(price))`}
+/>
+
+Output:
+
+```text
+<class 'int'>
+<class 'float'>
+```
+
+| Value   | Type    | Meaning        |
+| ------- | ------- | -------------- |
+| `25`    | `int`   | whole number   |
+| `19.99` | `float` | decimal number |
+
+<Callout variant="warning" title="Oops — common mistake">
+  **`"25"`** is a **string** (text), not an int. You cannot do reliable math on it until you
+  convert it with **`int()`** or **`float()`** (covered in Type Conversion).
+</Callout>
+
+## Recap
+
+- **`int`** — whole numbers like **`25`**, **`-3`**
+- **`float`** — decimals like **`19.99`**
+- Write numbers **without quotes**
+- **`type(x)`** shows **`int`** or **`float`**

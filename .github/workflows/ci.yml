@@ -21,5 +21,3 @@ jobs:
       - run: npm run check:routes
       - run: npm run check:format
       - run: npm run build
-        env:
-          SITE_URL: https://bennnnnn.github.io/pyguid

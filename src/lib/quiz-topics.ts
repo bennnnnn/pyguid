@@ -212,8 +212,9 @@ function quizChapterForLessonChapter(chapter: number): number | undefined {
   if (chapter === 3 || chapter === 4) return 2;
   if (chapter === 5) return 3;
   if (chapter === 6 || chapter === 7) return 4;
-  if (chapter === 8) return 5;
-  if (chapter === 9 || chapter === 10) return 6;
+  if (chapter === 8) return 6;
+  if (chapter === 9) return 5;
+  if (chapter === 10) return 6;
   if (chapter === 11 || chapter === 12) return 7;
   if (chapter >= 13 && chapter <= 14) return 8;
   if (chapter === 15) return 10;

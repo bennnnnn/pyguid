@@ -1,0 +1,70 @@
+---
+title: "Python booleans: True and False"
+navTitle: "Booleans"
+description: "Python bool values True and False—capitalization matters, used for yes/no logic before conditions."
+order: 43
+chapter: 8
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "bool is True or False only. Capital T and F matter—true and false are not valid."
+---
+
+## Why this matters
+
+Programs constantly ask yes/no questions: logged in? over 18? file found? Python stores those answers as **booleans** — **`True`** or **`False`**. You will use them heavily in **Conditions** later.
+
+## True and False
+
+A **boolean** (`bool`) is either:
+
+- **`True`** — yes
+- **`False`** — no
+
+<PythonExample
+  filename="flags.py"
+  code={`is_student = True
+is_admin = False
+
+print(is_student)
+print(is_admin)
+print(type(is_student))`}
+/>
+
+Output:
+
+```text
+True
+False
+<class 'bool'>
+```
+
+## Capital T and F matter
+
+Python only accepts the **capitalized** spellings **`True`** and **`False`**.
+
+<Callout variant="danger" title="Invalid">
+  **`true`**, **`false`**, **`TRUE`**, and **`FALSE`** are **not** valid booleans — Python will
+  raise a **NameError** or treat them as unknown names.
+</Callout>
+
+## Used for logic later
+
+You do not need **`if`** yet. Just know booleans **store decisions**:
+
+<PythonExample
+  filename="preview.py"
+  code={`has_ticket = True
+door_open = False
+
+print("Ticket:", has_ticket)
+print("Door open:", door_open)`}
+/>
+
+## Recap
+
+- **`bool`** values are **`True`** and **`False`** only
+- **Capital letters** are required
+- Booleans power **conditions** and comparisons in later chapters
+- **`type(x)`** shows **`<class 'bool'>`**

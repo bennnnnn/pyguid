@@ -1,0 +1,75 @@
+---
+title: "Common Python data type mistakes"
+navTitle: "Type Mistakes"
+description: "Beginner type errors: string vs number, True/False capitalization, None vs 0, and input() returning str."
+order: 46
+chapter: 9
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "Watch for \"5\" vs 5, True not true, None not 0, and input() always returning text."
+---
+
+## Why this matters
+
+Type mistakes cause **TypeError** and **NameError** messages that feel random until you see the pattern. This lesson collects the usual ones so you can fix them faster.
+
+## String numbers vs real numbers
+
+**`"5"`** is text. **`5`** is a number.
+
+```python
+print("5" + "5")   # "55" — text join
+print(5 + 5)       # 10 — math
+```
+
+## Adding text and numbers directly
+
+This fails — Python will not guess:
+
+<PythonExample filename="bad_mix.py" code={`print("5" + 5)`} />
+
+Expect **TypeError**. Fix: convert with **`int()`**, **`float()`**, or **`str()`** (Type Conversion chapter).
+
+## True and False capitalization
+
+<PythonExample filename="bad_bool.py" code={`is_ready = true`} />
+
+**`true`** is not defined — use **`True`**. Same for **`False`**, not **`false`**.
+
+## Thinking None means 0
+
+<PythonExample
+  filename="none_math.py"
+  code={`value = None
+print(value + 1)`}
+/>
+
+**TypeError** — **`None`** is not a number. Check **`is None`** before math.
+
+## Forgetting input() returns a string
+
+After the **Input** chapter, remember:
+
+```python
+age = input("Age? ")   # always str, even if user types digits
+age + 1                # TypeError until you convert
+```
+
+Use **`int(age)`** when you need math.
+
+## Quick checklist
+
+1. Numbers in **quotes** → **str**
+2. **`True` / `False`** — exact spelling
+3. **`None`** — not zero, not empty text
+4. **`input()`** → **str** until converted
+5. When stuck, run **`type(value)`**
+
+## Recap
+
+- Mixing **str** and **int** without converting → **TypeError**
+- **`true`** / **`false`** → invalid; use **`True`** / **`False`**
+- **`None + 1`** → invalid
+- **`input()`** gives **text** — convert before math

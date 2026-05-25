@@ -1,84 +1,46 @@
 ---
 title: "Numbers"
-description: "Python integers and floats: whole numbers vs decimals, division, and mixing types. Beginner tutorial with int(), float(), and rounding examples."
-order: 45
-chapter: 9
+description: "Python number types: int for whole numbers, float for decimals, and complex for imaginary numbers. Beginner tutorial with type() examples."
+order: 47
+chapter: 10
 chapterTitle: "Numbers"
-section: "Integers and floats"
+section: "Integers, floats, and complex"
 part: 3
 partTitle: "Types, numbers, and strings"
 level: beginner
-quickAnswer: "int holds whole numbers without size limit in modern Python; float holds decimal values and uses binary floating point, which can surprise with fractions."
+quickAnswer: "Python has three built-in number types: int (whole numbers), float (decimals), and complex (numbers with an imaginary part written as 2 + 3j)."
 ---
 
 ## Why this matters
 
-Numbers drive scores, prices, counters, and scientific code. / always gives float in Python 3 while // floors division—mixing them causes off-by-one bugs. Knowing int vs float helps you pick the right input parsing and display format.
+Numbers drive scores, prices, counters, and scientific code. Knowing **`int`**, **`float`**, and **`complex`** helps you pick the right type for the job.
 
-You count whole apples with **1, 2, 3** and weigh flour as **2.5** kg. Python uses two number types the same way: **integers** for whole counts, **floats** for decimals.
+You count whole apples with **1, 2, 3**, weigh flour as **2.5** kg, and engineers describe AC current with numbers like **2 + 3j**. Python has one built-in type for each: **integers**, **floats**, and **complex** numbers.
 
-## One new idea: int vs float
+## The three number types
 
-| Type        | Name    | Example | When to use         |
-| ----------- | ------- | ------- | ------------------- |
-| **Integer** | `int`   | `42`    | counts, scores      |
-| **Float**   | `float` | `3.14`  | money, measurements |
+| Type        | Name      | Example   | When to use                          |
+| ----------- | --------- | --------- | ------------------------------------ |
+| **Integer** | `int`     | `42`      | counts, scores, ages                 |
+| **Float**   | `float`   | `3.14`    | money, measurements, decimals        |
+| **Complex** | `complex` | `2 + 3j`  | engineering, signals, advanced math  |
 
 <PythonExample
   filename="create.py"
   code={`count = 3
 price = 9.99
+signal = 2 + 3j
 
 print(count, type(count))
-print(price, type(price))`}
+print(price, type(price))
+print(signal, type(signal))`}
 />
 
 **Line by line**
 
 - Numbers have **no quotes** (quotes mean text)
-- `type(...)` shows `int` or `float`
-
-## Basic math
-
-<PythonExample
-  filename="math.py"
-  code={`a = 10
-b = 4
-print(a + b)
-print(a - b)
-print(a * b)
-print(a / b)`}
-/>
-
-| Operator | Meaning                   |
-| -------- | ------------------------- |
-| `+`      | add                       |
-| `-`      | subtract                  |
-| `*`      | multiply                  |
-| `/`      | divide (always **float**) |
-
-`10 / 4` → `2.5`, not `2`.
-
-## Whole-number division and remainder
-
-<PythonExample
-  filename="floor_mod.py"
-  code={`print(17 // 5)
-print(17 % 5)`}
-/>
-
-| Expression | Result | Meaning              |
-| ---------- | ------ | -------------------- |
-| `17 // 5`  | `3`    | how many full 5s fit |
-| `17 % 5`   | `2`    | what is left over    |
-
-Think: `17 = 3 × 5 + 2`.
-
-## Powers
-
-<PythonExample filename="power.py" code={`print(2 ** 3)`} />
-
-`2 ** 3` means 2 × 2 × 2 = **8**.
+- `type(...)` shows `int`, `float`, or `complex`
+- Complex numbers use **`j`** (not `i`) for the imaginary part — `2 + 3j`, never `2 + 3i`
 
 ## Real use case: receipt total
 
@@ -104,6 +66,7 @@ print("Total:", total)`}
 
 ## Recap
 
-- **`int`** — whole numbers; **`float`** — decimals
-- **`/``** always gives a float
-- **`//`** and **`%`** — divide and remainder
+- **`int`** — whole numbers; **`float`** — decimals; **`complex`** — numbers with `j`
+- Numbers have **no quotes** — `5` is a number, `"5"` is text
+- Most everyday code uses `int` and `float`; `complex` shows up in engineering and science
+- Math operators (**`+`**, **`/`**, **`//`**, **`%`**, **`**`**) live in the **Operators** chapter

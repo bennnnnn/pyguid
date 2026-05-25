@@ -1,0 +1,90 @@
+---
+title: "What are data types in Python?"
+navTitle: "Types"
+description: "Learn what a data type is in Python, why types matter, and why 5 and \"5\" behave differently—with runnable examples."
+order: 43
+chapter: 9
+chapterTitle: "Data Types"
+part: 3
+partTitle: "Types, numbers, and strings"
+level: beginner
+quickAnswer: "A data type is the kind of value Python is holding—number, text, True/False, and more. Types decide what operators like + can do."
+---
+
+## Why this matters
+
+Python needs to know **what kind of thing** a value is before it can act on it. Mixing types by accident is one of the most common beginner bugs. Learning types early makes every later chapter easier.
+
+## What a data type means
+
+A **data type** is the **kind of value** Python is storing:
+
+- a **number** for counting and math
+- **text** for names and messages
+- **True/False** for yes/no decisions (later)
+- and more
+
+Every value has a type. Python uses that type to decide **what you are allowed to do**.
+
+## The main Python data types
+
+Each row is **one Python data type** with an example. Numbers, strings, lists, and the rest each have their **own chapter later** — this table is the **map** so you recognize them now.
+
+| Python type | Example | What it is for |
+| ----------- | ------- | -------------- |
+| `int` | `25` | Whole numbers — counting, ages, scores |
+| `float` | `19.99` | Decimals — prices, measurements |
+| `complex` | `2 + 3j` | Numbers with an imaginary part — engineering, science |
+| `str` | `"Bini"` | Text — names, messages, labels |
+| `bool` | `True`, `False` | Yes/no — conditions and logic |
+| `NoneType` | `None` | “No value yet” — missing or not found |
+| `list` | `["Bini", "Sara"]` | Ordered group you can change |
+| `tuple` | `(10, 20)` | Ordered group that stays fixed |
+| `set` | `{1, 2, 3}` | Unique items — no duplicates |
+| `dict` | `{"name": "Bini", "age": 25}` | Labels → values (keys and values) |
+
+## `"5"` and `5` are different
+
+The **number** `5` can do math. The **text** `"5"` is two characters you can join with other text.
+
+<PythonExample
+  filename="five_plus.py"
+  code={`print(5 + 5)
+print("5" + "5")`}
+/>
+
+Output:
+
+```text
+10
+55
+```
+
+Same symbol on screen — **different types**, **different meaning**.
+
+## See the types with type()
+
+<PythonExample
+  filename="see_types.py"
+  code={`print(type(5))
+print(type("5"))`}
+/>
+
+Output:
+
+```text
+<class 'int'>
+<class 'str'>
+```
+
+<Callout variant="tip">
+  When output surprises you, ask: **what type is this value?** You will use `type()` and
+  `isinstance()` in the next lessons in this chapter.
+</Callout>
+
+## Recap
+
+- The **table** lists every main Python **data type** with an example
+- Each type has its **own chapter later** — Numbers, Strings, Lists, and so on
+- **`5`** and **`"5"`** look similar but behave differently
+- Next in this chapter: **`type()`**, **`isinstance()`**, and **common type mistakes**

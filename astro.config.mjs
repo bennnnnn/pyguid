@@ -17,15 +17,12 @@ const practiceChapterRedirects = Object.fromEntries(
   }),
 );
 
-const siteUrl = process.env.SITE_URL ?? "https://bennnnnn.github.io/pyguid";
-const siteOrigin = new URL(siteUrl).origin;
-/** GitHub Pages project site: https://user.github.io/repo/ */
-const siteBase = new URL(siteUrl).pathname.replace(/\/$/, "") || undefined;
+/** Set SITE_URL in Vercel (or locally) to your production domain. */
+const site = (process.env.SITE_URL ?? "http://localhost:4321").replace(/\/$/, "");
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteOrigin,
-  base: siteBase,
+  site,
   trailingSlash: "always",
   vite: {
     plugins: [tailwindcss()],
@@ -35,6 +32,9 @@ export default defineConfig({
     ...REFERENCE_SLUG_REDIRECTS,
     ...practiceChapterRedirects,
     "/learn/": "/python/",
+    "/pyguid/": "/",
+    "/pyguid/python/": "/python/",
+    "/pyguid/python/:slug/": "/python/:slug/",
     "/python/roadmap/": "/python/",
     "/cheatsheet/": "/python/reference/",
     "/python/dict-methods/": "/python/dict-loops/",
@@ -74,6 +74,17 @@ export default defineConfig({
     "/python/printing-user-input/": "/python/storing-input-in-variable/",
     "/python/asking-multiple-questions/": "/python/storing-input-in-variable/",
     "/python/input-recap/": "/python/simple-input-mistakes/",
+    "/python/data-types-overview/": "/python/what-are-data-types-in-python/",
+    "/python/type-function/": "/python/checking-types-with-type/",
+    "/python/isinstance-basics/": "/python/checking-types-with-isinstance/",
+    "/python/mutable-immutable/": "/python/what-are-data-types-in-python/",
+    "/python/python-number-types/": "/python/what-are-data-types-in-python/",
+    "/python/python-strings-text-data/": "/python/what-are-data-types-in-python/",
+    "/python/python-booleans/": "/python/what-are-data-types-in-python/",
+    "/python/none-type/": "/python/what-are-data-types-in-python/",
+    "/python/python-collection-types-preview/": "/python/what-are-data-types-in-python/",
+    "/python/math-random-module/": "/python/integers-floats/",
+    "/python/tip-calculator-project/": "/python/arithmetic-operators/",
     "/python/quiz/functional-python/": "/python/quiz/advanced-functions/",
     "/python/quiz/dataclasses-dates/": "/python/quiz/standard-library/",
     "/python/quiz/logging-regex/": "/python/quiz/standard-library/",
