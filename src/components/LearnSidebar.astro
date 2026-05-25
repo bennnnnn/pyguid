@@ -72,7 +72,7 @@ function chapterIsOpen(group: LessonGroup): boolean {
                         currentLessonId === lesson.id && "is-active",
                       ]}
                     >
-                      {lesson.data.title}
+                      {lesson.data.navTitle ?? lesson.data.title}
                     </a>
                   </li>
                 ))}

@@ -56,7 +56,7 @@ const totalLessons = getTotalLessonCount(groups);
               {getAllLessonsInGroup(group).map((lesson) => (
                 <li>
                   <a href={lessonUrl(lesson.id)} class="text-sm font-medium text-link">
-                    {lesson.data.title}
+                    {lesson.data.navTitle ?? lesson.data.title}
                   </a>
                 </li>
               ))}

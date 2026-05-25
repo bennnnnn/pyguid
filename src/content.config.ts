@@ -6,6 +6,8 @@ const lessons = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/lessons" }),
   schema: z.object({
     title: z.string(),
+    /** Short label in the tutorial sidebar (defaults to title) */
+    navTitle: z.string().optional(),
     description: z.string(),
     order: z.number(),
     chapter: z.number(),
