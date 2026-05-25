@@ -1,0 +1,59 @@
+---
+title: "Good comments vs bad comments"
+description: "Write comments that explain why and context—not obvious restatements of what the code already says. PyGuide Comments lesson with examples."
+order: 25
+chapter: 3
+chapterTitle: "Comments"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Good comments explain why something is done, edge cases, or constraints. Bad comments repeat what the code already clearly says."
+---
+
+## Why this matters
+
+Comments cost **attention** — every reader reads them (or ignores them forever). Teach yourself early to leave comments that earn their place: **truth** that names alone do not carry.
+
+## Bad comment: repeats the obvious
+
+The code already says **what**. Repeating it adds noise:
+
+<PythonExample
+  filename="bad_obvious.py"
+  code={`# Set count to zero (redundant comment)
+count = 0
+print(count)`}
+/>
+
+Better: drop the comment or rename only if **`count`** was unclear — here it is not.
+
+## Good comment: explains **why** or **gotchas**
+
+<PythonExample
+  filename="good_why.py"
+  code={`# Lesson-only rate — real apps read this from config or APIs
+sales_tax_rate = 0.08
+total = 100 * (1 + sales_tax_rate)
+print(round(total, 2))`}
+/>
+
+The **`# Lesson-only rate…`** line explains **constraints** readers cannot infer from **`0.08`** alone.
+
+## Good comment: encodes domain knowledge
+
+<PythonExample
+  filename="good_domain.py"
+  code={`# Customer IDs exclude leading zeros in legacy export — preserve as string
+customer_id = "00742"
+print("ID:", customer_id)`}
+/>
+
+<Callout variant="tip">
+  Best fix for “cryptic code” is often **better names**. Use comments when the **reason**, **tradeoff**, or **external rule** is not obvious from naming alone.
+</Callout>
+
+## Recap
+
+- **Avoid** comments that duplicate clear code (`x = x + 1  # increment x`)
+- **Prefer** comments for **why**, **constraints**, **warnings**, or **temporary experiments**
+- **Improve names** first; add comments where names still cannot carry the whole story

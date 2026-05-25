@@ -24,7 +24,7 @@
 .lesson-pager-btn:hover,
 .lesson-pager-btn:focus,
 .lesson-pager-btn:visited {
-  background: var(--color-surface-alt);
+  background: var(--color-interactive-hover-bg);
   color: var(--color-text);
   text-decoration: none;
 }

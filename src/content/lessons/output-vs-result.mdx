@@ -1,0 +1,55 @@
+---
+title: "Output vs result"
+description: "Python output vs result: print() shows values; expressions can compute without displaying. Beginner guide for scripts and the PyGuide runner."
+order: 17
+chapter: 2
+chapterTitle: "Python Code Basics"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "An expression can compute a value without showing it. print() sends output to the screen so you can see it."
+---
+
+## Why this matters
+
+Beginners ask: “I wrote `2 + 2` — why did nothing appear?” In a **script**, only **`print()`** (and a few other tools) show text. Calculating alone is silent.
+
+## print() shows output
+
+<PythonExample filename="show.py" code={`print(2 + 2)`} />
+
+You see **4** in the output panel.
+
+## Computing without print
+
+<PythonExample filename="silent.py" code={`2 + 2
+10 - 3`} />
+
+In a **file** run as a script, those lines may produce **no visible output** on PyGuide — Python still evaluates them, but nothing is displayed.
+
+That is normal. The **result** exists internally; it is not **output** until you print it.
+
+## Side-by-side habit
+
+<PythonExample
+  filename="compare.py"
+  code={`2 + 2
+print(2 + 2)
+print("Done")`}
+/>
+
+Only lines with **`print()`** (and the final `"Done"`) show in output.
+
+## Interactive vs script (preview)
+
+In some Python **REPL** sessions, typing `2 + 2` alone shows `4`. In **lesson files** you run as a whole script, rely on **`print()`** to see values. PyGuide behaves like running a script.
+
+<Callout variant="note">
+  Later, **return** from functions passes results to other code — different from **print()**. A full lesson on that lives in the Functions chapter.
+</Callout>
+
+## Recap
+
+- **Result** = value Python calculates
+- **Output** = what you **see** (usually via **`print()`**)
+- When in doubt, wrap values in **`print(...)`** while learning

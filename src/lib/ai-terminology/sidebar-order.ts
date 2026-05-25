@@ -3,7 +3,7 @@ import type { AiTerminologySection } from "./types";
 
 /**
  * Sidebar navigation order — hot builder topics first, foundations later.
- * Does not affect study order, index cards, or prev/next pager.
+ * Does not affect index cards or prev/next pager.
  */
 export const AI_TERM_SIDEBAR_ORDER: string[] = [
   "agents",

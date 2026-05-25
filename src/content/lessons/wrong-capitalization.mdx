@@ -1,0 +1,47 @@
+---
+title: "Wrong capitalization"
+description: "Python treats Print and print as different names—wrong capitalization triggers NameError. Learn fixed vs broken runnable examples on PyGuide."
+order: 30
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Python is case-sensitive. The built-in function is print—all lowercase—not Print."
+---
+
+## Why this matters
+
+Some languages shrug at capitalization quirks; Python does **not**. Typing **`Print`** looks almost right on screen—but it is literally a **different name** than **`print`** to Python.
+
+## This fails (watch the capital P)
+
+<PythonExample filename="bad_print.py" code={`Print("Hello")`} />
+
+You get **NameError** — Python has no **`Print`** in the default toolbox.
+
+## This succeeds
+
+<PythonExample filename="good_print.py" code={`print("Hello")`} />
+
+Built-in **`print`** is spelled **lower** case.
+
+## Common variations that also fail early on
+
+Try running these when you doubt your eyes—they all miss the lowercase built-in spelling:
+
+```python
+Print("oops")
+PRINT("oops")
+priNT("oops")
+```
+
+<Callout variant="note">
+  Later you will invent your **own** names (`username`)—those obey the same-case rules too: **`score`** ≠ **`Score`**.
+</Callout>
+
+## Recap
+
+- Python names are **case-sensitive**
+- **`print`** is lowercase; **`Print`** is a **mistyped** name ⇒ **NameError**
+- Slow down visually on the **first letter** of each identifier

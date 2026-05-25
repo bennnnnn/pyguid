@@ -1,0 +1,51 @@
+---
+title: "Missing quotes & parentheses"
+description: "Common beginner SyntaxErrors from unbalanced quotes or parentheses in Python print and expressions—with broken vs fixed runnable examples."
+order: 29
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "If a \" or ) is missing—or never opened—Python raises SyntaxError. Match every quote and parentheses pair carefully."
+---
+
+## Why this matters
+
+Most first-week **`SyntaxError`** messages trace back to two families: **`"`** imbalance and **`(` `)`** imbalance. Drill the pattern visually and fixes take seconds instead of guessing.
+
+## Missing closing quote
+
+<PythonExample filename="open_string.py" code={`print("Hello)`} />
+
+Run — Python wandered inside a **string forever** hunting the closing **`"`**.
+
+**Fixed:**
+
+<PythonExample filename="closed_string.py" code={`print("Hello")`} />
+
+## Missing closing parenthesis
+
+<PythonExample filename="open_paren.py" code={`print("Hello"`} />
+
+Python hits end of line still “inside” **`print(...`**.
+
+**Fixed:**
+
+<PythonExample filename="closed_paren.py" code={`print("Hello")`} />
+
+## Both layers at once — correct pattern
+
+<PythonExample
+  filename="balanced.py"
+  code={`phrase = "Hi"
+print(phrase)`}
+/>
+
+Quotes wrap **text**; parentheses wrap **`print`'s contents** — each layer closes cleanly.
+
+## Recap
+
+- **Every opening `"`** needs a closing **`"`**
+- **Every opening `(` for a call like `print`** needs a matching **`)`**
+- If lost, bracket-match from inside out—or paste the traceback line number and work backward

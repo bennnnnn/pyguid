@@ -12,13 +12,13 @@
 .python-example .py-output {
   margin: 0;
   padding: 0;
-  color: #16a34a;
+  color: var(--color-output-text);
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 .python-example .py-output.py-output--error {
-  color: #dc2626;
+  color: var(--color-output-error);
 }
 
 .python-example .code-panel pre {

@@ -1,8 +1,8 @@
 {
   "chapter": 2,
-  "chapterTitle": "Print, Comments, and Errors",
-  "title": "Print and Errors Quiz",
-  "description": "Test your understanding of print, Python syntax, comments, and how code runs top to bottom.",
+  "chapterTitle": "Python Code Basics",
+  "title": "Python Code Basics Quiz",
+  "description": "Test print(), code order, syntax, output, and common beginner mistakes from chapter 2.",
   "passPercent": 70,
   "questions": [
     {

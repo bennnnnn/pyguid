@@ -1,0 +1,44 @@
+---
+title: "Comments recap"
+description: "Short recap of Python comments: # for humans, single-line and inline styles, commenting out, and useful vs noisy comments."
+order: 26
+chapter: 3
+chapterTitle: "Comments"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Comments explain code for humans. Use # on a line or after code; comment out experiments with #; focus on why, not noisy restatements of what."
+---
+
+## Why this matters
+
+If you skim one page before jumping to variables or errors, **this** is it: comments are cheap to write once the habit sticks, and priceless when you reopen a script after a busy week.
+
+## The whole picture on one canvas
+
+Comments are ignored by Python but read by **you**:
+
+<PythonExample
+  filename="recap_demo.py"
+  code={`# Single-line reminder: greet the user once at startup
+print("Welcome")
+
+username = "dev"  # inline note — demo only
+
+# print("Archived debug:", username)
+print("Hello,", username)`}
+/>
+
+- **`#` at column one** → full-line comment
+- **Code then `#`** → **inline** note; Python runs only the left side
+- **`# print(...)`** → **commenting out** a line without deleting it
+
+## Quality in one sentence
+
+Prefer comments that explain **why** or **constraints**, not phrases that mimic what **`print`** and **`username =`** already show.
+
+## Recap
+
+- **`#`** through end of line = **ignored** when running
+- Use **single-line**, **inline**, and **comment-out** patterns as tools, not filler
+- **Good** comments document **intent and context**; **bad** comments parrot obvious code

@@ -1,0 +1,66 @@
+---
+title: "What does Python code look like?"
+description: "What does Python code look like? Plain text, lines of instructions, quotes, and parentheses—your first visual map of Python on PyGuide."
+order: 10
+chapter: 2
+chapterTitle: "Python Code Basics"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Python code is plain text: each line usually gives Python one instruction using words, numbers, quotes, parentheses, and (later) indentation."
+---
+
+## Why this matters
+
+Before you memorize rules, it helps to **recognize** what a Python file looks like. Then error messages and tutorials feel familiar instead of alien.
+
+## Plain text instructions
+
+A Python program is a **text file** — often named something like `hello.py`. You write **lines**; Python reads them when you press **Run**.
+
+Each line usually tells Python to **do one thing** (show text, calculate, save a value, and so on).
+
+<PythonExample
+  filename="sample.py"
+  code={`name = "Bini"
+print(name)`}
+/>
+
+**What you see**
+
+| Part | Role |
+| ---- | ---- |
+| `name = "Bini"` | one instruction (you will learn this fully in Variables) |
+| `print(name)` | another instruction on the next line |
+| `"Bini"` | text in **quotes** |
+| `( )` | parentheses around what `print` should show |
+
+You do not need to master every symbol today. Notice the pattern: **words, numbers, quotes, parentheses**.
+
+## Building blocks you will see everywhere
+
+- **Words** like `print` — action names
+- **Numbers** like `25` or `3.14` — without quotes
+- **Quotes** `"..."` or `'...'` — text (strings)
+- **Parentheses** `( )` — wrap arguments for functions like `print()`
+- **Symbols** `=`, `+`, `,` — meaning comes in later lessons
+- **Indentation** (spaces at the start of a line) — groups code; preview later in this chapter
+
+<PythonExample filename="hello.py" code={`print("Hello, Python!")`} />
+
+One line, one instruction — that is valid Python.
+
+## Code is written for humans and machines
+
+You format code so **you** can read it. Python cares about **spelling**, **quotes**, and **order** (next lesson). Good layout (blank lines between ideas) helps you debug.
+
+<Callout variant="tip">
+  Say each line in English: “print Hello Python.” That habit makes new files less intimidating.
+</Callout>
+
+## Recap
+
+- Python code = **plain text** in a `.py` file
+- Usually **one main instruction per line**
+- Common pieces: **words, numbers, quotes, parentheses**
+- **`print(...)`** is a typical first line you will write and run

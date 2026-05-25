@@ -1,0 +1,78 @@
+---
+title: "Python syntax basics"
+description: "Python syntax basics for beginners: quotes, parentheses, colons, and indentation rules that stop SyntaxError before you run code."
+order: 18
+chapter: 2
+chapterTitle: "Python Code Basics"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Syntax is Python's grammar—matching quotes and parentheses, correct spelling, and (later) colons and indentation. Break syntax and Python refuses to run."
+---
+
+## Why this matters
+
+**Syntax** is the set of rules for writing valid Python. A **SyntaxError** means Python could not even start running — the text does not match the grammar.
+
+## Quotes must match
+
+<PythonExample filename="bad_quote.py" code={`print("Hello"`} />
+
+Missing closing `"` or `)` → **SyntaxError**. Python points near the problem line.
+
+**Fixed:**
+
+<PythonExample filename="good_quote.py" code={`print("Hello")`} />
+
+## Parentheses must match
+
+Every `(` needs a closing `)`:
+
+```python
+print("Hi")      # OK
+print("Hi"       # SyntaxError
+```
+
+Function **names** come first, then **parentheses**:
+
+```python
+print("Hi")   # OK
+("Hi")        # not what you want — no print
+```
+
+## Spelling and capitalization
+
+Python is **case-sensitive**:
+
+```python
+print("Hi")   # OK
+Print("Hi")   # NameError — Print is not defined
+```
+
+Built-in names like **`print`** are **lowercase**.
+
+## Colons come later
+
+You will write lines ending with **`:`** for `if`, `for`, `while`, and `def`:
+
+```python
+if True:
+    print("Hi")
+```
+
+The colon means “a block of indented code follows.” Preview in the next lesson; full rules in **Conditions** and **Loops**.
+
+## Indentation matters (preview)
+
+Python uses **leading spaces** to group lines. Random indentation causes **IndentationError**. Use consistent spaces (4 per level is standard).
+
+<Callout variant="warning">
+  For now, keep every top-level statement at the **left edge** (no leading spaces) until you learn indented blocks.
+</Callout>
+
+## Recap
+
+- **Syntax** = grammar rules
+- Match **quotes** and **parentheses**
+- **`print`** is lowercase
+- **`:`** and **indentation** matter for blocks you will learn soon

@@ -1,0 +1,48 @@
+---
+title: "Commenting out code"
+description: "Temporarily disable Python lines by prefixing them with # — commenting out — without deleting. PyGuide Comments lesson with runnable examples."
+order: 24
+chapter: 3
+chapterTitle: "Comments"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Commenting out means putting # at the start of a line (or after code ends) so Python skips those lines — handy for debugging or comparing versions."
+---
+
+## Why this matters
+
+When you are experimenting, you often want **two versions** of one idea: try A, flip to B, try again. **`#`** lets you “turn off” lines **without deleting** them — safer when you might need them back in five minutes.
+
+## Turn off whole lines with `#`
+
+<PythonExample
+  filename="toggle.py"
+  code={`print("Version A runs")
+# print("Version B is sleeping")
+print("Done")`}
+/>
+
+Only **Version A** and **Done** appear in output — the middle line is commented out.
+
+## Compare two implementations quickly
+
+<PythonExample
+  filename="compare.py"
+  code={`value = 10
+
+# print("Double:", value * 2)
+print("Square:", value * value)`}
+/>
+
+Uncomment one line and comment the other to switch behavior — a common learner workflow.
+
+<Callout variant="danger" title="Watch strings">
+  Commenting inside the **middle** of a string breaks quotes. Finish the string, **then** comment, or comment the **whole** `print(...)` line.
+</Callout>
+
+## Recap
+
+- **Commenting out** = add **`#`** so Python **skips** that line’s code
+- Use it to **isolate bugs** or **compare** two snippets
+- For longer experiments, **`if False:`** blocks exist later — for now **`#`** is enough

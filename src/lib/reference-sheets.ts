@@ -108,6 +108,23 @@ export function getReferenceNav(): ReferenceNavGroup[] {
   })).filter((group) => group.sheets.length > 0);
 }
 
+export type ReferenceMenuItem = {
+  sheetId: string;
+  index: number;
+  entry: ReferenceEntry;
+};
+
+/** Flat entry list (counts, search) — not used for sidebar grouping. */
+export function getReferenceMenuItems(): ReferenceMenuItem[] {
+  const items: ReferenceMenuItem[] = [];
+  for (const sheet of REFERENCE_SHEETS) {
+    for (let index = 0; index < sheet.entries.length; index++) {
+      items.push({ sheetId: sheet.id, index, entry: sheet.entries[index] });
+    }
+  }
+  return items;
+}
+
 export function getReferenceCategory(id: string): ReferenceCategory | undefined {
   return REFERENCE_CATEGORIES.find((c) => c.id === id);
 }
@@ -140,7 +157,6 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
       {
         title: "Run a .py file",
         syntax: "python file.py",
-        slug: "run-py-file",
         summary: "Save code in a file and run with python file.py",
         example: "python hello.py",
         runnable: false,
@@ -1418,23 +1434,104 @@ const ENTRY_SLUG_ALIASES: Record<string, string> = {
   "min() · max()": "min-max",
   "any() · all()": "any-all",
   "==  !=  <  >  <=  >=": "comparisons",
+  "== != < > <= >=": "comparisons",
   "and · or · not": "and-or-not",
   "+  -  *  /": "operators",
+  "+ - * /": "operators",
   "+=  -=  *=": "augmented-assign",
   "int · float · str · bool": "builtin-types",
+  "True · False": "true-false",
   "def(x=)": "def-default",
   "def(x)": "def-param",
+  "def name():": "def",
+  "def name(x):": "def-param",
+  "def name(x=0):": "def-default",
+  "class Name:": "class",
+  "class Child(Parent):": "inheritance",
+  "name = value": "assign",
+  "name = name + 1": "reassign",
+  "a, b = 1, 2": "unpack-assign",
+  "python file.py": "run-py-file",
+  ">>>": "repl",
+  "#": "comment",
+  "print()": "print",
+  "input()": "input",
+  "while cond:": "while",
+  "for item in seq:": "for",
+  "range(n)": "range",
+  "range(start, stop)": "range-args",
+  "if cond:": "if",
+  "elif cond:": "elif",
+  "else:": "else",
+  'f"..."': "fstring",
+  "from ... import": "from-import",
+  "import ... as": "import-as",
+  "a, b = tup": "tuple-unpack",
+  "tup[i]": "tuple-index",
+  "del[i]": "del-item",
 };
 
-function slugifyEntryName(name: string): string {
-  const trimmed = name.trim();
-  if (ENTRY_SLUG_ALIASES[trimmed]) return ENTRY_SLUG_ALIASES[trimmed];
+/** Short noun-style slug from syntax label (W3Schools-style lookup URLs). */
+function slugFromSyntax(syntax: string): string | null {
+  const s = syntax.trim();
+  if (ENTRY_SLUG_ALIASES[s]) return ENTRY_SLUG_ALIASES[s];
 
-  let s = trimmed.toLowerCase();
+  const methodOnly = s.match(/^\.([a-z_]+)\(\)$/i);
+  if (methodOnly) return methodOnly[1].toLowerCase();
+
+  const fnCall = s.match(/^([a-z_][\w]*)\(\)$/i);
+  if (fnCall) return fnCall[1].toLowerCase();
+
+  if (/^for\s+.+\s+in\s+/i.test(s)) return "for";
+  if (/^while\b/i.test(s)) return "while";
+  if (/^if\b/i.test(s)) return "if";
+  if (/^elif\b/i.test(s)) return "elif";
+  if (/^else\b/i.test(s)) return "else";
+  if (/^def\b/i.test(s))
+    return s.includes("=") ? "def-default" : s.includes("(") ? "def" : "def";
+  if (/^class\b/i.test(s)) return s.includes("(") ? "inheritance" : "class";
+  if (/^try\b/i.test(s)) return "try";
+  if (/^except\b/i.test(s)) return "except";
+  if (/^finally\b/i.test(s)) return "finally";
+  if (/^raise\b/i.test(s)) return "raise";
+  if (/^with\b/i.test(s)) return "with";
+  if (/^import\b/i.test(s)) return "import-as";
+  if (/^from\b/i.test(s)) return "from-import";
+  if (s.startsWith("del")) return "del-item";
+
+  if (s === "break") return "break";
+  if (s === "continue") return "continue";
+  if (s === "pass") return "pass";
+  if (s === "return") return "return";
+  if (s === "yield") return "yield";
+  if (s === "lambda") return "lambda";
+  if (s === "None") return "none";
+  if (s === "in") return "in";
+  if (s === "is") return "is";
+  if (s === "//") return "floor-div";
+  if (s === "%") return "modulo";
+  if (s === "**") return "power";
+  if (s === "+=") return "augmented-assign";
+  if (s === "|") return "or-set";
+  if (s === "&") return "and-set";
+  if (s === "-") return "diff-set";
+
+  if (/^[A-Z][a-zA-Z]*Error$/.test(s)) {
+    return s.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+  }
+
+  if (/^[a-z_][\w]*$/.test(s)) return s.replace(/_/g, "-");
+
+  return null;
+}
+
+function slugifyEntryName(name: string): string {
+  let s = name.trim().toLowerCase();
   s = s.replace(/[·]/g, "-");
   s = s.replace(/\([^)]*\)/g, "");
   s = s.replace(/[()]/g, "");
   s = s.replace(/\./g, "");
+  s = s.replace(/['']/g, "");
   s = s.replace(/[^\w-]+/g, "-");
   s = s.replace(/-+/g, "-").replace(/^-+|-+$/g, "");
   if (!s) return "syntax";
@@ -1443,6 +1540,8 @@ function slugifyEntryName(name: string): string {
 
 function entrySlugBase(entry: ReferenceEntry): string {
   if (entry.slug) return entry.slug;
+  const fromSyntax = slugFromSyntax(entry.syntax);
+  if (fromSyntax) return fromSyntax;
   return slugifyEntryName(entry.title);
 }
 
@@ -1469,12 +1568,31 @@ export function referenceEntrySlug(sheetId: string, index: number): string {
   return getSheetEntrySlugs(sheetId)[index] ?? `item-${index}`;
 }
 
+/** @deprecated Sheet index pages removed — use referenceEntryUrl or referenceSheetHubUrl. */
 export function referenceChapterUrl(sheetId: string): string {
-  return `/python/reference/${sheetId}/`;
+  return referenceFirstEntryUrl(sheetId);
 }
 
 export function referenceEntryUrl(sheetId: string, entrySlug: string): string {
   return `/python/reference/${sheetId}/${entrySlug}/`;
+}
+
+export function referenceFirstEntryUrl(sheetId: string): string {
+  return referenceEntryUrl(sheetId, referenceEntrySlug(sheetId, 0));
+}
+
+/** Anchor on the reference hub for a topic group (replaces sheet index pages). */
+export function referenceSheetHubUrl(sheetId: string): string {
+  return `/python/reference/#${sheetId}`;
+}
+
+/** Redirect legacy /python/reference/{sheet}/ URLs to the first entry in that group. */
+export function buildReferenceSheetIndexRedirects(): Record<string, string> {
+  const redirects: Record<string, string> = {};
+  for (const sheet of REFERENCE_SHEETS) {
+    redirects[`/python/reference/${sheet.id}/`] = referenceFirstEntryUrl(sheet.id);
+  }
+  return redirects;
 }
 
 export function getAllReferenceEntryPages(): ReferenceEntryPage[] {

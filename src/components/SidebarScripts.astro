@@ -25,11 +25,12 @@
   }
 
   .course-sidebar .menu-trigger:hover {
-    background: var(--color-surface-alt);
+    background: var(--color-interactive-hover-bg);
+    color: var(--color-text);
   }
 
   .course-sidebar .menu-group.is-open > .menu-trigger {
-    background: var(--color-surface-alt);
+    background: transparent;
     color: var(--color-text);
   }
 
@@ -42,13 +43,13 @@
   }
 
   .course-sidebar .section-trigger:hover {
-    background: var(--color-surface-alt);
+    background: var(--color-interactive-hover-bg);
     color: var(--color-text);
   }
 
   .course-sidebar .section-group.is-open > .section-trigger {
     color: var(--color-text);
-    background: var(--color-surface-alt);
+    background: transparent;
   }
 
   .course-sidebar .lesson-link {
@@ -62,22 +63,27 @@
   }
 
   .course-sidebar .lesson-link:hover {
-    color: var(--color-link-hover);
-    background: var(--color-brand-light);
+    color: var(--color-text-secondary);
+    background: var(--color-interactive-hover-bg);
     text-decoration: none;
   }
 
   .course-sidebar .lesson-link:active {
-    color: var(--color-link-active);
+    color: var(--color-text-secondary);
     text-decoration: none;
   }
 
   .course-sidebar .lesson-link.is-active {
-    color: var(--color-link-active);
+    color: var(--color-interactive-active-text);
     font-weight: 600;
-    background: var(--color-brand-light);
-    border-left-color: var(--color-brand);
+    background: var(--color-interactive-active-bg);
+    border-left-color: var(--color-interactive-active-border);
     text-decoration: none;
+  }
+
+  .sidebar-toggle:hover {
+    background: var(--color-interactive-hover-bg);
+    color: var(--color-text);
   }
 
   @media (max-width: 1023px) {

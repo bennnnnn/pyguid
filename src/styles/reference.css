@@ -1,25 +1,4 @@
 /* Reference index */
-.ref-index-categories {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.ref-index-category-title {
-  margin: 0;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.ref-index-category-desc {
-  margin: 0.35rem 0 0.75rem;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--color-text-muted);
-}
-
 .ref-index-sheet-list {
   margin: 0;
   padding: 0;
@@ -59,7 +38,56 @@
   white-space: nowrap;
 }
 
-/* Chapter table */
+.ref-index-entry-list {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.ref-index-entry-link {
+  display: grid;
+  grid-template-columns: minmax(6rem, auto) 1fr;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.ref-index-entry-list li:last-child .ref-index-entry-link {
+  border-bottom: none;
+}
+
+.ref-index-entry-link:hover {
+  background: var(--color-surface-alt);
+  text-decoration: none;
+}
+
+.ref-index-entry-link code {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ref-index-entry-summary {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .ref-index-entry-link {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+/* Chapter table (legacy; sheet index pages removed) */
 .ref-table-wrap {
   margin-top: 1.5rem;
   overflow-x: auto;
@@ -135,20 +163,6 @@
 }
 
 /* Sidebar */
-.ref-sidebar-category + .ref-sidebar-category {
-  margin-top: 0.5rem;
-}
-
-.ref-sidebar-category-title {
-  margin: 0;
-  padding: 0.5rem 1rem 0.25rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
 .ref-entry-link .ref-entry-syntax-label {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -159,8 +173,8 @@
   padding: 0;
 }
 
-.ref-sheet-category {
-  margin-bottom: 0;
+.ref-entry-link.is-active .ref-entry-syntax-label {
+  color: var(--color-interactive-active-text);
 }
 
 /* Entry page */

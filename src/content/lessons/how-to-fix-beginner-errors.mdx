@@ -1,0 +1,48 @@
+---
+title: "How to fix beginner errors"
+description: "Practical checklist: reading the traceback, checking quotes, parentheses, spelling, capitalization, and types—with runnable sanity examples."
+order: 34
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Use a short checklist—last line first, balances of quotes/parens, exact spelling/case, variable defined, types mix—fix one issue and rerun."
+---
+
+## Why this matters
+
+Panic fades when you substitute **routine steps** for vibes. Memorize one beginner checklist once; reuse it forever.
+
+## Beginner troubleshooting checklist
+
+1. **Final line**: what **exception** (`SyntaxError`, `NameError`, `TypeError`, …)?
+2. **Quoted line**: do **`"`**, **`'`**, **`(`**, **`)`** all pair?
+3. **Spelling**: is every name identical character-for-character everywhere?
+4. **Case**: is it **`print`**, not **`Print`**?
+5. **Order**: assign variables **before** `print(variable)` reads them
+6. **Types (preview)**: mixing strings and numbers intentionally?
+
+## Sanity check passing program
+
+Bookmark this baseline — green means your runner still works:
+
+<PythonExample filename="check_runner.py" code={`print("Runner OK:", 40 + 2)`} />
+
+## Deliberately break one lever at a time
+
+**Quotes test**
+
+<PythonExample
+  filename="chk_quotes.py"
+  code={`message = "Works"
+print(message)`}
+/>
+
+Change to **`"Works`** intentionally when practicing — watch **SyntaxError** return; revert and confirm green.
+
+## Recap
+
+- **One change per rerun** avoids mystery compounding bugs
+- **Syntax** → imbalance / illegal symbols; **Name** → undefined or typo/case mix-up; **Type** → mismatched operands (preview tier)
+- Return to **`print("Runner OK")`** when suspicion lands on tooling instead of typing

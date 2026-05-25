@@ -1,0 +1,51 @@
+---
+title: "Single-line comments"
+description: "Use the hash symbol (#) to start a single-line comment in Python. Comments chapter lesson with runnable PyGuide examples."
+order: 22
+chapter: 3
+chapterTitle: "Comments"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "In Python, # starts a comment. Everything from # to the end of that line is ignored when the program runs."
+---
+
+## Why this matters
+
+**`#`** is the one punctuation mark every Python file uses for ordinary comments. Once it feels automatic, you will read tutorials and coworkers’ code much faster.
+
+## One new idea: `#` starts a comment
+
+Anything from **`#` to the end of the line** is skipped:
+
+<PythonExample
+  filename="single_line.py"
+  code={`# Greeting for the demo
+print("Hello!")
+print("Still runs")`}
+/>
+
+The two **`print`** lines run; the lines that begin with **`#`** do not execute.
+
+## A full line of `#` comments
+
+Sometimes you separate sections with commented “headers”:
+
+<PythonExample
+  filename="section.py"
+  code={`# --- Setup ---
+name = "Bini"
+
+# --- Display ---
+print(name)`}
+/>
+
+<Callout variant="tip">
+  You do not **need** fancy separators — clear names beat decoration. Save big banners for places they genuinely help **navigation**.
+</Callout>
+
+## Recap
+
+- **`#`** marks the start of a **single-line** comment on that physical line
+- Text after **`#`** on the same line is **not** executed
+- Use comments to clarify **intent** next to real code

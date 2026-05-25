@@ -60,22 +60,22 @@ const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
   <body class="flex min-h-screen flex-col">
     <TutorialTopNav />
     <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
-    <div class="mx-auto flex w-full max-w-[1500px] flex-1 flex-col lg:flex-row">
-      {
-        sidebar === "reference" ? (
-          <ReferenceSidebar />
-        ) : sidebar === "ai-terms" ? (
-          <AiTerminologySidebar />
-        ) : (
-          <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
-        )
-      }
-      <div class="flex min-w-0 flex-1 flex-col bg-surface">
-        <main class="flex-1 px-4 py-8 sm:px-10 lg:px-12">
+    <div class="flex min-h-0 flex-1 flex-col">
+      <div class="mx-auto flex w-full max-w-[1500px] min-h-0 flex-1 flex-col lg:flex-row">
+        {
+          sidebar === "reference" ? (
+            <ReferenceSidebar />
+          ) : sidebar === "ai-terms" ? (
+            <AiTerminologySidebar />
+          ) : (
+            <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
+          )
+        }
+        <main class="min-w-0 flex-1 bg-surface px-4 py-8 sm:px-10 lg:px-12">
           <slot />
         </main>
-        <TutorialFooter />
       </div>
+      <TutorialFooter />
     </div>
     <SidebarScripts />
     <PythonExampleScripts />

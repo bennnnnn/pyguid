@@ -56,7 +56,7 @@ src/
     index.astro        # Tutorials landing
     [slug].astro       # Lesson pages
     quiz/              # Quizzes hub + [topic] pages (no public practice/ route)
-    reference/         # Reference hub + [sheetId]/[entry] topic pages
+    reference/         # Reference hub + [sheetId]/[entry] per-syntax pages (no sheet index)
   data/quizzes/        # Chapter quiz question JSON
   lib/quizzes.ts       # Quiz data loader
   lib/lessons.ts       # Sidebar order, related lessons

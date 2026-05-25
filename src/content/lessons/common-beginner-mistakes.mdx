@@ -1,0 +1,88 @@
+---
+title: "Common beginner mistakes"
+description: "Common Python beginner mistakes: wrong capitalization, missing quotes, parentheses, smart quotes, and bad indentation—with fixes you can run."
+order: 20
+chapter: 2
+chapterTitle: "Python Code Basics"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Watch for Print instead of print, missing quotes around text, unclosed parentheses, smart quotes from Word, and random indentation."
+---
+
+## Why this matters
+
+The same handful of mistakes causes most first-week frustration. Recognizing them saves time when Python shows red error text.
+
+## Wrong capitalization
+
+```python
+Print("Hello")   # wrong — NameError
+print("Hello")   # correct
+```
+
+Python names are **case-sensitive**. The built-in is **`print`**, all lowercase.
+
+## Missing quotes around text
+
+```python
+print(Hello)     # wrong — looks for variable Hello
+print("Hello")   # correct
+```
+
+Literal words need **quotes** unless they are variable names you created.
+
+## Missing closing parenthesis or quote
+
+```python
+print("Hello"    # SyntaxError — missing )
+print("Hello")   # correct
+```
+
+Python often points at the line where it **noticed** the problem — check for matching `"` and `(` `)`.
+
+## Smart quotes from Word or Messages
+
+Word processors use curly quotes `"` `"` instead of straight `"`. Python only accepts **straight** quotes from your keyboard.
+
+```python
+print("Hi")   # OK — straight "
+print("Hi")   # may fail — curly quotes
+```
+
+Type code in PyGuide’s editor, not copy from fancy documents.
+
+## Random indentation
+
+At the top level of a script, lines should start at the **left edge** (until you use `if` / loops):
+
+```python
+  print("Hi")   # IndentationError at top level
+print("Hi")     # OK
+```
+
+## Forgetting print is lowercase
+
+This catches many beginners after other languages:
+
+| Wrong | Right |
+| ----- | ----- |
+| `Print(...)` | `print(...)` |
+| `PRINT(...)` | `print(...)` |
+
+## When you see an error
+
+1. Read the **last line** of the message
+2. Check **quotes**, **parentheses**, **spelling**
+3. Change **one thing**, run again
+
+<Callout variant="tip">
+  Errors are feedback, not failure. Every developer still fixes typos daily.
+</Callout>
+
+## Recap
+
+- **`print`** lowercase; text in **straight quotes**
+- Close every **`(`** and **`"`**
+- No random **indent** at top level
+- Fix one issue at a time and re-run

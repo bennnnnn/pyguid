@@ -88,13 +88,13 @@
 }
 
 .quiz-question-card.is-answered {
-  border-color: rgb(29 78 216 / 0.4);
-  box-shadow: 0 0 0 1px rgb(29 78 216 / 0.2);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 .quiz-question-card.is-unanswered-flash {
-  border-color: #fbbf24;
-  box-shadow: 0 0 0 2px #fde68a;
+  border-color: var(--color-warning-border);
+  box-shadow: 0 0 0 2px var(--color-warning-bg);
 }
 
 .quiz-q-number {
@@ -109,7 +109,7 @@
   padding: 0 0.5rem;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-text);
 }
 
 .quiz-q-prompt {
@@ -243,14 +243,14 @@
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #047857;
+  color: var(--color-success);
 }
 
 .quiz-results-fail {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #b45309;
+  color: var(--color-warning);
 }
 
 .quiz-review-heading {
@@ -279,13 +279,13 @@
 }
 
 .quiz-review-item.is-correct {
-  border-color: #a7f3d0;
-  background: rgb(236 253 245 / 0.8);
+  border-color: var(--color-success-border);
+  background: color-mix(in srgb, var(--color-success-bg) 80%, transparent);
 }
 
 .quiz-review-item.is-wrong {
-  border-color: #fecaca;
-  background: rgb(254 242 242 / 0.8);
+  border-color: var(--color-danger-border);
+  background: color-mix(in srgb, var(--color-danger-bg) 80%, transparent);
 }
 
 .quiz-review-q {
@@ -324,16 +324,16 @@
 }
 
 .quiz-review-option.is-answer-correct {
-  border-color: #16a34a;
-  background: #f0fdf4;
-  color: #15803d;
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
   font-weight: 600;
 }
 
 .quiz-review-option.is-answer-wrong {
-  border-color: #dc2626;
-  background: #fef2f2;
-  color: #b91c1c;
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
   font-weight: 600;
 }
 
@@ -347,11 +347,11 @@
 }
 
 .quiz-review-option.is-answer-correct .quiz-review-tag {
-  color: #166534;
+  color: var(--color-success);
 }
 
 .quiz-review-option.is-answer-wrong .quiz-review-tag {
-  color: #991b1b;
+  color: var(--color-danger);
 }
 
 .quiz-review-exp {

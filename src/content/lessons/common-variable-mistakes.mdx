@@ -1,0 +1,89 @@
+---
+title: "Common variable mistakes"
+description: "Fix beginner variable errors: use before define, typos, wrong case, quoting names in print, invalid names, = vs ==."
+order: 45
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Watch for undefined names, typos, wrong capitalization, quoting variable names in print, invalid names, and confusing = with ==."
+---
+
+## Why this matters
+
+Variable mistakes produce **NameError**, silent wrong output, or **SyntaxError**. Spotting the pattern beats guessing—same skills as the **Beginner Errors** chapter, now focused on **names and storage**.
+
+## Using a variable before creating it
+
+<Callout variant="danger" title="NameError">
+  **`print(username)`** before **`username = ...`** anywhere fails: Python does not know that name yet.
+</Callout>
+
+Create the name **first**, then read it:
+
+<PythonExample
+  filename="order.py"
+  code={`user_name = "Bini"
+print(user_name)`}
+/>
+
+## Misspelling or wrong capitalization
+
+Python treats spelling **exactly**:
+
+```python
+user_name = "Bini"
+print(username)   # NameError — missing underscore
+```
+
+```python
+name = "Bini"
+print(Name)       # NameError if only name exists — different variable
+```
+
+Every letter and underscore must **match** everywhere.
+
+## Putting the variable name in quotes
+
+You want the **value**, not the word:
+
+```python
+name = "Bini"
+print("name")     # prints: name
+```
+
+<PythonExample filename="quote_trap.py" code={`name = "Bini"
+print(name)
+print("name")`} />
+
+## Invalid names
+
+| Mistake        | Result        |
+| -------------- | ------------- |
+| `2age = 1`     | SyntaxError   |
+| `my score = 1` | SyntaxError   |
+| `class = 1`    | SyntaxError   |
+
+Stick to the **Variable names** lesson rules.
+
+## Confusing `=` and `==`
+
+- **`=`** — store a value (**assignment**)
+- **`==`** — compare two values (**equality**, later)
+
+```python
+score = 10      # stores 10
+score == 10     # True or False — comparison, not storage
+```
+
+## What is next
+
+You know how to **store** information. Next up: **Input** — storing values that come from the **user**.
+
+## Recap
+
+- Define variables **before** `print(variable)`
+- Match **spelling and case** every time
+- **`print(name)`** not **`print("name")`** when you want the stored value
+- **`=`** assigns; **`==`** compares (later chapters)

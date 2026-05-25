@@ -1,0 +1,46 @@
+---
+title: "NameError (preview)"
+description: "NameError preview: calling print(username) before the variable exists—broken vs defining first. PyGuide Beginner Errors lesson."
+order: 31
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "NameError often means Python has not seen that name assigned yet—you used a variable before defining it."
+---
+
+## Why this matters
+
+You cannot refer to **`username`** if Python never saved that label. **Define, then read** sounds obvious—until autocomplete runs faster than assignment.
+
+## Broken: print before assignment
+
+<PythonExample filename="use_before_define.py" code={`print(username)`} />
+
+Python answers **NameError: name 'username' is not defined** (wording varies slightly).
+
+## Fixed: assign the name before using it
+
+<PythonExample filename="define_first.py" code={`username = "Alex"
+print(username)`}
+/>
+
+Order matters: **`=`** binds the label first; **`print`** can read it after.
+
+## Another honest mistake — typo in the variable name
+
+<PythonExample filename="typo_var.py" code={`score = 10
+print(socre)`}
+/>
+
+**`socre`** is treated as brand new ⇒ **NameError**. Fix spelling to **`score`** and it runs:
+
+<PythonExample filename="typo_fixed.py" code={`score = 10
+print(score)`} />
+
+## Recap
+
+- **NameError ~ “I do not recognize this name yet”**
+- Typical fix: assign (`name = …`) **before** using it—or fix a **typo**
+- Whole chapters later revisit scope; preview level: lines run **top to bottom**

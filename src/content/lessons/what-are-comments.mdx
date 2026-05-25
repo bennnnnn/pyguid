@@ -1,0 +1,48 @@
+---
+title: "What are comments?"
+description: "Understand that comments are notes for humans; Python skips them entirely. Learn Comments in Chapter 3 with runnable examples on PyGuide."
+order: 21
+chapter: 3
+chapterTitle: "Comments"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Comments are notes for humans. Python ignores them when running your program, but they help you and others understand the code later."
+---
+
+## Why this matters
+
+Programs are read far more often than they are written. Comments are how you leave **friendly breadcrumbs** for your future self and for teammates — without changing what Python actually executes.
+
+Think of comments like sticky notes on a recipe: the oven ignores them, but they remind **you** why you chose that temperature.
+
+## Comments are not code (to Python)
+
+Anything after **`#` on that line** is a comment — Python skips it:
+
+<PythonExample
+  filename="what_comments.py"
+  code={`# This is a reminder for humans only
+print("Python still runs this line")`}
+/>
+
+Only **`print(...)`** does work. The first line teaches **nothing** to the interpreter; it teaches **people**.
+
+## Computers follow instructions — comments explain them
+
+<PythonExample
+  filename="explain.py"
+  code={`# We multiply by 100 to show a percentage in the lesson
+score = 0.87
+print(score * 100)`}
+/>
+
+<Callout variant="note">
+  Later lessons go deeper into **single-line**, **inline**, and **commenting out** code. Here, the core idea is simple: comments are **for humans**, and Python **ignores** them (on commented lines).
+</Callout>
+
+## Recap
+
+- **Comments** = notes for **people**, not instructions for Python
+- On a line starting with **`#`**, Python runs **nothing** on that portion
+- Use them where they make the script easier to understand

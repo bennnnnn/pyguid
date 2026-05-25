@@ -2,19 +2,46 @@
 import { SITE } from "../lib/site";
 
 const year = new Date().getFullYear();
+const path = Astro.url.pathname;
+const isTutorials =
+  path === "/python" ||
+  path === "/python/" ||
+  (path.startsWith("/python/") &&
+    !path.startsWith("/python/reference") &&
+    !path.startsWith("/python/quiz"));
+const isQuiz = path.startsWith("/python/quiz");
+const isReference = path.startsWith("/python/reference");
+const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology/");
 ---
 
-<footer class="mt-auto border-t border-border bg-surface-alt py-8">
-  <div class="mx-auto max-w-3xl px-4 text-center text-sm text-text-muted">
+<footer class="site-footer relative z-20 mt-auto w-full border-t border-border bg-surface-alt py-8">
+  <div
+    class="mx-auto flex w-full max-w-[1500px] flex-col items-center px-4 text-center text-sm text-text-muted sm:px-6"
+  >
     <nav
       class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2"
       aria-label="Footer"
     >
-      <a href="/python/" class="text-link">Tutorials</a>
-      <a href="/python/quiz/" class="text-link">Quizzes</a>
-      <a href="/python/reference/" class="text-link">References</a>
-      <a href="/python/what-is-python/" class="text-link">First lesson</a>
-      <a href="/about/" class="text-link">About</a>
+      <a
+        href="/python/"
+        class:list={["nav-link", isTutorials && "is-active"]}
+        aria-current={isTutorials ? "page" : undefined}>Tutorials</a
+      >
+      <a
+        href="/python/quiz/"
+        class:list={["nav-link", isQuiz && "is-active"]}
+        aria-current={isQuiz ? "page" : undefined}>Quizzes</a
+      >
+      <a
+        href="/python/reference/"
+        class:list={["nav-link", isReference && "is-active"]}
+        aria-current={isReference ? "page" : undefined}>References</a
+      >
+      <a
+        href="/ai-terminology/"
+        class:list={["nav-link", isAiTerms && "is-active"]}
+        aria-current={isAiTerms ? "page" : undefined}>AI Terms</a
+      >
     </nav>
     <p class="mt-4">© {year} {SITE.name}. Free to use.</p>
   </div>

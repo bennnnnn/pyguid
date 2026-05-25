@@ -17,10 +17,10 @@ export const QUIZ_TOPICS: QuizTopic[] = [
     description: "Why Python and how the course works.",
   },
   {
-    slug: "print-comments-errors",
+    slug: "python-code-basics",
     chapter: 2,
-    title: "Print, Comments, and Errors",
-    description: "print(), comments, and reading syntax errors.",
+    title: "Python Code Basics",
+    description: "What code looks like, print(), output, syntax, and common first mistakes.",
   },
   {
     slug: "variables",
@@ -207,12 +207,13 @@ export function getQuizTopic(slug: string): QuizTopic | undefined {
 function quizChapterForLessonChapter(chapter: number): number | undefined {
   if (chapter <= 0) return undefined;
   if (chapter === 1) return 1;
-  if (chapter >= 2 && chapter <= 5) return 2;
-  if (chapter === 6) return 3;
-  if (chapter >= 7 && chapter <= 8) return 4;
-  if (chapter === 9) return 5;
-  if (chapter >= 10 && chapter <= 11) return 6;
-  if (chapter === 12) return 7;
+  if (chapter === 2) return 2;
+  if (chapter === 3 || chapter === 4) return 2;
+  if (chapter === 5) return 3;
+  if (chapter === 6 || chapter === 7) return 4;
+  if (chapter === 8) return 5;
+  if (chapter === 9 || chapter === 10) return 6;
+  if (chapter === 11 || chapter === 12) return 7;
   if (chapter >= 13 && chapter <= 14) return 8;
   if (chapter === 15) return 10;
   if (chapter >= 16 && chapter <= 17) return 9;

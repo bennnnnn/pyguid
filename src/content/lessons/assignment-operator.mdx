@@ -1,0 +1,56 @@
+---
+title: "The assignment operator ="
+description: "In Python, = stores a value in a name—it does not mean equal like in math. Learn assignment vs == comparison."
+order: 36
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "= means store this value in this name—not equal like in math. score = 10 puts 10 into score."
+---
+
+## Why this matters
+
+The **`=`** sign looks like math class, but in Python it means something different. Mixing up **assignment** and **equality** is a common beginner trap—clear now saves confusion later.
+
+## `=` means “store in this name”
+
+In Python, **`=`** does **not** mean “equal” the way it does in algebra.
+
+**`=`** means: **store this value in this name.**
+
+<PythonExample filename="assign.py" code={`score = 10`} />
+
+Read it: **put the value 10 into the name `score`.**
+
+The **name** goes on the **left**. The **value** goes on the **right**.
+
+## Wrong way around
+
+<Callout variant="danger" title="Invalid assignment">
+  **`10 = score`** is **not** allowed. Python needs a **name** on the left to label the storage.
+</Callout>
+
+## Assignment vs comparison (preview)
+
+You will use **`==`** later to **compare** two values. For now, notice the difference:
+
+```python
+score = 10      # assignment — store 10 in score
+score == 10     # comparison — asks “is score equal to 10?” (later)
+```
+
+<PythonExample
+  filename="store.py"
+  code={`score = 10
+print(score)`}
+/>
+
+Output: **`10`** — you stored it, then printed what lives under **`score`**.
+
+## Recap
+
+- **`=`** = **assignment** (“put this value in this name”)
+- **Left** = variable name, **right** = value
+- **`==`** is for **comparison**, not storing—covered when you learn conditions

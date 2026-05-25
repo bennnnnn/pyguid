@@ -1,0 +1,61 @@
+---
+title: "Constants by convention"
+description: "Python has no true constants—use UPPER_SNAKE_CASE names like PI or MAX_LOGIN_ATTEMPTS to signal do not change."
+order: 44
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Python has no true constants; uppercase names like PI = 3.14159 warn humans not to change the value."
+---
+
+## Why this matters
+
+Some values should stay fixed—math **`PI`**, max retry counts, API URLs. Python will not **stop** you from changing them, but a naming **convention** helps teams avoid accidents.
+
+## No true constants in Python
+
+Python does **not** have **true constants** the way some languages do. You **can** reassign any name.
+
+Developers use **uppercase names** for values that **should not change**:
+
+<PythonExample
+  filename="constants.py"
+  code={`PI = 3.14159
+MAX_LOGIN_ATTEMPTS = 3
+
+print(PI)
+print(MAX_LOGIN_ATTEMPTS)`}
+/>
+
+## A warning to humans
+
+**Uppercase** is a **warning to humans**: “treat this as fixed.”
+
+- **`PI`** — mathematical constant
+- **`MAX_LOGIN_ATTEMPTS`** — business rule cap
+
+Python still allows **`PI = 4`**—but code reviewers will notice.
+
+<Callout variant="tip">
+  Use **UPPER_SNAKE_CASE** for multi-word constants: **`MAX_LOGIN_ATTEMPTS`**, not **`maxLoginAttempts`** (that style is for ordinary variables).
+</Callout>
+
+## Ordinary variables stay lowercase
+
+<PythonExample
+  filename="mix.py"
+  code={`MAX_SCORE = 100
+current_score = 0
+current_score += 10
+print(current_score, "of", MAX_SCORE)`}
+/>
+
+**`MAX_SCORE`** looks fixed; **`current_score`** is meant to change.
+
+## Recap
+
+- Python has **no** enforced constants—only **convention**
+- **ALL_CAPS** names signal “do not reassign casually”
+- Regular data still uses **snake_case** lowercase names

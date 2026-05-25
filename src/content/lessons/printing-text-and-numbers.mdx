@@ -1,0 +1,69 @@
+---
+title: "Printing text and numbers"
+description: "Print text with quotes and numbers without quotes in Python. Learn the difference between strings and numeric literals with runnable examples."
+order: 13
+chapter: 2
+chapterTitle: "Python Code Basics"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Put text in quotes for print(); write numbers without quotes. print(25) and print(\"25\") look similar but mean different things."
+---
+
+## Why this matters
+
+Mixing **text** and **numbers** is a daily task. Getting quotes right early prevents confusing output and **TypeError** messages later.
+
+## Text needs quotes
+
+<PythonExample
+  filename="text.py"
+  code={`print("I am learning Python")
+print('Single quotes work too')`}
+/>
+
+Quotes tell Python: “this is **text**” (a **string**).
+
+## Numbers do not need quotes
+
+<PythonExample
+  filename="numbers.py"
+  code={`print(25)
+print(3.14)`}
+/>
+
+| You write | Python treats it as |
+| --------- | ------------------- |
+| `print(25)` | number **25** |
+| `print(3.14)` | decimal number **3.14** |
+| `print("25")` | text **"25"** (not math yet) |
+
+<PythonExample filename="text_number.py" code={`print("25")
+print(25)`} />
+
+Both show `25` on screen, but only the second is a number Python can add or subtract in code.
+
+## Show both in one program
+
+<PythonExample
+  filename="mix.py"
+  code={`print("I am learning Python")
+print(25)
+print(3.14)`}
+/>
+
+## Common mistake: words without quotes
+
+<PythonExample filename="oops.py" code={`print(Hello)`} />
+
+Unless `Hello` is a variable you created, Python looks for that name → **NameError**. For literal words, use **quotes**.
+
+<Callout variant="tip">
+  Rule of thumb: **human-readable words** → quotes. **Counts and measurements** you will math on → no quotes.
+</Callout>
+
+## Recap
+
+- **Strings** → `"text"` or `'text'`
+- **Numbers** → `42`, `3.14` with no quotes
+- **`print("25")`** ≠ **`print(25)`** inside code (even if output looks alike)

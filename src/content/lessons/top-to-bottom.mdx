@@ -1,23 +1,20 @@
 ---
-title: "How code runs"
-description: "Python runs your program one line at a time, from top to bottom Learn How code runs in this Print, Comments, and Errors lesson with runnable Python examples..."
-order: 2
+title: "Python runs code top to bottom"
+description: "Python runs code top to bottom, one line at a time. See why order matters with runnable examples before variables and print details."
+order: 11
 chapter: 2
-chapterTitle: "Running Python Code"
-section: "Top-to-bottom execution"
+chapterTitle: "Python Code Basics"
 part: 1
 partTitle: "Absolute beginner"
 level: beginner
-quickAnswer: "Python runs your program one line at a time, from top to bottom. This PyGuide lesson shows How code runs with examples you can run in the browser."
+quickAnswer: "Python starts at the first line and moves downward. Order matters—later lines can use work from earlier lines, not the other way around."
 ---
 
 ## Why this matters
 
-How code runs shows up throughout the beginner lessons and later chapters. Understanding it here makes the next lessons easier and helps you read real Python code with confidence. PyGuide keeps each page focused on one idea so you can practice without getting lost.
+If you know Python reads **top to bottom**, many beginner bugs make sense: “Why does that name not exist yet?” — because that line has not run.
 
-A recipe says: preheat oven, mix flour, bake. If you bake before mixing, disaster. Python reads your file like a recipe — **top to bottom**, one step at a time.
-
-## One new idea: lines run in order
+## Lines run in order
 
 <PythonExample
   filename="order.py"
@@ -26,7 +23,7 @@ print("Second")
 print("Third")`}
 />
 
-**Always this output**
+**Output is always**
 
 ```text
 First
@@ -34,39 +31,39 @@ Second
 Third
 ```
 
-Python does not skip lines or reorder them on its own (later you will add `if` and loops that change flow).
+Python does not skip or reorder lines on its own. (Later, `if` and loops change flow — not yet.)
 
-## Later lines use earlier work
-
-<PythonExample
-  filename="steps.py"
-  code={`greeting = "Hello"
-print(greeting)
-print("Done")`}
-/>
-
-**Line by line**
-
-- Line 1 creates `greeting` — must run **first**
-- Line 2 uses `greeting` — only works after line 1
-- Line 3 runs last
-
-You will learn variables properly in the **Variables** chapter; for now, remember: **define before use**.
-
-## Math on one line happens before print
+## Order matters when one line needs another
 
 <PythonExample
-  filename="math_first.py"
-  code={`print(3 + 4)
-print("3 + 4 =", 3 + 4)`}
+  filename="right_order.py"
+  code={`name = "Bini"
+print(name)`}
 />
 
-| Code                      | Output      |
-| ------------------------- | ----------- |
-| `print(3 + 4)`            | `7`         |
-| `print("3 + 4 =", 3 + 4)` | `3 + 4 = 7` |
+Line 1 runs first and creates `name`. Line 2 can use it.
 
-## Blank lines are for humans only
+**Wrong order** — run this on purpose:
+
+<PythonExample
+  filename="wrong_order.py"
+  code={`print(name)
+name = "Bini"`}
+/>
+
+Python stops with **NameError**: `name` does not exist when `print(name)` runs.
+
+<Callout variant="warning" title="Common mistake">
+  Put the line that **creates** a value **above** the line that **uses** it. You will practice variables properly in the Variables chapter; the rule is the same.
+</Callout>
+
+## Math before print (preview)
+
+<PythonExample filename="math.py" code={`print(3 + 4)`} />
+
+Python evaluates `3 + 4` **first**, then passes `7` to `print`. Small expressions inside `print()` are fine from day one.
+
+## Blank lines are for you
 
 <PythonExample
   filename="spacing.py"
@@ -75,29 +72,10 @@ print("3 + 4 =", 3 + 4)`}
 print("End")`}
 />
 
-Empty lines are ignored — they help **you** read the file.
-
-## Common mistake: use before create
-
-<PythonExample
-  filename="error_order.py"
-  code={`print(score)
-score = 100`}
-/>
-
-Run it — **NameError**: `score` does not exist yet when `print(score)` runs.
-
-<Callout variant="tip">
-  Fix: put **`score = 100`** **above** **`print(score)`**, then run again.
-</Callout>
-
-<Callout variant="warning">
-  Later, **`if`** and loops need **indented** blocks (extra spaces). For now, keep every
-  statement at the **left edge**.
-</Callout>
+Empty lines are ignored — they separate ideas for human readers.
 
 ## Recap
 
-- Python runs from the **top** down
-- Create values **before** you use them
-- Blank lines do not affect execution
+- Python runs from the **top** of the file **down**
+- **Order** decides what exists before it is used
+- Fix order errors by moving the **create** line above the **use** line

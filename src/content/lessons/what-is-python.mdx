@@ -1,89 +1,55 @@
 ---
 title: "What is Python?"
-description: "What is Python? Beginner guide to the language, real-world uses in web and data science, and why Python remains a top first programming language to learn today."
-order: 1
+description: "What is Python? A readable programming language for beginners and professionals—what it is, who made it, and how it runs on PyGuide."
+order: 5
 chapter: 1
 chapterTitle: "What Is Python?"
-section: "What is Python?"
 part: 1
 partTitle: "Absolute beginner"
 level: beginner
-quickAnswer: "Python is a high-level, readable programming language used for scripting, web apps, data science, automation, and education."
+quickAnswer: "Python is a free, high-level programming language known for readable syntax, a large standard library, and use in web, data, automation, and education."
 ---
 
 ## Why this matters
 
-Knowing what Python is—and is not—sets expectations before syntax. Beginners who see the big picture stick with practice when debugging feels hard. This lesson anchors the rest of PyGuide: you are learning a real tool used in industry, not a toy.
+You have seen **programming**, **code**, and **how computers follow steps**. This lesson names the tool you will learn: **Python**.
 
-Imagine a very literal friend who only does what you write down, line by line. **Python** is how you write those instructions so a computer can follow them.
+## One new idea: Python is a language
 
-Computers do not understand English. They follow **code** — text in a **programming language**. Python is one of the friendliest languages to start with.
-
-## One new idea: code is instructions
+A **programming language** is a set of rules for writing instructions. **Python** is one language—like English vs Spanish, but for computers.
 
 <PythonExample filename="demo.py" code={`print("Hello, Python!")`} />
 
-**Line by line**
+That line is valid Python. The computer (via PyGuide’s runner) follows the rules of Python to show the message.
 
-- `print(...)` — “show this on the screen”
-- `"Hello, Python!"` — text in quotes
-- Run it — you should see exactly that message
+## Who created Python?
 
-That one line is a real program. You are already “coding.”
+**Guido van Rossum** started Python in the late 1980s and released it publicly in **1991**. He wanted a language that was **pleasant to read** and **fast to write**. The community grew from there; today thousands of people maintain libraries and tools.
 
-## Why learn Python?
+## High-level vs low-level
 
-| Reason                | What it means for you                            |
-| --------------------- | ------------------------------------------------ |
-| **Beginner-friendly** | Less clutter; you learn ideas, not magic symbols |
-| **Powerful**          | Used by beginners and big companies              |
-| **Versatile**         | Web, data, automation, games, hobbies            |
-| **In demand**         | Many jobs list Python                            |
-| **Free help**         | Huge community and tutorials                     |
+| Level | You write | Example |
+| ----- | --------- | ------- |
+| **Low-level** | Details close to the CPU | Machine code, assembly |
+| **High-level** | Steps closer to human logic | **Python** |
 
-You do not need to be “good at math.” **Patience and practice** beat prior experience.
+High-level does not mean “weak.” Huge systems run on Python. It means you worry less about hardware on day one.
 
-## What is Python used for?
+## Interpreter vs compiler (simple version)
 
-| Area           | Examples                                       |
-| -------------- | ---------------------------------------------- |
-| **Websites**   | APIs, backends (Instagram, Dropbox use Python) |
-| **Data & AI**  | Spreadsheets, charts, research                 |
-| **Automation** | Rename files, send emails, boring office tasks |
-| **Education**  | Schools and universities teach with it         |
-| **Hobbies**    | Small games, personal tools                    |
+Python is usually run by an **interpreter**: it reads your file and executes it step by step. You press **Run** on PyGuide and see output without a separate compile step. (Other languages compile first; you can learn that distinction later.)
 
-This course teaches **core Python** that works in all of those areas.
+## How PyGuide runs Python
 
-## How PyGuide works (no install)
-
-1. Read each lesson **top to bottom**
-2. Press **Run code** on every example
-3. **Change** numbers or words and run again
-4. Use **Back / Next** at the bottom for course order
+Lessons use **Skulpt** in the browser—real Python-style syntax for beginners, no install. A few advanced features differ from Python on your laptop; we stick to beginner-safe examples.
 
 <Callout variant="note">
-  Browser Python (**Skulpt**) covers almost everything here. A few advanced features
-  differ from Python on your laptop — we stick to beginner-safe examples.
+  Later you can install **CPython** on your computer—the official Python from python.org. The ideas you learn here transfer directly.
 </Callout>
-
-<Callout variant="warning" title="Oops — Python is yelling">
-  Errors are normal. Read the message, check quotes and spelling, fix one thing, run
-  again. That is how every developer learns.
-</Callout>
-
-## What this chapter covers
-
-| #   | Lesson              | You will learn                      |
-| --- | ------------------- | ----------------------------------- |
-| 1   | What is Python?     | Big picture (this page)             |
-| 2   | How code runs       | Top to bottom, one line at a time   |
-| 3   | Running Python code | Order, `print()`, escape characters |
-| 4   | Comments            | Notes Python skips                  |
-| 5   | Errors              | Fix mistakes when Python complains  |
 
 ## Recap
 
-- **Python** = language for writing instructions
-- **`print()`** = your first way to see output
-- **Run code** on every page — learning by doing
+- **Python** = readable language for writing instructions
+- Created for **clarity and productivity**, still widely used
+- **`print()`** is a small but real Python program
+- Next lessons in this chapter: **why it is friendly**, **what it is used for**, and **how to study**

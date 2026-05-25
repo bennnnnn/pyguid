@@ -1,0 +1,47 @@
+---
+title: "TypeError (preview)"
+description: "Preview concatenating text and numbers in Python—you cannot add str and int blindly; see TypeError broken example and simple fixes."
+order: 32
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "TypeError (preview): mixing incompatible types—for example '+' between a string and a number without converting—hits once you combine text and ints."
+---
+
+## Why this matters
+
+Python keeps **numbers** (`25`) and **text** (`"Age: "`) in different buckets early on. Smash them together the wrong way and Python raises **TypeError** — forcing you to be explicit about conversions.
+
+Deep lessons on **`str`** and **`+`** arrive later — here you only recognize the headline.
+
+## Broken: string + integer
+
+<PythonExample filename="mixed_plus.py" code={`print("Age: " + 25)`} />
+
+Run — expect **TypeError** about **`str`** and **`int`**.
+
+Python will not secretly guess whether you meant **human text** or **math**.
+
+## Easiest fix preview: separate arguments to `print`
+
+<PythonExample filename="multi_arg_print.py" code={`print("Age:", 25)`} />
+
+`print` turns each segment into readable output without brute-concatenation tricks.
+
+## Another preview fix: stringify the number
+
+<PythonExample filename="str_conversion.py" code={`print("Age: " + str(25))`} />
+
+`str(...)` deliberately converts the number **into text** so **`+`** works.
+
+<Callout variant="tip">
+  When you revisit types fully, **`f` strings** (`f"Age: {25}"`) become the stylish default—preview only here.
+</Callout>
+
+## Recap
+
+- **TypeError (preview)** = action does not fit the **types** you offered
+- Common beginner pattern: **`"text" + number`**
+- Quick fixes preview: **`print("Age:", age)`** or **`"text" + str(age)`**

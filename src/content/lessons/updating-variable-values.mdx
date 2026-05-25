@@ -1,0 +1,72 @@
+---
+title: "Updating variable values"
+description: "Use the old value to compute a new one—score = score + 5 or score += 5—and other += -= *= /= shortcuts."
+order: 40
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Use the current value in a new assignment: score = score + 5, or the shortcut score += 5."
+---
+
+## Why this matters
+
+Games, budgets, and counters all **build on** previous numbers. Python lets you read a variable’s **current** value and store an **updated** result under the same name.
+
+## Use the old value
+
+You can use the **old value** to make a **new value**:
+
+<PythonExample
+  filename="add_five.py"
+  code={`score = 10
+score = score + 5
+print(score)`}
+/>
+
+Output: **`15`**
+
+**Line by line**
+
+1. **`score`** starts at **10**
+2. **`score + 5`** is **15**
+3. **`score = …`** stores **15** back into **`score`**
+
+## Shorthand: `+=`
+
+Writing **`score = score + 5`** often becomes:
+
+<PythonExample
+  filename="plus_eq.py"
+  code={`score = 10
+score += 5
+print(score)`}
+/>
+
+**`score += 5`** means “add 5 to whatever **`score`** is now, then store the result in **`score`**.”
+
+## Other common shortcuts
+
+| You write   | Means                    |
+| ----------- | ------------------------ |
+| `score += 5`| `score = score + 5`      |
+| `score -= 2`| `score = score - 2`      |
+| `score *= 3`| `score = score * 3`      |
+| `score /= 2`| `score = score / 2`      |
+
+<PythonExample
+  filename="shortcuts.py"
+  code={`points = 100
+points -= 10
+points *= 2
+print(points)`}
+/>
+
+Deeper operators (like `//=` or `**=`) fit naturally in the **Operators** chapter later.
+
+## Recap
+
+- **`score = score + 5`** uses the **current** value, then replaces it
+- **`score += 5`** is the same idea, shorter
+- **`-=`**, **`*=`**, **`/=`** follow the same pattern

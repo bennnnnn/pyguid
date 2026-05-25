@@ -1,0 +1,56 @@
+---
+title: "Reassigning variables"
+description: "A Python variable can point to a new value later—the old value is replaced when you assign again."
+order: 39
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "You can assign again later—mood = \"tired\" replaces what mood pointed to before."
+---
+
+## Why this matters
+
+Real programs **change** state: scores go up, moods shift, counters increment. Reassignment is how one name can mean something new later in the same script.
+
+## One name, new value
+
+A variable can **point to a new value** later. The **old value is replaced**—the name keeps the same spelling; what it points to changes.
+
+<PythonExample
+  filename="mood.py"
+  code={`mood = "happy"
+print(mood)
+
+mood = "tired"
+print(mood)`}
+/>
+
+Output:
+
+```text
+happy
+tired
+```
+
+First **`mood`** pointed to **`"happy"`**. After the second assignment, **`mood`** points to **`"tired"`**.
+
+## The label stays; the contents change
+
+Think of relabeling the same box: the sticker still says **`mood`**, but you swapped what is inside.
+
+<PythonExample
+  filename="score.py"
+  code={`score = 0
+print("start:", score)
+
+score = 10
+print("after level 1:", score)`}
+/>
+
+## Recap
+
+- **`=`** can run **more than once** on the same name
+- The **latest** assignment wins
+- **`print(mood)`** always shows whatever **`mood`** points to **right now**

@@ -36,7 +36,12 @@ const next =
   <p
     class="ref-entry-breadcrumb m-0 text-xs font-semibold uppercase tracking-wide text-text-muted"
   >
-    {sheet.title}
+    <a
+      href={`/python/reference/#${sheet.id}`}
+      class="text-text-muted no-underline hover:text-link"
+    >
+      {sheet.title}
+    </a>
   </p>
   <h1 class="ref-entry-title !mt-2">
     <code>{entry.syntax}</code>

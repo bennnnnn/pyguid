@@ -8,7 +8,10 @@ import {
 import { getReferenceEntryCode } from "../../../../lib/reference-entry-code";
 import { breadcrumbListJsonLd, techArticleJsonLd } from "../../../../lib/seo-schema";
 import { SITE, getSiteUrl } from "../../../../lib/site";
-import { referenceChapterUrl, referenceEntryUrl } from "../../../../lib/reference-sheets";
+import {
+  referenceEntryUrl,
+  referenceSheetHubUrl,
+} from "../../../../lib/reference-sheets";
 import "../../../../styles/reference.css";
 
 export function getStaticPaths() {
@@ -24,7 +27,7 @@ if (!page) return Astro.redirect("/python/reference/");
 
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(referenceEntryUrl(sheetId, entrySlug), `${siteUrl}/`).href;
-const chapterRefUrl = new URL(referenceChapterUrl(sheetId), `${siteUrl}/`).href;
+const sheetHubUrl = new URL(referenceSheetHubUrl(sheetId), `${siteUrl}/`).href;
 const { code } = getReferenceEntryCode(page);
 const title = `${page.entry.syntax} — ${page.sheet.title} — ${SITE.name}`;
 const description =
@@ -35,7 +38,7 @@ const jsonLd = [
   breadcrumbListJsonLd([
     { name: SITE.name, url: `${siteUrl}/` },
     { name: "Reference", url: `${siteUrl}/python/reference/` },
-    { name: page.sheet.title, url: chapterRefUrl },
+    { name: page.sheet.title, url: sheetHubUrl },
     { name: page.entry.syntax, url: pageUrl },
   ]),
   techArticleJsonLd({

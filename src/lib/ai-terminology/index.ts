@@ -24,14 +24,10 @@ export function getAiTerminologySection(
   return AI_TERMINOLOGY_SECTIONS.find((s) => s.id === sectionId);
 }
 
-export { AI_TERM_STUDY_ORDER } from "./study-order";
 export {
   AI_TERM_SIDEBAR_ORDER,
   getAiTerminologySectionsForSidebar,
 } from "./sidebar-order";
-export { AI_TERM_STARTER_100 } from "./starter-terms";
-export { buildStarterTermLinks } from "./starter-links";
-export { AI_TERMINOLOGY_FAQ } from "./faq";
 export { getAiTerminologyStats } from "./stats";
 export {
   buildAiTerminologySearchIndex,

@@ -1,0 +1,48 @@
+---
+title: "Errors are normal"
+description: "Treat Python tracebacks as feedback, not personal failure—a healthy mindset for every beginner."
+order: 27
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Errors mean Python stopped and pointed at something fixable—they are routine feedback, not proof you failed."
+---
+
+## Why this matters
+
+Beginners sometimes read **SyntaxError** or **NameError** as judgment. Professionals read them as **rough GPS** — “you are close; adjust one detail.” Changing that mindset cuts frustration in half.
+
+## Errors are conversations, not grades
+
+Python does **not** know you personally. When it raises an error, it is saying:
+
+- “I stopped here.”
+- “This is the rule I could not satisfy.”
+
+<PythonExample filename="tiny_success.py" code={`print("I run successfully")`} />
+
+That runs cleanly. Breaking one character flips Python into “tell me what is wrong” mode — useful, not embarrassing.
+
+## A broken line on purpose (run it anyway)
+
+Try this — Python will complain, and **that output is educational**:
+
+<PythonExample filename="broken_paren.py" code={`print("Hello"`} />
+
+You will practice reading the exact message soon. For now: **you did not hurt the language** — you surfaced a typo.
+
+## The habit that wins
+
+Expect errors **many times per session**. Change **one clue**, click **Run** again — that loop is literally how shipped software is made.
+
+<Callout variant="tip">
+  If feelings spike, breathe and read the **last line** of the error first—the next lesson series builds that reflex step by step.
+</Callout>
+
+## Recap
+
+- **Everyone** triggers errors — often on purpose while debugging
+- Errors point to **grammar or names** early on; fixing them teaches **patterns**
+- Treat red text as **signal**, not **verdict**

@@ -1,14 +1,10 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
-import { getReferenceNav, referenceChapterUrl } from "../../../lib/reference-sheets";
+import { getReferenceMenuItems } from "../../../lib/reference-sheets";
 import { SITE } from "../../../lib/site";
 import "../../../styles/reference.css";
 
-const nav = getReferenceNav();
-const entryCount = nav.reduce(
-  (n, g) => n + g.sheets.reduce((m, s) => m + s.entries.length, 0),
-  0,
-);
+const entryCount = getReferenceMenuItems().length;
 ---
 
 <TutorialLayout
@@ -20,37 +16,11 @@ const entryCount = nav.reduce(
     <h1 class="!mt-0">Python reference</h1>
     <p class="text-text-secondary">
       Quick lookup for <strong>syntax</strong>, <strong>built-in functions</strong>, and
-      common
-      <strong>methods</strong> — organized for coding, not as a mirror of the tutorial outline.
-      Open a topic for a cheat-sheet table, or jump straight to a specific pattern.
+      common <strong>methods</strong>. Pick a topic in the sidebar — each item opens its own
+      page with a short explanation and example.
     </p>
     <p class="text-sm text-text-muted">
-      {entryCount} entries across {nav.length} areas · Runnable examples where Python runs in
-      the browser
+      {entryCount} entries · Runnable examples where Python runs in the browser
     </p>
-
-    <div class="ref-index-categories not-prose">
-      {
-        nav.map((group) => (
-          <section class="ref-index-category">
-            <h2 class="ref-index-category-title">{group.category.title}</h2>
-            <p class="ref-index-category-desc">{group.category.description}</p>
-            <ul class="ref-index-sheet-list">
-              {group.sheets.map((sheet) => (
-                <li>
-                  <a href={referenceChapterUrl(sheet.id)} class="ref-index-sheet-link">
-                    <span class="ref-index-sheet-name">{sheet.title}</span>
-                    <span class="ref-index-sheet-meta">
-                      {sheet.entries.length}{" "}
-                      {sheet.entries.length === 1 ? "entry" : "entries"}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
-    </div>
   </article>
 </TutorialLayout>

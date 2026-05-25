@@ -1,30 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import "./tokens.css";
 @import "./quiz.css";
 @import "./pager.css";
 @import "./code-highlight.css";
-
-@theme {
-  --font-sans:
-    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --color-brand: #1d4ed8;
-  --color-brand-hover: #1e40af;
-  --color-brand-light: #eff6ff;
-  --color-link: #1d4ed8;
-  --color-link-hover: #2563eb;
-  --color-link-active: #1e40af;
-  --color-surface: #ffffff;
-  --color-surface-alt: #f8fafc;
-  --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
-  --color-text: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #64748b;
-  --color-nav-bg: #ffffff;
-  --color-sidebar-bg: #f8fafc;
-  --color-sidebar-active: #e2e8f0;
-}
 
 html {
   scroll-behavior: smooth;
@@ -50,7 +29,7 @@ body {
   width: 2.25rem;
   margin-right: 0.75rem;
   text-align: right;
-  color: #94a3b8;
+  color: var(--color-code-muted);
   user-select: none;
   font-size: 12px;
 }
@@ -69,20 +48,29 @@ body {
   box-shadow: none;
 }
 
-/* Top navigation */
+/* Top bar, footer, and other horizontal nav links */
+.nav-link,
 .topnav-link {
   @apply rounded-md px-2 py-2 text-sm font-medium text-text-secondary no-underline transition-colors sm:px-3;
 }
+.nav-link:hover,
 .topnav-link:hover {
-  @apply bg-brand-light text-link-hover no-underline;
+  background: var(--color-interactive-hover-bg);
+  color: var(--color-text-secondary);
+  text-decoration: none;
 }
+.nav-link:active,
 .topnav-link:active {
-  color: var(--color-link-active);
-  @apply no-underline;
+  text-decoration: none;
 }
-.topnav-link.is-active {
-  @apply bg-brand-light font-semibold no-underline;
-  color: var(--color-link-active);
+.nav-link.is-active,
+.topnav-link.is-active,
+.nav-link[aria-current="page"],
+.topnav-link[aria-current="page"] {
+  background: var(--color-interactive-active-bg);
+  color: var(--color-interactive-active-text);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 /* Lesson / article prose */
@@ -191,7 +179,12 @@ body {
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border border-border-strong bg-surface px-5 py-2.5 text-sm font-semibold text-text transition-colors hover:bg-surface-alt;
+  @apply inline-flex items-center justify-center rounded-lg border border-border-strong bg-surface px-5 py-2.5 text-sm font-semibold text-text transition-colors;
+}
+
+.btn-secondary:hover {
+  background: var(--color-interactive-hover-bg);
+  border-color: color-mix(in srgb, var(--color-accent) 25%, var(--color-border-strong));
 }
 
 .text-link {

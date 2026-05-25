@@ -1,0 +1,43 @@
+---
+title: "What is a syntax error?"
+description: "Syntax errors are grammar mistakes: Python refuses to run until parentheses, quotes, and symbols balance—learn with broken and fixed runnable examples."
+order: 28
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "A SyntaxError means Python understood your file up to a point but hit invalid grammar — like spoken language with half a sentence chopped off."
+---
+
+## Why this matters
+
+**Syntax errors** happen **before** your program logic runs — so they are scary fast feedback. Learn the vocabulary once (`SyntaxError`, caret `^`), and fixing them becomes predictable.
+
+## Broken grammar: missing closing parenthesis
+
+<PythonExample filename="broken_hello.py" code={`print("Hello"`} />
+
+Run it. Python reports **SyntaxError** — it expected **`)`** to close `print(...)`.
+
+## The same idea, repaired
+
+<PythonExample filename="fixed_hello.py" code={`print("Hello")`} />
+
+One **`)`** made the grammar complete.
+
+## Table: what SyntaxError feels like out loud
+
+| What you typed      | Plain English hint                    |
+| ------------------- | ------------------------------------- |
+| `print("Hello"`     | Missing **)** (or stray quote)       |
+| `print(Hello"`      | Unbalanced `"` quotes                |
+| `print("Hello")` OK | Matches `(` … `)` and `"` … `"` pairs |
+
+Syntax is about **balancing symbols** Python needs to parse the instruction.
+
+## Recap
+
+- **Syntax errors** = invalid **structure** — code never starts running
+- Typical beginner causes: missing **`)`**, **`"`**, or wrong punctuation placement
+- Fix the **matching pairs**, run again—the message includes a **line number** clue

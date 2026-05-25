@@ -1,66 +1,50 @@
 ---
 title: "Multiple assignment"
-description: "Assign several variables at once and swap values in Python Learn Multiple assignment in this Input and Type Conversion lesson with runnable Python examples..."
-order: 11
-chapter: 6
+description: "Assign several Python variables in one line—name, age, city = values—or give x = y = z = 0 the same value."
+order: 42
+chapter: 5
 chapterTitle: "Variables"
-section: "Multiple assignment"
 part: 2
 partTitle: "Variables and input"
 level: beginner
-quickAnswer: "Assign several variables at once and swap values in Python. This PyGuide lesson shows Multiple assignment with examples you can run in the browser."
+quickAnswer: "Python can assign multiple variables in one line: name, age, city = \"Bini\", 25, \"San Francisco\"."
 ---
 
 ## Why this matters
 
-Multiple assignment shows up throughout Input and Type Conversion and later chapters. Understanding it here makes the next lessons easier and helps you read real Python code with confidence. PyGuide keeps each page focused on one idea so you can practice without getting lost.
+Real scripts often unpack several related values at once—coordinates, RGB colors, or form fields. Multiple assignment keeps that **compact** and **readable**.
 
-You label three boxes in one go: `x`, `y`, and `z` each get a value. Python can assign **multiple names** in a single line — clean and common in real code.
+## Several names, several values
 
-## One new idea: several names, one line
-
-<PythonExample
-  filename="multi.py"
-  code={`x, y, z = 1, 2, 3
-print(x, y, z)`}
-/>
-
-**Line by line**
-
-- Left side: three names
-- Right side: three values
-- Python pairs them **left to right**
-
-## Swap without a temp variable
+Python can assign **multiple variables** in **one line**. Counts on the left and right must **match**.
 
 <PythonExample
-  filename="swap.py"
-  code={`a = 10
-b = 20
-print("before:", a, b)
-
-a, b = b, a
-print("after:", a, b)`}
+  filename="triple.py"
+  code={`name, age, city = "Bini", 25, "San Francisco"
+print(name)
+print(age)
+print(city)`}
 />
 
-| Before       | After swap   |
-| ------------ | ------------ |
-| `a=10, b=20` | `a=20, b=10` |
+Python pairs them **left to right**:
 
-## Real use case: coordinates
+- **`name`** ← **`"Bini"`**
+- **`age`** ← **`25`**
+- **`city`** ← **`"San Francisco"`**
 
-<PythonExample
-  filename="coords.py"
-  code={`width, height = 800, 600
-print(f"Screen: {width} x {height}")`}
-/>
+## Same value for several names
 
-<Callout variant="warning" title="Oops — Python is yelling">
-  **`x, y = 1`** — not enough values on the right. Counts on both sides must **match**.
+<PythonExample filename="zeros.py" code={`x = y = z = 0
+print(x, y, z)`} />
+
+All three names point to **`0`**.
+
+<Callout variant="warning" title="Oops — count mismatch">
+  **`a, b = 1`** raises an error—two names on the left need **two** values on the right.
 </Callout>
 
 ## Recap
 
-- **`a, b = 1, 2`** — multiple assignment
-- **`a, b = b, a`** — swap values
-- Left and right must have the **same number** of items
+- **`name, age, city = "Bini", 25, "San Francisco"`** — one line, three assignments
+- **`x = y = z = 0`** — same value for every name
+- Left and right sides must have the **same number** of items

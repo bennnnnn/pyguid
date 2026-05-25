@@ -1,0 +1,70 @@
+---
+title: "Variable names"
+description: "Rules for Python variable names: letters, digits, underscores, no leading digits, no spaces, no keywords, case-sensitive."
+order: 37
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Names may use letters, digits, and underscores; cannot start with a digit, use spaces, or be Python keywords. Names are case-sensitive."
+---
+
+## Why this matters
+
+Python only accepts **certain** spellings for names. Learn the rules once and you will spot typos faster—and avoid **SyntaxError** from illegal names.
+
+## The rules
+
+A variable name:
+
+- **Can** contain letters, numbers, and underscores
+- **Cannot** start with a number
+- **Cannot** contain spaces
+- **Cannot** be a **Python keyword** (`if`, `for`, `class`, …)
+- Is **case-sensitive** (`name` and `Name` are different)
+
+## Valid examples
+
+<PythonExample
+  filename="valid_names.py"
+  code={`user_name = "Bini"
+age2 = 25
+_private = True
+print(user_name, age2)`}
+/>
+
+- **`user_name`** — letters and underscore
+- **`age2`** — digit at the **end** is fine
+- **`_private`** — leading underscore is allowed
+
+## Invalid examples (do not run these)
+
+| You write      | Why it fails                          |
+| -------------- | ------------------------------------- |
+| `2age = 25`    | starts with a digit                   |
+| `user name = …`| space splits into two tokens          |
+| `my-var = 1`   | `-` is minus, not part of the name    |
+| `class = 5`    | `class` is a reserved keyword         |
+
+<Callout variant="warning" title="Keywords are off-limits">
+  Words like **`print`**, **`if`**, **`True`**, and **`class`** already mean something in Python. Do not reuse them as variable names.
+</Callout>
+
+## Case-sensitive
+
+<PythonExample
+  filename="case.py"
+  code={`name = "lowercase"
+Name = "Capital N"
+print(name)
+print(Name)`}
+/>
+
+**`name`** and **`Name`** are two different variables.
+
+## Recap
+
+- Legal: letters, digits, `_` — not starting with a digit
+- Illegal: spaces, leading digits, hyphens in the name, keywords
+- **`user_name`** and **`User_Name`** are different names

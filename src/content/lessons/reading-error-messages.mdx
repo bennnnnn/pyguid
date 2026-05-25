@@ -1,0 +1,53 @@
+---
+title: "Reading error messages"
+description: "Read Python tracebacks efficiently: identify error type and line—and read from the bottom up first—with runnable demos on PyGuide."
+order: 33
+chapter: 4
+chapterTitle: "Beginner Errors"
+part: 1
+partTitle: "Absolute beginner"
+level: beginner
+quickAnswer: "Start with the last line for error type + summary; then jump to line number & caret—they tell you exactly where Python objected."
+---
+
+## Why this matters
+
+Tracebacks look long on purpose—they carry breadcrumbs. Readers who skim **bottom-up** locate the actionable sentence first; skipping that habit wastes minutes per bug.
+
+## What a SyntaxError traceback tells you
+
+<PythonExample filename="read_syntax_demo.py" code={`print("Oops"`} />
+
+Expect output shaped roughly like:
+
+```text
+  File "... line 1
+    print("Oops"
+         ^
+SyntaxError: ...
+```
+
+1. **`SyntaxError`** class — grammar problem
+2. **Line number** — where parsing failed (often nearby the real omission)
+3. **`^`** caret — where Python realized things broke
+
+### Fixed reference
+
+<PythonExample filename="read_syntax_fixed.py" code={`print("Oops")`} />
+
+## NameError is shorter but same bottom-first rule
+
+<PythonExample filename="read_name_error.py" code={`print(unknown_person)`} />
+
+Final line mentions **NameError** and **`unknown_person`** — that pair is your search target.
+
+Define it—or fix typo—and rerun:
+
+<PythonExample filename="read_name_fixed.py" code={`unknown_person = "Taylor"
+print(unknown_person)`} />
+
+## Recap
+
+- Read the **bottom line first** → **error family** (`SyntaxError`, `NameError`, …)
+- Climb upward for **filename + line number** plus caret context
+- Change **one** likely issue, rerun—iterate instead of rewriting everything

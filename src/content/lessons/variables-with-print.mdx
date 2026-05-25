@@ -1,0 +1,63 @@
+---
+title: "Variables with print()"
+description: "Print a variable's value with print(name)—not print(\"name\")—so Python shows stored data, not the word name."
+order: 41
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "print(name) shows the value; print(\"name\") shows the word name. Do not quote the variable name when you want the value."
+---
+
+## Why this matters
+
+This trips up **every** beginner at least once: quotes mean **text**, not “look up my variable.” Getting **`print(name)`** vs **`print("name")`** right unlocks useful output immediately.
+
+## Print the value, not the label text
+
+You can **`print()`** what a variable **points to**. Do **not** put the variable name in quotes if you want the **value**.
+
+<PythonExample
+  filename="print_var.py"
+  code={`name = "Bini"
+
+print(name)
+print("name")`}
+/>
+
+Output:
+
+```text
+Bini
+name
+```
+
+- **`print(name)`** — no quotes → Python looks up **`name`** → shows **Bini**
+- **`print("name")`** — quotes → Python prints the **word** `name`
+
+## Several variables
+
+<PythonExample
+  filename="two_vars.py"
+  code={`user_name = "Bini"
+user_age = 25
+
+print(user_name)
+print(user_age)
+print(user_name, user_age)`}
+/>
+
+## Mixing text and variables
+
+Later you will use **f-strings** for fancy messages. For now, **`print(a, b)`** with commas is enough to show multiple values.
+
+<Callout variant="warning" title="Oops — common mistake">
+  If you see the **variable name** on screen instead of your data, check for **quotes** around the name inside **`print(...)`**.
+</Callout>
+
+## Recap
+
+- **`print(name)`** → value stored in **`name`**
+- **`print("name")`** → literal text **`name`**
+- Quotes change the meaning—use them only when you want **fixed text**

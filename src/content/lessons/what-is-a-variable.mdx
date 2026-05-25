@@ -1,0 +1,67 @@
+---
+title: "What is a variable?"
+description: "A variable is a name that points to a value—like a label on stored information you can reuse later."
+order: 35
+chapter: 5
+chapterTitle: "Variables"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "A variable is a name that points to a value—you can think of it like a label on stored data."
+---
+
+## Why this matters
+
+Programs need to **remember** things: a user’s name, a score, a city. Variables are how Python **stores information** under names you choose, so you do not repeat the same value on every line.
+
+## A name that points to a value
+
+A **variable** is a **name** that **points to** a value. Picture a sticky label on a box: the label says `name`; inside the box is `"Bini"`.
+
+<PythonExample
+  filename="labels.py"
+  code={`name = "Bini"
+age = 25`}
+/>
+
+After those lines:
+
+- **`name`** points to **`"Bini"`**
+- **`age`** points to **`25`**
+
+You chose the labels; Python stores the values behind them.
+
+## See what is stored
+
+<PythonExample
+  filename="show.py"
+  code={`name = "Bini"
+age = 25
+
+print(name)
+print(age)`}
+/>
+
+`print(name)` follows the label **name** and shows **Bini**. `print(age)` shows **25**.
+
+## Text vs numbers
+
+Strings (text) need **quotes**. Numbers do not:
+
+<PythonExample
+  filename="types.py"
+  code={`city = "San Francisco"
+year = 2024
+print(city, year)`}
+/>
+
+<Callout variant="tip">
+  You already know **`print()`** from earlier chapters. Variables are the next step: store first, print when you need the value.
+</Callout>
+
+## Recap
+
+- A variable is a **name** that **points to** a value
+- **`name = "Bini"`** — the name `name` points to the text `Bini`
+- **`age = 25`** — the name `age` points to the number `25`
+- Use variables when you want to **reuse** or **update** stored information
