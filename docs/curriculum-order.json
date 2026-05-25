@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 13,
   "description": "59-chapter curriculum; global order follows chapter 1→59 (basics → types → numbers → operators → …). Run: node scripts/build-curriculum-v59.mjs && npm run sync:curriculum",
   "lessons": [
     {
@@ -17,28 +17,7 @@
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "how-computers-follow-instructions",
-      "chapter": 1,
-      "chapterTitle": "What Is Python?",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "history-of-programming",
-      "chapter": 1,
-      "chapterTitle": "What Is Python?",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
       "slug": "what-is-python",
-      "chapter": 1,
-      "chapterTitle": "What Is Python?",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "why-python-is-beginner-friendly",
       "chapter": 1,
       "chapterTitle": "What Is Python?",
       "part": 1,
@@ -66,35 +45,28 @@
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "what-python-code-looks-like",
+      "slug": "code-basics",
       "chapter": 2,
       "chapterTitle": "Python Code Basics",
       "part": 1,
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "top-to-bottom",
+      "slug": "code-order",
       "chapter": 2,
       "chapterTitle": "Python Code Basics",
       "part": 1,
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "first-print",
+      "slug": "print",
       "chapter": 2,
       "chapterTitle": "Python Code Basics",
       "part": 1,
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "printing-text-and-numbers",
-      "chapter": 2,
-      "chapterTitle": "Python Code Basics",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "printing-multiple-values",
+      "slug": "print-values",
       "chapter": 2,
       "chapterTitle": "Python Code Basics",
       "part": 1,
@@ -108,35 +80,7 @@
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "statements-and-expressions",
-      "chapter": 2,
-      "chapterTitle": "Python Code Basics",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "output-vs-result",
-      "chapter": 2,
-      "chapterTitle": "Python Code Basics",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "python-syntax-basics",
-      "chapter": 2,
-      "chapterTitle": "Python Code Basics",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "indentation-preview",
-      "chapter": 2,
-      "chapterTitle": "Python Code Basics",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "common-beginner-mistakes",
+      "slug": "code-mistakes",
       "chapter": 2,
       "chapterTitle": "Python Code Basics",
       "part": 1,
@@ -157,13 +101,6 @@
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "inline-comments",
-      "chapter": 3,
-      "chapterTitle": "Comments",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
       "slug": "commenting-out-code",
       "chapter": 3,
       "chapterTitle": "Comments",
@@ -178,13 +115,6 @@
       "partTitle": "Absolute beginner"
     },
     {
-      "slug": "comments-recap",
-      "chapter": 3,
-      "chapterTitle": "Comments",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
       "slug": "errors-are-normal",
       "chapter": 4,
       "chapterTitle": "Beginner Errors",
@@ -193,20 +123,6 @@
     },
     {
       "slug": "what-is-syntax-error",
-      "chapter": 4,
-      "chapterTitle": "Beginner Errors",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "missing-quotes-parentheses",
-      "chapter": 4,
-      "chapterTitle": "Beginner Errors",
-      "part": 1,
-      "partTitle": "Absolute beginner"
-    },
-    {
-      "slug": "wrong-capitalization",
       "chapter": 4,
       "chapterTitle": "Beginner Errors",
       "part": 1,
@@ -262,20 +178,6 @@
       "partTitle": "Variables and input"
     },
     {
-      "slug": "good-variable-names",
-      "chapter": 5,
-      "chapterTitle": "Variables",
-      "part": 2,
-      "partTitle": "Variables and input"
-    },
-    {
-      "slug": "reassigning-variables",
-      "chapter": 5,
-      "chapterTitle": "Variables",
-      "part": 2,
-      "partTitle": "Variables and input"
-    },
-    {
       "slug": "updating-variable-values",
       "chapter": 5,
       "chapterTitle": "Variables",
@@ -290,27 +192,6 @@
       "partTitle": "Variables and input"
     },
     {
-      "slug": "multiple-assignment",
-      "chapter": 5,
-      "chapterTitle": "Variables",
-      "part": 2,
-      "partTitle": "Variables and input"
-    },
-    {
-      "slug": "swapping-variables",
-      "chapter": 5,
-      "chapterTitle": "Variables",
-      "part": 2,
-      "partTitle": "Variables and input"
-    },
-    {
-      "slug": "constants-by-convention",
-      "chapter": 5,
-      "chapterTitle": "Variables",
-      "part": 2,
-      "partTitle": "Variables and input"
-    },
-    {
       "slug": "common-variable-mistakes",
       "chapter": 5,
       "chapterTitle": "Variables",
@@ -318,14 +199,77 @@
       "partTitle": "Variables and input"
     },
     {
-      "slug": "input-basics",
+      "slug": "what-is-input",
       "chapter": 6,
-      "chapterTitle": "input()",
+      "chapterTitle": "Input",
       "part": 2,
       "partTitle": "Variables and input"
     },
     {
-      "slug": "input-conversion",
+      "slug": "the-input-function",
+      "chapter": 6,
+      "chapterTitle": "Input",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "storing-input-in-variable",
+      "chapter": 6,
+      "chapterTitle": "Input",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "input-always-returns-text",
+      "chapter": 6,
+      "chapterTitle": "Input",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "simple-input-mistakes",
+      "chapter": 6,
+      "chapterTitle": "Input",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "what-is-type-conversion",
+      "chapter": 7,
+      "chapterTitle": "Type Conversion",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "convert-input",
+      "chapter": 7,
+      "chapterTitle": "Type Conversion",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "int-float-conversion",
+      "chapter": 7,
+      "chapterTitle": "Type Conversion",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "str-bool-conversion",
+      "chapter": 7,
+      "chapterTitle": "Type Conversion",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "checking-types",
+      "chapter": 7,
+      "chapterTitle": "Type Conversion",
+      "part": 2,
+      "partTitle": "Variables and input"
+    },
+    {
+      "slug": "conversion-mistakes",
       "chapter": 7,
       "chapterTitle": "Type Conversion",
       "part": 2,
@@ -336,1218 +280,1392 @@
       "chapter": 8,
       "chapterTitle": "Data Types",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Core data types"
     },
     {
       "slug": "type-function",
       "chapter": 8,
       "chapterTitle": "Data Types",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "type()"
     },
     {
       "slug": "isinstance-basics",
       "chapter": 8,
       "chapterTitle": "Data Types",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "isinstance()"
     },
     {
       "slug": "none-type",
       "chapter": 8,
       "chapterTitle": "Data Types",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "None"
     },
     {
       "slug": "mutable-immutable",
       "chapter": 8,
       "chapterTitle": "Data Types",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Mutable vs immutable"
     },
     {
       "slug": "integers-floats",
       "chapter": 9,
       "chapterTitle": "Numbers",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Integers and floats"
     },
     {
       "slug": "math-random-module",
       "chapter": 9,
       "chapterTitle": "Numbers",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "math and random preview"
     },
     {
       "slug": "arithmetic-operators",
       "chapter": 10,
       "chapterTitle": "Operators",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Arithmetic operators"
     },
     {
       "slug": "assignment-operators",
       "chapter": 10,
       "chapterTitle": "Operators",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Assignment operators"
     },
     {
       "slug": "operator-precedence",
       "chapter": 10,
       "chapterTitle": "Operators",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Operator precedence"
     },
     {
       "slug": "tip-calculator-project",
       "chapter": 10,
       "chapterTitle": "Operators",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Mini project"
     },
     {
       "slug": "strings",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "What is a string?"
     },
     {
       "slug": "string-upper-lower",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Case methods"
     },
     {
       "slug": "string-strip",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Cleaning methods"
     },
     {
       "slug": "string-split",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Splitting and joining"
     },
     {
       "slug": "string-join",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Splitting and joining"
     },
     {
       "slug": "string-find-replace",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Searching and replacing"
     },
     {
       "slug": "string-count",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Searching and replacing"
     },
     {
       "slug": "string-startswith",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Checking start or end"
     },
     {
       "slug": "string-in",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Membership"
     },
     {
       "slug": "string-format",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "f-strings"
     },
     {
       "slug": "string-slicing",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Indexing and slicing"
     },
     {
       "slug": "name-formatter-project",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Mini project"
     },
     {
       "slug": "word-counter-project",
       "chapter": 11,
       "chapterTitle": "Strings",
       "part": 3,
-      "partTitle": "Types, numbers, and strings"
+      "partTitle": "Types, numbers, and strings",
+      "section": "Mini project"
     },
     {
       "slug": "booleans",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "True and False"
     },
     {
       "slug": "truthy-falsy",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Truthy and falsy values"
     },
     {
       "slug": "comparisons",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Comparison operators"
     },
     {
       "slug": "not-operator",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Logical operators"
     },
     {
       "slug": "and-or",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Logical operators"
     },
     {
       "slug": "membership-identity",
       "chapter": 12,
       "chapterTitle": "Booleans",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Membership and identity"
     },
     {
       "slug": "if-indentation",
       "chapter": 13,
       "chapterTitle": "Conditions",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "if statements"
     },
     {
       "slug": "elif-else",
       "chapter": 13,
       "chapterTitle": "Conditions",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "elif and else"
     },
     {
       "slug": "nested-if",
       "chapter": 13,
       "chapterTitle": "Conditions",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Nested if"
     },
     {
       "slug": "login-checker-project",
       "chapter": 13,
       "chapterTitle": "Conditions",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Mini project"
     },
     {
       "slug": "grade-checker-project",
       "chapter": 13,
       "chapterTitle": "Conditions",
       "part": 4,
-      "partTitle": "Booleans and conditions"
+      "partTitle": "Booleans and conditions",
+      "section": "Mini project"
     },
     {
       "slug": "lists-intro",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Creating lists"
     },
     {
       "slug": "list-indexing",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Indexing and slicing"
     },
     {
       "slug": "list-slicing",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Indexing and slicing"
     },
     {
       "slug": "list-append",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Adding items"
     },
     {
       "slug": "list-extend",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Adding items"
     },
     {
       "slug": "list-append-vs-extend",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Adding items"
     },
     {
       "slug": "list-insert",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Adding items"
     },
     {
       "slug": "list-remove",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing items"
     },
     {
       "slug": "list-pop",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing items"
     },
     {
       "slug": "list-del",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing items"
     },
     {
       "slug": "list-clear",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing items"
     },
     {
       "slug": "list-sort",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Sorting and reversing"
     },
     {
       "slug": "list-reverse",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Sorting and reversing"
     },
     {
       "slug": "list-copy",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Copying lists"
     },
     {
       "slug": "list-index-count",
       "chapter": 14,
       "chapterTitle": "Lists",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Finding items"
     },
     {
       "slug": "while-loops",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "while loops"
     },
     {
       "slug": "for-loops",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "for loops"
     },
     {
       "slug": "range-function",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "range()"
     },
     {
       "slug": "break-continue",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "break and continue"
     },
     {
       "slug": "loop-else",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "else with loops"
     },
     {
       "slug": "infinite-loops",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Infinite loops"
     },
     {
       "slug": "nested-loops",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Nested loops"
     },
     {
       "slug": "list-loops",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Looping lists"
     },
     {
       "slug": "list-enumerate",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Looping lists"
     },
     {
       "slug": "list-zip",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Looping lists"
     },
     {
       "slug": "guessing-game-project",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Mini project"
     },
     {
       "slug": "random-guessing-game",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Mini project"
     },
     {
       "slug": "todo-list-project",
       "chapter": 15,
       "chapterTitle": "Loops",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Mini project"
     },
     {
       "slug": "loop-patterns",
       "chapter": 16,
       "chapterTitle": "Loop Patterns",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Common loop patterns"
     },
     {
       "slug": "tuples-intro",
       "chapter": 17,
       "chapterTitle": "Tuples",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Creating tuples"
     },
     {
       "slug": "tuple-unpacking",
       "chapter": 17,
       "chapterTitle": "Tuples",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Tuple unpacking"
     },
     {
       "slug": "tuple-immutability",
       "chapter": 17,
       "chapterTitle": "Tuples",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Tuple immutability"
     },
     {
       "slug": "tuple-one-item",
       "chapter": 17,
       "chapterTitle": "Tuples",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Single-item tuple"
     },
     {
       "slug": "namedtuple-preview",
       "chapter": 17,
       "chapterTitle": "Tuples",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "namedtuple preview"
     },
     {
       "slug": "sets-intro",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Creating sets"
     },
     {
       "slug": "set-add-remove",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Adding and removing"
     },
     {
       "slug": "set-empty-set",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Empty set"
     },
     {
       "slug": "set-operations",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Set operations"
     },
     {
       "slug": "frozenset-basics",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "frozenset"
     },
     {
       "slug": "set-comprehensions",
       "chapter": 18,
       "chapterTitle": "Sets",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Set comprehensions"
     },
     {
       "slug": "dict-intro",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Creating dictionaries"
     },
     {
       "slug": "dict-key-rules",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Key rules"
     },
     {
       "slug": "dict-access",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Accessing values"
     },
     {
       "slug": "dict-get",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Accessing values"
     },
     {
       "slug": "dict-setdefault",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Useful methods"
     },
     {
       "slug": "dict-keys",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Dictionary views"
     },
     {
       "slug": "dict-values",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Dictionary views"
     },
     {
       "slug": "dict-items",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Looping dictionaries"
     },
     {
       "slug": "dict-pop-update",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing and merging"
     },
     {
       "slug": "dict-popitem",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Removing and merging"
     },
     {
       "slug": "dict-nested",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Nested dictionaries"
     },
     {
       "slug": "dict-loops",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Looping dictionaries"
     },
     {
       "slug": "dict-comprehensions",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Dictionary comprehensions"
     },
     {
       "slug": "contact-book-project",
       "chapter": 19,
       "chapterTitle": "Dictionaries",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Mini project"
     },
     {
       "slug": "list-comprehensions",
       "chapter": 20,
       "chapterTitle": "Comprehensions",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "List comprehensions"
     },
     {
       "slug": "nested-list-comprehensions",
       "chapter": 20,
       "chapterTitle": "Comprehensions",
       "part": 5,
-      "partTitle": "Collections and loops"
+      "partTitle": "Collections and loops",
+      "section": "Nested list comprehensions"
     },
     {
       "slug": "functions-intro",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Why functions exist"
     },
     {
       "slug": "function-arguments",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Parameters and arguments"
     },
     {
       "slug": "function-default-args",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Default arguments"
     },
     {
       "slug": "function-return",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Return values"
     },
     {
       "slug": "print-vs-return",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "print vs return"
     },
     {
       "slug": "function-docstrings",
       "chapter": 21,
       "chapterTitle": "Functions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Docstrings"
     },
     {
       "slug": "function-scope",
       "chapter": 22,
       "chapterTitle": "Scope",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Local and global scope"
     },
     {
       "slug": "function-args-kwargs",
       "chapter": 23,
       "chapterTitle": "Advanced Function Concepts",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "*args and **kwargs"
     },
     {
       "slug": "function-keyword-only",
       "chapter": 23,
       "chapterTitle": "Advanced Function Concepts",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Keyword arguments"
     },
     {
       "slug": "function-unpacking-calls",
       "chapter": 23,
       "chapterTitle": "Advanced Function Concepts",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Unpacking calls"
     },
     {
       "slug": "lambda-functions",
       "chapter": 23,
       "chapterTitle": "Advanced Function Concepts",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Lambda functions"
     },
     {
       "slug": "tracebacks",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Tracebacks"
     },
     {
       "slug": "try-except",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "try and except"
     },
     {
       "slug": "try-else-finally",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "else and finally"
     },
     {
       "slug": "raise-statement",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "raise"
     },
     {
       "slug": "common-exceptions",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Common exceptions"
     },
     {
       "slug": "except-multiple-types",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Multiple exceptions"
     },
     {
       "slug": "exception-chaining",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Exception chaining"
     },
     {
       "slug": "safe-calculator-project",
       "chapter": 24,
       "chapterTitle": "Errors and Exceptions",
       "part": 6,
-      "partTitle": "Functions"
+      "partTitle": "Functions",
+      "section": "Mini project"
     },
     {
       "slug": "file-paths-modes",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "File paths and modes"
     },
     {
       "slug": "read-files",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Reading files"
     },
     {
       "slug": "file-readlines-encoding",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Reading files"
     },
     {
       "slug": "write-files",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Writing files"
     },
     {
       "slug": "file-append-mode",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Appending files"
     },
     {
       "slug": "notes-app-project",
       "chapter": 25,
       "chapterTitle": "Files",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Mini project"
     },
     {
       "slug": "pathlib-basics",
       "chapter": 26,
       "chapterTitle": "Pathlib",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Path object"
     },
     {
       "slug": "pathlib-glob-files",
       "chapter": 26,
       "chapterTitle": "Pathlib",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Listing files"
     },
     {
       "slug": "pathlib-relative-absolute",
       "chapter": 26,
       "chapterTitle": "Pathlib",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Relative and absolute paths"
     },
     {
       "slug": "shutil-file-ops",
       "chapter": 26,
       "chapterTitle": "Pathlib",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "File operations"
     },
     {
       "slug": "modules-intro",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "import"
     },
     {
       "slug": "import-from-as",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "from import and as"
     },
     {
       "slug": "main-module-guard",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "__name__ == \"__main__\""
     },
     {
       "slug": "sys-argv-basics",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "sys.argv"
     },
     {
       "slug": "argparse-cli",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "argparse preview"
     },
     {
       "slug": "os-environ-vars",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "os.environ"
     },
     {
       "slug": "secrets-token-safety",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "secrets module"
     },
     {
       "slug": "subprocess-run-safety",
       "chapter": 27,
       "chapterTitle": "Modules",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "subprocess preview"
     },
     {
       "slug": "builtin-functions",
       "chapter": 28,
       "chapterTitle": "Built-in Functions",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Built-in helpers"
     },
     {
       "slug": "collections-preview",
       "chapter": 29,
       "chapterTitle": "Standard Library Essentials",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "collections module"
     },
     {
       "slug": "enum-module-preview",
       "chapter": 29,
       "chapterTitle": "Standard Library Essentials",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "enum module"
     },
     {
       "slug": "match-case-preview",
       "chapter": 29,
       "chapterTitle": "Standard Library Essentials",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "match case preview"
     },
     {
       "slug": "logging-basic",
       "chapter": 29,
       "chapterTitle": "Standard Library Essentials",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "logging"
     },
     {
       "slug": "json-python",
       "chapter": 30,
       "chapterTitle": "JSON",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "JSON basics"
     },
     {
       "slug": "json-todo-project",
       "chapter": 30,
       "chapterTitle": "JSON",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Mini project"
     },
     {
       "slug": "csv-read-write",
       "chapter": 31,
       "chapterTitle": "CSV",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "CSV basics"
     },
     {
       "slug": "configparser-ini-files",
       "chapter": 31,
       "chapterTitle": "CSV",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "INI files preview"
     },
     {
       "slug": "regex-basics",
       "chapter": 32,
       "chapterTitle": "Regex",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Regular expressions"
     },
     {
       "slug": "datetime-basics",
       "chapter": 33,
       "chapterTitle": "Date and Time",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "datetime module"
     },
     {
       "slug": "python-packages",
       "chapter": 34,
       "chapterTitle": "Packages, Pip, and Virtual Environments",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "What is a package?"
     },
     {
       "slug": "venv-and-requirements",
       "chapter": 34,
       "chapterTitle": "Packages, Pip, and Virtual Environments",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "venv and pip"
     },
     {
       "slug": "multi-file-cli-project",
       "chapter": 34,
       "chapterTitle": "Packages, Pip, and Virtual Environments",
       "part": 7,
-      "partTitle": "Files, modules, and the standard library"
+      "partTitle": "Files, modules, and the standard library",
+      "section": "Multi-file CLI"
     },
     {
       "slug": "classes-intro",
       "chapter": 35,
       "chapterTitle": "Classes and Objects",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Classes and objects"
     },
     {
       "slug": "class-init-self",
       "chapter": 35,
       "chapterTitle": "Classes and Objects",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "__init__ and self"
     },
     {
       "slug": "class-instance-attributes",
       "chapter": 35,
       "chapterTitle": "Classes and Objects",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Instance attributes"
     },
     {
       "slug": "class-methods",
       "chapter": 35,
       "chapterTitle": "Classes and Objects",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Methods"
     },
     {
       "slug": "classstaticmethod-classmethod",
       "chapter": 36,
       "chapterTitle": "Class Design",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "classmethod and staticmethod"
     },
     {
       "slug": "class-property-decorator",
       "chapter": 36,
       "chapterTitle": "Class Design",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "@property"
     },
     {
       "slug": "class-str-repr",
       "chapter": 36,
       "chapterTitle": "Class Design",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "__str__ and __repr__"
     },
     {
       "slug": "inheritance",
       "chapter": 37,
       "chapterTitle": "Inheritance",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Inheritance"
     },
     {
       "slug": "super-inheritance",
       "chapter": 37,
       "chapterTitle": "Inheritance",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "super()"
     },
     {
       "slug": "dunder-methods-magic",
       "chapter": 38,
       "chapterTitle": "Dunder Methods",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Dunder methods"
     },
     {
       "slug": "dataclasses-preview",
       "chapter": 39,
       "chapterTitle": "Dataclasses",
       "part": 8,
-      "partTitle": "Object-oriented Python"
+      "partTitle": "Object-oriented Python",
+      "section": "Dataclasses"
     },
     {
       "slug": "type-hints-intro",
       "chapter": 40,
       "chapterTitle": "Type Hints",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Type hints basics"
     },
     {
       "slug": "type-hints-depth",
       "chapter": 40,
       "chapterTitle": "Type Hints",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Advanced type hints"
     },
     {
       "slug": "typing-typeddict-protocol",
       "chapter": 40,
       "chapterTitle": "Type Hints",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "TypedDict and Protocol"
     },
     {
       "slug": "mypy-type-checking",
       "chapter": 40,
       "chapterTitle": "Type Hints",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "mypy"
     },
     {
       "slug": "iterators-protocol",
       "chapter": 41,
       "chapterTitle": "Iterators",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Iterators"
     },
     {
       "slug": "generators-yield-intro",
       "chapter": 42,
       "chapterTitle": "Generators",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Generators"
     },
     {
       "slug": "decorators-preview",
       "chapter": 43,
       "chapterTitle": "Decorators",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Decorators"
     },
     {
       "slug": "context-managers-custom",
       "chapter": 44,
       "chapterTitle": "Context Managers",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "Context managers"
     },
     {
       "slug": "itertools-preview",
       "chapter": 47,
       "chapterTitle": "itertools",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "itertools"
     },
     {
       "slug": "functools-lru-cache",
       "chapter": 48,
       "chapterTitle": "functools",
       "part": 9,
-      "partTitle": "Advanced Python"
+      "partTitle": "Advanced Python",
+      "section": "lru_cache"
     },
     {
       "slug": "debugging-help-dir",
       "chapter": 49,
       "chapterTitle": "Debugging",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "help() and dir()"
     },
     {
       "slug": "pdb-debugger",
       "chapter": 49,
       "chapterTitle": "Debugging",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "pdb"
     },
     {
       "slug": "assert-testing-intro",
       "chapter": 50,
       "chapterTitle": "Testing",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "assert"
     },
     {
       "slug": "pytest-basics",
       "chapter": 50,
       "chapterTitle": "Testing",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "pytest"
     },
     {
       "slug": "unittest-module",
       "chapter": 50,
       "chapterTitle": "Testing",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "unittest"
     },
     {
       "slug": "code-quality-tools",
       "chapter": 51,
       "chapterTitle": "Clean Python Style",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "Ruff and Black"
     },
     {
       "slug": "quiz-app-project",
       "chapter": 51,
       "chapterTitle": "Clean Python Style",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "Mini programs"
     },
     {
       "slug": "personality-quiz-project",
       "chapter": 51,
       "chapterTitle": "Clean Python Style",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "Mini programs"
     },
     {
       "slug": "cprofile-performance",
       "chapter": 52,
       "chapterTitle": "Performance Basics",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "Profiling"
     },
     {
       "slug": "timeit-benchmark",
       "chapter": 52,
       "chapterTitle": "Performance Basics",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "timeit"
     },
     {
       "slug": "copy-deepcopy",
       "chapter": 53,
       "chapterTitle": "Memory and Object Model",
       "part": 10,
-      "partTitle": "Debugging, testing, and clean code"
+      "partTitle": "Debugging, testing, and clean code",
+      "section": "Deep copy"
     }
   ]
 }

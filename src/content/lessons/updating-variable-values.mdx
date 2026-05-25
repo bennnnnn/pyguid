@@ -1,7 +1,7 @@
 ---
-title: "Updating variable values"
+title: "Updating Variables"
 description: "Use the old value to compute a new one—score = score + 5 or score += 5—and other += -= *= /= shortcuts."
-order: 40
+order: 26
 chapter: 5
 chapterTitle: "Variables"
 part: 2
@@ -13,6 +13,18 @@ quickAnswer: "Use the current value in a new assignment: score = score + 5, or t
 ## Why this matters
 
 Games, budgets, and counters all **build on** previous numbers. Python lets you read a variable’s **current** value and store an **updated** result under the same name.
+
+## Point the same name at a new value
+
+You can assign again later — the **latest** value wins:
+
+<PythonExample
+  filename="reassign.py"
+  code={`mood = "happy"
+print(mood)
+mood = "tired"
+print(mood)`}
+/>
 
 ## Use the old value
 

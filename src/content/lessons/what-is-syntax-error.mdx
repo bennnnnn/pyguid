@@ -1,7 +1,7 @@
 ---
-title: "What is a syntax error?"
+title: "Syntax Errors"
 description: "Syntax errors are grammar mistakes: Python refuses to run until parentheses, quotes, and symbols balance—learn with broken and fixed runnable examples."
-order: 28
+order: 18
 chapter: 4
 chapterTitle: "Beginner Errors"
 part: 1
@@ -35,6 +35,21 @@ One **`)`** made the grammar complete.
 | `print("Hello")` OK | Matches `(` … `)` and `"` … `"` pairs |
 
 Syntax is about **balancing symbols** Python needs to parse the instruction.
+
+## Unclosed or mismatched quotes
+
+<PythonExample filename="bad_quote.py" code={`print("Hello)`} />
+
+Python expected the closing **`"`** before the **`)`**. Every opening quote needs a matching closing quote on the same string.
+
+## Wrong capitalization in names
+
+Python treats spelling **exactly**. **`Print`** and **`print`** are different — only lowercase **`print`** is the built-in function:
+
+```python
+Print("Hi")   # NameError or invalid — not the real print()
+print("Hi")   # correct
+```
 
 ## Recap
 

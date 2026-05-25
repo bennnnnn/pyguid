@@ -1,0 +1,102 @@
+---
+title: "Input Mistakes"
+description: "Common beginner mistakes with input()—forgetting to store the result, expecting numbers, unclear prompts, and missing spaces."
+order: 33
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "The most common input() mistakes: forgetting to store the answer, expecting a number, writing unclear prompts, and putting variable names in quotes."
+---
+
+## Why this matters
+
+Everyone makes these mistakes when learning `input()`. Seeing them now, with the fixes, means you will recognize them when they happen to you.
+
+## Mistake 1: Forgetting to store the input
+
+```python
+input("Name: ")
+print(name)  # NameError: name 'name' is not defined
+```
+
+**Fix:** Assign the result to a variable:
+
+```python
+name = input("Name: ")
+print(name)  # Works!
+```
+
+## Mistake 2: Thinking input() gives you a number
+
+```python
+age = input("Age: ")
+print(age + 1)  # TypeError!
+```
+
+**Fix:** Remember that `input()` always returns a string. The Type Conversion chapter will teach `int()` and `float()`.
+
+## Mistake 3: Unclear prompts
+
+```python
+x = input("Enter: ")  # Enter what?
+```
+
+**Fix:** Be specific:
+
+```python
+email = input("Enter your email: ")
+```
+
+## Mistake 4: Forgetting the trailing space
+
+```python
+name = input("Name:")  # Cursor hugs the colon
+```
+
+**Fix:** Add a space inside the quotes:
+
+```python
+name = input("Name: ")  # Clean spacing
+```
+
+## Mistake 5: Putting variable names in quotes
+
+```python
+"name" = input("Name: ")  # SyntaxError!
+```
+
+**Fix:** Variable names never go in quotes:
+
+```python
+name = input("Name: ")
+```
+
+<Callout variant="tip">
+  Variables on the **left** of `=` are never quoted. Strings on the **right** always are.
+</Callout>
+
+## Mistake 6: Reusing the same variable for every input
+
+```python
+answer = input("Name: ")
+answer = input("City: ")  # Name is gone now
+```
+
+**Fix:** Use separate variables:
+
+```python
+name = input("Name: ")
+city = input("City: ")
+```
+
+## Quick reference
+
+| Mistake | Fix |
+|---|---|
+| `input("X: ")` — not stored | `var = input("X: ")` |
+| Expecting a number | Remember: always `str` |
+| `input("X:")` — no space | `input("X: ")` |
+| `"var" = input()` | `var = input()` |
+| Reusing one variable | Use a new name |

@@ -80,15 +80,15 @@
       "quickAnswer": "Use elif for additional tests after if, and else for a final block when no earlier condition was true.",
       "whyMatters": "Most real decisions have more than two outcomes—grades, shipping tiers, command menus. elif keeps logic flat compared to nested ifs. else captures the default case so nothing falls through silently."
     },
-    "input-basics": {
-      "description": "Python input() tutorial for beginners: read text from the user, write clear prompts, and build interactive CLI programs with runnable PyGuide examples.",
-      "quickAnswer": "input(prompt) displays an optional prompt and returns whatever the user typed as a string.",
-      "whyMatters": "input() turns static scripts into small tools—quizzes, calculators, CLI games. Everything from input is text, so conversion lessons come next. Handling input politely (clear prompts, validation) is the start of user-facing Python."
+    "what-is-input": {
+      "description": "Input is how a Python program asks the user for information—learn what input is and why it makes programs interactive.",
+      "quickAnswer": "Input is information the user gives to a program while it runs—the program asks a question and the user answers.",
+      "whyMatters": "Input turns static scripts into interactive tools—quizzes, calculators, and CLI games. Without input, every program would show the same result every time. This is the first step toward user-facing Python."
     },
-    "input-conversion": {
-      "description": "Convert Python input() to int and float: parse user strings safely for numeric programs. Beginner guide covers ValueError, validation, and simple retry loops.",
-      "quickAnswer": "Wrap input() with int() or float() to parse numbers, and handle ValueError when the text is not a valid number.",
-      "whyMatters": "Programs that add, compare, or loop by count need numeric types, not strings—'5' + '3' is not 8. Conversion errors are normal with real users, so learning try/except or validation early prevents crashes. This bridges input() to arithmetic and conditions."
+    "what-is-type-conversion": {
+      "description": "Type conversion changes a value from one data type to another—like turning the string '25' into the number 25 so you can do math with user input.",
+      "quickAnswer": "Type conversion changes a value from one type to another, like int('25') to turn text into a number you can do math with.",
+      "whyMatters": "Every input() returns a string, but real programs need numbers. int(), float(), str(), and bool() are the bridge. Without conversion, user input is locked inside text that cannot be added, compared, or calculated."
     },
     "creating-variables": {
       "description": "Python variables for beginners: assign names, reuse values, and follow naming rules. Clear tutorial on how variables work, update, and differ from math symbols.",

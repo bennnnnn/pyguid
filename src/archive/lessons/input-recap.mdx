@@ -1,0 +1,82 @@
+---
+title: "Input Recap"
+description: "Summary of everything you learned about input()—asking questions, storing answers, writing prompts, and avoiding common mistakes."
+order: 54
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "input() asks the user for information, pauses until Enter, and always returns a string—store it in a variable with a clear prompt."
+---
+
+## Why this matters
+
+You now know how to make Python programs that **talk to the user**. This is the bridge from static scripts to interactive tools.
+
+## Everything you learned
+
+**What is input?**
+Information the user gives the program while it runs. The program asks, the user answers, the program uses the answer.
+
+**The `input()` function**
+Pauses the program, shows a prompt, waits for Enter, returns whatever the user typed.
+
+**Storing input**
+```python
+name = input("What is your name? ")
+```
+
+The variable on the left catches the answer. Without `=`, the answer is lost.
+
+**Prompt text**
+The string inside `input()` tells the user what to type. Be specific, and always include a trailing space.
+
+**`input()` always returns text**
+Even `25` comes back as `"25"`. You cannot do math with it directly. The Type Conversion chapter covers `int()` and `float()`.
+
+**Printing user input**
+Combine `input()` with `print()` to acknowledge the user's answer and build interactive conversations.
+
+**Multiple questions**
+Call `input()` once per question. Use a different variable for each answer.
+
+**Common mistakes**
+Forgetting to store the result, expecting a number, unclear prompts, missing spaces, quoting variable names, reusing variables.
+
+## The bigger picture
+
+```
+Variables = storing information
+Input = getting information from the user
+Type Conversion = changing text into numbers (next chapter)
+```
+
+<PythonExample
+  filename="put_it_together.py"
+  code={`# Simulate a complete interactive program
+name = "Bini"
+city = "Portland"
+food = "tacos"
+
+print("=== Summary ===")
+print("Name:", name)
+print("City:", city)
+print("Food:", food)
+print()
+print(name, "lives in", city, "and likes", food)`}
+/>
+
+On your PC, replace each simulated value with a real `input()` call and run it in the terminal.
+
+## What's next
+
+Now that you can collect information from the user, the next chapter teaches **Type Conversion** — how to turn `"25"` into `25` so you can do math with user input.
+
+## Recap
+
+- **`input(prompt)`** — ask, wait, return text
+- **Always store** the result in a variable
+- **Always include** a clear, specific prompt with a trailing space
+- **`input()` always returns `str`** — conversion comes next
+- **Use separate variables** for each question

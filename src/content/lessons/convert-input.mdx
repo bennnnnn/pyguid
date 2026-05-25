@@ -1,0 +1,84 @@
+---
+title: "Convert Input"
+description: "Convert input() strings into numbers with int() and float() so you can do math with what the user types."
+order: 35
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Wrap input() with int() or float() to convert the user's text into a number: age = int(input('Age: '))."
+---
+
+## Why this matters
+
+The most common reason to convert types is `input()`. Every time a user types a number, Python sees text. Converting input is the bridge between "what the user said" and "what the program can calculate."
+
+## The problem
+
+<PythonExample
+  filename="string_problem.py"
+  code={`age = input("Age: ")   # User types 25
+# age is "25" (string, not number)
+# print(age + 1)  # TypeError`}
+/>
+
+`"25" + 1` fails because Python cannot add a string and a number.
+
+## The fix: convert in two steps
+
+<PythonExample
+  filename="convert_two_steps.py"
+  code={`# On your PC: age_text = input("Age: ")
+age_text = "25"
+age = int(age_text)     # Convert string → integer
+print("Next year:", age + 1)`}
+/>
+
+**Line by line:**
+
+- `age_text = "25"` — simulate `input()` returning a string
+- `age = int(age_text)` — convert the string to an integer
+- `age + 1` — now math works
+
+## The shorthand: convert in one line
+
+You can wrap `input()` directly:
+
+<PythonExample
+  filename="convert_one_line.py"
+  code={`# On your PC: age = int(input("Age: "))
+age = int("25")
+print("Next year:", age + 1)`}
+/>
+
+`int(input("Age: "))` asks, waits, converts — all in one line.
+
+## Float for decimals
+
+Use `float()` when the user might type a decimal:
+
+<PythonExample
+  filename="float_input.py"
+  code={`# On your PC: price = float(input("Price: "))
+price = float("9.99")
+print("With tax:", price * 1.08)`}
+/>
+
+`int("9.99")` would crash. Use `float()` for numbers with a decimal point.
+
+## int() vs float()
+
+| User types | `int()` result | `float()` result |
+|---|---|---|
+| `25` | `25` | `25.0` |
+| `3.14` | Error! | `3.14` |
+| `0` | `0` | `0.0` |
+
+Rule: use `float()` if there might be a decimal. Use `int()` only for whole numbers.
+
+## Recap
+
+- `int(input(...))` — ask and convert to whole number in one line
+- `float(input(...))` — ask and convert to decimal in one line
+- Use `float()` when the user might type a decimal point

@@ -1,0 +1,117 @@
+---
+title: "Conversion Mistakes"
+description: "Common type conversion mistakes—passing decimals to int(), adding before converting, and expecting input() to return numbers."
+order: 39
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Most conversion mistakes come from passing '3.14' to int(), doing math before converting, or converting the wrong thing entirely."
+---
+
+## Why this matters
+
+Conversion errors are among the most common beginner bugs. Seeing them now, with the fixes, saves you from the "why is this crashing?" spiral.
+
+## Mistake 1: Passing a decimal string to int()
+
+```python
+int("3.14")  # ValueError!
+```
+
+**Fix:** Use `float()` first, then `int()`:
+
+```python
+int(float("3.14"))  # 3
+```
+
+Or just use `float()` if you need the decimal.
+
+## Mistake 2: Doing math before converting
+
+```python
+age = input("Age: ")     # User types 25
+next_year = age + 1      # TypeError!
+```
+
+**Fix:** Convert before math:
+
+```python
+age = int(input("Age: "))
+next_year = age + 1      # 26
+```
+
+## Mistake 3: Converting the wrong thing
+
+```python
+age = input("Age: ")
+int(age)        # Converted, but the result is lost!
+print(age + 1)  # Still using the string!
+```
+
+**Fix:** Store the result:
+
+```python
+age = input("Age: ")
+age = int(age)          # Replace the string with the number
+print(age + 1)
+```
+
+## Mistake 4: Converting empty input
+
+```python
+age = int(input("Age: "))  # User presses Enter without typing
+# ValueError: invalid literal for int() with base 10: ''
+```
+
+**Fix:** Check before converting (you will learn `if` properly in a later chapter):
+
+```python
+text = input("Age: ")
+if text != "":
+    age = int(text)
+```
+
+## Mistake 5: Expecting int() to round
+
+```python
+print(int(3.99))  # 3 — not 4!
+```
+
+`int()` truncates (drops the decimal). It does not round. Use `round()` for rounding:
+
+```python
+print(round(3.99))  # 4
+```
+
+## Mistake 6: Converting between types unnecessarily
+
+```python
+name = str(input("Name: "))  # str() does nothing — input() already returns str
+```
+
+`input()` already returns a string. Wrapping it in `str()` is harmless but pointless.
+
+## Quick reference
+
+| Mistake | Fix |
+|---|---|
+| `int("3.14")` | `int(float("3.14"))` or just `float()` |
+| Math before convert | Convert first, then calculate |
+| Not storing the result | `x = int(x)` |
+| Empty `input()` to `int()` | Check for `""` first |
+| Thinking `int()` rounds | Use `round()` for rounding |
+| `str(input())` | `input()` is already `str` |
+
+<Callout variant="warning" title="Key takeaway">
+  Most conversion bugs follow one pattern: you expected a number but Python still has a string. When in doubt, `print(type(x))` to see what you really have.
+</Callout>
+
+## Recap
+
+- **Convert before math**, not after
+- **Store** the result of conversion — it does not change the original
+- **`int("3.14")`** crashes — use `float()` for decimal strings
+- **`int()` truncates**, it does not round
+- **Empty input** crashes `int()` — check first

@@ -1,0 +1,72 @@
+---
+title: "type()"
+description: "Use Python's type() function to check what type a value is—especially useful after conversion to verify you got what you expected."
+order: 38
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "type(x) returns the type of x — use it to verify that a conversion worked: type(int('25')) is <class 'int'>."
+---
+
+## Why this matters
+
+You converted `"25"` to `25`. But how do you know it worked? `type()` tells you. It is the fastest way to confirm what kind of value you are holding.
+
+## type() tells you what something is
+
+<PythonExample
+  filename="type_check.py"
+  code={`print(type("hello"))    # <class 'str'>
+print(type(25))          # <class 'int'>
+print(type(3.14))        # <class 'float'>
+print(type(True))        # <class 'bool'>`}
+/>
+
+## Use type() to verify conversion
+
+The whole point of conversion is changing types. `type()` proves it worked:
+
+<PythonExample
+  filename="verify_conversion.py"
+  code={`age_text = "25"
+print(type(age_text))    # <class 'str'>
+
+age = int(age_text)
+print(type(age))         # <class 'int'>
+
+print(type(float("3.14")))   # <class 'float'>
+print(type(str(100)))        # <class 'str'>
+print(type(bool(0)))         # <class 'bool'>`}
+/>
+
+## The input() proof
+
+This is why the Input chapter stressed that `input()` always returns strings:
+
+<PythonExample
+  filename="input_type_proof.py"
+  code={`# Simulate input
+age = "25"
+print(type(age))         # <class 'str'> — always
+
+# Convert
+age = int(age)
+print(type(age))         # <class 'int'> — now it's a number`}
+/>
+
+## type() vs isinstance()
+
+`type()` checks the exact type. There is also `isinstance()` (covered in the Data Types chapter) for more flexible checks. For now, `type()` is all you need.
+
+<Callout variant="tip">
+  Keep `type()` in your toolkit. When your program behaves strangely, `print(type(x))` is often the fastest way to see what is really happening.
+</Callout>
+
+## Recap
+
+- **`type(x)`** returns the type of `x`
+- Use it to **verify** that a conversion worked
+- `type("25")` → `str`, `type(25)` → `int`
+- `type()` is a quick debugging tool when values misbehave

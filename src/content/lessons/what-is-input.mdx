@@ -1,0 +1,67 @@
+---
+title: "Input"
+description: "Input is information the user gives to a running program—like answering a question the program asks."
+order: 29
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Input is information the user gives to a program while it runs—the program asks a question and the user answers."
+---
+
+## Why this matters
+
+So far your programs have used values you typed into the code. But real programs ask the **user** for information: a name, a password, a search term. **Input** is how your program listens.
+
+## The program asks, you answer
+
+Think of a program like a form. The program asks a question, waits for the user to type, and stores the answer:
+
+```
+Question: What is your name?
+User types: Bini
+Program stores: "Bini"
+```
+
+Without input, every program would show the same result every time. Input makes programs **interactive**.
+
+## Input vs hardcoded values
+
+**Hardcoded** (no input):
+
+<PythonExample
+  filename="hardcoded.py"
+  code={`name = "Bini"
+print("Hello,", name)`}
+/>
+
+**With input** (the user decides):
+
+<PythonExample
+  filename="with_input.py"
+  code={`# On your PC: name = input("What is your name? ")
+name = "Bini"
+print("Hello,", name)`}
+/>
+
+<Callout variant="tip">
+  **PyGuide's Run button** cannot wait for real keyboard input. In this chapter we **simulate** input by assigning a string directly. Try real `input()` in a local `.py` file.
+</Callout>
+
+## The pattern
+
+Every interactive program follows the same pattern:
+
+1. Ask a question
+2. Wait for the answer
+3. Store the answer
+4. Use the answer
+
+This chapter teaches each step.
+
+## Recap
+
+- **Input** is information the user gives the program while it runs
+- Input makes programs **interactive** instead of showing the same result every time
+- The pattern: ask → wait → store → use

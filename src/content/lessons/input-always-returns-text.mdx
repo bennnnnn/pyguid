@@ -1,0 +1,80 @@
+---
+title: "Input Text"
+description: "No matter what the user types, input() always returns a string—even numbers like 25 come back as '25'."
+order: 32
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "input() always returns a string. If the user types 25, Python sees '25'—the next chapter covers converting text to numbers."
+---
+
+## Why this matters
+
+This is the single most important fact about `input()`, and the cause of countless beginner bugs. If you learn it now, you will save yourself hours of confusion.
+
+## Everything from input() is a string
+
+The user types `25`. Python stores `"25"` — with quotes. It is **text**, not a number.
+
+<PythonExample
+  filename="always_string.py"
+  code={`# On your PC: age = input("Enter your age: ")
+age = "25"
+
+print(age)
+print(type(age))`}
+/>
+
+Output:
+
+```
+25
+<class 'str'>
+```
+
+Even though `25` looks like a number, `type(age)` says `str`.
+
+## The proof: try adding 1
+
+<PythonExample
+  filename="cant_add.py"
+  code={`age = "25"
+# print(age + 1)  # TypeError!
+print("Cannot add 1 to a string:", age)`}
+/>
+
+```python
+age = input("Age: ")
+print(age + 1)  # TypeError: can only concatenate str to int
+```
+
+Python says no. `"25"` is text, and you cannot add a number to text.
+
+## What counts as text?
+
+| User types | Python sees | Type |
+|---|---|---|
+| `25` | `"25"` | `str` |
+| `3.14` | `"3.14"` | `str` |
+| `hello` | `"hello"` | `str` |
+| `true` | `"true"` | `str` |
+| (empty) | `""` | `str` |
+
+Everything. No exceptions.
+
+<Callout variant="warning" title="Burn this into your brain">
+  **`input()` always returns a string.** If the user types a number, it is still a string with digits in it. The next chapter teaches how to convert strings into real numbers.
+</Callout>
+
+## For now, just know this
+
+You will learn `int()` and `float()` in the **Type Conversion** chapter. For this chapter, just remember: `input()` gives you text, always.
+
+## Recap
+
+- **`input()` always returns `str`** — no matter what the user types
+- `"25"` is text, not a number
+- You **cannot do math** with the result of `input()` directly
+- The next chapter covers converting text to numbers

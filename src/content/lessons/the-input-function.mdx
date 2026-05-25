@@ -1,0 +1,75 @@
+---
+title: "input()"
+description: "Python's input() function pauses the program, shows a prompt, and returns whatever the user typed as a string."
+order: 30
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "input() pauses the program until the user presses Enter, then returns the typed text as a string."
+---
+
+## Why this matters
+
+`input()` is the one Python function that lets your program **wait for the user**. Without it, your program has no way to hear from the person running it.
+
+## How input() works
+
+`input()` does three things:
+
+1. **Pauses** the program
+2. **Shows a prompt** (if you give it one)
+3. **Returns** whatever the user typed — as a string
+
+<PythonExample
+  filename="basic_input.py"
+  code={`# On your PC, this pauses and waits:
+# input("What is your name? ")
+
+# Simulated for the browser:
+name = "Bini"
+print("You typed:", name)`}
+/>
+
+When Python reaches `input()`, everything stops. The user types, presses Enter, and only then does the program continue.
+
+## With and without a prompt
+
+You can call `input()` with or without text:
+
+<PythonExample
+  filename="prompt_vs_none.py"
+  code={`# Without prompt — user sees a blank line
+# name = input()
+
+# With prompt — user sees the question
+# name = input("What is your name? ")
+
+name = "Bini"
+print("Hello,", name)`}
+/>
+
+A blank `input()` works, but the user has no idea what to type. **Always include a prompt.**
+
+## The answer disappears unless you catch it
+
+This is the most common beginner mistake:
+
+```python
+input("What is your name? ")
+print(name)  # NameError! name was never created
+```
+
+`input()` returns the answer, but if you don't store it, the answer is **lost**. The next lesson shows how to fix this.
+
+<Callout variant="warning" title="Watch out">
+  `input()` gives the answer back — it does **not** create a variable for you. You must store the result yourself.
+</Callout>
+
+## Recap
+
+- **`input()`** pauses the program and waits for Enter
+- It returns whatever the user typed
+- Always include a **prompt** so the user knows what to type
+- The answer **disappears** unless you store it in a variable

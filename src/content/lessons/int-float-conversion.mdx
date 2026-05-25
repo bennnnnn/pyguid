@@ -1,0 +1,101 @@
+---
+title: "int(), float()"
+description: "Python int() and float() convert strings and other types into numbers. Learn how each works, what they accept, and when to use each."
+order: 36
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "int() converts to a whole number; float() converts to a decimal number. Both accept strings and numbers."
+---
+
+## Why this matters
+
+`int()` and `float()` are your go-to tools for turning text into numbers. They work on more than just `input()` — you will use them with files, APIs, and anywhere data arrives as strings.
+
+## int(): whole numbers only
+
+`int()` converts a value to an integer (whole number):
+
+<PythonExample
+  filename="int_function.py"
+  code={`# String to integer
+print(int("25"))       # 25
+print(int("100"))      # 100
+
+# Float to integer (truncates the decimal)
+print(int(3.99))       # 3
+print(int(7.0))        # 7`}
+/>
+
+`int()` does **not** round — it drops everything after the decimal point.
+
+## What int() accepts
+
+<PythonExample
+  filename="int_accepts.py"
+  code={`# Strings with digits only
+print(int("42"))       # 42
+print(int("-10"))      # -10
+
+# Floats
+print(int(3.14))       # 3
+
+# Booleans
+print(int(True))       # 1
+print(int(False))      # 0`}
+/>
+
+## What int() rejects
+
+```python
+int("3.14")    # ValueError — has a decimal point
+int("hello")   # ValueError — not a number
+int("")        # ValueError — empty string
+```
+
+<Callout variant="warning" title="int() needs a clean number string">
+  `int("3.14")` crashes. If the string has a decimal, use `float()` first: `int(float("3.14"))` → `3`.
+</Callout>
+
+## float(): numbers with decimals
+
+`float()` converts a value to a floating-point number:
+
+<PythonExample
+  filename="float_function.py"
+  code={`# String to float
+print(float("3.14"))   # 3.14
+print(float("25"))     # 25.0
+print(float("0.5"))    # 0.5
+
+# Integer to float
+print(float(10))       # 10.0`}
+/>
+
+## float() is more forgiving
+
+`float()` accepts strings with decimal points that `int()` rejects:
+
+```python
+float("3.14")    # 3.14  ✓
+int("3.14")      # Error ✗
+```
+
+## Quick reference
+
+| Input | `int()` | `float()` |
+|---|---|---|
+| `"25"` | `25` | `25.0` |
+| `"3.14"` | Error | `3.14` |
+| `"0"` | `0` | `0.0` |
+| `"hello"` | Error | Error |
+| `True` | `1` | `1.0` |
+| `5.9` | `5` | `5.9` |
+
+## Recap
+
+- **`int()`** — converts to integer, drops decimals, rejects decimal-point strings
+- **`float()`** — converts to float, accepts decimal-point strings
+- Both crash on non-numeric text like `"hello"`

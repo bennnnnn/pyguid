@@ -38,7 +38,7 @@ export const CURRICULUM_CHAPTERS: CurriculumChapter[] = [
   { number: 3, title: "Comments", partId: 1 },
   { number: 4, title: "Beginner Errors", partId: 1 },
   { number: 5, title: "Variables", partId: 2 },
-  { number: 6, title: "input()", partId: 2 },
+  { number: 6, title: "Input", partId: 2 },
   { number: 7, title: "Type Conversion", partId: 2 },
   { number: 8, title: "Data Types", partId: 3 },
   { number: 9, title: "Numbers", partId: 3 },

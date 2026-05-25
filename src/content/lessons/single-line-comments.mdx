@@ -1,7 +1,7 @@
 ---
-title: "Single-line comments"
+title: "Writing Comments"
 description: "Use the hash symbol (#) to start a single-line comment in Python. Comments chapter lesson with runnable PyGuide examples."
-order: 22
+order: 14
 chapter: 3
 chapterTitle: "Comments"
 part: 1
@@ -39,6 +39,18 @@ name = "Bini"
 # --- Display ---
 print(name)`}
 />
+
+## Comments on the same line as code
+
+Put **`#`** after working code to explain that line:
+
+<PythonExample
+  filename="inline.py"
+  code={`score = 10  # starting value
+print(score)  # show the score`}
+/>
+
+Code before **`#`** still runs; only the text after **`#`** is ignored.
 
 <Callout variant="tip">
   You do not **need** fancy separators — clear names beat decoration. Save big banners for places they genuinely help **navigation**.

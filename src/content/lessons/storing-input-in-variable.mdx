@@ -1,0 +1,83 @@
+---
+title: "Store Input"
+description: "Save the result of input() into a variable so you can use the user's answer later in your Python program."
+order: 31
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Assign the result of input() to a variable: name = input('What is your name? ') so you can use the answer later."
+---
+
+## Why this matters
+
+`input()` returns the user's answer, but the answer vanishes unless you **store** it. Variables from the last chapter are exactly what you need.
+
+## Catch the answer with a variable
+
+You already know how to assign values to variables:
+
+```python
+name = "Bini"
+```
+
+`input()` works the same way — it gives back a value you can assign:
+
+```python
+name = input("What is your name? ")
+```
+
+<PythonExample
+  filename="store_input.py"
+  code={`# On your PC: name = input("What is your name? ")
+name = "Bini"
+print("Hello,", name)`}
+/>
+
+**Line by line:**
+
+- `name = input(...)` — ask the question, wait, store the answer in `name`
+- `print("Hello,", name)` — use the stored answer
+
+## You can use the variable anywhere
+
+Once stored, the input is just a normal variable:
+
+<PythonExample
+  filename="use_anywhere.py"
+  code={`# On your PC: city = input("What city? ")
+city = "San Francisco"
+
+print("You live in", city)
+print("I hear", city, "is nice!")
+print("Welcome to the", city, "guide.")`}
+/>
+
+The variable `city` holds the answer. You can print it, compare it, or build on it — as many times as you want.
+
+## Compare: stored vs not stored
+
+**Not stored** — answer is lost:
+
+```python
+input("Name: ")
+print(name)  # NameError: name is not defined
+```
+
+**Stored** — answer is saved:
+
+```python
+name = input("Name: ")
+print(name)  # Works!
+```
+
+<Callout variant="tip">
+  Think of `input()` like a waiter handing you a plate. If you don't take it, it drops. A variable is your hands — **catch the result**.
+</Callout>
+
+## Recap
+
+- Always put `input()` on the **right side of `=`**
+- The variable on the left **catches** the answer
+- Once stored, use the variable like any other

@@ -1,0 +1,91 @@
+---
+title: "Prompts"
+description: "Write clear, helpful prompts for input() so users know exactly what to type—including spacing tips for clean output."
+order: 49
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "The text inside input() is called a prompt—a good prompt tells the user what to type and includes a trailing space for readability."
+---
+
+## Why this matters
+
+A blank `input()` confuses users. A good prompt tells them exactly what you want. The difference is one extra sentence of code and a much better experience.
+
+## What is a prompt?
+
+The string inside `input()` is called a **prompt**:
+
+```python
+name = input("Enter your name: ")
+```
+
+`"Enter your name: "` is the prompt. It appears in the terminal so the user knows what to type.
+
+## Good prompts vs bad prompts
+
+**Bad** — no prompt, or a vague one:
+
+```python
+name = input()
+age = input("?")
+```
+
+The user sees a blinking cursor with no idea what to do.
+
+**Good** — clear, specific prompts:
+
+```python
+name = input("Enter your name: ")
+age = input("Enter your age: ")
+color = input("Favorite color: ")
+```
+
+## The trailing space matters
+
+Compare these two prompts:
+
+<PythonExample
+  filename="spacing.py"
+  code={`# Simulate what the user sees in the terminal
+# Without space — cursor hugs the colon
+# prompt: "Name:"  →  Name:Bini
+
+# With space — cursor has room
+# prompt: "Name: "  →  Name: Bini
+
+print("Without space: Name:Bini")
+print("With space:    Name: Bini")`}
+/>
+
+A space after the colon makes the input feel cleaner:
+
+```python
+name = input("Name: ")   # Good — space after colon
+city = input("City: ")   # Good
+```
+
+<Callout variant="warning" title="Common mistake">
+  Forgetting the trailing space. The code still works, but the user's typing runs right up against the prompt text. Add a space inside the quotes: `"Name: "` not `"Name:"`.
+</Callout>
+
+## Be specific
+
+Vague prompts lead to vague answers:
+
+| Vague prompt | Better prompt |
+|---|---|
+| `"Enter: "` | `"Enter your email: "` |
+| `"Value: "` | `"Enter a number: "` |
+| `"Type: "` | `"Type your username: "` |
+
+The prompt is your chance to guide the user. Use it.
+
+## Recap
+
+- The text inside `input()` is the **prompt**
+- A good prompt is **clear** and **specific**
+- Always include a **trailing space** for readability
+- Never leave `input()` blank in a real program

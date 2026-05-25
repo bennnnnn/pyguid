@@ -1,0 +1,104 @@
+---
+title: "str(), bool()"
+description: "Python str() converts any value to text; bool() converts any value to True or False. Learn how both work with clear beginner examples."
+order: 37
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "str() turns any value into a string; bool() turns any value into True or False based on truthiness rules."
+---
+
+## Why this matters
+
+Not all conversion is about numbers. Sometimes you need to turn a number into text for printing, or check whether a value is "truthy." `str()` and `bool()` handle these cases.
+
+## str(): anything to text
+
+`str()` converts any value to a string:
+
+<PythonExample
+  filename="str_function.py"
+  code={`# Numbers to strings
+print(str(25))         # "25"
+print(str(3.14))       # "3.14"
+
+# Booleans to strings
+print(str(True))       # "True"
+print(str(False))      # "False"`}
+/>
+
+## Why use str()?
+
+Sometimes you need to combine a number with text:
+
+<PythonExample
+  filename="why_str.py"
+  code={`age = 25
+# print("I am " + age + " years old")  # TypeError!
+
+# Convert first
+message = "I am " + str(age) + " years old"
+print(message)`}
+/>
+
+String concatenation (`+`) needs both sides to be strings. `str()` makes that possible.
+
+<Callout variant="tip">
+  `print()` with commas handles this automatically: `print("I am", age, "years old")`. But `+` for joining needs `str()`.
+</Callout>
+
+## bool(): truth testing
+
+`bool()` converts any value to `True` or `False`:
+
+<PythonExample
+  filename="bool_function.py"
+  code={`# Numbers
+print(bool(1))         # True
+print(bool(0))         # False
+print(bool(25))        # True
+print(bool(-5))        # True
+
+# Strings
+print(bool("hello"))   # True
+print(bool(""))        # False — empty string
+
+# Other
+print(bool(None))      # False`}
+/>
+
+## The truthiness rule
+
+Most values are `True`. Only a few are `False`:
+
+| Value | `bool()` result |
+|---|---|
+| `0` | `False` |
+| `0.0` | `False` |
+| `""` (empty string) | `False` |
+| `None` | `False` |
+| Anything else | `True` |
+
+## Real use: check if the user typed something
+
+<PythonExample
+  filename="check_input.py"
+  code={`# On your PC: name = input("Name: ")
+name = "Bini"
+
+if bool(name):
+    print("Hello,", name)
+else:
+    print("You did not type anything.")`}
+/>
+
+An empty `input()` returns `""`, which converts to `False`.
+
+## Recap
+
+- **`str(x)`** — returns the string version of `x`
+- **`bool(x)`** — returns `True` for most values, `False` for empty/zero/None
+- Use `str()` when joining numbers with `+` for text
+- Use `bool()` to check if a value is "empty" or not

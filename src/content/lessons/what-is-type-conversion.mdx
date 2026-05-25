@@ -1,0 +1,67 @@
+---
+title: "Conversion"
+description: "Type conversion changes a value from one data type to another—like turning the string '25' into the number 25 so you can do math."
+order: 34
+chapter: 7
+chapterTitle: "Type Conversion"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Type conversion changes a value from one type to another, like int('25') to turn text into a number you can do math with."
+---
+
+## Why this matters
+
+In the last chapter you learned that `input()` always returns text. That means `"25"` is a string, not a number. If you want to add 1 to someone's age, you need to turn `"25"` into `25`. That is **type conversion**.
+
+## What is type conversion?
+
+**Type conversion** means changing a value from one type to another.
+
+```
+"25"   →   25      (string to integer)
+25     →   "25"    (integer to string)
+1      →   True    (integer to boolean)
+```
+
+Python gives you built-in functions to do this. Each one is named after the type you want:
+
+| Function | Converts to |
+|----------|-------------|
+| `int()` | integer (whole number) |
+| `float()` | float (decimal number) |
+| `str()` | string (text) |
+| `bool()` | boolean (True/False) |
+
+## Why you need it
+
+<PythonExample
+  filename="why_convert.py"
+  code={`# input() gave you a string
+age = "25"
+
+# You cannot add 1 to a string
+# print(age + 1)  # TypeError!
+
+# Convert, then do math
+age_number = int(age)
+print("Next year:", age_number + 1)`}
+/>
+
+Without conversion, user input is locked inside strings. Conversion sets it free.
+
+## The rule: use the function that matches what you want
+
+- Want a number? Use `int()` or `float()`
+- Want text? Use `str()`
+- Want True/False? Use `bool()`
+
+<Callout variant="tip">
+  The conversion functions share a pattern: they all take one argument and return the converted value. `int(x)`, `float(x)`, `str(x)`, `bool(x)`.
+</Callout>
+
+## Recap
+
+- **Type conversion** changes a value from one type to another
+- Python gives you `int()`, `float()`, `str()`, and `bool()`
+- Conversion is how you unlock numbers from `input()` strings

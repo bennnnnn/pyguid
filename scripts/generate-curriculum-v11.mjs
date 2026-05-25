@@ -33,7 +33,7 @@ const chapters = [
   {
     n: 4,
     title: "Input and Type Conversion",
-    slugs: ["input-basics", "input-conversion", "multiple-assignment"],
+    slugs: ["what-is-input", "what-is-type-conversion", "multiple-assignment"],
   },
   {
     n: 5,

@@ -1,0 +1,86 @@
+---
+title: "Print Input"
+description: "Combine input() with print() to build simple interactive Python programs that greet the user by name."
+order: 51
+chapter: 6
+chapterTitle: "Input"
+part: 2
+partTitle: "Variables and input"
+level: beginner
+quickAnswer: "Store input in a variable, then use print() with that variable to echo or respond to what the user typed."
+---
+
+## Why this matters
+
+Input by itself is invisible — the user types and nothing visible happens unless you **print something back**. Combining `input()` with `print()` creates a conversation between the program and the user.
+
+## The basic pattern: ask, then respond
+
+<PythonExample
+  filename="greet.py"
+  code={`# On your PC: name = input("What is your name? ")
+name = "Bini"
+print("Hello,", name)`}
+/>
+
+Output:
+
+```
+What is your name? Bini
+Hello, Bini
+```
+
+The program asks, the user answers, the program responds. That is the core of interactive programming.
+
+## More response patterns
+
+<PythonExample
+  filename="responses.py"
+  code={`# On your PC: color = input("Favorite color? ")
+color = "blue"
+
+# Simple response
+print("Nice! I like", color, "too.")
+
+# f-string response
+print(f"Really? {color} is a great choice!")
+
+# Multi-line response
+print("Got it!")
+print("Your favorite color is", color)
+print("Noted.")`}
+/>
+
+## Build a tiny conversation
+
+<PythonExample
+  filename="conversation.py"
+  code={`# Simulate three inputs
+name = "Alex"
+city = "Chicago"
+food = "pizza"
+
+# Print responses
+print("Hello,", name)
+print("I hear", city, "is a great place!")
+print("I like", food, "too!")`}
+/>
+
+<Callout variant="tip">
+  You can use either commas or f-strings with `print()`. Commas are simpler for beginners. You will learn f-strings properly in the Strings chapter.
+</Callout>
+
+## Every input deserves a response
+
+If the user types something and nothing happens, they wonder if the program broke. Always acknowledge:
+
+```python
+name = input("Name: ")
+print("Thanks,", name)  # Simple acknowledgment
+```
+
+## Recap
+
+- Use `print()` after `input()` to **respond** to the user
+- Commas join values with spaces in `print()`
+- Always **acknowledge** the user's input — even just `"Thanks!"`
