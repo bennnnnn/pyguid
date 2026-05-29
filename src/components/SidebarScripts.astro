@@ -90,11 +90,11 @@
     .course-sidebar {
       display: none;
       position: fixed;
-      top: 3.5rem;
+      top: var(--site-header-offset, 3.5rem);
       left: 0;
       z-index: 40;
       width: min(300px, 90vw);
-      max-height: calc(100vh - 3.5rem);
+      max-height: calc(100vh - var(--site-header-offset, 3.5rem));
       overflow-y: auto;
       box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
     }
@@ -104,7 +104,7 @@
     .sidebar-backdrop {
       display: none;
       position: fixed;
-      inset: 3.5rem 0 0 0;
+      inset: var(--site-header-offset, 3.5rem) 0 0 0;
       z-index: 35;
       background: rgba(15, 23, 42, 0.4);
     }

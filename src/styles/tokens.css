@@ -26,9 +26,9 @@
   --color-link-hover: #1d4ed8;
   --color-link-active: #1e3a8a;
 
-  /* Hover & active (sidebar, top nav, footer) — tint background, dark text */
-  --color-interactive-hover-bg: var(--color-accent-subtle);
-  --color-interactive-active-bg: var(--color-accent-light);
+  /* Hover & active (sidebar, top nav, footer) — light hover, darker active */
+  --color-interactive-hover-bg: #f0fdfa;
+  --color-interactive-active-bg: #99f6e4;
   --color-interactive-active-text: var(--color-text);
   --color-interactive-active-border: var(--color-accent);
   --color-nav-hover-bg: var(--color-interactive-hover-bg);
@@ -51,7 +51,7 @@
   /* Chrome */
   --color-nav-bg: #ffffff;
   --color-sidebar-bg: #f8fafc;
-  --color-sidebar-active: #e2e8f0;
+  --color-sidebar-active: #99f6e4;
   --color-focus-ring: var(--color-accent-light);
 
   /* Semantic (quiz, callouts, code output — not accent link text) */
