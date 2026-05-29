@@ -67,6 +67,39 @@
   margin-top: 2rem;
 }
 
+.home-hero-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-hero-track-link {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.home-hero-track-link:hover {
+  border-color: color-mix(in srgb, var(--color-brand) 35%, var(--color-border));
+  background: var(--color-interactive-hover-bg);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
 .home-stats {
   display: flex;
   flex-wrap: wrap;
@@ -162,8 +195,7 @@
 .home-section-head {
   max-width: 40rem;
   margin-bottom: 2.5rem;
-  text-align: center;
-  margin-inline: auto;
+  text-align: left;
 }
 
 .home-section-head h2 {
@@ -294,17 +326,19 @@
 
 @media (min-width: 768px) {
   .home-paths {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-paths {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 1280px) {
   .home-paths {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .home-path-card:last-child {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -328,8 +362,24 @@
   box-shadow: 0 4px 24px color-mix(in srgb, var(--color-accent) 12%, transparent);
 }
 
-.home-path-card h3 {
+.home-path-stat {
   margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.home-path-desc {
+  margin: 0.5rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.home-path-card h3 {
+  margin: 0.35rem 0 0;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-text);
@@ -429,14 +479,18 @@
 
 .home-curriculum-footer {
   margin: 2rem 0 0;
-  text-align: center;
+  text-align: left;
 }
 
 .home-cta {
   padding-block: 4.5rem;
   background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
   color: white;
-  text-align: center;
+  text-align: left;
+}
+
+.home-cta-inner {
+  max-width: 48rem;
 }
 
 .home-cta h2 {
@@ -446,8 +500,8 @@
 }
 
 .home-cta p {
-  margin: 1rem auto 0;
-  max-width: 32rem;
+  margin: 1rem 0 0;
+  max-width: 36rem;
   font-size: 1.0625rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.88);
@@ -456,7 +510,7 @@
 .home-cta-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.75rem;
   margin-top: 2rem;
 }

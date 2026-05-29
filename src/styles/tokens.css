@@ -1,7 +1,7 @@
 /**
  * PyGuide design tokens.
  * Accent (teal) is for buttons, borders, and tinted backgrounds — not link/body text.
- * Links use dark blue; active nav uses dark text on a light accent background.
+ * Links use dark blue; active nav matches the brand sign-up button (teal + white text).
  */
 @theme {
   --font-sans:
@@ -26,11 +26,11 @@
   --color-link-hover: #1d4ed8;
   --color-link-active: #1e3a8a;
 
-  /* Hover & active (sidebar, top nav, footer) — light hover, darker active */
+  /* Hover & active (sidebar, top nav, footer) — matches brand button */
   --color-interactive-hover-bg: #f0fdfa;
-  --color-interactive-active-bg: #99f6e4;
-  --color-interactive-active-text: var(--color-text);
-  --color-interactive-active-border: var(--color-accent);
+  --color-interactive-active-bg: var(--color-brand);
+  --color-interactive-active-text: var(--color-on-accent);
+  --color-interactive-active-border: var(--color-brand-hover);
   --color-nav-hover-bg: var(--color-interactive-hover-bg);
   --color-nav-active-bg: var(--color-interactive-active-bg);
   --color-nav-active-text: var(--color-interactive-active-text);
@@ -51,7 +51,7 @@
   /* Chrome */
   --color-nav-bg: #ffffff;
   --color-sidebar-bg: #f8fafc;
-  --color-sidebar-active: #99f6e4;
+  --color-sidebar-active: var(--color-brand);
   --color-focus-ring: var(--color-accent-light);
 
   /* Semantic (quiz, callouts, code output — not accent link text) */

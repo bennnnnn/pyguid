@@ -1,7 +1,11 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import HomeCurriculum from "../components/home/HomeCurriculum.astro";
+import { getPublishedAiTerminologySections } from "../lib/ai-terminology/catalog";
+import { getAllFastapiLessons } from "../lib/fastapi-lessons";
 import { getLessonGroups, getTotalLessonCount } from "../lib/lessons";
+import { getPublishedQuizTopics } from "../lib/quiz-topics";
+import { getReferenceMenuItems } from "../lib/reference-sheets";
 import { websiteJsonLd } from "../lib/seo-schema";
 import { SITE, getSiteUrl } from "../lib/site";
 import "../styles/home.css";
@@ -10,7 +14,44 @@ const groups = await getLessonGroups();
 const lessonCount = getTotalLessonCount(groups);
 const sectionCount = groups.length;
 const firstLesson = groups[0]?.lessons[0];
+const fastapiLessons = await getAllFastapiLessons();
+const quizTopics = getPublishedQuizTopics();
+const aiSections = getPublishedAiTerminologySections();
+const referenceTopics = getReferenceMenuItems();
 const siteUrl = getSiteUrl(Astro.site);
+
+const tracks = [
+  {
+    href: "/python/",
+    title: "Python",
+    description: "Step-by-step tutorials from your first print() to advanced core Python.",
+    stat: `${lessonCount} lessons`,
+  },
+  {
+    href: "/fastapi/",
+    title: "FastAPI",
+    description: "Build APIs with FastAPI — routes, Pydantic, auth, testing, and deployment.",
+    stat: `${fastapiLessons.length} lessons`,
+  },
+  {
+    href: "/ai-terminology/",
+    title: "AI Terms",
+    description: "Plain-language glossary for LLMs, RAG, agents, MCP, and modern AI vocabulary.",
+    stat: `${aiSections.length} topics`,
+  },
+  {
+    href: "/python/reference/",
+    title: "References",
+    description: "Quick syntax lookup for strings, lists, loops, functions, and more.",
+    stat: `${referenceTopics.length} sheets`,
+  },
+  {
+    href: "/python/quiz/",
+    title: "Quizzes",
+    description: "Chapter quizzes to check what you remember after the tutorials.",
+    stat: `${quizTopics.length} quizzes`,
+  },
+];
 ---
 
 <SiteLayout
@@ -23,24 +64,43 @@ const siteUrl = getSiteUrl(Astro.site);
     <div class="home-container home-hero-inner">
       <div>
         <p class="home-eyebrow">Free · No install · Run code in the browser</p>
-        <h1>Learn Python from zero to advanced core Python.</h1>
+        <h1>Learn Python, FastAPI, and AI — all in one place.</h1>
         <p class="home-hero-lead">
-          PyGuide is a free Python-only learning website with beginner-friendly tutorials, separate
-          quizzes, and quick reference pages. Read the lesson, run the code, test yourself with
-          quizzes, and use references when you need a fast reminder.
+          PyGuide brings together Python tutorials, a FastAPI roadmap, an AI terminology glossary,
+          chapter quizzes, and quick references. Read a lesson, run the code, test yourself, and look
+          up syntax when you need it.
         </p>
         <div class="home-hero-actions">
-          <a href="/python/what-is-programming/" class="btn-primary">Start tutorials</a>
-          <a href="/python/quiz/" class="btn-secondary">Browse quizzes</a>
+          <a href="/python/" class="btn-primary">Start Python</a>
+          <a href="/fastapi/" class="btn-secondary">FastAPI track</a>
         </div>
+        <ul class="home-hero-tracks" aria-label="All learning areas">
+          {
+            tracks.map((track) => (
+              <li>
+                <a href={track.href} class="home-hero-track-link">
+                  {track.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
         <dl class="home-stats">
           <div class="home-stat">
             <strong>{lessonCount}</strong>
-            <span>step-by-step lessons</span>
+            <span>Python lessons</span>
           </div>
           <div class="home-stat">
-            <strong>{sectionCount}</strong>
-            <span>topics</span>
+            <strong>{fastapiLessons.length}</strong>
+            <span>FastAPI lessons</span>
+          </div>
+          <div class="home-stat">
+            <strong>{quizTopics.length}</strong>
+            <span>quizzes</span>
+          </div>
+          <div class="home-stat">
+            <strong>{aiSections.length}</strong>
+            <span>AI term topics</span>
           </div>
         </dl>
       </div>
@@ -68,28 +128,31 @@ Welcome to Python</pre>
     <div class="home-container">
       <div class="home-section-head">
         <h2>Built for how you actually learn</h2>
-        <p>Three clear sections — tutorials, quizzes, and references — so you always know where to go.</p>
+        <p>
+          Five areas — Python, FastAPI, AI terms, quizzes, and references — so you always know
+          where to go next.
+        </p>
       </div>
       <ul class="home-features">
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">▶</div>
           <h3>Run code on every page</h3>
-          <p>Press Run on any example. Output appears below — copy, edit, and experiment in seconds.</p>
+          <p>Press Run on Python examples. Output appears below — copy, edit, and experiment in seconds.</p>
         </li>
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">1</div>
           <h3>One topic per lesson</h3>
-          <p>Short pages focused on a single idea. Use Back and Next to move through the course in order.</p>
+          <p>Short pages focused on a single idea. Use Back and Next to move through each track in order.</p>
         </li>
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">≡</div>
           <h3>Sidebar navigation</h3>
-          <p>Jump to lists, loops, functions, classes, and more. Tutorials, quizzes, and references stay separate.</p>
+          <p>Jump between Python lessons, FastAPI topics, AI glossary sections, quizzes, and references.</p>
         </li>
         <li class="home-feature">
           <div class="home-feature-icon" aria-hidden="true">✓</div>
           <h3>Free to use</h3>
-          <p>No paywall on lessons. Optional sign-in later to save progress — the course stays open.</p>
+          <p>No paywall on content. Optional Google sign-in saves quiz progress — everything stays open.</p>
         </li>
       </ul>
     </div>
@@ -100,79 +163,77 @@ Welcome to Python</pre>
     <div class="home-container">
       <div class="home-section-head">
         <h2>How it works</h2>
-        <p>Three steps from zero to writing your own programs.</p>
+        <p>Pick a track, learn at your pace, then quiz yourself or look things up.</p>
       </div>
       <ol class="home-steps">
         <li class="home-step">
-          <h3>Pick a lesson</h3>
-          <p>Start at What is programming? or open any topic in the sidebar — chapter by chapter from the first lesson onward.</p>
+          <h3>Choose your track</h3>
+          <p>
+            Start with Python basics, follow the FastAPI roadmap, browse AI terminology, open a quiz,
+            or jump to a reference sheet.
+          </p>
         </li>
         <li class="home-step">
           <h3>Read and run</h3>
-          <p>Each page explains one concept with examples. Run them in the browser to see Python in action.</p>
+          <p>Each lesson explains one concept with examples. Run Python code in the browser as you go.</p>
         </li>
         <li class="home-step">
           <h3>Quiz and reference</h3>
-          <p>Take a chapter quiz when you finish a topic. Use References for quick syntax lookup while you code.</p>
+          <p>Take a chapter quiz after Python topics. Use References and AI Terms when you need a fast reminder.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- Tutorials · Quizzes · References -->
+  <!-- All tracks -->
   <section class="home-section">
     <div class="home-container">
       <div class="home-section-head">
-        <h2>Three ways to use {SITE.name}</h2>
-        <p>Tutorials teach slowly. Quizzes test separately. References help you look things up fast.</p>
+        <h2>Everything on {SITE.name}</h2>
+        <p>Python tutorials, FastAPI, AI glossary, quizzes, and references — each with its own sidebar.</p>
       </div>
       <div class="home-paths">
-        <a href="/python/" class="home-path-card">
-          <h3>Python Tutorials</h3>
-          <span class="home-path-link">Open tutorials →</span>
-        </a>
-        <a href="/python/quiz/" class="home-path-card">
-          <h3>Python Quizzes</h3>
-          <span class="home-path-link">Open quizzes →</span>
-        </a>
-        <a href="/python/reference/" class="home-path-card">
-          <h3>Python References</h3>
-          <span class="home-path-link">Open references →</span>
-        </a>
-        <a href="/ai-terminology/" class="home-path-card">
-          <h3>AI Terminology</h3>
-          <span class="home-path-link">Open AI terms →</span>
-        </a>
-        <a href="/fastapi/" class="home-path-card">
-          <h3>FastAPI Roadmap</h3>
-          <span class="home-path-link">Open FastAPI roadmap →</span>
-        </a>
+        {
+          tracks.map((track) => (
+            <a href={track.href} class="home-path-card">
+              <div>
+                <p class="home-path-stat">{track.stat}</p>
+                <h3>{track.title}</h3>
+                <p class="home-path-desc">{track.description}</p>
+              </div>
+              <span class="home-path-link">Open {track.title} →</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Full curriculum (dynamic) -->
-  <HomeCurriculum groups={groups} />
+  <!-- Python curriculum (dynamic) -->
+  <HomeCurriculum groups={groups} sectionCount={sectionCount} lessonCount={lessonCount} />
 
   <!-- Final CTA -->
   <section class="home-cta">
-    <div class="home-container">
-      <h2>Ready to write Python?</h2>
+    <div class="home-container home-cta-inner">
+      <h2>Ready to start learning?</h2>
       <p>
-        Start with <code style="background:rgba(255,255,255,0.15);padding:0.15rem 0.4rem;border-radius:0.25rem;border:none">print()</code>
-        and work through lists, loops, functions, files, and classes at your own pace.
+        Pick any track below — Python, FastAPI, AI terms, quizzes, or references — and dive in at
+        your own pace.
       </p>
       <div class="home-cta-actions">
         {
           firstLesson ? (
             <a href={`/python/${firstLesson.id}/`} class="btn-primary">
-              Start with {firstLesson.data.title}
+              Start Python · {firstLesson.data.title}
             </a>
           ) : (
-            <a href="/python/" class="btn-primary">Start the course</a>
+            <a href="/python/" class="btn-primary">Start Python</a>
           )
         }
-        <a href="/python/reference/" class="btn-secondary">Open references</a>
+        <a href="/fastapi/" class="btn-secondary">FastAPI track</a>
+        <a href="/ai-terminology/" class="btn-secondary">AI terminology</a>
+        <a href="/python/quiz/" class="btn-secondary">Quizzes</a>
+        <a href="/python/reference/" class="btn-secondary">References</a>
       </div>
     </div>
   </section>

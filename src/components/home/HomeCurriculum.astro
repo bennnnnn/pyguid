@@ -1,23 +1,24 @@
 ---
 import type { LessonGroup } from "../../lib/lessons";
-import { getAllLessonsInGroup, getTotalLessonCount, lessonUrl } from "../../lib/lessons";
+import { getAllLessonsInGroup, lessonUrl } from "../../lib/lessons";
 
 interface Props {
   groups: LessonGroup[];
+  sectionCount: number;
+  lessonCount: number;
 }
 
-const { groups } = Astro.props;
-const lessonCount = getTotalLessonCount(groups);
-const chapterCount = groups.length;
+const { groups, sectionCount, lessonCount } = Astro.props;
 ---
 
 <section class="home-section" id="curriculum">
   <div class="home-container">
     <div class="home-section-head">
-      <h2>{chapterCount} topics · {lessonCount} tutorials</h2>
+      <h2>Python curriculum · {sectionCount} topics · {lessonCount} lessons</h2>
       <p>
-        A structured path from your first <code>print()</code> to classes, comprehensions, testing,
-        and clean code. Open the full tutorial outline to browse every lesson.
+        The full Python tutorial path — from your first <code>print()</code> to classes, testing,
+        and clean code. Other tracks (FastAPI, AI terms, quizzes, references) live in the sections
+        above.
       </p>
     </div>
 
@@ -26,13 +27,13 @@ const chapterCount = groups.length;
         groups.map((group) => {
           const path = getAllLessonsInGroup(group);
           const first = path[0];
-          const lessonCount = path.length;
+          const count = path.length;
           return (
             <article class="home-curriculum-summary">
               <h3 class="home-curriculum-heading">
                 <span class="home-curriculum-title">{group.chapterTitle}</span>
-                <span class="home-curriculum-count" aria-label={`${lessonCount} lessons`}>
-                  {lessonCount}
+                <span class="home-curriculum-count" aria-label={`${count} lessons`}>
+                  {count}
                 </span>
               </h3>
               {first && (
@@ -49,7 +50,7 @@ const chapterCount = groups.length;
     </div>
 
     <p class="home-curriculum-footer">
-      <a href="/python/" class="btn-primary">Open tutorial outline</a>
+      <a href="/python/" class="btn-primary">Open Python tutorials</a>
     </p>
   </div>
 </section>

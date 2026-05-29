@@ -54,32 +54,34 @@ const mainNav = [
       )
     }
 
-    <a
-      href={pathFromRoot("")}
-      class="site-brand flex min-w-0 shrink items-center gap-2 no-underline sm:gap-2.5"
-      aria-current={isHome ? "page" : undefined}
-    >
-      <span
-        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand font-mono text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm"
-        >Py</span
+    <div class="flex min-w-0 flex-1 items-center gap-2 sm:gap-4 lg:gap-6">
+      <a
+        href={pathFromRoot("")}
+        class="site-brand flex min-w-0 shrink items-center gap-2 no-underline sm:gap-2.5"
+        aria-current={isHome ? "page" : undefined}
       >
-      <span class="hidden truncate text-base font-bold text-text min-[420px]:inline sm:text-lg"
-        >{SITE.name}</span
-      >
-    </a>
+        <span
+          class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand font-mono text-xs font-bold text-white sm:h-9 sm:w-9 sm:text-sm"
+          >Py</span
+        >
+        <span class="hidden truncate text-base font-bold text-text min-[420px]:inline sm:text-lg"
+          >{SITE.name}</span
+        >
+      </a>
 
-    <nav class="main-nav-desktop hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Main">
-      {
-        mainNav.map((item) => (
-          <a
-            href={item.href}
-            class:list={["topnav-link text-sm", item.active && "is-active"]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
+      <nav class="main-nav-desktop hidden min-w-0 flex-1 items-center justify-start lg:flex" aria-label="Main">
+        {
+          mainNav.map((item) => (
+            <a
+              href={item.href}
+              class:list={["topnav-link text-sm", item.active && "is-active"]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
 
     <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
       <div id="google-signup-wrap">
