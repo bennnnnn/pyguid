@@ -1,0 +1,8 @@
+<script>
+  import { initAuth } from "../scripts/auth";
+
+  initAuth();
+  document.addEventListener("astro:page-load", () => {
+    initAuth();
+  });
+</script>

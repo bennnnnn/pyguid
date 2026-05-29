@@ -1,10 +1,13 @@
 import type { ChapterQuiz, QuizQuestion } from "../lib/quizzes";
+import { saveQuizResult } from "./quiz-progress";
 
 /** Quiz payload embedded in the page (subset of ChapterQuiz). */
 export type ChapterQuizData = Pick<
   ChapterQuiz,
   "chapter" | "chapterTitle" | "title" | "passPercent" | "questions"
->;
+> & {
+  quizSlug?: string;
+};
 
 type AnswerValue = number | boolean | null;
 
@@ -191,6 +194,14 @@ export function initChapterQuiz() {
     resultsEl?.classList.remove("quiz-hidden");
     resultsEl?.scrollIntoView({ behavior: "smooth", block: "start" });
 
+    const resultPayload = {
+      quizSlug: quiz.quizSlug ?? `chapter-${quiz.chapter}`,
+      scorePct,
+      correct,
+      total: quiz.questions.length,
+      passed,
+    };
+
     try {
       localStorage.setItem(
         `pyguide-quiz-ch${quiz.chapter}`,
@@ -198,12 +209,15 @@ export function initChapterQuiz() {
           scorePct,
           correct,
           total: quiz.questions.length,
+          passed,
           at: Date.now(),
         }),
       );
     } catch {
       /* ignore */
     }
+
+    void saveQuizResult(resultPayload, quiz.chapter);
   });
 
   retryBtn?.addEventListener("click", () => {

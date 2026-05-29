@@ -1,0 +1,42 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="Signing in…" noindex>
+  <div class="mx-auto flex min-h-[40vh] max-w-lg flex-col items-center justify-center px-4 py-16 text-center">
+    <p id="auth-callback-status" class="text-sm text-text-secondary">Completing sign-in…</p>
+    <p id="auth-callback-error" class="mt-4 hidden text-sm text-red-600"></p>
+    <a
+      id="auth-callback-home"
+      href="/"
+      class="btn-primary mt-6 hidden px-5 py-2.5 text-sm"
+    >
+      Back to home
+    </a>
+  </div>
+</SiteLayout>
+
+<script>
+  import { completeAuthCallback } from "../../scripts/auth";
+
+  async function runCallback() {
+    const status = document.getElementById("auth-callback-status");
+    const errorEl = document.getElementById("auth-callback-error");
+    const home = document.getElementById("auth-callback-home");
+
+    try {
+      const redirect = await completeAuthCallback();
+      if (status) status.textContent = "Signed in. Redirecting…";
+      window.location.replace(redirect);
+    } catch (err) {
+      if (status) status.textContent = "Sign-in failed";
+      if (errorEl) {
+        errorEl.textContent = err instanceof Error ? err.message : "Could not complete sign-in";
+        errorEl.classList.remove("hidden");
+      }
+      home?.classList.remove("hidden");
+    }
+  }
+
+  void runCallback();
+</script>

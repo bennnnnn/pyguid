@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import TutorialTopNav from "../components/TutorialTopNav.astro";
 import TutorialFooter from "../components/TutorialFooter.astro";
-import SignInModal from "../components/SignInModal.astro";
+import AuthScripts from "../components/AuthScripts.astro";
 import { SITE, getSiteUrl } from "../lib/site";
 import SeoHead from "../components/SeoHead.astro";
 
@@ -50,6 +50,6 @@ const canonical = new URL(Astro.url.pathname, `${getSiteUrl(Astro.site)}/`).href
       <slot />
     </main>
     <TutorialFooter />
-    <SignInModal />
+    <AuthScripts />
   </body>
 </html>

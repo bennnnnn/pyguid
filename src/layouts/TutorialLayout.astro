@@ -9,7 +9,8 @@ import QuizSidebar from "../components/QuizSidebar.astro";
 import SidebarScripts from "../components/SidebarScripts.astro";
 import PythonExampleScripts from "../components/PythonExampleScripts.astro";
 import TutorialFooter from "../components/TutorialFooter.astro";
-import SignInModal from "../components/SignInModal.astro";
+import AuthScripts from "../components/AuthScripts.astro";
+import QuizProgressScripts from "../components/QuizProgressScripts.astro";
 import type { LessonGroup } from "../lib/lessons";
 import { SITE, getSiteUrl } from "../lib/site";
 import SeoHead from "../components/SeoHead.astro";
@@ -85,6 +86,7 @@ const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
     </div>
     <SidebarScripts />
     <PythonExampleScripts />
-    <SignInModal />
+    <AuthScripts />
+    <QuizProgressScripts />
   </body>
 </html>

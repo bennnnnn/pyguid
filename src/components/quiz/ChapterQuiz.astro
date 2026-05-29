@@ -3,6 +3,7 @@ import type { ChapterQuiz } from "../../lib/quizzes";
 
 interface Props {
   exam: ChapterQuiz;
+  quizSlug?: string;
   backHref?: string;
   backLabel?: string;
   kindLabel?: string;
@@ -10,6 +11,7 @@ interface Props {
 
 const {
   exam,
+  quizSlug,
   backHref = "/python/quiz/",
   backLabel = "All quizzes",
   kindLabel = "Chapter quiz",
@@ -20,6 +22,7 @@ const quizPayload = {
   title: exam.title,
   passPercent: exam.passPercent,
   questions: exam.questions,
+  quizSlug,
 };
 ---
 

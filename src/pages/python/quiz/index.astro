@@ -12,7 +12,7 @@ const description =
 ---
 
 <TutorialLayout title={pageTitle} description={description} sidebar="quiz">
-  <article class="lesson-prose max-w-3xl">
+  <article id="quiz-hub-root" class="lesson-prose max-w-3xl">
     <h1>Python quizzes</h1>
     <p class="text-lg text-text-muted">
       Each quiz is <strong>20 questions</strong> for a chapter topic. Read the tutorials first,
@@ -26,9 +26,19 @@ const description =
           return (
             <li
               id={topic.slug}
+              data-quiz-slug={topic.slug}
+              data-quiz-chapter={topic.chapter}
+              data-quiz-pass={exam?.passPercent}
               class="m-0 list-none scroll-mt-20 rounded-xl border border-border bg-surface p-5 shadow-sm transition-shadow hover:border-brand/40 hover:shadow-md"
             >
-              <h2 class="!mt-0 !mb-2 text-lg font-semibold text-text">{topic.title}</h2>
+              <div class="mb-2 flex flex-wrap items-start justify-between gap-2">
+                <h2 class="!mt-0 !mb-0 text-lg font-semibold text-text">{topic.title}</h2>
+                <span
+                  data-quiz-badge
+                  class="quiz-score-badge hidden shrink-0"
+                  aria-live="polite"
+                ></span>
+              </div>
               <p class="mb-4 text-sm text-text-muted">{topic.description}</p>
               {exam ? (
                 <>

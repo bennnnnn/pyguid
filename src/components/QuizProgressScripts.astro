@@ -1,0 +1,8 @@
+<script>
+  import { initQuizProgress } from "../scripts/quiz-progress";
+
+  initQuizProgress();
+  document.addEventListener("astro:page-load", () => {
+    initQuizProgress();
+  });
+</script>
