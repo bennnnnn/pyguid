@@ -8,7 +8,7 @@ import {
   getAiTerminologySection,
   getAdjacentAiTerminologySections,
 } from "../../lib/ai-terminology";
-import { AI_TERMINOLOGY_SECTIONS } from "../../lib/ai-terminology";
+import { getPublishedAiTerminologySections } from "../../lib/ai-terminology";
 import {
   aiTerminologySectionUrl,
   termAnchorsForSection,
@@ -18,7 +18,7 @@ import { SITE, getSiteUrl } from "../../lib/site";
 import "../../styles/ai-terminology.css";
 
 export function getStaticPaths() {
-  return AI_TERMINOLOGY_SECTIONS.map((section) => ({
+  return getPublishedAiTerminologySections().map((section) => ({
     params: { sectionId: section.id },
   }));
 }

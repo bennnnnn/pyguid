@@ -1,0 +1,55 @@
+---
+title: "Strawberry GraphQL"
+description: "Use Strawberry GraphQL with FastAPI: schema types, resolvers, GraphQLRouter, and context for database sessions."
+quickAnswer: "Strawberry GraphQL defines schemas with Python type hints and dataclasses, integrates with FastAPI via GraphQLRouter, and generates GraphQL types from your Python models."
+order: 246
+sectionId: "graphql-with-fastapi"
+sectionTitle: "GraphQL with FastAPI"
+sectionOrder: 49
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+**Strawberry** is a modern GraphQL library for Python that feels like FastAPI—type hints, clear errors, and first-class ASGI support.
+
+## Define types
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`import strawberry
+
+@strawberry.type
+class Post:
+    id: int
+    title: str
+
+@strawberry.type
+class Query:
+    @strawberry.field
+    def post(self, id: int) -> Post | None:
+        row = db.get_post(id)
+        return Post(id=row.id, title=row.title) if row else None`} />
+
+## Mount on FastAPI
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from strawberry.fastapi import GraphQLRouter
+
+schema = strawberry.Schema(query=Query)
+graphql_app = GraphQLRouter(schema)
+
+app = FastAPI()
+app.include_router(graphql_app, prefix="/graphql")`} />
+
+Visit `/graphql` for the GraphiQL IDE in development.
+
+## Context for dependencies
+
+Pass a **context** object with DB sessions per request—similar to FastAPI `Depends`—so resolvers do not open global connections.
+
+## Recap
+
+Strawberry brings typed GraphQL schemas to Python. Mount `GraphQLRouter` on FastAPI, resolve fields in methods, and inject database access through context.
+
+## Up next
+
+When you are ready, continue with **Queries & mutations** (use **Next** below). Each lesson builds on the previous one in this track.

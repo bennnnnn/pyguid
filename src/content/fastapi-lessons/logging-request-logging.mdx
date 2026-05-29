@@ -1,0 +1,53 @@
+---
+title: "Request logging"
+description: "Log every FastAPI request—middleware, timing, status codes, and request IDs for tracing."
+quickAnswer: "Log method, path, status, and duration per request with middleware or access-log settings on uvicorn—correlate logs with a request id header."
+order: 191
+sectionId: "logging"
+sectionTitle: "Logging"
+sectionOrder: 35
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+When a user reports a failure at 14:32, you search logs by path and time. **Request logging** captures method, URL, status code, and duration for every HTTP call—often required for compliance and incident response.
+
+### Middleware example
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import logging
+import time
+from fastapi import Request
+
+logger = logging.getLogger("access")
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    duration_ms = (time.perf_counter() - start) * 1000
+    logger.info(
+        "%s %s %s %.1fms",
+        request.method,
+        request.url.path,
+        response.status_code,
+        duration_ms,
+    )
+    return response`} />
+
+Add a `X-Request-ID` header in the same middleware (generate UUID if missing) and include it in log lines to trace one request across services.
+
+### In practice
+
+Skip logging health-check paths at INFO to cut noise. Sample DEBUG logs for high-traffic read endpoints if volume is costly, but never sample authentication failures or payment errors.
+
+## Recap
+
+- HTTP middleware is the usual place for access logs.
+- Log method, path, status, and duration.
+- Propagate a request id for distributed tracing.
+
+## Up next
+
+When you are ready, continue with **Structured logs** (use **Next** below). Each lesson builds on the previous one in this track.

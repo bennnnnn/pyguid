@@ -1,0 +1,37 @@
+---
+title: "API testing"
+description: "API testing patterns for FastAPI—status codes, response schemas, auth failures, and validation errors."
+quickAnswer: "API tests assert status codes, response schemas, and error bodies—cover happy paths, validation failures, and auth denials for each endpoint."
+order: 188
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+**API testing** checks the contract clients rely on: correct HTTP status, JSON shape, and error messages. A green service test means nothing if `POST /orders` returns `500` on invalid input instead of `422`.
+
+### What to assert
+
+- Happy path: `201` + body fields for creates; `200` + list shape for reads.
+- Validation: missing fields → `422` with `detail` array from Pydantic.
+- Auth: no token → `401`; wrong role → `403`.
+- Not found: unknown id → `404`.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`def test_list_users_pagination(client):
+    r = client.get("/users/?limit=10&offset=0")
+    assert r.status_code == 200
+    data = r.json()
+    assert "items" in data
+    assert len(data["items"]) <= 10`} />
+
+Group tests by resource (`test_users.py`). Reuse factory fixtures to seed data. Keep OpenAPI as living documentation—tests should match what `/docs` promises.
+
+## Recap
+
+- Test contracts, not implementation details.
+- Cover success, validation, auth, and 404 cases.
+- Align assertions with your OpenAPI schema.

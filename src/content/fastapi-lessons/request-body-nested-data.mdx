@@ -1,0 +1,53 @@
+---
+title: "Nested data"
+description: "Model nested JSON structures in FastAPI request bodies using composed Pydantic classes."
+quickAnswer: "Nest Pydantic models inside other models to represent JSON objects with child objects and lists."
+order: 36
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Real payloads include addresses, line items, and metadata objects. Flattening everything into top-level fields does not scale; nested models mirror client JSON and database structures.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class Address(BaseModel):
+    city: str
+    country: str
+
+class Order(BaseModel):
+    customer: str
+    shipping: Address
+    items: list[str]
+
+app = FastAPI()
+
+@app.post("/orders")
+def create_order(order: Order):
+    return {
+        "customer": order.customer,
+        "city": order.shipping.city,
+        "count": len(order.items),
+    }`} />
+
+Validation runs recursively—an invalid `shipping.city` fails with a nested `loc` path like `["body","shipping","city"]`. You can reuse `Address` in multiple request and response models.
+
+Version nested objects carefully: adding optional nested fields is usually safe; renaming nested keys breaks mobile apps silently.
+
+## Recap
+
+- Compose **nested BaseModel** classes.
+- Lists and dicts use standard typing (`list[str]`, etc.).
+- Errors include **nested field paths** in 422 responses.
+
+## Up next
+
+When you are ready, continue with **Optional fields** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,40 @@
+---
+title: "Async routes"
+description: "Choose between async def and def for FastAPI path operation functions."
+quickAnswer: "Declare routes with async def when using await inside; use def for purely sync handlers—FastAPI runs sync routes in a thread pool."
+order: 89
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+FastAPI supports both `def` and `async def` handlers. Picking the wrong one—`async def` with blocking ORM calls inside—**blocks the entire event loop** and defeats async benefits.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/sync-ok")
+def read_sync():
+    return {"mode": "threadpool"}
+
+@app.get("/async-io")
+async def read_async():
+    await asyncio.sleep(0.01)  # stand-in for async I/O
+    return {"mode": "async"}`} />
+
+Use **async def** when the handler `await`s async database drivers, HTTP clients, or file I/O. Use plain **def** for quick CPU-only logic or when your stack is entirely synchronous—FastAPI runs `def` endpoints in a thread pool so they do not block the loop. Mixing styles in one app is normal.
+
+## In practice
+
+Load-test `async def` endpoints with concurrent clients; blocking ORM code inside them often shows worse throughput than sync routes. Use `httpx.AsyncClient` in tests. Document which endpoints are async so operators tune worker and pool sizes correctly.
+
+## Recap
+
+- `async def` + `await` for non-blocking I/O paths.
+- `def` for sync code; FastAPI offloads it to threads.
+- Never call blocking I/O directly inside `async def` without a thread pool.
+
+## Up next
+
+When you are ready, continue with **Async vs sync** (use **Next** below). Each lesson builds on the previous one in this track.

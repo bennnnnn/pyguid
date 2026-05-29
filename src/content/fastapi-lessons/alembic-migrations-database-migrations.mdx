@@ -1,0 +1,46 @@
+---
+title: "Database migrations"
+description: "Database migrations with Alembic in FastAPI — concepts, revision files, and upgrade workflow."
+quickAnswer: "Migrations are versioned scripts that change database schema; Alembic tracks which revisions ran so every environment stays in sync."
+order: 141
+sectionId: "alembic-migrations"
+sectionTitle: "Alembic Migrations"
+sectionOrder: 26
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Alembic Migrations** — Schema changes need migrations. Alembic versions your database so deploys do not break production data.
+
+</Callout>
+
+## Why this matters
+
+Deploying code that expects a `bio` column before the column exists causes 500 errors. Migrations apply schema changes in order, on purpose, with a history you can audit and roll back when needed.
+
+## Alembic basics
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`alembic init alembic
+# edit alembic.ini and env.py to point at your models
+alembic revision -m "create users"
+alembic upgrade head`} />
+
+Each revision file has `upgrade()` and `downgrade()` functions. The `alembic_version` table stores the current revision id.
+
+<Callout variant="tip">
+
+Run migrations as a deploy step before or while new app versions start—not only on developer laptops.
+
+</Callout>
+
+## Recap
+
+- Migrations = ordered schema change scripts
+- Alembic records the current revision in the DB
+- `upgrade head` applies pending changes
+
+## Up next
+
+When you are ready, continue with **Generating migrations** (use **Next** below). Each lesson builds on the previous one in this track.

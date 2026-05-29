@@ -1,0 +1,41 @@
+---
+title: "Repositories"
+description: "Repository pattern in FastAPI—isolate SQLAlchemy queries from services and business logic."
+quickAnswer: "Repositories wrap database queries—get_user_by_id, list_orders—so services stay free of SQLAlchemy details and swaps stay localized."
+order: 200
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Raw SQLAlchemy calls sprinkled in routes make refactoring painful. **Repositories** expose intent-shaped methods (`find_active_users`) and hide ORM queries, session flushing, and eager loading.
+
+### Thin repository
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# app/repositories/users.py
+from sqlalchemy.orm import Session
+from app.models import User
+
+def get_by_id(db: Session, user_id: int) -> User | None:
+    return db.query(User).filter(User.id == user_id).first()`} />
+
+Services call `users.get_by_id(db, id)` instead of building queries inline. For tests, pass an in-memory SQLite session or fake repository implementing the same functions.
+
+### In practice
+
+One repository file per aggregate root (User, Order) keeps queries discoverable. Push joins and eager loading here so services read like workflows, not SQL textbooks. Return ORM models or simple dataclasses—never raw SQL rows unless you have a reporting use case.
+
+## Recap
+
+- Repositories = data access only.
+- Services orchestrate; repositories persist.
+- Swap storage by changing repository implementations.
+- Keep query logic out of route handlers.
+
+## Up next
+
+When you are ready, continue with **Modular applications** (use **Next** below). Each lesson builds on the previous one in this track.

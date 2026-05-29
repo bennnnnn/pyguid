@@ -1,0 +1,49 @@
+---
+title: "Docker basics"
+description: "Docker basics for FastAPI developers: images, containers, Dockerfile, volumes, and essential CLI commands."
+quickAnswer: "Docker builds images from Dockerfiles, runs isolated containers from those images, and uses docker compose to wire multiple services with ports, volumes, and environment variables."
+order: 226
+sectionId: "docker"
+sectionTitle: "Docker"
+sectionOrder: 44
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Docker** — Package your API and dependencies into containers so every environment runs the same stack.
+
+</Callout>
+
+## Why this matters
+
+Before dockerizing FastAPI, you need the vocabulary: **image** (blueprint), **container** (running instance), **volume** (persistent data), **network** (how containers talk).
+
+## Core commands
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`docker build -t myapi .
+docker run -p 8000:8000 --env-file .env myapi
+docker ps
+docker logs <container_id>`} />
+
+`-p 8000:8000` maps host port 8000 to the container's port 8000.
+
+## Dockerfile building blocks
+
+- `FROM` — base image (e.g. `python:3.12-slim`)
+- `COPY` / `WORKDIR` — application files
+- `RUN pip install` — dependencies baked into the image
+- `CMD` — default process (Uvicorn)
+
+## Volumes for development
+
+Mount source code for hot reload only in **dev** compose files. Production images should contain the code they run.
+
+## Recap
+
+Images are immutable artifacts; containers are runtime instances. Learn build, run, logs, and env files—the foundation for Dockerizing any FastAPI project.
+
+## Up next
+
+When you are ready, continue with **Dockerizing FastAPI** (use **Next** below). Each lesson builds on the previous one in this track.

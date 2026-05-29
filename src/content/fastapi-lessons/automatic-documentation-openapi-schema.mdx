@@ -1,0 +1,39 @@
+---
+title: "OpenAPI schema"
+description: "Understand FastAPI's generated OpenAPI schema at /openapi.json."
+quickAnswer: "The OpenAPI JSON schema lives at /openapi.json and describes paths, parameters, and component schemas."
+order: 83
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+OpenAPI (formerly Swagger) is the **contract** between your service and tools—code generators, gateways, mock servers. FastAPI builds **OpenAPI 3.x** JSON from routes, `response_model`, and `Field` metadata without a separate YAML file.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI()
+
+@app.get("/openapi.json", include_in_schema=False)
+def hidden():
+    pass  # don't shadow the real schema
+
+# Visit http://127.0.0.1:8000/openapi.json`} />
+
+The schema lists `paths`, `components.schemas` for each Pydantic model, security schemes, and tags. Export it in CI and diff on pull requests to catch accidental breaking changes. Override pieces with `openapi_tags`, custom `openapi` callback, or `app.openapi()` caching in advanced setups.
+
+## In practice
+
+Export `/openapi.json` in CI and diff against the previous release to catch accidental removals of fields. Pin schema snapshots per API version (`v1`, `v2`). Tools like Speakeasy and Fern consume this file—treat breaking changes as product releases.
+
+## Recap
+
+- Raw schema at **/openapi.json** drives both doc UIs.
+- Pydantic models become `components.schemas` automatically.
+- Treat the exported schema as part of your API versioning story.
+
+## Up next
+
+When you are ready, continue with **Customizing docs** (use **Next** below). Each lesson builds on the previous one in this track.

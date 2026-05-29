@@ -1,0 +1,48 @@
+---
+title: "Scheduled tasks basics"
+description: "BackgroundTasks vs real schedulers in FastAPI—when to use post-request tasks and when to add APScheduler or Celery Beat."
+quickAnswer: "FastAPI BackgroundTasks run once after a request—they are not cron jobs; use APScheduler, Celery Beat, or an external scheduler for recurring work."
+order: 175
+sectionId: "background-tasks"
+sectionTitle: "Background Tasks"
+sectionOrder: 31
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+**Background tasks** run once, tied to a single HTTP request. **Scheduled tasks** run on a clock—nightly reports, cache warming, subscription renewals. Confusing the two leads to missed jobs or cron logic hidden inside random endpoints.
+
+### What BackgroundTasks can do
+
+After `POST /import`, schedule a one-off cleanup. After `DELETE /account`, schedule anonymization. No timer is involved; the trigger is always a request.
+
+### What needs a scheduler
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Celery Beat example (separate worker process)
+from celery import Celery
+from celery.schedules import crontab
+
+app = Celery("tasks", broker="redis://localhost:6379/0")
+
+@app.on_after_configure.connect
+def setup_periodic(sender, **kwargs):
+    sender.add_periodic_task(
+        crontab(hour=2, minute=0),
+        cleanup_expired_tokens.s(),
+    )`} />
+
+Options include **Celery Beat**, **APScheduler** in a dedicated process, or cloud cron hitting an internal endpoint protected by a secret. FastAPI itself does not ship a job scheduler.
+
+<Callout variant="info">
+
+Calling an internal `POST /jobs/run` from cron is valid for small apps—protect it with an API key and keep the handler idempotent.
+
+</Callout>
+
+## Recap
+
+- BackgroundTasks = one-shot, request-triggered.
+- Schedulers = time-based, recurring.
+- Pick a queue or Beat worker before production cron needs grow.

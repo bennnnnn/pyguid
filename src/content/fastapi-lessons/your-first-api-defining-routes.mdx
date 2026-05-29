@@ -1,0 +1,49 @@
+---
+title: "Defining routes"
+description: "Define URL routes in FastAPI using path operation decorators and handler functions."
+quickAnswer: "Routes are Python functions decorated with @app.get, @app.post, etc., where the decorator path is the URL clients request."
+order: 15
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Clients discover your API through URLs and HTTP methods. Defining routes clearly separates endpoints, avoids duplicate paths, and sets the contract your frontend or mobile app will call.
+
+## How it works
+
+Each **path operation** pairs an HTTP method with a URL pattern:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/books")
+def list_books():
+    return [{"id": 1, "title": "Dune"}]
+
+@app.get("/books/{book_id}")
+def get_book(book_id: int):
+    return {"id": book_id, "title": "Dune"}
+
+@app.post("/books")
+def create_book():
+    return {"id": 2, "title": "New book"}`} />
+
+Function names are for Python only—they do not appear in the URL. Paths are case-sensitive; trailing slashes can matter depending on configuration—pick one style and stay consistent.
+
+Name paths with nouns (`/users`) and avoid file extensions in URLs. Group related routes in separate modules when the list grows beyond one screen.
+
+## Recap
+
+- Use **@app.get/post decorators** on handler functions.
+- Path segments in braces become **parameters**.
+- Keep URL naming consistent across the API.
+
+## Up next
+
+When you are ready, continue with **GET requests** (use **Next** below). Each lesson builds on the previous one in this track.

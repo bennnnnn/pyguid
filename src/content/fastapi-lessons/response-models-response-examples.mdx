@@ -1,0 +1,53 @@
+---
+title: "Response examples"
+description: "Document example API responses in FastAPI OpenAPI and Swagger UI."
+quickAnswer: "Add openapi_examples or responses with example payloads on routes so /docs shows realistic sample JSON."
+order: 53
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Examples teach integrators faster than raw schemas alone. They appear in Swagger UI and exported OpenAPI for mock servers and contract tests.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+app = FastAPI()
+
+@app.post(
+    "/items",
+    response_model=Item,
+    responses={
+        201: {
+            "description": "Created item",
+            "content": {
+                "application/json": {
+                    "example": {"name": "Pen", "price": 1.5}
+                }
+            },
+        }
+    },
+)
+def create_item(item: Item):
+    return item`} />
+
+Pydantic v2 `json_schema_extra` on models can embed examples for all uses of a schema. Keep examples in sync when fields change.
+
+Examples should use realistic values (valid emails, ISO dates) so mock servers behave like production.
+
+## Recap
+
+- Use **responses** dict for per-status examples.
+- Model-level **json_schema_extra** for reusable examples.
+- Examples improve **/docs** and client onboarding.

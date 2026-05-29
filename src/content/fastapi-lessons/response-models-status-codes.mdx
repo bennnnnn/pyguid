@@ -1,0 +1,48 @@
+---
+title: "Status codes"
+description: "Set HTTP status codes on FastAPI responses alongside response models."
+quickAnswer: "Pass status_code=201 (or other codes) to the decorator; combine with response_model for documented success bodies."
+order: 52
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+REST clients rely on status codes for branching logic—201 for created, 204 for empty success, 404 for missing. Decorating with the right code documents intent in OpenAPI.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, status
+from pydantic import BaseModel
+
+class ItemOut(BaseModel):
+    id: int
+    name: str
+
+app = FastAPI()
+
+@app.post(
+    "/items",
+    response_model=ItemOut,
+    status_code=status.HTTP_201_CREATED,
+)
+def create_item(name: str):
+    return ItemOut(id=1, name=name)`} />
+
+For errors, raise `HTTPException(status_code=404)`. Dynamic statuses can use `JSONResponse(status_code=...)` when the code depends on business rules.
+
+Some proxies cache only GET—do not rely on status alone without `Cache-Control` headers where appropriate.
+
+## Recap
+
+- Declare success codes with **status_code** on the route.
+- Use **status.HTTP_* constants** for clarity.
+- Pair codes with **response_model** when returning a body.
+
+## Up next
+
+When you are ready, continue with **Response examples** (use **Next** below). Each lesson builds on the previous one in this track.

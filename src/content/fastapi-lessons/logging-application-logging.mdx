@@ -1,0 +1,55 @@
+---
+title: "Application logging"
+description: "Configure application logging in FastAPI with Python's logging module—levels, handlers, and per-module loggers."
+quickAnswer: "Configure Python's logging module once at startup—set level, format, and handlers so every module uses logger = logging.getLogger(__name__)."
+order: 189
+sectionId: "logging"
+sectionTitle: "Logging"
+sectionOrder: 35
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Logging** — Structured logs and request tracing make production debugging possible when something fails at 2 a.m.
+
+</Callout>
+
+## Why this matters
+
+`print()` in production is invisible in centralized log systems. **Application logging** gives levels (DEBUG, INFO, WARNING), timestamps, and routing to stdout or files—essential when debugging deployed FastAPI services.
+
+### Basic setup
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+logger.info("Application starting")`} />
+
+Call setup in your app factory or lifespan handler. Child loggers inherit config: `logging.getLogger('app.services.orders')` in each module.
+
+<Callout variant="info">
+
+Set `LOG_LEVEL=DEBUG` via environment in development and `INFO` or `WARNING` in production to reduce noise.
+
+</Callout>
+
+### In practice
+
+Route uvicorn access logs and application logs to the same aggregator. In Docker, log to stdout only—the platform collects it. Avoid creating a new log file per container replica. Tune third-party library loggers (SQLAlchemy, httpx) to WARNING so they do not drown out your messages.
+
+## Recap
+
+- Use `logging.getLogger(__name__)` per module.
+- Configure once at startup, not per request.
+- Control verbosity with environment-based levels.
+
+## Up next
+
+When you are ready, continue with **Error logging** (use **Next** below). Each lesson builds on the previous one in this track.

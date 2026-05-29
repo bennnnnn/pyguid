@@ -1,0 +1,44 @@
+---
+title: "`Depends()`"
+description: "Use FastAPI Depends() to declare and wire dependencies into path operations."
+quickAnswer: "Wrap a callable in Depends() and add it as a parameter; FastAPI calls it and passes the return value to your route."
+order: 59
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+`Depends()` is the syntax that activates injection. Mastering it unlocks database sessions per request, optional auth, and test overrides—core patterns in production FastAPI codebases.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends, FastAPI, Header, HTTPException
+
+async def verify_token(x_token: str = Header()):
+    if x_token != "secret-token":
+        raise HTTPException(status_code=401)
+    return x_token
+
+app = FastAPI()
+
+@app.get("/secure")
+def secure_route(token: str = Depends(verify_token)):
+    return {"token_ok": True}`} />
+
+Use `Depends()` even when you do not need the return value—side effects like auth checks still run. For classes, Depends can target `__call__` or methods. In tests, `app.dependency_overrides[verify_token] = lambda: "test"` replaces implementations.
+
+Type-annotate dependency results (`user: User = Depends(get_current_user)`) so editors understand available attributes.
+
+## Recap
+
+- **Depends(callable)** declares an injected parameter.
+- Dependencies may **raise HTTPException** to stop the request.
+- **dependency_overrides** simplify tests.
+
+## Up next
+
+When you are ready, continue with **Shared logic** (use **Next** below). Each lesson builds on the previous one in this track.

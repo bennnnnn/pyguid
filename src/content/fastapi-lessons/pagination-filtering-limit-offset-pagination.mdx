@@ -1,0 +1,49 @@
+---
+title: "Limit/offset pagination"
+description: "Limit/offset pagination in FastAPI—query params, SQL LIMIT/OFFSET, and total counts for list endpoints."
+quickAnswer: "Accept limit and offset query params—SELECT with LIMIT/OFFSET—to return a page of results plus optional total count for UI pagination."
+order: 207
+sectionId: "pagination-filtering"
+sectionTitle: "Pagination & Filtering"
+sectionOrder: 39
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Pagination & Filtering** — List endpoints need limits, offsets or cursors, sorting, and filters—patterns that keep responses fast and usable.
+
+</Callout>
+
+## Why this matters
+
+Returning ten thousand rows in one JSON array hurts performance and UX. **Limit/offset pagination** returns a slice: `limit` rows starting at `offset` from the ordered result set. Clients request `?limit=20&offset=40` for page three.
+
+### Route and query
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Query
+
+@app.get("/users")
+def list_users(
+    limit: int = Query(20, le=100),
+    offset: int = Query(0, ge=0),
+):
+    users = db.query(User).offset(offset).limit(limit).all()
+    return {"items": users, "limit": limit, "offset": offset}`} />
+
+Cap `limit` to prevent abuse. Document default ordering (e.g. `created_at DESC`). For large offsets, databases slow down—consider cursor pagination later.
+
+### In practice
+
+Return `total` count only when the UI needs page numbers—count queries are expensive on huge tables. For admin tables, a cached approximate total is often enough. Expose `has_more` boolean when you skip counts so mobile apps can show infinite scroll without page math.
+
+## Recap
+
+- `limit` + `offset` query params define the page.
+- Validate bounds with `Query(..., le=100)`.
+- Always define stable sort order.
+
+## Up next
+
+When you are ready, continue with **Cursor pagination** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,46 @@
+---
+title: "Signup system"
+description: "User signup in FastAPI — registration endpoint, validation, duplicate email handling, and secure defaults."
+quickAnswer: "Signup validates unique email, hashes the password, saves the user, and optionally returns tokens or requires email verification before login."
+order: 157
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Signup creates identity records. Weak validation invites junk accounts; missing uniqueness checks cause confusing duplicates. Hash passwords before the first commit.
+
+## Register route
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post("/signup", response_model=UserPublic, status_code=201)
+def signup(user_in: UserCreate, db: Session = Depends(get_db)):
+    if db.query(User).filter(User.email == user_in.email).first():
+        raise HTTPException(409, "Email already registered")
+    user = User(
+        email=user_in.email,
+        hashed_password=hash_password(user_in.password),
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user`} />
+
+<Callout variant="tip">
+
+Never return `password` or `hashed_password` in `UserPublic` response models.
+
+</Callout>
+
+## Recap
+
+- Validate input with Pydantic
+- 409 when email exists
+- Hash password before saving
+
+## Up next
+
+When you are ready, continue with **Access tokens** (use **Next** below). Each lesson builds on the previous one in this track.

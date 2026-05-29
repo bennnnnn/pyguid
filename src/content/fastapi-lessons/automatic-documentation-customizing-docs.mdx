@@ -1,0 +1,39 @@
+---
+title: "Customizing docs"
+description: "Customize Swagger UI, ReDoc, and app metadata in FastAPI documentation."
+quickAnswer: "Customize docs with docs_url, redoc_url, swagger_ui_parameters, and custom CSS or OAuth redirect URLs."
+order: 84
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Default docs are fine for development; production often needs **branding**, auth flows, or stricter try-it-out defaults. FastAPI lets you tune URLs and Swagger UI parameters without forking the framework.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI(
+    title="Acme API",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json",
+    swagger_ui_parameters={"persistAuthorization": True},
+)`} />
+
+Serve **custom CSS** by mounting static files and overriding Swagger’s `swagger_ui_init_oauth` or using third-party recipes for logos. Set `terms_of_service`, `contact`, and `license_info` on `FastAPI()` for legal and support links in the published schema.
+
+## In practice
+
+Load `docs_url` from settings: enabled in dev/staging, disabled in production. Add `contact` and `license_info` for public APIs. Custom CSS logos help internal developer portals feel polished without forking FastAPI itself. Document the public doc URL in your README so new engineers find it quickly.
+
+## Recap
+
+- Rename doc paths with `docs_url`, `redoc_url`, `openapi_url`.
+- `swagger_ui_parameters` adjusts Swagger behavior (e.g. persist auth).
+- Fill `contact` and `license_info` for complete public API metadata.
+
+## Up next
+
+When you are ready, continue with **Disabling docs** (use **Next** below). Each lesson builds on the previous one in this track.

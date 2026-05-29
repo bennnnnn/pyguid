@@ -1,0 +1,47 @@
+---
+title: "Reusable components"
+description: "Build reusable dependency components for FastAPI routers and services."
+quickAnswer: "Package dependencies in classes or APIRouter modules; use callable classes and settings dependencies for larger apps."
+order: 61
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+As apps grow, flat functions in `main.py` become unwieldy. Reusable components—settings providers, repository factories—keep routers readable and mirror service-oriented architecture.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends, FastAPI
+
+class Paginator:
+    def __init__(self, max_limit: int = 100):
+        self.max_limit = max_limit
+
+    def __call__(self, limit: int = 20):
+        return min(limit, self.max_limit)
+
+app = FastAPI()
+paginate = Paginator(max_limit=50)
+
+@app.get("/items")
+def items(cap: int = Depends(paginate)):
+    return {"limit": cap}`} />
+
+Combine with **APIRouter** so each module exports `router` plus local dependencies. Settings from environment variables often live in a cached `get_settings()` dependency.
+
+Export dependency callables from `dependencies.py` to avoid circular imports between routers and models.
+
+## Recap
+
+- **Callable classes** encapsulate configurable dependencies.
+- Colocate dependencies with **routers** or domain packages.
+- **get_settings()** pattern for config injection.
+
+## Up next
+
+When you are ready, continue with **Injecting database sessions** (use **Next** below). Each lesson builds on the previous one in this track.

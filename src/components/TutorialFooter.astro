@@ -13,6 +13,7 @@ const isTutorials =
 const isQuiz = path.startsWith("/python/quiz");
 const isReference = path.startsWith("/python/reference");
 const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology/");
+const isFastapi = path === "/fastapi" || path.startsWith("/fastapi/");
 ---
 
 <footer class="site-footer relative z-20 mt-auto w-full border-t border-border bg-surface-alt py-8">
@@ -29,9 +30,14 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
         aria-current={isTutorials ? "page" : undefined}>Tutorials</a
       >
       <a
-        href="/python/quiz/"
-        class:list={["nav-link", isQuiz && "is-active"]}
-        aria-current={isQuiz ? "page" : undefined}>Quizzes</a
+        href={pathFromRoot("fastapi/")}
+        class:list={["nav-link", isFastapi && "is-active"]}
+        aria-current={isFastapi ? "page" : undefined}>FastAPI</a
+      >
+      <a
+        href={pathFromRoot("ai-terminology/")}
+        class:list={["nav-link", isAiTerms && "is-active"]}
+        aria-current={isAiTerms ? "page" : undefined}>AI Terms</a
       >
       <a
         href={pathFromRoot("python/reference/")}
@@ -39,9 +45,9 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
         aria-current={isReference ? "page" : undefined}>References</a
       >
       <a
-        href={pathFromRoot("ai-terminology/")}
-        class:list={["nav-link", isAiTerms && "is-active"]}
-        aria-current={isAiTerms ? "page" : undefined}>AI Terms</a
+        href={pathFromRoot("python/quiz/")}
+        class:list={["nav-link", isQuiz && "is-active"]}
+        aria-current={isQuiz ? "page" : undefined}>Quizzes</a
       >
     </nav>
     <p class="mt-4">© {year} {SITE.name}. Free to use.</p>

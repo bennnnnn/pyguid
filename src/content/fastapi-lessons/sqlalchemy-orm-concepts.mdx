@@ -1,0 +1,45 @@
+---
+title: "ORM concepts"
+description: "SQLAlchemy ORM concepts for FastAPI — models, sessions, and how object-oriented database access works."
+quickAnswer: "An ORM maps Python classes to database tables so you work with objects instead of raw SQL strings—SQLAlchemy is the most common ORM in FastAPI apps."
+order: 131
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: SQLAlchemy** — SQLAlchemy is the standard Python ORM. Define models, sessions, relationships, and CRUD—the core of a data-backed API.
+
+</Callout>
+
+## Why this matters
+
+Writing SQL by hand for every route is error-prone and hard to refactor. The ORM translates `user.email` into parameterized queries, helps avoid SQL injection, and keeps schema changes in one place (models + migrations).
+
+## Core pieces
+
+- **Engine** — connection pool to the database
+- **Session** — unit of work for a request (queries + commits)
+- **Model class** — Python class ↔ table
+- **Mapper** — links class attributes to columns
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True)`} />
+
+You query with the session: `db.query(User).filter(User.email == email).first()`.
+
+## Recap
+
+- ORM = objects in Python, tables in the database
+- Session tracks changes until `commit()`
+- FastAPI injects a session per request
+
+## Up next
+
+When you are ready, continue with **Models** (use **Next** below). Each lesson builds on the previous one in this track.

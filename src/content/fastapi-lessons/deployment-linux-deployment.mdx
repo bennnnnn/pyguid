@@ -1,0 +1,58 @@
+---
+title: "Linux deployment"
+description: "Linux deployment for FastAPI: systemd units, users and permissions, firewalls, and updating releases safely."
+quickAnswer: "Deploy FastAPI on Linux with a virtualenv or container, systemd to keep Uvicorn running, firewall rules, and environment files for secrets on a VPS or cloud VM."
+order: 222
+sectionId: "deployment"
+sectionTitle: "Deployment"
+sectionOrder: 43
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Most self-hosted APIs land on a **Linux VM**. Understanding users, systemd, and ports prevents "it works on my laptop" surprises when the server reboots at 3 a.m.
+
+## Layout on the server
+
+```text
+/opt/myapi/
+  .venv/
+  app/
+  .env          # not in git — root-readable only
+```
+
+Create a dedicated **system user** (`myapi`) that owns the app directory. Do not run the API as root.
+
+## systemd service example
+
+```ini
+[Unit]
+Description=FastAPI (myapi)
+After=network.target
+
+[Service]
+User=myapi
+WorkingDirectory=/opt/myapi
+EnvironmentFile=/opt/myapi/.env
+ExecStart=/opt/myapi/.venv/bin/gunicorn app.main:app -k uvicorn.workers.UvicornWorker -w 4 -b 127.0.0.1:8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Bind to **127.0.0.1** if Nginx terminates TLS on the same machine. Open only ports 80/443 publicly.
+
+## Updates
+
+Pull new code, install dependencies, run migrations, then `systemctl restart myapi`. Automate with a script or CI/CD to reduce human error.
+
+## Recap
+
+Linux deployment combines a non-root user, systemd for restarts, local binding behind a proxy, and scripted releases. Security and repeatability matter as much as the Python code.
+
+## Up next
+
+When you are ready, continue with **Reverse proxy** (use **Next** below). Each lesson builds on the previous one in this track.

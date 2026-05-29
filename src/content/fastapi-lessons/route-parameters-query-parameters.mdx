@@ -1,0 +1,49 @@
+---
+title: "Query parameters"
+description: "Read optional and required query string parameters in FastAPI path operations."
+quickAnswer: "Function parameters not in the path become query parameters, e.g. /items?skip=0&limit=10 from skip and limit arguments."
+order: 28
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Pagination, filtering, and sorting live in query strings. FastAPI maps them to typed Python parameters so clients get clear validation errors instead of silent string coercion bugs.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items")
+def list_items(skip: int = 0, limit: int = 10, q: str | None = None):
+    return {"skip": skip, "limit": limit, "q": q}`} />
+
+Call: `/items?skip=20&limit=5&q=pen`
+
+- Parameters with defaults are optional query params.
+- Parameters without defaults are **required** query params.
+- Use `Query()` for validation (min/max, regex) and OpenAPI metadata.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Query
+
+@app.get("/search")
+def search(q: str = Query(min_length=2)):
+    return {"q": q}`} />
+
+Repeated query keys (`?tag=a&tag=b`) need `list[str]` annotations or explicit `Query` configuration—defaults differ from single values.
+
+## Recap
+
+- Non-path parameters become **query** parameters.
+- Defaults make parameters **optional**.
+- Use **Query()** for advanced validation and docs.
+
+## Up next
+
+When you are ready, continue with **Optional parameters** (use **Next** below). Each lesson builds on the previous one in this track.

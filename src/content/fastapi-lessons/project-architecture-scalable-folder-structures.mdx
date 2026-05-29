@@ -1,0 +1,53 @@
+---
+title: "Scalable folder structures"
+description: "Scalable FastAPI folder layout—routers, services, models, and config separated as the project grows."
+quickAnswer: "Split FastAPI projects into app/, api/routers, core/config, models, schemas, and services—avoid a single main.py as the app grows."
+order: 197
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Project Architecture** — Split growing apps into routers, services, and repositories so teams can work on features without one giant `main.py`.
+
+</Callout>
+
+## Why this matters
+
+A hundred endpoints in `main.py` becomes unmaintainable. A **scalable folder structure** groups code by responsibility so teams find files quickly and tests import modules without circular imports.
+
+### Typical layout
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`myapi/
+  app/
+    main.py          # FastAPI() + include_router
+    core/
+      config.py      # Settings
+      deps.py        # shared Depends
+    api/
+      v1/
+        users.py     # routers
+    models/          # SQLAlchemy / SQLModel
+    schemas/         # Pydantic request/response
+    services/        # business logic
+    repositories/    # database access`} />
+
+Start simple; extract folders when files exceed what you can scan in one screen. Keep `main.py` thin—create app, attach middleware, register routers.
+
+### In practice
+
+New engineers should find any endpoint in under a minute: router file by resource name, service for rules, repository for SQL. If people grep the whole repo for `session.query`, your boundaries need tightening.
+
+## Recap
+
+- Separate routers, schemas, models, and services.
+- Version APIs under `api/v1/`.
+- Grow structure with team size, not day one complexity.
+
+## Up next
+
+When you are ready, continue with **Routers** (use **Next** below). Each lesson builds on the previous one in this track.

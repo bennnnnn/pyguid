@@ -1,0 +1,42 @@
+---
+title: "Global exception handlers"
+description: "Centralize error handling with global exception handlers in FastAPI."
+quickAnswer: "Register @app.exception_handler(Exception) (or specific types) to log errors and return uniform JSON for unhandled failures."
+order: 67
+sectionId: "validation-error-handling"
+sectionTitle: "Validation & Error Handling"
+sectionOrder: 11
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Without global handlers, an unexpected bug leaks a **stack trace** or generic 500 HTML to clients. Production APIs need one place to **log** the real error, hide internals, and return a stable JSON envelope—while still letting `HTTPException` and validation errors behave as designed.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+@app.exception_handler(Exception)
+async def unhandled_exception(request: Request, exc: Exception):
+    # log exc with request id here
+    return JSONResponse(
+        status_code=500,
+        content={"error": "internal_error", "message": "Something went wrong"},
+    )`} />
+
+Register handlers for **specific** types first (`InsufficientStock`, `HTTPException`), then a catch-all for `Exception`. Starlette's exception middleware runs handlers in order of specificity. For `RequestValidationError`, use a dedicated handler if you want to reshape 422 responses for your API version.
+
+In development, you might re-raise or include `detail` for debugging; in production, never return raw exception strings to untrusted clients.
+
+## Recap
+
+- Global handlers give **one** place for logging and safe 500 responses.
+- Handle specific exception types before a broad `Exception` handler.
+- Override `RequestValidationError` only when you need a custom 422 format.
+
+## Up next
+
+When you are ready, continue with **Custom error responses** (use **Next** below). Each lesson builds on the previous one in this track.

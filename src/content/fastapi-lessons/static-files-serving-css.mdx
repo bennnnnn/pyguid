@@ -1,0 +1,55 @@
+---
+title: "Serving CSS"
+description: "Serve CSS files from a FastAPI app using StaticFiles and HTML link tags — folder layout and URL paths explained."
+quickAnswer: "Mount a StaticFiles directory and link stylesheets from `/static` so FastAPI serves CSS without a separate web server."
+order: 119
+sectionId: "static-files"
+sectionTitle: "Static Files"
+sectionOrder: 21
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Static Files** — Serve CSS, JavaScript, and images from your FastAPI app when you need a simple admin page or landing site alongside JSON routes.
+
+</Callout>
+
+## Why this matters
+
+APIs often return JSON, but dashboards, login pages, and admin panels need styled HTML. Serving CSS from the same app keeps deployment simple: one process, one domain, no CORS headaches for assets.
+
+## Mount static files
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")`} />
+
+Place `styles.css` in `static/styles.css`. Browsers request `/static/styles.css` after you reference it in HTML.
+
+### Link CSS in HTML
+
+In a template or returned HTML string:
+
+```html
+<link rel="stylesheet" href="/static/styles.css" />
+```
+
+<Callout variant="tip">
+
+Use `/static/...` paths (leading slash) so links work from nested routes like `/users/42`.
+
+</Callout>
+
+## Recap
+
+- Create a `static/` folder for CSS
+- Mount with `StaticFiles` at a URL prefix such as `/static`
+- Reference assets with `<link href="/static/...">`
+
+## Up next
+
+When you are ready, continue with **Serving JavaScript** (use **Next** below). Each lesson builds on the previous one in this track.

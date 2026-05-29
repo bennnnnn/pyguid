@@ -1,0 +1,51 @@
+---
+title: "Creating a FastAPI app"
+description: "Create your first FastAPI application instance and understand what the app object represents."
+quickAnswer: "Import FastAPI, create app = FastAPI(), and add path operation functions decorated with @app.get, @app.post, and similar."
+order: 14
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Your First API** — Build your first working API: create the app object, define routes, return JSON, and test everything in the browser at `/docs`.
+
+</Callout>
+
+## Why this matters
+
+Every route, middleware, and dependency hangs off the **FastAPI** instance. Creating the app correctly is the first line of every project and the import target Uvicorn needs.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI(
+    title="Bookshop API",
+    version="1.0.0",
+    description="Manage catalog and orders",
+)
+
+@app.get("/health")
+def health_check():
+    return {"ok": True}`} />
+
+The `app` object registers routes, exception handlers, and middleware. Constructor kwargs set **OpenAPI metadata** shown in `/docs`. Uvicorn imports this object by name: `uvicorn main:app`.
+
+You can mount sub-applications or include **APIRouter** modules later; start with one file until routes multiply.
+
+You can mount multiple apps or use `lifespan` handlers later for startup tasks. For now, keep `main.py` small and move routes out once you have more than a handful of endpoints.
+
+## Recap
+
+- `app = FastAPI(...)` is the central application object.
+- Metadata kwargs improve generated documentation.
+- Uvicorn runs `module:app` where `app` is this instance.
+
+## Up next
+
+When you are ready, continue with **Defining routes** (use **Next** below). Each lesson builds on the previous one in this track.

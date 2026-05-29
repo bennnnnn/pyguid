@@ -1,0 +1,44 @@
+---
+title: "Custom headers"
+description: "Set custom response headers in FastAPI responses."
+quickAnswer: "Return custom headers with Response(headers={...}) or a JSONResponse; use standard names when possible."
+order: 105
+sectionId: "headers-cookies"
+sectionTitle: "Headers & Cookies"
+sectionOrder: 18
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Responses carry **metadata**: rate-limit remaining, ETags, pagination links. Custom headers communicate with browsers and API gateways—prefer registered or `X-` prefixed names documented in your API spec.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
+@app.get("/items/")
+def list_items():
+    return JSONResponse(
+        content=[],
+        headers={
+            "X-Total-Count": "42",
+            "Cache-Control": "private, max-age=60",
+        },
+    )`} />
+
+Alternatively, return a `Response` subclass and set headers on a dependency that wraps the response. Avoid leaking internal debug headers in production. **CORS** exposes only whitelisted headers to browsers via `expose_headers`.
+
+## In practice
+
+Expose rate-limit headers to browsers only if listed in CORS `expose_headers`. Prefer standard `Cache-Control` over custom cache headers when possible. Internal debug headers should be stripped in production middleware. Gateways may strip unknown headers—confirm proxies forward custom names end to end.
+
+## Recap
+
+- Set headers on `JSONResponse`, `Response`, or `FileResponse`.
+- Document custom `X-` headers for API consumers.
+- Configure CORS `expose_headers` if browsers must read them.
+
+## Up next
+
+When you are ready, continue with **Setting cookies** (use **Next** below). Each lesson builds on the previous one in this track.

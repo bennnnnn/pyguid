@@ -1,0 +1,50 @@
+---
+title: "Uploading files"
+description: "Handle single file uploads in FastAPI with UploadFile and File()."
+quickAnswer: "Accept uploads with file: UploadFile = File(...) in a multipart form POST handler."
+order: 94
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: File Uploads** — Accept files from clients: single uploads, multiple files, validation, saving to disk, and streaming large binaries.
+
+</Callout>
+
+## Why this matters
+
+Users upload avatars, CSV imports, and attachments through **multipart/form-data**. FastAPI’s `UploadFile` wraps the incoming stream with filename and content type metadata—better than reading raw bytes into memory blindly.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, File, UploadFile
+
+app = FastAPI()
+
+@app.post("/upload/")
+async def upload(file: UploadFile = File(...)):
+    contents = await file.read()
+    return {
+        "filename": file.filename,
+        "content_type": file.content_type,
+        "size": len(contents),
+    }`} />
+
+Use `async def` and `await file.read()` for large files consider **streaming** chunks instead of loading everything at once. Validate size limits at the proxy (nginx `client_max_body_size`) and in application code.
+
+## In practice
+
+Set nginx `client_max_body_size` and application limits consistently. For antivirus, stream chunks to the scanner. Return 413 with a clear message when limits are exceeded so clients can split uploads.
+
+## Recap
+
+- `UploadFile` + `File(...)` handles one uploaded file per field.
+- `await file.read()` loads content; stream for large files.
+- Set reverse-proxy body size limits in addition to app checks.
+
+## Up next
+
+When you are ready, continue with **Multiple files** (use **Next** below). Each lesson builds on the previous one in this track.

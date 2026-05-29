@@ -1,0 +1,49 @@
+---
+title: "TestClient"
+description: "Use FastAPI TestClient for HTTP tests—GET, POST, headers, and JSON assertions without running uvicorn."
+quickAnswer: "FastAPI's TestClient wraps your app with httpx—call .get(), .post(), and assert on .status_code and .json() without starting uvicorn."
+order: 186
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+**TestClient** simulates HTTP against your FastAPI app in-process. You get realistic routing, validation errors, and response serialization without binding a port or flaky network calls.
+
+### Requests and auth
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+def test_protected_route():
+    headers = {"Authorization": "Bearer test-token"}
+    r = client.get("/me", headers=headers)
+    assert r.status_code == 200`} />
+
+Pass `json=` for bodies, `params=` for query strings, and `files=` for uploads. Follow redirects with `follow_redirects=True` when testing OAuth callbacks.
+
+<Callout variant="warning">
+
+TestClient runs synchronous wrappers around async code. For heavy async testing, consider `httpx.AsyncClient` with `ASGITransport` and `pytest-asyncio`.
+
+</Callout>
+
+### In practice
+
+Create the client once per test module via a fixture. For authenticated routes, add a fixture that logs in or builds a valid JWT and returns headers your tests pass into every request.
+
+## Recap
+
+- `TestClient(app)` is the entry point.
+- Use standard HTTP methods and assert on responses.
+- Pass headers and JSON like a real client.
+
+## Up next
+
+When you are ready, continue with **Mocking** (use **Next** below). Each lesson builds on the previous one in this track.

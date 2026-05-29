@@ -1,0 +1,46 @@
+---
+title: "Filtering"
+description: "Filter list endpoints in FastAPI — query parameters, dynamic SQLAlchemy filters, and validation."
+quickAnswer: "Expose optional query parameters (status, category, date range) and build SQLAlchemy filters only for provided params."
+order: 150
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Clients rarely need every row. Filtering by status, owner, or date range reduces bandwidth and database load. Query params keep filters visible in URLs and cache keys.
+
+## Dynamic filters
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/items")
+def list_items(
+    status: str | None = None,
+    owner_id: int | None = None,
+    db: Session = Depends(get_db),
+):
+    q = db.query(Item)
+    if status:
+        q = q.filter(Item.status == status)
+    if owner_id is not None:
+        q = q.filter(Item.owner_id == owner_id)
+    return q.all()`} />
+
+<Callout variant="tip">
+
+Validate enums with `Literal` or Pydantic models so invalid `status` values return 422, not empty results.
+
+</Callout>
+
+## Recap
+
+- Optional query params drive filters
+- Chain `.filter()` on a base query
+- Validate allowed filter values
+
+## Up next
+
+When you are ready, continue with **Searching** (use **Next** below). Each lesson builds on the previous one in this track.

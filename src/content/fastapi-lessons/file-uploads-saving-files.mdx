@@ -1,0 +1,46 @@
+---
+title: "Saving files"
+description: "Save uploaded files to disk or storage from FastAPI UploadFile handlers."
+quickAnswer: "Write UploadFile content to disk with aiofiles or shutil, using safe unique paths outside the web root."
+order: 98
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+After validation, persist files to **disk**, S3, or a CDN. Use unpredictable names (`uuid4()`) so attackers cannot guess URLs. Async write avoids blocking the event loop on large files.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import uuid
+from pathlib import Path
+import aiofiles
+from fastapi import UploadFile
+
+UPLOAD_DIR = Path("uploads")
+UPLOAD_DIR.mkdir(exist_ok=True)
+
+async def save_upload(file: UploadFile) -> Path:
+    dest = UPLOAD_DIR / f"{uuid.uuid4()}_{file.filename}"
+    async with aiofiles.open(dest, "wb") as out:
+        while chunk := await file.read(1024 * 1024):
+            await out.write(chunk)
+    return dest`} />
+
+Reset file pointer with `await file.seek(0)` if you read twice. In production, upload to **object storage** from the app or via presigned URLs so app servers stay stateless.
+
+## In practice
+
+Use `aiofiles` or chunked reads; chmod upload dirs narrowly. Prefer S3 presigned uploads for huge files so app servers stay stateless. Never use user-supplied filenames as the on-disk path without sanitization.
+
+## Recap
+
+- Use **unique filenames** and dedicated upload directories.
+- Stream chunks to disk for large files.
+- Prefer S3-compatible storage for horizontal scaling.
+
+## Up next
+
+When you are ready, continue with **Streaming files** (use **Next** below). Each lesson builds on the previous one in this track.

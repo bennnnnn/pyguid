@@ -1,0 +1,43 @@
+---
+title: "Images"
+description: "Handle image uploads in FastAPI with type checks and optional processing."
+quickAnswer: "Check content_type and file extension for images; resize or validate with Pillow after reading UploadFile."
+order: 96
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Image endpoints power avatars and product photos. Trusting `filename.jpg` is unsafe—clients can lie about **content type**. Verify magic bytes or use imaging libraries after upload, and strip dangerous EXIF if needed.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, UploadFile, File, HTTPException
+
+ALLOWED = {"image/jpeg", "image/png", "image/webp"}
+
+@app.post("/avatar/")
+async def avatar(file: UploadFile = File(...)):
+    if file.content_type not in ALLOWED:
+        raise HTTPException(400, "Invalid image type")
+    data = await file.read()
+    # Pillow: Image.open(BytesIO(data)).verify()
+    return {"bytes": len(data)}`} />
+
+Generate thumbnails in a **background task** for large images so the HTTP response stays fast. Serve stored files from object storage (S3) with signed URLs rather than streaming from app memory in production.
+
+## In practice
+
+Verify magic bytes with Pillow’s `verify()` after upload. Strip EXIF if it contains GPS data you should not store. Serve via CDN URLs; do not proxy large images through FastAPI workers in production.
+
+## Recap
+
+- Validate **content_type** and ideally file content, not just extension.
+- Process heavy resizing asynchronously when possible.
+- Store images in object storage; return URLs to clients.
+
+## Up next
+
+When you are ready, continue with **File validation** (use **Next** below). Each lesson builds on the previous one in this track.

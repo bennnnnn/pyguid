@@ -1,0 +1,38 @@
+---
+title: "Preventing CSRF"
+description: "Prevent CSRF in FastAPI — tokens, SameSite cookies, and when bearer tokens change the threat model."
+quickAnswer: "Protect cookie-based sessions with CSRF tokens on state-changing forms; APIs using Authorization headers are less vulnerable to classic CSRF."
+order: 170
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+CSRF tricks a logged-in browser into submitting a form to your site. Cookie sessions are vulnerable; bearer tokens in headers (not sent automatically cross-site) reduce classic CSRF for pure APIs.
+
+## Mitigations
+
+- **SameSite cookies** (`Lax` or `Strict`)
+- **CSRF token** in forms validated server-side
+- **Double-submit cookie** pattern for SPAs
+- Require custom headers for JSON APIs
+
+<Callout variant="tip">
+
+FastAPI JSON APIs with `Authorization: Bearer` often skip CSRF; HTML form apps need explicit tokens.
+
+</Callout>
+
+## Recap
+
+- CSRF targets cookie auth
+- Use tokens + SameSite for session sites
+- Bearer-header APIs have different risks
+
+## Up next
+
+When you are ready, continue with **API security best practices** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -2,6 +2,15 @@ export type { AiTerm, AiTerminologySection, AiTerminologyMeta } from "./types";
 export { AI_TERMINOLOGY_META } from "./meta";
 export { AI_TERMINOLOGY_SECTIONS } from "./sections";
 export {
+  AI_TERMINOLOGY_PARTS,
+  AI_TERMINOLOGY_SECTION_ORDER,
+  AI_TERM_UNPUBLISHED_SECTION_IDS,
+  getAiTerminologyPartsWithSections,
+  getPublishedAiTerminologySections,
+  isAiTerminologySectionPublished,
+} from "./catalog";
+export type { AiTerminologyPart, AiTerminologyPartWithSections } from "./catalog";
+export {
   aiTerminologySectionUrl,
   termAnchorId,
   termAnchorsForSection,
@@ -15,13 +24,13 @@ export {
 } from "./display";
 export type { GlossaryEntryView } from "./display";
 
-import { AI_TERMINOLOGY_SECTIONS } from "./sections";
+import { getPublishedAiTerminologySections } from "./catalog";
 import type { AiTerminologySection } from "./types";
 
 export function getAiTerminologySection(
   sectionId: string,
 ): AiTerminologySection | undefined {
-  return AI_TERMINOLOGY_SECTIONS.find((s) => s.id === sectionId);
+  return getPublishedAiTerminologySections().find((s) => s.id === sectionId);
 }
 
 export {
@@ -34,16 +43,15 @@ export {
   buildAiTerminologySectionSearchRows,
 } from "./search-index";
 export type { AiTermSearchHit, AiTermSectionSearchRow } from "./search-index";
+
 export function getAdjacentAiTerminologySections(sectionId: string): {
   prev: AiTerminologySection | null;
   next: AiTerminologySection | null;
 } {
-  const idx = AI_TERMINOLOGY_SECTIONS.findIndex((s) => s.id === sectionId);
+  const sections = getPublishedAiTerminologySections();
+  const idx = sections.findIndex((s) => s.id === sectionId);
   return {
-    prev: idx > 0 ? AI_TERMINOLOGY_SECTIONS[idx - 1]! : null,
-    next:
-      idx >= 0 && idx < AI_TERMINOLOGY_SECTIONS.length - 1
-        ? AI_TERMINOLOGY_SECTIONS[idx + 1]!
-        : null,
+    prev: idx > 0 ? sections[idx - 1]! : null,
+    next: idx >= 0 && idx < sections.length - 1 ? sections[idx + 1]! : null,
   };
 }

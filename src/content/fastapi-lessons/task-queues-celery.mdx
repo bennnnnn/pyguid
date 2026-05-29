@@ -1,0 +1,57 @@
+---
+title: "Celery"
+description: "Use Celery with FastAPI to offload long jobs: task definitions, brokers, workers, and calling tasks from route handlers."
+quickAnswer: "Celery is a distributed task queue for Python: define tasks with @app.task, enqueue work from FastAPI, and run workers in separate processes that execute jobs asynchronously."
+order: 217
+sectionId: "task-queues"
+sectionTitle: "Task Queues"
+sectionOrder: 42
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Task Queues** — Long jobs belong in Celery or Redis workers—not inside HTTP request handlers that time out.
+
+</Callout>
+
+## Why this matters
+
+FastAPI should **respond quickly**. Sending email, generating PDFs, or processing uploads can take seconds. **Celery** moves that work to background **workers** so HTTP clients get an immediate acknowledgment.
+
+## Architecture
+
+- **Broker** (Redis or RabbitMQ) — holds queued messages
+- **Worker** — Python process running `celery worker`
+- **Result backend** (optional) — stores task outcomes
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# tasks.py
+from celery import Celery
+
+celery_app = Celery("api", broker="redis://localhost:6379/1")
+
+@celery_app.task
+def send_welcome_email(user_id: int):
+    user = load_user(user_id)
+    mailer.send(user.email, "Welcome!")`} />
+
+From FastAPI:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post("/signup")
+def signup(payload: SignupIn):
+    user = create_user(payload)
+    send_welcome_email.delay(user.id)
+    return {"id": user.id}`} />
+
+## Retries and reliability
+
+Configure automatic retries for transient failures, set **time limits**, and make tasks **idempotent** (safe if run twice). Pass ids, not huge ORM objects, in task arguments.
+
+## Recap
+
+Celery decouples slow work from request threads. Run workers separately, use a durable broker, and design tasks to be small, idempotent, and observable.
+
+## Up next
+
+When you are ready, continue with **Redis queues** (use **Next** below). Each lesson builds on the previous one in this track.

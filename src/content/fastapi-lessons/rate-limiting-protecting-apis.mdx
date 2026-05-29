@@ -1,0 +1,50 @@
+---
+title: "Protecting APIs"
+description: "Protect FastAPI APIs with rate limiting—per-IP caps, middleware, and libraries like slowapi."
+quickAnswer: "Rate limit public endpoints with middleware or a library (slowapi)—cap requests per IP or API key to reduce abuse and cost."
+order: 211
+sectionId: "rate-limiting"
+sectionTitle: "Rate Limiting"
+sectionOrder: 40
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Rate Limiting** — Throttle abusive clients before they overwhelm your database or bankrupt your cloud bill.
+
+</Callout>
+
+## Why this matters
+
+Open APIs face scrapers, credential stuffing, and accidental infinite loops. **Rate limiting** caps how many requests a client may make per window—protecting databases, third-party quotas, and your bill.
+
+### Basic limit with slowapi
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+
+@app.get("/public/data")
+@limiter.limit("60/minute")
+def public_data(request: Request):
+    return {"ok": True}`} />
+
+Key by IP for anonymous traffic; use API key or user id for authenticated tiers. Return `429 Too Many Requests` with `Retry-After` when exceeded.
+
+### In practice
+
+Start with generous limits and tighten using metrics. Document limits in your public API docs so integrators handle 429 responses with exponential backoff instead of retry storms. Whitelist health checks and internal monitoring IPs so uptime probes never trip limits.
+
+## Recap
+
+- Apply limits to expensive and auth endpoints first.
+- Return 429 with clear retry guidance.
+- Tune limits per route sensitivity.
+
+## Up next
+
+When you are ready, continue with **Throttling requests** (use **Next** below). Each lesson builds on the previous one in this track.

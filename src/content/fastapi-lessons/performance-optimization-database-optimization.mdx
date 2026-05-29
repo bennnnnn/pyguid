@@ -1,0 +1,48 @@
+---
+title: "Database optimization"
+description: "FastAPI database performance: SQLAlchemy loading strategies, indexes, pooling, and query tuning."
+quickAnswer: "Database optimization for FastAPI means indexes on filtered columns, eager loading to avoid N+1 queries, connection pooling, pagination, and analyzing slow queries with EXPLAIN."
+order: 239
+sectionId: "performance-optimization"
+sectionTitle: "Performance Optimization"
+sectionOrder: 47
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+The database is usually the **bottleneck**. Faster Python saves milliseconds; a missing index can cost seconds on every list endpoint.
+
+## Fix N+1 queries
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Bad: one query per item in a loop
+users = session.scalars(select(User)).all()
+for u in users:
+    _ = u.posts  # lazy load each time
+
+# Better: joinedload
+from sqlalchemy.orm import joinedload
+users = session.scalars(
+    select(User).options(joinedload(User.posts))
+).unique().all()`} />
+
+## Indexes and pagination
+
+Add indexes on columns in `WHERE`, `ORDER BY`, and foreign keys. Always **paginate** large lists (`limit`/`offset` or keyset).
+
+## Connection pooling
+
+SQLAlchemy's pool reuses connections. Size the pool for concurrent workers × expected concurrency—not one new connection per request.
+
+## Measure
+
+Log slow queries in development. Run `EXPLAIN ANALYZE` on production-like data volumes before guessing.
+
+## Recap
+
+Optimize databases with indexes, eager loading, pooling, and pagination. Let metrics guide which endpoints need caching or schema changes.
+
+## Up next
+
+When you are ready, continue with **Response compression** (use **Next** below). Each lesson builds on the previous one in this track.

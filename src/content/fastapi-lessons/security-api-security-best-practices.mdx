@@ -1,0 +1,34 @@
+---
+title: "API security best practices"
+description: "API security best practices for FastAPI — checklist for production APIs and common mistakes."
+quickAnswer: "Combine HTTPS, auth, validation, rate limits, least-privilege secrets, logging without PII, and dependency updates for a defensible API."
+order: 171
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Security is layered. One missing piece—a public admin route, verbose errors leaking stack traces, or secrets in git—undermines everything else. A short checklist helps teams ship safely.
+
+## Checklist
+
+- HTTPS everywhere in production
+- Validate all input with Pydantic
+- Hash passwords; short-lived JWTs + refresh rotation
+- Rate limit login and expensive endpoints
+- Store secrets in environment variables
+- Keep dependencies updated (`pip audit`)
+- Return generic errors to clients; log details server-side
+- Enable CORS only for trusted origins
+
+Review OpenAPI docs exposure: disable public `/docs` in production if they reveal internal operations.
+
+## Recap
+
+- Defense in depth—no single fix is enough
+- Automate dependency and secret scanning in CI
+- Treat security as ongoing operations, not a one-time task

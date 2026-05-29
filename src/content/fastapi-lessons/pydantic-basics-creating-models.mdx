@@ -1,0 +1,42 @@
+---
+title: "Creating models"
+description: "Create Pydantic BaseModel classes for structured API data in FastAPI projects."
+quickAnswer: "Subclass BaseModel and annotate fields with types; instantiate with keyword arguments or model_validate from dicts."
+order: 40
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Models are the contract between your API and clients. Well-named fields and types appear in generated docs and catch integration mistakes early.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, Field
+
+class Book(BaseModel):
+    title: str
+    author: str
+    pages: int = Field(gt=0)
+
+book = Book(title="Clean Code", author="Martin", pages=464)
+data = {"title": "Dune", "author": "Herbert", "pages": 412}
+book2 = Book.model_validate(data)`} />
+
+Models are immutable by default in common usage patterns; use `model_copy(update=&#123;...&#125;)` to derive variants. In FastAPI, use separate models for **create** vs **read** when passwords or internal IDs differ.
+
+Add `model_config = ConfigDict(str_strip_whitespace=True)` when user input should not preserve leading spaces in names or emails.
+
+## Recap
+
+- Inherit from **BaseModel** and annotate fields.
+- Construct with **kwargs** or **model_validate(dict)**.
+- Split **input/output** models when shapes differ.
+
+## Up next
+
+When you are ready, continue with **Data validation** (use **Next** below). Each lesson builds on the previous one in this track.

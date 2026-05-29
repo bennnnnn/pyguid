@@ -1,0 +1,43 @@
+---
+title: "Cursor pagination"
+description: "Cursor-based pagination in FastAPI—opaque cursors, keyset queries, and stable live feeds."
+quickAnswer: "Use an opaque cursor (often the last item's id or timestamp) instead of offset—stable for live feeds and faster on large tables."
+order: 208
+sectionId: "pagination-filtering"
+sectionTitle: "Pagination & Filtering"
+sectionOrder: 39
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+High **offset** values scan and discard many rows. **Cursor pagination** asks for items after a known point—`?cursor=eyJpZCI6MTB9`—using indexed `WHERE id > :last_id` queries. It stays fast and avoids duplicates when new rows are inserted during paging.
+
+### Keyset pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/posts")
+def list_posts(cursor: int | None = None, limit: int = 20):
+    q = db.query(Post).order_by(Post.id)
+    if cursor is not None:
+        q = q.filter(Post.id > cursor)
+    rows = q.limit(limit + 1).all()
+    next_cursor = rows[-1].id if len(rows) > limit else None
+    items = rows[:limit]
+    return {"items": items, "next_cursor": next_cursor}`} />
+
+Encode cursors as opaque base64 if you expose composite keys (timestamp + id). Return `next_cursor=null` on the last page.
+
+### In practice
+
+Document that clients must not parse opaque cursors—only pass them back. Changing sort order breaks old cursors; version the list endpoint or accept a `sort` param baked into the cursor payload.
+
+## Recap
+
+- Cursor = bookmark in the sorted stream.
+- Prefer keyset queries over large offsets.
+- Great for infinite scroll and live feeds.
+
+## Up next
+
+When you are ready, continue with **Sorting** (use **Next** below). Each lesson builds on the previous one in this track.

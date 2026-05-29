@@ -1,0 +1,43 @@
+---
+title: "Rendering HTML"
+description: "Render HTML pages in FastAPI with TemplateResponse — request object, context dict, and status codes."
+quickAnswer: "Return `templates.TemplateResponse(request, \"page.html\", context)` from a route so FastAPI sends rendered HTML with the correct content type."
+order: 124
+sectionId: "templates"
+sectionTitle: "Templates"
+sectionOrder: 22
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Returning raw HTML strings does not scale—templates give reuse (layouts), escaping, and includes. `TemplateResponse` integrates Jinja2 with FastAPI's request lifecycle and middleware.
+
+## Render a page
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "home.html",
+        {"name": "World"},
+    )`} />
+
+Always pass `request`—it is required for URL generation and some Starlette internals. The third argument is the template context dict.
+
+### Status codes
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`return templates.TemplateResponse(
+    request, "error.html", {"code": 404}, status_code=404
+)`} />
+
+## Recap
+
+- Use `TemplateResponse(request, template_name, context)`
+- Import `Request` and include it in the route
+- Optional `status_code` for error pages
+
+## Up next
+
+When you are ready, continue with **Passing data to templates** (use **Next** below). Each lesson builds on the previous one in this track.

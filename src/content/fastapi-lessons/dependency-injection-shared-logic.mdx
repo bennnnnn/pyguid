@@ -1,0 +1,49 @@
+---
+title: "Shared logic"
+description: "Share common logic across FastAPI endpoints using dependency functions."
+quickAnswer: "Extract repeated query parsing, auth, and pagination into dependency functions and reuse them across routes with Depends."
+order: 60
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Copy-pasted pagination limits drift between teams. One dependency function enforces the same max `limit` and logging on every list endpoint.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends, Query, FastAPI
+
+def pagination(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+):
+    return {"skip": skip, "limit": limit}
+
+app = FastAPI()
+
+@app.get("/orders")
+def list_orders(page: dict = Depends(pagination)):
+    return {"page": page, "orders": []}
+
+@app.get("/invoices")
+def list_invoices(page: dict = Depends(pagination)):
+    return {"page": page, "invoices": []}`} />
+
+Shared auth, feature flags, and locale detection fit the same pattern. Keep dependencies **pure enough** to test without HTTP when possible.
+
+If two dependencies need the same expensive setup, nest them so work runs once per request graph.
+
+## Recap
+
+- Move repeated setup into **dependency functions**.
+- Reuse with **Depends** on many routes.
+- Centralize **limits and auth** rules.
+
+## Up next
+
+When you are ready, continue with **Reusable components** (use **Next** below). Each lesson builds on the previous one in this track.

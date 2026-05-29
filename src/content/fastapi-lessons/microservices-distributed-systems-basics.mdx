@@ -1,0 +1,37 @@
+---
+title: "Distributed systems basics"
+description: "Distributed systems basics for FastAPI developers: CAP tradeoffs, failures, sagas, and operational realities."
+quickAnswer: "Distributed systems trade single-machine simplicity for independent services, partial failures, and eventual consistency—design FastAPI apps with timeouts, idempotency, and clear failure boundaries."
+order: 244
+sectionId: "microservices"
+sectionTitle: "Microservices"
+sectionOrder: 48
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+A **distributed system** is multiple computers pretending to be one application. Networks fail, messages duplicate, and clocks disagree. FastAPI microservices inherit these facts whether you plan for them or not.
+
+## Partial failure
+
+One service down should not cascade blindly. Use **circuit breakers**, **timeouts**, and **degraded responses** (cached defaults) where appropriate.
+
+## Consistency
+
+Strong ACID across services is expensive. Many flows use **sagas**: local transaction + event + compensating action if a downstream step fails.
+
+Example: charge payment → if inventory fails, refund payment.
+
+## Idempotency
+
+Retries are inevitable. Accept **idempotency keys** on POST so duplicate deliveries do not double-charge.
+
+## Observability is mandatory
+
+Distributed tracing (OpenTelemetry) links a request id across HTTP calls and queue messages—essential for debugging.
+
+## Recap
+
+Distributed FastAPI systems fail in partial ways. Design for timeouts, idempotent writes, eventual consistency, and traces—not the happy path only.

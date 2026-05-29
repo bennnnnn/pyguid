@@ -1,0 +1,50 @@
+---
+title: "Queries & mutations"
+description: "GraphQL queries and mutations with FastAPI: Strawberry patterns, input types, errors, and parity with REST endpoints."
+quickAnswer: "GraphQL queries read data and mutations change it; in Strawberry, define both on the schema, validate inputs with types, and keep mutations thin with service-layer logic shared with REST."
+order: 247
+sectionId: "graphql-with-fastapi"
+sectionTitle: "GraphQL with FastAPI"
+sectionOrder: 49
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+**Queries** should be safe and cache-friendly. **Mutations** perform creates, updates, and deletes—often the same business rules as your REST POST/PUT handlers. Duplicating logic twice causes bugs.
+
+## Query example
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`@strawberry.type
+class Query:
+    @strawberry.field
+    def posts(self, limit: int = 10) -> list[Post]:
+        return [Post(**row.__dict__) for row in db.list_posts(limit)]`} />
+
+## Mutation example
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`@strawberry.input
+class CreatePostInput:
+    title: str
+
+@strawberry.type
+class Mutation:
+    @strawberry.mutation
+    def create_post(self, data: CreatePostInput) -> Post:
+        row = post_service.create(title=data.title)
+        return Post(id=row.id, title=row.title)
+
+schema = strawberry.Schema(query=Query, mutation=Mutation)`} />
+
+## Errors and validation
+
+Return structured GraphQL errors for domain failures. Reuse **Pydantic** models in a service layer both REST and GraphQL call.
+
+## Performance
+
+Batch database access with **DataLoader** patterns when resolvers fetch related objects—avoid N+1 queries on nested fields.
+
+## Recap
+
+Queries read, mutations write. Share service logic with REST, validate inputs with Strawberry types, and optimize nested resolvers with dataloaders.

@@ -1,0 +1,39 @@
+---
+title: "Login system"
+description: "Build a login system in FastAPI — token endpoint, form data, and returning access tokens."
+quickAnswer: "A login route checks email/password with `verify_password`, then returns a JWT or sets a session cookie—use OAuth2 form fields for password flow."
+order: 156
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Login is the front door. It must rate-limit failures, return generic errors (avoid user enumeration), and issue credentials clients send on later requests.
+
+## Token endpoint
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.security import OAuth2PasswordRequestForm
+
+@app.post("/token")
+def login(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == form.username).first()
+    if not user or not verify_password(form.password, user.hashed_password):
+        raise HTTPException(401, "Incorrect email or password")
+    token = create_token(str(user.id))
+    return {"access_token": token, "token_type": "bearer"}`} />
+
+Swagger UI uses `username` for the email field—document that for API consumers.
+
+## Recap
+
+- Validate credentials against hashed passwords
+- Return `access_token` + `token_type`
+- Use 401 for failed login
+
+## Up next
+
+When you are ready, continue with **Signup system** (use **Next** below). Each lesson builds on the previous one in this track.

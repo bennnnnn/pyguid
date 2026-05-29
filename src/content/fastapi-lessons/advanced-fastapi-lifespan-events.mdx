@@ -1,0 +1,52 @@
+---
+title: "Lifespan events"
+description: "FastAPI lifespan context manager: startup/shutdown resources, database pools, and migration from on_event."
+quickAnswer: "Lifespan events in FastAPI use an async context manager on the app to run startup logic before serving and shutdown cleanup when the process exits—replacing deprecated on_event handlers."
+order: 248
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Advanced FastAPI** — Lifespan hooks, streaming, dependency overrides, and deep OpenAPI customization for mature production apps.
+
+</Callout>
+
+## Why this matters
+
+Apps need **setup** (connect pools, warm caches) and **teardown** (close connections). The modern **lifespan** API runs once per application instance—cleaner than scattered global state.
+
+## Lifespan pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from contextlib import asynccontextmanager
+from fastapi import FastAPI
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+  app.state.db = await connect_pool()
+  yield
+  await app.state.db.close()
+
+app = FastAPI(lifespan=lifespan)`} />
+
+Code before `yield` runs at **startup**; code after runs at **shutdown**.
+
+## What belongs here
+
+- Database engine / Redis clients
+- Loading ML models into memory
+- Scheduling background tasks (prefer dedicated workers for heavy jobs)
+
+Access shared resources via `request.app.state` in routes.
+
+## Recap
+
+Use `lifespan` for startup and shutdown in one place. Yield separates the serving phase from cleanup—prefer this over deprecated `@app.on_event` for new projects.
+
+## Up next
+
+When you are ready, continue with **Startup/shutdown events** (use **Next** below). Each lesson builds on the previous one in this track.

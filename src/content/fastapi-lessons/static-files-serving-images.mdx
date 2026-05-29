@@ -1,0 +1,50 @@
+---
+title: "Serving images"
+description: "Serve images in FastAPI — logos, favicons, and FileResponse for files outside the static mount."
+quickAnswer: "Store images in a static directory or return `FileResponse` for dynamic paths; set correct media types for browsers."
+order: 121
+sectionId: "static-files"
+sectionTitle: "Static Files"
+sectionOrder: 21
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Product photos, avatars, and icons are part of most web apps. Images are binary files—served efficiently from disk with correct `Content-Type` headers so browsers render them instead of downloading unknown data.
+
+## Static images
+
+Place `logo.png` in `static/images/logo.png` and reference:
+
+```html
+<img src="/static/images/logo.png" alt="Logo" width="120" />
+```
+
+## Dynamic file responses
+
+When the path depends on a database ID, return a file explicitly:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.responses import FileResponse
+
+@app.get("/avatars/{user_id}")
+def avatar(user_id: int):
+    path = f"uploads/{user_id}.jpg"
+    return FileResponse(path, media_type="image/jpeg")`} />
+
+<Callout variant="tip">
+
+Validate that `path` stays inside `uploads/`—never pass raw user input into file paths (path traversal).
+
+</Callout>
+
+## Recap
+
+- Public images → `static/` + `<img src="/static/...">`
+- Per-user files → `FileResponse` with safe path checks
+- Set `media_type` when it is not inferred
+
+## Up next
+
+When you are ready, continue with **Static folders** (use **Next** below). Each lesson builds on the previous one in this track.

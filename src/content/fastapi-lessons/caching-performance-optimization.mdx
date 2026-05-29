@@ -1,0 +1,45 @@
+---
+title: "Performance optimization"
+description: "Optimize FastAPI performance with caching strategies: layers, stampede protection, warming, and measuring cache effectiveness."
+quickAnswer: "Caching improves API performance by reducing duplicate work; measure hit rates, set sensible TTLs, and cache at the right layer—query results, objects, or full responses."
+order: 216
+sectionId: "caching"
+sectionTitle: "Caching"
+sectionOrder: 41
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Caching is a **tradeoff**: speed versus freshness. The goal is not to cache everything—it is to cache **what hurts** when repeated and **what stays valid** long enough to matter.
+
+## Layers of cache
+
+1. **ORM / query cache** — same SQL result for identical filters
+2. **Object cache** — one user or product record
+3. **Response cache** — full JSON payload for a route
+
+Start with the smallest layer that removes the most cost. Caching entire responses is simple but harder to invalidate precisely.
+
+## Avoid cache stampedes
+
+When a popular key expires, many workers may recompute at once. Mitigations:
+
+- **Jitter** TTLs so keys do not all expire together
+- **Single-flight**: only one worker rebuilds; others wait or serve stale briefly
+- **Stale-while-revalidate**: return old data while refreshing in the background
+
+## Measure what works
+
+Track **hit rate**, **latency p95**, and **database query count** before and after. A cache with 5% hits and complex invalidation may not be worth the operational cost.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`# Simple hit logging in development
+if await cache.get(key):
+    metrics.inc("cache_hit")
+else:
+    metrics.inc("cache_miss")`} />
+
+## Recap
+
+Pick the cache layer that matches your data lifecycle. Protect hot keys from stampedes, tune TTLs with real traffic, and validate improvements with metrics—not assumptions.

@@ -1,0 +1,56 @@
+---
+title: "Response validation"
+description: "Validate API responses with response_model in FastAPI for consistent output shapes."
+quickAnswer: "Set response_model=YourSchema on a route so FastAPI validates and filters the outgoing JSON to match the schema."
+order: 48
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Response Models** — Control what leaves your API: response schemas, hiding passwords, status codes, and examples that show up in OpenAPI docs.
+
+</Callout>
+
+## Why this matters
+
+Databases return extra columns—password hashes, internal flags. Response validation strips fields that should never reach clients and catches accidental leaks during development.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class UserOut(BaseModel):
+    id: int
+    username: str
+
+app = FastAPI()
+
+@app.get("/users/{user_id}", response_model=UserOut)
+def get_user(user_id: int):
+    return {
+        "id": user_id,
+        "username": "ada",
+        "password_hash": "secret",  # dropped from response
+    }`} />
+
+FastAPI serializes through `UserOut`, excluding fields not in the schema. Use `response_model=list[UserOut]` for collections. Validation failures in responses surface as server errors during development—fix before production.
+
+During tests, assert response JSON against `UserOut.model_validate(data)` to catch regressions when handlers return extra keys.
+
+Response validation adds a small CPU cost; skip it only on hot paths where you have other guarantees and measure first.
+
+## Recap
+
+- **response_model** enforces output shape.
+- Extra keys are **filtered out** by default.
+- Apply to **lists** with `list[Model]` syntax.
+
+## Up next
+
+When you are ready, continue with **Hiding sensitive fields** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,41 @@
+---
+title: "Async vs sync"
+description: "Compare async and sync FastAPI endpoints and when to use each."
+quickAnswer: "Async helps I/O concurrency; sync is simpler for CPU-bound or all-sync libraries—do not make every endpoint async by default."
+order: 90
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+**Async is not faster** for everything—it reduces waiting when many requests share I/O-bound work. CPU-heavy tasks (image processing, big JSON parsing) do not speed up with `async`; they need more processes or workers.
+
+| Situation | Prefer |
+|-----------|--------|
+| Async HTTP/DB drivers | `async def` |
+| Legacy sync SQLAlchemy | `def` (thread pool) |
+| Heavy CPU work | `def` + workers, or task queue |
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Bad: blocks the event loop
+@app.get("/bad")
+async def bad():
+    time.sleep(2)
+    return {}
+
+# Better: sync route or await async sleep / thread pool`} />
+
+Measure with load tests. A simple CRUD API on sync SQLAlchemy behind Gunicorn workers is often enough. Add async when connection counts and latency profiles justify the complexity.
+
+## Recap
+
+- Async shines for **I/O concurrency**, not CPU crunching.
+- Sync endpoints are fine and run in a **thread pool**.
+- Profile before converting an entire codebase to async.
+
+## Up next
+
+When you are ready, continue with **Non-blocking operations** (use **Next** below). Each lesson builds on the previous one in this track.

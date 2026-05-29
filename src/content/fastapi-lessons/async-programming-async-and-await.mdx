@@ -1,0 +1,48 @@
+---
+title: "`async` and `await`"
+description: "Learn async and await syntax for FastAPI route functions and I/O calls."
+quickAnswer: "Use async def and await to run I/O-bound work on the event loop without blocking other requests."
+order: 88
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Async Programming** — Async routes help when your API waits on databases, HTTP calls, or files. Learn when `async def` helps—and when sync is fine.
+
+</Callout>
+
+## Why this matters
+
+Traditional sync views **block** the worker thread while waiting on databases or HTTP calls. **async/await** lets the server handle other requests during those waits—critical for I/O-heavy APIs at scale.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import httpx
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/github/{user}")
+async def github_user(user: str):
+    async with httpx.AsyncClient() as client:
+        r = await client.get(f"https://api.github.com/users/{user}")
+    return r.json()`} />
+
+`async def` defines a coroutine route; `await` pauses **only that request** until the I/O completes. You cannot `await` a regular sync function that performs blocking I/O—you need async libraries (`httpx`, `asyncpg`) or run sync code in a thread pool.
+
+## In practice
+
+Audit libraries before going async: `requests`, sync SQLAlchemy, and `time.sleep` block the loop. Prefer `httpx`, asyncpg, and `asyncio.sleep`. If half your stack is sync, `def` routes in a thread pool are simpler than fake async.
+
+## Recap
+
+- `async def` routes run on the asyncio event loop.
+- `await` async I/O; do not block the loop with `time.sleep` or sync DB drivers.
+- Match async routes with async-capable libraries.
+
+## Up next
+
+When you are ready, continue with **Async routes** (use **Next** below). Each lesson builds on the previous one in this track.

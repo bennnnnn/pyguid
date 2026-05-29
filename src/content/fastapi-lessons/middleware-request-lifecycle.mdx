@@ -1,0 +1,42 @@
+---
+title: "Request lifecycle"
+description: "Follow a FastAPI request through middleware, routing, and dependencies."
+quickAnswer: "A request passes through middleware stack → routing → dependencies → route → response, then back through middleware."
+order: 110
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Debugging “why is my header missing?” requires knowing **order**: middleware runs before routing; dependencies run before your function; exception handlers may short-circuit the flow.
+
+```
+Client
+  → Middleware (outer → inner)
+  → Router matches path
+  → Dependencies resolve (DB, auth)
+  → Route function
+  → Response
+  → Middleware (inner → outer)
+  → Client
+```
+
+If auth fails in a dependency, middleware that expected a post-handler log still runs on the error response path. **Lifespan** events (startup/shutdown) are separate—they initialize pools before any request arrives.
+
+## In practice
+
+Exceptions short-circuit to handlers, then responses still pass outward through middleware. Startup lifespan hooks run before any middleware sees traffic—initialize pools there. WebSockets bypass some HTTP middleware.
+
+## Recap
+
+- Requests go **down** the middleware stack and **up** on the response.
+- Dependencies run after a route is matched but before the handler.
+- Exception handlers produce responses that still pass through middleware.
+
+## Up next
+
+When you are ready, continue with **Custom middleware** (use **Next** below). Each lesson builds on the previous one in this track.

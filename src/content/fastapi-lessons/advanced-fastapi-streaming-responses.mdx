@@ -1,0 +1,54 @@
+---
+title: "Streaming responses"
+description: "FastAPI streaming responses: StreamingResponse, async generators, Server-Sent Events, and download patterns."
+quickAnswer: "StreamingResponse sends large or generated bodies in chunks—ideal for files, SSE, and slow generators—without loading the entire payload into memory first."
+order: 251
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Returning a 500 MB file as one byte string can **OOM** your worker. **Streaming** reads and sends chunks incrementally—lower memory, faster time-to-first-byte.
+
+## File streaming
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.responses import StreamingResponse
+
+def iterfile():
+    with open("report.csv", "rb") as f:
+        yield from f
+
+@app.get("/export")
+def export():
+    return StreamingResponse(iterfile(), media_type="text/csv")`} />
+
+Use async generators with `async def` iterators for async I/O sources.
+
+## Server-Sent Events (SSE)
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`async def event_stream():
+    while True:
+        yield f"data: {json.dumps({'ts': time.time()})}\\n\\n"
+        await asyncio.sleep(1)
+
+@app.get("/events")
+async def events():
+    return StreamingResponse(event_stream(), media_type="text/event-stream")`} />
+
+Clients use `EventSource` in browsers for live dashboards.
+
+## Headers
+
+Set `Content-Disposition` for downloads. Disable buffering in some proxies (`X-Accel-Buffering: no` on Nginx) for real-time streams.
+
+## Recap
+
+StreamingResponse handles large files and live feeds efficiently. Use generators, match media types, and configure proxies for low-latency streams.
+
+## Up next
+
+When you are ready, continue with **Dependency overrides** (use **Next** below). Each lesson builds on the previous one in this track.

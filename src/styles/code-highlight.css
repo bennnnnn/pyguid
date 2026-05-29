@@ -1,14 +1,17 @@
-/* Dracula panel for runnable examples */
+/* Dracula panel for runnable examples (Python + FastAPI lessons) */
+.code-example .code-panel,
 .python-example .code-panel {
   counter-reset: py-line;
   background: #282a36;
 }
 
 /* Output text is green; panel stays neutral (errors override in JS) */
+.code-example .py-output-section,
 .python-example .py-output-section {
   background: var(--color-surface-alt);
 }
 
+.code-example .py-output,
 .python-example .py-output {
   margin: 0;
   padding: 0;
@@ -17,10 +20,12 @@
   word-break: break-word;
 }
 
+.code-example .py-output.py-output--error,
 .python-example .py-output.py-output--error {
   color: var(--color-output-error);
 }
 
+.code-example .code-panel pre,
 .python-example .code-panel pre {
   margin: 0;
   padding: 0;
@@ -28,24 +33,28 @@
   overflow-x: visible;
 }
 
+.code-example .code-panel code,
 .python-example .code-panel code {
   display: block;
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.75;
+  line-height: 1.25;
   font-variant-ligatures: none;
   font-feature-settings:
     "liga" 0,
     "calt" 0;
 }
 
+.code-example .code-panel .line,
 .python-example .code-panel .line {
   display: block;
   padding-left: 3.25rem;
   position: relative;
-  min-height: 1.75rem;
+  min-height: 0;
+  line-height: 1.25;
 }
 
+.code-example .code-panel .line::before,
 .python-example .code-panel .line::before {
   counter-increment: py-line;
   content: counter(py-line);

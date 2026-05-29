@@ -22,7 +22,7 @@ export function initPythonExamples() {
     const runBtn = target.closest(".py-run") as HTMLButtonElement | null;
 
     if (copyBtn) {
-      const root = copyBtn.closest(".python-example");
+      const root = copyBtn.closest(".code-example, .python-example");
       const code = getExampleCode(root);
       await navigator.clipboard.writeText(code);
       const prev = copyBtn.textContent;
@@ -35,10 +35,18 @@ export function initPythonExamples() {
 
     if (!runBtn) return;
 
-    const root = runBtn.closest(".python-example");
+    const root = runBtn.closest(".code-example, .python-example");
     const output = root?.querySelector(".py-output") as HTMLElement | null;
     const code = getExampleCode(root);
     if (!output) return;
+
+    const language = root?.getAttribute("data-language") ?? "python";
+
+    if (language === "bash") {
+      output.textContent = `Run in your terminal:\n\n${code}`;
+      output.classList.remove("py-output--error");
+      return;
+    }
 
     runBtn.disabled = true;
     const prevLabel = runBtn.textContent;

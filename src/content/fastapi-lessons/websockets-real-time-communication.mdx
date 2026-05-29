@@ -1,0 +1,50 @@
+---
+title: "Real-time communication"
+description: "WebSockets in FastAPI for real-time, two-way communication—when to use them instead of polling REST endpoints."
+quickAnswer: "WebSockets keep a persistent two-way channel between browser and server—use FastAPI's @app.websocket for live data instead of polling HTTP."
+order: 176
+sectionId: "websockets"
+sectionTitle: "WebSockets"
+sectionOrder: 32
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: WebSockets** — WebSockets enable real-time chat, live dashboards, and push updates that HTTP polling cannot match efficiently.
+
+</Callout>
+
+## Why this matters
+
+HTTP is request–response: the client asks, the server answers, the connection closes. **WebSockets** upgrade a TCP connection so both sides can push messages anytime. Dashboards, games, and collaborative editors need that pattern; polling every second wastes bandwidth and adds lag.
+
+### A minimal WebSocket route
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, WebSocket
+
+app = FastAPI()
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"Echo: {data}")`} />
+
+Call `accept()` to complete the handshake, then loop on `receive_text()` (or `receive_json()`). Use `async` handlers so waiting for messages does not block other connections.
+
+### WebSockets vs REST
+
+REST stays best for CRUD and cacheable reads. WebSockets fit **streaming state**—live scores, typing indicators, server-pushed alerts. Many apps combine both: REST for actions, WebSocket for updates.
+
+## Recap
+
+- WebSocket = persistent, bidirectional channel.
+- Use `@app.websocket` and `await websocket.accept()`.
+- Pair with REST; do not replace your entire API with sockets.
+
+## Up next
+
+When you are ready, continue with **Chat applications** (use **Next** below). Each lesson builds on the previous one in this track.

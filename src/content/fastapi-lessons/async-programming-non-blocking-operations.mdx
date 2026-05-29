@@ -1,0 +1,45 @@
+---
+title: "Non-blocking operations"
+description: "Keep the FastAPI event loop non-blocking with proper async patterns."
+quickAnswer: "Prefer await on async libraries; offload blocking work with run_in_executor or sync def routes."
+order: 91
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+One **blocking** call inside `async def`—`requests.get`, `open().read()` on a huge file, `time.sleep`—stalls all concurrent requests on that worker. Non-blocking discipline means the event loop always has work it can switch to.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import asyncio
+from fastapi import FastAPI
+
+app = FastAPI()
+
+def blocking_task():
+    return sum(range(10_000))
+
+@app.get("/compute")
+async def compute():
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, blocking_task)
+    return {"result": result}`} />
+
+Prefer **native async** APIs first. Use `run_in_executor` for unavoidable sync libraries. For file uploads, stream with async iterators where supported. Background tasks still should not block the loop if they run on the same worker.
+
+## In practice
+
+Wrap legacy sync SDK calls in `run_in_executor` with a bounded pool, or isolate them in Celery workers. Watch event loop lag metrics—when p99 spikes on unrelated endpoints, search for hidden blocking calls in middleware or dependencies.
+
+## Recap
+
+- Blocking the event loop hurts **all** requests on that worker.
+- Use async libraries, `run_in_executor`, or `def` routes for blocking code.
+- Audit third-party SDKs for async support before `await`ing them.
+
+## Up next
+
+When you are ready, continue with **Async database calls** (use **Next** below). Each lesson builds on the previous one in this track.

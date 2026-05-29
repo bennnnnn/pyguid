@@ -1,0 +1,39 @@
+---
+title: "Authentication concepts"
+description: "Authentication concepts for FastAPI — identity, credentials, sessions vs tokens, and separation from authorization."
+quickAnswer: "Authentication proves who the user is (login); authorization decides what they can do—tokens and sessions carry identity between requests."
+order: 152
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Authentication** — Protect your API with passwords, JWT access tokens, refresh tokens, and OAuth2-style login flows.
+
+</Callout>
+
+## Why this matters
+
+Public blogs can stay anonymous; banking APIs cannot. Authentication attaches a verified identity to each request so you can save user-specific data and audit actions.
+
+## Common approaches
+
+- **Session cookies** — server stores session id; browser sends cookie
+- **Bearer tokens (JWT)** — signed token in `Authorization` header
+- **OAuth2** — delegate login to Google/GitHub; your API receives tokens
+
+FastAPI documents OAuth2 with Password and Bearer flows in the official tutorial—start there, then add refresh tokens and hashing.
+
+## Recap
+
+- Authentication = who are you?
+- Authorization = what may you do?
+- Pick cookies or JWT based on client type (browser vs mobile)
+
+## Up next
+
+When you are ready, continue with **OAuth2** (use **Next** below). Each lesson builds on the previous one in this track.

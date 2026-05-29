@@ -1,0 +1,50 @@
+---
+title: "What is Pydantic"
+description: "Learn what Pydantic does and why FastAPI relies on it for request and response schemas."
+quickAnswer: "Pydantic is a Python library that validates data using type hints and raises clear errors when values are wrong or missing."
+order: 39
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Pydantic Basics** — Pydantic is the data layer behind FastAPI validation. Master models, types, defaults, and nesting—these patterns appear in almost every endpoint.
+
+</Callout>
+
+## Why this matters
+
+FastAPI's speed and safety come largely from Pydantic. Understanding it separately from FastAPI helps you debug validation, design schemas, and reuse models in CLI tools or background workers.
+
+## How it works
+
+**Pydantic v2** parses input (dicts, JSON, environment variables) into Python objects and ensures types match annotations. Invalid data raises **ValidationError** with structured details—FastAPI converts those to HTTP **422**.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, ValidationError
+
+class Pet(BaseModel):
+    name: str
+    age: int
+
+try:
+    Pet(name="Milo", age="young")
+except ValidationError as e:
+    print(e.errors())`} />
+
+FastAPI uses Pydantic for **request bodies**, **response models**, **settings**, and **dependency** return types. The same model can generate JSON Schema for OpenAPI automatically.
+
+Pydantic also powers settings via `pydantic-settings`, sharing the same validation mindset for environment variables.
+
+## Recap
+
+- **Pydantic** validates data with **type hints**.
+- Validation errors are structured and field-specific.
+- FastAPI builds **OpenAPI** from Pydantic models.
+
+## Up next
+
+When you are ready, continue with **Creating models** (use **Next** below). Each lesson builds on the previous one in this track.

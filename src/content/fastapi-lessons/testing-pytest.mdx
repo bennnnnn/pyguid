@@ -1,0 +1,50 @@
+---
+title: "`pytest`"
+description: "Run FastAPI tests with pytest—fixtures, test layout, and assert style for API projects."
+quickAnswer: "Run FastAPI tests with pytest—name files test_*.py, use fixtures for app and client, and assert with plain assert statements."
+order: 185
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+**pytest** is the standard test runner in Python web projects. It discovers tests automatically, supports fixtures for shared setup, and prints clear failure output—ideal for growing FastAPI codebases.
+
+### Layout and discovery
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# tests/conftest.py
+import pytest
+from fastapi.testclient import TestClient
+from app.main import app
+
+@pytest.fixture
+def client():
+    return TestClient(app)
+
+# tests/test_health.py
+def test_health(client):
+    assert client.get("/health").status_code == 200`} />
+
+Place tests in a top-level `tests/` folder. Shared fixtures live in `conftest.py`. Run `pytest` from the project root; add `-v` for verbose output and `-k name` to filter.
+
+### Markers and async
+
+Mark slow tests with `@pytest.mark.integration` and skip them in CI quick runs. For async route code tested without HTTP, use `pytest-asyncio` and `async def test_...` functions.
+
+### In practice
+
+Add `pytest.ini` with `testpaths = tests` and run the suite in GitHub Actions on every pull request. Failing tests should block merge; flaky tests get the same priority as production bugs because they erode trust in CI.
+
+## Recap
+
+- Use `tests/` + `test_*.py` naming.
+- Fixtures provide `client`, db, and auth headers.
+- Run `pytest` locally and in CI on every push.
+
+## Up next
+
+When you are ready, continue with **TestClient** (use **Next** below). Each lesson builds on the previous one in this track.

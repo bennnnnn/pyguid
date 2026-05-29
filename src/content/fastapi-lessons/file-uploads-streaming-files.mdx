@@ -1,0 +1,42 @@
+---
+title: "Streaming files"
+description: "Stream file uploads and downloads in FastAPI without loading entire files into memory."
+quickAnswer: "Stream downloads with StreamingResponse or FileResponse; stream uploads by reading UploadFile in chunks."
+order: 99
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Loading a 500 MB video into RAM crashes workers. **Streaming** sends or receives data in chunks—constant memory usage and faster time-to-first-byte for downloads.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.responses import StreamingResponse, FileResponse
+
+@app.get("/download/{name}")
+def download(name: str):
+    path = UPLOAD_DIR / name
+    return FileResponse(path, media_type="application/octet-stream")
+
+def iterfile(path):
+    with open(path, "rb") as f:
+        yield from f
+
+@app.get("/stream/{name}")
+def stream(name: str):
+    return StreamingResponse(iterfile(UPLOAD_DIR / name))`} />
+
+For uploads, read `UploadFile` in a loop and write each chunk to storage. Set `Content-Disposition` headers so browsers offer a filename on download.
+
+## In practice
+
+Use `FileResponse` for on-disk files and generators for dynamically built exports. For video, put CloudFront or nginx in front instead of streaming gigabytes through Python. Set `Content-Disposition` for downloads.
+
+## Recap
+
+- `FileResponse` for efficient file downloads from disk.
+- `StreamingResponse` for generated or piped byte streams.
+- Read uploads in **chunks**, not one giant `read()` when files are large.

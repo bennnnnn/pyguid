@@ -1,0 +1,46 @@
+---
+title: "CRUD operations"
+description: "SQLAlchemy CRUD in FastAPI routes — add, query, update, delete patterns with sessions."
+quickAnswer: "Create with `db.add()`, read with `query`/`get`, update by mutating attributes, delete with `db.delete()`—then `commit()` to persist."
+order: 135
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+CRUD is the backbone of most APIs. ORM CRUD keeps queries parameterized and returns Python objects your Pydantic response models can serialize.
+
+## Operations
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Create
+item = Item(title="Learn FastAPI")
+db.add(item)
+db.commit()
+db.refresh(item)
+
+# Read
+item = db.get(Item, 1)
+
+# Update
+item.title = "Updated"
+db.commit()
+
+# Delete
+db.delete(item)
+db.commit()`} />
+
+In routes, prefer `db.get(Model, id)` and return 404 if `None`.
+
+## Recap
+
+- `add` + `commit` for creates
+- `get` / `query` for reads
+- Mutate fields or `delete` then `commit`
+
+## Up next
+
+When you are ready, continue with **Relationships** (use **Next** below). Each lesson builds on the previous one in this track.

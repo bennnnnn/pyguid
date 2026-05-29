@@ -1,0 +1,42 @@
+---
+title: "File validation"
+description: "Validate uploaded files for type, size, and safety in FastAPI."
+quickAnswer: "Validate uploads by size, extension, content type, and magic bytes before saving or processing."
+order: 97
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Unrestricted uploads are a path to **malware hosting**, disk fill attacks, and SSRF via XML parsers. Validate early: max bytes, allowed MIME types, and optionally scan with ClamAV in workers.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`MAX_BYTES = 5 * 1024 * 1024
+
+@app.post("/doc/")
+async def upload_doc(file: UploadFile = File(...)):
+    data = await file.read()
+    if len(data) > MAX_BYTES:
+        raise HTTPException(413, "File too large")
+    if not file.filename.endswith((".pdf", ".txt")):
+        raise HTTPException(400, "Unsupported extension")
+    return {"ok": True}`} />
+
+Never execute uploaded content. Store outside the web root with random filenames. Log rejected uploads for security monitoring.
+
+## In practice
+
+Block double extensions (`report.pdf.exe`). Scan in workers, not request handlers, for large files. Rate-limit upload routes per IP and per authenticated user separately from read traffic.
+
+## Recap
+
+- Enforce **size**, **type**, and **count** limits on every upload endpoint.
+- Read with care—stream and abort when over limit mid-read.
+- Scan and quarantine before treating uploads as trusted data.
+
+## Up next
+
+When you are ready, continue with **Saving files** (use **Next** below). Each lesson builds on the previous one in this track.

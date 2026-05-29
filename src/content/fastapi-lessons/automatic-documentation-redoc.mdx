@@ -1,0 +1,38 @@
+---
+title: "ReDoc"
+description: "Use ReDoc as an alternative API reference UI for your FastAPI application."
+quickAnswer: "ReDoc at /redoc renders the same OpenAPI schema in a three-panel, reading-friendly layout."
+order: 82
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Swagger UI excels at **trying** endpoints; **ReDoc** excels at **reading**—clean typography, nested schemas, and a layout partners prefer for PDF-like reference pages. FastAPI serves ReDoc at `/redoc` using the same OpenAPI JSON as Swagger.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI(
+    title="Shop API",
+    redoc_url="/redoc",
+)`} />
+
+Share `/redoc` with frontend teams and external integrators who do not need an execute button on every operation. Customize `redoc_url` or disable it in production if you publish docs elsewhere—set `redoc_url=None` when turning off ReDoc entirely.
+
+Both UIs reflect **one source of truth**: your Python types and route decorators.
+
+## In practice
+
+Share `/redoc` links with partners who only read schemas. ReDoc loads the same `openapi.json` as Swagger—fix schema bugs once. If execute-in-browser is risky, expose ReDoc publicly and restrict `/docs` to VPN users.
+
+## Recap
+
+- ReDoc is available at **/redoc** by default.
+- Same OpenAPI schema powers Swagger UI and ReDoc.
+- Choose ReDoc for readable reference; Swagger for interactive testing.
+
+## Up next
+
+When you are ready, continue with **OpenAPI schema** (use **Next** below). Each lesson builds on the previous one in this track.

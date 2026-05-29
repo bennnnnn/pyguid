@@ -1,0 +1,47 @@
+---
+title: "Installing Python"
+description: "Install a supported Python version for FastAPI development and confirm your shell uses the correct interpreter."
+quickAnswer: "Install Python 3.10+ from python.org, pyenv, or your OS package manager, then verify with python3 --version before creating a project virtual environment."
+order: 7
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Environment Setup** — Before writing routes, set up Python, a virtual environment, FastAPI, and Uvicorn—the same foundation you will use for every project in this track.
+
+</Callout>
+
+## Why this matters
+
+FastAPI requires modern Python features used by Pydantic v2 and type hints. Running an end-of-life Python version leads to cryptic install errors or missing syntax. A clean Python install is the foundation for reproducible virtual environments.
+
+## How it works
+
+Use **Python 3.10 or newer** (3.11 or 3.12 are common choices). On macOS, install from [python.org](https://www.python.org/downloads/) or Homebrew (`brew install python`). On Linux, use your distro packages or **pyenv** to pin versions per project. On Windows, enable "Add Python to PATH" in the installer.
+
+After install, confirm the interpreter:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`python3 --version
+which python3`} />
+
+Avoid mixing system Python with project tools—always create a **venv** per FastAPI project so `pip install` does not touch OS packages.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`import sys
+print(sys.version_info)  # should be >= (3, 10)`} />
+
+On teams, pin the minor Python version in documentation so local machines and Docker images stay aligned. Upgrading Python may require reinstalling wheels for compiled dependencies.
+
+## Recap
+
+- Target **Python 3.10+** for current FastAPI and Pydantic.
+- Verify with `python3 --version`.
+- Use a **virtual environment** for every project.
+
+## Up next
+
+When you are ready, continue with **Creating virtual environments** (use **Next** below). Each lesson builds on the previous one in this track.

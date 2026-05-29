@@ -1,0 +1,58 @@
+---
+title: "Sending JSON data"
+description: "Accept JSON request bodies in FastAPI and understand how clients should format POST and PUT data."
+quickAnswer: "Clients send JSON with Content-Type: application/json; FastAPI maps the body to a Pydantic model parameter in your route."
+order: 33
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Request Body** — POST and PUT requests usually send JSON bodies. FastAPI reads and validates them with Pydantic models before your function runs.
+
+</Callout>
+
+## Why this matters
+
+Most modern APIs speak JSON. Knowing how clients should send bodies—and how FastAPI parses them—prevents empty-body bugs and charset issues during integration.
+
+## How it works
+
+Client example:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`curl -X POST http://127.0.0.1:8000/items \\
+  -H "Content-Type: application/json" \\
+  -d '{"name": "Notebook", "price": 4.5}'`} />
+
+Server:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+app = FastAPI()
+
+@app.post("/items")
+def create_item(item: Item):
+    return item`} />
+
+FastAPI reads the body once, validates against `Item`, and passes a model instance. Invalid JSON types or missing required fields return **422** with field-level errors.
+
+Ensure clients set UTF-8 JSON for international text; FastAPI decodes Unicode strings into Python `str` correctly when the body is valid JSON.
+
+## Recap
+
+- Clients use **application/json** bodies.
+- Declare a **Pydantic model** parameter for the body.
+- Validation errors are automatic **422** responses.
+
+## Up next
+
+When you are ready, continue with **Reading request body** (use **Next** below). Each lesson builds on the previous one in this track.

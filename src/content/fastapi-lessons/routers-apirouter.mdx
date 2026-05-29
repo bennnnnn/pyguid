@@ -1,0 +1,51 @@
+---
+title: "APIRouter"
+description: "FastAPI APIRouter basics—define route groups and mount them on the main app with include_router."
+quickAnswer: "Create routes with APIRouter instead of app directly—group related endpoints and include them in the main FastAPI app with include_router."
+order: 203
+sectionId: "routers"
+sectionTitle: "Routers"
+sectionOrder: 38
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Routers** — `APIRouter` groups related routes under prefixes like `/users` and keeps OpenAPI tags organized.
+
+</Callout>
+
+## Why this matters
+
+`APIRouter` is FastAPI's tool for **grouping routes** before attaching them to the application. Prefixes, tags, and dependencies applied to the router affect every route inside—less repetition than decorating `app` repeatedly.
+
+### Define and include
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter, FastAPI
+
+router = APIRouter()
+app = FastAPI()
+
+@router.get("/items/")
+def list_items():
+    return []
+
+app.include_router(router, prefix="/api")`} />
+
+The effective path is `/api/items/`. Multiple routers let you split files by resource and test routers in isolation.
+
+### In practice
+
+Apply shared `dependencies=[Depends(get_current_user)]` on the router when every route in the file requires auth. That keeps decorators DRY and shows up clearly in generated OpenAPI security requirements. You can mount the same router twice with different prefixes when admin and public surfaces share handlers.
+
+## Recap
+
+- `APIRouter()` holds related route functions.
+- `app.include_router(router, prefix=...)` mounts them.
+- Share tags and dependencies at router level.
+- Router-level `dependencies` apply to every route in the group.
+
+## Up next
+
+When you are ready, continue with **Splitting routes** (use **Next** below). Each lesson builds on the previous one in this track.

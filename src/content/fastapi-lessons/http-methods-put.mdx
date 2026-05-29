@@ -1,0 +1,44 @@
+---
+title: "PUT"
+description: "Implement full resource replacement with PUT and understand when to prefer PATCH instead."
+quickAnswer: "PUT replaces an entire resource at a URL; in FastAPI use @app.put with a full resource body model."
+order: 22
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Clients use PUT when they send the **complete** new representation of a resource. Partial updates belong on PATCH. Mixing them confuses API consumers and breaks idempotent update semantics.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class User(BaseModel):
+    email: str
+    name: str
+
+app = FastAPI()
+
+@app.put("/users/{user_id}")
+def replace_user(user_id: int, user: User):
+    return {"user_id": user_id, **user.model_dump()}`} />
+
+PUT should be **idempotent**—calling it twice with the same body leaves the resource in the same state. Missing fields in the body often mean "clear this field" in a full replacement model, unlike PATCH.
+
+Document which fields are required on PUT so clients know whether null clears a column or is rejected by validation.
+
+## Recap
+
+- **@app.put** replaces the **whole** resource.
+- Send a complete **Pydantic** model in the body.
+- PUT is **idempotent**; design URLs with stable resource IDs.
+
+## Up next
+
+When you are ready, continue with **PATCH** (use **Next** below). Each lesson builds on the previous one in this track.

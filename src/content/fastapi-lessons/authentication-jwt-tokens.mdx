@@ -1,0 +1,43 @@
+---
+title: "JWT tokens"
+description: "JWT tokens in FastAPI — encode, decode, secret keys, and protecting routes with bearer tokens."
+quickAnswer: "JWTs are signed JSON payloads carrying claims like `sub` (user id) and `exp`; verify signature and expiry on every protected request."
+order: 155
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+JWTs let stateless APIs authenticate without server-side session storage—useful for mobile apps and microservices. The trade-off: revocation is harder until tokens expire.
+
+## Create and verify
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from datetime import datetime, timedelta, timezone
+from jose import jwt
+
+SECRET = "change-me-in-env"
+ALGO = "HS256"
+
+def create_token(subject: str, minutes: int = 30) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(minutes=minutes)
+    payload = {"sub": subject, "exp": expire}
+    return jwt.encode(payload, SECRET, algorithm=ALGO)
+
+def decode_token(token: str) -> dict:
+    return jwt.decode(token, SECRET, algorithms=[ALGO])`} />
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip install python-jose[cryptography]`} />
+
+## Recap
+
+- JWT = header.payload.signature
+- Include `exp` and verify on each request
+- Keep `SECRET` in environment variables
+
+## Up next
+
+When you are ready, continue with **Login system** (use **Next** below). Each lesson builds on the previous one in this track.

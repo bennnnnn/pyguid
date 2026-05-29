@@ -1,0 +1,51 @@
+---
+title: "Running the first server"
+description: "Start your first FastAPI server locally and confirm the root URL and interactive documentation work."
+quickAnswer: "Save a FastAPI app in main.py, run uvicorn main:app --reload, then open http://127.0.0.1:8000/docs to see your API."
+order: 12
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Seeing a live response proves your environment, imports, and server command are correct. The interactive docs page is FastAPI's fastest feedback loop for new endpoints.
+
+## How it works
+
+Create `main.py`:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello, FastAPI"}`} />
+
+Start the server:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn main:app --reload`} />
+
+Visit:
+
+- http://127.0.0.1:8000/ — JSON greeting
+- http://127.0.0.1:8000/docs — Swagger UI
+- http://127.0.0.1:8000/redoc — alternative docs
+
+Stop with **Ctrl+C**. If the port is busy, pass `--port 8001`.
+
+If the browser cannot connect, check firewalls and that you used `127.0.0.1` rather than a wrong port. Leave the terminal open while testing—stopping the server is required before binding the same port in another process.
+
+## Recap
+
+- Define `app = FastAPI()` and at least one route.
+- Run **uvicorn main:app --reload**.
+- Confirm **/** and **/docs** in the browser.
+
+## Up next
+
+When you are ready, continue with **Hot reload (`--reload`)** (use **Next** below). Each lesson builds on the previous one in this track.

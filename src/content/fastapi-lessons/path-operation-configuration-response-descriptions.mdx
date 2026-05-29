@@ -1,0 +1,45 @@
+---
+title: "Response descriptions"
+description: "Add response descriptions and documented status codes to FastAPI operations."
+quickAnswer: "Document each status code with responses={200: ...} and response_description= on the decorator."
+order: 80
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Success is not the only outcome. Document **201 Created**, **204 No Content**, and error statuses so integrators know what to expect. `response_description` labels the default success response; `responses=` maps status codes to descriptions and models.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+
+class UserOut(BaseModel):
+    id: int
+    email: str
+
+@app.post(
+    "/users/",
+    response_model=UserOut,
+    status_code=201,
+    response_description="The created user",
+    responses={
+        409: {"description": "Email already registered"},
+    },
+)
+def create_user():
+    ...`} />
+
+Combine `responses=` with `response_model` and exception handlers so docs match runtime JSON. For file downloads, set `response_class=FileResponse` and describe content type in the response description.
+
+## In practice
+
+List 201 for creates, 204 for deletes without bodies, and 409 for conflicts in `responses=`. Match documented error models with exception handlers so QA can assert schema compliance. File endpoints should mention content type and disposition in the response description.
+
+## Recap
+
+- `response_description` describes the primary success response.
+- `responses=` documents additional status codes and optional models.
+- Aligned docs reduce support tickets from API consumers.

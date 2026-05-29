@@ -1,0 +1,44 @@
+---
+title: "Numeric validation"
+description: "Validate numeric ranges for query params and JSON fields with Pydantic constraints."
+quickAnswer: "Use Field(ge=, le=, gt=, lt=) on ints and floats to enforce ranges on prices, ages, and pagination."
+order: 71
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+A negative `quantity`, a `page_size` of one million, or a `discount` above 100% breaks business logic. **Numeric constraints** on path, query, and body fields catch these mistakes early with precise 422 messages.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, Query
+from pydantic import BaseModel, Field
+
+app = FastAPI()
+
+class Product(BaseModel):
+    price: float = Field(gt=0, le=1_000_000)
+    stock: int = Field(ge=0)
+
+@app.get("/products/")
+def list_products(
+    page: Annotated[int, Query(ge=1)] = 1,
+    page_size: Annotated[int, Query(ge=1, le=100)] = 20,
+):
+    return {"page": page, "page_size": page_size}`} />
+
+`ge` / `le` mean greater-or-equal and less-or-equal; `gt` / `lt` exclude the boundary. Use them consistently in your API style guide so pagination and IDs follow the same rules everywhere.
+
+## Recap
+
+- `Field(gt=0)` and friends work on model fields and Annotated query params.
+- Combine range checks with correct types (`int` vs `float`) for IDs and money.
+- Document allowed ranges in Field descriptions for OpenAPI consumers.
+
+## Up next
+
+When you are ready, continue with **Email validation** (use **Next** below). Each lesson builds on the previous one in this track.

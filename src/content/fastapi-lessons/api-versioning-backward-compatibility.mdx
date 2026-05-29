@@ -1,0 +1,40 @@
+---
+title: "Backward compatibility"
+description: "Maintain backward-compatible FastAPI APIs—optional fields, safe defaults, and deprecation before breaking changes."
+quickAnswer: "Avoid removing fields or changing types in place—add optional fields, default new behavior, and deprecate old endpoints before removal."
+order: 181
+sectionId: "api-versioning"
+sectionTitle: "API Versioning"
+sectionOrder: 33
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Clients cache OpenAPI schemas and hard-code JSON keys. Renaming `name` to `full_name` without a version bump breaks production apps. **Backward compatibility** means old clients keep working while new ones opt into improvements.
+
+### Safe evolution tactics
+
+- Add new fields as optional with defaults; never remove fields in the same version.
+- Accept both old and new query parameter names during a transition.
+- Return superset responses—extra keys are usually ignored by strict parsers.
+- Document deprecations in OpenAPI `deprecated=True` and response headers.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel
+
+class UserOut(BaseModel):
+    name: str
+    full_name: str | None = None  # new alias; old clients still read name`} />
+
+When behavior must change fundamentally, ship it under v2 and leave v1 untouched until usage metrics show zero traffic.
+
+## Recap
+
+- Prefer additive changes within a version.
+- Deprecate before deleting.
+- Use a new major version for true breaking changes.
+
+## Up next
+
+When you are ready, continue with **Version strategies** (use **Next** below). Each lesson builds on the previous one in this track.

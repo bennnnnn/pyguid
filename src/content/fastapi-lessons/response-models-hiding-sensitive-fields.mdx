@@ -1,0 +1,53 @@
+---
+title: "Hiding sensitive fields"
+description: "Hide passwords and internal fields from API responses using Pydantic response models."
+quickAnswer: "Never put secrets in response models; use separate UserInDB and UserPublic models so only safe fields are declared on response_model."
+order: 49
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+One forgotten field in a dict return can expose tokens or emails. Separate public schemas are a simple, reviewable defense—especially with auto-generated OpenAPI examples.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class UserInDB(BaseModel):
+    id: int
+    email: str
+    hashed_password: str
+
+class UserPublic(BaseModel):
+    id: int
+    email: str
+
+def fetch_user(user_id: int) -> UserInDB:
+    return UserInDB(id=user_id, email="a@x.com", hashed_password="...")
+
+app = FastAPI()
+
+@app.get("/users/{user_id}", response_model=UserPublic)
+def read_user(user_id: int):
+    user = fetch_user(user_id)
+    return user  # filtered to UserPublic fields`} />
+
+Alternatively use `model_config = ConfigDict(from_attributes=True)` with ORM objects. Never document secrets in OpenAPI—keep them off response models entirely.
+
+Review OpenAPI after changes—examples sometimes reveal field names even when responses filter values.
+
+## Recap
+
+- Use **separate models** for DB vs API output.
+- **response_model** filters sensitive attributes.
+- Do not rely on manual dict deletion alone.
+
+## Up next
+
+When you are ready, continue with **Custom responses** (use **Next** below). Each lesson builds on the previous one in this track.

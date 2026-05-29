@@ -1,0 +1,49 @@
+---
+title: "Reading headers"
+description: "Access request headers in FastAPI path operations and dependencies."
+quickAnswer: "Read headers with Header() parameters or the Request object; custom headers often use the X- prefix or standard names."
+order: 104
+sectionId: "headers-cookies"
+sectionTitle: "Headers & Cookies"
+sectionOrder: 18
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Headers & Cookies** — Read request headers, set response headers, and work with cookies for sessions, tokens, and browser behavior.
+
+</Callout>
+
+## Why this matters
+
+APIs use headers for **Authorization**, **correlation IDs**, **pagination cursors**, and feature flags. FastAPI injects them as typed parameters—invalid types yield 422 like any other input.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, Header
+
+app = FastAPI()
+
+@app.get("/items/")
+def list_items(
+    x_request_id: Annotated[str | None, Header()] = None,
+    authorization: Annotated[str | None, Header()] = None,
+):
+    return {"request_id": x_request_id}`} />
+
+Header names are case-insensitive; Python parameters use underscores instead of hyphens (`X-Request-Id` → `x_request_id`). For full access to all headers, inject `Request` and use `request.headers`.
+
+## In practice
+
+Use `Header()` for API keys and correlation IDs; use `Request.headers.get` for rare dynamic names. Document required headers in OpenAPI so Swagger shows input boxes. Remember underscores map to hyphens.
+
+## Recap
+
+- `Header()` declares expected request headers with validation.
+- Underscores in parameter names map to hyphens in HTTP.
+- Use `Request.headers` when you need dynamic or uncommon header names.
+
+## Up next
+
+When you are ready, continue with **Custom headers** (use **Next** below). Each lesson builds on the previous one in this track.

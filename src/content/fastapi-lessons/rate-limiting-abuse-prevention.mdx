@@ -1,0 +1,34 @@
+---
+title: "Abuse prevention"
+description: "Prevent API abuse in FastAPI—rate limits plus auth, CAPTCHA, blocklists, and alerting."
+quickAnswer: "Combine rate limits with auth, CAPTCHA on signup, IP blocklists, and monitoring—no single layer stops all abuse."
+order: 213
+sectionId: "rate-limiting"
+sectionTitle: "Rate Limiting"
+sectionOrder: 40
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Attackers bypass naive per-IP limits with botnets. **Abuse prevention** layers defenses: authentication, stricter limits on sensitive routes, anomaly detection, and partnerships with CDN/WAF providers.
+
+### Layered defenses
+
+- Rate limit login and password reset aggressively.
+- Require API keys for programmatic access; revoke abused keys.
+- Log and alert on 429 spikes and unusual geographic patterns.
+- Use Cloudflare or similar WAF in front of public APIs.
+
+Return generic errors on auth failures—do not reveal whether an email exists. Pair limits with idempotency keys on payment endpoints to block replay floods.
+
+### In practice
+
+Review 429 rates weekly. A sudden spike on `/login` may mean credential stuffing; a spike on `/search` may mean a scraper. Automate temporary IP blocks only with human review to avoid locking out NAT offices.
+
+## Recap
+
+- Rate limiting is one layer, not the whole solution.
+- Protect auth and write endpoints hardest.
+- Monitor, alert, and block at the edge when needed.

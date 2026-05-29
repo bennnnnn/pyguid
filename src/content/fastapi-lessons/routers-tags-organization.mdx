@@ -1,0 +1,38 @@
+---
+title: "Tags organization"
+description: "Organize FastAPI OpenAPI docs with router tags—group endpoints in Swagger UI by feature."
+quickAnswer: "Set tags=['Users'] on APIRouter so OpenAPI groups endpoints in Swagger UI—match tags to your team's mental model."
+order: 206
+sectionId: "routers"
+sectionTitle: "Routers"
+sectionOrder: 38
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Swagger UI lists every endpoint. Without **tags**, clients scroll a flat list. Tags group related operations—Users, Orders, Admin—mirroring how you split routers and how frontend teams discuss features. Good tags make auto-generated docs feel intentional instead of overwhelming.
+
+### Router-level tags
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter
+
+admin = APIRouter(prefix="/admin", tags=["Admin"])
+
+@admin.get("/stats")
+def stats():
+    return {"active": 10}`} />
+
+Override per route with `@router.get(..., tags=['Reports'])` when one endpoint belongs elsewhere. Keep tag names consistent (title case, singular nouns) across the project.
+
+### In practice
+
+Frontend teams often browse `/docs` before reading prose docs. Tag names that match product areas (Billing, Inventory) reduce slack questions about which endpoint does what. Hide internal admin routes behind separate OpenAPI documents if partners should not see them.
+
+## Recap
+
+- Set `tags` on `APIRouter` for default grouping.
+- Align tags with router modules.
+- Consistent names improve `/docs` navigation.
+- Per-route tags override when an endpoint is exceptional.

@@ -1,0 +1,48 @@
+---
+title: "Response schemas"
+description: "Shape OpenAPI response schemas with response_model and related FastAPI options."
+quickAnswer: "response_model and response_model_by_alias control the OpenAPI response schema and serialized field names clients see."
+order: 51
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Frontend teams generate TypeScript from OpenAPI. Accurate response schemas prevent drift between documented fields and real JSON keys—especially with aliases and unions.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel, Field
+from fastapi import FastAPI
+
+class ProductOut(BaseModel):
+    model_config = {"populate_by_name": True}
+    product_name: str = Field(alias="productName")
+
+app = FastAPI()
+
+@app.get(
+    "/products/{pid}",
+    response_model=ProductOut,
+    response_model_by_alias=True,
+)
+def get_product(pid: int):
+    return ProductOut(product_name="Pen")`} />
+
+OpenAPI lists **ProductOut** with camelCase when `by_alias=True`. For union responses, advanced patterns use `Union` types or separate status-specific models in `responses`.
+
+If you rename response fields with aliases, update client SDKs and integration tests together.
+
+## Recap
+
+- **response_model** drives OpenAPI **response** section.
+- **response_model_by_alias** controls exported JSON keys.
+- Keep public schemas stable for **client codegen**.
+
+## Up next
+
+When you are ready, continue with **Status codes** (use **Next** below). Each lesson builds on the previous one in this track.

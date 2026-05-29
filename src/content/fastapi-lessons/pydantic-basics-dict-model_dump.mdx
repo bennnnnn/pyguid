@@ -1,0 +1,45 @@
+---
+title: "`.dict()` / `.model_dump()`"
+description: "Migrate from Pydantic v1 dict() to v2 model_dump() in FastAPI projects."
+quickAnswer: "Pydantic v2 uses model_dump() instead of dict(); use model_dump_json() for a JSON string."
+order: 47
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 9
+level: beginner
+---
+
+## Why this matters
+
+Tutorials and older Stack Overflow answers still show `.dict()`. Pydantic v2 renamed serialization methods; using the wrong call fails in new FastAPI installs.
+
+## How it works
+
+| Pydantic v1   | Pydantic v2        |
+|---------------|--------------------|
+| `.dict()`    | `.model_dump()`  |
+| `.json()`   | `.model_dump_json()` |
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+item = Item(name="Pen", price=1.5)
+print(item.model_dump())
+print(item.model_dump(exclude={"price"}))
+print(item.model_dump_json())`} />
+
+In FastAPI route handlers, returning a model directly still works—framework handles encoding. Use `model_dump()` when you need a plain dict for `INSERT` queries or manual JSON.
+
+Third-party libraries expecting dicts (Celery, some ORMs) integrate cleanly via `model_dump()` at boundaries.
+
+When migrating v1 code, search the repo for .dict( and .json( and replace systematically—mixed APIs confuse reviewers.
+
+## Recap
+
+- Prefer **model_dump()** and **model_dump_json()** in v2.
+- **exclude** / **include** filter exported keys.
+- FastAPI responses can still return **model instances** directly.

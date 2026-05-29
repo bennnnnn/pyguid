@@ -1,0 +1,46 @@
+---
+title: "Service communication"
+description: "Service communication patterns for FastAPI microservices: sync HTTP, async messaging, resilience, and API contracts."
+quickAnswer: "Microservices communicate over HTTP APIs or message queues; FastAPI services call each other with httpx, enforce timeouts, retries with backoff, and clear service contracts."
+order: 242
+sectionId: "microservices"
+sectionTitle: "Microservices"
+sectionOrder: 48
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Microservices** — Split monoliths into services with clear boundaries, gateways, and communication patterns.
+
+</Callout>
+
+## Why this matters
+
+Splitting a monolith into **services** only helps if boundaries are clear. **Communication** choices—sync REST vs async events—shape latency, failure modes, and data consistency.
+
+## Synchronous HTTP
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`async with httpx.AsyncClient(timeout=5.0) as client:
+    r = await client.get(f"{BILLING_URL}/accounts/{user_id}")
+    r.raise_for_status()
+    account = r.json()`} />
+
+Always set **timeouts**. Retry idempotent GETs with exponential backoff; avoid blind retries on POST.
+
+## Asynchronous messaging
+
+Publish **events** (`UserCreated`) to a broker when other services only need eventual consistency. Consumers process independently—better decoupling, harder debugging.
+
+## Contracts
+
+Share **OpenAPI** specs or protobuf definitions. Version APIs (`/v1/`) so services evolve without breaking neighbors.
+
+## Recap
+
+FastAPI microservices talk via HTTP or queues with strict timeouts and explicit schemas. Prefer events for loose coupling; use sync calls when you need an immediate answer.
+
+## Up next
+
+When you are ready, continue with **API gateways** (use **Next** below). Each lesson builds on the previous one in this track.

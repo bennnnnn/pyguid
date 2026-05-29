@@ -1,0 +1,42 @@
+---
+title: "Mocking"
+description: "Mock external services in FastAPI tests—patch dependencies, fake SMTP, and isolate unit tests."
+quickAnswer: "Use unittest.mock.patch or pytest fixtures to replace external services and database calls so tests do not hit real APIs or SMTP."
+order: 187
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Tests that send real email or charge Stripe are slow, flaky, and expensive. **Mocking** swaps real implementations with fakes during a test so you control return values and assert call counts.
+
+### Patch dependencies
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from unittest.mock import patch
+
+def test_notify(client):
+    with patch("app.services.notify.send_email") as mock_send:
+        mock_send.return_value = True
+        response = client.post("/signup", json={"email": "a@b.com"})
+        assert response.status_code == 201
+        mock_send.assert_called_once()`} />
+
+Patch where the name is **used**, not where it is defined. In FastAPI, override dependencies with `app.dependency_overrides[get_mail_service] = lambda: FakeMail()` for cleaner injection-friendly tests.
+
+### In practice
+
+Reset overrides after each test so cases do not leak state: `app.dependency_overrides.clear()` in a fixture teardown. Prefer fakes with the same interface as real services over deep mock chains that break when you rename a method.
+
+## Recap
+
+- Mock external I/O, not your own business rules.
+- Prefer `dependency_overrides` for FastAPI deps.
+- Assert mocks were called with expected arguments.
+
+## Up next
+
+When you are ready, continue with **API testing** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,49 @@
+---
+title: "Profiling"
+description: "Profile FastAPI applications: cProfile, py-spy, logging slow requests, and interpreting results."
+quickAnswer: "Profiling finds where FastAPI spends time—cProfile for CPU hotspots, py-spy for production sampling, and APM tools for request-level traces across Python and SQL."
+order: 241
+sectionId: "performance-optimization"
+sectionTitle: "Performance Optimization"
+sectionOrder: 47
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Guessing bottlenecks wastes effort. **Profiling** shows which functions and queries consume the most time under realistic load.
+
+## Development: cProfile
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`python -m cProfile -o out.prof -m uvicorn app.main:app
+python -m pstats out.prof`} />
+
+Sort by **cumulative** time to see call chains. Focus on your code, not only library internals.
+
+## Production-safe: py-spy
+
+**py-spy** samples a running process without code changes—useful when you cannot restart with debug flags.
+
+## Request-level timing
+
+Middleware logging slow requests:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.middleware("http")
+async def log_slow(request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    ms = (time.perf_counter() - start) * 1000
+    if ms > 500:
+        logger.warning("slow_request path=%s ms=%.0f", request.url.path, ms)
+    return response`} />
+
+Pair with DB query logging for end-to-end traces.
+
+## Load test while profiling
+
+Profile under **locust** or k6 load—idle-server profiles mislead.
+
+## Recap
+
+Profile before optimizing. Use cProfile locally, sampling in production, and slow-request logs. Fix the top hotspots, then measure again.

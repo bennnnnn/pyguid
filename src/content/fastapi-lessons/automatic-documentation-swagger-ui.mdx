@@ -1,0 +1,49 @@
+---
+title: "Swagger UI"
+description: "Explore and test your API with FastAPI's built-in Swagger UI at /docs."
+quickAnswer: "FastAPI serves interactive Swagger UI at /docs by default, generated from your routes and Pydantic models."
+order: 81
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Automatic Documentation** — FastAPI generates Swagger UI and ReDoc for free. Learn how `/docs` works and how to customize or disable documentation.
+
+</Callout>
+
+## Why this matters
+
+You could maintain a separate Postman collection forever—or let FastAPI build **interactive docs** from your code. **Swagger UI** at `/docs` lists every route, shows schemas from Pydantic models, and lets you send real requests against a running server.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI(
+    title="Shop API",
+    version="1.0.0",
+    description="Internal commerce API",
+)
+
+@app.get("/items/")
+def list_items():
+    return []`} />
+
+Start Uvicorn, open `http://127.0.0.1:8000/docs`, expand an operation, click **Try it out**, fill parameters, and execute. Auth schemes (`OAuth2`, API keys) appear when configured. Swagger UI stays in sync because the **OpenAPI schema** is generated at startup from your type hints.
+
+## In practice
+
+Try OAuth2 flows from Swagger only on trusted networks. Customize `swagger_ui_parameters` to persist authorization during a long debugging session. When routes move between routers, confirm tags and summaries still appear—stale docs confuse more than missing docs.
+
+## Recap
+
+- Default Swagger UI lives at **/docs** on a standard FastAPI app.
+- Docs update automatically when you change routes and models.
+- Use app metadata (`title`, `version`, `description`) for a professional doc header.
+
+## Up next
+
+When you are ready, continue with **ReDoc** (use **Next** below). Each lesson builds on the previous one in this track.

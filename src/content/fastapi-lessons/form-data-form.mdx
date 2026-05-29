@@ -1,0 +1,43 @@
+---
+title: "`Form()`"
+description: "Read HTML form fields in FastAPI with the Form dependency."
+quickAnswer: "Import Form from fastapi and declare form fields as function parameters with Form(...)."
+order: 101
+sectionId: "form-data"
+sectionTitle: "Form Data"
+sectionOrder: 17
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+`Form()` tells FastAPI to read a field from the **request body** when the content type is form-encoded, not from query strings. Optional fields use defaults; required fields use `Form(...)`.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, Form
+
+app = FastAPI()
+
+@app.post("/items/")
+def create_item(
+    name: Annotated[str, Form()],
+    qty: Annotated[int, Form()] = 1,
+):
+    return {"name": name, "qty": qty}`} />
+
+You cannot mix a JSON `BaseModel` body and `Form()` on the same endpoint—pick one style per route. For many fields, consider a dependency that builds a Pydantic model from form data manually.
+
+## In practice
+
+Each `Form()` field maps to a form key. You cannot send JSON and multipart in one handler—split endpoints. For many fields, a small Pydantic model built manually from `Request.form()` keeps types organized.
+
+## Recap
+
+- `Form()` binds individual form keys to parameters.
+- Same validation rules apply—types are coerced and validated.
+- One endpoint = one body style (JSON **or** form, not both).
+
+## Up next
+
+When you are ready, continue with **Combining forms and files** (use **Next** below). Each lesson builds on the previous one in this track.

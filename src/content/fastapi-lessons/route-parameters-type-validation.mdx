@@ -1,0 +1,48 @@
+---
+title: "Type validation"
+description: "Leverage Python type hints for automatic request validation in FastAPI."
+quickAnswer: "FastAPI uses parameter type hints to parse and validate path, query, and body data before your route function executes."
+order: 31
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Without validation, `user_id` might be the string "admin" or SQL injection payloads in unexpected places. Central validation keeps handlers focused on business logic and returns consistent **422** errors.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from datetime import date
+
+app = FastAPI()
+
+@app.get("/reports/{day}")
+def report(day: date):
+    return {"day": day.isoformat()}
+
+@app.get("/scores")
+def scores(min_score: float = 0.0, max_score: float = 100.0):
+    return {"min_score": min_score, "max_score": max_score}`} />
+
+Supported conversions include `int`, `float`, `bool`, `UUID`, enums, and Pydantic models for bodies. Failed validation returns JSON details:
+
+```json
+&#123;"detail":[&#123;"loc":["path","day"],"msg":"invalid date", "type":"date_from_datetime_parsing"&#125;]&#125;
+```
+
+Use `Annotated` with `Path`/`Query` in modern FastAPI style when you need metadata plus types in one declaration.
+
+## Recap
+
+- **Type hints** drive parsing and validation.
+- Invalid input → **422 Unprocessable Entity**.
+- Combine with **Query/Path** constraints for tighter rules.
+
+## Up next
+
+When you are ready, continue with **Enum parameters** (use **Next** below). Each lesson builds on the previous one in this track.

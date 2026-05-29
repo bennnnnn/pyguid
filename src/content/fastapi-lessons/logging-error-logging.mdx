@@ -1,0 +1,48 @@
+---
+title: "Error logging"
+description: "Log errors and exceptions in FastAPI—logger.exception, global handlers, and safe client responses."
+quickAnswer: "Log exceptions with logger.exception() inside handlers or global exception handlers—capture stack traces without leaking internals to clients."
+order: 190
+sectionId: "logging"
+sectionTitle: "Logging"
+sectionOrder: 35
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Users should see a generic error message; operators need the full traceback. **Error logging** records what failed, where, and with which request context—while HTTP responses stay safe.
+
+### Log in exception handlers
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import logging
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+logger = logging.getLogger(__name__)
+app = FastAPI()
+
+@app.exception_handler(Exception)
+async def unhandled(request: Request, exc: Exception):
+    logger.exception("Unhandled error on %s", request.url.path)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error"},
+    )`} />
+
+`logger.exception` includes the stack trace automatically. Register handlers for `HTTPException` separately if you need different log levels for expected client errors.
+
+### In practice
+
+Log expected 404s at INFO and unexpected 500s at ERROR. Attach `request_id` and authenticated `user_id` to error records so support can find the matching access log line without guessing.
+
+## Recap
+
+- Log full traces server-side with `logger.exception`.
+- Return generic messages in JSON to clients.
+- Use global handlers for uncaught errors.
+
+## Up next
+
+When you are ready, continue with **Request logging** (use **Next** below). Each lesson builds on the previous one in this track.

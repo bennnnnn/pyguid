@@ -1,0 +1,48 @@
+---
+title: "Metadata"
+description: "Configure OpenAPI metadata on FastAPI path operations beyond tags and summaries."
+quickAnswer: "Pass openapi_extra, operation_id, include_in_schema, and deprecated flags to fine-tune OpenAPI metadata per route."
+order: 78
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Client generators and API gateways read **OpenAPI metadata**: stable `operation_id`, custom extensions, whether an route appears in public docs. FastAPI exposes these on each path operation decorator.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get(
+    "/internal/health/",
+    include_in_schema=False,
+)
+def health():
+    return {"ok": True}
+
+@app.get(
+    "/items/{id}",
+    operation_id="getItemById",
+    openapi_extra={
+        "x-audience": "public",
+    },
+)
+def get_item(id: int):
+    return {"id": id}`} />
+
+`include_in_schema=False` hides internal or legacy routes from published docs while keeping them live. Custom `x-*` fields document org-specific policies. Choose `operation_id` values that codegen tools turn into readable method names.
+
+## In practice
+
+Hide health checks with `include_in_schema=False` but keep them in metrics dashboards. Stable `operation_id` values prevent breaking OpenAPI Generator clients on every deploy. Use `x-` extensions for internal routing hints only when your API gateway actually reads them.
+
+## Recap
+
+- `operation_id`, `openapi_extra`, and `include_in_schema` tune generated OpenAPI.
+- Hide health checks and admin routes from public schema when needed.
+- Metadata does not change HTTP behavior—only documentation and tooling.
+
+## Up next
+
+When you are ready, continue with **Deprecation** (use **Next** below). Each lesson builds on the previous one in this track.

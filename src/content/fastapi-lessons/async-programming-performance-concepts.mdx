@@ -1,0 +1,31 @@
+---
+title: "Performance concepts"
+description: "FastAPI async performance: workers, connection pools, and realistic expectations."
+quickAnswer: "Scale with multiple Uvicorn workers, avoid blocking the loop, pool DB connections, and measure—not guess."
+order: 93
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+**Async alone** does not replace capacity planning. Throughput comes from multiple worker processes, efficient queries, caching, and keeping the event loop free. A common mistake is one Uvicorn worker and blocking ORM calls labeled “async.”
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn main:app --workers 4 --loop uvloop`} />
+
+Use **connection pooling** for databases; tune pool size to workers × expected concurrency. Add Redis caching for hot reads. Profile with tools like py-spy or APM before micro-optimizing `await` placement. CPU-bound work belongs in Celery/RQ workers, not API request handlers.
+
+Latency and RPS depend on your slowest dependency—usually the database or external HTTP—not FastAPI overhead itself.
+
+## In practice
+
+Run locust or k6 against staging with realistic payloads. Add workers with Gunicorn+Uvicorn when CPU-bound; add async I/O when waiting on external APIs. Cache hot reads in Redis before rewriting ORM layers in async.
+
+## Recap
+
+- Run **multiple workers**; one process has one event loop.
+- Pool DB connections; avoid N+1 queries regardless of async.
+- Offload heavy CPU and long jobs to **background workers**.

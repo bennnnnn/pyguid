@@ -1,0 +1,58 @@
+---
+title: "Redis queues"
+description: "Build lightweight background jobs with Redis lists or RQ: enqueue from FastAPI and process jobs in dedicated workers."
+quickAnswer: "Redis queues store job payloads in lists or streams; producers LPUSH from FastAPI and consumers BRPOP in worker scripts, often with simpler setup than full Celery."
+order: 218
+sectionId: "task-queues"
+sectionTitle: "Task Queues"
+sectionOrder: 42
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Not every project needs Celery's full feature set. **Redis as a queue** is enough for many apps: push a JSON job, pop it in a worker loop, done.
+
+## List-based queue pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import json
+import redis
+
+r = redis.Redis.from_url("redis://localhost:6379/2")
+
+def enqueue_job(name: str, payload: dict):
+    r.lpush("jobs", json.dumps({"name": name, "payload": payload}))`} />
+
+Worker:
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`while True:
+    _, raw = r.brpop("jobs", timeout=5)
+    job = json.loads(raw)
+    handle(job["name"], job["payload"])`} />
+
+## RQ (Redis Queue)
+
+**RQ** wraps this pattern with Python decorators and a `rq worker` CLI—less boilerplate than raw lists, lighter than Celery.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from rq import Queue
+from redis import Redis
+
+q = Queue(connection=Redis())
+q.enqueue(process_image, file_id)`} />
+
+## Choosing Redis queues vs Celery
+
+| Need | Redis / RQ | Celery |
+|------|------------|--------|
+| Simple jobs | Strong fit | Heavier |
+| Complex workflows, chords | Limited | Strong fit |
+| Mature monitoring | Add your own | Ecosystem tools |
+
+## Recap
+
+Redis queues are fast to adopt for fire-and-forget jobs. Use lists or RQ for simplicity; graduate to Celery when schedules, routing, and advanced workflows demand it.
+
+## Up next
+
+When you are ready, continue with **Background workers** (use **Next** below). Each lesson builds on the previous one in this track.

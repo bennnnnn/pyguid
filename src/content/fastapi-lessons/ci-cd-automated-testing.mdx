@@ -1,0 +1,58 @@
+---
+title: "Automated testing"
+description: "Automate FastAPI testing in CI: pytest, TestClient, fixtures, databases in GitHub Actions, and coverage gates."
+quickAnswer: "Automated testing in CI runs pytest (and linters) on every change using TestClient for FastAPI routes, with optional test databases and coverage reports blocking broken merges."
+order: 231
+sectionId: "ci-cd"
+sectionTitle: "CI/CD"
+sectionOrder: 45
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+If tests only run locally, they will be skipped. **Automated testing** in CI proves every commit still satisfies your API contract before it reaches production.
+
+## FastAPI tests with TestClient
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+def test_health():
+    r = client.get("/health")
+    assert r.status_code == 200`} />
+
+CI installs dev dependencies and runs `pytest -q`.
+
+## Database in CI
+
+Use a **service container** in GitHub Actions:
+
+```yaml
+services:
+  postgres:
+    image: postgres:16
+    env:
+      POSTGRES_PASSWORD: test
+```
+
+Point `DATABASE_URL` at `localhost` in the job env. Run migrations before tests.
+
+## What to automate
+
+- Happy-path CRUD and auth failures (401/403)
+- Validation errors (422)
+- Regression tests for fixed bugs
+
+Optional: **coverage** threshold (`pytest --cov`) to prevent untested critical paths.
+
+## Recap
+
+Wire pytest into CI on every push. Use TestClient for speed, real Postgres when ORM behavior matters, and fail the build when tests fail—no exceptions.
+
+## Up next
+
+When you are ready, continue with **Automated deployment** (use **Next** below). Each lesson builds on the previous one in this track.

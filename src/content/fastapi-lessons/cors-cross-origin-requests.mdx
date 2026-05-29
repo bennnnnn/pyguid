@@ -1,0 +1,40 @@
+---
+title: "Cross-origin requests"
+description: "Understand simple vs preflight cross-origin requests in the browser."
+quickAnswer: "Simple GET/POST may skip preflight; JSON POST with custom headers triggers an OPTIONS preflight that must succeed first."
+order: 116
+sectionId: "cors"
+sectionTitle: "CORS"
+sectionOrder: 20
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Developers see mysterious **OPTIONS** requests in DevTools—that is the **preflight**. The browser asks “is POST with Authorization allowed?” before sending the real POST. Your API must respond to OPTIONS with matching CORS headers.
+
+| Request type | Preflight? |
+|--------------|------------|
+| GET, simple POST | Often no |
+| JSON + custom headers | Yes (OPTIONS first) |
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`# CORSMiddleware answers OPTIONS and adds:
+# Access-Control-Allow-Methods
+# Access-Control-Allow-Headers`} />
+
+If preflight fails, the browser never sends your actual request—fix `allow_methods` and `allow_headers` in middleware config. Non-simple content types like `application/json` usually trigger preflight.
+
+## In practice
+
+When DevTools shows CORS errors, inspect the OPTIONS response first. JSON POSTs with `Authorization` almost always preflight. Fix `allow_methods` and `allow_headers` before debugging the POST handler itself.
+
+## Recap
+
+- **Preflight** OPTIONS happens before many modern API calls.
+- Middleware must allow the methods and headers your frontend uses.
+- Missing preflight support looks like a “network error” in the browser.
+
+## Up next
+
+When you are ready, continue with **Frontend/backend communication** (use **Next** below). Each lesson builds on the previous one in this track.

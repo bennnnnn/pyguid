@@ -76,6 +76,8 @@ export type ReferenceEntry = {
   slug?: string;
   /** Short description for lookup */
   summary: string;
+  /** Optional section heading on the sheet page (e.g. “Basic types”) */
+  section?: string;
   /** One-line example (defaults to sheet context if omitted) */
   example?: string;
   /** Full runnable example (auto-generated if omitted) */
@@ -127,6 +129,14 @@ export function getReferenceMenuItems(): ReferenceMenuItem[] {
 
 export function getReferenceCategory(id: string): ReferenceCategory | undefined {
   return REFERENCE_CATEGORIES.find((c) => c.id === id);
+}
+
+export function referenceCategoryContainsSheet(
+  categoryId: string,
+  sheetId?: string,
+): boolean {
+  if (!sheetId) return false;
+  return REFERENCE_SHEETS.some((s) => s.id === sheetId && s.category === categoryId);
 }
 
 export const REFERENCE_SHEETS: ReferenceSheet[] = [
@@ -237,46 +247,117 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
   {
     id: "data-types",
     category: "types",
-    title: "Data Types",
+    title: "Data types",
     context: "value = 42",
     entries: [
       {
-        title: "Common data types",
-        syntax: "int · float · str · bool",
-        summary: "Common built-in types for numbers, text, and logic",
-        example: "type(42)",
+        title: "Integer",
+        syntax: "int",
+        section: "Basic types",
+        summary: "Whole numbers — counting and indexing",
+        example: "x = 42",
+      },
+      {
+        title: "Float",
+        syntax: "float",
+        section: "Basic types",
+        summary: "Numbers with a decimal point",
+        example: "x = 3.14",
+      },
+      {
+        title: "String",
+        syntax: "str",
+        section: "Basic types",
+        summary: "Text — characters in quotes",
+        example: 'x = "hello"',
+      },
+      {
+        title: "Boolean",
+        syntax: "bool",
+        section: "Basic types",
+        summary: "True or False — yes/no logic",
+        example: "x = True",
+      },
+      {
+        title: "List",
+        syntax: "list",
+        section: "Other types",
+        summary: "Ordered, changeable sequence — square brackets",
+        example: "items = [1, 2, 3]",
+      },
+      {
+        title: "Tuple",
+        syntax: "tuple",
+        section: "Other types",
+        summary: "Ordered, unchangeable sequence — parentheses",
+        example: "point = (10, 20)",
+      },
+      {
+        title: "Dictionary",
+        syntax: "dict",
+        section: "Other types",
+        summary: "Key–value pairs — curly braces",
+        example: 'user = {"name": "Ada"}',
+      },
+      {
+        title: "Set",
+        syntax: "set",
+        section: "Other types",
+        summary: "Unordered collection of unique items",
+        example: "tags = {1, 2, 3}",
+      },
+      {
+        title: 'None — "no value"',
+        syntax: "None",
+        section: "Other types",
+        summary: "Means no value; test with is None, not ==",
+        example: "result = None",
       },
       {
         title: "Check a value's type",
         syntax: "type()",
+        section: "Checking types",
         summary: "Return the type of a value",
         example: "type(value)",
       },
       {
         title: "Test type with isinstance",
         syntax: "isinstance()",
+        section: "Checking types",
         summary: "Test whether a value is a given type",
         example: "isinstance(value, int)",
-      },
-      {
-        title: 'Use None for "no value"',
-        syntax: "None",
-        summary: "Means no value; test with is None",
-        example: "result = None",
       },
     ],
   },
   {
-    id: "numbers",
+    id: "math-operators",
     category: "types",
-    title: "Numbers and Operators",
+    title: "Mathematical operators",
     context: "a, b = 10, 3",
     entries: [
       {
-        title: "Add, subtract, multiply, divide",
-        syntax: "+ - * /",
-        summary: "Add, subtract, multiply, divide (float division)",
+        title: "Addition",
+        syntax: "+",
+        summary: "Add two numbers",
         example: "a + b",
+      },
+      {
+        title: "Subtraction",
+        syntax: "-",
+        summary: "Subtract the right number from the left",
+        example: "a - b",
+      },
+      {
+        title: "Multiplication",
+        syntax: "*",
+        summary: "Multiply two numbers",
+        example: "a * b",
+      },
+      {
+        title: "Division",
+        syntax: "/",
+        summary: "Divide (result is a float)",
+        example: "a / b",
       },
       {
         title: "Floor division",
@@ -296,11 +377,37 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
         summary: "Exponent (power)",
         example: "2 ** 8",
       },
+    ],
+  },
+  {
+    id: "assignment-operators",
+    category: "types",
+    title: "Assignment operators",
+    context: "a = 10",
+    entries: [
       {
-        title: "Update in place",
+        title: "Add and assign",
         syntax: "+=",
-        summary: "Update a variable in place",
+        summary: "Add to a variable and store the result back",
         example: "a += 1",
+      },
+      {
+        title: "Subtract and assign",
+        syntax: "-=",
+        summary: "Subtract from a variable and store the result back",
+        example: "a -= 1",
+      },
+      {
+        title: "Multiply and assign",
+        syntax: "*=",
+        summary: "Multiply a variable and store the result back",
+        example: "a *= 2",
+      },
+      {
+        title: "Divide and assign",
+        syntax: "/=",
+        summary: "Divide a variable and store the result back",
+        example: "a /= 2",
       },
     ],
   },
@@ -391,46 +498,46 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
     ],
   },
   {
-    id: "booleans",
+    id: "comparison-operators",
     category: "control",
-    title: "Booleans and Conditions",
+    title: "Comparison operators",
     context: "age = 20",
     entries: [
       {
-        title: "True and False",
-        syntax: "True · False",
-        summary: "Boolean literals (capital T and F)",
-        example: "is_adult = age >= 18",
+        title: "Equal to",
+        syntax: "==",
+        summary: "True when both sides are equal",
+        example: "age == 20",
       },
       {
-        title: "Compare values",
-        syntax: "== != < > <= >=",
-        summary: "Compare two values; result is bool",
+        title: "Not equal to",
+        syntax: "!=",
+        summary: "True when both sides are different",
+        example: "age != 0",
+      },
+      {
+        title: "Less than",
+        syntax: "<",
+        summary: "True when the left side is smaller",
+        example: "age < 30",
+      },
+      {
+        title: "Greater than",
+        syntax: ">",
+        summary: "True when the left side is larger",
+        example: "age > 10",
+      },
+      {
+        title: "Less than or equal",
+        syntax: "<=",
+        summary: "True when the left side is smaller or equal",
+        example: "age <= 20",
+      },
+      {
+        title: "Greater than or equal",
+        syntax: ">=",
+        summary: "True when the left side is larger or equal",
         example: "age >= 18",
-      },
-      {
-        title: "Combine conditions",
-        syntax: "and · or · not",
-        summary: "Combine or invert conditions",
-        example: "age >= 18 and has_ticket",
-      },
-      {
-        title: "Run code when true (if)",
-        syntax: "if cond:",
-        summary: "Run a block only when cond is truthy",
-        example: "if age >= 18:\n    ...",
-      },
-      {
-        title: "Else-if branch (elif)",
-        syntax: "elif cond:",
-        summary: "Else-if branch when earlier tests failed",
-        example: "elif age >= 13:\n    ...",
-      },
-      {
-        title: "Fallback branch (else)",
-        syntax: "else:",
-        summary: "Run when no if/elif matched",
-        example: "else:\n    ...",
       },
       {
         title: "Test membership (in)",
@@ -443,6 +550,75 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
         syntax: "is",
         summary: "Same object identity (use for None)",
         example: "value is None",
+      },
+    ],
+  },
+  {
+    id: "logical-operators",
+    category: "control",
+    title: "Logical operators",
+    context: "age = 20\nhas_ticket = True",
+    entries: [
+      {
+        title: "Both must be true (and)",
+        syntax: "and",
+        summary: "True only when every condition is True",
+        example: "age >= 18 and has_ticket",
+      },
+      {
+        title: "At least one true (or)",
+        syntax: "or",
+        summary: "True when at least one condition is True",
+        example: "has_ticket or is_member",
+      },
+      {
+        title: "Flip a condition (not)",
+        syntax: "not",
+        summary: "True when the condition is False, and vice versa",
+        example: "not is_member",
+      },
+    ],
+  },
+  {
+    id: "conditional",
+    category: "control",
+    title: "Conditional",
+    context: "age = 20",
+    entries: [
+      {
+        title: "If",
+        syntax: "if cond:",
+        summary: "Run a block only when the condition is true",
+        example: "if age >= 18:\n    ...",
+      },
+      {
+        title: "Else",
+        syntax: "else:",
+        summary: "Run when the if condition was false",
+        example: "else:\n    ...",
+      },
+      {
+        title: "Else if",
+        syntax: "elif cond:",
+        summary: "Another test when the if (and any earlier elif) was false — Python spells it elif",
+        example: "elif age >= 13:\n    ...",
+      },
+      {
+        title: "Switch",
+        syntax: "match",
+        summary:
+          "Pick one branch by matching a value — like switch in other languages (Python 3.10+). Copy and run locally; the browser runner does not support match yet.",
+        example: 'command = "go"',
+        code: `command = "go"
+
+match command:
+    case "go":
+        print("going")
+    case "stop":
+        print("stopped")
+    case _:
+        print("unknown")`,
+        runnable: false,
       },
     ],
   },
@@ -1017,7 +1193,7 @@ export const REFERENCE_SHEETS: ReferenceSheet[] = [
       {
         title: "Get length",
         syntax: "len()",
-        summary: "Length of a sequence or collection",
+        summary: "Used to count the number of items in a sequence or collection.",
         example: "len(nums)",
       },
       {
@@ -1433,13 +1609,31 @@ const ENTRY_SLUG_ALIASES: Record<string, string> = {
   ".startswith() · .endswith()": "startswith-endswith",
   "min() · max()": "min-max",
   "any() · all()": "any-all",
-  "==  !=  <  >  <=  >=": "comparisons",
-  "== != < > <= >=": "comparisons",
+  "==": "eq",
+  "!=": "ne",
+  "<": "lt",
+  ">": "gt",
+  "<=": "lte",
+  ">=": "gte",
+  "==  !=  <  >  <=  >=": "gte",
+  "== != < > <= >=": "gte",
   "and · or · not": "and-or-not",
-  "+  -  *  /": "operators",
-  "+ - * /": "operators",
+  "+": "add",
+  "-": "subtract",
+  "*": "multiply",
+  "/": "divide",
+  "+  -  *  /": "add",
+  "+ - * /": "add",
   "+=  -=  *=": "augmented-assign",
-  "int · float · str · bool": "builtin-types",
+  int: "int",
+  float: "float",
+  str: "str",
+  bool: "bool",
+  list: "list",
+  tuple: "tuple",
+  dict: "dict",
+  set: "set",
+  "int · float · str · bool": "int",
   "True · False": "true-false",
   "def(x=)": "def-default",
   "def(x)": "def-param",
@@ -1463,6 +1657,8 @@ const ENTRY_SLUG_ALIASES: Record<string, string> = {
   "if cond:": "if",
   "elif cond:": "elif",
   "else:": "else",
+  "elif cond:": "elif",
+  match: "switch",
   'f"..."': "fstring",
   "from ... import": "from-import",
   "import ... as": "import-as",
@@ -1508,10 +1704,17 @@ function slugFromSyntax(syntax: string): string | null {
   if (s === "None") return "none";
   if (s === "in") return "in";
   if (s === "is") return "is";
+  if (s === "+") return "add";
+  if (s === "-") return "subtract";
+  if (s === "*") return "multiply";
+  if (s === "/") return "divide";
   if (s === "//") return "floor-div";
   if (s === "%") return "modulo";
   if (s === "**") return "power";
-  if (s === "+=") return "augmented-assign";
+  if (s === "+=") return "plus-eq";
+  if (s === "-=") return "minus-eq";
+  if (s === "*=") return "star-eq";
+  if (s === "/=") return "slash-eq";
   if (s === "|") return "or-set";
   if (s === "&") return "and-set";
   if (s === "-") return "diff-set";
@@ -1568,31 +1771,94 @@ export function referenceEntrySlug(sheetId: string, index: number): string {
   return getSheetEntrySlugs(sheetId)[index] ?? `item-${index}`;
 }
 
-/** @deprecated Sheet index pages removed — use referenceEntryUrl or referenceSheetHubUrl. */
+/** Topic page — one reference page per syntax area (Variables, Strings, …). */
+export function referenceSheetUrl(sheetId: string): string {
+  return `/python/reference/${sheetId}/`;
+}
+
 export function referenceChapterUrl(sheetId: string): string {
-  return referenceFirstEntryUrl(sheetId);
+  return referenceSheetUrl(sheetId);
 }
 
 export function referenceEntryUrl(sheetId: string, entrySlug: string): string {
   return `/python/reference/${sheetId}/${entrySlug}/`;
 }
 
+/** @deprecated Use referenceSheetUrl — topic pages replace “first entry” navigation. */
 export function referenceFirstEntryUrl(sheetId: string): string {
-  return referenceEntryUrl(sheetId, referenceEntrySlug(sheetId, 0));
+  return referenceSheetUrl(sheetId);
 }
 
-/** Anchor on the reference hub for a topic group (replaces sheet index pages). */
 export function referenceSheetHubUrl(sheetId: string): string {
-  return `/python/reference/#${sheetId}`;
+  return referenceSheetUrl(sheetId);
 }
 
-/** Redirect legacy /python/reference/{sheet}/ URLs to the first entry in that group. */
-export function buildReferenceSheetIndexRedirects(): Record<string, string> {
+/** Deep link to one item on a topic page. */
+export function referenceSheetAnchorUrl(sheetId: string, entrySlug: string): string {
+  return `${referenceSheetUrl(sheetId)}#${entrySlug}`;
+}
+
+/** Per-entry URLs → anchor on the group (sheet) page. */
+export function buildReferenceEntryToSheetRedirects(): Record<string, string> {
   const redirects: Record<string, string> = {};
   for (const sheet of REFERENCE_SHEETS) {
-    redirects[`/python/reference/${sheet.id}/`] = referenceFirstEntryUrl(sheet.id);
+    const slugs = buildEntrySlugs(sheet);
+    sheet.entries.forEach((_entry, index) => {
+      const slug = slugs[index];
+      if (slug) {
+        redirects[referenceEntryUrl(sheet.id, slug)] = referenceSheetAnchorUrl(
+          sheet.id,
+          slug,
+        );
+      }
+    });
   }
   return redirects;
+}
+
+export function getAdjacentReferenceSheets(sheetId: string): {
+  prev?: ReferenceSheet;
+  next?: ReferenceSheet;
+} {
+  const index = REFERENCE_SHEETS.findIndex((s) => s.id === sheetId);
+  if (index < 0) return {};
+  return {
+    prev: index > 0 ? REFERENCE_SHEETS[index - 1] : undefined,
+    next: index < REFERENCE_SHEETS.length - 1 ? REFERENCE_SHEETS[index + 1] : undefined,
+  };
+}
+
+export function getAdjacentReferencePages(page: ReferenceEntryPage): {
+  prev?: { sheetId: string; slug: string; name: string };
+  next?: { sheetId: string; slug: string; name: string };
+} {
+  const all = getAllReferenceEntryPages();
+  const index = all.findIndex(
+    (p) => p.sheet.id === page.sheet.id && p.slug === page.slug,
+  );
+  if (index < 0) return {};
+  const prevPage = index > 0 ? all[index - 1] : undefined;
+  const nextPage = index < all.length - 1 ? all[index + 1] : undefined;
+  return {
+    prev: prevPage
+      ? {
+          sheetId: prevPage.sheet.id,
+          slug: prevPage.slug,
+          name: prevPage.entry.syntax,
+        }
+      : undefined,
+    next: nextPage
+      ? {
+          sheetId: nextPage.sheet.id,
+          slug: nextPage.slug,
+          name: nextPage.entry.syntax,
+        }
+      : undefined,
+  };
+}
+
+export function buildReferenceSheetIndexRedirects(): Record<string, string> {
+  return {};
 }
 
 export function getAllReferenceEntryPages(): ReferenceEntryPage[] {

@@ -1,0 +1,51 @@
+---
+title: "What is FastAPI"
+description: "Learn what FastAPI is, how it compares to a plain web framework, and why teams choose it for JSON APIs and microservices."
+quickAnswer: "FastAPI is a modern Python framework for building HTTP APIs with automatic validation, OpenAPI docs, and high performance on ASGI servers."
+order: 1
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="tip">
+
+**Before you start:** You should be comfortable with [Python basics](/python/)—functions, types, and virtual environments. This track takes you from zero FastAPI knowledge through a production-ready mental model.
+
+</Callout>
+
+<Callout variant="note">
+
+**Topic: Introduction to FastAPI** — Start here for the big picture: what FastAPI is, how it compares to Flask and Django, and where it fits in a real stack (ASGI, OpenAPI, JSON APIs).
+
+</Callout>
+
+## Why this matters
+
+Before you write routes or models, you need a clear picture of what FastAPI actually is. It is not a full CMS like Django; it is a focused toolkit for building HTTP APIs that speak JSON (and more). Knowing that scope helps you pick the right tool and set realistic expectations for batteries included versus bring your own database layer.
+
+## How it works
+
+FastAPI sits on top of **Starlette** (routing, requests, WebSockets) and **Pydantic** (data validation). You declare path operations with decorators such as `@app.get`, type-annotate parameters, and FastAPI validates incoming data and generates an **OpenAPI** schema automatically. That schema powers interactive docs at `/docs` without extra boilerplate.
+
+You run apps with an **ASGI** server such as Uvicorn. FastAPI supports both sync and async route functions, so you can start simple and adopt `async def` when you need concurrent I/O. The framework targets developers who want Flask-like ergonomics with stronger typing and fewer manual validation checks.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI(title="Inventory API")
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}`} />
+
+## Recap
+
+- FastAPI is for **HTTP APIs**, especially JSON REST-style services.
+- Built on **Starlette + Pydantic** with automatic **OpenAPI** docs.
+- Run with an **ASGI** server like Uvicorn; sync and async routes are supported.
+
+## Up next
+
+When you are ready, continue with **Why FastAPI became popular** (use **Next** below). Each lesson builds on the previous one in this track.

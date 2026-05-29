@@ -1,0 +1,48 @@
+---
+title: "UUID validation"
+description: "Accept and validate UUID path parameters and body fields in FastAPI."
+quickAnswer: "Use UUID type annotations on path or body fields so only valid UUID strings are accepted."
+order: 73
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Many APIs expose resources by **UUID** instead of sequential integers—safer against enumeration and easier to merge distributed systems. FastAPI coerces valid UUID strings into Python `uuid.UUID` objects; invalid strings never reach your handler.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from uuid import UUID
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: UUID):
+    return {"order_id": str(order_id)}`} />
+
+Request `/orders/not-a-uuid` and FastAPI returns **422** automatically. In Pydantic models:
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel
+from uuid import UUID
+
+class OrderRef(BaseModel):
+    parent_id: UUID | None = None`} />
+
+Serialize back to clients with `str(uuid)` in JSON responses. Store UUIDs in Postgres as `uuid` type, not varchar, when you control the schema.
+
+## In practice
+
+Path params typed as `UUID` stop garbage IDs before a database round trip. In Postgres prefer the `uuid` column type; return `str(uuid)` in JSON for JavaScript clients. When accepting optional UUID foreign keys, use `UUID | None` and document whether omission means “no filter” or “null relation”.
+
+## Recap
+
+- Annotate parameters with `UUID` for automatic parsing and 422 on bad input.
+- Invalid UUID strings are rejected before your route logic runs.
+- Return UUIDs as strings in JSON for broad client compatibility.
+
+## Up next
+
+When you are ready, continue with **Custom validators** (use **Next** below). Each lesson builds on the previous one in this track.

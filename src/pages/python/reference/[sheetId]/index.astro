@@ -1,0 +1,42 @@
+---
+import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
+import ReferenceSheetPage from "../../../../components/reference/ReferenceSheetPage.astro";
+import {
+  REFERENCE_SHEETS,
+  getReferenceSheet,
+  referenceSheetUrl,
+} from "../../../../lib/reference-sheets";
+import { breadcrumbListJsonLd } from "../../../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../../../lib/site";
+import "../../../../styles/reference.css";
+
+export function getStaticPaths() {
+  return REFERENCE_SHEETS.map((sheet) => ({
+    params: { sheetId: sheet.id },
+  }));
+}
+
+const sheetId = Astro.params.sheetId ?? "";
+const sheet = getReferenceSheet(sheetId);
+if (!sheet) return Astro.redirect("/python/reference/");
+
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL(referenceSheetUrl(sheetId), `${siteUrl}/`).href;
+const title = `${sheet.title} — Python reference — ${SITE.name}`;
+const description = `Python ${sheet.title} reference — ${sheet.entries.length} items with syntax, notes, and examples.`;
+const jsonLd = breadcrumbListJsonLd([
+  { name: SITE.name, url: `${siteUrl}/` },
+  { name: "Reference", url: `${siteUrl}/python/reference/` },
+  { name: sheet.title, url: pageUrl },
+]);
+---
+
+<TutorialLayout
+  title={title}
+  description={description}
+  sidebar="reference"
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <ReferenceSheetPage sheet={sheet} />
+</TutorialLayout>

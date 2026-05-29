@@ -1,0 +1,56 @@
+---
+title: "Docker Compose"
+description: "Docker Compose for FastAPI: compose.yaml structure, depends_on, env files, and dev vs prod overrides."
+quickAnswer: "Docker Compose defines multi-service stacks in compose.yaml—API, database, Redis—with networks, volumes, and env files so one command starts the whole dev environment."
+order: 228
+sectionId: "docker"
+sectionTitle: "Docker"
+sectionOrder: 44
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Real APIs need **Postgres, Redis, and workers**. Compose declares how services connect so `docker compose up` boots the entire stack consistently for every developer.
+
+## Example compose.yaml
+
+```yaml
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: dev
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+
+volumes:
+  pgdata:
+```
+
+## Networking
+
+Services resolve each other by **service name** (`db`, `redis`). Set `DATABASE_URL=postgresql://...@db:5432/...` in `.env`.
+
+## Overrides
+
+Use `compose.override.yaml` for dev-only settings (bind mounts, `--reload`). Keep production compose minimal and pull images from a registry.
+
+## Recap
+
+Compose orchestrates FastAPI with its dependencies. Name services clearly, persist database data with volumes, and separate dev convenience from production compose files.
+
+## Up next
+
+When you are ready, continue with **Multi-container apps** (use **Next** below). Each lesson builds on the previous one in this track.

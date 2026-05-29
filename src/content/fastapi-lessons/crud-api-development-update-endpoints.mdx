@@ -1,0 +1,45 @@
+---
+title: "Update endpoints"
+description: "FastAPI update endpoints — PUT vs PATCH, partial updates, and returning updated resources."
+quickAnswer: "Use PUT for full replacement or PATCH for partial updates; load the row, apply changes, commit, and return the updated model."
+order: 147
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Updates must not silently create new rows or change ids. Loading by primary key, applying only allowed fields, and returning the saved row keeps clients and databases aligned.
+
+## Partial update (PATCH style)
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.patch("/items/{item_id}", response_model=ItemRead)
+def update_item(
+    item_id: int,
+    item_in: ItemUpdate,
+    db: Session = Depends(get_db),
+):
+    item = db.get(Item, item_id)
+    if not item:
+        raise HTTPException(404)
+    data = item_in.model_dump(exclude_unset=True)
+    for key, value in data.items():
+        setattr(item, key, value)
+    db.commit()
+    db.refresh(item)
+    return item`} />
+
+`exclude_unset=True` applies only fields the client sent—ideal for PATCH semantics.
+
+## Recap
+
+- PATCH + optional fields for partial updates
+- Verify row exists before mutating
+- Return the updated resource after `commit`
+
+## Up next
+
+When you are ready, continue with **Delete endpoints** (use **Next** below). Each lesson builds on the previous one in this track.

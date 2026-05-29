@@ -1,0 +1,44 @@
+---
+title: "Why FastAPI became popular"
+description: "Understand the main reasons FastAPI adoption surged: performance, developer experience, validation, and interactive API documentation."
+quickAnswer: "FastAPI grew quickly because it combines speed benchmarks, editor-friendly type hints, automatic docs, and less boilerplate than older Python API stacks."
+order: 2
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Framework hype fades; lasting adoption comes from daily developer wins. FastAPI became popular because it removed repetitive validation code, made APIs self-documenting, and still scored near Node and Go in throughput benchmarks on typical JSON workloads.
+
+## How it works
+
+Three forces drove adoption. **Performance**: ASGI plus efficient request handling keeps latency low without leaving Python. **Developer experience**: type hints power autocomplete in VS Code and PyCharm, and mistakes surface earlier. **Documentation**: every route appears in Swagger UI because OpenAPI is generated from your signatures and Pydantic models.
+
+Teams also appreciated **standards alignment**—OAuth2 password flows, WebSockets, and background tasks have first-class patterns in the official docs. Startups could ship a typed API in an afternoon; enterprises could enforce schemas at the edge of every endpoint. The learning curve stays gentle if you already know Python functions and type annotations.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+app = FastAPI()
+
+@app.post("/items")
+def create_item(item: Item):
+    return item  # validated + documented automatically`} />
+
+## Recap
+
+- Popularity comes from **speed**, **typing**, and **auto-generated docs**.
+- Less manual validation glue compared to many older stacks.
+- Fits startups and teams that want **OpenAPI** as a living contract.
+
+## Up next
+
+When you are ready, continue with **FastAPI vs Flask vs Django** (use **Next** below). Each lesson builds on the previous one in this track.

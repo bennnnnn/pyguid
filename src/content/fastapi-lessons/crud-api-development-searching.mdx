@@ -1,0 +1,30 @@
+---
+title: "Searching"
+description: "Search in FastAPI APIs — query params, SQL LIKE/ILIKE, and full-text search introduction."
+quickAnswer: "Implement search with `ilike` on indexed columns or dedicated full-text tools (Postgres `tsvector`)—never concatenate raw user input into SQL."
+order: 151
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Search bars send a `q` parameter. Users expect substring matches on titles and emails. Safe search uses bound parameters; advanced search may use Postgres full-text or Elasticsearch.
+
+## Simple search
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/items/search")
+def search_items(q: str = Query(min_length=1), db: Session = Depends(get_db)):
+    pattern = f"%{q}%"
+    return db.query(Item).filter(Item.title.ilike(pattern)).all()`} />
+
+SQLAlchemy passes `pattern` as a parameter—avoid f-strings inside raw SQL text. Add indexes on searched columns for speed at scale.
+
+## Recap
+
+- Use a `q` (or `search`) query parameter
+- `ilike` for case-insensitive substring match
+- Use full-text or external search for large corpora

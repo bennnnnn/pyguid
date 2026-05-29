@@ -1,0 +1,51 @@
+---
+title: "Logging middleware"
+description: "Add request logging middleware to FastAPI applications."
+quickAnswer: "Log method, path, status, and duration in middleware after call_next returns."
+order: 112
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Production debugging needs **structured logs** per request: who called what, how long it took, and which status code returned. Middleware captures everything—including 404s and validation failures—that never hit your route’s print statements.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import logging
+import time
+from fastapi import Request
+
+logger = logging.getLogger("api")
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    ms = (time.perf_counter() - start) * 1000
+    logger.info(
+        "%s %s %s %.1fms",
+        request.method,
+        request.url.path,
+        response.status_code,
+        ms,
+    )
+    return response`} />
+
+Correlate with `X-Request-Id` from another middleware. Do not log passwords, tokens, or full credit card numbers—scrub sensitive headers and bodies.
+
+## In practice
+
+Log one line per request after `call_next` with status and duration. Redact `Authorization` and cookies. Ship JSON logs to your aggregator with stable field names for dashboards.
+
+## Recap
+
+- Log **after** `call_next` when status and duration are known.
+- Include method, path, status, and timing.
+- Never log secrets; use structured logging in production.
+
+## Up next
+
+When you are ready, continue with **Timing middleware** (use **Next** below). Each lesson builds on the previous one in this track.

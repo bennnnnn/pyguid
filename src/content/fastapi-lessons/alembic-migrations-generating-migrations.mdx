@@ -1,0 +1,40 @@
+---
+title: "Generating migrations"
+description: "Generate Alembic migrations from SQLAlchemy/SQLModel models — autogenerate, manual edits, and common pitfalls."
+quickAnswer: "Run `alembic revision --autogenerate` after model changes, then read the script—autogenerate can miss renames and needs human review."
+order: 142
+sectionId: "alembic-migrations"
+sectionTitle: "Alembic Migrations"
+sectionOrder: 26
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Hand-writing every `ALTER TABLE` is tedious and easy to mistype. Autogenerate compares your models to the live database and drafts a revision—but it is a helper, not infallible.
+
+## Autogenerate
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`alembic revision --autogenerate -m "add user bio"`} />
+
+Ensure `env.py` imports all models so metadata is complete:
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from app.models import Base
+target_metadata = Base.metadata`} />
+
+<Callout variant="warning">
+
+Autogenerate may drop columns it thinks you removed—verify diffs in code review.
+
+</Callout>
+
+## Recap
+
+- Change models first, then autogenerate
+- Import all models in `env.py`
+- Always review generated `upgrade()`
+
+## Up next
+
+When you are ready, continue with **Upgrading/downgrading schema** (use **Next** below). Each lesson builds on the previous one in this track.

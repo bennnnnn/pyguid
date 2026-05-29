@@ -1,0 +1,46 @@
+---
+title: "Sessions"
+description: "SQLAlchemy sessions in FastAPI — transactions, commit, rollback, and the request-scoped pattern."
+quickAnswer: "Open a SQLAlchemy session per request, pass it via `Depends`, commit on success, rollback on errors, and always close in `finally`."
+order: 134
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Sessions cache loaded objects and queue writes. Sharing one global session across requests causes race conditions and stale data. Per-request sessions isolate work and map cleanly to HTTP transactions.
+
+## Lifecycle
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.close()`} />
+
+Some teams commit inside route handlers instead of the dependency—pick one style and stay consistent.
+
+<Callout variant="warning">
+
+Long-running requests hold connections—keep session scope short; use background tasks for slow work.
+
+</Callout>
+
+## Recap
+
+- One session per request
+- `commit()` saves changes; `rollback()` undoes on failure
+- Always `close()` the session
+
+## Up next
+
+When you are ready, continue with **CRUD operations** (use **Next** below). Each lesson builds on the previous one in this track.

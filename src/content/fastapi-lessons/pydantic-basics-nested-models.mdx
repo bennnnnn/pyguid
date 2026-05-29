@@ -1,0 +1,47 @@
+---
+title: "Nested models"
+description: "Structure complex API payloads with nested Pydantic models in FastAPI."
+quickAnswer: "Place one BaseModel inside another to validate nested JSON objects and lists of sub-objects."
+order: 44
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Nested models match how clients send JSON and how ORMs return related rows. One validation pass covers the entire tree.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel
+
+class LineItem(BaseModel):
+    sku: str
+    qty: int
+
+class Invoice(BaseModel):
+    customer_id: int
+    lines: list[LineItem]
+
+invoice = Invoice.model_validate({
+    "customer_id": 9,
+    "lines": [{"sku": "A1", "qty": 2}, {"sku": "B2", "qty": 1}],
+})
+print(invoice.lines[0].sku)`} />
+
+Reuse small models across endpoints. For optional nested objects, use `Optional[Address] = None`.
+
+Deeply nested trees can produce long error paths—flatten DTOs when mobile clients struggle to parse 422 responses. When lists may be empty, default to `[]` with `Field(default_factory=list)` so clients always see an array key.
+
+## Recap
+
+- Embed models as **fields** for nested JSON.
+- **list[SubModel]** validates arrays of objects.
+- Reuse shared sub-models across routes.
+
+## Up next
+
+When you are ready, continue with **Model inheritance** (use **Next** below). Each lesson builds on the previous one in this track.

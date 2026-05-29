@@ -1,0 +1,50 @@
+---
+title: "Error tracking"
+description: "Error tracking for FastAPI: Sentry integration, exception handlers, breadcrumbs, and release tracking."
+quickAnswer: "Error tracking services (Sentry and similar) capture unhandled exceptions from FastAPI with stack traces, request context, and release tags so you fix production bugs with full detail."
+order: 237
+sectionId: "monitoring-observability"
+sectionTitle: "Monitoring & Observability"
+sectionOrder: 46
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Users rarely send stack traces. **Error tracking** groups identical exceptions, shows how many users hit them, and links to the exact line in your release.
+
+## Sentry with FastAPI
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import sentry_sdk
+from sentry_sdk.integrations.fastapi import FastApiIntegration
+
+sentry_sdk.init(
+    dsn=os.environ["SENTRY_DSN"],
+    integrations=[FastApiIntegration()],
+    traces_sample_rate=0.1,
+    environment="production",
+    release=os.environ.get("GIT_SHA"),
+)`} />
+
+Unhandled exceptions are reported automatically. Use `sentry_sdk.capture_exception()` in custom handlers when you swallow errors.
+
+## Context that helps
+
+- User id (not passwords)
+- Request path and method
+- Tags: `tenant_id`, `feature_flag`
+
+Scrub PII in before-send hooks to stay compliant.
+
+## vs logs and metrics
+
+| Tool | Best for |
+|------|----------|
+| Logs | Audit trail, debugging one request |
+| Metrics | Trends and alerting |
+| Error tracking | Stack traces and regression grouping |
+
+## Recap
+
+Add error tracking early in production. Tag releases, avoid leaking secrets, and triage by frequency and user impact—not every unique log line.

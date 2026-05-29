@@ -1,0 +1,48 @@
+---
+title: "Delete endpoints"
+description: "FastAPI delete endpoints — HTTP 204, hard delete vs soft delete, and safe confirmation patterns."
+quickAnswer: "DELETE `/items/{id}` removes a row and returns 204 No Content, or 404 if the id does not exist—consider soft deletes for audit trails."
+order: 148
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Deletes are destructive. APIs should be explicit: success means gone (204), missing id means 404. Many products use `is_deleted` flags instead of physical deletes to support recovery and compliance.
+
+## Hard delete
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.delete("/items/{item_id}", status_code=204)
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    item = db.get(Item, item_id)
+    if not item:
+        raise HTTPException(404)
+    db.delete(item)
+    db.commit()
+    return None`} />
+
+### Soft delete
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`item.is_deleted = True
+item.deleted_at = datetime.utcnow()
+db.commit()`} />
+
+<Callout variant="warning">
+
+Protect DELETE routes with authentication and authorization—never leave destructive endpoints public.
+
+</Callout>
+
+## Recap
+
+- 204 No Content is standard for successful DELETE
+- 404 when the resource is already absent
+- Soft delete when you need history or undo
+
+## Up next
+
+When you are ready, continue with **Pagination** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,43 @@
+---
+title: "API gateways"
+description: "API gateways for FastAPI microservices: routing, auth termination, rate limiting, and popular gateway tools."
+quickAnswer: "An API gateway is the single public entry point that routes to internal FastAPI services, handling auth, rate limits, TLS, and request routing without exposing every microservice directly."
+order: 243
+sectionId: "microservices"
+sectionTitle: "Microservices"
+sectionOrder: 48
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Clients should not know about twelve internal hostnames. An **API gateway** presents one URL, enforces cross-cutting policies, and routes `/users` to the users service and `/orders` to orders.
+
+## Responsibilities
+
+- **Routing** — path-based or host-based to backend services
+- **Authentication** — validate JWT once at the edge
+- **Rate limiting** — protect backends from abuse
+- **TLS termination** — certificates in one place
+
+```text
+Mobile app --> API Gateway --> users-service (FastAPI)
+                           --> orders-service (FastAPI)
+```
+
+## Implementations
+
+**Kong**, **Traefik**, **AWS API Gateway**, and **Nginx** are common. Some teams embed a thin BFF (backend for frontend) in FastAPI instead of a heavy gateway for small systems.
+
+## Avoid gateway god-objects
+
+Keep **business logic** in services. The gateway should not become a second monolith with domain rules scattered in config plugins.
+
+## Recap
+
+API gateways unify public access to many FastAPI services. Use them for auth, limits, and routing—keep domain logic in the services behind the gate.
+
+## Up next
+
+When you are ready, continue with **Distributed systems basics** (use **Next** below). Each lesson builds on the previous one in this track.

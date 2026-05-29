@@ -13,12 +13,13 @@ const isTutorials =
 const isQuiz = path.startsWith("/python/quiz");
 const isReference = path.startsWith("/python/reference");
 const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology/");
+const isFastapi = path === "/fastapi" || path.startsWith("/fastapi/");
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-nav-bg">
   <div class="mx-auto flex h-14 max-w-[1500px] items-center gap-2 px-3 sm:gap-3 sm:px-4">
     {
-      !isHome && (isTutorials || isQuiz || isReference || isAiTerms) && (
+      !isHome && (isTutorials || isQuiz || isReference || isAiTerms || isFastapi) && (
         <button
           type="button"
           id="sidebar-toggle"
@@ -65,10 +66,16 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
           >Tutorials</a
         >
         <a
-          href={pathFromRoot("python/quiz/")}
-          class:list={["topnav-link text-xs sm:text-sm", isQuiz && "is-active"]}
+          href={pathFromRoot("fastapi/")}
+          class:list={["topnav-link text-xs sm:text-sm", isFastapi && "is-active"]}
         >
-          Quizzes
+          FastAPI
+        </a>
+        <a
+          href={pathFromRoot("ai-terminology/")}
+          class:list={["topnav-link text-xs sm:text-sm", isAiTerms && "is-active"]}
+        >
+          AI Terms
         </a>
         <a
           href={pathFromRoot("python/reference/")}
@@ -77,10 +84,10 @@ const isAiTerms = path === "/ai-terminology" || path.startsWith("/ai-terminology
           References
         </a>
         <a
-          href={pathFromRoot("ai-terminology/")}
-          class:list={["topnav-link text-xs sm:text-sm", isAiTerms && "is-active"]}
+          href={pathFromRoot("python/quiz/")}
+          class:list={["topnav-link text-xs sm:text-sm", isQuiz && "is-active"]}
         >
-          AI Terms
+          Quizzes
         </a>
       </nav>
     </div>

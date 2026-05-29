@@ -1,0 +1,43 @@
+---
+title: "Settings classes"
+description: "Centralize FastAPI config with Pydantic BaseSettings—typed fields, validation, and a single settings object."
+quickAnswer: "Define a Pydantic BaseSettings class for typed, validated config—import one settings instance across the app instead of scattered os.getenv calls."
+order: 196
+sectionId: "configuration-management"
+sectionTitle: "Configuration Management"
+sectionOrder: 36
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Scattered `os.getenv` calls hide required keys until runtime crashes. A **settings class** validates types at import, documents fields, and gives IDEs autocomplete for `settings.database_url`.
+
+### Single settings object
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from functools import lru_cache
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    app_name: str = "My API"
+    database_url: str
+    cors_origins: list[str] = ["http://localhost:3000"]
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()
+
+# in main.py: settings = get_settings()`} />
+
+Use `@lru_cache` on `get_settings` so parsing happens once. Inject with `Depends(get_settings)` in routes that need config, or import the cached instance in modules that are not request-scoped.
+
+### In practice
+
+In tests, override `get_settings` to return a `Settings` instance with in-memory database URLs. That keeps pytest hermetic without touching your real `.env` file on disk. Validate list fields like `cors_origins` at startup so typos fail before the first browser preflight.
+
+## Recap
+
+- `BaseSettings` validates and types configuration.
+- One cached instance avoids repeated parsing.
+- Inject settings where tests can override them.

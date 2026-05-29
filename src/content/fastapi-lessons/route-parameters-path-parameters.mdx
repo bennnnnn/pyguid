@@ -1,0 +1,49 @@
+---
+title: "Path parameters"
+description: "Capture values from the URL path using FastAPI path parameters and type conversion."
+quickAnswer: "Declare path variables in the URL with {name} and matching function parameters; FastAPI extracts and validates them."
+order: 27
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Route Parameters** — URLs carry data through path segments and query strings. FastAPI validates types automatically so bad input becomes a clear 422 response.
+
+</Callout>
+
+## Why this matters
+
+Path parameters identify **which** resource you want—user 42 versus user 7. Getting extraction and typing right prevents security issues from stringly-typed IDs and produces accurate OpenAPI docs.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/users/{user_id}")
+def read_user(user_id: int):
+    return {"user_id": user_id}
+
+@app.get("/files/{folder}/{filename}")
+def read_file(folder: str, filename: str):
+    return {"path": f"{folder}/{filename}"}`} />
+
+Order matters when paths overlap: declare **static** segments before dynamic ones if needed. FastAPI converts `user_id` to `int`; invalid values return **422** with validation details—better than manual `int()` try/except in every route.
+
+Use `Path(..., ge=1)` when IDs must be positive integers to reject zero or negative values at the edge.
+
+## Recap
+
+- Use `&#123;param&#125;` in the path and the **same name** in the function.
+- Add **type annotations** for automatic validation.
+- Static path segments should be ordered to avoid shadowing.
+
+## Up next
+
+When you are ready, continue with **Query parameters** (use **Next** below). Each lesson builds on the previous one in this track.

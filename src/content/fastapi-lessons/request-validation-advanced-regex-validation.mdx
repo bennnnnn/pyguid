@@ -1,0 +1,49 @@
+---
+title: "Regex validation"
+description: "Validate string parameters with regular expression patterns in FastAPI and Pydantic v2."
+quickAnswer: "Use Field(pattern=r\"...\") or Annotated[str, Query(pattern=\"...\")] to enforce regex rules on strings."
+order: 69
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Request Validation Advanced** — Go beyond basic types: regex, lengths, emails, UUIDs, and custom validators for stricter contracts with clients.
+
+</Callout>
+
+## Why this matters
+
+Usernames, slugs, and country codes often must match a **strict format**. Regex validation rejects bad input at the edge so your database and business rules see only clean strings. In Pydantic v2, use `Field(pattern=...)` on model fields or `Query(pattern=...)` on parameters.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+@app.get("/users/by-tag/{tag}")
+def by_tag(tag: Annotated[str, Query(pattern=r"^[a-z0-9-]{3,32}$")]):
+    return {"tag": tag}`} />
+
+On a Pydantic model:
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, Field
+
+class Signup(BaseModel):
+    username: str = Field(pattern=r"^[a-zA-Z0-9_]{3,20}$")`} />
+
+Invalid values yield **422** with a clear validation message. Test patterns with real examples—including edge cases like hyphens at the start—before deploying. Prefer simple, documented patterns over giant regexes nobody can maintain.
+
+## Recap
+
+- `pattern=` on `Field` or `Query` enforces regex at validation time.
+- Failed matches return **422** like any other validation error.
+- Keep regexes short and documented; complex rules may need custom validators.
+
+## Up next
+
+When you are ready, continue with **Length validation** (use **Next** below). Each lesson builds on the previous one in this track.

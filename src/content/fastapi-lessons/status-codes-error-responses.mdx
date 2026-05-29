@@ -1,0 +1,47 @@
+---
+title: "Error responses"
+description: "Return structured error responses from FastAPI using HTTPException and exception handlers."
+quickAnswer: "Raise HTTPException for expected errors; register exception handlers for consistent JSON error bodies across the app."
+order: 56
+sectionId: "status-codes"
+sectionTitle: "Status Codes"
+sectionOrder: 9
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Ad-hoc `return &#123;"error": "..."&#125;` with status 200 confuses clients. Standard error shapes and status codes make debugging and frontend error handling predictable.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+@app.get("/accounts/{aid}")
+def get_account(aid: int):
+    raise HTTPException(status_code=404, detail="Account not found")
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": exc.detail},
+    )`} />
+
+Validation errors already return `&#123;"detail": [...]&#125;`. Extend handlers for custom domain exceptions (`AppError`) to map to 409 or 402 consistently.
+
+Log server-side details for 500 errors but return generic messages to clients to avoid leaking stack traces.
+
+## Recap
+
+- **HTTPException** for expected failures.
+- **exception_handler** for unified error JSON.
+- Keep **422** validation format for input errors.
+
+## Up next
+
+When you are ready, continue with **REST conventions** (use **Next** below). Each lesson builds on the previous one in this track.

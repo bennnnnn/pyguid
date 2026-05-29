@@ -1,0 +1,56 @@
+---
+title: "v1/v2 APIs"
+description: "Structure FastAPI v1 and v2 APIs with URL prefixes and separate routers so old and new clients coexist."
+quickAnswer: "Expose v1 and v2 under URL prefixes like /api/v1 and /api/v2, mounting separate APIRouters so old clients keep working while new ones adopt v2."
+order: 180
+sectionId: "api-versioning"
+sectionTitle: "API Versioning"
+sectionOrder: 33
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: API Versioning** — Ship `/v1` and `/v2` without breaking mobile apps that still call older URLs—strategies for backward compatibility.
+
+</Callout>
+
+## Why this matters
+
+Shipping breaking changes to a public API breaks mobile apps and partner integrations. **Versioned URLs** (`/api/v1/users`, `/api/v2/users`) make support explicit: v1 stays stable while v2 introduces new fields and behavior.
+
+### Mount version routers
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter, FastAPI
+
+app = FastAPI()
+v1 = APIRouter(prefix="/api/v1")
+v2 = APIRouter(prefix="/api/v2")
+
+@v1.get("/users/{user_id}")
+def get_user_v1(user_id: int):
+    return {"id": user_id, "name": "Ada"}
+
+@v2.get("/users/{user_id}")
+def get_user_v2(user_id: int):
+    return {"id": user_id, "full_name": "Ada Lovelace", "tier": "pro"}
+
+app.include_router(v1)
+app.include_router(v2)`} />
+
+Each version lives in its own module (`app/api/v1/`, `app/api/v2/`). Shared business logic can sit in services; only response shapes differ per version.
+
+### In practice
+
+Ship v2 when you need breaking response shapes or new auth rules. Keep v1 routers read-only for a deprecation window and log traffic per version in middleware so you know when it is safe to retire old paths.
+
+## Recap
+
+- Prefix routes with `/api/v1` and `/api/v2`.
+- One router (or package) per major version.
+- Keep v1 online until clients migrate.
+
+## Up next
+
+When you are ready, continue with **Backward compatibility** (use **Next** below). Each lesson builds on the previous one in this track.

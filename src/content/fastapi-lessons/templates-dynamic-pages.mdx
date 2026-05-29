@@ -1,0 +1,36 @@
+---
+title: "Dynamic pages"
+description: "Build dynamic HTML pages in FastAPI — detail views, shared layouts, and 404 handling with Jinja2."
+quickAnswer: "Use path parameters in routes, load records in Python, and render one template file for many URLs—return 404 when the record is missing."
+order: 126
+sectionId: "templates"
+sectionTitle: "Templates"
+sectionOrder: 22
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+A blog post at `/posts/42` and `/posts/99` shares one template—the ID changes, the layout stays the same. Dynamic pages are how server-rendered apps avoid duplicating HTML per record.
+
+## Detail route
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/posts/{post_id}")
+def post_detail(request: Request, post_id: int, db: Session = Depends(get_db)):
+    post = db.get(Post, post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    return templates.TemplateResponse(
+        request, "post_detail.html", {"post": post}
+    )`} />
+
+### Base layout
+
+Use Jinja2 inheritance: `base.html` defines blocks; child templates `&#123;% extend %&#125;` and fill `&#123;% block content %&#125;`. One layout update refreshes every page.
+
+## Recap
+
+- Path params select which row to load
+- Raise `HTTPException(404)` when data is missing
+- Use template inheritance for shared chrome

@@ -1,0 +1,43 @@
+---
+title: "Integration testing"
+description: "Integration test FastAPI apps with TestClient and a test database—verify routes, status codes, and JSON together."
+quickAnswer: "Integration tests hit real routes with TestClient and often a test database—verify status codes, JSON bodies, and auth flows end to end."
+order: 184
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Unit tests cannot catch wrong status codes, broken dependency injection, or SQLAlchemy session leaks. **Integration tests** exercise the full ASGI stack—routing, middleware, validation, and database—using FastAPI's test utilities.
+
+### TestClient basics
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+def test_create_item():
+    response = client.post("/items/", json={"name": "Widget"})
+    assert response.status_code == 201
+    assert response.json()["name"] == "Widget"`} />
+
+Use a separate test database or transactions rolled back after each test. Override `get_db` with a dependency that yields a test session so production data stays safe.
+
+### In practice
+
+Seed minimal fixtures—a user and one item—then assert the full create-read-update-delete path. If a test needs ten setup steps, extract a factory function so the test body stays readable and failures point at the behavior under test.
+
+## Recap
+
+- Integration tests use `TestClient` against `app`.
+- Assert status codes and response JSON.
+- Isolate data with fixtures and dependency overrides.
+
+## Up next
+
+When you are ready, continue with **`pytest`** (use **Next** below). Each lesson builds on the previous one in this track.

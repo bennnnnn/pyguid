@@ -1,0 +1,46 @@
+---
+title: "Splitting routes"
+description: "Split FastAPI routes across files—one router per resource and a thin main.py that wires them."
+quickAnswer: "Move each resource's routes into its own file (users.py, items.py) and include all routers from main—keeps files small and ownership clear."
+order: 204
+sectionId: "routers"
+sectionTitle: "Routers"
+sectionOrder: 38
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Merge conflicts on a thousand-line `main.py` slow teams down. **Splitting routes** by file means each developer works on `routers/orders.py` without touching unrelated endpoints.
+
+### Pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# app/routers/items.py
+from fastapi import APIRouter
+router = APIRouter(prefix="/items", tags=["items"])
+
+@router.get("/")
+def list_items():
+    return []
+
+# app/main.py
+from app.routers import items
+app.include_router(items.router)`} />
+
+Re-export routers from `routers/__init__.py` if you prefer `from app.routers import items, users` in main. Keep shared dependencies in `deps.py`.
+
+### In practice
+
+Name files after the resource (`orders.py`), not the HTTP verb. When a file exceeds roughly two hundred lines, split by sub-resource (`orders_payments.py`) before it becomes a merge-conflict magnet. Import routers in `main.py` in a stable alphabetical order to reduce noisy diffs.
+
+## Recap
+
+- One file per resource router.
+- Main only creates app and includes routers.
+- Avoid circular imports by not importing main from routers.
+- Split large router files before merge conflicts pile up.
+
+## Up next
+
+When you are ready, continue with **Route prefixes** (use **Next** below). Each lesson builds on the previous one in this track.

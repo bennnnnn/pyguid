@@ -1,0 +1,44 @@
+---
+title: "POST"
+description: "Create resources with POST in FastAPI, including JSON request bodies and validation."
+quickAnswer: "Use @app.post to create resources or trigger actions; send JSON bodies as Pydantic models or typed parameters."
+order: 21
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+POST creates orders, users, and webhook events. FastAPI validates JSON bodies before your function runs, turning malformed input into clear **422** errors instead of silent bugs.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class ItemCreate(BaseModel):
+    name: str
+    price: float
+
+app = FastAPI()
+
+@app.post("/items", status_code=201)
+def create_item(item: ItemCreate):
+    return {"id": 101, **item.model_dump()}`} />
+
+POST is **not idempotent**—submitting twice may create two rows unless you design idempotency keys. Return **201 Created** for new resources when appropriate. Combine with `Location` headers in more complete APIs.
+
+For idempotent creates (same client retry), accept an `Idempotency-Key` header in addition to POST semantics—many payment APIs use this pattern.
+
+## Recap
+
+- **@app.post** for creates and non-idempotent actions.
+- Accept bodies via **Pydantic models**.
+- Prefer **201** status for successful resource creation.
+
+## Up next
+
+When you are ready, continue with **PUT** (use **Next** below). Each lesson builds on the previous one in this track.

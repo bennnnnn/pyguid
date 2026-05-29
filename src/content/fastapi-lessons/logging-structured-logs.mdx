@@ -1,0 +1,45 @@
+---
+title: "Structured logs"
+description: "Structured JSON logging in FastAPI—consistent fields for search, dashboards, and log aggregators."
+quickAnswer: "Emit JSON logs with consistent keys (level, message, request_id, user_id) so Datadog, CloudWatch, or Loki can filter and aggregate them."
+order: 192
+sectionId: "logging"
+sectionTitle: "Logging"
+sectionOrder: 35
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Plain text logs are hard to query at scale. **Structured logs**—one JSON object per line—let you filter `status_code:500` or `user_id:42` in observability tools without regex fragility.
+
+### JSON per line
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`import json
+import logging
+
+class JsonFormatter(logging.Formatter):
+    def format(self, record):
+        payload = {
+            "level": record.levelname,
+            "message": record.getMessage(),
+            "logger": record.name,
+        }
+        return json.dumps(payload)
+
+handler = logging.StreamHandler()
+handler.setFormatter(JsonFormatter())
+logging.getLogger().handlers = [handler]`} />
+
+Libraries like `structlog` build context progressively: bind `request_id` in middleware, add `user_id` in auth dependencies, and emit one rich event per significant action.
+
+### In practice
+
+Standardize field names across microservices (`duration_ms`, not `latency` in one repo and `elapsed` in another). Dashboards become reusable and on-call playbooks stay short when every team logs the same shape. Include `service` and `environment` on every line for multi-tenant filters.
+
+## Recap
+
+- Prefer JSON (or key=value) over free-form strings.
+- Use stable field names across services.
+- Bind request context once per HTTP call.

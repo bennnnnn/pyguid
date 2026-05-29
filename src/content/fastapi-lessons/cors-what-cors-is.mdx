@@ -1,0 +1,43 @@
+---
+title: "What CORS is"
+description: "Learn what Cross-Origin Resource Sharing (CORS) is and why browsers enforce it."
+quickAnswer: "CORS is a browser security policy; servers opt in with Access-Control-* headers so JavaScript on another origin can read responses."
+order: 115
+sectionId: "cors"
+sectionTitle: "CORS"
+sectionOrder: 20
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: CORS** — Browsers block cross-origin requests unless your API explicitly allows them. Configure CORS before connecting a React or Vue frontend.
+
+</Callout>
+
+## Why this matters
+
+**Same-origin policy** stops evil.com’s JavaScript from reading your bank’s API responses in the user’s browser. **CORS** lets your API say “app.example.com is allowed to read my JSON.” Server-to-server calls (curl, mobile apps) ignore CORS—only browsers enforce it.
+
+```
+Browser at https://app.example.com
+  → fetch("https://api.example.com/items")
+  → Browser checks Access-Control-Allow-Origin on response
+```
+
+Without proper headers, the browser hides the response from JavaScript even if the server returned 200. CORS is not a substitute for authentication—anyone can still call your API with curl.
+
+## In practice
+
+curl and mobile apps ignore CORS; only browsers enforce it. CORS does not stop attackers from calling your API directly—it controls whether evil.com’s JavaScript can read responses in a victim’s browser session. Teach frontend developers that Postman working does not prove browser CORS is configured.
+
+## Recap
+
+- CORS applies to **browser** cross-origin requests, not all clients.
+- The server must send **Access-Control-*** headers to opt in.
+- FastAPI uses **CORSMiddleware** to add those headers.
+
+## Up next
+
+When you are ready, continue with **Cross-origin requests** (use **Next** below). Each lesson builds on the previous one in this track.

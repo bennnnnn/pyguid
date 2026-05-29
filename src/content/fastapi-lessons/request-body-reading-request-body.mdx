@@ -1,0 +1,44 @@
+---
+title: "Reading request body"
+description: "Read JSON request bodies in FastAPI path operations using Pydantic models."
+quickAnswer: "Declare a Pydantic BaseModel (or list of models) as a parameter without a default to read and validate the JSON request body."
+order: 34
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Manual `await request.json()` scatters validation and skips OpenAPI generation. The FastAPI body parameter pattern keeps one source of truth for shape and types.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel, Field
+from fastapi import FastAPI
+
+class Signup(BaseModel):
+    email: str
+    password: str = Field(min_length=8)
+
+app = FastAPI()
+
+@app.post("/signup")
+def signup(data: Signup):
+    return {"email": data.email, "created": True}`} />
+
+Access fields via `data.email`. For multiple content types, use `Body()` or dedicated dependencies. Raw body access is possible via `Request` but loses automatic validation—prefer models unless streaming uploads.
+
+For webhooks with custom signatures, you may read raw bytes via `Request` in middleware while still using models in routes—keep validation as close to the edge as possible.
+
+## Recap
+
+- Body = **Pydantic parameter** with no `Path`/`Query`.
+- Use **Field()** for extra constraints.
+- Prefer models over manual **request.json()**.
+
+## Up next
+
+When you are ready, continue with **Validation** (use **Next** below). Each lesson builds on the previous one in this track.

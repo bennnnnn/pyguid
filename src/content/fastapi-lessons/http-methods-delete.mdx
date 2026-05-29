@@ -1,0 +1,46 @@
+---
+title: "DELETE"
+description: "Remove resources with DELETE endpoints and appropriate HTTP status codes in FastAPI."
+quickAnswer: "DELETE removes a resource; define with @app.delete, return 204 No Content or a small confirmation JSON."
+order: 24
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Clear delete semantics prevent accidental data loss and help clients refresh UI state. REST clients expect DELETE on resource URLs, not GET with a ?delete=true query hack.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Response
+
+app = FastAPI()
+FAKE_DB = {1: {"name": "Widget"}}
+
+@app.delete("/items/{item_id}", status_code=204)
+def delete_item(item_id: int):
+    FAKE_DB.pop(item_id, None)
+    return Response(status_code=204)
+
+@app.delete("/items/{item_id}/verbose")
+def delete_item_verbose(item_id: int):
+    FAKE_DB.pop(item_id, None)
+    return {"deleted": item_id}`} />
+
+DELETE should be **idempotent**—deleting twice should not error explosively (many APIs return 404 on second delete, others return 204). Pick a team convention and document it.
+
+Soft deletes (marking `deleted_at`) still often use DELETE or PATCH depending on API style—be explicit in docs.
+
+## Recap
+
+- **@app.delete** removes a resource by ID.
+- **204 No Content** is a common success response.
+- Keep deletes **idempotent** where possible.
+
+## Up next
+
+When you are ready, continue with **OPTIONS** (use **Next** below). Each lesson builds on the previous one in this track.

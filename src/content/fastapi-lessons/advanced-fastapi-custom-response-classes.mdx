@@ -1,0 +1,48 @@
+---
+title: "Custom response classes"
+description: "FastAPI custom response classes: Response, JSONResponse, FileResponse, ORJSONResponse, and building specialized API responses."
+quickAnswer: "Custom response classes in FastAPI subclass Response or use Response subclasses to control headers, media types, and body serialization beyond default JSON."
+order: 250
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Not every endpoint returns JSON. **Custom response classes** standardize CSV downloads, protobuf, HTML fragments, or cached JSON with special headers.
+
+## Built-in options
+
+- `JSONResponse` — default JSON with status
+- `ORJSONResponse` — faster serialization (install orjson)
+- `FileResponse` / `StreamingResponse` — files and streams
+- `HTMLResponse`, `PlainTextResponse`
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.responses import ORJSONResponse
+
+@app.get("/items", response_class=ORJSONResponse)
+def list_items():
+    return [{"id": 1}]`} />
+
+## Subclassing Response
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from starlette.responses import Response
+
+class CsvResponse(Response):
+    media_type = "text/csv"
+
+    def __init__(self, content: str, **kwargs):
+        super().__init__(content=content, **kwargs)`} />
+
+Declare `response_class` on the route so OpenAPI documents the correct content type.
+
+## Recap
+
+Pick or subclass response types to match payload format and performance needs. Set `response_class` on routes for accurate docs and consistent headers.
+
+## Up next
+
+When you are ready, continue with **Streaming responses** (use **Next** below). Each lesson builds on the previous one in this track.

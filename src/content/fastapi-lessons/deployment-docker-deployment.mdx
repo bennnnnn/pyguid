@@ -1,0 +1,44 @@
+---
+title: "Docker deployment"
+description: "Deploy FastAPI with Docker: images, multi-stage builds, env config, and production container practices."
+quickAnswer: "Docker deployment packages FastAPI with a Dockerfile, runs Uvicorn as the container CMD, injects config via environment variables, and orchestrates updates through registries and compose or Kubernetes."
+order: 225
+sectionId: "deployment"
+sectionTitle: "Deployment"
+sectionOrder: 43
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+**Docker** ships your API with exact Python dependencies. The same image runs on a laptop, CI server, and cloud—reducing "works on my machine" drift.
+
+## Dockerfile sketch
+
+```dockerfile
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app ./app
+ENV PYTHONUNBUFFERED=1
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+Pass `DATABASE_URL` and secrets at **runtime**, not build time.
+
+## Production practices
+
+- Use **multi-stage builds** to keep images small
+- Run as a **non-root** user inside the container
+- One container role per service (API vs worker vs Redis)
+- Health checks: `GET /health` in orchestrator config
+
+## Deploy flow
+
+Build → push to registry → pull on server → rolling restart. Pair with Compose for small stacks or Kubernetes for larger ones.
+
+## Recap
+
+Docker deployment standardizes how FastAPI runs everywhere. Keep images slim, config external, and processes single-purpose per container.

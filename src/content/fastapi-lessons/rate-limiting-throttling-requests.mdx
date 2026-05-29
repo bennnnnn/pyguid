@@ -1,0 +1,39 @@
+---
+title: "Throttling requests"
+description: "Throttle FastAPI requests with fixed and sliding windows—Redis-backed limits across workers."
+quickAnswer: "Throttle by sliding or fixed window—e.g. 100 requests per minute per key—using Redis for distributed limits across multiple workers."
+order: 212
+sectionId: "rate-limiting"
+sectionTitle: "Rate Limiting"
+sectionOrder: 40
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+**Throttling** enforces average request rates while allowing short bursts depending on algorithm. A fixed window (`100/minute`) is simple; sliding windows smooth spikes. Multiple uvicorn workers need a **shared store** (Redis) so limits are global, not per process.
+
+### Distributed counter
+
+Increment a Redis key `rate:&#123;user_id&#125;:&#123;minute&#125;` with TTL. Before handling the request, compare count to max; reject if over. Libraries encode these patterns; custom code is fine for learning.
+
+<Callout variant="info">
+
+Separate limits for read (GET) and write (POST) endpoints—writes are usually more expensive.
+
+</Callout>
+
+### In practice
+
+Premium API keys can map to higher Redis limits without code forks—store tier name in the key metadata. Free tiers get stricter POST limits to protect shared databases. Alert when Redis is unavailable—decide whether to fail open or closed before an incident.
+
+## Recap
+
+- Use Redis when running multiple app instances.
+- Pick fixed or sliding window based on burst tolerance.
+- Stricter limits on POST, login, and search.
+
+## Up next
+
+When you are ready, continue with **Abuse prevention** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,46 @@
+---
+title: "Async database calls"
+description: "Perform non-blocking database access in FastAPI with async SQLAlchemy or asyncpg."
+quickAnswer: "Use async DB drivers (asyncpg, SQLAlchemy 2 async session) and await session.execute inside async def routes."
+order: 92
+sectionId: "async-programming"
+sectionTitle: "Async Programming"
+sectionOrder: 15
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Database round-trips dominate API latency. **Async drivers** let your app serve other requests while Postgres responds. Pair them with dependency-injected sessions and proper session lifecycle.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_async_engine("postgresql+asyncpg://user:pass@localhost/db")
+AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        yield session
+
+@app.get("/items/")
+async def list_items(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Item))
+    return result.scalars().all()`} />
+
+Use `create_async_engine` and `await session.execute`—never the sync engine inside `async def`. Close sessions in the dependency’s `finally` or context manager to avoid connection leaks under load.
+
+## In practice
+
+Create one `AsyncSession` per request via `yield` dependencies; commit in services, rollback on errors. Size the pool to `(workers × expected concurrent queries per request)`. Never share sessions across tasks or background threads.
+
+## Recap
+
+- Async SQLAlchemy 2.x + **asyncpg** is a common Postgres stack.
+- Inject `AsyncSession` via `Depends` and always `await` queries.
+- Do not mix sync sessions inside `async def` handlers.
+
+## Up next
+
+When you are ready, continue with **Performance concepts** (use **Next** below). Each lesson builds on the previous one in this track.

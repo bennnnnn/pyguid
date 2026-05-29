@@ -1,0 +1,46 @@
+---
+title: "Why databases matter"
+description: "Why FastAPI apps use databases — persistence, concurrency, queries, and when files or memory are enough."
+quickAnswer: "Databases persist data across restarts, enforce structure with schemas, and let many clients query safely—unlike in-memory dicts in a single process."
+order: 127
+sectionId: "database-basics"
+sectionTitle: "Database Basics"
+sectionOrder: 23
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Database Basics** — Most APIs persist data in a database. Compare SQL vs NoSQL and learn how environment variables keep secrets out of code.
+
+</Callout>
+
+## Why this matters
+
+A todo list stored in a Python dict disappears when the server restarts and breaks when you run two workers. Real users, orders, and sessions need durable storage that survives deploys and scales beyond one machine's RAM.
+
+## What databases provide
+
+- **Persistence** — data survives crashes and redeploys
+- **Structured queries** — find users by email without scanning every row in code
+- **Concurrency** — many requests read/write safely with transactions
+- **Integrity** — foreign keys and unique constraints catch bad data early
+
+FastAPI does not include a database—you choose PostgreSQL, SQLite, MySQL, or others and connect with SQLAlchemy, SQLModel, or async drivers.
+
+<Callout variant="tip">
+
+Start with SQLite for learning; use PostgreSQL for production APIs with multiple workers.
+
+</Callout>
+
+## Recap
+
+- In-memory storage is fine for demos, not production state
+- Databases add persistence, queries, and safe concurrent access
+- FastAPI pairs with any database via libraries you install
+
+## Up next
+
+When you are ready, continue with **SQL vs NoSQL** (use **Next** below). Each lesson builds on the previous one in this track.

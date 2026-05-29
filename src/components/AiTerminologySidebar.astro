@@ -3,7 +3,8 @@ import { getAiTerminologySectionsForSidebar } from "../lib/ai-terminology";
 import { aiTerminologySectionUrl } from "../lib/ai-terminology/helpers";
 
 const path = Astro.url.pathname.replace(/\/$/, "");
-const sidebarSections = getAiTerminologySectionsForSidebar();
+const sections = getAiTerminologySectionsForSidebar();
+const isHub = path === "/ai-terminology";
 ---
 
 <aside
@@ -13,16 +14,20 @@ const sidebarSections = getAiTerminologySectionsForSidebar();
   <div class="border-b border-border px-4 py-3">
     <a
       href="/ai-terminology/"
-      class="text-xs font-semibold uppercase tracking-wider text-text-muted no-underline hover:text-link"
+      class:list={[
+        "text-xs font-semibold uppercase tracking-wider no-underline",
+        isHub ? "text-text" : "text-text-muted hover:text-link",
+      ]}
+      aria-current={isHub ? "page" : undefined}
     >
       AI terminology
     </a>
   </div>
 
-  <nav class="py-2" aria-label="AI terminology groups">
+  <nav class="py-2" aria-label="AI terminology topics">
     <ul class="m-0 list-none p-0">
       {
-        sidebarSections.map((section) => {
+        sections.map((section) => {
           const href = aiTerminologySectionUrl(section.id);
           const sectionPath = href.replace(/\/$/, "");
           const isActive = path === sectionPath;
@@ -31,7 +36,7 @@ const sidebarSections = getAiTerminologySectionsForSidebar();
               <a
                 href={href}
                 class:list={[
-                  "lesson-link block py-2.5 pl-4 pr-4 text-sm font-medium",
+                  "lesson-link block py-2 pr-4 pl-4 text-sm font-medium",
                   isActive && "is-active",
                 ]}
                 aria-current={isActive ? "page" : undefined}

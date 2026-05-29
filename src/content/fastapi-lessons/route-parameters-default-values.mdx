@@ -1,0 +1,41 @@
+---
+title: "Default values"
+description: "Set default values for FastAPI parameters to control optional query behavior and documentation."
+quickAnswer: "Python default values on parameters define optional query fields and appear as defaults in the OpenAPI schema."
+order: 30
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Defaults document the API contract: pagination size, sort order, and feature flags. They also define what happens when a client omits a parameter entirely.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/events")
+def list_events(page: int = 1, page_size: int = 20, sort: str = "date"):
+    return {"page": page, "page_size": page_size, "sort": sort}`} />
+
+If the client calls `/events` with no query string, FastAPI passes `page=1`, `page_size=20`, `sort="date"`. Mutable defaults (lists, dicts) are dangerous in plain Python—prefer immutable defaults or `Query(default_factory=list)` patterns when needed.
+
+Use `Query(default=...)` when you need validation separate from the Python default display in docs.
+
+Changing a default is a backward-compatible change for optional params, but clients may rely on old defaults—note changes in changelog.
+
+## Recap
+
+- Parameter **defaults** imply optional query arguments.
+- Defaults show in **OpenAPI** as schema defaults.
+- Avoid mutable **list/dict** literals as defaults.
+
+## Up next
+
+When you are ready, continue with **Type validation** (use **Next** below). Each lesson builds on the previous one in this track.

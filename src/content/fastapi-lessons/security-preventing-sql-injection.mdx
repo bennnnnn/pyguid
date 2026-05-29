@@ -1,0 +1,40 @@
+---
+title: "Preventing SQL injection"
+description: "Prevent SQL injection in FastAPI — parameterized queries, ORM usage, and dangerous patterns to avoid."
+quickAnswer: "Use SQLAlchemy ORM queries or bound parameters—never build SQL with f-strings from user input."
+order: 168
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+SQL injection lets attackers run arbitrary database commands—dumping users, bypassing login, or deleting tables. It remains a top OWASP risk when developers concatenate strings into SQL.
+
+## Safe vs unsafe
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Safe — ORM filter uses parameters
+db.query(User).filter(User.email == email).first()
+
+# Safe — text() with bindparams
+from sqlalchemy import text
+db.execute(text("SELECT * FROM users WHERE email = :e"), {"e": email})`} />
+
+<Callout variant="warning">
+
+Unsafe: db.execute(f"SELECT * FROM users WHERE email = '&#123;email&#125;'")
+
+</Callout>
+
+## Recap
+
+- Prefer ORM or bound parameters
+- Never interpolate user input into SQL strings
+- Audit raw SQL carefully
+
+## Up next
+
+When you are ready, continue with **Preventing XSS** (use **Next** below). Each lesson builds on the previous one in this track.

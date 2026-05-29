@@ -1,0 +1,70 @@
+---
+import { highlightCode, type HighlightLanguage } from "../lib/highlight-code";
+
+interface Props {
+  code: string;
+  filename?: string;
+  language?: HighlightLanguage;
+  /** When false, only Copy is shown (server-side FastAPI / framework code). */
+  runnable?: boolean;
+}
+
+const { code, filename, language = "python", runnable = true } = Astro.props;
+const canRun = runnable && language === "python";
+const displayFilename =
+  filename ?? (language === "bash" ? "terminal.sh" : "example.py");
+const highlightedCode = await highlightCode(code, language);
+---
+
+<div
+  class="code-example not-prose my-8 overflow-hidden rounded-xl border border-border bg-surface shadow-sm"
+  data-language={language}
+>
+  <textarea class="py-source" hidden readonly aria-hidden="true">{code.trim()}</textarea>
+  <div
+    class="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface-alt px-4 py-3"
+  >
+    <span class="font-mono text-xs font-medium text-text-muted">{displayFilename}</span>
+    <div class="flex gap-2">
+      <button
+        type="button"
+        class="py-copy rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-surface-alt"
+      >
+        Copy
+      </button>
+      {
+        canRun && (
+          <button
+            type="button"
+            class="py-run rounded-lg bg-brand px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand-hover"
+          >
+            Run code
+          </button>
+        )
+      }
+      {
+        language === "bash" && (
+          <button
+            type="button"
+            class="py-run rounded-lg bg-brand px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand-hover"
+          >
+            Run
+          </button>
+        )
+      }
+    </div>
+  </div>
+  <div class="code-panel overflow-x-auto px-4 py-3" set:html={highlightedCode} />
+  <div class="py-output-section border-t border-border px-4 py-3">
+    <p class="mb-1.5 text-xs font-medium text-text-muted">Output</p>
+    <pre
+      class="py-output min-h-[2.5rem] overflow-x-auto font-mono text-sm leading-relaxed"
+    >{
+        language === "bash"
+          ? "Press Run to see the command for your terminal."
+          : canRun
+            ? "Run the code to see output here."
+            : "Copy the code and run it in your local project."
+      }</pre>
+  </div>
+</div>

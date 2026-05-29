@@ -1,0 +1,45 @@
+---
+title: "Enum parameters"
+description: "Restrict parameters to a fixed set of allowed values using Enums in FastAPI."
+quickAnswer: "Use a Python Enum as a parameter type so FastAPI only allows documented literal values in path or query strings."
+order: 32
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Free-text status filters lead to typos and security gaps. Enums document allowed values in OpenAPI and reject invalid input before it hits your database layer.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from enum import Enum
+from fastapi import FastAPI
+
+class Status(str, Enum):
+    draft = "draft"
+    published = "published"
+    archived = "archived"
+
+app = FastAPI()
+
+@app.get("/posts")
+def list_posts(status: Status = Status.draft):
+    return {"status": status.value}
+
+@app.get("/priority/{level}")
+def priority(level: Status):
+    return {"level": level}`} />
+
+Subclass `str, Enum` so JSON serialization uses string values. Clients pass `?status=published` or path segments matching enum values; invalid values get **422** with allowed options listed.
+
+OpenAPI renders enums as dropdowns—rename enum members carefully because external clients depend on string values.
+
+## Recap
+
+- **Enum** parameters restrict inputs to known values.
+- `class MyEnum(str, Enum)` works well with JSON APIs.
+- OpenAPI shows an **dropdown** of allowed values in /docs.

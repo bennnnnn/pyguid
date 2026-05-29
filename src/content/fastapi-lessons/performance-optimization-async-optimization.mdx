@@ -1,0 +1,53 @@
+---
+title: "Async optimization"
+description: "Optimize FastAPI async code: when to use async routes, blocking pitfalls, httpx, and thread pool executors."
+quickAnswer: "Async optimization means using async def routes and await for I/O-bound work so FastAPI does not block the event loop; keep CPU-heavy code in thread pools or workers."
+order: 238
+sectionId: "performance-optimization"
+sectionTitle: "Performance Optimization"
+sectionOrder: 47
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Performance Optimization** — Profile async code, queries, and response sizes when latency matters at scale.
+
+</Callout>
+
+## Why this matters
+
+FastAPI on Uvicorn is **async-first**. One blocked event loop thread delays **all** concurrent requests on that worker. Async pays off when you wait on networks and databases—not when crunching numbers.
+
+## Use async for I/O
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import httpx
+
+@app.get("/feed")
+async def feed():
+    async with httpx.AsyncClient() as client:
+        r = await client.get("https://api.example.com/items")
+    return r.json()`} />
+
+`await` yields control while waiting—other requests proceed.
+
+## Do not block the loop
+
+Sync `time.sleep`, heavy pandas work, or blocking SQL drivers inside `async def` stall everything. Fixes:
+
+- Use **async** database drivers (`asyncpg`, SQLAlchemy async)
+- Offload CPU work: `await run_in_threadpool(cpu_heavy, data)`
+- Move long jobs to **background workers**
+
+## Sync routes are fine
+
+Def sync endpoints run in a thread pool automatically. A plain `def` route with a fast sync ORM can be simpler than misused async.
+
+## Recap
+
+Async optimization matches async I/O end to end. Profile blocking calls, never await blocking libraries by mistake, and offload CPU and long tasks to workers.
+
+## Up next
+
+When you are ready, continue with **Database optimization** (use **Next** below). Each lesson builds on the previous one in this track.

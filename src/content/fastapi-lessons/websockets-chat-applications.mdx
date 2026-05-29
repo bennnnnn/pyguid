@@ -1,0 +1,60 @@
+---
+title: "Chat applications"
+description: "Build a simple chat server in FastAPI—accept WebSocket clients, broadcast messages, and manage rooms."
+quickAnswer: "Broadcast chat messages by keeping a list of connected WebSockets and sending each new message to every client in the room."
+order: 177
+sectionId: "websockets"
+sectionTitle: "WebSockets"
+sectionOrder: 32
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Chat is the classic WebSocket tutorial: many clients, frequent small messages, low latency. FastAPI can host a room-based chat with a shared in-memory connection list (fine for learning; use Redis pub/sub at scale).
+
+### Connection manager pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, WebSocket
+
+app = FastAPI()
+
+class ConnectionManager:
+    def __init__(self):
+        self.active: list[WebSocket] = []
+
+    async def connect(self, websocket: WebSocket):
+        await websocket.accept()
+        self.active.append(websocket)
+
+    async def broadcast(self, message: str):
+        for connection in self.active:
+            await connection.send_text(message)
+
+manager = ConnectionManager()
+
+@app.websocket("/chat")
+async def chat(websocket: WebSocket):
+    await manager.connect(websocket)
+    while True:
+        text = await websocket.receive_text()
+        await manager.broadcast(text)`} />
+
+Each new message goes to every connected socket. Add room IDs in the path (`/chat/&#123;room_id&#125;`) and store separate manager instances per room.
+
+<Callout variant="warning">
+
+In-memory lists break with multiple server processes. Production chat uses Redis, NATS, or a managed realtime service.
+
+</Callout>
+
+## Recap
+
+- Accept connections, append to a manager, broadcast on receive.
+- Scope by room id when chats are separate.
+- Plan a shared pub/sub layer before horizontal scaling.
+
+## Up next
+
+When you are ready, continue with **Live updates** (use **Next** below). Each lesson builds on the previous one in this track.

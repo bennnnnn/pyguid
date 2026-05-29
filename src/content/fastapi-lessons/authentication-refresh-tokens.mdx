@@ -1,0 +1,38 @@
+---
+title: "Refresh tokens"
+description: "Refresh tokens in FastAPI — token pairs, rotation, and secure storage patterns."
+quickAnswer: "Issue a long-lived refresh token to obtain new access tokens without re-entering passwords—store refresh tokens securely and rotate them on use."
+order: 159
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 8
+level: beginner
+---
+
+## Why this matters
+
+Short access tokens improve security but annoy users if they must log in hourly. Refresh tokens stay in httpOnly cookies or secure storage and swap for fresh access tokens silently.
+
+## Refresh flow
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post("/token/refresh")
+def refresh(body: RefreshRequest, db: Session = Depends(get_db)):
+    record = db.query(RefreshToken).filter_by(token=body.refresh_token, revoked=False).first()
+    if not record or record.expires_at < datetime.utcnow():
+        raise HTTPException(401)
+    access = create_token(str(record.user_id), minutes=30)
+    # Optional: rotate refresh token
+    return {"access_token": access, "token_type": "bearer"}`} />
+
+<Callout variant="warning">
+
+Store refresh token hashes in the database so leaks of DB backups do not expose usable tokens.
+
+</Callout>
+
+## Recap
+
+- Access token = frequent API use
+- Refresh token = get new access token
+- Rotate and revoke refresh tokens on logout

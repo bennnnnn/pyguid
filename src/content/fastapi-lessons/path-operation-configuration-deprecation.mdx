@@ -1,0 +1,39 @@
+---
+title: "Deprecation"
+description: "Deprecate API endpoints in FastAPI and communicate migration in OpenAPI."
+quickAnswer: "Mark routes with deprecated=True so OpenAPI shows them as deprecated and clients can migrate."
+order: 79
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+APIs evolve. You cannot delete `/v1/users` overnight without breaking mobile apps. **Deprecation** signals “still works, do not build new code on this” in Swagger UI (struck-through or flagged) while you ship `/v2/users`.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/v1/users/", deprecated=True)
+def list_users_v1():
+    return {"warning": "use /v2/users/"}
+
+@app.get("/v2/users/")
+def list_users_v2():
+    return {"users": []}`} />
+
+Pair `deprecated=True` with **Sunset** headers or changelog entries in `description=`. Monitor traffic on deprecated routes before removal. Return `410 Gone` only after the agreed sunset date and communication window.
+
+## In practice
+
+Pair `deprecated=True` with monitoring on the old path’s request rate. Communicate sunset dates in release notes, not only in docs. When traffic hits zero for two release cycles, return `410 Gone` with a JSON body pointing to the replacement URL.
+
+## Recap
+
+- `deprecated=True` documents sunset in OpenAPI without removing the route.
+- Tell consumers **what to use instead** in the description.
+- Remove deprecated routes only after usage drops and notice periods.
+
+## Up next
+
+When you are ready, continue with **Response descriptions** (use **Next** below). Each lesson builds on the previous one in this track.

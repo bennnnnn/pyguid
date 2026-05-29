@@ -1,7 +1,8 @@
-import { AI_TERMINOLOGY_SECTIONS } from "./sections";
+import { getPublishedAiTerminologySections } from "./catalog";
 
 export function getAiTerminologyStats() {
-  const sectionCount = AI_TERMINOLOGY_SECTIONS.length;
-  const termCount = AI_TERMINOLOGY_SECTIONS.reduce((n, s) => n + s.terms.length, 0);
+  const sections = getPublishedAiTerminologySections();
+  const sectionCount = sections.length;
+  const termCount = sections.reduce((n, s) => n + s.terms.length, 0);
   return { sectionCount, termCount };
 }

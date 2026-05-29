@@ -1,0 +1,47 @@
+---
+title: "Email validation"
+description: "Validate email fields in request bodies with Pydantic's EmailStr type."
+quickAnswer: "Use EmailStr from pydantic (or pydantic_extra_types) on model fields to validate email addresses."
+order: 72
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Signup and notification endpoints accept email addresses constantly. Manual regex is error-prone; **EmailStr** uses battle-tested validation and integrates with OpenAPI as `format: email`.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, EmailStr
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str`} />
+
+Install email validation support if your environment requires it (`email-validator` package). Invalid emails return 422 before you hit the database or send a verification message.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.post("/users/")
+def register(user: UserCreate):
+    return {"email": user.email}`} />
+
+For optional emails, use `EmailStr | None` with a default of `None`. Normalize emails in one place (lowercase domain rules) in a `model_validator` if your product requires it—validation and normalization are separate concerns.
+
+## In practice
+
+Ship `email-validator` in production requirements and add a pytest that posts `user@domain` without a TLD to confirm 422. For B2B apps, optionally normalize with `.lower()` on the domain part via a `field_validator`. Disposable-email blocking belongs in a validator that calls a static denylist or external API, not in `EmailStr` itself.
+
+## Recap
+
+- `EmailStr` validates format and documents `format: email` in OpenAPI.
+- Ensure `email-validator` is installed where Pydantic expects it.
+- Combine with uniqueness checks in your route or service layer.
+
+## Up next
+
+When you are ready, continue with **UUID validation** (use **Next** below). Each lesson builds on the previous one in this track.

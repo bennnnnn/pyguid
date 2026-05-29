@@ -1,0 +1,42 @@
+---
+title: "Custom exceptions"
+description: "Create custom exception types for domain errors like insufficient stock or duplicate email."
+quickAnswer: "Define application-specific exception classes and raise them in routes; pair them with handlers to return consistent JSON error shapes."
+order: 65
+sectionId: "validation-error-handling"
+sectionTitle: "Validation & Error Handling"
+sectionOrder: 11
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+`HTTPException` works for simple cases, but real apps need **domain errors**: `InsufficientStock`, `DuplicateEmail`, `PaymentDeclined`. Custom exception classes keep route code readable and let you centralize how each error type maps to HTTP status and JSON.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`class InsufficientStock(Exception):
+    def __init__(self, product_id: str, requested: int, available: int):
+        self.product_id = product_id
+        self.requested = requested
+        self.available = available
+
+@app.post("/orders/")
+def place_order(item_id: str, qty: int):
+    stock = get_stock(item_id)
+    if qty > stock:
+        raise InsufficientStock(item_id, qty, stock)
+    return {"status": "placed"}`} />
+
+Without a handler, an unhandled custom exception becomes a **500**. Register an `@app.exception_handler(InsufficientStock)` to return **409 Conflict** with a stable JSON body your mobile app can parse. Group related errors under a base class (`AppError`) when you want one handler with a `code` field.
+
+Keep exceptions for **exceptional** business failures, not normal control flow. Prefer returning optional values or Result types only when your team already uses that pattern everywhere.
+
+## Recap
+
+- Custom exceptions express **domain** problems clearly in route code.
+- Always register a matching **exception handler** or clients see 500.
+- Return consistent JSON (`code`, `message`, optional `meta`) across error types.
+
+## Up next
+
+When you are ready, continue with **`HTTPException`** (use **Next** below). Each lesson builds on the previous one in this track.

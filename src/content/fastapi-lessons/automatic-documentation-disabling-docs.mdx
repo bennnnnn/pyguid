@@ -1,0 +1,42 @@
+---
+title: "Disabling docs"
+description: "Disable Swagger UI, ReDoc, and OpenAPI exposure in production FastAPI apps."
+quickAnswer: "Set docs_url=None, redoc_url=None, and optionally openapi_url=None to disable auto-generated documentation endpoints."
+order: 85
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Public **/docs** on production can leak every internal route and schema to attackers. Many teams disable interactive docs in production while keeping them in staging, or publish docs on a separate portal.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import os
+from fastapi import FastAPI
+
+show_docs = os.getenv("ENV") != "production"
+
+app = FastAPI(
+    docs_url="/docs" if show_docs else None,
+    redoc_url="/redoc" if show_docs else None,
+    openapi_url="/openapi.json" if show_docs else None,
+)`} />
+
+Setting all three to `None` removes the endpoints entirely. You can still generate OpenAPI offline in CI from the app object for internal use. Never rely on “security through obscurity”—protect admin routes with auth regardless of docs visibility.
+
+## In practice
+
+Disabling `/docs` does not hide your API from attackers—security still requires auth. Generate OpenAPI offline with a management command and upload to a private portal. Never commit production secrets into example servers linked from docs.
+
+## Recap
+
+- `docs_url=None` and `redoc_url=None` remove doc UIs.
+- `openapi_url=None` hides the raw schema endpoint too.
+- Use environment-based flags to keep docs in dev/staging only.
+
+## Up next
+
+When you are ready, continue with **Routes: `/docs`** (use **Next** below). Each lesson builds on the previous one in this track.

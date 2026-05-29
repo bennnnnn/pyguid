@@ -1,0 +1,50 @@
+---
+title: "Passing data to templates"
+description: "Pass data from FastAPI routes into Jinja2 templates — context variables, loops, and safe display."
+quickAnswer: "Pass plain dicts (or Pydantic `.model_dump()`) into TemplateResponse; use dot notation in templates for nested data and keep heavy logic out of HTML."
+order: 125
+sectionId: "templates"
+sectionTitle: "Templates"
+sectionOrder: 22
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Templates display data from your database or API—user names, lists of products, flash messages. The route gathers data; the template formats it. That split keeps Python logic testable and HTML readable.
+
+## Context dict
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/users")
+def user_list(request: Request, db: Session = Depends(get_db)):
+    users = db.query(User).all()
+    return templates.TemplateResponse(
+        request,
+        "users.html",
+        {"users": users, "title": "All users"},
+    )`} />
+
+In `users.html`:
+
+```html
+&#123;% for user in users %&#125;
+  <li>&#123;&#123; user.email &#125;&#125;</li>
+&#123;% endfor %&#125;
+```
+
+<Callout variant="tip">
+
+Jinja2 auto-escapes HTML in `&#123;&#123; &#125;&#125;` by default—reducing XSS risk when showing user-generated text.
+
+</Callout>
+
+## Recap
+
+- Context keys become template variables
+- Use `&#123;% for %&#125;` and `&#123;% if %&#125;` in Jinja2
+- Prefer `.model_dump()` for Pydantic models in context
+
+## Up next
+
+When you are ready, continue with **Dynamic pages** (use **Next** below). Each lesson builds on the previous one in this track.

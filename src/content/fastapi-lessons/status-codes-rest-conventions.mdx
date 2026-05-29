@@ -1,0 +1,42 @@
+---
+title: "REST conventions"
+description: "Follow REST conventions for URLs, methods, and status codes in FastAPI APIs."
+quickAnswer: "Map POST to create (201), GET to read (200), PUT/PATCH to update (200), DELETE to remove (204), and use nouns in URLs—not verbs."
+order: 57
+sectionId: "status-codes"
+sectionTitle: "Status Codes"
+sectionOrder: 9
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Consistent REST style reduces debate on every endpoint and lets generic tools (caches, API gateways) behave correctly. It also matches what new hires expect from other JSON APIs.
+
+## How it works
+
+**Resources as nouns**: `/users/&#123;id&#125;`, not `/getUser`. **Methods express action**: GET read, POST create, PUT replace, PATCH partial update, DELETE remove.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter
+
+router = APIRouter(prefix="/users", tags=["users"])
+
+@router.get("/{user_id}")
+def read_user(user_id: int): ...
+
+@router.post("/", status_code=201)
+def create_user(): ...
+
+@router.delete("/{user_id}", status_code=204)
+def delete_user(user_id: int): ...`} />
+
+Use plural collections (`/items`). Filter with query params (`?status=active`). Version in path (`/v1/...`) when breaking changes ship.
+
+Hypermedia (HATEOAS) is optional—if you include `links` objects, keep them consistent on collection and item responses.
+
+## Recap
+
+- **Nouns** in paths; **HTTP methods** for actions.
+- Align **status codes** with operation outcome.
+- **Plural** resource names and **query** filters.

@@ -1,0 +1,41 @@
+---
+title: "Serialization"
+description: "Convert Pydantic models to and from JSON-friendly data in FastAPI workflows."
+quickAnswer: "Serialize models to JSON-compatible dicts with model_dump() and rebuild models from dicts with model_validate()."
+order: 46
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 8
+level: beginner
+---
+
+## Why this matters
+
+Databases, caches, and message queues need dicts or JSON—not raw model objects. Serialization settings control aliases, excluded fields, and datetime formats.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, Field
+
+class Config(BaseModel):
+    model_config = {"populate_by_name": True}
+    debug: bool = Field(alias="DEBUG")
+
+payload = Config.model_validate({"DEBUG": True})
+print(payload.model_dump())           # python names
+print(payload.model_dump(by_alias=True))  # DEBUG key`} />
+
+FastAPI uses serialization for **responses** when you set `response_model`. Use `model_dump(mode="json")` before writing to JSON-only stores.
+
+Use `model_dump(exclude_none=True)` when building cache keys so optional nulls do not bust deduplication. For APIs returning ORM rows, enable `from_attributes=True` in model config so serialization reads attributes instead of dict keys.
+
+## Recap
+
+- **model_dump()** → dict for storage or logging.
+- **model_validate()** → model from dict/JSON.
+- Control **aliases** and modes for external systems.
+
+## Up next
+
+When you are ready, continue with **`.dict()` / `.model_dump()`** (use **Next** below). Each lesson builds on the previous one in this track.

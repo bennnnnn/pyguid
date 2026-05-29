@@ -1,0 +1,48 @@
+---
+title: "Optional parameters"
+description: "Define optional path and query parameters in FastAPI without breaking validation."
+quickAnswer: "Mark parameters optional with a default of None or use Optional[str]; combine path, query, and body rules carefully."
+order: 29
+sectionId: "route-parameters"
+sectionTitle: "Route Parameters"
+sectionOrder: 5
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Real APIs rarely require every filter. Optional parameters keep clients simple while still allowing strict validation when a value is provided.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Optional
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+@app.get("/products")
+def list_products(
+    category: Optional[str] = None,
+    in_stock: bool = False,
+    max_price: Optional[float] = Query(default=None, ge=0),
+):
+    return {
+        "category": category,
+        "in_stock": in_stock,
+        "max_price": max_price,
+    }`} />
+
+**Optional query**: default `None` or use `Optional[T]`. **Required query**: no default. Path parameters cannot be optional in the URL—if you need optional IDs, use query strings or separate routes.
+
+Boolean query params treat absent values as the default; document whether `?flag=false` is required to turn a feature off.
+
+## Recap
+
+- Defaults (`None`) make query parameters **optional**.
+- **Query()** adds constraints when values are present.
+- Path segments are always **required** in the URL pattern.
+
+## Up next
+
+When you are ready, continue with **Default values** (use **Next** below). Each lesson builds on the previous one in this track.

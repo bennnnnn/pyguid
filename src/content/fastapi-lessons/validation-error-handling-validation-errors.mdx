@@ -1,0 +1,48 @@
+---
+title: "Validation errors"
+description: "Learn how FastAPI's automatic 422 validation errors work and how clients read the detail array."
+quickAnswer: "FastAPI returns HTTP 422 with a structured detail list when path, query, header, or body data fails Pydantic validation."
+order: 64
+sectionId: "validation-error-handling"
+sectionTitle: "Validation & Error Handling"
+sectionOrder: 11
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Validation & Error Handling** — When input is wrong, return helpful errors. Learn validation responses, HTTPException, and global handlers for production APIs.
+
+</Callout>
+
+## Why this matters
+
+Clients send typos, wrong types, and missing fields constantly. Your API should fail **predictably** before business logic runs. FastAPI validates every parameter with Pydantic and returns **422 Unprocessable Entity** with a `detail` array—each item includes `loc`, `msg`, and `type` so frontends can highlight the right field.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+@app.post("/items/")
+def create_item(item: Item):
+    return item`} />
+
+POST `&#123;"name": "shirt", "price": "free"&#125;` never reaches `create_item`. FastAPI responds with 422 because `price` must be a number. The `loc` field might be `["body", "price"]`, telling your UI exactly where to show the error.
+
+The same mechanism applies to path parameters (`/users/abc` when an `int` is expected), query strings, cookies, and headers. You do not write manual `if not valid` checks for basic types—validation is declarative on your function signature.
+
+## Recap
+
+- Validation runs **before** your route function executes.
+- Failures return **422** with a list in `detail`, not a generic 500.
+- Use `loc` and `msg` to build user-friendly form errors on the client.
+
+## Up next
+
+When you are ready, continue with **Custom exceptions** (use **Next** below). Each lesson builds on the previous one in this track.

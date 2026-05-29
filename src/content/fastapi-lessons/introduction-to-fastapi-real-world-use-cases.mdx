@@ -1,0 +1,43 @@
+---
+title: "Real-world use cases"
+description: "Explore common production uses of FastAPI—from ML inference APIs to SaaS backends and event-driven webhooks."
+quickAnswer: "FastAPI is widely used for REST microservices, ML model servers, internal tools, webhooks, and backends for React, Vue, or mobile apps."
+order: 6
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Seeing real deployments helps you design endpoints, auth, and observability from day one. FastAPI is not only tutorial CRUD—it powers high-traffic APIs when paired with proper databases, caching, and deployment practices.
+
+## How it works
+
+**Machine learning serving**: wrap a scikit-learn or PyTorch model behind `POST /predict` with Pydantic input/output models so clients get a stable contract. **Mobile and SPA backends**: React or Flutter apps consume JSON from FastAPI while CORS and JWT auth protect routes. **Microservices**: small services behind an API gateway communicate over HTTP with generated OpenAPI clients.
+
+**Webhooks and integrations**: Stripe, GitHub, or Slack send events to FastAPI endpoints; background tasks acknowledge quickly and process asynchronously. **Internal admin APIs**: replace ad-hoc scripts with documented endpoints your team can test in `/docs`. Companies such as Microsoft, Netflix, and Uber have published case studies or talks mentioning FastAPI-style stacks for Python services.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class PredictIn(BaseModel):
+    features: list[float]
+
+class PredictOut(BaseModel):
+    label: str
+    score: float
+
+app = FastAPI()
+
+@app.post("/predict", response_model=PredictOut)
+def predict(body: PredictIn):
+    return {"label": "cat", "score": 0.91}`} />
+
+## Recap
+
+- Strong fit for **JSON APIs**, **ML inference**, and **SPA/mobile backends**.
+- Works well in **microservice** and **webhook** architectures.
+- Pair with production concerns: auth, DB pooling, logging, and tests.

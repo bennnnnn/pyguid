@@ -1,0 +1,45 @@
+---
+title: "Background workers"
+description: "Design background workers for FastAPI: process model, scaling, failure handling, and keeping HTTP handlers thin."
+quickAnswer: "Background workers are separate processes (or containers) that consume queued jobs; FastAPI enqueues work and returns while workers handle CPU- or IO-heavy tasks safely."
+order: 219
+sectionId: "task-queues"
+sectionTitle: "Task Queues"
+sectionOrder: 42
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+A **background worker** is not part of the Uvicorn process. It scales independently, restarts without dropping web traffic, and can run different resource limits (more memory for PDF rendering, fewer web replicas).
+
+## Separation of concerns
+
+| Layer | Responsibility |
+|-------|----------------|
+| FastAPI | Validate input, auth, enqueue job, return 202 |
+| Worker | Business logic, retries, external APIs |
+| Broker | Durable queue between them |
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post("/reports", status_code=202)
+async def request_report(report_in: ReportIn, user=Depends(get_current_user)):
+    job_id = str(uuid4())
+    await queue.enqueue("build_report", {"job_id": job_id, "user_id": user.id})
+    return {"job_id": job_id, "status": "queued"}`} />
+
+Clients poll `GET /reports/&#123;job_id&#125;` or receive a webhook when the worker finishes.
+
+## Scaling and safety
+
+- Run **multiple workers** for throughput; ensure tasks are idempotent
+- Use **visibility timeout** or acknowledgments so crashed workers do not lose jobs silently
+- Cap concurrency per worker to protect the database
+
+## Health checks
+
+Workers should expose logs and metrics. The API's `/health` endpoint checks the web app; also monitor queue depth and worker heartbeats.
+
+## Recap
+
+Treat workers as first-class deployables. FastAPI enqueues; workers execute. Design jobs with ids, status endpoints, and clear failure paths.

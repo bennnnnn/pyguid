@@ -1,0 +1,55 @@
+---
+title: "Health checks"
+description: "FastAPI health checks: liveness vs readiness, dependency probes, and integration with orchestrators and load balancers."
+quickAnswer: "Health check endpoints report liveness (process up) and readiness (can serve traffic); FastAPI exposes /health that verifies database and dependency connectivity for load balancers."
+order: 233
+sectionId: "monitoring-observability"
+sectionTitle: "Monitoring & Observability"
+sectionOrder: 46
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Monitoring & Observability** — Health checks, metrics, Prometheus, Grafana, and error tracking tell you when the API is sick before users report it.
+
+</Callout>
+
+## Why this matters
+
+Load balancers and Kubernetes need a simple **HTTP signal**: is this instance safe to receive traffic? Without health checks, broken pods stay in rotation and users see errors.
+
+## Liveness vs readiness
+
+| Endpoint | Question |
+|----------|----------|
+| **Liveness** | Is the process running? |
+| **Readiness** | Can we handle requests (DB up)? |
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/health/live")
+def live():
+    return {"status": "ok"}
+
+@app.get("/health/ready")
+async def ready(db: Session = Depends(get_db)):
+    db.execute(text("SELECT 1"))
+    return {"status": "ready"}`} />
+
+Return **503** on readiness failure so orchestrators stop sending traffic.
+
+## What to check
+
+- Database connection
+- Redis / message broker ping
+- Critical feature flags or disk space (sparingly)
+
+Keep checks **fast**—sub-second timeouts.
+
+## Recap
+
+Expose separate liveness and readiness routes. Fail readiness when dependencies are down so platforms drain bad instances automatically.
+
+## Up next
+
+When you are ready, continue with **Metrics** (use **Next** below). Each lesson builds on the previous one in this track.

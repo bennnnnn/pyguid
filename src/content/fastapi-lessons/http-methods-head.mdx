@@ -1,0 +1,41 @@
+---
+title: "HEAD"
+description: "Use the HEAD HTTP method to fetch headers and metadata without downloading a response body."
+quickAnswer: "HEAD is like GET without a response body; FastAPI supports @app.head for metadata-only checks such as existence or content length."
+order: 26
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Health checks and CDNs sometimes use HEAD to verify a URL exists with minimal bandwidth. Supporting HEAD on important GET resources improves compatibility with monitors and caches.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Response
+
+app = FastAPI()
+
+@app.get("/reports/latest")
+def get_report():
+    return {"size": 12000, "data": "..."}
+
+@app.head("/reports/latest")
+def head_report():
+    return Response(headers={"Content-Length": "12000"})`} />
+
+Many frameworks auto-derive HEAD from GET; in FastAPI you may declare **@app.head** explicitly when you need custom headers without a body. HEAD must not return a message body per HTTP spec.
+
+Monitoring tools may HEAD `/health` frequently—keep the handler lightweight and avoid database hits when possible.
+
+Pair HEAD with ETag or Last-Modified headers when clients cache large static metadata without downloading bodies.
+
+## Recap
+
+- **HEAD** checks resources **without a body**.
+- Useful for **health checks** and cache validators.
+- Often mirrors **GET** paths with header-only responses.

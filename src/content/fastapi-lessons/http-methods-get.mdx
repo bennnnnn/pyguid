@@ -1,0 +1,55 @@
+---
+title: "GET"
+description: "Use the GET HTTP method in FastAPI for safe, idempotent read operations and resource lookups."
+quickAnswer: "In FastAPI, @app.get defines a read-only endpoint that retrieves a resource or collection without a request body."
+order: 20
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: HTTP Methods** — HTTP methods are the verbs of your API. Learn when to use GET, POST, PUT, PATCH, DELETE, and the less common OPTIONS and HEAD.
+
+</Callout>
+
+## Why this matters
+
+GET is the default mental model for "fetch data." Misusing GET for deletes or updates breaks caching proxies and REST expectations. FastAPI makes GET routes trivial while still validating path and query parameters.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/articles")
+def list_articles(limit: int = 10):
+    return {"limit": limit, "items": []}
+
+@app.get("/articles/{slug}")
+def get_article(slug: str):
+    return {"slug": slug, "title": "Example"}`} />
+
+Properties teams rely on:
+
+- **Safe** — should not change server state
+- **Idempotent** — repeated calls have the same effect
+- **Cacheable** — CDNs and browsers may cache (use headers to control)
+
+GET should not use a body in practice; pass filters via **query parameters**.
+
+Avoid putting sensitive tokens in query strings for GET—logs and referrer headers may capture them. Prefer headers or POST for sensitive operations.
+
+## Recap
+
+- Register reads with **@app.get**.
+- No request body; use **path** and **query** params.
+- Keep GET handlers free of side effects.
+
+## Up next
+
+When you are ready, continue with **POST** (use **Next** below). Each lesson builds on the previous one in this track.

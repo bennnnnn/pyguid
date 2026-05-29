@@ -1,0 +1,43 @@
+---
+title: "Combining Pydantic + SQLAlchemy"
+description: "Combine Pydantic and SQLAlchemy with SQLModel — table models, read schemas, and create schemas."
+quickAnswer: "Use one SQLModel class with `table=True` for storage and sibling models without `table=True` for create/read schemas that hide secrets."
+order: 139
+sectionId: "sqlmodel"
+sectionTitle: "SQLModel"
+sectionOrder: 25
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+APIs should not return password hashes. SQLModel lets you share field definitions: a public `HeroPublic` model and a table `Hero` model with overlapping fields, without maintaining two unrelated class hierarchies.
+
+## Pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`class HeroBase(SQLModel):
+    name: str
+    age: int | None = None
+
+class Hero(HeroBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    secret_name: str
+
+class HeroPublic(HeroBase):
+    id: int
+
+class HeroCreate(HeroBase):
+    secret_name: str`} />
+
+Routes accept `HeroCreate`, save `Hero`, and return `HeroPublic`—sensitive fields never appear in responses.
+
+## Recap
+
+- Base classes share common fields
+- `table=True` only on the persistence model
+- Separate create/read models for API safety
+
+## Up next
+
+When you are ready, continue with **CRUD with SQLModel** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,58 @@
+---
+title: "Running in production"
+description: "Production FastAPI checklist: ASGI servers, settings, logging, secrets, and differences from local development."
+quickAnswer: "Run FastAPI in production with ASGI settings for multiple workers, environment-based config, structured logging, and a process manager behind a reverse proxy—not the dev server with --reload."
+order: 220
+sectionId: "deployment"
+sectionTitle: "Deployment"
+sectionOrder: 43
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Deployment** — Production means multiple workers, reverse proxies, and configuration—not `uvicorn --reload` on your laptop.
+
+</Callout>
+
+## Why this matters
+
+`uvicorn main:app --reload` is for development. Production needs **stability**, **concurrency**, and **safe defaults**: no auto-reload, no debug tracebacks to clients, and configuration from the environment.
+
+## Production ASGI stack
+
+- **Uvicorn** alone can work for small deployments
+- **Gunicorn + Uvicorn workers** is a common pattern on Linux
+- Container platforms often run Uvicorn directly with multiple workers
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4`} />
+
+Workers are separate processes; size `workers` to CPU cores and test under load.
+
+## Configuration
+
+Load secrets and URLs from environment variables or a settings class (`pydantic-settings`). Never hardcode database passwords in source control.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    database_url: str
+    debug: bool = False
+
+    model_config = {"env_file": ".env"}`} />
+
+## Operational basics
+
+- Disable OpenAPI docs on public internet if not needed (`docs_url=None`)
+- Use **HTTPS** at the proxy
+- Log request ids and errors centrally
+- Run database migrations as a deploy step, not inside random requests
+
+## Recap
+
+Production FastAPI means multiple workers, env-driven config, no dev-only flags, and deployment automation. Treat the app as one service in a larger platform (proxy, DB, cache, workers).
+
+## Up next
+
+When you are ready, continue with **Gunicorn + Uvicorn** (use **Next** below). Each lesson builds on the previous one in this track.

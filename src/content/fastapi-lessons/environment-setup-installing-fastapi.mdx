@@ -1,0 +1,44 @@
+---
+title: "Installing FastAPI"
+description: "Install FastAPI and its core dependencies inside your virtual environment using pip."
+quickAnswer: "With your venv active, run pip install fastapi to get FastAPI plus Starlette and Pydantic dependencies."
+order: 9
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Installing into the wrong environment is the top cause of "ModuleNotFoundError: fastapi" when starting Uvicorn. Installing FastAPI inside an activated venv ensures imports and deployment images stay aligned.
+
+## How it works
+
+Activate your virtual environment, then:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip install "fastapi[standard]"`} />
+
+The **standard** extra pulls common tooling (including Uvicorn in recent bundles). Minimal install: `pip install fastapi`. Pin versions for production:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip freeze > requirements.txt`} />
+
+Verify:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import fastapi
+print(fastapi.__version__)`} />
+
+FastAPI does not include a production database driver—you add SQLAlchemy, asyncpg, or similar separately when needed.
+
+After install, open a Python REPL and `import fastapi` to confirm the venv is active. CI pipelines should install from the same `requirements.txt` hash you use locally.
+
+## Recap
+
+- Install with **pip** inside an active **venv**.
+- Consider `fastapi[standard]` for batteries-included dev tooling.
+- Record versions in **requirements.txt**.
+
+## Up next
+
+When you are ready, continue with **Installing Uvicorn** (use **Next** below). Each lesson builds on the previous one in this track.

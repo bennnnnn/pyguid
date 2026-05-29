@@ -1,0 +1,53 @@
+---
+title: "Dockerizing FastAPI"
+description: "Step-by-step Dockerize FastAPI: Dockerfile, .dockerignore, local build, and connecting to Postgres or Redis in compose."
+quickAnswer: "Dockerize FastAPI with a slim Python image, installed requirements, copied app package, Uvicorn as CMD, and runtime environment variables for database and secret settings."
+order: 227
+sectionId: "docker"
+sectionTitle: "Docker"
+sectionOrder: 44
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+A proper **FastAPI Dockerfile** keeps builds fast, images small, and secrets out of layers. You get reproducible deploys for every environment.
+
+## Example Dockerfile
+
+```dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app ./app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+Add a **.dockerignore** excluding `.venv`, `__pycache__`, and `.git`.
+
+## Local test
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`docker build -t fastapi-app .
+docker run --rm -p 8000:8000 --env-file .env fastapi-app`} />
+
+Open `http://localhost:8000/docs` to verify.
+
+## Database URL
+
+Use service names on the Docker network: `postgresql://user:pass@db:5432/app`. `localhost` inside the container refers to the container itself, not your laptop.
+
+## Recap
+
+Dockerizing FastAPI means slim base image, pinned requirements, Uvicorn CMD, and env-based config. Test the image locally before pushing to production infrastructure.
+
+## Up next
+
+When you are ready, continue with **Docker Compose** (use **Next** below). Each lesson builds on the previous one in this track.

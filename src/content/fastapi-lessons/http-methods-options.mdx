@@ -1,0 +1,46 @@
+---
+title: "OPTIONS"
+description: "Understand OPTIONS requests, CORS preflight, and how FastAPI handles them."
+quickAnswer: "OPTIONS requests describe allowed methods on a URL; FastAPI and Starlette answer CORS preflight OPTIONS automatically when CORSMiddleware is configured."
+order: 25
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Browsers send **OPTIONS** preflight requests before cross-origin POST with custom headers. If OPTIONS fails, your React app sees a CORS error even when POST would have worked. Knowing OPTIONS separates backend bugs from frontend origin issues.
+
+## How it works
+
+For same-origin GET, you rarely think about OPTIONS. Cross-origin SPAs trigger **preflight**: the browser asks which methods and headers are allowed.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)`} />
+
+Starlette responds to OPTIONS with allowed methods. You seldom define `@app.options` manually unless building custom protocol behavior.
+
+When debugging CORS, read the browser console preflight error first—it names the missing header or method.
+
+Log preflight failures at debug level during frontend integration—they often reveal a missing Allow-Headers entry before you change application code.
+
+## Recap
+
+- **OPTIONS** supports **CORS preflight** in browsers.
+- Configure **CORSMiddleware** for cross-origin frontends.
+- Manual OPTIONS handlers are uncommon in FastAPI apps.
+
+## Up next
+
+When you are ready, continue with **HEAD** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,48 @@
+---
+title: "Connection management"
+description: "Manage WebSocket connections in FastAPI—accept, disconnect, heartbeats, and cleanup to avoid leaked sockets."
+quickAnswer: "Track connect/disconnect, handle WebSocketDisconnect, and clean up resources so leaked sockets do not exhaust server memory."
+order: 179
+sectionId: "websockets"
+sectionTitle: "WebSockets"
+sectionOrder: 32
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Browsers close tabs, networks drop, and deploys restart servers. Without **connection management**, stale sockets stay in your manager list and memory grows. Production realtime APIs need explicit connect, disconnect, and heartbeat handling.
+
+### Handle disconnects
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+
+app = FastAPI()
+
+@app.websocket("/ws")
+async def endpoint(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        pass  # client left; remove from room list here`} />
+
+`WebSocketDisconnect` fires when the client goes away. Remove the socket from your manager in a `finally` block so lists stay accurate.
+
+### Heartbeats and timeouts
+
+Send periodic ping frames or expect client pings within N seconds. Close connections that go silent—proxies and load balancers often kill idle WebSockets after 60 seconds unless traffic flows.
+
+<Callout variant="info">
+
+Behind Nginx or a cloud load balancer, enable WebSocket upgrade headers and increase idle timeouts for long-lived connections.
+
+</Callout>
+
+## Recap
+
+- Always remove disconnected clients from shared state.
+- Use try/except or `finally` around the receive loop.
+- Configure proxy timeouts and optional heartbeats.

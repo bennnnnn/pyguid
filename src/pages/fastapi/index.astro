@@ -1,0 +1,140 @@
+---
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import {
+  FASTAPI_LEARNING_PHASES,
+  FASTAPI_ROADMAP_META,
+  FASTAPI_ROADMAP_SECTIONS,
+  fastapiSectionAnchorId,
+  getFastapiRoadmapStats,
+} from "../../lib/fastapi-roadmap";
+import { fastapiLessonUrl, getAllFastapiLessons } from "../../lib/fastapi-lessons";
+import { breadcrumbListJsonLd } from "../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../lib/site";
+
+const { title, subtitle, description } = FASTAPI_ROADMAP_META;
+const { sectionCount, lessonCount } = getFastapiRoadmapStats();
+const lessons = await getAllFastapiLessons();
+const firstLesson = lessons[0];
+const pageTitle = `${title} — ${SITE.name}`;
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL("/fastapi/", `${siteUrl}/`).href;
+
+const jsonLd = breadcrumbListJsonLd([
+  { name: SITE.name, url: `${siteUrl}/` },
+  { name: title, url: pageUrl },
+]);
+---
+
+<TutorialLayout title={pageTitle} description={description} jsonLd={jsonLd} sidebar="fastapi">
+  <div class="mx-auto max-w-5xl lesson-prose-wide">
+    <header class="tutorial-index-hero rounded-xl border px-6 py-8 sm:px-8">
+      <p class="m-0 text-xs font-semibold uppercase tracking-wide text-text-muted">
+        Separate track · After core Python
+      </p>
+      <h1 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        {title}
+      </h1>
+      <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
+        {subtitle}
+      </p>
+
+      <div class="tutorial-index-stats" aria-label="Roadmap overview">
+        <span class="tutorial-index-stat">{sectionCount} topics</span>
+        <span class="tutorial-index-stat">{lessonCount} lessons</span>
+        <span class="tutorial-index-stat">From setup to production</span>
+      </div>
+
+      {
+        firstLesson && (
+          <a href={fastapiLessonUrl(firstLesson.id)} class="btn-primary mt-6">
+            Start with {firstLesson.data.title}
+          </a>
+        )
+      }
+    </header>
+
+    <section class="fastapi-learning-path mt-10 rounded-xl border border-border bg-surface-alt px-6 py-6 sm:px-8">
+      <h2 class="!mt-0 mb-2 text-xl font-semibold text-text">How to use this track</h2>
+      <p class="m-0 mb-5 text-base text-text-secondary">
+        Follow lessons in order with <strong>Next</strong>—each topic builds on the last. The eight
+        phases below map to the 50 topic groups. Run examples on your machine with Uvicorn; copy
+        code from each lesson into a practice project as you go.
+      </p>
+      <ol class="m-0 grid list-none gap-3 p-0 sm:grid-cols-2">
+        {
+          FASTAPI_LEARNING_PHASES.map((phase, index) => {
+            const firstSectionId = phase.sectionIds[0];
+            const href = firstSectionId
+              ? `/fastapi/#${fastapiSectionAnchorId(firstSectionId)}`
+              : "/fastapi/";
+            return (
+              <li class="rounded-lg border border-border bg-surface p-4">
+                <a href={href} class="text-link no-underline hover:no-underline">
+                  <span class="text-xs font-semibold uppercase tracking-wide text-text-muted">
+                    Phase {index + 1}
+                  </span>
+                  <span class="mt-1 block text-base font-semibold text-text">{phase.title}</span>
+                </a>
+                <p class="m-0 mt-2 text-sm text-text-secondary">{phase.description}</p>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </section>
+
+    <nav class="tutorial-outline mt-10 space-y-5" aria-label="FastAPI curriculum roadmap">
+      {
+        FASTAPI_ROADMAP_SECTIONS.map((section, sectionIndex) => {
+          const lessonCountLabel =
+            section.lessons.length === 1
+              ? "1 lesson"
+              : `${section.lessons.length} lessons`;
+
+          return (
+            <section
+              id={fastapiSectionAnchorId(section.id)}
+              class="tutorial-outline-card scroll-mt-20"
+            >
+              <div class="tutorial-outline-card-header">
+                <div class="flex items-start justify-between gap-4">
+                  <h2 class="m-0 text-lg font-semibold tracking-tight text-text">
+                    <span class="text-text-muted tabular-nums">{sectionIndex + 1}.</span>{" "}
+                    {section.title}
+                  </h2>
+                  <span class="tutorial-outline-badge">{lessonCountLabel}</span>
+                </div>
+              </div>
+
+              {
+                section.example && (
+                  <div class="fastapi-roadmap-example border-b border-border px-5 py-4 sm:px-6">
+                    <p class="m-0 mb-2 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                      Example
+                    </p>
+                    <pre class="fastapi-roadmap-code" aria-label="Example code">
+                      <code>{section.example}</code>
+                    </pre>
+                  </div>
+                )
+              }
+
+              <ol class="tutorial-lesson-grid">
+                {section.lessons.map((lesson, index) => (
+                  <li class="m-0 min-w-0">
+                    <a href={fastapiLessonUrl(lesson.id)} class="tutorial-lesson-link">
+                      <span class="tutorial-lesson-num" aria-hidden="true">
+                        {index + 1}
+                      </span>
+                      <span class="tutorial-lesson-title">{lesson.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          );
+        })
+      }
+    </nav>
+  </div>
+</TutorialLayout>

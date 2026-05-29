@@ -1,0 +1,43 @@
+---
+title: "Routers"
+description: "Organize FastAPI apps with domain routers—one module per resource, thin handlers, logic in services."
+quickAnswer: "In larger FastAPI apps, each domain (users, orders) gets its own APIRouter module included from main—routers are the HTTP layer only."
+order: 198
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+At architecture level, **routers** map HTTP paths to handlers. They should stay thin: parse input, call a service, return a response model. Fat routers mix SQL, email, and validation—hard to test and reuse.
+
+### Domain routers
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# app/api/v1/users.py
+from fastapi import APIRouter, Depends
+from app.services import users as user_service
+
+router = APIRouter(prefix="/users", tags=["users"])
+
+@router.get("/{user_id}")
+def get_user(user_id: int):
+    return user_service.get_user(user_id)`} />
+
+`main.py` only wires routers: `app.include_router(users.router, prefix='/api/v1')`. Cross-cutting concerns (auth, db session) live in `core/deps.py`.
+
+### In practice
+
+When a route grows past roughly thirty lines, move logic into a service and leave the handler as three steps: validate input, call service, map result to a response model. That habit keeps OpenAPI handlers easy to scan during review. Share response models in `schemas/` so routers do not redefine the same JSON shape.
+
+## Recap
+
+- One router module per domain or resource.
+- Handlers delegate to services.
+- Register all routers from a small main file.
+
+## Up next
+
+When you are ready, continue with **Services** (use **Next** below). Each lesson builds on the previous one in this track.

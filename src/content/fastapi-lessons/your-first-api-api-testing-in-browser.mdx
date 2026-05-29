@@ -1,0 +1,35 @@
+---
+title: "API testing in browser"
+description: "Test FastAPI endpoints from the browser using interactive docs and simple GET requests."
+quickAnswer: "Open /docs for Swagger UI to send test requests, or use the browser for GET URLs and DevTools Network tab for inspection."
+order: 19
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+You do not need Postman on day one. FastAPI ships interactive documentation so you can exercise POST bodies, see validation errors, and share reproducible API trials with teammates.
+
+## How it works
+
+Start the server, then visit **http://127.0.0.1:8000/docs**. Expand an operation, click **Try it out**, fill parameters and JSON body, and **Execute**. The UI shows status code, response body, and curl equivalent.
+
+For simple **GET** endpoints, paste the URL directly in the browser address bar. Use browser DevTools → **Network** to inspect headers and JSON.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/hello/{name}")
+def hello(name: str):
+    return {"hello": name}`} />
+
+Try `/hello/World` in the browser. For POST/PUT, prefer `/docs` or `curl` because browsers alone cannot easily send JSON POSTs without JavaScript.
+
+Share the `/docs` URL with QA so they can reproduce requests without installing tools. Export OpenAPI JSON from `/openapi.json` for contract tests.
+
+## Recap
+
+- **/docs** is the built-in interactive API tester.
+- Browser address bar works for **GET** with path/query params.
+- Use Network tab or `/docs` to inspect responses.

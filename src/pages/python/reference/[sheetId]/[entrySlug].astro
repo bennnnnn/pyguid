@@ -1,22 +1,13 @@
 ---
-import TutorialLayout from "../../../../layouts/TutorialLayout.astro";
-import ReferenceEntryDetail from "../../../../components/reference/ReferenceEntryDetail.astro";
 import {
   getAllReferenceEntryPages,
   getReferenceEntryPage,
+  referenceSheetAnchorUrl,
 } from "../../../../lib/reference-sheets";
-import { getReferenceEntryCode } from "../../../../lib/reference-entry-code";
-import { breadcrumbListJsonLd, techArticleJsonLd } from "../../../../lib/seo-schema";
-import { SITE, getSiteUrl } from "../../../../lib/site";
-import {
-  referenceEntryUrl,
-  referenceSheetHubUrl,
-} from "../../../../lib/reference-sheets";
-import "../../../../styles/reference.css";
 
 export function getStaticPaths() {
-  return getAllReferenceEntryPages().map(({ sheet, slug }) => ({
-    params: { sheetId: sheet.id, entrySlug: slug },
+  return getAllReferenceEntryPages().map((page) => ({
+    params: { sheetId: page.sheet.id, entrySlug: page.slug },
   }));
 }
 
@@ -25,40 +16,5 @@ const entrySlug = Astro.params.entrySlug ?? "";
 const page = getReferenceEntryPage(sheetId, entrySlug);
 if (!page) return Astro.redirect("/python/reference/");
 
-const siteUrl = getSiteUrl(Astro.site);
-const pageUrl = new URL(referenceEntryUrl(sheetId, entrySlug), `${siteUrl}/`).href;
-const sheetHubUrl = new URL(referenceSheetHubUrl(sheetId), `${siteUrl}/`).href;
-const { code } = getReferenceEntryCode(page);
-const title = `${page.entry.syntax} — ${page.sheet.title} — ${SITE.name}`;
-const description =
-  page.entry.summary.length >= 120
-    ? `${page.entry.summary} Runnable Python example on ${SITE.name}.`
-    : `${page.entry.summary} Python \`${page.entry.syntax}\` reference with a runnable example on ${SITE.name}.`;
-const jsonLd = [
-  breadcrumbListJsonLd([
-    { name: SITE.name, url: `${siteUrl}/` },
-    { name: "Reference", url: `${siteUrl}/python/reference/` },
-    { name: page.sheet.title, url: sheetHubUrl },
-    { name: page.entry.syntax, url: pageUrl },
-  ]),
-  techArticleJsonLd({
-    siteUrl,
-    url: pageUrl,
-    headline: `${page.entry.syntax} — ${page.sheet.title}`,
-    description: page.entry.summary,
-    articleBody: code,
-  }),
-];
+return Astro.redirect(referenceSheetAnchorUrl(sheetId, entrySlug));
 ---
-
-<TutorialLayout
-  title={title}
-  description={description}
-  sidebar="reference"
-  ogType="article"
-  jsonLd={jsonLd}
->
-  <div class="lesson-prose-wide">
-    <ReferenceEntryDetail page={page} />
-  </div>
-</TutorialLayout>

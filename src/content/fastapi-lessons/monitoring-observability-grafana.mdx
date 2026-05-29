@@ -1,0 +1,42 @@
+---
+title: "Grafana"
+description: "Grafana dashboards for FastAPI: data sources, panels, RED dashboards, and on-call friendly visualizations."
+quickAnswer: "Grafana visualizes Prometheus (and other) metrics with dashboards and panels; connect a data source, build charts for latency and errors, and share views with your team."
+order: 236
+sectionId: "monitoring-observability"
+sectionTitle: "Monitoring & Observability"
+sectionOrder: 46
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Raw Prometheus queries are powerful but unfriendly during incidents. **Grafana** turns metrics into **dashboards** everyone can read at a glance.
+
+## Setup flow
+
+1. Run Grafana (Docker or managed)
+2. Add **Prometheus** as a data source (`http://prometheus:9090`)
+3. Import or build a dashboard for your API
+
+## Useful panels
+
+- **Request rate** — `sum(rate(http_requests_total[5m]))`
+- **Error percentage** — 5xx / total
+- **Latency percentiles** — histogram `histogram_quantile(0.95, ...)`
+- **Saturation** — CPU, memory, DB connections
+
+Group panels by **deploy version** or environment using template variables.
+
+## Annotations
+
+Mark deploy times on graphs to correlate latency spikes with releases—a habit that saves hours of debugging.
+
+## Recap
+
+Grafana is the visualization layer on top of Prometheus. Build RED-focused dashboards, annotate deploys, and keep on-call dashboards simple and fast to load.
+
+## Up next
+
+When you are ready, continue with **Error tracking** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,63 @@
+---
+title: "Advanced OpenAPI customization"
+description: "Advanced OpenAPI customization in FastAPI: schema extras, webhooks, custom openapi(), and production documentation policies."
+quickAnswer: "Customize FastAPI OpenAPI with custom schemas, operation_id, tags, examples, multiple responses, and openapi_tags—or replace the entire openapi() generator for full control of generated docs."
+order: 253
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Auto-generated **Swagger** is FastAPI's superpower until you need **branded docs**, hidden internal routes, or strict client SDK generation. OpenAPI customization bridges that gap.
+
+## Route-level metadata
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post(
+    "/items",
+    tags=["catalog"],
+    summary="Create an item",
+    response_model=ItemOut,
+    responses={409: {"description": "SKU already exists"}},
+)
+def create_item(item: ItemIn):
+    ...`} />
+
+Use `openapi_extra` for vendor extensions or additional schema fragments.
+
+## Global tags and descriptions
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI(
+    openapi_tags=[
+        {"name": "catalog", "description": "Product catalog operations"},
+    ]
+)`} />
+
+## Replace openapi()
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    schema = get_openapi(title=app.title, version="1.0.0", routes=app.routes)
+    # mutate schema — remove paths, add security schemes
+    app.openapi_schema = schema
+    return schema
+
+app.openapi = custom_openapi`} />
+
+Use for consistent **security schemes** (OAuth2 flows) or stripping beta endpoints from public docs.
+
+## Production
+
+Disable public docs (`docs_url=None`) while exporting OpenAPI JSON in CI for contract tests.
+
+## Recap
+
+Tune OpenAPI with per-route metadata, global tags, and optional custom `openapi()`. Keep public docs accurate and generate client SDKs from the same schema your tests validate.
+
+## You completed the FastAPI track
+
+You worked through the full path: setup, HTTP and Pydantic, databases, authentication, testing, deployment, and advanced patterns. **What to do next:** build one small project (for example a todo or notes API with login, CRUD, and tests), deploy it with Docker, and keep this site open as reference while you code on your machine.

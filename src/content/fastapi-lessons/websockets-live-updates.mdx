@@ -1,0 +1,49 @@
+---
+title: "Live updates"
+description: "Push live dashboard and feed updates over FastAPI WebSockets—subscribe once instead of polling REST."
+quickAnswer: "Push live dashboard or feed updates from the server over WebSockets when data changes—clients subscribe once instead of polling."
+order: 178
+sectionId: "websockets"
+sectionTitle: "WebSockets"
+sectionOrder: 32
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Stock tickers, order status, and sports scores change continuously. Polling `GET /status` every second hammers your API and still feels delayed. **Server-push** over WebSockets lets clients subscribe once and receive updates when values change.
+
+### Subscribe and push
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, WebSocket
+import asyncio
+
+app = FastAPI()
+
+@app.websocket("/live/prices")
+async def price_feed(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            price = await fetch_latest_price()  # your data source
+            await websocket.send_json({"symbol": "PY", "price": price})
+            await asyncio.sleep(1)
+    except Exception:
+        await websocket.close()`} />
+
+The server loop reads from a database, cache, or external feed and `send_json` to the client. Clients send a subscribe message with symbols they care about; filter before sending to save bandwidth.
+
+### Backpressure and auth
+
+Slow clients can build up queued messages. Close idle connections and authenticate during the handshake (query token or first message) before streaming sensitive data.
+
+## Recap
+
+- WebSockets suit server-initiated updates.
+- Filter events per subscribed client.
+- Authenticate and handle disconnects cleanly.
+
+## Up next
+
+When you are ready, continue with **Connection management** (use **Next** below). Each lesson builds on the previous one in this track.

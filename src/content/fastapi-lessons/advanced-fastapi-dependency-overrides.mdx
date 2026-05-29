@@ -1,0 +1,51 @@
+---
+title: "Dependency overrides"
+description: "FastAPI dependency overrides: testing with TestClient, mocking auth and databases, and temporary override scope."
+quickAnswer: "app.dependency_overrides replaces Depends() callables in tests or alternate environments—swap get_db or get_current_user with fakes without changing route signatures."
+order: 252
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+**Dependencies** keep routes thin, but tests need **controlled doubles**—a fake user, in-memory DB, or stub payment client. Overrides replace implementations without editing production code.
+
+## Override pattern
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`def fake_current_user():
+    return User(id=1, email="test@example.com")
+
+app.dependency_overrides[get_current_user] = fake_current_user
+
+client = TestClient(app)
+r = client.get("/me")
+assert r.json()["email"] == "test@example.com"
+
+app.dependency_overrides.clear()`} />
+
+Always **clear** overrides after tests to avoid leaking state between cases.
+
+## pytest fixture
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@pytest.fixture
+def client():
+    app.dependency_overrides[get_db] = lambda: test_session()
+    with TestClient(app) as c:
+        yield c
+    app.dependency_overrides.clear()`} />
+
+## Production caution
+
+Overrides are for **tests and local tooling**, not feature flags in production—explicit configuration is easier to audit.
+
+## Recap
+
+`dependency_overrides` maps real Depends callables to test doubles. Use in TestClient and pytest fixtures, then clear overrides when done.
+
+## Up next
+
+When you are ready, continue with **Advanced OpenAPI customization** (use **Next** below). Each lesson builds on the previous one in this track.

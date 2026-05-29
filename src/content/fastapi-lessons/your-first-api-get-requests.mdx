@@ -1,0 +1,48 @@
+---
+title: "GET requests"
+description: "Build read-only GET endpoints in FastAPI that return JSON to browsers and API clients."
+quickAnswer: "GET endpoints return data without changing server state; define them with @app.get and return dicts or Pydantic models for JSON."
+order: 16
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+GET is the safest, cache-friendly method for fetching resources. Most public API traffic is GET. Designing clear read endpoints first helps you model resources before adding creates and updates.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+ITEMS = {1: {"name": "Pen"}}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int):
+    return ITEMS.get(item_id, {"error": "not found"})
+
+@app.get("/search")
+def search(q: str | None = None):
+    return {"query": q, "results": []}`} />
+
+GET requests should not mutate database state. Query parameters (`?q=hello`) come from function parameters not in the path. FastAPI coerces types—`item_id: int` rejects non-numeric paths with **422 Unprocessable Entity**.
+
+Browsers and `curl` can call GET without a request body:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`curl http://127.0.0.1:8000/items/1`} />
+
+Document query parameters in OpenAPI with `Query(description=...)` so frontend developers know which filters exist. Remember that boolean query params accept `true`/`false` strings.
+
+## Recap
+
+- **@app.get** for safe read operations.
+- Return dicts/models; FastAPI serializes JSON.
+- Use **query parameters** for filters and search.
+
+## Up next
+
+When you are ready, continue with **Returning JSON** (use **Next** below). Each lesson builds on the previous one in this track.

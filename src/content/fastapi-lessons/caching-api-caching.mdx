@@ -1,0 +1,57 @@
+---
+title: "API caching"
+description: "FastAPI API caching patterns: cache keys, HTTP cache headers, dependency-based caching, and when not to cache."
+quickAnswer: "Cache API responses by keying on route plus query or user id, returning stored JSON when valid, and skipping or bypassing the cache on writes and auth-sensitive data."
+order: 215
+sectionId: "caching"
+sectionTitle: "Caching"
+sectionOrder: 41
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Some endpoints are **read-heavy and expensive**: aggregations, third-party API calls, or multi-table joins. Caching the **serialized response** means the next identical request skips that work entirely.
+
+## Cache key design
+
+A good key uniquely identifies **what** was requested:
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`def catalog_cache_key(category: str, page: int) -> str:
+    return f"catalog:{category}:p{page}"`} />
+
+Include user id or tenant id when the response is not public. Never cache personalized data under a shared key.
+
+## Pattern: check cache in a dependency
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends
+
+async def cached_catalog(category: str, page: int = 1):
+    key = catalog_cache_key(category, page)
+    hit = await cache.get(key)
+    if hit:
+        return json.loads(hit)
+    data = await load_catalog(category, page)
+    await cache.setex(key, 60, json.dumps(data))
+    return data
+
+@app.get("/catalog")
+async def catalog(items: list = Depends(cached_catalog)):
+    return items`} />
+
+## HTTP-level caching
+
+For **public, stable** GET responses, you can also set `Cache-Control` so browsers and CDNs cache safely. Private or authenticated JSON usually should use `Cache-Control: private, no-store` unless you control every layer.
+
+## When not to cache
+
+Skip caching for POST/PUT/PATCH/DELETE, one-time tokens, admin dashboards with real-time requirements, and data that must be legally fresh.
+
+## Recap
+
+API caching keys on request identity, stores JSON in Redis (or similar), and invalidates on updates. Combine application cache with HTTP headers only when responses are truly public.
+
+## Up next
+
+When you are ready, continue with **Performance optimization** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,42 @@
+---
+title: "FastAPI architecture overview"
+description: "See how Starlette, Pydantic, dependencies, and path operations fit together in a typical FastAPI application."
+quickAnswer: "A FastAPI app layers HTTP routing (Starlette), validation and schemas (Pydantic), optional dependencies, and your business logic behind an ASGI server."
+order: 5
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+When debugging or scaling, you need to know which layer owns what. Routing errors differ from validation errors, and both differ from database exceptions. A mental model of the stack speeds up fixes and cleaner project structure.
+
+## How it works
+
+At the bottom, an **ASGI server** (Uvicorn) speaks HTTP to clients. **Starlette** provides routing, requests, responses, middleware, and background tasks. **FastAPI** adds decorator-based path operations, dependency injection, and OpenAPI generation.
+
+Incoming requests flow through **middleware**, then a **path operation** matched by method and path. FastAPI parses **path**, **query**, **header**, **cookie**, and **body** parameters using type hints. **Pydantic models** validate bodies and can validate responses. **Dependencies** (`Depends`) run first—ideal for DB sessions, auth, and shared settings. Your function returns a dict, model, or `Response`; FastAPI serializes JSON and applies status codes.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Depends
+
+app = FastAPI()
+
+def settings():
+    return {"debug": True}
+
+@app.get("/info")
+def info(cfg: dict = Depends(settings)):
+    return cfg`} />
+
+## Recap
+
+- **Uvicorn → Starlette → FastAPI → your code**.
+- **Pydantic** validates request and response data.
+- **Dependencies** inject shared resources before route logic runs.
+
+## Up next
+
+When you are ready, continue with **Real-world use cases** (use **Next** below). Each lesson builds on the previous one in this track.

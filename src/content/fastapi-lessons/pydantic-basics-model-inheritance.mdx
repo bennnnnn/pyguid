@@ -1,0 +1,46 @@
+---
+title: "Model inheritance"
+description: "Reuse fields across Pydantic models with inheritance in FastAPI APIs."
+quickAnswer: "Subclass Pydantic models to share fields—e.g. UserBase with UserCreate adding a password and UserPublic hiding secrets."
+order: 45
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Duplicated field lists drift apart. Inheritance keeps shared columns in sync while specialized models expose only safe fields in responses.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel
+
+class UserBase(BaseModel):
+    email: str
+    full_name: str
+
+class UserCreate(UserBase):
+    password: str
+
+class UserPublic(UserBase):
+    id: int
+
+class UserInDB(UserPublic):
+    hashed_password: str`} />
+
+FastAPI pattern: **UserCreate** for POST bodies, **UserPublic** as `response_model`, **UserInDB** internal only. Python MRO applies; override fields carefully when child classes change types.
+
+Avoid deep inheritance chains that hide fields; two levels (base + variant) is usually enough for APIs. When a child model overrides a field type, run tests to ensure OpenAPI still documents the public shape correctly.
+
+## Recap
+
+- **Base models** hold shared fields.
+- Separate **create**, **public**, and **DB** shapes.
+- Pair with FastAPI **response_model** to filter output.
+
+## Up next
+
+When you are ready, continue with **Serialization** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,45 @@
+---
+title: "Automated deployment"
+description: "Automate FastAPI deployment: build artifacts, environment promotion, migrations, rollbacks, and safe release practices."
+quickAnswer: "Automated deployment promotes passing builds to staging or production via CI jobs that push Docker images, run migrations, and restart services—often only from protected branches."
+order: 232
+sectionId: "ci-cd"
+sectionTitle: "CI/CD"
+sectionOrder: 45
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+**Continuous deployment** removes manual SSH steps. After CI tests pass, the same pipeline ships a known-good artifact to servers—faster releases with fewer configuration mistakes.
+
+## Typical pipeline stages
+
+1. **Build** — Docker image tagged with git SHA
+2. **Push** — container registry
+3. **Migrate** — `alembic upgrade head` as a one-off job
+4. **Deploy** — rolling update on Kubernetes, ECS, or systemd pull
+
+Gate production deploys on `main` and optional manual approval for high-risk changes.
+
+## Immutable artifacts
+
+Deploy **images**, not `git pull` on servers. The SHA in production should match the SHA that passed tests.
+
+## Rollbacks
+
+Keep the previous image tag. If health checks fail after deploy, automation reverts to the last known good version.
+
+```yaml
+deploy:
+  needs: test
+  if: github.ref == 'refs/heads/main'
+  runs-on: ubuntu-latest
+  steps:
+  # build, push, trigger platform deploy
+```
+
+## Recap
+
+Automated deployment chains test → build → migrate → release. Use immutable tags, protect production branches, and plan rollbacks before you need them.

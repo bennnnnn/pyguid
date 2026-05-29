@@ -1,0 +1,45 @@
+---
+title: "Descriptions"
+description: "Write rich path operation descriptions that render in Swagger UI and ReDoc."
+quickAnswer: "Use description= with Markdown on routes to document behavior, auth, and side effects in OpenAPI."
+order: 77
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Summaries are one line; **descriptions** explain auth requirements, idempotency, rate limits, and side effects. FastAPI supports **Markdown** in descriptions, which Swagger UI renders with headings and lists.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post(
+    "/transfer/",
+    summary="Transfer funds",
+    description="""
+    Move money between two accounts.
+
+    - Requires **Bearer** token
+    - Idempotent when \`Idempotency-Key\` header is sent
+    - Returns **402** if insufficient balance
+    """,
+)
+def transfer():
+    return {"status": "ok"}`} />
+
+You can also set `description` on the `FastAPI()` app and on `APIRouter` for section-level intros. Docstrings on the function can become the description if you enable it, but explicit `description=` avoids surprises when docstrings mix implementation notes with API contracts.
+
+## In practice
+
+Document idempotency keys, required scopes, and side effects (sends email, charges card) in Markdown descriptions. Link to status page or SLA docs when external teams integrate. If the route is beta, say so here and in `openapi_extra` extensions your gateway understands.
+
+## Recap
+
+- `description=` supports Markdown for detailed operation docs.
+- Document auth, errors, and headers consumers must send.
+- Keep public descriptions accurate— they are part of your API contract.
+
+## Up next
+
+When you are ready, continue with **Metadata** (use **Next** below). Each lesson builds on the previous one in this track.

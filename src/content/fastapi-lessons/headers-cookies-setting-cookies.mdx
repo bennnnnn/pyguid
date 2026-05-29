@@ -1,0 +1,47 @@
+---
+title: "Setting cookies"
+description: "Set HTTP cookies on FastAPI responses with secure attribute options."
+quickAnswer: "Set cookies on a Response with response.set_cookie(key, value, httponly=True, ...)."
+order: 106
+sectionId: "headers-cookies"
+sectionTitle: "Headers & Cookies"
+sectionOrder: 18
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Sessions and refresh tokens often live in **cookies**. Setting them from FastAPI requires attaching to the outgoing `Response`—returning a dict alone does not set cookies.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
+@app.post("/session/")
+def create_session():
+    response = JSONResponse({"ok": True})
+    response.set_cookie(
+        key="session_id",
+        value="signed-token-here",
+        httponly=True,
+        secure=True,
+        samesite="lax",
+        max_age=3600,
+    )
+    return response`} />
+
+Use `httponly` to block JavaScript theft, `secure` on HTTPS, and `samesite` to mitigate CSRF. Sign or encrypt cookie values server-side; never store raw passwords in cookies.
+
+## In practice
+
+Sign cookie values (itsdangerous, JWT) server-side. On logout, `delete_cookie` with the same `path` and `domain` used at login. Short `max_age` on session cookies limits stolen-cookie window. Rotate signing keys on a schedule without invalidating all sessions at once when possible.
+
+## Recap
+
+- Build a `Response`, call `set_cookie`, return that response.
+- Use **httponly**, **secure**, and **samesite** for session cookies.
+- Prefer short-lived access tokens in memory for SPAs when not using cookies.
+
+## Up next
+
+When you are ready, continue with **Reading cookies** (use **Next** below). Each lesson builds on the previous one in this track.

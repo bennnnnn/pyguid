@@ -1,0 +1,46 @@
+---
+title: "Path operations"
+description: "Learn what FastAPI means by path operations and how decorators register them on the app."
+quickAnswer: "Path operations are FastAPI's term for a route handler: an HTTP method, a path, and the function that runs when they match."
+order: 18
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Official FastAPI docs say "path operation" instead of "route handler" to stress both **path** and **HTTP method**. Understanding that term helps you read documentation and configure OpenAPI metadata per operation.
+
+## How it works
+
+A path operation includes:
+
+1. **Path** — e.g. `/users/&#123;user_id&#125;`
+2. **Operation** (HTTP method) — GET, POST, PUT, …
+3. **Function** — your Python logic
+4. **Decorators metadata** — `tags`, `summary`, `response_model`
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.put("/items/{item_id}", tags=["inventory"], summary="Replace an item")
+def replace_item(item_id: int, payload: dict):
+    return {"item_id": item_id, **payload}`} />
+
+FastAPI registers each operation in the **OpenAPI schema**, which powers `/docs`. Multiple operations can share the same path with different methods (GET vs POST on `/items`).
+
+Tags on path operations become sections in `/docs`, which helps large APIs stay navigable. Summaries appear as human-readable operation titles.
+
+## Recap
+
+- **Path operation** = method + path + handler function.
+- Decorators carry **OpenAPI** metadata.
+- Same path can expose different **HTTP methods**.
+
+## Up next
+
+When you are ready, continue with **API testing in browser** (use **Next** below). Each lesson builds on the previous one in this track.

@@ -1,0 +1,42 @@
+---
+title: "ASGI vs WSGI"
+description: "Learn how ASGI differs from WSGI and why FastAPI runs on ASGI instead of traditional WSGI workers."
+quickAnswer: "WSGI serves synchronous Python web apps; ASGI adds async, WebSockets, and long-lived connections—FastAPI requires ASGI servers like Uvicorn."
+order: 4
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Deployment errors often trace back to running an ASGI app behind a WSGI-only gateway without an adapter. Understanding ASGI versus WSGI explains why FastAPI uses Uvicorn, how WebSockets work, and when async routes actually help.
+
+## How it works
+
+**WSGI** (Web Server Gateway Interface) is the older standard used by Flask and Django for years. One request tends to block a worker until the response finishes. That model is simple and battle-tested for CPU-bound or short database calls.
+
+**ASGI** (Asynchronous Server Gateway Interface) supports **async** event loops, **WebSockets**, and HTTP/2 features. FastAPI is an ASGI framework built on Starlette. You deploy with **Uvicorn**, **Hypercorn**, or **Daphne**, often behind Nginx. Sync route functions still work—ASGI runs them in a thread pool—but `async def` routes can await network I/O without blocking other requests on the same worker.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# ASGI app object (what Uvicorn imports)
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"protocol": "ASGI"}`} />
+
+Run locally: `uvicorn main:app --reload`
+
+## Recap
+
+- **WSGI**: classic sync Python web stack.
+- **ASGI**: async-capable; required for FastAPI and WebSockets.
+- Deploy FastAPI with an **ASGI server** such as Uvicorn.
+
+## Up next
+
+When you are ready, continue with **FastAPI architecture overview** (use **Next** below). Each lesson builds on the previous one in this track.

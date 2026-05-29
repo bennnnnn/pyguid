@@ -1,0 +1,42 @@
+---
+title: "Access tokens"
+description: "Access tokens in FastAPI — bearer headers, dependency injection, and short expiry for security."
+quickAnswer: "Short-lived access tokens authorize API calls; send them as `Authorization: Bearer <token>` and validate in a dependency used by protected routes."
+order: 158
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Access tokens are presented on every API call. Short lifetimes (15–60 minutes) limit damage if a token leaks. Clients refresh or re-login when expired.
+
+## Dependency
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    try:
+        payload = decode_token(token)
+        user_id = int(payload["sub"])
+    except Exception:
+        raise HTTPException(401, "Invalid token")
+    user = db.get(User, user_id)
+    if not user:
+        raise HTTPException(401)
+    return user
+
+@app.get("/me")
+def me(user: User = Depends(get_current_user)):
+    return user`} />
+
+## Recap
+
+- Bearer token in Authorization header
+- Decode and load user in a dependency
+- Keep access tokens short-lived
+
+## Up next
+
+When you are ready, continue with **Refresh tokens** (use **Next** below). Each lesson builds on the previous one in this track.

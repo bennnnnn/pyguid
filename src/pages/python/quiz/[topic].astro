@@ -1,7 +1,6 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
 import ChapterQuiz from "../../../components/quiz/ChapterQuiz.astro";
-import { getLessonGroups } from "../../../lib/lessons";
 import {
   getPublishedQuizTopics,
   getQuizExam,
@@ -26,7 +25,6 @@ if (!topic) return Astro.redirect("/python/quiz/");
 const exam = getQuizExam(topic);
 if (!exam) return Astro.redirect("/python/quiz/");
 
-const groups = await getLessonGroups();
 const pageTitle = `${topic.title} Quiz — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL(quizUrl(topic.slug), `${siteUrl}/`).href;
@@ -49,7 +47,7 @@ const jsonLd = [
 <TutorialLayout
   title={pageTitle}
   description={exam.description}
-  groups={groups}
+  sidebar="quiz"
   ogType="article"
   jsonLd={jsonLd}
 >

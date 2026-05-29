@@ -1,0 +1,42 @@
+---
+title: "Timing middleware"
+description: "Add timing middleware to measure request duration in FastAPI."
+quickAnswer: "Measure elapsed time around call_next and expose it via X-Process-Time or metrics middleware."
+order: 113
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Slow endpoints hide in averages until you measure **per request**. Timing middleware adds a response header for quick debugging and feeds Prometheus histograms in larger setups.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import time
+from fastapi import Request
+
+@app.middleware("http")
+async def timing(request: Request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    elapsed = time.perf_counter() - start
+    response.headers["X-Process-Time"] = f"{elapsed:.4f}"
+    return response`} />
+
+Compare timings with and without database calls to find bottlenecks. Headers are visible to clients—fine for internal APIs; for public APIs prefer server-side metrics only.
+
+## In practice
+
+Compare `X-Process-Time` with APM traces to find middleware vs route vs DB time. Remove timing headers on public APIs if they aid attackers mapping slow endpoints. Compare timings before and after deploys to catch performance regressions early.
+
+## Recap
+
+- Time the full handler chain with `perf_counter` around `call_next`.
+- Expose optional **X-Process-Time** for debugging.
+- Pair with APM (Datadog, OpenTelemetry) for production tracing.
+
+## Up next
+
+When you are ready, continue with **CORS middleware** (use **Next** below). Each lesson builds on the previous one in this track.

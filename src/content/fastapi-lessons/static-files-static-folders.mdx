@@ -1,0 +1,42 @@
+---
+title: "Static folders"
+description: "FastAPI static folder structure — naming conventions, mount order, and separating public assets from uploads."
+quickAnswer: "Organize `static/css`, `static/js`, and `static/images`; mount once at `/static` and keep upload directories separate from public assets."
+order: 122
+sectionId: "static-files"
+sectionTitle: "Static Files"
+sectionOrder: 21
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+A clear folder layout prevents mixing public assets with private uploads. Teams can find files quickly, and deployment scripts know exactly what to sync to a CDN.
+
+## Recommended layout
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`myapp/
+  main.py
+  static/
+    css/
+    js/
+    images/
+  templates/
+  uploads/   # not mounted publicly`} />
+
+## Mount once
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`app.mount("/static", StaticFiles(directory="static"), name="static")`} />
+
+Mount **after** API routes are defined, or use `APIRouter` so `/static` does not shadow dynamic paths like `/users/me`. Starlette matches more specific routes first when registered in order—document your team's convention.
+
+### Production tip
+
+In production, many teams serve `/static` from a CDN (S3 + CloudFront) while FastAPI handles API traffic. The same folder structure still applies locally.
+
+## Recap
+
+- One `static/` tree for public CSS, JS, images
+- Keep `uploads/` outside the public mount
+- Mount `StaticFiles` at a single URL prefix

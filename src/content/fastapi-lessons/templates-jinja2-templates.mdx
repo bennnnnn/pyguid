@@ -1,0 +1,53 @@
+---
+title: "Jinja2 templates"
+description: "Jinja2 templates in FastAPI — setup, template syntax, and when to use server-rendered HTML vs JSON APIs."
+quickAnswer: "Install Jinja2, point FastAPI's Jinja2Templates at a `templates/` folder, and use `.html` files with `{{ }}` placeholders for HTML pages."
+order: 123
+sectionId: "templates"
+sectionTitle: "Templates"
+sectionOrder: 22
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Templates** — Return HTML with Jinja2 templates when you need server-rendered pages instead of a separate frontend framework.
+
+</Callout>
+
+## Why this matters
+
+JSON APIs power SPAs, but many apps still need HTML: emails preview, admin panels, or simple multi-page sites. Jinja2 is a mature template engine that keeps logic minimal in views and markup in `.html` files.
+
+## Setup
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip install jinja2`} />
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")`} />
+
+Create `templates/home.html`:
+
+```html
+<h1>Hello, &#123;&#123; name &#125;&#125;!</h1>
+```
+
+<Callout variant="tip">
+
+Use templates for HTML; keep JSON endpoints on separate routes for mobile apps and front-end frameworks.
+
+</Callout>
+
+## Recap
+
+- Jinja2 renders `.html` with variables
+- `Jinja2Templates(directory="templates")` is the FastAPI helper
+- Separate template routes from JSON API routes when both exist
+
+## Up next
+
+When you are ready, continue with **Rendering HTML** (use **Next** below). Each lesson builds on the previous one in this track.

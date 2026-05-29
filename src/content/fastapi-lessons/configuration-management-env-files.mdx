@@ -1,0 +1,43 @@
+---
+title: "`.env` files"
+description: "Load .env files in FastAPI development with pydantic-settings—local config without committing secrets."
+quickAnswer: "Load a .env file in development with python-dotenv or pydantic-settings—keep .env out of git and use platform secrets in production."
+order: 194
+sectionId: "configuration-management"
+sectionTitle: "Configuration Management"
+sectionOrder: 36
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Exporting twenty variables in your shell is tedious. A **`.env` file** stores key=value pairs for local runs while production still uses real environment injection from Docker or Kubernetes.
+
+### pydantic-settings with .env
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic_settings import BaseSettings, SettingsConfigDict
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env")
+    database_url: str
+    secret_key: str
+
+settings = Settings()`} />
+
+Add `.env` to `.gitignore`. Commit `.env.example` with empty or placeholder values. `Settings()` loads from the file automatically in development.
+
+### In practice
+
+Keep `.env.example` in sync when you add settings fields—reviewers use it as a checklist. In Docker Compose, pass the same keys via `env_file` or `environment` so local containers match bare-metal runs. Never put production secrets in Compose files committed to git.
+
+## Recap
+
+- .env is for local convenience, not production storage.
+- Never commit `.env` with real secrets.
+- Use `BaseSettings` to load and validate values.
+- Keep `.env.example` updated for every new setting.
+
+## Up next
+
+When you are ready, continue with **Secrets management** (use **Next** below). Each lesson builds on the previous one in this track.

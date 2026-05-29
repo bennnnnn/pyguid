@@ -1,0 +1,46 @@
+---
+title: "Reverse proxy"
+description: "Reverse proxies for FastAPI: TLS termination, routing, headers, WebSockets, and why Uvicorn should not face the public internet alone."
+quickAnswer: "A reverse proxy sits in front of FastAPI, terminates TLS, routes hostnames to apps, and adds timeouts, compression, and rate limits without changing your Python code."
+order: 223
+sectionId: "deployment"
+sectionTitle: "Deployment"
+sectionOrder: 43
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Clients should not connect directly to Uvicorn on port 8000 in production. A **reverse proxy** (Nginx, Caddy, Traefik) handles TLS certificates, HTTP/2, static files, and connection limits—work the ASGI server should not duplicate.
+
+## Request flow
+
+```text
+Client --HTTPS--> Reverse proxy --HTTP--> Uvicorn (FastAPI)
+```
+
+The proxy forwards headers such as `X-Forwarded-For` and `X-Forwarded-Proto`. FastAPI/Starlette can trust these when configured so redirects and cookies use the correct scheme.
+
+## Benefits beyond TLS
+
+- **Load balancing** across multiple app instances
+- **Request size limits** and slow-client protection
+- **Caching** for static assets
+- **WebSocket** upgrade handling (proxy must support it)
+
+## FastAPI behind a proxy
+
+Keep app binding on an internal interface. Health checks can hit the proxy or the app directly from the private network.
+
+<Callout variant="warning" title="Trust forwarded headers carefully">
+Only honor `X-Forwarded-*` from your proxy's IP range. Misconfigured trust enables host-header attacks.
+</Callout>
+
+## Recap
+
+Put a reverse proxy in front of FastAPI for TLS, routing, and hardening. Run Uvicorn on localhost or a private network and let the proxy speak to the internet.
+
+## Up next
+
+When you are ready, continue with **Nginx** (use **Next** below). Each lesson builds on the previous one in this track.

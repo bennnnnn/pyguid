@@ -1,0 +1,44 @@
+---
+title: "Combining forms and files"
+description: "Accept form fields and file uploads together in a single FastAPI route."
+quickAnswer: "In one endpoint, mix Form() fields and UploadFile with File() under multipart/form-data."
+order: 102
+sectionId: "form-data"
+sectionTitle: "Form Data"
+sectionOrder: 17
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+“Create post with title + image” needs **text fields and a file** in one POST. Multipart encoding carries both; FastAPI declares each part separately.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Form, File, UploadFile
+
+@app.post("/posts/")
+async def create_post(
+    title: str = Form(...),
+    body: str = Form(""),
+    image: UploadFile | None = File(None),
+):
+    saved = None
+    if image:
+        saved = await save_upload(image)
+    return {"title": title, "image": str(saved) if saved else None}`} />
+
+The HTML form must use `enctype="multipart/form-data"`. Swagger UI’s “Try it out” supports mixed form and file fields for testing. Validate file and field limits as in dedicated upload lessons.
+
+## In practice
+
+HTML must use `enctype="multipart/form-data"`. In Swagger, use the file+fields Try-it-out UI to verify before building the frontend. Validate text and files with the same size and type rules as single-upload routes.
+
+## Recap
+
+- Use **Form()** for text fields and **File()** for uploads in one handler.
+- Requires **multipart/form-data** from the client.
+- Validate files and metadata together before persisting.
+
+## Up next
+
+When you are ready, continue with **Login forms** (use **Next** below). Each lesson builds on the previous one in this track.

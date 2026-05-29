@@ -1,0 +1,43 @@
+---
+title: "Relationships"
+description: "SQLAlchemy relationships for FastAPI — foreign keys, back_populates, and eager loading."
+quickAnswer: "Model relationships with `relationship()` and `ForeignKey` express one-to-many and many-to-many links—use `joinedload` to avoid N+1 query problems."
+order: 136
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Users have posts; orders have line items. Relationships let you navigate `user.posts` in Python while the database enforces referential integrity. Without eager loading, listing 100 users might trigger 101 queries.
+
+## One-to-many
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`class User(Base):
+    __tablename__ = "users"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    posts: Mapped[list["Post"]] = relationship(back_populates="owner")
+
+class Post(Base):
+    __tablename__ = "posts"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    owner_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    owner: Mapped["User"] = relationship(back_populates="posts")`} />
+
+### Eager load
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from sqlalchemy.orm import joinedload
+users = db.query(User).options(joinedload(User.posts)).all()`} />
+
+## Recap
+
+- `ForeignKey` on the many side
+- `relationship` + `back_populates` on both models
+- Use `joinedload`/`selectinload` for performance
+
+## Up next
+
+When you are ready, continue with **Migrations** (use **Next** below). Each lesson builds on the previous one in this track.

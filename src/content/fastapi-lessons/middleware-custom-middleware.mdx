@@ -1,0 +1,43 @@
+---
+title: "Custom middleware"
+description: "Write custom HTTP middleware in FastAPI."
+quickAnswer: "Add @app.middleware(\"http\") async functions or class-based BaseHTTPMiddleware for custom request/response logic."
+order: 111
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Custom middleware implements request IDs, maintenance mode, or adding security headers globally—one implementation, zero route changes.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import uuid
+from fastapi import FastAPI, Request
+
+app = FastAPI()
+
+@app.middleware("http")
+async def request_id_middleware(request: Request, call_next):
+    request.state.request_id = str(uuid.uuid4())
+    response = await call_next(request)
+    response.headers["X-Request-Id"] = request.state.request_id
+    return response`} />
+
+Use `request.state` to pass data to routes on the same request. Avoid heavy computation; prefer dependencies for database access. `BaseHTTPMiddleware` is an alternative class style—be aware of subtle context issues with some async patterns.
+
+## In practice
+
+Store `request_id` on `request.state` for logs downstream. Avoid ORM in middleware—use dependencies. For streaming responses, prefer pure ASGI middleware over `BaseHTTPMiddleware` quirks. Unit-test middleware by calling it with a mock app and inspecting response headers. Keep middleware free of database transactions.
+
+## Recap
+
+- `@app.middleware("http")` is the common custom middleware pattern.
+- Store per-request data on `request.state`.
+- Keep middleware fast; use dependencies for DB and complex auth.
+
+## Up next
+
+When you are ready, continue with **Logging middleware** (use **Next** below). Each lesson builds on the previous one in this track.

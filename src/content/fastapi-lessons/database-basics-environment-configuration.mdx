@@ -1,0 +1,43 @@
+---
+title: "Environment configuration"
+description: "Database environment configuration for FastAPI — .env files, secrets, and different URLs per environment."
+quickAnswer: "Store DATABASE_URL in environment variables or a `.env` file; load settings with Pydantic BaseSettings and never commit secrets to git."
+order: 130
+sectionId: "database-basics"
+sectionTitle: "Database Basics"
+sectionOrder: 23
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Your laptop uses SQLite; staging uses a small Postgres; production uses a managed cluster with SSL. Hard-coding URLs breaks deploys and leaks passwords in git history. Environment-based config is standard.
+
+## Settings class
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    database_url: str = "sqlite:///./dev.db"
+
+    class Config:
+        env_file = ".env"
+
+settings = Settings()
+engine = create_engine(settings.database_url)`} />
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`# .env (do not commit)
+DATABASE_URL=postgresql+psycopg2://user:pass@db:5432/app`} />
+
+<Callout variant="warning">
+
+Add `.env` to `.gitignore`. In production, inject variables via your host (Docker, Kubernetes, Railway, etc.).
+
+</Callout>
+
+## Recap
+
+- One `DATABASE_URL` per environment
+- Use Pydantic settings to load and validate config
+- Never commit real credentials

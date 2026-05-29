@@ -1,0 +1,50 @@
+---
+title: "What dependencies are"
+description: "Understand FastAPI dependency injection and how it keeps routes thin and testable."
+quickAnswer: "Dependencies are reusable callables FastAPI runs before your route to provide shared values like DB sessions, settings, or the current user."
+order: 58
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Dependency Injection** — Dependencies share database sessions, auth checks, and settings across routes without copy-pasting the same code in every handler.
+
+</Callout>
+
+## Why this matters
+
+Without dependencies, every route duplicates database setup, auth checks, and pagination logic. Injection centralizes that code and makes unit tests swap fakes via overrides.
+
+## How it works
+
+A **dependency** is any callable FastAPI resolves via `Depends`. It can depend on other dependencies, forming a graph resolved per request.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends, FastAPI
+
+def common_parameters(q: str | None = None, skip: int = 0, limit: int = 10):
+    return {"q": q, "skip": skip, "limit": limit}
+
+app = FastAPI()
+
+@app.get("/items")
+def list_items(commons: dict = Depends(common_parameters)):
+    return commons`} />
+
+Dependencies run **before** the path operation. Use them for auth, DB sessions, rate limits, and configuration—not for heavy unrelated business logic.
+
+Dependencies can also decorate router-level `dependencies=[Depends(...)]` to protect entire modules without repeating parameters.
+
+## Recap
+
+- Dependencies are **shared callables** injected with **Depends**.
+- They can **chain**—dependencies may depend on dependencies.
+- Keep path functions focused on **HTTP-specific orchestration**.
+
+## Up next
+
+When you are ready, continue with **`Depends()`** (use **Next** below). Each lesson builds on the previous one in this track.

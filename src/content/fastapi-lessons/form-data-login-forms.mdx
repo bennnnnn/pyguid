@@ -1,0 +1,37 @@
+---
+title: "Login forms"
+description: "Build login forms and token endpoints with FastAPI's OAuth2 password form."
+quickAnswer: "OAuth2PasswordRequestForm provides username and password fields for token login endpoints used by Swagger and form clients."
+order: 103
+sectionId: "form-data"
+sectionTitle: "Form Data"
+sectionOrder: 17
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Password login from forms and Swagger’s **Authorize** button expects `username` and `password` form fields—not JSON. `OAuth2PasswordRequestForm` standardizes that shape for token-issuing routes.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
+
+@app.post("/token")
+def login(form: OAuth2PasswordRequestForm = Depends()):
+    user = authenticate(form.username, form.password)
+    if not user:
+        raise HTTPException(401, "Invalid credentials")
+    return {"access_token": create_token(user), "token_type": "bearer"}`} />
+
+HTML login pages POST to `/token` with the same field names. Add CSRF protection for cookie-based sessions when using browser forms; pure token APIs for SPAs often use JSON instead—both patterns are valid with different security models.
+
+## In practice
+
+`OAuth2PasswordRequestForm` expects `username` and `password` keys—match them in HTML inputs. SPAs may JSON-post credentials instead; both are valid with different CSRF implications for cookie sessions.
+
+## Recap
+
+- `OAuth2PasswordRequestForm` expects **username** and **password** form fields.
+- Pair with your JWT or session issuance logic after authentication.
+- Document the token URL in OpenAPI security schemes.

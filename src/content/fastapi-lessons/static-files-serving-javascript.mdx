@@ -1,0 +1,53 @@
+---
+title: "Serving JavaScript"
+description: "How to serve JavaScript with FastAPI StaticFiles — client scripts, caching, and safe file placement."
+quickAnswer: "Serve `.js` files from a mounted static directory; use `/static/...` script tags and avoid executing untrusted uploads as scripts."
+order: 120
+sectionId: "static-files"
+sectionTitle: "Static Files"
+sectionOrder: 21
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Front-end code needs JavaScript for interactivity—toggles, fetch calls to your API, form validation. FastAPI can host those files alongside your routes so you do not need Nginx only for a `app.js` file.
+
+## Serve JS from static
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`app.mount("/static", StaticFiles(directory="static"), name="static")`} />
+
+Save `static/app.js` and load it at the bottom of HTML:
+
+```html
+<script src="/static/app.js" defer></script>
+```
+
+The `defer` attribute downloads the script in parallel and runs it after HTML parses—good default for page scripts.
+
+### Calling your API
+
+```javascript
+async function loadUsers() &#123;
+  const res = await fetch("/users");
+  const data = await res.json();
+  console.log(data);
+&#125;
+```
+
+<Callout variant="warning">
+
+Never let users upload `.js` into your static folder. User uploads belong in a separate storage path with strict content types.
+
+</Callout>
+
+## Recap
+
+- Put client JS under `static/`
+- Load with `<script src="/static/...">`
+- Use `fetch` to talk to FastAPI JSON endpoints
+
+## Up next
+
+When you are ready, continue with **Serving images** (use **Next** below). Each lesson builds on the previous one in this track.

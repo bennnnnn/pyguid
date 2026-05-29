@@ -1,0 +1,44 @@
+---
+title: "Injecting authentication"
+description: "Inject authenticated user objects into FastAPI routes using security dependencies."
+quickAnswer: "Create a get_current_user dependency that validates JWT or session tokens and inject it into protected routes with Depends."
+order: 63
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Auth must run before business logic on protected routes. A single `get_current_user` dependency enforces authentication consistently and keeps handlers free of token parsing boilerplate.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import Depends, FastAPI, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    user = decode_and_lookup(token)  # your auth logic
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    return user
+
+app = FastAPI()
+
+@app.get("/me")
+def read_me(current_user=Depends(get_current_user)):
+    return {"username": current_user.username}`} />
+
+Layer **roles** with another dependency that depends on `get_current_user`. FastAPI's security utilities integrate with OpenAPI "Authorize" in `/docs`.
+
+Combine with `Security` scopes when integrating OAuth2 scopes—FastAPI documents required scopes per route.
+
+## Recap
+
+- **OAuth2PasswordBearer** + **get_current_user** pattern.
+- Raise **401** when credentials fail.
+- Stack dependencies for **role-based** access.

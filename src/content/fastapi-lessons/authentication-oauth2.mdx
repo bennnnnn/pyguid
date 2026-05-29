@@ -1,0 +1,38 @@
+---
+title: "OAuth2"
+description: "OAuth2 in FastAPI — password flow, bearer tokens, and third-party login overview."
+quickAnswer: "FastAPI's `OAuth2PasswordBearer` extracts tokens from the Authorization header; OAuth2 providers handle third-party login flows."
+order: 153
+sectionId: "authentication"
+sectionTitle: "Authentication"
+sectionOrder: 28
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+OAuth2 is the industry pattern for APIs and delegated login. FastAPI ships helpers that integrate with OpenAPI security schemes so `/docs` shows the lock icon and Try it out sends tokens correctly.
+
+## Password bearer skeleton
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+@app.get("/users/me")
+def read_users_me(token: str = Depends(oauth2_scheme)):
+    user = decode_token(token)
+    return user`} />
+
+Social login (Google, GitHub) uses authorization redirects—libraries like Authlib handle provider specifics while your API still issues its own session or JWT.
+
+## Recap
+
+- `OAuth2PasswordBearer` for header tokens
+- `tokenUrl` points to your login/token route
+- Third-party login builds on OAuth2 redirects
+
+## Up next
+
+When you are ready, continue with **Password hashing** (use **Next** below). Each lesson builds on the previous one in this track.

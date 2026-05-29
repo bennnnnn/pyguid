@@ -1,0 +1,49 @@
+---
+title: "Validation"
+description: "Understand automatic request body validation and error responses in FastAPI."
+quickAnswer: "Pydantic validates request bodies against your model: required fields, types, lengths, and custom validators before the route runs."
+order: 35
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Invalid data should fail at the boundary, not deep in SQL or business rules. FastAPI plus Pydantic centralize validation so every endpoint shares the same error format.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel, Field, field_validator
+from fastapi import FastAPI
+
+class Product(BaseModel):
+    sku: str = Field(pattern=r"^[A-Z]{3}-d{4}$")
+    price: float = Field(gt=0)
+
+    @field_validator("sku")
+    @classmethod
+    def uppercase_sku(cls, v: str) -> str:
+        return v.upper()
+
+app = FastAPI()
+
+@app.post("/products")
+def create_product(product: Product):
+    return product`} />
+
+Failures return **422** with `loc`, `msg`, and `type` per field—ideal for frontends to highlight form errors. Validation runs **before** your function body executes.
+
+Return business-rule failures with `HTTPException(400)` when input is syntactically valid but not allowed (duplicate email), reserving 422 for schema violations.
+
+## Recap
+
+- **Pydantic** enforces types and constraints on bodies.
+- Use **Field** and **validators** for business rules.
+- Clients receive structured **422** error details.
+
+## Up next
+
+When you are ready, continue with **Nested data** (use **Next** below). Each lesson builds on the previous one in this track.

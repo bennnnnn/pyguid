@@ -1,0 +1,50 @@
+---
+title: "Injecting database sessions"
+description: "Provide SQLAlchemy or similar database sessions per request using FastAPI dependencies."
+quickAnswer: "Yield a database session in a dependency and close it in a finally block so each request gets one session without leaks."
+order: 62
+sectionId: "dependency-injection"
+sectionTitle: "Dependency Injection"
+sectionOrder: 10
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Sharing one global session across requests is unsafe. Per-request sessions scope transactions, prevent connection leaks, and make testing straightforward with in-memory databases.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from collections.abc import Generator
+from fastapi import Depends, FastAPI
+
+# Illustrative — wire to your SessionLocal
+def get_db() -> Generator:
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+app = FastAPI()
+
+@app.get("/users/{user_id}")
+def read_user(user_id: int, db=Depends(get_db)):
+    return db.query(User).filter(User.id == user_id).first()`} />
+
+Use `yield` so cleanup runs after the response. In async SQLAlchemy, use async sessions and `async def get_db()`. Do not commit inside the dependency unless that is your team's pattern—many routes commit explicitly.
+
+For read-only endpoints, consider `readonly` session configuration if your ORM supports it to reduce lock contention.
+
+In tests, override get_db to use a transaction rolled back after each test for fast isolation without dropping tables.
+
+## Recap
+
+- **yield** session in dependency; **close** in `finally`.
+- One **session per request** via Depends.
+- Match **sync/async** style to your ORM setup.
+
+## Up next
+
+When you are ready, continue with **Injecting authentication** (use **Next** below). Each lesson builds on the previous one in this track.

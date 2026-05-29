@@ -1,0 +1,46 @@
+---
+title: "Installing Uvicorn"
+description: "Install the Uvicorn ASGI server and learn the basic command to serve a FastAPI application."
+quickAnswer: "Install Uvicorn with pip install uvicorn and run your app via uvicorn main:app --reload for local development."
+order: 10
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+FastAPI defines the application object; something must listen on a port and speak HTTP. Uvicorn is the standard ASGI server for local dev and many production deployments.
+
+## How it works
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip install uvicorn`} />
+
+If your app lives in `main.py` as `app = FastAPI()`:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn main:app --host 0.0.0.0 --port 8000`} />
+
+- `main` = Python module name (without `.py`)
+- `app` = FastAPI instance variable
+- `--host 0.0.0.0` exposes to LAN containers
+- `--reload` watches files during development (never use in production)
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# main.py
+from fastapi import FastAPI
+app = FastAPI()`} />
+
+Production often uses **Gunicorn** with Uvicorn workers for multiple processes.
+
+If `uvicorn: command not found` appears, the venv is not activated or Scripts is not on PATH on Windows. Install `uvicorn[standard]` when you need WebSocket and HTTP/2 extras.
+
+## Recap
+
+- **Uvicorn** is the ASGI server that runs `app`.
+- Command pattern: `uvicorn module:app`.
+- Use `--reload` only in development.
+
+## Up next
+
+When you are ready, continue with **Project structure setup** (use **Next** below). Each lesson builds on the previous one in this track.

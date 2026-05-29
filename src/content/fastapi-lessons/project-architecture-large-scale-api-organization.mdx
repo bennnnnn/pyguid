@@ -1,0 +1,34 @@
+---
+title: "Large-scale API organization"
+description: "Organize large FastAPI codebases—bounded contexts, versioning, layer rules, and platform libraries."
+quickAnswer: "At scale, split by bounded context, use API versioning, shared platform libs, and strict layer rules—routers never import ORM models directly."
+order: 202
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Teams of ten-plus engineers on one API need **conventions**, not just folders. Large-scale organization defines who owns which module, how versions ship, and which layers may call which—preventing spaghetti imports across domains.
+
+### Principles
+
+- **Bounded contexts** — billing does not query users tables directly; call a service or internal API.
+- **Versioned public surface** — `/api/v1` frozen; experimental work in v2.
+- **Layer rules** — routers → services → repositories → models; no skipping.
+- **Platform package** — shared auth, logging, and metrics in one internal library.
+
+Document architecture in `ARCHITECTURE.md`. Enforce with linters (import boundaries) and code review. Split into deployable services only when scaling or team ownership demands it—not prematurely.
+
+### In practice
+
+Run architecture reviews when a new team joins or a module exceeds five engineers touching it weekly. Agree on import rules before the repo becomes a ball of mud—retrofitting boundaries costs more than defining them early.
+
+## Recap
+
+- Contexts, versions, and layers beat one giant package.
+- Enforce dependencies with tooling and review.
+- Extract microservices when ownership or scale requires it.

@@ -1,0 +1,50 @@
+---
+title: "Notifications"
+description: "Deliver push, SMS, and in-app notifications from FastAPI without slowing API responses—patterns with BackgroundTasks."
+quickAnswer: "Fire push, SMS, or in-app notifications from BackgroundTasks after the main action succeeds so users get instant API responses."
+order: 174
+sectionId: "background-tasks"
+sectionTitle: "Background Tasks"
+sectionOrder: 31
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Notifications—push tokens, webhooks to Slack, SMS—are side effects. The client usually only needs confirmation that the action happened (comment saved, order placed). Delivering alerts in the background matches user expectations for snappy APIs.
+
+### Notify after the main work
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import BackgroundTasks, FastAPI
+
+app = FastAPI()
+
+def notify_subscribers(post_id: int, author: str):
+    # call FCM, APNs, or a webhook
+    print(f"New post {post_id} by {author}")
+
+@app.post("/posts/{post_id}")
+def publish_post(
+    post_id: int,
+    author: str,
+    background_tasks: BackgroundTasks,
+):
+    background_tasks.add_task(notify_subscribers, post_id, author)
+    return {"post_id": post_id, "published": True}`} />
+
+Keep notification logic in a dedicated function or service module. The route stays thin: validate input, persist data, schedule notify, return JSON.
+
+### Batching and failures
+
+For many recipients, the background function can batch API calls or publish one message to a queue that workers fan out. Log failures inside the task; the HTTP client will not see them, so monitoring matters.
+
+## Recap
+
+- Treat notifications as post-response side effects.
+- One `add_task` per logical event is enough to start.
+- Scale with a message broker when recipient counts grow.
+
+## Up next
+
+When you are ready, continue with **Scheduled tasks basics** (use **Next** below). Each lesson builds on the previous one in this track.

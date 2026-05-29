@@ -134,7 +134,9 @@
 .ai-term-group-card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.25rem;
+  min-height: 4.25rem;
   padding: 1rem 1.125rem;
   border: 1px solid var(--color-border);
   border-radius: 0.75rem;
@@ -557,4 +559,19 @@
   color: var(--color-text-secondary);
   background: var(--color-brand-light);
   vertical-align: baseline;
+}
+
+/* Sidebar — nested topics under Agents */
+.ai-term-sidebar-nested {
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+}
+
+.ai-term-card-nested .ai-term-group-card {
+  border-style: dashed;
+  background: var(--color-surface-alt);
+}
+
+.ai-term-card-nested .ai-term-group-card-intro {
+  font-size: 0.8125rem;
 }

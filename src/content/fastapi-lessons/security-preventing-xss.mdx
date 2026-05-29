@@ -1,0 +1,34 @@
+---
+title: "Preventing XSS"
+description: "Prevent XSS in FastAPI apps — Jinja2 autoescape, CSP, and separating API JSON from HTML rendering."
+quickAnswer: "Escape user content in HTML templates, set Content-Security-Policy headers, and return JSON APIs that front-ends render safely."
+order: 169
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Cross-site scripting runs attacker JavaScript in victims' browsers—stealing cookies or performing actions as the user. Any user-generated HTML or script must be treated as hostile.
+
+## Defenses
+
+- Jinja2 auto-escapes `&#123;&#123; variable &#125;&#125;` in HTML
+- Avoid `| safe` unless content is fully trusted
+- Content-Security-Policy limits inline scripts
+- For SPAs, escape when inserting API data into DOM
+
+JSON responses alone do not cause XSS—browsers do not execute JSON. Risk appears when JavaScript writes API data into `innerHTML`.
+
+## Recap
+
+- Escape output in HTML templates
+- Use CSP headers
+- Never trust user input in HTML
+
+## Up next
+
+When you are ready, continue with **Preventing CSRF** (use **Next** below). Each lesson builds on the previous one in this track.

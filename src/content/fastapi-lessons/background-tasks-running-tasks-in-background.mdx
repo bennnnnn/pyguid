@@ -1,0 +1,54 @@
+---
+title: "Running tasks in background"
+description: "Run slow work after responding with FastAPI BackgroundTasks—email, logging, and cleanup without blocking HTTP clients."
+quickAnswer: "Use FastAPI's BackgroundTasks to run work after the response is sent—ideal for emails, logging, or cleanup without blocking the client."
+order: 172
+sectionId: "background-tasks"
+sectionTitle: "Background Tasks"
+sectionOrder: 31
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Background Tasks** — Return a response immediately while email, notifications, or cleanup run in the background—without blocking the client.
+
+</Callout>
+
+## Why this matters
+
+Clients should not wait for work that does not affect the response body. Sending a welcome email or writing an audit log can take seconds; if you do that inside the route handler, the HTTP response waits too. **Background tasks** let FastAPI finish the response first, then run your function.
+
+### Add a background task
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import BackgroundTasks, FastAPI
+
+app = FastAPI()
+
+def write_log(message: str):
+    with open("log.txt", "a") as f:
+        f.write(message + "\\n")
+
+@app.post("/users/")
+def create_user(name: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(write_log, f"created {name}")
+    return {"name": name, "status": "created"}`} />
+
+Inject `BackgroundTasks`, call `add_task` with a function and its arguments, then return immediately. FastAPI schedules the task after the response is delivered.
+
+<Callout variant="info">
+
+Background tasks run in the same process as the request. For heavy or long-running jobs, use a task queue (Celery, RQ) instead.
+
+</Callout>
+
+## Recap
+
+- Inject `BackgroundTasks` into the route.
+- Call `background_tasks.add_task(fn, *args)` before returning.
+- Use for quick follow-up work—not for CPU-heavy or multi-minute jobs.
+
+## Up next
+
+When you are ready, continue with **Email sending** (use **Next** below). Each lesson builds on the previous one in this track.

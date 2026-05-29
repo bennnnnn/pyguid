@@ -1,0 +1,44 @@
+---
+title: "Search filters"
+description: "Search and filter FastAPI list endpoints—optional query params and dynamic SQLAlchemy WHERE clauses."
+quickAnswer: "Expose optional query filters (q, status, min_price)—build SQLAlchemy queries dynamically only for provided params."
+order: 210
+sectionId: "pagination-filtering"
+sectionTitle: "Pagination & Filtering"
+sectionOrder: 39
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+List endpoints rarely return everything. **Search filters** narrow results: text search on title, status equals `active`, price between min and max. FastAPI turns query strings into typed parameters; your service builds the query.
+
+### Optional filters
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/products")
+def search_products(
+    q: str | None = None,
+    category: str | None = None,
+    min_price: float | None = None,
+):
+    stmt = select(Product)
+    if q:
+        stmt = stmt.where(Product.name.ilike(f"%{q}%"))
+    if category:
+        stmt = stmt.where(Product.category == category)
+    if min_price is not None:
+        stmt = stmt.where(Product.price >= min_price)
+    return db.execute(stmt).scalars().all()`} />
+
+Validate enums (`status`) against allowed values. For full-text search at scale, use database FTS or Elasticsearch instead of leading `%` wildcards on huge tables.
+
+### In practice
+
+Cap string search length and strip whitespace before querying. Log slow filter combinations in development so you can add indexes before production traffic hits them.
+
+## Recap
+
+- Optional query params become WHERE clauses.
+- Validate enums and numeric ranges.
+- Pair filters with pagination and sort.

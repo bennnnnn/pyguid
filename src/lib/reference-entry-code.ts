@@ -15,9 +15,12 @@ const SETUPS: Record<string, string[]> = {
   variables: ["score = 10"],
   input: [],
   "data-types": ["value = 42"],
-  numbers: ["a, b = 10, 3"],
+  "math-operators": ["a, b = 10, 3"],
+  "assignment-operators": ["a = 10"],
   strings: ['s = "hello world"', 'parts = ["a", "b", "c"]', 'name = "Ada"'],
-  booleans: ["age = 20", "has_ticket = True", "value = None"],
+  "comparison-operators": ["age = 20", "value = None"],
+  "logical-operators": ["age = 20", "has_ticket = True", "is_member = False"],
+  conditional: ["age = 20"],
   loops: ["nums = [1, 2, 3]", "n = 3"],
   lists: ["nums = [1, 2, 3]", "other = [4, 5, 6]"],
   tuples: ["point = (10, 20)", "one = (42,)"],
@@ -104,18 +107,33 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     "str()": "text = str(99)\nprint(text, type(text))",
   },
   "data-types": {
-    "int · float · str · bool":
-      'print(type(42))\nprint(type(3.14))\nprint(type("hi"))\nprint(type(True))',
+    int: "x = 42\nprint(x, type(x))",
+    float: "x = 3.14\nprint(x, type(x))",
+    str: 'x = "hello"\nprint(x, type(x))',
+    bool: "x = True\nprint(x, type(x))",
+    list: "items = [1, 2, 3]\nprint(items, type(items))",
+    tuple: "point = (10, 20)\nprint(point, type(point))",
+    dict: 'user = {"name": "Ada"}\nprint(user, type(user))',
+    set: "tags = {1, 2, 3}\nprint(tags, type(tags))",
+    None: "result = None\nprint(result, type(result))",
     "type()": "value = 42\nprint(type(value))",
     "isinstance()": "value = 42\nprint(isinstance(value, int))",
-    None: "result = None\nprint(result is None)",
   },
-  numbers: {
-    "+  -  *  /": "a, b = 10, 3\nprint(a + b, a - b, a * b, a / b)",
+  "math-operators": {
+    "+": "a, b = 10, 3\nprint(a + b)",
+    "-": "a, b = 10, 3\nprint(a - b)",
+    "*": "a, b = 10, 3\nprint(a * b)",
+    "/": "a, b = 10, 3\nprint(a / b)",
     "//": "a, b = 10, 3\nprint(a // b)",
     "%": "a, b = 10, 3\nprint(a % b)",
-    "**": "print(2 ** 8)",
-    "+=  -= *=": "a = 10\na += 1\nprint(a)",
+    "**": "a, b = 2, 8\nprint(a ** 3)",
+  },
+  "assignment-operators": {
+    "+=": "a = 10\na += 1\nprint(a)",
+    "-=": "a = 10\na -= 1\nprint(a)",
+    "*=": "a = 10\na *= 2\nprint(a)",
+    "/=": "a = 10\na /= 2\nprint(a)",
+    "+=  -=  *=": "a = 10\na += 1\nprint(a)",
   },
   strings: {
     "len()": 's = "hello world"\nprint(len(s))',
@@ -133,16 +151,35 @@ const EXAMPLES: Record<string, Record<string, string>> = {
     in: 's = "hello"\nprint("ell" in s)',
     'f"..."': 'name = "Ada"\nprint(f"Hi {name}")',
   },
-  booleans: {
-    "True · False": "age = 20\nprint(age >= 18)",
-    "==  !=  <  >  <=  >=": "age = 20\nprint(age >= 18, age != 0)",
-    "and · or · not": "age = 20\nhas_ticket = True\nprint(age >= 18 and has_ticket)",
-    "if cond:": 'age = 20\nif age >= 18:\n    print("adult")',
-    "elif cond:":
-      'age = 15\nif age >= 18:\n    print("adult")\nelif age >= 13:\n    print("teen")',
-    "else:": 'age = 10\nif age >= 18:\n    print("adult")\nelse:\n    print("child")',
+  "comparison-operators": {
+    "==": "age = 20\nprint(age == 20)",
+    "!=": "age = 20\nprint(age != 0)",
+    "<": "age = 20\nprint(age < 30)",
+    ">": "age = 20\nprint(age > 10)",
+    "<=": "age = 20\nprint(age <= 20)",
+    ">=": "age = 20\nprint(age >= 18)",
     in: 'print("a" in "abc")',
     is: "value = None\nprint(value is None)",
+  },
+  "logical-operators": {
+    and: "age = 20\nhas_ticket = True\nprint(age >= 18 and has_ticket)",
+    or: "has_ticket = True\nis_member = False\nprint(has_ticket or is_member)",
+    not: "is_member = False\nprint(not is_member)",
+  },
+  conditional: {
+    "if cond:": 'age = 20\nif age >= 18:\n    print("adult")',
+    "else:": 'age = 10\nif age >= 18:\n    print("adult")\nelse:\n    print("child")',
+    "elif cond:":
+      'age = 15\nif age >= 18:\n    print("adult")\nelif age >= 13:\n    print("teen")',
+    match: `command = "go"
+
+match command:
+    case "go":
+        print("going")
+    case "stop":
+        print("stopped")
+    case _:
+        print("unknown")`,
   },
   loops: {
     "while cond:": "n = 3\nwhile n > 0:\n    print(n)\n    n -= 1",
@@ -375,6 +412,7 @@ const NON_RUNNABLE = new Set([
   "ruff check",
   "black",
   "traceback",
+  "match",
 ]);
 
 function fallbackCode(sheet: ReferenceSheet, entry: ReferenceEntry): string {

@@ -1,0 +1,46 @@
+---
+title: "Custom validators"
+description: "Write custom Pydantic validators for passwords, date ranges, and business rules."
+quickAnswer: "Use @field_validator and @model_validator on Pydantic models for cross-field rules and custom checks."
+order: 74
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Not every rule fits `min_length` or `pattern`. Passwords must match confirmation; end dates must be after start dates; coupon codes must exist in your database. **Pydantic validators** run during request parsing and produce the same 422 flow as built-in checks.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, field_validator, model_validator
+
+class Booking(BaseModel):
+    start: str
+    end: str
+
+    @model_validator(mode="after")
+    def end_after_start(self):
+        if self.end <= self.start:
+            raise ValueError("end must be after start")
+        return self`} />
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`class PasswordChange(BaseModel):
+    password: str
+    confirm: str
+
+    @field_validator("confirm")
+    @classmethod
+    def passwords_match(cls, v, info):
+        if "password" in info.data and v != info.data["password"]:
+            raise ValueError("passwords do not match")
+        return v`} />
+
+Keep validators **fast**—avoid heavy DB calls in hot paths; use dependencies for that. Raise `ValueError` with clear messages; Pydantic wraps them into validation errors.
+
+## Recap
+
+- `@field_validator` for single fields; `@model_validator` for cross-field logic.
+- Validators run automatically when FastAPI parses the request body.
+- Prefer dependencies for I/O-heavy checks; validators for pure logic.

@@ -1,0 +1,46 @@
+---
+title: "PATCH"
+description: "Update only some fields of a resource using PATCH in FastAPI."
+quickAnswer: "PATCH applies partial updates; use optional fields in Pydantic models or dedicated Patch schemas with @app.patch."
+order: 23
+sectionId: "http-methods"
+sectionTitle: "HTTP Methods"
+sectionOrder: 4
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Mobile apps and forms often change one or two fields. PATCH avoids forcing clients to download and resend entire objects, reducing bandwidth and merge conflicts.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Optional
+from pydantic import BaseModel
+from fastapi import FastAPI
+
+class UserPatch(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+
+app = FastAPI()
+
+@app.patch("/users/{user_id}")
+def patch_user(user_id: int, patch: UserPatch):
+    data = patch.model_dump(exclude_unset=True)
+    return {"user_id": user_id, "updated": data}`} />
+
+`exclude_unset=True` returns only fields the client actually sent—critical for partial updates. Document which fields are patchable in OpenAPI descriptions.
+
+Consider separate `UserPatch` models per role if some fields are admin-only—do not reuse one patch schema for every privilege level.
+
+## Recap
+
+- **@app.patch** for **partial** updates.
+- Use **Optional** fields and `exclude_unset`.
+- Do not use PATCH when you intend full replacement—use **PUT**.
+
+## Up next
+
+When you are ready, continue with **DELETE** (use **Next** below). Each lesson builds on the previous one in this track.

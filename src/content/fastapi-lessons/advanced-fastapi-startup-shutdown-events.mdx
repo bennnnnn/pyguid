@@ -1,0 +1,43 @@
+---
+title: "Startup/shutdown events"
+description: "FastAPI startup and shutdown events: on_event vs lifespan, shared state, and resource cleanup."
+quickAnswer: "Startup and shutdown events (@app.on_event or lifespan) initialize and release shared resources; prefer lifespan in new FastAPI apps for clearer async setup and teardown."
+order: 249
+sectionId: "advanced-fastapi"
+sectionTitle: "Advanced FastAPI"
+sectionOrder: 50
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Without explicit **startup**, you might open a new database connection per request. Without **shutdown**, deploys leak connections and file handles.
+
+## Legacy on_event (still seen in older code)
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.on_event("startup")
+async def startup():
+    app.state.cache = await redis.from_url(settings.redis_url)
+
+@app.on_event("shutdown")
+async def shutdown():
+    await app.state.cache.aclose()`} />
+
+FastAPI documents **lifespan** as the replacement—one function owns both sides.
+
+## Multiple workers caution
+
+With Gunicorn **four workers**, startup runs **four times**—once per process. Do not run one-off migrations in startup unless guarded; use a deploy job instead.
+
+## Testing
+
+Use `lifespan` context in tests (`httpx.ASGITransport` with `lifespan="on"`) so fixtures see the same `app.state` as production.
+
+## Recap
+
+Startup opens shared clients; shutdown closes them. Migrate from `on_event` to lifespan, and remember each worker process has its own startup cycle.
+
+## Up next
+
+When you are ready, continue with **Custom response classes** (use **Next** below). Each lesson builds on the previous one in this track.

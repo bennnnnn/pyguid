@@ -14,6 +14,7 @@
     "check:format": "prettier --check .",
     "check:routes": "node scripts/verify-no-practice-route.mjs",
     "check": "npm run check:routes && npm run check:format && npm run build",
+    "generate:fastapi-lessons": "node scripts/generate-fastapi-lessons.mjs",
     "sync:curriculum": "node scripts/sync-curriculum.mjs",
     "curriculum:build-v59": "node scripts/build-curriculum-v59.mjs && npm run sync:curriculum",
     "curriculum:generate": "node scripts/generate-curriculum-v11.mjs > docs/curriculum-order.json && npm run sync:curriculum",

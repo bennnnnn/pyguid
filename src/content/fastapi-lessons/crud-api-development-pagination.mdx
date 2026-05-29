@@ -1,0 +1,39 @@
+---
+title: "Pagination"
+description: "Pagination in FastAPI — limit/offset query params, response metadata, and performance basics."
+quickAnswer: "Paginate list endpoints with `limit` and `offset` query parameters—or cursor-based pagination for large, live feeds."
+order: 149
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Returning ten thousand rows in one JSON response slows databases and browsers. Pagination caps payload size and gives clients a predictable way to walk large datasets.
+
+## Limit and offset
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/items")
+def list_items(
+    limit: int = Query(20, le=100),
+    offset: int = Query(0, ge=0),
+    db: Session = Depends(get_db),
+):
+    items = db.query(Item).offset(offset).limit(limit).all()
+    total = db.query(Item).count()
+    return {"items": items, "total": total, "limit": limit, "offset": offset}`} />
+
+Document defaults in OpenAPI. For huge tables, offset pagination gets slow—cursor pagination (where `id > last_seen`) scales better.
+
+## Recap
+
+- Use `limit` + `offset` query parameters
+- Cap `limit` with `le=100`
+- Return total count when clients need page numbers
+
+## Up next
+
+When you are ready, continue with **Filtering** (use **Next** below). Each lesson builds on the previous one in this track.

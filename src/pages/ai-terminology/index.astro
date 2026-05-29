@@ -4,8 +4,8 @@ import AiTermSearch from "../../components/ai-terminology/AiTermSearch.astro";
 import TutorialLayout from "../../layouts/TutorialLayout.astro";
 import {
   AI_TERMINOLOGY_META,
-  AI_TERMINOLOGY_SECTIONS,
   getAiTerminologyStats,
+  getPublishedAiTerminologySections,
 } from "../../lib/ai-terminology";
 import { aiTerminologySectionUrl } from "../../lib/ai-terminology/helpers";
 import { breadcrumbListJsonLd, itemListJsonLd } from "../../lib/seo-schema";
@@ -13,7 +13,9 @@ import { SITE, getSiteUrl } from "../../lib/site";
 import "../../styles/ai-terminology.css";
 
 const { title, subtitle, description } = AI_TERMINOLOGY_META;
+const sections = getPublishedAiTerminologySections();
 const { sectionCount, termCount } = getAiTerminologyStats();
+const firstSection = sections[0];
 const pageTitle = `${title} — ${SITE.name}`;
 const siteUrl = getSiteUrl(Astro.site);
 const pageUrl = new URL("/ai-terminology/", `${siteUrl}/`).href;
@@ -26,7 +28,7 @@ const jsonLd = [
   itemListJsonLd({
     pageUrl,
     name: title,
-    items: AI_TERMINOLOGY_SECTIONS.map((section) => ({
+    items: sections.map((section) => ({
       name: section.title,
       url: new URL(aiTerminologySectionUrl(section.id), `${siteUrl}/`).href,
     })),
@@ -40,38 +42,47 @@ const jsonLd = [
   jsonLd={jsonLd}
   sidebar="ai-terms"
 >
-  <article class="ai-term-main lesson-prose-wide">
-    <header class="ai-term-hero">
+  <div class="mx-auto max-w-5xl lesson-prose-wide">
+    <header class="tutorial-index-hero ai-term-hero rounded-xl border px-6 py-8 sm:px-8">
       <h1 class="ai-term-hero-title !mt-0">
         <span>{title}</span>
         <span class="ai-term-count ai-term-count-hero" title={`${termCount} terms`}>
           {termCount}
         </span>
       </h1>
-      <p class="lead">
+      <p class="m-0 max-w-2xl text-base leading-relaxed text-text-secondary">
         {subtitle}
-        <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} groups</span>
+        <span class="ai-term-hero-meta">{termCount} terms · {sectionCount} topics</span>
       </p>
+
+      {
+        firstSection && (
+          <a href={aiTerminologySectionUrl(firstSection.id)} class="btn-primary mt-6">
+            Start with {firstSection.title}
+          </a>
+        )
+      }
     </header>
 
-    <AiTermSearch />
+    <div class="mt-8">
+      <AiTermSearch />
+    </div>
 
-    <section class="ai-term-index-grid" aria-label="Topic groups">
+    <nav class="ai-term-index-grid mt-10" aria-label="AI terminology topics">
       <ul class="ai-term-group-cards">
         {
-          AI_TERMINOLOGY_SECTIONS.map((section) => (
+          sections.map((section) => (
             <li data-ai-term-section-card={section.id}>
               <a href={aiTerminologySectionUrl(section.id)} class="ai-term-group-card">
                 <AiTermGroupTitle title={section.title} count={section.terms.length} />
-                {section.intro && <p class="ai-term-group-card-intro">{section.intro}</p>}
               </a>
             </li>
           ))
         }
       </ul>
       <p class="ai-term-search-empty" data-ai-term-search-empty hidden>
-        No groups match your search. Try a different term or clear the search box.
+        No topics match your search. Try a different term or clear the search box.
       </p>
-    </section>
-  </article>
+    </nav>
+  </div>
 </TutorialLayout>

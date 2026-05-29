@@ -1,0 +1,39 @@
+---
+title: "SQL vs NoSQL"
+description: "SQL vs NoSQL for FastAPI backends — relational Postgres vs MongoDB-style document stores and trade-offs."
+quickAnswer: "SQL databases use tables and SQL for relational data; NoSQL stores documents, key-value, or graphs—pick based on query patterns, not hype."
+order: 128
+sectionId: "database-basics"
+sectionTitle: "Database Basics"
+sectionOrder: 23
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Choosing a database affects how you model users, orders, and logs. The wrong choice means painful migrations or awkward joins. Most FastAPI tutorials use SQL (PostgreSQL/SQLite) because ORMs like SQLAlchemy fit naturally.
+
+## SQL (relational)
+
+Tables with rows and columns, linked by foreign keys. Great when data is structured and you need transactions, reports, and JOIN queries. Examples: PostgreSQL, MySQL, SQLite.
+
+## NoSQL
+
+Document stores (MongoDB) fit flexible JSON-like records. Key-value (Redis) fits caches and sessions. Graph DBs fit social networks. Schema flexibility helps prototypes; constraints are often enforced in application code.
+
+<Callout variant="tip">
+
+Many production FastAPI apps use PostgreSQL for core data and Redis for caching—hybrid stacks are normal.
+
+</Callout>
+
+## Recap
+
+- SQL = tables, schemas, JOINs, strong consistency
+- NoSQL = flexible shapes; choose by access patterns
+- Default learning path: SQL + SQLAlchemy/SQLModel
+
+## Up next
+
+When you are ready, continue with **Connecting databases** (use **Next** below). Each lesson builds on the previous one in this track.

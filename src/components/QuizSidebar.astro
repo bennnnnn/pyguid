@@ -1,0 +1,59 @@
+---
+import { getPublishedQuizTopics, quizUrl } from "../lib/quiz-topics";
+
+const path = Astro.url.pathname.replace(/\/$/, "");
+const isHub = path === "/python/quiz";
+const topics = getPublishedQuizTopics();
+
+---
+
+<aside
+  id="tutorial-sidebar"
+  class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
+>
+  <div class="border-b border-border px-4 py-3">
+    <a
+      href="/python/quiz/"
+      class:list={[
+        "text-xs font-semibold uppercase tracking-wider no-underline",
+        isHub ? "text-text" : "text-text-muted hover:text-link",
+      ]}
+      aria-current={isHub ? "page" : undefined}
+    >
+      Python quizzes
+    </a>
+  </div>
+
+  <nav class="py-2" aria-label="Quiz topics">
+    <ul class="m-0 list-none p-0">
+      {
+        topics.map((topic) => {
+          const href = quizUrl(topic.slug);
+          const topicPath = href.replace(/\/$/, "");
+          const isActive = path === topicPath;
+
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  "lesson-link block py-2 pr-4 pl-4 text-sm font-medium",
+                  isActive && "is-active",
+                ]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {topic.title}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById("tutorial-sidebar");
+  const active = sidebar?.querySelector(".is-active");
+  active?.scrollIntoView({ block: "nearest", behavior: "instant" });
+</script>

@@ -1,0 +1,92 @@
+---
+import PythonExample from "../PythonExample.astro";
+import PagerNav from "../PagerNav.astro";
+import {
+  getAdjacentReferenceSheets,
+  referenceEntrySlug,
+  referenceSheetUrl,
+  type ReferenceSheet,
+} from "../../lib/reference-sheets";
+import { getReferenceEntryCode } from "../../lib/reference-entry-code";
+
+interface Props {
+  sheet: ReferenceSheet;
+}
+
+const { sheet } = Astro.props;
+const { prev, next } = getAdjacentReferenceSheets(sheet.id);
+---
+
+<article class="ref-sheet-page lesson-prose-wide lesson-prose max-w-3xl">
+  <PagerNav
+    prev={prev ? { href: referenceSheetUrl(prev.id), label: "Back" } : null}
+    next={next ? { href: referenceSheetUrl(next.id), label: "Next" } : null}
+    placement="top"
+    ariaLabel="Reference navigation"
+  />
+
+  <h1 class="!mt-0 !mb-6">{sheet.title}</h1>
+
+  <div class="ref-sheet-entries">
+    {
+      sheet.entries.map((entry, index) => {
+        const slug = referenceEntrySlug(sheet.id, index);
+        const page = { sheet, entry, slug, index };
+        const { code, runnable, filename } = getReferenceEntryCode(page);
+        const exampleLine = entry.example?.trim();
+        const prevSection = index > 0 ? sheet.entries[index - 1].section : undefined;
+        const showSection = entry.section && entry.section !== prevSection;
+
+        return (
+          <>
+            {
+              showSection && (
+                <h2 class="ref-sheet-section-title scroll-mt-24">{entry.section}</h2>
+              )
+            }
+            <section id={slug} class="ref-sheet-entry scroll-mt-24">
+            <div class="ref-entry-card">
+              <div class="ref-entry-header">
+                <span class="ref-entry-num" aria-hidden="true">{index + 1}</span>
+                <h2 class="ref-entry-card-title">
+                  <code class="ref-entry-syntax">{entry.syntax}</code>
+                </h2>
+              </div>
+              <p class="ref-entry-summary">{entry.summary}</p>
+              {
+                exampleLine && (
+                  <p class="ref-entry-example">
+                    <span class="ref-entry-example-label">Example</span>
+                    <code class="ref-entry-example-code">{exampleLine}</code>
+                  </p>
+                )
+              }
+            </div>
+            <div class="ref-entry-code-block">
+              <PythonExample code={code} filename={filename} runnable={runnable} />
+            </div>
+          </section>
+          </>
+        );
+      })
+    }
+  </div>
+
+  <PagerNav
+    prev={prev ? { href: referenceSheetUrl(prev.id), label: "Back" } : null}
+    next={next ? { href: referenceSheetUrl(next.id), label: "Next" } : null}
+    placement="bottom"
+    ariaLabel="Reference navigation"
+  />
+</article>
+
+<script is:inline>
+  function scrollToRefHash() {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ block: "start", behavior: "instant" });
+  }
+  scrollToRefHash();
+  document.addEventListener("astro:page-load", scrollToRefHash);
+</script>

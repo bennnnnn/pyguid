@@ -1,0 +1,34 @@
+---
+title: "Upgrading/downgrading schema"
+description: "Upgrade and downgrade database schema with Alembic — head, single step, and production caution."
+quickAnswer: "Apply schema changes with `alembic upgrade head` and revert with `alembic downgrade -1` or a specific revision id when downgrade functions are safe."
+order: 143
+sectionId: "alembic-migrations"
+sectionTitle: "Alembic Migrations"
+sectionOrder: 26
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Rollbacks save you when a deploy goes wrong—if `downgrade()` is written and tested. Upgrades move forward through the chain of revisions; downgrades walk backward one step at a time.
+
+## Commands
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`alembic upgrade head      # apply all pending
+alembic upgrade +1      # one step forward
+alembic downgrade -1    # one step back
+alembic downgrade base  # all the way down (destructive in prod)`} />
+
+In production, prefer forward-only fixes (a new migration) instead of downgrading data-bearing columns unless you have backups.
+
+## Recap
+
+- `upgrade head` is the usual deploy command
+- Test downgrades on staging with real-ish data
+- Forward-fix migrations are often safer than downgrade
+
+## Up next
+
+When you are ready, continue with **Version tracking** (use **Next** below). Each lesson builds on the previous one in this track.

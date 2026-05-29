@@ -98,7 +98,18 @@ function withTimeout<T>(promise: Promise<T>, ms: number, message: string): Promi
   });
 }
 
+function usesMatchCase(code: string): boolean {
+  return /^\s*match\s+\S/m.test(code) || /\n\s*match\s+\S/m.test(code);
+}
+
 export async function runPython(code: string): Promise<string> {
+  if (usesMatchCase(code)) {
+    return (
+      "Error: match/case needs Python 3.10+. The in-browser runner does not support it yet. " +
+      "Copy the code and run it locally with python (3.10 or newer)."
+    );
+  }
+
   await withTimeout(
     loadSkulpt(),
     15000,

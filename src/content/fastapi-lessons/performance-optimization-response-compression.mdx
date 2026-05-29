@@ -1,0 +1,48 @@
+---
+title: "Response compression"
+description: "Compress FastAPI responses: GZipMiddleware, proxy-level compression, and when compression helps or hurts."
+quickAnswer: "Response compression (gzip or Brotli) shrinks large JSON and HTML payloads; enable it at the reverse proxy or with Starlette GZipMiddleware for bandwidth savings."
+order: 240
+sectionId: "performance-optimization"
+sectionTitle: "Performance Optimization"
+sectionOrder: 47
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+JSON APIs can be **large**—especially list endpoints. **Compression** reduces bytes on the wire, improving mobile latency and lowering egress costs. Small responses may grow if compressed—know the threshold.
+
+## GZipMiddleware in FastAPI
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from starlette.middleware.gzip import GZipMiddleware
+
+app.add_middleware(GZipMiddleware, minimum_size=500)`} />
+
+Only responses above `minimum_size` bytes are compressed. Clients send `Accept-Encoding: gzip`.
+
+## Proxy-level compression
+
+Nginx and CDNs often compress more efficiently and offload CPU from Python:
+
+```nginx
+gzip on;
+gzip_types application/json;
+```
+
+Pick **one layer**—double compression is wasteful.
+
+## Tradeoffs
+
+- CPU cost on server and client
+- Already-compressed formats (JPEG, gzip files) benefit little
+- **Brotli** beats gzip on text but needs broader client support
+
+## Recap
+
+Enable gzip for large JSON at the proxy or via GZipMiddleware. Set a minimum size, avoid compressing tiny responses twice, and measure real-world payload sizes.
+
+## Up next
+
+When you are ready, continue with **Profiling** (use **Next** below). Each lesson builds on the previous one in this track.

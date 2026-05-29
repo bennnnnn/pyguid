@@ -1,10 +1,21 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
-import { getReferenceMenuItems } from "../../../lib/reference-sheets";
+import {
+  getReferenceNav,
+  referenceSheetUrl,
+} from "../../../lib/reference-sheets";
+import { pathFromRoot } from "../../../lib/paths";
 import { SITE } from "../../../lib/site";
 import "../../../styles/reference.css";
 
-const entryCount = getReferenceMenuItems().length;
+const nav = getReferenceNav();
+const sheetCount = nav.reduce((n, g) => n + g.sheets.length, 0);
+const entryCount = nav.reduce(
+  (n, g) => n + g.sheets.reduce((m, s) => m + s.entries.length, 0),
+  0,
+);
+const firstSheet = nav[0]?.sheets[0];
+const tutorialsUrl = pathFromRoot("python/");
 ---
 
 <TutorialLayout
@@ -12,15 +23,50 @@ const entryCount = getReferenceMenuItems().length;
   description="Python syntax reference — operators, built-in functions, string and list methods, and common patterns. Look up what you need while coding."
   sidebar="reference"
 >
-  <article class="lesson-prose-wide lesson-prose">
-    <h1 class="!mt-0">Python reference</h1>
-    <p class="text-text-secondary">
-      Quick lookup for <strong>syntax</strong>, <strong>built-in functions</strong>, and
-      common <strong>methods</strong>. Pick a topic in the sidebar — each item opens its own
-      page with a short explanation and example.
-    </p>
-    <p class="text-sm text-text-muted">
-      {entryCount} entries · Runnable examples where Python runs in the browser
-    </p>
+  <article class="ref-index lesson-prose-wide mx-auto max-w-3xl">
+    <header class="ref-index-hero rounded-xl border px-6 py-8 sm:px-8">
+      <h1 class="!mt-0 !mb-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        Python reference
+      </h1>
+      <p class="m-0 text-base leading-relaxed text-text-secondary">
+        Pick a topic from the sidebar — for example <strong>Strings</strong> — and every function
+        for that topic is on one page with a short note and example.
+      </p>
+      <p class="ref-index-meta m-0 mt-3 text-sm text-text-muted">
+        {entryCount} items · {sheetCount} topics
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        {
+          firstSheet && (
+            <a href={referenceSheetUrl(firstSheet.id)} class="btn-primary">
+              Start with {firstSheet.title}
+            </a>
+          )
+        }
+        <a href={tutorialsUrl} class="btn-secondary">Back to tutorials</a>
+      </div>
+    </header>
+
+    <nav class="ref-index-grid mt-10" aria-label="Reference topics">
+      <ul class="ref-index-grid-list">
+        {
+          nav.flatMap((group) =>
+            group.sheets.map((sheet) => (
+              <li>
+                <a href={referenceSheetUrl(sheet.id)} class="ref-index-category-card">
+                  <h2 class="ref-index-category-name">{sheet.title}</h2>
+                  <p class="ref-index-category-desc">{group.category.title}</p>
+                  <span class="ref-index-category-count">
+                    {sheet.entries.length}{" "}
+                    {sheet.entries.length === 1 ? "item" : "items"}
+                  </span>
+                </a>
+              </li>
+            )),
+          )
+        }
+      </ul>
+    </nav>
   </article>
 </TutorialLayout>

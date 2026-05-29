@@ -1,0 +1,44 @@
+---
+title: "Sorting"
+description: "Sort list endpoints in FastAPI safely—whitelist sort fields and map to ORDER BY columns."
+quickAnswer: "Let clients pass sort=field and order=asc|desc—whitelist allowed fields in code to prevent SQL injection via sort parameters."
+order: 209
+sectionId: "pagination-filtering"
+sectionTitle: "Pagination & Filtering"
+sectionOrder: 39
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Tables need sortable columns—newest first, cheapest first. A **sort** query parameter must map only to allowed database columns. Passing user input directly into `ORDER BY` is an injection risk.
+
+### Whitelist sort fields
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`SORT_FIELDS = {"created_at": User.created_at, "name": User.name}
+
+@app.get("/users")
+def list_users(sort: str = "created_at", order: str = "desc"):
+    column = SORT_FIELDS.get(sort)
+    if column is None:
+        raise HTTPException(400, "Invalid sort field")
+    q = db.query(User)
+    q = q.order_by(column.desc() if order == "desc" else column.asc())
+    return q.limit(20).all()`} />
+
+Combine sorting with pagination: apply `order_by` before `limit`. Default sort should match your most common UI view.
+
+### In practice
+
+Expose `sort` and `order` in OpenAPI with enum examples so generated clients validate early. Reject unknown sort fields with 400 and a message listing allowed values.
+
+## Recap
+
+- Never interpolate raw sort strings into SQL.
+- Whitelist field names to ORM columns.
+- Apply sort before limit/offset or cursor filter.
+
+## Up next
+
+When you are ready, continue with **Search filters** (use **Next** below). Each lesson builds on the previous one in this track.

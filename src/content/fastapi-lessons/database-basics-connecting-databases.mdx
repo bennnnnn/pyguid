@@ -1,0 +1,51 @@
+---
+title: "Connecting databases"
+description: "Connect FastAPI to a database — connection strings, engines, sessions, and dependency injection pattern."
+quickAnswer: "Create a SQLAlchemy engine from a DATABASE_URL, use session dependencies per request, and call `create_all` in dev or Alembic in production."
+order: 129
+sectionId: "database-basics"
+sectionTitle: "Database Basics"
+sectionOrder: 23
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Connecting correctly means one pool of connections shared across requests, sessions closed after each request, and no leaked connections under load. FastAPI's `Depends()` makes that pattern repeatable.
+
+## Connection string
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`DATABASE_URL = "postgresql+psycopg2://user:pass@localhost/appdb"
+# SQLite example:
+# sqlite:///./app.db
+
+engine = create_engine(DATABASE_URL)`} />
+
+## Session per request
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`SessionLocal = sessionmaker(bind=engine, autoflush=False)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.get("/items")
+def list_items(db: Session = Depends(get_db)):
+    return db.query(Item).all()`} />
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`# Test Postgres is reachable
+psql "$DATABASE_URL" -c 'SELECT 1'`} />
+
+## Recap
+
+- Engine manages the connection pool
+- `yield` in `get_db` closes sessions after each request
+- Inject `db` with `Depends(get_db)` in routes
+
+## Up next
+
+When you are ready, continue with **Environment configuration** (use **Next** below). Each lesson builds on the previous one in this track.

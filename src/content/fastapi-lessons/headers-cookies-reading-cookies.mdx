@@ -1,0 +1,41 @@
+---
+title: "Reading cookies"
+description: "Read incoming HTTP cookies in FastAPI route handlers."
+quickAnswer: "Read cookies with Cookie() parameters, e.g. session_id: str | None = Cookie(None)."
+order: 107
+sectionId: "headers-cookies"
+sectionTitle: "Headers & Cookies"
+sectionOrder: 18
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Authenticated browser clients send cookies automatically. Server routes read them with `Cookie()`—same pattern as `Header()` and `Query()`.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, Cookie, HTTPException
+
+@app.get("/me")
+def me(session_id: Annotated[str | None, Cookie()] = None):
+    if not session_id:
+        raise HTTPException(401, "Not logged in")
+    user = decode_session(session_id)
+    return {"user": user}`} />
+
+Validate and **verify** cookie values (signature, expiry) before trusting them. For APIs that only use Bearer tokens, cookies may be absent—do not require cookies on mobile JSON endpoints unless intentional.
+
+## In practice
+
+Treat cookie values as untrusted input until signature and expiry verify. Separate session cookies from marketing tracking cookies. Mobile Bearer-token clients may ignore cookies entirely—design auth accordingly. Prefer short cookie names and small payloads to stay under browser per-domain limits.
+
+## Recap
+
+- `Cookie()` injects a named cookie with optional validation.
+- Always verify signed/session cookies before use.
+- Separate cookie-based browser auth from Bearer-token API clients if needed.
+
+## Up next
+
+When you are ready, continue with **Secure cookies** (use **Next** below). Each lesson builds on the previous one in this track.

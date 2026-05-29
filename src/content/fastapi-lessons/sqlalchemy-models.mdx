@@ -1,0 +1,47 @@
+---
+title: "Models"
+description: "Define SQLAlchemy models in FastAPI projects — columns, types, defaults, and primary keys."
+quickAnswer: "Declare SQLAlchemy models by subclassing `DeclarativeBase`, defining `__tablename__`, and adding typed `Column` fields that match your schema."
+order: 132
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Models are the contract between your API and the database. Clear types (`String`, `DateTime`, `Boolean`) document fields and help SQLAlchemy generate correct DDL when you migrate.
+
+## Example model
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from datetime import datetime
+
+class Base(DeclarativeBase):
+    pass
+
+class Item(Base):
+    __tablename__ = "items"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(String(200))
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)`} />
+
+Modern SQLAlchemy 2.0 style uses `Mapped` and `mapped_column` for better typing in editors.
+
+<Callout variant="tip">
+
+Keep models in `models.py` or a `models/` package—avoid defining tables inside route functions.
+
+</Callout>
+
+## Recap
+
+- One class per table with `__tablename__`
+- Use `Mapped[type]` for typed columns
+- Share a single `Base` for metadata and migrations
+
+## Up next
+
+When you are ready, continue with **Tables** (use **Next** below). Each lesson builds on the previous one in this track.

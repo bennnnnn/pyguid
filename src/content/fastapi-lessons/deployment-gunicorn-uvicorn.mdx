@@ -1,0 +1,48 @@
+---
+title: "Gunicorn + Uvicorn"
+description: "Deploy FastAPI with Gunicorn and Uvicorn workers: command lines, worker count, timeouts, and when to use this stack."
+quickAnswer: "Gunicorn manages multiple Uvicorn worker processes on Linux, giving FastAPI production-grade process supervision and graceful restarts behind a reverse proxy."
+order: 221
+sectionId: "deployment"
+sectionTitle: "Deployment"
+sectionOrder: 43
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+**Uvicorn** implements ASGI. **Gunicorn** is a mature process manager that spawns and supervises worker processes. Together they give you multi-process concurrency and graceful reloads on Linux servers.
+
+## Typical command
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`gunicorn app.main:app \\
+  -k uvicorn.workers.UvicornWorker \\
+  -w 4 \\
+  -b 0.0.0.0:8000 \\
+  --timeout 120 \\
+  --graceful-timeout 30`} />
+
+- `-w 4` — four worker processes (tune to CPUs and load tests)
+- `-k uvicorn.workers.UvicornWorker` — ASGI-capable worker class
+- `--timeout` — kill stuck workers after long requests (adjust for slow endpoints)
+
+## When to use Gunicorn + Uvicorn
+
+| Scenario | Recommendation |
+|----------|----------------|
+| Linux VM / bare metal | Common choice |
+| Docker with single Uvicorn | Often `uvicorn --workers N` is enough |
+| Windows | Gunicorn is not supported; use Uvicorn directly |
+
+## Graceful deploys
+
+Send **HUP** or use Gunicorn's graceful restart so in-flight requests finish before workers recycle. Pair with a load balancer that drains connections.
+
+## Recap
+
+Gunicorn supervises Uvicorn workers for multi-process FastAPI on Linux. Set worker count and timeouts from real traffic, and coordinate deploys with your reverse proxy.
+
+## Up next
+
+When you are ready, continue with **Linux deployment** (use **Next** below). Each lesson builds on the previous one in this track.

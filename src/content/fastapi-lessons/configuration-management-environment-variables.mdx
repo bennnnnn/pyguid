@@ -1,0 +1,50 @@
+---
+title: "Environment variables"
+description: "Use environment variables in FastAPI for database URLs, API keys, and per-environment settings."
+quickAnswer: "Read settings from os.environ or pydantic-settings so database URLs and API keys differ per machine without code changes."
+order: 193
+sectionId: "configuration-management"
+sectionTitle: "Configuration Management"
+sectionOrder: 36
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Configuration Management** — Load settings from environment variables and `.env` files so dev, staging, and production differ without code changes.
+
+</Callout>
+
+## Why this matters
+
+Hard-coding database hosts or API keys in source code leads to leaks and painful deploys. **Environment variables** inject config at runtime—development on localhost, staging in the cloud, production with secrets from the platform.
+
+### Reading env vars
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`import os
+
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dev.db")
+DEBUG = os.getenv("DEBUG", "false").lower() == "true"`} />
+
+Access variables when the app starts, not on every request. Document required keys in `.env.example` so new developers know what to set.
+
+<Callout variant="warning">
+
+Never commit real secrets. CI and production should inject values via the host environment or a secret manager.
+
+</Callout>
+
+### In practice
+
+Fail fast at startup if a required variable is missing—better than a cryptic connection error on the first database request. Document each variable in README with example values safe to share.
+
+## Recap
+
+- Config comes from the environment, not constants in git.
+- Provide defaults only for safe local development.
+- Document required variable names.
+
+## Up next
+
+When you are ready, continue with **`.env` files** (use **Next** below). Each lesson builds on the previous one in this track.

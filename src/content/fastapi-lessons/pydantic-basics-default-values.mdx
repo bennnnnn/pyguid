@@ -1,0 +1,43 @@
+---
+title: "Default values"
+description: "Add default and optional field values to Pydantic models used in FastAPI."
+quickAnswer: "Set defaults on Pydantic fields with = value; optional fields often use Optional[T] = None."
+order: 42
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Defaults document API behavior when clients omit fields and simplify partial-update models. They must be chosen carefully so "missing" and "explicit default" match your product rules.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from typing import Optional
+from pydantic import BaseModel
+
+class Task(BaseModel):
+    title: str
+    done: bool = False
+    priority: int = 1
+    assignee: Optional[str] = None
+
+task = Task(title="Ship API")
+print(task.done)  # False`} />
+
+Factory defaults for mutable objects use `Field(default_factory=list)`. In request bodies, defaults apply when the key is missing; combine with `model_dump(exclude_unset=True)` on updates.
+
+Distinguish `Field(default=0)` from `default_factory` when the default must be computed per instance.
+
+## Recap
+
+- Field defaults use **= value** in the model.
+- **Optional** + `None` for nullable optional fields.
+- Use **default_factory** for lists and dicts.
+
+## Up next
+
+When you are ready, continue with **Field types** (use **Next** below). Each lesson builds on the previous one in this track.

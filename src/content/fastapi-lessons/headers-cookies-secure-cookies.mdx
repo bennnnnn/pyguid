@@ -1,0 +1,43 @@
+---
+title: "Secure cookies"
+description: "Secure cookie practices for FastAPI session and authentication cookies."
+quickAnswer: "Use httponly, secure, samesite, and short max_age; prefer HTTPS and CSRF tokens for cookie-based auth."
+order: 108
+sectionId: "headers-cookies"
+sectionTitle: "Headers & Cookies"
+sectionOrder: 18
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Stolen session cookies equal account takeover. **Secure cookie flags** reduce XSS and MITM risk; they complement HTTPS and CSRF defenses, not replace them.
+
+| Flag | Purpose |
+|------|---------|
+| HttpOnly | JS cannot read the cookie |
+| Secure | Sent only over HTTPS |
+| SameSite | Limits cross-site sending |
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`response.set_cookie(
+    "refresh_token",
+    value=token,
+    httponly=True,
+    secure=True,
+    samesite="strict",
+    max_age=7 * 24 * 3600,
+    path="/auth/refresh",
+)`} />
+
+Rotate refresh tokens on use. Avoid storing sensitive JWT claims in client-readable cookies unless encrypted. For cross-subdomain apps, plan `Domain` and `Path` carefully—overbroad domain scope increases blast radius.
+
+## In practice
+
+Production requires HTTPS with `secure=True`. Use `SameSite=strict` for admin sites; `lax` when top-level navigation must send cookies. Rotate refresh tokens and bind sessions to user agent where paranoia is warranted.
+
+## Recap
+
+- Always set **httponly** and **secure** for session cookies in production.
+- Use **SameSite** and CSRF protection for cookie-authenticated forms.
+- Scope `path` and `domain` narrowly; keep lifetimes short.

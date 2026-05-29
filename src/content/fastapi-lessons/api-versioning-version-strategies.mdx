@@ -1,0 +1,39 @@
+---
+title: "Version strategies"
+description: "Compare FastAPI API versioning strategies—URL path, headers, query params, and when to use each."
+quickAnswer: "Version APIs by URL path, Accept header, or query string—URL versioning is the most visible and common for public REST APIs."
+order: 182
+sectionId: "api-versioning"
+sectionTitle: "API Versioning"
+sectionOrder: 33
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Teams pick different **version strategies** based on who consumes the API. Public REST APIs favor clear URLs. Internal microservices sometimes negotiate version via headers. Picking one strategy early avoids mixed conventions.
+
+### Common approaches
+
+- **URL path** — `/v1/items` — easy to route, cache, and document in Swagger.
+- **Header** — `Accept: application/vnd.myapi.v2+json` — keeps URLs clean; harder to test in a browser.
+- **Query** — `?version=2` — simple but easy to forget; poor for cache keys.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter, Header, HTTPException
+
+router = APIRouter()
+
+@router.get("/items")
+def list_items(accept: str | None = Header(default=None)):
+    if accept and "v2" in accept:
+        return {"items": [], "schema": 2}
+    raise HTTPException(400, "Unsupported version")`} />
+
+FastAPI supports all patterns via routers, dependencies, or middleware. Whichever you choose, enforce it consistently and generate separate OpenAPI docs per major version when possible.
+
+## Recap
+
+- URL versioning is the default choice for public APIs.
+- Header versioning suits hypermedia or vendor MIME types.
+- Document one strategy; do not mix them on the same surface.

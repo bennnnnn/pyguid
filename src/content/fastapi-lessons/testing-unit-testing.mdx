@@ -1,0 +1,53 @@
+---
+title: "Unit testing"
+description: "Unit test FastAPI business logic without the network—isolate services, mock dependencies, and keep tests fast."
+quickAnswer: "Unit-test pure functions and service methods without HTTP—pass mocks for databases and external APIs so tests stay fast and isolated."
+order: 183
+sectionId: "testing"
+sectionTitle: "Testing"
+sectionOrder: 34
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Testing** — Automated tests with pytest and FastAPI's TestClient catch regressions before users do.
+
+</Callout>
+
+## Why this matters
+
+Not every test needs a running server. **Unit tests** target one function or class—price calculation, password rules, permission checks—with dependencies replaced by fakes. They run in milliseconds and pinpoint failures precisely.
+
+### Test logic, not wiring
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`# app/services/discount.py
+def apply_discount(price: float, percent: int) -> float:
+    return price * (1 - percent / 100)
+
+# tests/test_discount.py
+def test_apply_discount():
+    assert apply_discount(100, 10) == 90.0`} />
+
+Keep business rules out of route handlers. When logic lives in `services/`, unit tests import those modules directly without `TestClient`.
+
+<Callout variant="info">
+
+Aim for many unit tests and fewer integration tests. Unit tests document edge cases; integration tests prove routes and databases work together.
+
+</Callout>
+
+### In practice
+
+When a bug appears, write a failing unit test that reproduces the bad input, fix the service function, then add one integration test if wiring was also wrong. That order keeps feedback loops under a second for most runs.
+
+## Recap
+
+- Unit tests skip HTTP and ASGI.
+- Test pure functions and service methods.
+- Mock I/O at boundaries, not inside every line.
+
+## Up next
+
+When you are ready, continue with **Integration testing** (use **Next** below). Each lesson builds on the previous one in this track.

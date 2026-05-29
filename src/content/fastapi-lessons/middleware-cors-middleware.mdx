@@ -1,0 +1,40 @@
+---
+title: "CORS middleware"
+description: "Configure CORS in FastAPI with Starlette's CORSMiddleware."
+quickAnswer: "Add CORSMiddleware with allow_origins, allow_methods, and allow_headers so browsers can call your API from other domains."
+order: 114
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Browsers block frontend JavaScript from reading cross-origin API responses unless the server sends **CORS headers**. `CORSMiddleware` adds `Access-Control-Allow-Origin` and handles **preflight** `OPTIONS` requests automatically.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://app.example.com"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)`} />
+
+`allow_origins=["*"]` cannot be used with `allow_credentials=True`. List explicit origins in production. Middleware order: add CORS **before** other middleware that might error on OPTIONS.
+
+## In practice
+
+Register CORSMiddleware before auth middleware that might 401 OPTIONS preflights. Tighten `allow_headers` to `Authorization`, `Content-Type`, and headers you actually send. Use `max_age` to cache preflight success. Log rejected origins in staging to discover frontend URLs missing from the allow list. Review CORS config whenever you add a new frontend deployment target.
+
+## Recap
+
+- **CORSMiddleware** is required for browser SPAs on another origin.
+- Never use wildcard origins with credentials in production.
+- Preflight OPTIONS is handled by the middleware—no manual route needed.

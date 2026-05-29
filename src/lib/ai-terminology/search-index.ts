@@ -1,5 +1,5 @@
+import { getPublishedAiTerminologySections } from "./catalog";
 import { termSearchBlob } from "./enrich";
-import { AI_TERMINOLOGY_SECTIONS } from "./sections";
 import { aiTerminologySectionUrl, termAnchorsForSection } from "./helpers";
 
 export type AiTermSearchHit = {
@@ -24,7 +24,7 @@ export type AiTermSectionSearchRow = {
 
 export function buildAiTerminologySearchIndex(): AiTermSearchHit[] {
   const hits: AiTermSearchHit[] = [];
-  for (const section of AI_TERMINOLOGY_SECTIONS) {
+  for (const section of getPublishedAiTerminologySections()) {
     const anchors = termAnchorsForSection(section.id, section.terms);
     const base = aiTerminologySectionUrl(section.id);
     section.terms.forEach((entry, index) => {
@@ -45,7 +45,7 @@ export function buildAiTerminologySearchIndex(): AiTermSearchHit[] {
 }
 
 export function buildAiTerminologySectionSearchRows(): AiTermSectionSearchRow[] {
-  return AI_TERMINOLOGY_SECTIONS.map((section) => ({
+  return getPublishedAiTerminologySections().map((section) => ({
     id: section.id,
     title: section.title,
     intro: section.intro ?? "",

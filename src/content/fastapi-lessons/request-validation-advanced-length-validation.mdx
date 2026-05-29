@@ -1,0 +1,45 @@
+---
+title: "Length validation"
+description: "Apply min and max length validation to strings, lists, and other types in FastAPI."
+quickAnswer: "Constrain strings and collections with Field(min_length=, max_length=) and size limits on lists."
+order: 70
+sectionId: "request-validation-advanced"
+sectionTitle: "Request Validation Advanced"
+sectionOrder: 12
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Unbounded strings are a **DoS vector**—huge JSON bodies exhaust memory. Passwords, bios, and tags need sensible **min/max length** so storage and UI stay consistent. Pydantic enforces these limits before your route runs.
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, Field
+
+class PostCreate(BaseModel):
+    title: str = Field(min_length=1, max_length=120)
+    body: str = Field(min_length=1, max_length=10_000)
+    tags: list[str] = Field(min_length=1, max_length=5)`} />
+
+For query parameters:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import Query
+
+q: Annotated[str, Query(min_length=2, max_length=50)]`} />
+
+Each tag string can also use `Field(max_length=30)` inside the model. Violations produce 422 with `type` values like `string_too_long`. Document limits in your API reference so clients validate on their side too.
+
+## In practice
+
+Add `max_length` on usernames in the API, mirror it in the database column, and set `maxlength` on HTML inputs so users see the same rule three times. For nested lists of tags, constrain both how many tags (`max_length=10` on the list) and how long each tag string may be. Log when clients repeatedly hit length limits—that often signals a buggy integration rather than abuse.
+
+## Recap
+
+- Use `min_length` / `max_length` on strings and `min_length` / `max_length` on lists.
+- Enforce limits at the API boundary to protect the database and UX.
+- Document limits in OpenAPI via Field descriptions.
+
+## Up next
+
+When you are ready, continue with **Numeric validation** (use **Next** below). Each lesson builds on the previous one in this track.

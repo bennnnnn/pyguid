@@ -1,0 +1,40 @@
+---
+title: "Multi-container apps"
+description: "Design multi-container FastAPI applications: service boundaries, networks, scaling workers, and production topology."
+quickAnswer: "Multi-container FastAPI apps split the API, database, cache, and workers into separate containers on one Docker network, scaling and updating each service independently."
+order: 229
+sectionId: "docker"
+sectionTitle: "Docker"
+sectionOrder: 44
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+Monoliths in one container are fine for learning. Production **multi-container** designs isolate failure domains: restart a worker without touching the database container.
+
+## Typical topology
+
+```text
+[Client] -> [Nginx] -> [api x N]
+                         -> [db]
+                         -> [redis]
+                         -> [celery worker x M]
+```
+
+Each box is a container (or pod). Scale **api** replicas for HTTP load; scale **workers** for queue depth.
+
+## Communication rules
+
+- API talks to `db:5432` and `redis:6379` on the internal network
+- Do not expose Redis or Postgres ports publicly in production compose
+- Pass the same `.env` keys to API and workers so they share config
+
+## Stateful vs stateless
+
+API and workers are **stateless**—replace anytime. Postgres uses a **named volume**. Back up volumes or use managed databases in cloud deployments.
+
+## Recap
+
+Split FastAPI, data stores, and workers into focused containers. Use private networks, scale replicas per role, and keep state in databases—not in app memory.

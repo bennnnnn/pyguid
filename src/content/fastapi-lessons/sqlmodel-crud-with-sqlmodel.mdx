@@ -1,0 +1,40 @@
+---
+title: "CRUD with SQLModel"
+description: "CRUD operations with SQLModel in FastAPI — Session, select, and route examples."
+quickAnswer: "Use SQLModel `Session` with `select()` statements, `session.add()`, `commit()`, and `refresh()`—same flow as SQLAlchemy with cleaner typing."
+order: 140
+sectionId: "sqlmodel"
+sectionTitle: "SQLModel"
+sectionOrder: 25
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+SQLModel sessions work like SQLAlchemy 2.0 sessions. You get type-checked queries and FastAPI can inject `Session` the same way, keeping CRUD routes short and readable.
+
+## CRUD example
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from sqlmodel import Session, select
+
+@app.post("/heroes", response_model=HeroPublic)
+def create_hero(hero: HeroCreate, session: Session = Depends(get_session)):
+    db_hero = Hero.model_validate(hero)
+    session.add(db_hero)
+    session.commit()
+    session.refresh(db_hero)
+    return db_hero
+
+@app.get("/heroes/{hero_id}", response_model=HeroPublic)
+def read_hero(hero_id: int, session: Session = Depends(get_session)):
+    hero = session.get(Hero, hero_id)
+    if not hero:
+        raise HTTPException(404)
+    return hero`} />
+
+## Recap
+
+- `Session` + `Depends` per request
+- `model_validate` builds table rows from input schemas
+- `select()` for list and filter queries

@@ -1,0 +1,39 @@
+---
+title: "Access control"
+description: "Access control in FastAPI — ownership checks, multi-tenant isolation, and policy helpers."
+quickAnswer: "Enforce object-level access: users may edit only their own rows by comparing `resource.owner_id` to `current_user.id`."
+order: 164
+sectionId: "authorization"
+sectionTitle: "Authorization"
+sectionOrder: 29
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Being logged in is not enough—user A must not update user B's profile. Object-level checks compare resource ownership (or organization id) to the current user on every mutating route.
+
+## Ownership check
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.patch("/posts/{post_id}")
+def update_post(
+    post_id: int,
+    data: PostUpdate,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    post = db.get(Post, post_id)
+    if not post:
+        raise HTTPException(404)
+    if post.owner_id != user.id:
+        raise HTTPException(403)
+    ...`} />
+
+Centralize rules in a `authorize(user, resource, action)` helper as policies grow.
+
+## Recap
+
+- Check resource owner (or tenant) after load
+- 404 hides existence; 403 when owner mismatch
+- Extract policy logic as apps grow

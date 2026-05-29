@@ -1,0 +1,56 @@
+---
+title: "Project structure setup"
+description: "Organize a small but scalable FastAPI project folder layout for routes, models, and configuration."
+quickAnswer: "Start with main.py for the FastAPI app, a routers/ package for endpoints, and optional models/ and services/ folders as the API grows."
+order: 11
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Flat single-file apps are fine for learning, but teams need structure before dozens of routes land in one file. A predictable layout makes imports, tests, and code review easier.
+
+## How it works
+
+A practical starter layout:
+
+```text
+myapi/
+  .venv/
+  app/
+    __init__.py
+    main.py          # FastAPI() + include_router
+    routers/
+      items.py
+    models/
+      item.py        # Pydantic schemas
+    dependencies.py
+  requirements.txt
+  .gitignore
+```
+
+`main.py` creates the app and mounts routers:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from app.routers import items
+
+app = FastAPI()
+app.include_router(items.router, prefix="/items", tags=["items"])`} />
+
+Keep **settings** (database URL, secrets) in environment variables or a `config.py` loaded once. Run from project root: `uvicorn app.main:app --reload`.
+
+As teams grow, add `tests/` mirroring `app/` and keep environment-specific settings out of git. A `README` with the exact `uvicorn` module path prevents onboarding confusion.
+
+## Recap
+
+- Split **routers**, **models**, and **dependencies** as you grow.
+- `main.py` wires the app; feature code lives in packages.
+- Run Uvicorn with the correct **module path**.
+
+## Up next
+
+When you are ready, continue with **Running the first server** (use **Next** below). Each lesson builds on the previous one in this track.

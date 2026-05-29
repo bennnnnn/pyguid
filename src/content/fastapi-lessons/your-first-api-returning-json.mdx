@@ -1,0 +1,47 @@
+---
+title: "Returning JSON"
+description: "Return JSON responses from FastAPI path operations using Python dicts and Pydantic models."
+quickAnswer: "Return a dict, list, or Pydantic model from a route; FastAPI encodes it as JSON with the correct Content-Type automatically."
+order: 17
+sectionId: "your-first-api"
+sectionTitle: "Your First API"
+sectionOrder: 3
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+APIs communicate in JSON. You rarely hand-build response bytes in FastAPI—understanding automatic serialization prevents surprises when dates, enums, or nested models appear in responses.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from datetime import datetime
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/time")
+def current_time():
+    return {"now": datetime.utcnow().isoformat()}
+
+@app.get("/users")
+def list_users():
+    return [
+        {"id": 1, "name": "Ada"},
+        {"id": 2, "name": "Lin"},
+    ]`} />
+
+FastAPI sets `Content-Type: application/json` and uses **jsonable_encoder** for types like `datetime`. For stricter output, declare a **response_model** Pydantic class later. To return non-JSON, use `HTMLResponse` or `FileResponse` from Starlette.
+
+If you return a Pydantic model, FastAPI still serializes it—returning `model_dump()` manually is usually unnecessary unless you customized serialization modes.
+
+## Recap
+
+- Plain **dict/list** returns become JSON automatically.
+- Datetimes and other types are encoded when possible.
+- Use **response_model** when you need validated output shapes.
+
+## Up next
+
+When you are ready, continue with **Path operations** (use **Next** below). Each lesson builds on the previous one in this track.

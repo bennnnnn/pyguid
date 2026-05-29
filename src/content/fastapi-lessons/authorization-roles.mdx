@@ -1,0 +1,48 @@
+---
+title: "Roles"
+description: "Role-based authorization in FastAPI — role fields, enums, and dependency checks."
+quickAnswer: "Assign users a role such as `member` or `admin` and check `user.role` in dependencies before running privileged logic."
+order: 160
+sectionId: "authorization"
+sectionTitle: "Authorization"
+sectionOrder: 29
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Authorization** — Authentication proves who someone is; authorization decides what they can do—roles, permissions, and protected admin routes.
+
+</Callout>
+
+## Why this matters
+
+Authentication tells you who logged in; roles group users for coarse permissions. Admins manage settings; members edit only their own content. Roles keep `if` statements out of every route body.
+
+## Role check dependency
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from enum import Enum
+
+class Role(str, Enum):
+    member = "member"
+    admin = "admin"
+
+def require_admin(user: User = Depends(get_current_user)):
+    if user.role != Role.admin:
+        raise HTTPException(403, "Admin only")
+    return user
+
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int, _: User = Depends(require_admin)):
+    ...`} />
+
+## Recap
+
+- Store role on the user model
+- Use dependencies to enforce roles
+- 403 Forbidden when role is insufficient
+
+## Up next
+
+When you are ready, continue with **Permissions** (use **Next** below). Each lesson builds on the previous one in this track.

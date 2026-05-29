@@ -1,0 +1,48 @@
+---
+title: "Field types"
+description: "Use common Pydantic field types for rich validation in FastAPI schemas."
+quickAnswer: "Pydantic supports str, int, float, bool, dates, UUIDs, enums, HttpUrl, and nested models as field types."
+order: 43
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Choosing precise types generates better OpenAPI docs and blocks bad input—URLs that are not URLs, negative IDs, or wrong datetime formats.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from datetime import datetime
+from uuid import UUID
+from pydantic import BaseModel, HttpUrl
+
+class Event(BaseModel):
+    id: UUID
+    name: str
+    starts_at: datetime
+    docs: HttpUrl | None = None
+
+event = Event.model_validate({
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Launch",
+    "starts_at": "2026-05-28T10:00:00Z",
+    "docs": "https://example.com",
+})`} />
+
+Import specialized types from `pydantic` or `pydantic.types`. FastAPI reflects these in `/docs` so clients know expected formats.
+
+Install `email-validator` when using `EmailStr` in production projects—FastAPI docs assume it for email fields.
+
+## Recap
+
+- Use **UUID**, **datetime**, **HttpUrl** where appropriate.
+- Types improve **validation** and **OpenAPI** schemas.
+- Combine with **Field** for numeric bounds and strings length.
+
+## Up next
+
+When you are ready, continue with **Nested models** (use **Next** below). Each lesson builds on the previous one in this track.

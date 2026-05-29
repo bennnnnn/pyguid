@@ -4,6 +4,8 @@ import TutorialTopNav from "../components/TutorialTopNav.astro";
 import LearnSidebar from "../components/LearnSidebar.astro";
 import ReferenceSidebar from "../components/ReferenceSidebar.astro";
 import AiTerminologySidebar from "../components/AiTerminologySidebar.astro";
+import FastapiSidebar from "../components/FastapiSidebar.astro";
+import QuizSidebar from "../components/QuizSidebar.astro";
 import SidebarScripts from "../components/SidebarScripts.astro";
 import PythonExampleScripts from "../components/PythonExampleScripts.astro";
 import TutorialFooter from "../components/TutorialFooter.astro";
@@ -17,7 +19,7 @@ interface Props {
   description?: string;
   groups?: LessonGroup[];
   currentLessonId?: string;
-  sidebar?: "learn" | "reference" | "ai-terms";
+  sidebar?: "learn" | "reference" | "ai-terms" | "fastapi" | "quiz";
   ogType?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -67,6 +69,10 @@ const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).href;
             <ReferenceSidebar />
           ) : sidebar === "ai-terms" ? (
             <AiTerminologySidebar />
+          ) : sidebar === "fastapi" ? (
+            <FastapiSidebar currentLessonId={currentLessonId} />
+          ) : sidebar === "quiz" ? (
+            <QuizSidebar />
           ) : (
             <LearnSidebar groups={groups} currentLessonId={currentLessonId} />
           )

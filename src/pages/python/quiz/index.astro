@@ -1,11 +1,9 @@
 ---
 import TutorialLayout from "../../../layouts/TutorialLayout.astro";
-import { getLessonGroups } from "../../../lib/lessons";
 import { getPublishedQuizTopics, quizUrl } from "../../../lib/quiz-topics";
 import { getQuizByChapter } from "../../../lib/quizzes";
 import { SITE } from "../../../lib/site";
 
-const groups = await getLessonGroups();
 const topics = getPublishedQuizTopics();
 
 const pageTitle = `Python quizzes by topic — ${SITE.name}`;
@@ -13,7 +11,7 @@ const description =
   "Chapter quizzes for PyGuide. Test yourself after the tutorials — separate from lesson pages.";
 ---
 
-<TutorialLayout title={pageTitle} description={description} groups={groups}>
+<TutorialLayout title={pageTitle} description={description} sidebar="quiz">
   <article class="lesson-prose max-w-3xl">
     <h1>Python quizzes</h1>
     <p class="text-lg text-text-muted">

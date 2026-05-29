@@ -23,4 +23,20 @@ const lessons = defineCollection({
   }),
 });
 
-export const collections = { lessons };
+const fastapiLessons = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/fastapi-lessons" }),
+  schema: z.object({
+    title: z.string(),
+    navTitle: z.string().optional(),
+    description: z.string(),
+    order: z.number(),
+    sectionId: z.string(),
+    sectionTitle: z.string(),
+    sectionOrder: z.number(),
+    lessonOrder: z.number(),
+    level: z.enum(["beginner", "intermediate"]).default("beginner"),
+    quickAnswer: z.string().optional(),
+  }),
+});
+
+export const collections = { lessons, "fastapi-lessons": fastapiLessons };

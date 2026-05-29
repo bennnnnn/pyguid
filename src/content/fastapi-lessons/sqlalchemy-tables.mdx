@@ -1,0 +1,38 @@
+---
+title: "Tables"
+description: "SQLAlchemy tables and metadata — create_all, reflection, and relationship to migrations."
+quickAnswer: "Tables are created from model metadata via `Base.metadata.create_all(engine)` in development; production should use Alembic migrations instead."
+order: 133
+sectionId: "sqlalchemy"
+sectionTitle: "SQLAlchemy"
+sectionOrder: 24
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+A model describes a table, but the database does not change until DDL runs. Understanding metadata helps you bootstrap local databases and know why production needs versioned migrations.
+
+## Create tables in dev
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from app.database import engine, Base
+from app import models  # register models
+
+Base.metadata.create_all(bind=engine)`} />
+
+`create_all` only creates missing tables—it does not alter columns on existing tables. That limitation is why Alembic exists.
+
+### Inspect metadata
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`print(Base.metadata.tables.keys())  # ('users', 'items', ...)`} />
+
+## Recap
+
+- All models registered on `Base` share one metadata object
+- `create_all` is fine for local prototypes
+- Use Alembic to change schemas in production
+
+## Up next
+
+When you are ready, continue with **Sessions** (use **Next** below). Each lesson builds on the previous one in this track.

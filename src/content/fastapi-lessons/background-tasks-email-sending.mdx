@@ -1,0 +1,48 @@
+---
+title: "Email sending"
+description: "Send email from FastAPI without blocking responses—queue SMTP with BackgroundTasks on signup and password-reset routes."
+quickAnswer: "Queue email sends with BackgroundTasks so signup and password-reset endpoints return quickly while SMTP runs afterward."
+order: 173
+sectionId: "background-tasks"
+sectionTitle: "Background Tasks"
+sectionOrder: 31
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+SMTP connections are slow and unreliable compared to a database insert. If you send email synchronously inside a signup route, a mail server timeout becomes a failed signup for the user. Moving email to a **background task** keeps the API fast and predictable.
+
+### Pattern: send after create
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import BackgroundTasks, FastAPI
+
+app = FastAPI()
+
+def send_welcome_email(to: str):
+  # use smtplib, SendGrid, or similar in production
+    print(f"Sending welcome email to {to}")
+
+@app.post("/register")
+def register(email: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(send_welcome_email, email)
+    return {"email": email, "message": "Account created"}`} />
+
+The route creates the user (or enqueues creation), schedules `send_welcome_email`, and returns `201` right away. Pass only simple arguments—IDs and email strings—not open database sessions.
+
+<Callout variant="warning">
+
+Background tasks share the same worker. If the process restarts before the task runs, the email may never send. Critical mail should use a durable queue with retries.
+
+</Callout>
+
+## Recap
+
+- Never block the HTTP response on SMTP.
+- Pass email and user id into the task function.
+- Use a real queue when delivery must be guaranteed.
+
+## Up next
+
+When you are ready, continue with **Notifications** (use **Next** below). Each lesson builds on the previous one in this track.

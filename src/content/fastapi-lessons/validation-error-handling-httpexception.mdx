@@ -1,0 +1,41 @@
+---
+title: "`HTTPException`"
+description: "Use HTTPException for intentional API errors like 404 Not Found or 403 Forbidden."
+quickAnswer: "Raise HTTPException(status_code, detail) inside a route to return 4xx/5xx responses with a message or structured detail."
+order: 66
+sectionId: "validation-error-handling"
+sectionTitle: "Validation & Error Handling"
+sectionOrder: 11
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Not every error is a validation failure. When a user ID does not exist or a token is invalid, you need to stop the request and return the right **HTTP status** with a clear message. `HTTPException` is FastAPI's built-in tool for that—no manual `Response` construction required.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
+fake_db = {"ada": {"name": "Ada"}}
+
+@app.get("/users/{username}")
+def get_user(username: str):
+    if username not in fake_db:
+        raise HTTPException(status_code=404, detail="User not found")
+    return fake_db[username]`} />
+
+The `detail` argument can be a **string** or a **dict/list** for structured errors. Use **404** for missing resources, **403** for permission denied, **401** for missing auth, and **400** for malformed business rules that are not Pydantic validation issues.
+
+Import `status` from `fastapi` for readable constants: `status.HTTP_404_NOT_FOUND`. Avoid catching `HTTPException` in broad handlers unless you intend to modify it—FastAPI already converts it to the correct response.
+
+## Recap
+
+- `HTTPException` = intentional HTTP error from inside a route.
+- Pick the correct **status code**; do not default everything to 400.
+- `detail` can be text or structured data for API consumers.
+
+## Up next
+
+When you are ready, continue with **Global exception handlers** (use **Next** below). Each lesson builds on the previous one in this track.

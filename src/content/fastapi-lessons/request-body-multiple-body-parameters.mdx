@@ -1,0 +1,48 @@
+---
+title: "Multiple body parameters"
+description: "Handle multiple logical body values in FastAPI using one model or explicit Body parameters."
+quickAnswer: "FastAPI allows only one body parameter per route by default; use a single Pydantic model or embed fields with Body() for advanced cases."
+order: 38
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Beginners often try two body models on one route and hit confusing errors. The HTTP spec has one JSON body; FastAPI encodes that rule while offering escape hatches for form-like multi-part cases.
+
+## How it works
+
+Preferred: **one model** containing everything.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+from fastapi import FastAPI
+
+class Item(BaseModel):
+    name: str
+
+class Metadata(BaseModel):
+    source: str
+
+class ItemWithMeta(BaseModel):
+    item: Item
+    meta: Metadata
+
+app = FastAPI()
+
+@app.post("/combined")
+def combined(payload: ItemWithMeta):
+    return payload`} />
+
+For rare cases (e.g. embedding + file), combine **File**, **Form**, and **Body** explicitly per docs. Two pure JSON bodies on one request are not standard—merge schemas instead.
+
+Multipart forms mix files and fields—use `UploadFile` plus `Form()` rather than trying to attach two JSON documents.
+
+## Recap
+
+- One route → typically **one JSON body model**.
+- **Compose** nested models instead of two body params.
+- Files/forms use **multipart**, not double JSON bodies.

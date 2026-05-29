@@ -1,0 +1,45 @@
+---
+title: "Multiple files"
+description: "Upload multiple files in a single FastAPI request."
+quickAnswer: "Accept several files with list[UploadFile] = File(...) on one form field or multiple named fields."
+order: 95
+sectionId: "file-uploads"
+sectionTitle: "File Uploads"
+sectionOrder: 16
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Gallery uploads and batch imports send **many files** in one request. FastAPI accepts a list of `UploadFile` objects from the same form field name repeated or from distinct field names.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Annotated
+from fastapi import FastAPI, File, UploadFile
+
+app = FastAPI()
+
+@app.post("/upload-many/")
+async def upload_many(
+    files: Annotated[list[UploadFile], File()],
+):
+    return [
+        {"filename": f.filename, "type": f.content_type}
+        for f in files
+    ]`} />
+
+Process each file in a loop—virus scan, resize, store—and cap the **count** and **total size** to prevent abuse. Return per-file success and failure when partial success is acceptable.
+
+## In practice
+
+Cap file count (e.g. ten per request) and total bytes. Return an array of per-file results when partial success is allowed so UIs can retry only failed items. Document limits in OpenAPI descriptions.
+
+## Recap
+
+- `list[UploadFile]` with `File()` receives multiple files.
+- Enforce max file count and aggregate size limits.
+- Report per-file errors for better client UX on batch uploads.
+
+## Up next
+
+When you are ready, continue with **Images** (use **Next** below). Each lesson builds on the previous one in this track.

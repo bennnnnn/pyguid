@@ -1,0 +1,48 @@
+---
+title: "Custom responses"
+description: "Send non-JSON and custom HTTP responses from FastAPI when JSON models are not enough."
+quickAnswer: "Return a Starlette Response subclass or use responses={} on the decorator for non-JSON, redirects, and file downloads."
+order: 50
+sectionId: "response-models"
+sectionTitle: "Response Models"
+sectionOrder: 8
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Not every endpoint returns JSON—CSV exports, HTML pages, and empty 204 bodies need explicit response types. Documenting them keeps clients and proxies from misinterpreting content.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI
+from fastapi.responses import HTMLResponse, PlainTextResponse, JSONResponse
+
+app = FastAPI()
+
+@app.get("/health.html", response_class=HTMLResponse)
+def health_html():
+    return "<h1>OK</h1>"
+
+@app.get("/export")
+def export():
+    return PlainTextResponse("id,name\\n1,Ada", media_type="text/csv")
+
+@app.get("/custom")
+def custom():
+    return JSONResponse(content={"ok": True}, status_code=200, headers={"X-Trace": "abc"})`} />
+
+Declare `responses=&#123;404: &#123;"description": "Missing"&#125;&#125;` on decorators to enrich OpenAPI for multiple status types.
+
+Set `media_type` explicitly when clients expect `text/csv` or `application/pdf` so browsers offer the right download behavior. Streaming large files with `StreamingResponse` avoids loading entire blobs into memory on small servers.
+
+## Recap
+
+- Use **Response** subclasses for HTML, files, plain text.
+- **JSONResponse** for manual status/headers.
+- Document alternate statuses in **responses=&#123;&#125;**.
+
+## Up next
+
+When you are ready, continue with **Response schemas** (use **Next** below). Each lesson builds on the previous one in this track.

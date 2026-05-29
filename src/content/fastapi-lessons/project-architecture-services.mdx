@@ -1,0 +1,41 @@
+---
+title: "Services"
+description: "FastAPI service layer pattern—business logic separate from routes for testing and reuse."
+quickAnswer: "Services hold business rules—create order, calculate tax—called by routers but independent of HTTP, so unit tests stay simple."
+order: 199
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+The **service layer** encodes what your application does: place order, invite user, refund payment. Routers translate HTTP; services enforce rules and orchestrate repositories. The same service can back a CLI or background worker later.
+
+### Example service function
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`# app/services/orders.py
+def create_order(db, user_id: int, items: list[dict]) -> dict:
+    if not items:
+        raise ValueError("Cart is empty")
+    total = sum(i["price"] * i["qty"] for i in items)
+    order = save_order(db, user_id, total)
+    return {"order_id": order.id, "total": total}`} />
+
+Services raise domain exceptions; routers catch them and map to `HTTPException`. Keep FastAPI imports out of services when possible.
+
+### In practice
+
+Name service functions after business events: `place_order`, not `post_order_handler`. Return plain dicts or Pydantic models, not `Response` objects, so the same function works from a Celery task or CLI script.
+
+## Recap
+
+- Business logic lives in `services/`.
+- Routers call services; services call repositories.
+- Unit-test services without TestClient.
+
+## Up next
+
+When you are ready, continue with **Repositories** (use **Next** below). Each lesson builds on the previous one in this track.

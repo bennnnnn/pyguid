@@ -1,0 +1,73 @@
+---
+import { render } from "astro:content";
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import PagerNav from "../../components/PagerNav.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import Callout from "../../components/Callout.astro";
+import CodeExample from "../../components/CodeExample.astro";
+import {
+  getAdjacentFastapiLessons,
+  getAllFastapiLessons,
+  fastapiLessonUrl,
+} from "../../lib/fastapi-lessons";
+import { breadcrumbListJsonLd } from "../../lib/seo-schema";
+import { SITE, getSiteUrl } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const lessons = await getAllFastapiLessons();
+  return lessons.map((lesson) => ({
+    params: { slug: lesson.id },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect("/fastapi/");
+
+const lessons = await getAllFastapiLessons();
+const lesson = lessons.find((entry) => entry.id === slug);
+if (!lesson) return Astro.redirect("/fastapi/");
+
+const { Content } = await render(lesson);
+const { prev, next } = getAdjacentFastapiLessons(lessons, slug);
+
+const pageTitle = `${lesson.data.title} — FastAPI — ${SITE.name}`;
+const siteUrl = getSiteUrl(Astro.site);
+const pageUrl = new URL(fastapiLessonUrl(slug), `${siteUrl}/`).href;
+
+const jsonLd = breadcrumbListJsonLd([
+  { name: SITE.name, url: `${siteUrl}/` },
+  { name: "FastAPI", url: `${siteUrl}/fastapi/` },
+  { name: lesson.data.sectionTitle, url: `${siteUrl}/fastapi/#fastapi-${lesson.data.sectionId}` },
+  { name: lesson.data.title, url: pageUrl },
+]);
+---
+
+<TutorialLayout
+  title={pageTitle}
+  description={lesson.data.description}
+  currentLessonId={slug}
+  sidebar="fastapi"
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <article class="lesson-prose">
+    <PagerNav
+      prev={prev ? { href: fastapiLessonUrl(prev.id), label: "Back" } : null}
+      next={next ? { href: fastapiLessonUrl(next.id), label: "Next" } : null}
+      placement="top"
+      ariaLabel="Lesson navigation"
+    />
+    <p class="m-0 mb-2 text-sm font-medium text-text-muted">
+      {lesson.data.sectionTitle}
+    </p>
+    <h1 class="!mt-0">{lesson.data.title}</h1>
+    {lesson.data.quickAnswer && <QuickAnswer text={lesson.data.quickAnswer} />}
+    <Content components={{ Callout, CodeExample }} />
+    <PagerNav
+      prev={prev ? { href: fastapiLessonUrl(prev.id), label: "Back" } : null}
+      next={next ? { href: fastapiLessonUrl(next.id), label: "Next" } : null}
+      placement="bottom"
+      ariaLabel="Lesson navigation"
+    />
+  </article>
+</TutorialLayout>

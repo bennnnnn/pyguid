@@ -1,0 +1,52 @@
+---
+title: "Tags"
+description: "Organize FastAPI routes with tags for clearer Swagger UI and ReDoc navigation."
+quickAnswer: "Group endpoints in OpenAPI with tags=[\"Users\"] on @app.get/post or APIRouter(tags=[...])."
+order: 75
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Path Operation Configuration** — Polish your OpenAPI docs with tags, summaries, descriptions, and deprecation flags—small metadata that helps large teams.
+
+</Callout>
+
+## Why this matters
+
+A growing API might have hundreds of routes. **Tags** group related endpoints in Swagger UI and ReDoc—"Users", "Orders", "Admin"—so developers find operations quickly and generated SDKs can namespace methods.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import APIRouter, FastAPI
+
+app = FastAPI()
+users = APIRouter(prefix="/users", tags=["Users"])
+
+@users.get("/")
+def list_users():
+    return []
+
+@users.post("/", tags=["Users", "Admin"])
+def create_user():
+    return {"created": True}
+
+app.include_router(users)`} />
+
+Set tags on the **router** for defaults, or on individual routes for finer control. Multiple tags place an operation under several sections. Tags appear in the OpenAPI `tags` array and do not change URLs or behavior—pure documentation and tooling.
+
+## In practice
+
+Define `openapi_tags=[&#123;"name": "Users", "description": "..."&#125;]` on the app so Swagger shows prose above each group. Split admin-only routes under an `Admin` tag rather than mixing them with public CRUD. Generated Python SDKs often create one module per tag—messy tag names become messy packages.
+
+## Recap
+
+- `tags=` on routes or `APIRouter` groups endpoints in auto-generated docs.
+- Use consistent tag names across your team’s style guide.
+- Tags do not affect routing—only documentation and client generation.
+
+## Up next
+
+When you are ready, continue with **Summaries** (use **Next** below). Each lesson builds on the previous one in this track.

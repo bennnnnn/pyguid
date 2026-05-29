@@ -1,0 +1,41 @@
+---
+title: "Modular applications"
+description: "Build modular FastAPI monoliths—feature packages with routers, schemas, and services composed in main."
+quickAnswer: "Package features as modules (users, billing) with their own router, schemas, and service—compose them in main for a modular monolith."
+order: 201
+sectionId: "project-architecture"
+sectionTitle: "Project Architecture"
+sectionOrder: 37
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+A **modular application** splits features into installable units. Each module owns its router, models, and tests. `main.py` composes modules—like microservices without separate deployables—so boundaries stay clear as the codebase grows.
+
+### Feature module
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`# app/modules/billing/__init__.py
+from .router import router
+
+# app/main.py
+from app.modules.billing import router as billing_router
+app.include_router(billing_router, prefix="/api/v1")`} />
+
+Avoid modules importing each other's internals; depend on shared interfaces or events. Shared kernel code (auth, db) lives in `core/`.
+
+### In practice
+
+Treat each module's `router.py` as its public HTTP API and keep `services/` private to the module. Cross-module calls go through narrow functions or domain events, not through importing another module's repository file. Add a `README.md` inside large modules describing owned endpoints and dependencies.
+
+## Recap
+
+- One folder per feature with router + service.
+- Compose modules from a thin main.
+- Limit cross-module imports to public APIs.
+- Document module boundaries for new contributors.
+
+## Up next
+
+When you are ready, continue with **Large-scale API organization** (use **Next** below). Each lesson builds on the previous one in this track.

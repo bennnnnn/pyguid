@@ -1,0 +1,51 @@
+---
+title: "HTML forms"
+description: "Connect HTML forms to FastAPI using form-encoded and multipart requests."
+quickAnswer: "HTML forms POST application/x-www-form-urlencoded or multipart data; FastAPI reads them with Form() parameters."
+order: 100
+sectionId: "form-data"
+sectionTitle: "Form Data"
+sectionOrder: 17
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Form Data** — HTML forms send `application/x-www-form-urlencoded` or `multipart` data—not JSON. FastAPI handles both with `Form()` and `File()`.
+
+</Callout>
+
+## Why this matters
+
+Not every client sends JSON. Browser **HTML forms** default to `application/x-www-form-urlencoded`; forms with `enctype="multipart/form-data"` send files. FastAPI maps fields to Python parameters with `Form()`.
+
+```html
+<form action="http://127.0.0.1:8000/login/" method="post">
+  <input name="username" />
+  <input name="password" type="password" />
+  <button type="submit">Login</button>
+</form>
+```
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Form
+
+@app.post("/login/")
+def login(username: str = Form(...), password: str = Form(...)):
+    return {"username": username}`} />
+
+Install `python-multipart` for form parsing. JSON APIs and form APIs can coexist on the same app—choose the content type per endpoint.
+
+## In practice
+
+Install `python-multipart` in all environments—forms fail mysteriously without it. Traditional server-rendered apps POST forms; SPAs usually send JSON. Pick one style per endpoint and document it. Server-rendered admin panels still rely on forms; test them with curl using -F flags.
+
+## Recap
+
+- Forms use **Form()** parameters, not JSON body models.
+- `multipart/form-data` is required when mixing files and fields.
+- Install **python-multipart** for form support.
+
+## Up next
+
+When you are ready, continue with **`Form()`** (use **Next** below). Each lesson builds on the previous one in this track.

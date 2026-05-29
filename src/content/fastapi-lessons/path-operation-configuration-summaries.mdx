@@ -1,0 +1,41 @@
+---
+title: "Summaries"
+description: "Set concise operation summaries on FastAPI path operations for better API docs."
+quickAnswer: "Add a short summary= on each route decorator; it appears as the operation title in OpenAPI UIs."
+order: 76
+sectionId: "path-operation-configuration"
+sectionTitle: "Path Operation Configuration"
+sectionOrder: 13
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+The auto-generated doc UI shows one line per endpoint. A clear **summary**—"List active users", "Cancel subscription"—beats a vague function name like `read_users_v2` for everyone scanning the API.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get(
+    "/users/",
+    summary="List users",
+    response_description="Paginated user list",
+)
+def list_users():
+    return []`} />
+
+Summaries should be **short** (often under 80 characters). Put longer explanations in `description=`. If you omit `summary`, FastAPI may derive one from the function name—fine for internal tools, weak for public APIs.
+
+When using `APIRouter`, summaries on included routes merge into the main OpenAPI schema unchanged.
+
+## In practice
+
+Write summaries as imperative phrases: `List active subscriptions`, `Cancel subscription`. Avoid repeating the HTTP verb when Swagger already shows GET. For internal microservices, summaries help more than long descriptions because engineers scan the operation list constantly during integration.
+
+## Recap
+
+- `summary=` is the one-line title in Swagger/ReDoc.
+- Write summaries for **humans** reading the docs, not for Python style.
+- Use `description=` for paragraphs; keep summaries brief.
+
+## Up next
+
+When you are ready, continue with **Descriptions** (use **Next** below). Each lesson builds on the previous one in this track.

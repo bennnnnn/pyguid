@@ -1,0 +1,47 @@
+---
+title: "What middleware is"
+description: "Understand what middleware is and how it fits into FastAPI/Starlette."
+quickAnswer: "Middleware wraps every request and response—run code before the route and after the response is built."
+order: 109
+sectionId: "middleware"
+sectionTitle: "Middleware"
+sectionOrder: 19
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Middleware** — Middleware wraps every request: logging, timing, security headers, and CORS run here before your route handler executes.
+
+</Callout>
+
+## Why this matters
+
+Cross-cutting concerns—logging, security headers, timing—should not be copy-pasted into every route. **Middleware** is a function that receives the request, can modify it, calls the next layer, then can modify the outgoing response.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, Request
+
+app = FastAPI()
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-App"] = "PyGuide"
+    return response`} />
+
+Middleware runs for **all** matching routes—including `/docs` unless excluded. Order matters: the first added middleware runs outermost on the way in. Built-in middleware handles CORS, gzip, and trusted hosts.
+
+## In practice
+
+Order matters: CORS often sits outermost. Each middleware adds latency—keep logic tiny. Compare with dependencies when code needs DB access only on some routes, not globally.
+
+## Recap
+
+- Middleware wraps the whole app: **request in**, **response out**.
+- Use it for shared logic that is not specific to one route.
+- Too much work in middleware slows every endpoint.
+
+## Up next
+
+When you are ready, continue with **Request lifecycle** (use **Next** below). Each lesson builds on the previous one in this track.

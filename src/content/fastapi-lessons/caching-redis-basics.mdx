@@ -1,0 +1,60 @@
+---
+title: "Redis basics"
+description: "Learn Redis basics for FastAPI: what Redis is, when to cache, connecting with redis-py, and storing API-friendly key-value data."
+quickAnswer: "Redis is an in-memory data store used as a cache or message broker; connect from FastAPI with a client library and store JSON-serialized values under TTL keys."
+order: 214
+sectionId: "caching"
+sectionTitle: "Caching"
+sectionOrder: 41
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Caching** — Redis and response caching cut latency and database load for read-heavy endpoints.
+
+</Callout>
+
+## Why this matters
+
+Every database hit on a hot endpoint adds latency and load. **Redis** keeps frequently read data in memory so your API can answer in milliseconds instead of running the same SQL query thousands of times per minute.
+
+Redis is not a replacement for Postgres. It is a **fast side cache**: product lists, session tokens, rate-limit counters, and short-lived computed results.
+
+## Connect from Python
+
+Install a client such as `redis` (sync) or `redis.asyncio` (async). Point it at a URL from settings:
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`import redis.asyncio as redis
+
+cache = redis.from_url("redis://localhost:6379/0", decode_responses=True)
+
+async def get_cached_user(user_id: int):
+    key = f"user:{user_id}"
+    raw = await cache.get(key)
+    if raw:
+        return json.loads(raw)
+    user = await db.fetch_user(user_id)
+    await cache.setex(key, 300, json.dumps(user))  # TTL 5 minutes
+    return user`} />
+
+## Core commands to know
+
+- `GET` / `SET` / `SETEX` — read and write strings with optional expiry
+- `DEL` — invalidate after updates
+- `INCR` — atomic counters for rate limits
+
+Use **TTL** (time to live) on cache keys so stale data expires automatically. When you update a row in the database, delete or overwrite the matching cache key.
+
+<Callout variant="tip" title="Production tip">
+Run Redis as a separate service (Docker, managed cloud). Never commit connection URLs; load them from environment variables.
+</Callout>
+
+## Recap
+
+Redis gives you sub-millisecond reads for cached JSON. Use namespaced keys, TTLs, and invalidation on writes. Pair it with FastAPI via an async client when your routes are async.
+
+## Up next
+
+When you are ready, continue with **API caching** (use **Next** below). Each lesson builds on the previous one in this track.

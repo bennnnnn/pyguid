@@ -1,0 +1,41 @@
+---
+title: "Security headers"
+description: "HTTP security headers for FastAPI — middleware examples and what each header prevents."
+quickAnswer: "Add middleware or reverse-proxy headers like `X-Content-Type-Options`, `X-Frame-Options`, and `Strict-Transport-Security` to harden browsers."
+order: 167
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Headers tell browsers to block MIME sniffing, clickjacking, and downgrade attacks. They are cheap defense-in-depth alongside HTTPS and input validation.
+
+## Middleware example
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from starlette.middleware.base import BaseHTTPMiddleware
+
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        return response
+
+app.add_middleware(SecurityHeadersMiddleware)`} />
+
+Set `Strict-Transport-Security` only when HTTPS is always available.
+
+## Recap
+
+- Security headers complement HTTPS
+- Middleware is a simple place to set them
+- Many proxies can inject headers too
+
+## Up next
+
+When you are ready, continue with **Preventing SQL injection** (use **Next** below). Each lesson builds on the previous one in this track.

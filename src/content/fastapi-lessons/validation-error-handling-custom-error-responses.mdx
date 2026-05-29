@@ -1,0 +1,42 @@
+---
+title: "Custom error responses"
+description: "Shape error JSON and document error schemas in OpenAPI with custom error responses."
+quickAnswer: "Document and return custom error models with responses={404: ...} and matching exception handlers."
+order: 68
+sectionId: "validation-error-handling"
+sectionTitle: "Validation & Error Handling"
+sectionOrder: 11
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Public APIs promise a **contract**. If success returns `&#123;"data": ...&#125;` but errors are random strings, SDK generators and frontend teams suffer. Custom error **Pydantic models** plus `responses=` on the route document every failure shape in OpenAPI/Swagger.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from pydantic import BaseModel
+
+class ErrorOut(BaseModel):
+    code: str
+    message: str
+
+@app.get(
+    "/items/{item_id}",
+    responses={404: {"model": ErrorOut, "description": "Item not found"}},
+)
+def get_item(item_id: int):
+    item = db.get(item_id)
+    if not item:
+        raise HTTPException(
+            status_code=404,
+            detail={"code": "not_found", "message": f"No item {item_id}"},
+        )
+    return item`} />
+
+Pair `responses=` with exception handlers that return the same model so runtime output matches docs. For validation, subclass the default 422 handler and return your `ValidationErrorOut` with field-level `errors` array. Clients and QA can rely on documented codes like `duplicate_email` instead of parsing English sentences.
+
+## Recap
+
+- Use Pydantic models for **error bodies** and list them in `responses=`.
+- Keep `code` machine-readable; keep `message` human-readable.
+- Align exception handlers with what OpenAPI documents.

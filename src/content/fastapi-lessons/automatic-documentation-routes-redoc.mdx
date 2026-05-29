@@ -1,0 +1,31 @@
+---
+title: "Routes: `/redoc`"
+description: "How the /redoc route works in FastAPI and how to relocate or disable it."
+quickAnswer: "The /redoc route serves the ReDoc HTML client, configurable via redoc_url."
+order: 87
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Just like `/docs`, **/redoc** is an explicit route serving ReDoc’s HTML shell and loading your OpenAPI spec. Operations teams sometimes expose only ReDoc publicly while hiding Swagger’s execute buttons.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI(redoc_url="/redoc")
+
+app_internal = FastAPI(redoc_url="/reference")`} />
+
+Set `redoc_url=None` to remove the route—pair with disabling `docs_url` in locked-down environments. The ReDoc page fetches `openapi_url`; if that URL is wrong behind a proxy, configure `root_path` or absolute URLs in your deployment docs.
+
+## In practice
+
+ReDoc at `/redoc` is independent of Swagger’s HTML—both hit the same schema. Rename with `redoc_url` if your site already uses `/redoc` for something else. Large schemas may load slowly; consider splitting routers with separate OpenAPI exports for monoliths. Partners often bookmark ReDoc for schema review during integration sprints.
+
+## Recap
+
+- **/redoc** is the default ReDoc route (`redoc_url`).
+- Customize with `redoc_url="/reference"` or disable with `None`.
+- ReDoc requires access to the OpenAPI JSON URL you configure.

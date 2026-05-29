@@ -1,0 +1,47 @@
+---
+title: "HTTPS"
+description: "HTTPS for FastAPI production — TLS termination, redirects, and why HTTP is unsafe for auth."
+quickAnswer: "Serve APIs over HTTPS in production so tokens and passwords are encrypted in transit—terminate TLS at Nginx or your cloud load balancer."
+order: 165
+sectionId: "security"
+sectionTitle: "Security"
+sectionOrder: 30
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: Security** — HTTPS, hashing, security headers, and common attack patterns (SQL injection, XSS, CSRF) every API developer should know.
+
+</Callout>
+
+## Why this matters
+
+HTTP sends headers and bodies in cleartext. Anyone on the network can steal JWTs and session cookies. HTTPS encrypts traffic and helps users trust your domain.
+
+## Production setup
+
+- Obtain certificates (Let's Encrypt is free)
+- Terminate TLS at Nginx, Caddy, or a cloud load balancer
+- Redirect HTTP → HTTPS
+- Set `Secure` flag on cookies
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`# Example: uvicorn behind proxy already handling TLS
+uvicorn app.main:app --host 0.0.0.0 --port 8000`} />
+
+<Callout variant="tip">
+
+Local development can use HTTP; staging and production should mirror real TLS configuration.
+
+</Callout>
+
+## Recap
+
+- Never send tokens over plain HTTP in production
+- Terminate TLS at the reverse proxy
+- Force HTTPS redirects
+
+## Up next
+
+When you are ready, continue with **Password hashing** (use **Next** below). Each lesson builds on the previous one in this track.

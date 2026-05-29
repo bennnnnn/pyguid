@@ -1,0 +1,47 @@
+---
+title: "FastAPI vs Flask vs Django"
+description: "Compare FastAPI, Flask, and Django so you can choose the right Python framework for APIs versus full websites."
+quickAnswer: "Use FastAPI for typed JSON APIs, Flask for minimal flexible apps, and Django when you need an admin site, ORM, and batteries-included web platform."
+order: 3
+sectionId: "introduction-to-fastapi"
+sectionTitle: "Introduction to FastAPI"
+sectionOrder: 1
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Picking a framework on hype alone leads to rework. FastAPI, Flask, and Django solve overlapping but different problems. Matching the tool to the product—API-only versus content site versus enterprise monolith—saves months of fighting the framework.
+
+## How it works
+
+**Flask** is a microframework: you add extensions for validation, async, and admin. It is flexible and familiar, but OpenAPI and request validation are manual unless you add libraries.
+
+**Django** is a full web platform: ORM, admin, templates, auth, migrations. It excels at server-rendered sites and large apps with many built-ins. For a pure mobile-backend JSON API, Django can feel heavy.
+
+**FastAPI** targets **APIs first**: automatic validation, async-friendly ASGI, and interactive docs by default. It does not ship a built-in admin or ORM—you pair SQLAlchemy, SQLModel, or an external service. Many teams use Django for the public site and FastAPI for high-throughput microservices.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# FastAPI: schema-first API endpoint
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class UserOut(BaseModel):
+    id: int
+    email: str
+
+@app.get("/users/{user_id}", response_model=UserOut)
+def get_user(user_id: int):
+    return {"id": user_id, "email": "a@example.com"}`} />
+
+## Recap
+
+- **Flask**: minimal, bring your own pieces.
+- **Django**: full web app platform with admin and ORM.
+- **FastAPI**: typed JSON APIs with validation and OpenAPI built in.
+
+## Up next
+
+When you are ready, continue with **ASGI vs WSGI** (use **Next** below). Each lesson builds on the previous one in this track.

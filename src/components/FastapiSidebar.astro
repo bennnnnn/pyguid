@@ -1,0 +1,83 @@
+---
+import { FASTAPI_ROADMAP_SECTIONS } from "../lib/fastapi-roadmap";
+import { fastapiLessonUrl, fastapiSectionContainsLesson } from "../lib/fastapi-lessons";
+
+interface Props {
+  currentLessonId?: string;
+}
+
+const { currentLessonId } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "");
+const isHub = path === "/fastapi";
+---
+
+<aside
+  id="tutorial-sidebar"
+  class="course-sidebar w-full shrink-0 border-r border-border bg-sidebar-bg lg:sticky lg:top-14 lg:block lg:w-[272px] lg:self-start lg:max-h-[calc(100vh-3.5rem)] lg:overflow-y-auto"
+>
+  <div class="border-b border-border px-4 py-3">
+    <a
+      href="/fastapi/"
+      class:list={[
+        "text-xs font-semibold uppercase tracking-wider no-underline",
+        isHub ? "text-text" : "text-text-muted hover:text-link",
+      ]}
+      aria-current={isHub ? "page" : undefined}
+    >
+      FastAPI tutorials
+    </a>
+  </div>
+
+  <nav class="py-2" aria-label="FastAPI lessons">
+    <ul class="m-0 list-none p-0">
+      {
+        FASTAPI_ROADMAP_SECTIONS.map((section) => {
+          const isOpen = fastapiSectionContainsLesson(section.id, currentLessonId);
+          const groupId = `fastapi-${section.id}`;
+
+          return (
+            <li class:list={["menu-group", "chapter-group", isOpen && "is-open"]}>
+              <button
+                type="button"
+                class="menu-trigger flex w-full items-center justify-between gap-2 py-2 pl-4 pr-4 text-left text-sm font-semibold"
+                aria-expanded={isOpen}
+                aria-controls={`${groupId}-content`}
+              >
+                <span class="truncate">{section.title}</span>
+                <svg
+                  class="menu-icon h-4 w-4 shrink-0 text-text-muted"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <ul id={`${groupId}-content`} class="submenu m-0 list-none p-0">
+                {section.lessons.map((lesson) => (
+                  <li>
+                    <a
+                      href={fastapiLessonUrl(lesson.id)}
+                      class:list={[
+                        "lesson-link block py-2 pl-8 pr-4 text-sm",
+                        currentLessonId === lesson.id && "is-active",
+                      ]}
+                    >
+                      {lesson.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</aside>

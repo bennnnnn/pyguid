@@ -1,0 +1,47 @@
+---
+title: "Optional fields"
+description: "Define optional fields in JSON request bodies with Pydantic and FastAPI."
+quickAnswer: "Use Optional types or default values on Pydantic model fields so clients may omit keys in JSON bodies."
+order: 37
+sectionId: "request-body"
+sectionTitle: "Request Body"
+sectionOrder: 6
+lessonOrder: 5
+level: beginner
+---
+
+## Why this matters
+
+Create and update flows often differ: only some fields are sent on PATCH-like creates. Optional fields with clear defaults prevent forcing clients to send null placeholders everywhere.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from typing import Optional
+from pydantic import BaseModel
+from fastapi import FastAPI
+
+class ProfileUpdate(BaseModel):
+    bio: Optional[str] = None
+    website: Optional[str] = None
+    newsletter: bool = False
+
+app = FastAPI()
+
+@app.patch("/profile")
+def update_profile(body: ProfileUpdate):
+    data = body.model_dump(exclude_unset=True)
+    return {"applied": data}`} />
+
+**Optional** with `None` default means the field may be omitted. Distinguish "omit" vs "set to null" carefully—Pydantic v2 can treat them differently depending on model config. Document behavior for API consumers.
+
+For PATCH, document whether `null` clears a field or is ignored—Pydantic model configuration controls that behavior.
+
+## Recap
+
+- **Optional[T] = None** marks optional JSON fields.
+- Use `exclude_unset` for partial updates.
+- Document **null vs omitted** semantics for clients.
+
+## Up next
+
+When you are ready, continue with **Multiple body parameters** (use **Next** below). Each lesson builds on the previous one in this track.

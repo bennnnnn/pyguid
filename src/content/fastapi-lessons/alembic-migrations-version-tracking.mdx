@@ -1,0 +1,35 @@
+---
+title: "Version tracking"
+description: "Alembic version tracking — revision ids, branches, and checking migration state across environments."
+quickAnswer: "Alembic stores the current revision in `alembic_version`; use `alembic current` and `alembic history` to see what ran and what is pending."
+order: 144
+sectionId: "alembic-migrations"
+sectionTitle: "Alembic Migrations"
+sectionOrder: 26
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+When staging works but production fails, the first question is: are migrations in sync? Version tracking answers which script ran and which environment lags behind.
+
+## Inspect state
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`alembic current
+alembic history --verbose
+alembic heads`} />
+
+Revision ids look like `a1b2c3d4e5f6`. Each file links `down_revision` to the parent, forming a chain (or branches merged later).
+
+<Callout variant="tip">
+
+CI can run `alembic upgrade head` against a throwaway database to catch broken migrations before deploy.
+
+</Callout>
+
+## Recap
+
+- `alembic_version` table stores the active revision
+- `current` / `history` diagnose drift
+- Keep migration files in git with application code

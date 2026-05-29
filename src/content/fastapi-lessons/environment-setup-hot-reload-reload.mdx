@@ -1,0 +1,36 @@
+---
+title: "Hot reload (`--reload`)"
+description: "Use Uvicorn hot reload during development and know why you must disable it in production."
+quickAnswer: "Uvicorn's --reload flag restarts the server when you save Python files, speeding up local API development."
+order: 13
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 7
+level: beginner
+---
+
+## Why this matters
+
+Restarting the server manually after every edit wastes time. Hot reload keeps flow state in your editor while the ASGI process picks up code changes—until you forget reload is unsafe in production.
+
+## How it works
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn main:app --reload`} />
+
+Uvicorn watches Python files and restarts workers when they change. Large projects may tune watch directories or exclude `.venv`. Some teams prefer **fastapi dev** when using the standard extra—both aim at the same developer experience.
+
+**Production warning**: `--reload` spawns a reloader process and can leave half-initialized state. In production use a process manager (systemd, Docker, Kubernetes) **without** reload, often multiple workers:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4`} />
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# Edit this route, save, refresh browser — no manual restart
+@app.get("/ping")
+def ping():
+    return {"pong": True}`} />
+
+## Recap
+
+- **--reload** is for **local development only**.
+- Saves restart friction while editing routes and models.
+- Production uses **multiple workers**, not reload.

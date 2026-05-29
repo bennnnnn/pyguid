@@ -141,7 +141,7 @@
 
     backdrop?.addEventListener("click", closeMobile);
 
-    sidebar.querySelectorAll(".lesson-link").forEach((link) => {
+    sidebar.querySelectorAll(".lesson-link, .ref-entry-link").forEach((link) => {
       link.addEventListener("click", () => {
         if (window.matchMedia("(max-width: 1023px)").matches) closeMobile();
       });
@@ -154,6 +154,18 @@
         const group = trigger.closest(".chapter-group");
         if (!group) return;
         const willOpen = !group.classList.contains("is-open");
+
+        if (sidebar.classList.contains("ref-sidebar") && willOpen) {
+          sidebar.querySelectorAll(".chapter-group.is-open").forEach((other) => {
+            if (other !== group) {
+              other.classList.remove("is-open");
+              other
+                .querySelector(".menu-trigger")
+                ?.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+
         group.classList.toggle("is-open", willOpen);
         trigger.setAttribute("aria-expanded", String(willOpen));
       });

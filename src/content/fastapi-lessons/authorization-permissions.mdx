@@ -1,0 +1,40 @@
+---
+title: "Permissions"
+description: "Permissions in FastAPI — RBAC, permission strings, and enforcing action-level access."
+quickAnswer: "Fine-grained permissions (e.g. `posts:write`) go beyond roles—map users to permission sets and check them in reusable dependencies."
+order: 161
+sectionId: "authorization"
+sectionTitle: "Authorization"
+sectionOrder: 29
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Roles alone break when admins need read-only access or contractors may edit only one module. Permissions name specific actions; roles become bundles of permissions.
+
+## Permission dependency factory
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`def require_permission(permission: str):
+    def checker(user: User = Depends(get_current_user)):
+        if permission not in user.permissions:
+            raise HTTPException(403, "Missing permission")
+        return user
+    return checker
+
+@app.post("/posts")
+def create_post(_: User = Depends(require_permission("posts:write"))):
+    ...`} />
+
+Load permissions from database tables linking users, roles, and permission rows for flexible admin UIs.
+
+## Recap
+
+- Permissions name actions, not just job titles
+- Factory dependencies avoid duplicated checks
+- 403 when permission is missing
+
+## Up next
+
+When you are ready, continue with **Admin systems** (use **Next** below). Each lesson builds on the previous one in this track.

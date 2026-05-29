@@ -1,0 +1,36 @@
+---
+title: "Routes: `/docs`"
+description: "How the /docs route works in FastAPI and when to change its URL."
+quickAnswer: "The /docs route serves Swagger UI; customize or relocate it with docs_url on the FastAPI app."
+order: 86
+sectionId: "automatic-documentation"
+sectionTitle: "Automatic Documentation"
+sectionOrder: 14
+lessonOrder: 6
+level: beginner
+---
+
+## Why this matters
+
+Teams bookmark **/docs** during development. Knowing it is a normal Starlette route—not magic—helps you put it behind auth, change the path, or proxy it through nginx.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`app = FastAPI(docs_url="/docs")
+
+# Same UI at a different path:
+app = FastAPI(docs_url="/developer/swagger")`} />
+
+FastAPI registers a route that returns HTML loading Swagger UI from a CDN and points it at your `openapi_url` (default `/openapi.json`). If `docs_url=None`, that route is not registered. Some deployments mount the API at `/api` and set `root_path` so generated URLs behind a proxy stay correct.
+
+## In practice
+
+Behind nginx, set `root_path` or `--root-path` so Swagger fetches `/openapi.json` from the public URL. Broken schema URLs yield blank Swagger pages even when curl works. Some teams mount docs at `/api/docs` via `docs_url` to match gateway path prefixes.
+
+## Recap
+
+- **/docs** is the default Swagger UI route (`docs_url`).
+- Change the path with `docs_url="/custom"` or disable with `None`.
+- Works with `root_path` when the app sits behind a reverse proxy.
+
+## Up next
+
+When you are ready, continue with **Routes: `/redoc`** (use **Next** below). Each lesson builds on the previous one in this track.

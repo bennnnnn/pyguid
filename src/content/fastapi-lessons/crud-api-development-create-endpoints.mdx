@@ -1,0 +1,43 @@
+---
+title: "Create endpoints"
+description: "Build FastAPI create endpoints — POST, request models, 201 status, and database persistence."
+quickAnswer: "POST endpoints accept a Pydantic body, create a database row, return 201 with the created resource, and validate uniqueness before insert."
+order: 145
+sectionId: "crud-api-development"
+sectionTitle: "CRUD API Development"
+sectionOrder: 27
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: CRUD API Development** — Put it together: create, read, update, delete endpoints with pagination, filtering, and search patterns clients expect.
+
+</Callout>
+
+## Why this matters
+
+Create is how clients add users, posts, and orders. A well-designed POST validates input, returns the new id, and uses the correct status code so clients and OpenAPI docs behave predictably.
+
+## POST route
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.post("/items", response_model=ItemRead, status_code=201)
+def create_item(item_in: ItemCreate, db: Session = Depends(get_db)):
+    item = Item(**item_in.model_dump())
+    db.add(item)
+    db.commit()
+    db.refresh(item)
+    return item`} />
+
+Use a `ItemCreate` schema without `id` and an `ItemRead` schema for the response. Map conflicts (duplicate email) to 409.
+
+## Recap
+
+- POST + body model for creates
+- Return 201 and the created resource
+- Separate create and read Pydantic models
+
+## Up next
+
+When you are ready, continue with **Read endpoints** (use **Next** below). Each lesson builds on the previous one in this track.

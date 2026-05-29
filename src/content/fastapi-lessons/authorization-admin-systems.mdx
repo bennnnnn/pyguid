@@ -1,0 +1,41 @@
+---
+title: "Admin systems"
+description: "Admin systems in FastAPI — separate routers, stricter auth, and operational safety."
+quickAnswer: "Admin routes live under a separate prefix or router, require admin role, audit sensitive actions, and never expose raw user secrets."
+order: 162
+sectionId: "authorization"
+sectionTitle: "Authorization"
+sectionOrder: 29
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Admin panels delete users, change billing, and view PII. They need stronger guards than public APIs—MFA, IP allowlists, and detailed logs are common in production.
+
+## Admin router
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`admin = APIRouter(prefix="/admin", tags=["admin"])
+
+@admin.get("/users")
+def list_users(_: User = Depends(require_admin), db: Session = Depends(get_db)):
+    return db.query(User).all()
+
+app.include_router(admin)`} />
+
+<Callout variant="tip">
+
+Hide admin OpenAPI tags in public docs with environment-based `docs_url=None` or separate internal apps.
+
+</Callout>
+
+## Recap
+
+- Isolate admin routes in a router
+- Always depend on `require_admin`
+- Audit destructive operations
+
+## Up next
+
+When you are ready, continue with **Protected routes** (use **Next** below). Each lesson builds on the previous one in this track.

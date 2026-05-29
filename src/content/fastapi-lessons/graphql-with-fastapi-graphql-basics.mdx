@@ -1,0 +1,59 @@
+---
+title: "GraphQL basics"
+description: "GraphQL basics for FastAPI developers: schema, queries, types, and when GraphQL beats REST."
+quickAnswer: "GraphQL lets clients request exactly the fields they need in one query; with FastAPI you often mount a GraphQL ASGI app alongside REST routes for flexible read APIs."
+order: 245
+sectionId: "graphql-with-fastapi"
+sectionTitle: "GraphQL with FastAPI"
+sectionOrder: 49
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: GraphQL with FastAPI** — Optional: expose GraphQL with Strawberry when clients need flexible queries instead of fixed REST shapes.
+
+</Callout>
+
+## Why this matters
+
+**REST** returns fixed resource shapes. **GraphQL** lets the client specify nested fields in one round trip—great for mobile apps with varied screens, harder when you need simple caching everywhere.
+
+## Core concepts
+
+- **Schema** — types and operations the server supports
+- **Query** — read data (like GET, but flexible)
+- **Mutation** — write data
+- **Resolver** — function that fetches each field
+
+```graphql
+query &#123;
+  user(id: 1) &#123;
+    name
+    posts &#123; title &#125;
+  &#125;
+&#125;
+```
+
+One request; server resolves `user` then `posts`.
+
+## FastAPI integration pattern
+
+FastAPI remains your **REST and auth** surface; mount GraphQL at `/graphql` with a library such as Strawberry or Ariadne. Share database sessions and auth dependencies where possible.
+
+## Tradeoffs
+
+| GraphQL strengths | Challenges |
+|-------------------|------------|
+| Flexible reads | Complex caching |
+| Fewer round trips | N+1 resolver queries without care |
+| Strong typing | Query cost abuse (depth limits) |
+
+## Recap
+
+GraphQL is a schema-driven query language for flexible reads. Pair it with FastAPI as a mounted app, and plan resolver performance and query limits from day one.
+
+## Up next
+
+When you are ready, continue with **Strawberry GraphQL** (use **Next** below). Each lesson builds on the previous one in this track.

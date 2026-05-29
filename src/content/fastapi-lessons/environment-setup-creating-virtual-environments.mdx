@@ -1,0 +1,42 @@
+---
+title: "Creating virtual environments"
+description: "Create and activate a Python virtual environment for FastAPI so dependencies do not conflict with other projects."
+quickAnswer: "Run python3 -m venv .venv, activate it, then pip install packages so dependencies stay isolated per FastAPI project."
+order: 8
+sectionId: "environment-setup"
+sectionTitle: "Environment Setup"
+sectionOrder: 2
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Global pip installs cause version conflicts between client projects. A virtual environment gives you one known set of packages for FastAPI, Uvicorn, and your database driver—critical when deploying or sharing a requirements file.
+
+## How it works
+
+From your project folder:
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\\Scripts\\activate
+pip install --upgrade pip`} />
+
+Your shell prompt usually shows `(.venv)`. While active, `python` and `pip` point inside `.venv`. Add `.venv/` to `.gitignore`; commit **requirements.txt** or **pyproject.toml** instead.
+
+Deactivate with `deactivate`. IDEs like VS Code can select the `.venv` interpreter so Run/Debug uses the same environment as the terminal.
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`# After activation, this uses the venv interpreter
+import fastapi  # available only after pip install fastapi`} />
+
+Treat the venv as disposable: delete `.venv` and recreate it if dependencies become corrupted. Document the Python version in a `.python-version` file when your team uses pyenv.
+
+## Recap
+
+- Create with `python3 -m venv .venv`.
+- **Activate** before installing or running the server.
+- Never commit the venv folder; commit dependency lists.
+
+## Up next
+
+When you are ready, continue with **Installing FastAPI** (use **Next** below). Each lesson builds on the previous one in this track.

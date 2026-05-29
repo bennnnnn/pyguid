@@ -1,0 +1,46 @@
+---
+title: "Returning custom status codes"
+description: "Return specific HTTP status codes from FastAPI routes beyond the default 200."
+quickAnswer: "Set status_code on the decorator for fixed successes, or return JSONResponse/Response with a dynamic status_code from business logic."
+order: 55
+sectionId: "status-codes"
+sectionTitle: "Status Codes"
+sectionOrder: 9
+lessonOrder: 2
+level: beginner
+---
+
+## Why this matters
+
+Created vs accepted vs no-content success all use different codes. Expressing the right code helps clients distinguish "saved" from "queued" without custom envelope wrappers.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from fastapi import FastAPI, status
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+@app.post("/jobs", status_code=status.HTTP_202_ACCEPTED)
+def enqueue_job():
+    return {"status": "queued"}
+
+@app.post("/validate")
+def validate_only(ok: bool):
+    if ok:
+        return JSONResponse({"valid": True}, status_code=200)
+    return JSONResponse({"valid": False}, status_code=409)`} />
+
+Import constants from `starlette.status` or `fastapi.status` for readability. Document non-default codes in OpenAPI via `responses`.
+
+When returning 204, omit a response body entirely—some clients choke on `&#123;&#125;` with 204. Document accepted and conflict responses (202 vs 200 vs 409) in OpenAPI when workflows branch on business rules.
+
+## Recap
+
+- Fixed codes: **status_code** on decorator.
+- Dynamic codes: **JSONResponse(status_code=...)**.
+- Use named **HTTP_* constants** instead of magic numbers.
+
+## Up next
+
+When you are ready, continue with **Error responses** (use **Next** below). Each lesson builds on the previous one in this track.

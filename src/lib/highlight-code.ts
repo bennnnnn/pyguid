@@ -10,7 +10,7 @@ function getHighlighter(): Promise<Highlighter> {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighter({
       themes: THEMES,
-      langs: ["python"],
+      langs: ["python", "bash"],
     });
   }
   return highlighterPromise;
@@ -19,13 +19,24 @@ function getHighlighter(): Promise<Highlighter> {
 /**
  * Highlight Python source at build time (Shiki). Use in Astro frontmatter.
  */
-export async function highlightPython(
+export type HighlightLanguage = "python" | "bash";
+
+export async function highlightCode(
   code: string,
+  lang: HighlightLanguage = "python",
   theme: CodeTheme = "dracula",
 ): Promise<string> {
   const highlighter = await getHighlighter();
   return highlighter.codeToHtml(code.trim(), {
-    lang: "python",
+    lang,
     theme,
   });
+}
+
+/** @deprecated Use highlightCode */
+export async function highlightPython(
+  code: string,
+  theme: CodeTheme = "dracula",
+): Promise<string> {
+  return highlightCode(code, "python", theme);
 }

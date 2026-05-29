@@ -1,7 +1,7 @@
 ---
 import type { ReferenceEntryPage } from "../../lib/reference-sheets";
+import { getAdjacentReferencePages } from "../../lib/reference-sheets";
 import { getReferenceEntryCode } from "../../lib/reference-entry-code";
-import { referenceEntrySlug } from "../../lib/reference-sheets";
 import HighlightedCode from "../HighlightedCode.astro";
 import PythonExample from "../PythonExample.astro";
 import ReferencePager from "./ReferencePager.astro";
@@ -11,55 +11,39 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const { sheet, entry, index } = page;
+const { entry } = page;
 const { code, runnable, filename } = getReferenceEntryCode(page);
-
-const prev =
-  index > 0
-    ? {
-        slug: referenceEntrySlug(sheet.id, index - 1),
-        name: sheet.entries[index - 1].syntax,
-      }
-    : undefined;
-
-const next =
-  index < sheet.entries.length - 1
-    ? {
-        slug: referenceEntrySlug(sheet.id, index + 1),
-        name: sheet.entries[index + 1].syntax,
-      }
-    : undefined;
+const { prev, next } = getAdjacentReferencePages(page);
+const exampleLine = entry.example?.trim();
 ---
 
-<article class="ref-entry-page lesson-prose">
-  <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="top" />
-  <p
-    class="ref-entry-breadcrumb m-0 text-xs font-semibold uppercase tracking-wide text-text-muted"
-  >
-    <a
-      href={`/python/reference/#${sheet.id}`}
-      class="text-text-muted no-underline hover:text-link"
-    >
-      {sheet.title}
-    </a>
-  </p>
-  <h1 class="ref-entry-title !mt-2">
+<article class="ref-entry-page lesson-prose max-w-3xl">
+  <ReferencePager prev={prev} next={next} placement="top" />
+
+  <h1 class="ref-entry-title !mt-0 !mb-3">
     <code>{entry.syntax}</code>
   </h1>
-  <p class="ref-entry-lead">{entry.summary}</p>
+
+  <p class="ref-entry-lead !mt-0">{entry.summary}</p>
+
   {
-    entry.title !== entry.syntax && (
-      <p class="ref-entry-alt m-0 text-sm text-text-muted">{entry.title}</p>
+    exampleLine && (
+      <p class="ref-entry-example !mt-0">
+        <span class="font-semibold text-text">Example:</span>{" "}
+        <code>{exampleLine}</code>
+      </p>
     )
   }
 
-  {
-    runnable ? (
-      <PythonExample code={code} filename={filename} />
-    ) : (
-      <HighlightedCode code={code} variant="light" aria-label="Example" />
-    )
-  }
+  <div class="ref-entry-code-block mt-6">
+    {
+      runnable ? (
+        <PythonExample code={code} filename={filename} />
+      ) : (
+        <HighlightedCode code={code} variant="light" aria-label="Example" />
+      )
+    }
+  </div>
 
-  <ReferencePager sheetId={sheet.id} prev={prev} next={next} placement="bottom" />
+  <ReferencePager prev={prev} next={next} placement="bottom" />
 </article>

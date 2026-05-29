@@ -1,0 +1,43 @@
+---
+title: "Route prefixes"
+description: "FastAPI route prefixes on APIRouter and include_router—DRY paths and nested prefix stacking."
+quickAnswer: "Set prefix on APIRouter or include_router to avoid repeating /api/v1 on every decorator—prefixes stack when nested."
+order: 205
+sectionId: "routers"
+sectionTitle: "Routers"
+sectionOrder: 38
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Repeating `/api/v1/users` on every decorator invites typos. **Route prefixes** attach a path segment to every route in a router—change the version in one place when you ship v2. Clients and caches see the full path, so prefixes are part of your public contract.
+
+### Stacking prefixes
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`users = APIRouter(prefix="/users", tags=["users"])
+
+@users.get("/")
+def list_users():
+    return []
+
+app.include_router(users, prefix="/api/v1")
+# final path: /api/v1/users/`} />
+
+Prefix on both `APIRouter` and `include_router` combines. Pick one primary place (usually `include_router`) to avoid confusing double prefixes.
+
+### In practice
+
+Trailing slashes matter: be consistent (`/users/` vs `/users`) or browsers and caches will treat them as different URLs. Document the convention in your API style guide. FastAPI can redirect between slash variants—pick one style and test clients against it.
+
+## Recap
+
+- Use `prefix=` on router or `include_router`.
+- Paths on decorators are relative to the prefix.
+- Centralize API version in one prefix string.
+- Pick one trailing-slash style and stick to it.
+
+## Up next
+
+When you are ready, continue with **Tags organization** (use **Next** below). Each lesson builds on the previous one in this track.

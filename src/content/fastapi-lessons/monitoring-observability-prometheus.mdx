@@ -1,0 +1,47 @@
+---
+title: "Prometheus"
+description: "Prometheus with FastAPI: exposition format, scrape config, service discovery, and alerting basics."
+quickAnswer: "Prometheus scrapes metrics HTTP endpoints on a schedule, stores time-series data, and powers alerts; FastAPI apps expose /metrics with prometheus_client or starlette-exporter."
+order: 235
+sectionId: "monitoring-observability"
+sectionTitle: "Monitoring & Observability"
+sectionOrder: 46
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+**Prometheus** is the de facto open-source metrics backend. It **pulls** metrics from your app on an interval—no agent required inside FastAPI beyond an endpoint.
+
+## Expose /metrics
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from prometheus_client import make_asgi_app
+
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)`} />
+
+Protect `/metrics` on public networks (firewall or auth)—it can leak operational detail.
+
+## Scrape configuration
+
+```yaml
+scrape_configs:
+  - job_name: fastapi
+    static_configs:
+      - targets: ["api:8000"]
+```
+
+In Kubernetes, use **pod annotations** or ServiceMonitor for dynamic targets.
+
+## Alerting
+
+Prometheus **Alertmanager** routes firing rules (e.g. error rate > 5% for 5m) to Slack or PagerDuty. Start with a few high-signal alerts to avoid noise.
+
+## Recap
+
+Prometheus scrapes FastAPI's /metrics endpoint. Define scrape targets per environment, limit exposure, and alert on symptoms users feel (errors, latency).
+
+## Up next
+
+When you are ready, continue with **Grafana** (use **Next** below). Each lesson builds on the previous one in this track.

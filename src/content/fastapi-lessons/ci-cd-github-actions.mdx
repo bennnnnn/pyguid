@@ -1,0 +1,60 @@
+---
+title: "GitHub Actions"
+description: "GitHub Actions for FastAPI projects: workflow triggers, Python setup, caching dependencies, and deployment jobs."
+quickAnswer: "GitHub Actions runs CI/CD workflows on push and pull_request: checkout code, install Python, run tests and linters, build Docker images, and deploy from YAML in .github/workflows/."
+order: 230
+sectionId: "ci-cd"
+sectionTitle: "CI/CD"
+sectionOrder: 45
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: CI/CD** — GitHub Actions (or similar) runs tests on every push and deploys when main is green.
+
+</Callout>
+
+## Why this matters
+
+Manual deploys break under pressure. **GitHub Actions** automates test and release steps every time someone opens a pull request or merges to `main`.
+
+## Minimal test workflow
+
+```yaml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest
+```
+
+## Common jobs
+
+- **Lint** — ruff, mypy, or pre-commit
+- **Test** — pytest with a service container for Postgres
+- **Build** — `docker build` and push to GHCR or ECR
+- **Deploy** — SSH, Kubernetes apply, or platform CLI (only on `main`)
+
+Store secrets in **GitHub Secrets**, never in the workflow file.
+
+## Branch protection
+
+Require the CI job to pass before merge. Fast feedback on PRs catches regressions early.
+
+## Recap
+
+GitHub Actions encodes your quality gate in YAML. Start with test on every PR; add build and deploy jobs when the team is ready for continuous delivery.
+
+## Up next
+
+When you are ready, continue with **Automated testing** (use **Next** below). Each lesson builds on the previous one in this track.

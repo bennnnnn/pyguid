@@ -1,0 +1,45 @@
+---
+title: "What SQLModel is"
+description: "What SQLModel is — one class for database rows and API validation in FastAPI projects."
+quickAnswer: "SQLModel is a library by the FastAPI author that combines SQLAlchemy tables and Pydantic models in one class definition."
+order: 138
+sectionId: "sqlmodel"
+sectionTitle: "SQLModel"
+sectionOrder: 25
+lessonOrder: 1
+level: beginner
+---
+
+<Callout variant="note">
+
+**Topic: SQLModel** — SQLModel merges Pydantic and SQLAlchemy so one class can validate API input and map to database tables.
+
+</Callout>
+
+## Why this matters
+
+Without SQLModel you often duplicate fields: a SQLAlchemy `User` table and a Pydantic `UserRead` schema. SQLModel reduces that duplication while staying compatible with SQLAlchemy and FastAPI.
+
+## Hello SQLModel
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`from sqlmodel import SQLModel, Field
+
+class Hero(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    name: str
+    secret_name: str
+    age: int | None = None`} />
+
+`table=True` means this class maps to a database table. Fields use Python type hints like Pydantic.
+
+<CodeExample language="bash" filename="terminal.sh" runnable={true} code={`pip install sqlmodel`} />
+
+## Recap
+
+- SQLModel = SQLAlchemy + Pydantic ergonomics
+- Created for FastAPI-style type hints
+- Good fit for smaller and medium APIs
+
+## Up next
+
+When you are ready, continue with **Combining Pydantic + SQLAlchemy** (use **Next** below). Each lesson builds on the previous one in this track.

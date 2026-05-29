@@ -3,23 +3,23 @@ import { referenceEntryUrl } from "../../lib/reference-sheets";
 import PagerNav from "../PagerNav.astro";
 
 interface NavItem {
+  sheetId: string;
   slug: string;
   name: string;
 }
 
 interface Props {
-  sheetId: string;
   prev?: NavItem;
   next?: NavItem;
   placement?: "top" | "bottom";
 }
 
-const { sheetId, prev, next, placement = "bottom" } = Astro.props;
+const { prev, next, placement = "bottom" } = Astro.props;
 ---
 
 <PagerNav
-  prev={prev ? { href: referenceEntryUrl(sheetId, prev.slug), label: "Back" } : undefined}
-  next={next ? { href: referenceEntryUrl(sheetId, next.slug), label: "Next" } : undefined}
+  prev={prev ? { href: referenceEntryUrl(prev.sheetId, prev.slug), label: prev.name } : undefined}
+  next={next ? { href: referenceEntryUrl(next.sheetId, next.slug), label: next.name } : undefined}
   placement={placement}
   ariaLabel="Reference navigation"
 />

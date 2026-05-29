@@ -1,0 +1,40 @@
+---
+title: "Data validation"
+description: "See how Pydantic validates and coerces data used by FastAPI endpoints."
+quickAnswer: "Pydantic coerces compatible types and rejects invalid data with ValidationError listing each field problem."
+order: 41
+sectionId: "pydantic-basics"
+sectionTitle: "Pydantic Basics"
+sectionOrder: 7
+lessonOrder: 3
+level: beginner
+---
+
+## Why this matters
+
+Validation is more than "is it a string?"—ranges, formats, and cross-field rules belong in models so every entry point shares the same rules.
+
+## How it works
+
+<CodeExample language="python" filename="main.py" runnable={true} code={`from pydantic import BaseModel, Field, EmailStr
+
+class Account(BaseModel):
+    email: EmailStr
+    age: int = Field(ge=13, le=120)
+
+account = Account.model_validate({"email": "user@example.com", "age": "25"})
+print(account.age, type(account.age))  # 25, int`} />
+
+Coercion turns `"25"` into `25` when safe. Impossible coercions fail. In FastAPI, failed body validation never calls your route—clients always get predictable **422** JSON.
+
+Validation runs at import time only for type checking—runtime validation happens on each `model_validate` call.
+
+## Recap
+
+- Pydantic **coerces** when reasonable, else errors.
+- Use **Field** and types like **EmailStr** for formats.
+- FastAPI surfaces validation as **HTTP 422**.
+
+## Up next
+
+When you are ready, continue with **Default values** (use **Next** below). Each lesson builds on the previous one in this track.

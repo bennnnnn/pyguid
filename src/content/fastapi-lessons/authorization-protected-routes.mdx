@@ -1,0 +1,37 @@
+---
+title: "Protected routes"
+description: "Protect FastAPI routes — dependencies, optional auth, and consistent 401 vs 403 responses."
+quickAnswer: "Add `Depends(get_current_user)` to any route that needs login; combine with role or permission dependencies for layered protection."
+order: 163
+sectionId: "authorization"
+sectionTitle: "Authorization"
+sectionOrder: 29
+lessonOrder: 4
+level: beginner
+---
+
+## Why this matters
+
+One unprotected DELETE endpoint can wipe data. Dependencies make protection declarative—readers see security requirements in the function signature and OpenAPI schema. Auditors and new teammates spot missing auth faster when it lives in `Depends()` rather than hidden inside route bodies.
+
+## Protected vs public
+
+<CodeExample language="python" filename="main.py" runnable={false} code={`@app.get("/public")
+def public():
+    return {"ok": True}
+
+@app.get("/private")
+def private(user: User = Depends(get_current_user)):
+    return {"email": user.email}`} />
+
+Return **401** when credentials are missing or invalid; **403** when authenticated but not allowed.
+
+## Recap
+
+- `Depends(get_current_user)` on private routes
+- 401 = not authenticated
+- 403 = authenticated but forbidden
+
+## Up next
+
+When you are ready, continue with **Access control** (use **Next** below). Each lesson builds on the previous one in this track.
